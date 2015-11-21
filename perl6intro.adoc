@@ -64,13 +64,13 @@ It is recommended that Perl 6 files have a  `.pl6` extension. +
 Run the file from the terminal using the following syntax: `perl6 filename.pl6`
 
 The REPL is mostly used for trying a specific piece of code, typically a single line. +
-For programs with more than a single line is it is recommended to store them in a file and then run them.
+For programs with more than a single line it is recommended to store them in a file and then run them.
 
 === Editors
 Since most of the time we will be writing and storing our Perl 6 programs in files, we should have
 a decent text editor that recognizes Perl 6 syntax.
 
-I personally use and recommend https://atom.io/[Atom] It is a modern text editor and comes with Perl 6 syntax highlighting out of the box.
+I personally use and recommend https://atom.io/[Atom]. It is a modern text editor and comes with Perl 6 syntax highlighting out of the box.
 
 Other people in the community also use http://www.vim.org/[Vim], https://www.gnu.org/software/emacs/[Emacs] or http://padre.perlide.org/[Padre].
 These will require installation of additional packages to get Perl 6 syntax highlighting.
@@ -88,7 +88,7 @@ Perl 6 is *free form*: You are free (most of the time) to use any amount of whit
 *Statements* are typically a logical line of code, they need to end with a semicolon:
 `if True { say "Hello" };`
 
-*Expressions* are a special type of statements that return a value:
+*Expressions* are a special type of statement that returns a value:
 `1+2` will return `3`
 
 Expressions are made of *Terms* and *Operators*.
@@ -113,7 +113,7 @@ Expressions are made of *Terms* and *Operators*.
 
 | Circumfix | Around the term | `(1)`
 
-| Postcircumfix | Around the term | `Array[1]`
+| Postcircumfix | After one term, around another  | `Array[1]`
 
 |===
 
@@ -125,7 +125,7 @@ Identifiers are the name given to terms when you define them.
 
 * They can contain digits (except the first character).
 
-* They can contain a dash or an apostrophe but they need to be surrounded by an alphabetic character.
+* They can contain dashes or apostrophes, provided there's an alphabetic character either side of each dash/apostrophe.
 
 |===
 
@@ -310,7 +310,7 @@ say "Hello $name";   #Hello John Doe
 NOTE: For the complete list of operators got to http://doc.perl6.org/language/operators
 
 == Variables
-Perl 6 variables are classified into 3 categories: Scalars,Arrays and Hashes.
+Perl 6 variables are classified into 3 categories: Scalars, Arrays and Hashes.
 
 A *sigil* (Sign in Latin) is a character that is used as a prefix to categorize variables.
 
