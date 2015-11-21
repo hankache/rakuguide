@@ -16,7 +16,7 @@ To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/
 
 #### Feedback
 All feedback is welcomed:
-* Corrections (Create an issue)
-* Suggestions (Create an issue)
-* Additions (Create an issue)
-* Translations (Create a new .adoc file in the repo)
+* Corrections
+* Suggestions
+* Additions
+* Translations
