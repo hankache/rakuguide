@@ -125,7 +125,7 @@ Identifiers are the name given to terms when you define them.
 
 * They can contain digits (except the first character).
 
-* They can contain dashes or apostrophes, provided there's an alphabetic character either side of each dash/apostrophe.
+* They can contain dashes or apostrophes (except the first and last character), provided there's an alphabetic character to the right side of each dash/apostrophe.
 
 |===
 
@@ -133,11 +133,13 @@ Identifiers are the name given to terms when you define them.
 
 | `var1` | `1var`
 
-| `var-1` | `var-1-2`
+| `var-one` | `var-1`
+
+| `var'one` | `var'1`
+
+| `var1_` | `var1'`
 
 | `_var` | `-var`
-
-| `var'1` | `var1'`
 
 |===
 
