@@ -24,10 +24,6 @@ To better understand them, take the time to reproduce all examples.
 This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. +
 To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.
 
-.Version
-This version was released on 2015-11-21 +
-The latest version can be found at http://www.perl6intro.com
-
 :sectnums:
 == Introduction
 === What is Perl 6
@@ -42,7 +38,7 @@ Perl 6 is multi-paradigmatic. It supports Procedural, Object Oriented and Functi
 Perl 6: Is a language specification. Everything that passes the specification is considered Perl 6. +
 Rakudo: Is a compiler for Perl 6. +
 Rakudobrew: Is a Perl 6 installation manager. +
-Panda: a Perl 6 module installer.
+Panda: Is a Perl 6 module installer.
 
 === Installing Perl 6
 .Linux
@@ -95,7 +91,7 @@ Expressions are made of *Terms* and *Operators*.
 
 *Terms* are:
 
-* *Variables*: A value than can be manipulated and changed.
+* *Variables*: A value that can be manipulated and changed.
 
 * *Literals*: A constant value like a number or a string.
 
@@ -495,7 +491,7 @@ say $var2.WHAT;
 (Any)
 ----
 
-The type of a variable with a value is correlated to its value. +
+The type of a variable holding a value is correlated to its value. +
 The type of a strongly declared empty variable is the type with which it was declared. +
 The type of an empty variable that wasn't strongly declared is `(Any)` +
 To clear the value of a variable, assign `Nil` to it.
@@ -692,7 +688,7 @@ for @array -> $array-item {
 };
 ----
 
-Notice that we created an iteration variable `$array-item` in order to perform operations `*100` on each array item.
+Notice that we created an iteration variable `$array-item` in order to perform the operation `*100` on each array item.
 
 === given
 
@@ -710,7 +706,7 @@ given $var {
 };
 ----
 
-After a successful match, matching will stop.
+After a successful match, the matching process will stop.
 
 Alternatively `proceed` will instruct Perl 6 to continue matching even after a successful match.
 [source,perl6]
@@ -731,7 +727,7 @@ given $var {
 
 Actually `loop` is how `for` loops are  written in C-family programming languages.
 
-Perl 6 belongs to the C-family langages.
+Perl 6 belongs to the C-family languages.
 
 [source,perl6]
 ----
@@ -1737,3 +1733,11 @@ say $hashed-password;
 ----
 In order to run the `md5_hex()` function that creates hashes, we need to load the required module. +
 The `use` keyword loads the module for use in the script.
+
+== The community
+
+Much discussion happens on the #perl6 irc channel. This should be your go to place for any enquiry: +
+http://perl6.org/community/irc
+
+Stay tuned by reading blog posts that focus on Perl 6: +
+http://pl6anet.org/ is a Perl 6 blog aggregator
