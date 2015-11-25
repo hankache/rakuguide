@@ -2,7 +2,7 @@
 :description: A general introduction to Perl 6
 :Author: Naoum Hankache
 :keywords: perl6, perl 6, introduction, perl6intro, perl 6 introduction
-:Email: naoum@hankache.com
+:Email: naoum88@gmail.com
 :Revision: 1.0
 :icons: font
 :source-highlighter: pygments
@@ -24,10 +24,14 @@ To better understand them, take the time to reproduce all examples.
 This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. +
 To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.
 
+.Contribution
+If you would like to contribute to this document head over to: +
+http://github.com/hankache/perl6intro
+
 :sectnums:
 == Introduction
 === What is Perl 6
-Perl 6 is high-level, general-purpose, gradually typed language.
+Perl 6 is a high-level, general-purpose, gradually typed language.
 Perl 6 is multi-paradigmatic. It supports Procedural, Object Oriented and Functional programming.
 
 .Perl 6 motto:
@@ -49,8 +53,9 @@ Panda: Is a Perl 6 module installer.
 . Install Panda: Type the following command in the terminal `rakudobrew build-panda`
 
 .OSX
-. Use rakudobrew as with Linux above.
-. Install with homebrew: `brew install rakudo-star`
+Follow the same steps listed for installing on Linux +
+OR +
+Install with homebrew: `brew install rakudo-star`
 
 .Windows
 Download the latest installer (file with .MSI extension) from http://rakudo.org/downloads/star/
@@ -77,7 +82,8 @@ a decent text editor that recognizes Perl 6 syntax.
 I personally use and recommend https://atom.io/[Atom]. It is a modern text editor and comes with Perl 6 syntax highlighting out of the box.
 
 Other people in the community also use http://www.vim.org/[Vim], https://www.gnu.org/software/emacs/[Emacs] or http://padre.perlide.org/[Padre].
-These will require installation of additional packages to get Perl 6 syntax highlighting.
+
+Recent versions of Vim ship with syntax highlighting out of the box. Emacs and Padre will require installation of additional packages.
 
 
 === Hello World!
