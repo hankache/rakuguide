@@ -192,7 +192,7 @@ Always use double quotes:
 say 'Hello World';   #Hello World
 say "Hello World";   #Hello World
 say "Don't";         #Don't
-my $name = John Doe;
+my $name = 'John Doe';
 say 'Hello $name';   #Hello $name
 say "Hello $name";   #Hello John Doe
 -----------------------------------
