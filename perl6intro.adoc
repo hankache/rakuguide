@@ -305,7 +305,7 @@ say "Hello $name";   #Hello John Doe
 
 |===
 
-NOTE: For the complete list of operators got to http://doc.perl6.org/language/operators
+NOTE: For the complete list of operators, including their precedence, go to http://doc.perl6.org/language/operators
 
 == Variables
 Perl 6 variables are classified into 3 categories: Scalars, Arrays and Hashes.
