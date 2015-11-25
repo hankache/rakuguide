@@ -35,7 +35,7 @@ Perl 6 is multi-paradigmatic. It supports Procedural, Object Oriented and Functi
 * Easy things should stay easy, hard things should get easier, and impossible things should get hard.
 
 === Jargon
-Perl 6: Is a language specification. Everything that passes the specification is considered Perl 6. +
+Perl 6: Is a language specification with a test suite. Implementations that pass the specification test suite are considered Perl 6. +
 Rakudo: Is a compiler for Perl 6. +
 Rakudobrew: Is a Perl 6 installation manager. +
 Panda: Is a Perl 6 module installer.
@@ -192,7 +192,7 @@ Always use double quotes:
 say 'Hello World';   #Hello World
 say "Hello World";   #Hello World
 say "Don't";         #Don't
-my $name = John Doe;
+my $name = 'John Doe';
 say 'Hello $name';   #Hello $name
 say "Hello $name";   #Hello John Doe
 -----------------------------------
@@ -305,7 +305,7 @@ say "Hello $name";   #Hello John Doe
 
 |===
 
-NOTE: For the complete list of operators got to http://doc.perl6.org/language/operators
+NOTE: For the complete list of operators, including their precedence, go to http://doc.perl6.org/language/operators
 
 == Variables
 Perl 6 variables are classified into 3 categories: Scalars, Arrays and Hashes.
@@ -388,8 +388,8 @@ A Hash is a set of Key/Value pairs.
 my %capitals = ('London','UK','Berlin','Germany');
 say %capitals;
 
-#another succint way of filling the hash:
-my %capitals   = (London => 'UK', Berlin => 'Germany');
+#another succinct way of filling the hash:
+my %capitals = (London => 'UK', Berlin => 'Germany');
 say %capitals;
 ----------------------------------------------------
 
