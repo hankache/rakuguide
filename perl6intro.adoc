@@ -388,8 +388,8 @@ A Hash is a set of Key/Value pairs.
 my %capitals = ('London','UK','Berlin','Germany');
 say %capitals;
 
-#another succint way of filling the hash:
-my %capitals   = (London => 'UK', Berlin => 'Germany');
+#another succinct way of filling the hash:
+my %capitals = (London => 'UK', Berlin => 'Germany');
 say %capitals;
 ----------------------------------------------------
 
