@@ -663,7 +663,7 @@ Negation in Perl 6 is done using either `!` or `not`.
 
 === with
 
-`with` behave like the `if` statement, but ckecks if the variable is defined.
+`with` behave like the `if` statement, but checks if the variable is defined.
 
 [source,perl6]
 ----
@@ -785,7 +785,7 @@ $name=get;
 say "Dear $name welcome to Perl 6";
 ----
 
-When the above code runs, the terminal will be waiting fo you to input your name.
+When the above code runs, the terminal will be waiting for you to input your name.
 Subsequently, it will greet you.
 
 ==== prompt
@@ -924,10 +924,10 @@ The below subroutine accepts a string argument.
 
 [source,perl6]
 ----
-sub sayhello (Str $name) {
+sub say-hello (Str $name) {
     say "Hello " ~ $name ~ "!!!!"
 }
-say hello "Paul";
+say-hello "Paul";
 ----
 
 === Multi subroutine
@@ -960,15 +960,15 @@ Optional arguments are defined by appending `?` after the argument name.
 
 [source,perl6]
 ----
-sub sayhello($name?) {
+sub say-hello($name?) {
   if $name.defined {
     say "Hello " ~ $name;
   } else {
     say "Hello Human";
   }
 }
-sayhello;
-sayhello("Laura");
+say-hello;
+say-hello("Laura");
 ----
 
 If the user doesn't supply an argument, it can default to a specific value. +
@@ -976,11 +976,11 @@ This is done by assigning a value to the argument within the subroutine definiti
 
 [source,perl6]
 ----
-sub sayhello($name="Matt") {
+sub say-hello($name="Matt") {
   say "Hello " ~ $name;
 }
-sayhello;
-sayhello("Laura");
+say-hello;
+say-hello("Laura");
 ----
 
 NOTE: For more info on subroutines and functions, see http://doc.perl6.org/language/functions
@@ -1061,7 +1061,7 @@ sub sayvar {
 }
 say sayvar;
 ----
-The method `sayvar` is an accessor. It let us access the value of the variable without getting direct access to it.
+The method `sayvar` is an accessors. It let us access the value of the variable without getting direct access to it.
 
 Encapsulation is facilitated in Perl 6 with the use of *twigils*. +
 Twigils are secondary _sigils_. They come between the sigil and the attribute name. +
@@ -1190,7 +1190,7 @@ method !iamprivate {
 }
 
 method iampublic {
-  self!imaprivate;
+  self!iamprivate;
   #do additional things
 }
 ----
@@ -1290,14 +1290,14 @@ There are cases where we need the method in the child class to behave differentl
 To achieve this, we redefine the method in the child class. +
 This concept is called *overriding*.
 
-In the below example, the method `introduceyourself` is inherited by the Employee class.
+In the below example, the method `introduce-yourself` is inherited by the Employee class.
 
 [source,perl6]
 ----
 class Human {
   has $.name;
   has $.age;
-  method introduceyourself {
+  method introduce-yourself {
     say 'Hi i am a human being, my name is ' ~ self.name;
   }
 }
@@ -1307,11 +1307,11 @@ class Employee is Human {
   has $.salary;
 }
 
-my $john = Human.new(name =>'John',age => 23,);
-my $jane = Employee.new(name =>'Jane',age => 25,company => 'Acme',slary => 4000);
+my $john = Human.new(name =>'John', age => 23,);
+my $jane = Employee.new(name =>'Jane', age => 25, company => 'Acme', salary => 4000);
 
-$john.introduceyourself;
-$jane.introduceyourself;
+$john.introduce-yourself;
+$jane.introduce-yourself;
 ----
 Overriding works as follow:
 
@@ -1320,7 +1320,7 @@ Overriding works as follow:
 class Human {
   has $.name;
   has $.age;
-  method introduceyourself {
+  method introduce-yourself {
     say 'Hi i am a human being, my name is ' ~ self.name;
   }
 }
@@ -1328,7 +1328,7 @@ class Human {
 class Employee is Human {
   has $.company;
   has $.salary;
-  method introduceyourself {
+  method introduce-yourself {
     say 'Hi i am a employee, my name is ' ~ self.name ~ ' and I work at: ' ~ self.company;
   }
 
@@ -1337,8 +1337,8 @@ class Employee is Human {
 my $john = Human.new(name =>'John',age => 23,);
 my $jane = Employee.new(name =>'Jane',age => 25,company => 'Acme',salary => 4000);
 
-$john.introduceyourself;
-$jane.introduceyourself;
+$john.introduce-yourself;
+$jane.introduce-yourself;
 ----
 
 Depending of which class the object is, the right method will be called.
@@ -1356,7 +1356,7 @@ They are defined using the `submethod` keyword.
 class Human {
   has Str $.name;
   has Int $.age;
-  method introduceyourself {
+  method introduce-yourself {
     say 'Hi i am a human being, my name is ' ~ self.name;
   }
 }
@@ -1364,7 +1364,7 @@ class Human {
 class Employee is Human {
   has Str $.company;
   has Int $.salary;
-  method introduceyourself {
+  method introduce-yourself {
     say 'Hi i am a employee, my name is ' ~ self.name ~ ' and I work at: ' ~ self.company;
   }
 }
@@ -1750,8 +1750,8 @@ The `use` keyword loads the module for use in the script.
 
 == The community
 
-Much discussion happens on the #perl6 irc channel. This should be your go to place for any enquiry: +
+Much discussion happens on the #perl6 IRC channel. This should be your go to place for any enquiry: +
 http://perl6.org/community/irc
 
 Stay tuned by reading blog posts that focus on Perl 6: +
-http://pl6anet.org/ is a Perl 6 blog aggregator
+http://pl6anet.org/ is a Perl 6 blog aggregator.
