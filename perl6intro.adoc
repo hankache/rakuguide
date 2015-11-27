@@ -58,7 +58,9 @@ OR +
 Install with homebrew: `brew install rakudo-star`
 
 .Windows
-Download the latest installer (file with .MSI extension) from http://rakudo.org/downloads/star/
+. Download the latest installer (file with .MSI extension) from http://rakudo.org/downloads/star/ +
+If your system architecture is 32-bit, download the x86 file if it's 64-bit download the x86_64 file.
+. After installation add C:\rakudo\bin to your PATH
  
 .Docker
 . Get the official Docker image `docker pull rakudo-star`
