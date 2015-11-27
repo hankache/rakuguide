@@ -2,7 +2,7 @@
 :description: A general introduction to Perl 6
 :Author: Naoum Hankache
 :keywords: perl6, perl 6, introduction, perl6intro, perl 6 introduction
-:Email: naoum88@gmail.com
+:Email: naoum@hankache.com
 :Revision: 1.0
 :icons: font
 :source-highlighter: pygments
@@ -903,15 +903,11 @@ Check out the below example:
 
 [source,perl6]
 ----
-#This is 3.1415
-say π;
-
-#Lets define τ(Tau) as π*2
-sub τ {
-  2*π;
+sub alien-greeting {
+  say "Hello earthlings";
 }
 
-say τ;
+alien-greeting;
 ----
 
 The previous example showcased a subroutine that  doesn't require any input.
@@ -928,6 +924,7 @@ sub say-hello (Str $name) {
     say "Hello " ~ $name ~ "!!!!"
 }
 say-hello "Paul";
+say-hello "Paula";
 ----
 
 === Multi subroutine
