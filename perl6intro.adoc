@@ -255,7 +255,7 @@ say "Hello $name";   #Hello John Doe
 
 | eq | Infix | Equal | "John" eq "John"  | True
 
-| ne | Infix | Equal | "John" ne "Jane"  | True
+| ne | Infix | Not equal | "John" ne "Jane"  | True
 
 | = | Infix | Assignment | my $var = 7  | Assigns the value of `7` to the variable `$var`
 
