@@ -1747,6 +1747,73 @@ say $hashed-password;
 In order to run the `md5_hex()` function that creates hashes, we need to load the required module. +
 The `use` keyword loads the module for use in the script.
 
+=== Using Unicode
+
+.Lets look at how we can output characters using Unicode
+[source,perl6]
+----
+say "a";
+say "\x0061";
+say "\c[LATIN SMALL LETTER A]";
+----
+The above 3 lines showcase different ways of building a character:
+
+. Writing the character directly (grapheme)
+
+. Using `\x` and the code point
+
+. Using `\c` and the code point name
+
+.Now lets output a smiley
+[source,perl6]
+----
+say "☺";
+say "\x263a";
+say "\c[WHITE SMILING FACE]";
+----
+
+.Another example combining two code points
+[source,perl6]
+----
+say "á";
+say "\x00e1";
+say "\x0061\x0301";
+say "\c[LATIN SMALL LETTER A WITH ACUTE]";
+----
+
+The letter `á` can be written:
+
+* using its unique code point `\x00e1`
+
+* or as a combination of the code points of `a` and acute `\x0061\x0301`
+
+.Some of the methods that can be used:
+[source,perl6]
+----
+say "á".NFC;
+say "á".NFD;
+say "á".uniname;
+----
+
+.`Output`
+----
+NFC:0x<00e1>
+NFD:0x<0061 0301>
+LATIN SMALL LETTER A WITH ACUTE
+----
+
+`NFC` returns the unique code point. +
+`NFD` decomposes the character and return the code point of each part. +
+`uniname` returns the code point name.
+
+.Unicode letters can be used as identifiers:
+[source,perl6]
+----
+my $Δ = 1;
+$Δ++;
+say $Δ;
+----
+
 == The community
 
 Much discussion happens on the #perl6 IRC channel. This should be your go to place for any enquiry: +
