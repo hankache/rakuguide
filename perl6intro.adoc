@@ -1747,6 +1747,15 @@ say $hashed-password;
 In order to run the `md5_hex()` function that creates hashes, we need to load the required module. +
 The `use` keyword loads the module for use in the script.
 
+== Unicode
+
+Unicode is a standard for encoding and representing text, that caters for most writing systems in the world. +
+UTF-8 is a character encoding capable of encoding all possible characters, or code points, in Unicode.
+
+Characters are defined by a: +
+*Grapheme*: Visual representation. +
+*Code point*: A number assigned to the character.
+
 === Using Unicode
 
 .Lets look at how we can output characters using Unicode
