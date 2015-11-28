@@ -229,7 +229,7 @@ say "Hello $name";   #Hello John Doe
 
 | / | Infix | Division | 3 / 2 | 1.5
 
-| div | Infix | Integer Division (rounds down) | 3 / 2 | 1
+| div | Infix | Integer Division (rounds down) | 3 div 2 | 1
 
 | % | Infix | Modulo | 7 % 4 | 3
 
