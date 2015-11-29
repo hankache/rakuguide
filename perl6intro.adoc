@@ -552,7 +552,7 @@ NOTE: For more info on variables, see http://doc.perl6.org/language/variables
 == Functions and mutators
 
 It is important to differentiate between functions and mutators. +
-Functions do no change the initial state of the object they were called on. +
+Functions do not change the initial state of the object they were called on. +
 Mutators modify the state of the object.
 
 [source,perl6,linenums]
@@ -1346,6 +1346,203 @@ Depending of which class the object is, the right method will be called.
 *Submethods* are a type of method that are not inherited by child classes. +
 They are only accessible from the class they were declared in. +
 They are defined using the `submethod` keyword.
+
+=== Multiple Inheritance
+Multiple inheritance is allowed in Perl 6. A class can inherit from multiple other classes.
+
+[source,perl6]
+----
+class bar-chart {
+  has Int @.bar-values;
+  method plot {
+    say @.bar-values;
+  }
+}
+
+class line-chart {
+  has Int @.line-values;
+  method plot {
+    say @.line-values;
+  }
+}
+
+class combo-chart is bar-chart is line-chart {
+}
+
+my $actual-sales = bar-chart.new(bar-values => [10,9,11,8,7,10]);
+my $forecast-sales = line-chart.new(line-values => [9,8,10,7,6,9]);
+
+my $actual-vs-forecast = combo-chart.new(bar-values => [10,9,11,8,7,10],
+                                         line-values => [9,8,10,7,6,9]);
+say "Actual sales:";
+$actual-sales.plot;
+say "Forecast sales:";
+$forecast-sales.plot;
+say "Actual vs Forecast:";
+$actual-vs-forecast.plot;
+----
+
+.`Output`
+----
+Actual sales:
+[10 9 11 8 7 10]
+Forecast sales:
+[9 8 10 7 6 9]
+Actual vs Forecast:
+[10 9 11 8 7 10]
+----
+
+.Explanation
+The `combo-chart` class should be a able to hold two series, one for the actual values plotted on bars,
+and another for forecast values plotted on a line. +
+This is why we defined it as a child of `line-chart` and `bar-chart`. +
+You should have noticed that calling the method `plot` on the `combo-chart` didn't yield the required result.
+Only one series was plotted. +
+Why did this happen? +
+`combo-chart` inherits from `line-chart` and `bar-chart`, and both of them have a method called `plot`.
+When we call that method on `combo-chart` Perl 6 internals will try to resolve the conflict by calling one of the inherited methods.
+
+.Correction
+In order to behave correctly, we should have overridden the method `plot` in the `combo-chart`.
+
+[source,perl6]
+----
+class bar-chart {
+  has Int @.bar-values;
+  method plot {
+    say @.bar-values;
+  }
+}
+
+class line-chart {
+  has Int @.line-values;
+  method plot {
+    say @.line-values;
+  }
+}
+
+class combo-chart is bar-chart is line-chart {
+  method plot {
+    say @.bar-values;
+    say @.line-values;
+  }
+}
+
+my $actual-sales = bar-chart.new(bar-values => [10,9,11,8,7,10]);
+my $forecast-sales = line-chart.new(line-values => [9,8,10,7,6,9]);
+
+my $actual-vs-forecast = combo-chart.new(bar-values => [10,9,11,8,7,10],
+                                         line-values => [9,8,10,7,6,9]);
+say "Actual sales:";
+$actual-sales.plot;
+say "Forecast sales:";
+$forecast-sales.plot;
+say "Actual vs Forecast:";
+$actual-vs-forecast.plot;
+----
+
+.`Output`
+----
+Actual sales:
+[10 9 11 8 7 10]
+Forecast sales:
+[9 8 10 7 6 9]
+Actual vs Forecast:
+[10 9 11 8 7 10]
+[9 8 10 7 6 9]
+----
+
+=== Roles
+*Roles* are somehow similar to classes in the sense that they are a collection of attributes and methods.
+
+Roles are declared with the keyword `role` and classes that wish to implement the role can do so using the `does` keyword.
+
+.Lets rewrite the multiple inheritance example using roles:
+[source,perl6]
+----
+role bar-chart {
+  has Int @.bar-values;
+  method plot {
+    say @.bar-values;
+  }
+}
+
+role line-chart {
+  has Int @.line-values;
+  method plot {
+    say @.line-values;
+  }
+}
+
+class combo-chart does bar-chart does line-chart {
+  method plot {
+    say @.bar-values;
+    say @.line-values;
+  }
+}
+
+my $actual-sales = bar-chart.new(bar-values => [10,9,11,8,7,10]);
+my $forecast-sales = line-chart.new(line-values => [9,8,10,7,6,9]);
+
+my $actual-vs-forecast = combo-chart.new(bar-values => [10,9,11,8,7,10],
+                                         line-values => [9,8,10,7,6,9]);
+say "Actual sales:";
+$actual-sales.plot;
+say "Forecast sales:";
+$forecast-sales.plot;
+say "Actual vs Forecast:";
+$actual-vs-forecast.plot;
+----
+
+Run the above script and you will see that results are the same.
+
+By now you're asking yourself; if roles behave like classes what's their use? +
+To answer your question modify the first script used to showcase multiple inheritance,
+the one where we _forgot_ to override the `plot` method.
+
+[source,perl6]
+----
+role bar-chart {
+  has Int @.bar-values;
+  method plot {
+    say @.bar-values;
+  }
+}
+
+role line-chart {
+  has Int @.line-values;
+  method plot {
+    say @.line-values;
+  }
+}
+
+class combo-chart does bar-chart does line-chart {
+}
+
+my $actual-sales = bar-chart.new(bar-values => [10,9,11,8,7,10]);
+my $forecast-sales = line-chart.new(line-values => [9,8,10,7,6,9]);
+
+my $actual-vs-forecast = combo-chart.new(bar-values => [10,9,11,8,7,10],
+                                         line-values => [9,8,10,7,6,9]);
+say "Actual sales:";
+$actual-sales.plot;
+say "Forecast sales:";
+$forecast-sales.plot;
+say "Actual vs Forecast:";
+$actual-vs-forecast.plot;
+----
+
+.`Output`
+----
+===SORRY!===
+Method 'plot' must be resolved by class combo-chart because it exists in multiple roles (line-chart, bar-chart)
+----
+
+.Explanation
+If multiple roles are applied to the same class, and a conflict arises, a compile-time error will be thrown. +
+This is a much safer approach than multiple inheritance where conflicts are not considered errors and are simply resolved at runtime.
+
+Roles will warn you that there's a conflict.
 
 === Introspection
 *Introspection* is the process of getting information about an object properties like its type, or its attributes or its methods.
