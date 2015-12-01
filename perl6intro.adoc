@@ -960,11 +960,8 @@ Optional arguments are defined by appending `?` after the argument name.
 [source,perl6]
 ----
 sub say-hello($name?) {
-  if $name.defined {
-    say "Hello " ~ $name;
-  } else {
-    say "Hello Human";
-  }
+  with $name { say "Hello " ~ $name }
+  else { say "Hello Human" }
 }
 say-hello;
 say-hello("Laura");
