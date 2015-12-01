@@ -98,7 +98,7 @@ say 'hello world';
 Perl 6 is *free form*: You are free (most of the time) to use any amount of whitespace.
 
 *Statements* are typically a logical line of code, they need to end with a semicolon:
-`if True { say "Hello" };`
+`say "Hello" if True;`
 
 *Expressions* are a special type of statement that returns a value:
 `1+2` will return `3`
@@ -601,7 +601,7 @@ my $age = 19;
 
 if $age > 18 {
   say 'Welcome'
-};
+}
 ----
 
 In Perl 6 we can invert the code and the condition. +
@@ -630,7 +630,7 @@ if $number-of-seats <= 5 {
   say 'I am 7 seater'
 } else {
   say 'I am a van'
-};
+}
 ----
 
 === unless
@@ -642,9 +642,9 @@ The following code:
 ----
 my $clean-shoes = False;
 
-if  not $clean-shoes {
+if not $clean-shoes {
   say 'Clean your shoes'
-};
+}
 ----
 can be written as:
 
@@ -654,7 +654,7 @@ my $clean-shoes = False;
 
 unless $clean-shoes {
   say 'Clean your shoes'
-};
+}
 ----
 
 Negation in Perl 6 is done using either `!` or `not`.
@@ -673,7 +673,7 @@ my Int $var=1;
 
 with $var {
   say 'Hello'
-};
+}
 ----
 
 If you run the code without assigning a value to the variable nothing should happen.
@@ -683,7 +683,7 @@ my Int $var;
 
 with $var {
   say 'Hello'
-};
+}
 ----
 
 `without` is the negated version of `with`. You should be able to relate it to `unless`.
@@ -701,7 +701,7 @@ my @array = [1,2,3];
 
 for @array -> $array-item {
   say $array-item*100
-};
+}
 ----
 
 Notice that we created an iteration variable `$array-item` in order to perform the operation `*100` on each array item.
@@ -719,7 +719,7 @@ given $var {
     when Int { say "is an Int" }
     when 42  { say 42 }
     default  { say "huh?" }
-};
+}
 ----
 
 After a successful match, the matching process will stop.
@@ -734,7 +734,7 @@ given $var {
     when Int { say "is an Int";proceed}
     when 42  { say 42 }
     default  { say "huh?" }
-};
+}
 ----
 
 === loop
@@ -749,7 +749,7 @@ Perl 6 belongs to the C-family languages.
 ----
 loop (my $i=0; $i < 5; $i++) {
   say "The current number is $i"
-};
+}
 ----
 
 NOTE: For more info on loops and conditions, see http://doc.perl6.org/language/control
