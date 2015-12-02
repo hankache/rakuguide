@@ -253,17 +253,17 @@ say "Hello $name";   #Hello John Doe
 
 | >= | Infix | Greater than or equal | 9 >= 7  | True
 
-| eq | Infix | Equal | "John" eq "John"  | True
+| eq | Infix | String equal | "John" eq "John"  | True
 
-| ne | Infix | Not equal | "John" ne "Jane"  | True
+| ne | Infix | String not equal | "John" ne "Jane"  | True
 
 | = | Infix | Assignment | my $var = 7  | Assigns the value of `7` to the variable `$var`
 
-.2+| ~ .2+| Infix .2+| Concatenation | 9 ~ 7 | 97
+.2+| ~ .2+| Infix .2+| String concatenation | 9 ~ 7 | 97
 
 <m| "Hi " ~ "there"  <| Hi there
 
-.2+| x .2+| Infix .2+| Replication | 13 x 3  | 131313
+.2+| x .2+| Infix .2+| String replication | 13 x 3  | 131313
 
 <| "Hello " x 3  <| Hello Hello Hello
 
@@ -283,7 +283,7 @@ say "Hello $name";   #Hello John Doe
 
 <| +False <| 0
 
-.3+| - .3+| Prefix .3+| Coerce the operand to a numeric value and returns the negation | -"3"  | -3
+.3+| - .3+| Prefix .3+| Coerce the operand to a numeric value and return the negation | -"3"  | -3
 
 <| -True <| 0
 
@@ -357,7 +357,7 @@ say @animals;
 
 Many operations can be done on arrays as shown in the below example:
 
-TIP: The tilde `~` is used for concatenation.
+TIP: The tilde `~` is used for string concatenation.
 
 [source,perl6]
 .`Script`
