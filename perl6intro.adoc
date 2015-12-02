@@ -285,9 +285,9 @@ say "Hello $name";   #Hello John Doe
 
 .3+| - .3+| Prefix .3+| Coerce the operand to a numeric value and return the negation | -"3"  | -3
 
-<| -True <| 0
+<| -True <| -1
 
-<| -False <| 1
+<| -False <| 0
 
 .6+| ? .6+| Prefix .6+| Coerce the operand to a boolean value | ?0 | False
 
