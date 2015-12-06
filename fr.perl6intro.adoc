@@ -18,7 +18,7 @@ Certaines sections de ce document référencent d'autres parties (plus completes
 Vous devriez les lire si vous avez besoin de plus d'information sur un sujet précis.
 
 En lisant ce document, vous trouverez des exemples pour la plus part des sujets discutés.
-Pour mieux les comprendre, prenez le temps de les reproduire.
+Pour mieux les comprendre, vous pouvez expérimenter en les modifiant.
 
 .Licence
 Ce document est sous licence Creative Commons Attribution -  Partage dans les Mêmes Conditions 4.0 International. +
@@ -35,16 +35,16 @@ Perl 6 est un language générique supportant un typage graduel.
 Perl 6 supporte plusieurs paradigmes dont, la Programmation Procédurale, Orientée Objet et Fonctionelle.
 
 .Perl 6 motto:
-* TMTOWTDI (Pronouncé Tim Toady): There is more than one way to do it: +
+* TMTOWTDI (Prononcé Tim Toady): There is more than one way to do it: +
 Il ya plus d'une façon de le faire.
 * Easy things should stay easy, hard things should get easier, and impossible things should get hard: +
 Les choses faciles doivent rester faciles, les choses dures devraient devenir plus faciles, et les choses impossibles devraient devenir dures.
 
 === Jargon
-Perl 6: Est une spécification de language avec une suite de tests. Les implémentations qui passent la suite de tests sont considérés comme Perl 6. +
-Rakudo: Est un compilateur pour Perl 6. +
-Rakudobrew: Est un gestionnaire d'installation pour Perl 6. +
-Panda: Est un installateur de modules pour Perl 6.
+Perl 6 est une spécification de language avec une suite de tests. Les implémentations qui passent la suite de tests sont considérés comme Perl 6. +
+Rakudo est un compilateur pour Perl 6. +
+Rakudobrew est un gestionnaire d'installation pour Perl 6. +
+Panda est un installateur de modules pour Perl 6.
 
 === Installer Perl 6
 .Linux
@@ -61,15 +61,15 @@ Installer avec homebrew: `brew install rakudo-star`
 
 .Windows
 . Telecharger l'installateur le plus recent (fichier avec une extension .MSI) de http://rakudo.org/downloads/star/ +
-Si votre systeme possede une architecture 32-bit, telecharger le fichier x86. S'il possede une architecture 64-bit telecharger le fichier x86_64.
+Si votre systeme possède une architecture 32-bit, telecharger le fichier x86. S'il possède une architecture 64-bit telecharger le fichier x86_64.
 . Apres l'installation, ajouter C:\rakudo\bin a votre PATH
 
 .Docker
 . Obtenez l'image officielle `docker pull rakudo-star`
-. Ensuite executez `docker run -it rakudo-star`
+. Ensuite exécutez `docker run -it rakudo-star`
 
-=== Executer Perl 6
-Pour executer un code ecrit en Perl 6 vouz pouvez utiliser le REPL (Read-Eval-Print Loop). +
+=== Exécuter Perl 6
+Pour exécuter un code écrit en Perl 6 vouz pouvez utiliser le REPL (Read-Eval-Print Loop). +
 Dans votre terminal, taper `perl6`, tapez votre code et pressez [Enter] +
 
 Alternativement, vous pouvez écrire votre code dans un fichier, l'enregistrer et puis l'exécuter. +
@@ -77,18 +77,18 @@ Il est recommende de creer les fichiers Perl 6 avec l'extension `.pl6`. +
 Exécutez le fichier du terminal en utilisant cette syntaxe: `perl6 filename.pl6`
 
 Le REPL est surtout utilisé pour essayer un morceau de code, typiquement une unique ligne de code. +
-Pour les programmes contenant plusieures lignes, il est recommandé de les stocker dans un fichier, puis de les exécuter.
+Pour les programmes contenant plusieurs lignes, il est recommandé de les stocker dans un fichier, puis de les exécuter.
 
 === Editeurs
 
 Comme la plupart du temps, nous allons écrire et stocker nos programmes en Perl 6 dans des fichiers,
 nous devrions avoir un éditeur de texte décent qui reconnaît la syntaxe de Perl 6.
 
-Je recommende personellement https://atom.io/[Atom]. C'ext un editeur de texte moderne qui est livré avec une coloration syntaxique pour Perl 6.
+Je recommande personellement https://atom.io/[Atom]. C'est un editeur de texte moderne livré avec une coloration syntaxique pour Perl 6.
 
 D'autres personnes de la communauté utilisent aussi http://www.vim.org/[Vim], https://www.gnu.org/software/emacs/[Emacs] ou http://padre.perlide.org/[Padre].
 
-Les recentes versions de Vim sont livrées avec la coloration syntaxique pour Perl 6. Emacs et Padre nécessiteront l'installation de paquets supplémentaires.
+Les versions récentes de Vim sont livrées avec la coloration syntaxique pour Perl 6. Emacs et Padre nécessiteront l'installation de paquets supplémentaires.
 
 
 === Hello World!
@@ -98,7 +98,7 @@ Nous allons commencer avec le rituel `hello world`.
 say 'hello world';
 
 === Aperçu de la syntaxe
-Perl 6 est *forme libre*: Vous êtes libre (la plupart du temps) à utiliser n'importe quelle quantite d'espaces.
+Perl 6 est en *forme libre*: Vous êtes libre (la plupart du temps) à utiliser n'importe quelle quantite d'espaces.
 
 Les *Instructions* sont typiquement une ligne logique de code, un point-virgule est necessaire a leur fin: +
 `say "Hello" if True;`
@@ -136,12 +136,12 @@ Les *Operateurs* sont classés en types:
 Les identificateurs sont le nom donné aux termes lors de leur definition.
 
 .Règles:
-* Ils doivent commencer par un caractère alphabétique ou un tiret bas.
+* Ils doivent commencer par un caractère alphabétique ou un tiret bas (underscore).
 
 * Ils peuvent contenir des chiffres (à l'exception du premier caractère).
 
 * Ils peuvent contenir des tirets ou des apostrophes (sauf le premier et le dernier caractère),
-à condition qu'il ya un caractère alphabétique sur le côté droit de chaque tiret / apostrophe.
+mais avec un caractère alphabétique sur le côté droit de chaque tiret / apostrophe.
 
 |===
 
@@ -167,14 +167,14 @@ Les identificateurs sont le nom donné aux termes lors de leur definition.
 * Snake: `variable_no1`
 
 Vous êtes libre de nommer vos identificateurs comme vous le souhaitez,
-mais il est recommandé d'adopter une convention de nommage unique.
+mais choisissez une convention de nommage et tenez-vous y.
 
-L'utilisation de noms significatifs facilitera votre vie et celle des autres. +
+L'utilisation de noms signifiants facilitera votre vie et celle des autres. +
 `var1 = var2 * var3` est syntaxiquement correct mais son but n'est pas évident. +
 `monthly-salary = daily-rate * working-days` serait une meilleure façon de nommer vos variables.
 
 ==== Commentaires
-Un commentaire est un morceau de texte ignoré par le compilateur et utilisé comme une note.
+Un commentaire est du texte ignoré par le compilateur.
 
 Il y a 3 types de commentaires:
 
