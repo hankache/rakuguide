@@ -327,3 +327,153 @@ say "Salut $name";               #Salut Jean Dupont
 |===
 
 NOTE: Pour la liste complète des opérateurs, y compris leur priorité: http://doc.perl6.org/language/operators
+
+== Variables
+Les variables sont classés en 3 catégories: Scalaires, Tableaux et Hachages.
+
+Un *sigil* (Signe en Latin) est un caractère utilisé comme préfixe pour classer les variables.
+
+* `$` est utilisé pour les scalaires
+* `@` est utilisé pour les tableaux
+* `%` est utilisé pour les tables de hachage.
+
+=== Scalaires
+Un scalaire tient une valeur ou une référence.
+
+[source,perl6]
+----
+#Chaine
+my $nom = 'Jean Dupont';
+say $name;
+
+#Entier
+my $age = 99;
+say $age;
+----
+
+=== Tableaux
+Les tableaux sont des listes contenant plusieurs valeurs.
+
+[source,perl6]
+----
+my @animaux = ['chameau','llama','hibou'];
+say @animaux;
+----
+
+De nombreuses opérations peuvent être effectuées sur les tableaux comme demontré dans l'exemple suivant:
+
+TIP: La tilde `~` est utilisée pour la concaténation.
+
+[source,perl6]
+.`Script`
+----
+my @animaux = ['chameau','vicuña','llama'];
+say "Le zoo contient " ~ @animaux.elems ~ " animaux";
+say "Les animaux sont: " ~ @animaux;
+say "Je vais adopter un hibou pour le zoo";
+@animaux.push("hibou");
+say "Maintenant, mon zoo contient: " ~ @animaux;
+say "Le premier animal que nous avons adopté est le " ~ @animaux[0];
+@animaux.pop;
+say "Malheureusement, le hibou est parti, il ne nous reste que: " ~ @animaux;
+say "Nous allons fermer le zoo et laisser un animal seulement";
+say "Nous allons laisser partir: " ~ @animaux.splice(1,2) ~ " et laisser le " ~ @animaux;
+----
+
+.`Output`
+----
+Le zoo contient 3 animaux
+Les animaux sont: chameau vicuña llama
+Je vais adopter un hibou pour le zoo
+Maintenant, mon zoo contient: chameau vicuña llama hibou
+Le premier animal que nous avons adopté est le chameau
+Malheureusement, le hibou est parti, il ne nous reste que: chameau vicuña llama
+Nous allons fermer le zoo et laisser un animal seulement
+Nous allons laisser partir: vicuña llama et laisser le chameau
+----
+
+.Explication
+`.elems` retourne le nombre d'éléments contenus dans le tableau. +
+`.push()` ajoute un élément au tableau. +
+Nous pouvons accéder à un élément spécifique dans le tableau en spécifiant sa position `@animaux[0]`. +
+`.pop` supprime le dernier élément du tableau. +
+`.splice(a,b)` supprime les `b` éléments a partir de la position `a`.
+
+NOTE: Pour la référence complète des tableaux: http://doc.perl6.org/type/Array
+
+=== Hachage
+Un hachage (table de hachage / hash) est un ensemble de paires clef / valeur.
+
+[source,perl6]
+----------------------------------------------------
+my %capitales = ('Londres','Angleterre','Paris','France');
+say %capitales;
+
+#une autre façon succincte de remplir le hachage:
+my %capitales = (Londres => 'Angleterre', Paris => 'France');
+say %capitales;
+----------------------------------------------------
+
+=== Types
+Dans les exemples précédents, on n'a pas précisé quel type de valeurs les variables peuvent tenir.
+
+TIP: `.WHAT` retournera le type de la valeur contenue dans la variable.
+
+[source,perl6]
+---------------------
+my $var = 'Text';
+say $var;
+say $var.WHAT;
+
+$var = 123;
+say $var;
+say $var.WHAT;
+---------------------
+
+Comme vous pouvez le voir dans l'exemple ci-dessus, le type de valeur contenu dans `$var` était (Str) et puis (Int).
+
+Ce style de programmation est appelé le typage dynamique.
+Dynamique dans le sens que les variables peuvent contenir des valeurs de tout type.
+
+Maintenant, essayez d'exécuter l'exemple ci-dessous: +
+Remarquez `Int` avant le nom de la variable.
+
+[source,perl6]
+-----------------------------------------
+my Int $var = 'Text';
+say $var;
+say $var.WHAT;
+-----------------------------------------
+
+Il va échouer et retourner ce message d'erreur: `Type check failed in assignment to $var; expected Int but got Str`
+
+Ce qui est arrivé est que nous avons précisé au préalable que la variable doit être de type (Int).
+Quand nous avons essayé de lui affecter un (Str), le programme a échoué.
+
+Ce style de programmation est appelé le typage statique. Statique dans le sens que les types de variables sont définies avant l'affectation et ne peuvent pas changer.
+
+Perl 6 possède un *typage graduel*; les deux typages *statique* et *dynamique* peuvent être utilisés.
+
+Voici une liste des types les plus couramment utilisés. +
+Les deux premiers ne seront probablement jamais utilisés, mais ils sont répertoriés à titre informatif.
+
+[cols="^.^1m,.^3m,.^2m,.^1m, options="header"]
+|===
+
+| *Type* | *Description* | *Exemple* | *Resultat*
+
+| Mu | La racine de la hiérarchie de types | |
+
+| Any | Classe de base par défaut pour les nouvelles classes et pour la plupart des classes intégrées | |
+
+| Cool | Valeur qui peut être considérée comme une chaîne ou un nombre interchangeable | my Cool $var = 31; say $var.flip; say $var * 2; | 13 62
+
+| Str | Chaîne de caractères | my Str $var = "NEON"; say $var.flip; | NOEN
+
+| Int | Entier (précision arbitraire) | 7 + 7 | 14
+
+| Rat | Nombre rationnel (précision limitée) | 0.1 + 0.2 | 0.3
+
+| Bool | Booléen | !True | False
+
+|===
