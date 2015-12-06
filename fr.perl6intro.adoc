@@ -1,1 +1,329 @@
+= Perl 6 Introduction
+:description: Une introduction generale a Perl 6
+:Author: Naoum Hankache
+:keywords: perl6, perl 6, introduction, perl6intro, perl 6 introduction
+:Email: naoum@hankache.com
+:Revision: 1.0
+:icons: font
+:source-highlighter: pygments
+//:pygments-style: manni
+:source-language: perl6
+:pygments-linenums-mode: table
+:toc: left
 
+L'objectif de ce document est de vous donner un aperçu rapide du language de programmation Perl 6. +
+Pour ceux qui sont nouveaux à Perl 6, il devrait vous permettre de démarrer.
+
+Certaines sections de ce document référencent d'autres parties (plus completes et précises) de la documentation de Perl 6.
+Vous devriez les lire si vous avez besoin de plus d'information sur un sujet précis.
+
+En lisant ce document, vous trouverez des exemples pour la plus part des sujets discutés.
+Pour mieux les comprendre, prenez le temps de les reproduire.
+
+.Licence
+Ce document est sous licence Creative Commons Attribution -  Partage dans les Mêmes Conditions 4.0 International. +
+Pour accéder à une copie de cette licence, merci de vous rendre à l'adresse suivante http://creativecommons.org/licenses/by-sa/4.0/.
+
+.Contribution
+Si vous souhaitez contribuer à ce document rendez vous a l'adresse suivante: +
+http://github.com/hankache/perl6intro
+
+:sectnums:
+== Introduction
+=== Perl 6 c'est quoi?
+Perl 6 est un language générique supportant un typage graduel.
+Perl 6 supporte plusieurs paradigmes dont, la Programmation Procédurale, Orientée Objet et Fonctionelle.
+
+.Perl 6 motto:
+* TMTOWTDI (Pronouncé Tim Toady): There is more than one way to do it: +
+Il ya plus d'une façon de le faire.
+* Easy things should stay easy, hard things should get easier, and impossible things should get hard: +
+Les choses faciles doivent rester faciles, les choses dures devraient devenir plus faciles, et les choses impossibles devraient devenir dures.
+
+=== Jargon
+Perl 6: Est une spécification de language avec une suite de tests. Les implémentations qui passent la suite de tests sont considérés comme Perl 6. +
+Rakudo: Est un compilateur pour Perl 6. +
+Rakudobrew: Est un gestionnaire d'installation pour Perl 6. +
+Panda: Est un installateur de modules pour Perl 6.
+
+=== Installer Perl 6
+.Linux
+. Installer Rakudobrew: https://github.com/tadzik/rakudobrew
+
+. Installer Rakudo: Tapez la commande suivante dans le terminal `rakudobrew build moar`
+
+. Installer Panda: Tapez la commande suivante dans le terminal `rakudobrew build-panda`
+
+.OSX
+Suivez les mêmes étapes indiquées pour l'installation sur Linux +
+ou +
+Installer avec homebrew: `brew install rakudo-star`
+
+.Windows
+. Telecharger l'installateur le plus recent (fichier avec une extension .MSI) de http://rakudo.org/downloads/star/ +
+Si votre systeme possede une architecture 32-bit, telecharger le fichier x86. S'il possede une architecture 64-bit telecharger le fichier x86_64.
+. Apres l'installation, ajouter C:\rakudo\bin a votre PATH
+
+.Docker
+. Obtenez l'image officielle `docker pull rakudo-star`
+. Ensuite executez `docker run -it rakudo-star`
+
+=== Executer Perl 6
+Pour executer un code ecrit en Perl 6 vouz pouvez utiliser le REPL (Read-Eval-Print Loop). +
+Dans votre terminal, taper `perl6`, tapez votre code et pressez [Enter] +
+
+Alternativement, vous pouvez écrire votre code dans un fichier, l'enregistrer et puis l'exécuter. +
+Il est recommende de creer les fichiers Perl 6 avec l'extension `.pl6`. +
+Exécutez le fichier du terminal en utilisant cette syntaxe: `perl6 filename.pl6`
+
+Le REPL est surtout utilisé pour essayer un morceau de code, typiquement une unique ligne de code. +
+Pour les programmes contenant plusieures lignes, il est recommandé de les stocker dans un fichier, puis de les exécuter.
+
+=== Editeurs
+
+Comme la plupart du temps, nous allons écrire et stocker nos programmes en Perl 6 dans des fichiers,
+nous devrions avoir un éditeur de texte décent qui reconnaît la syntaxe de Perl 6.
+
+Je recommende personellement https://atom.io/[Atom]. C'ext un editeur de texte moderne qui est livré avec une coloration syntaxique pour Perl 6.
+
+D'autres personnes de la communauté utilisent aussi http://www.vim.org/[Vim], https://www.gnu.org/software/emacs/[Emacs] ou http://padre.perlide.org/[Padre].
+
+Les recentes versions de Vim sont livrées avec la coloration syntaxique pour Perl 6. Emacs et Padre nécessiteront l'installation de paquets supplémentaires.
+
+
+=== Hello World!
+Nous allons commencer avec le rituel `hello world`.
+
+[source,perl6]
+say 'hello world';
+
+=== Aperçu de la syntaxe
+Perl 6 est *forme libre*: Vous êtes libre (la plupart du temps) à utiliser n'importe quelle quantite d'espaces.
+
+Les *Instructions* sont typiquement une ligne logique de code, un point-virgule est necessaire a leur fin: +
+`say "Hello" if True;`
+
+Les *Expressions* sont un type special d'instruction qui retournent une valeur: +
+`1+2` retourne `3`
+
+Les expressions sont faites de *Termes* et d'*Operateurs*.
+
+Les *Termes* sont des:
+
+* *Variables*: Une valeur qui peut être manipulée ou changée.
+
+* *Littérales*: Une valeur constante comme un nombre ou une chaîne.
+
+Les *Operateurs* sont classés en types:
+
+|===
+
+| *Type* | *Explication* | *Exemple*
+
+| Préfixe | Avant le terme. | `++1`
+
+| Infixe | Entre deux termes. | `1+2`
+
+| Suffixe | Après le terme. | `1++`
+
+| Circonfixe | Autour du terme. | `(1)`
+
+| Postcirconfixe | Après un terme, autour d'un autre  | `Array[1]`
+
+|===
+
+==== Identificateurs
+Les identificateurs sont le nom donné aux termes lors de leur definition.
+
+.Règles:
+* Ils doivent commencer par un caractère alphabétique ou un tiret bas.
+
+* Ils peuvent contenir des chiffres (à l'exception du premier caractère).
+
+* Ils peuvent contenir des tirets ou des apostrophes (sauf le premier et le dernier caractère),
+à condition qu'il ya un caractère alphabétique sur le côté droit de chaque tiret / apostrophe.
+
+|===
+
+| *Valide* | *Non valide*
+
+| `var1` | `1var`
+
+| `var-one` | `var-1`
+
+| `var'one` | `var'1`
+
+| `var1_` | `var1'`
+
+| `_var` | `-var`
+
+|===
+
+.Conventions de nommage:
+* Camel: `variableNo1`
+
+* Kebab: `variable-no1`
+
+* Snake: `variable_no1`
+
+Vous êtes libre de nommer vos identificateurs comme vous le souhaitez,
+mais il est recommandé d'adopter une convention de nommage unique.
+
+L'utilisation de noms significatifs facilitera votre vie et celle des autres. +
+`var1 = var2 * var3` est syntaxiquement correct mais son but n'est pas évident. +
+`monthly-salary = daily-rate * working-days` serait une meilleure façon de nommer vos variables.
+
+==== Commentaires
+Un commentaire est un morceau de texte ignoré par le compilateur et utilisé comme une note.
+
+Il y a 3 types de commentaires:
+
+* Ligne unique:
++
+[source,perl6]
+#Ceci est une seule ligne de commentaire
+
+* Intégré:
++
+[source,perl6]
+say #`(Ceci est un commentaire intégré) "Hello World."
+
+* Multi ligne:
++
+[source,perl6]
+-----------------------------
+=begin comment
+Ceci est un commentaire sur plusieures lignes.
+Commentaire 1
+Commentaire 2
+=end comment
+-----------------------------
+
+==== Guillemets
+Les chaînes doivent être délimités par des guillemets droits doubles ou simples.
+
+Utilisez toujours des guillemets droits doubles:
+
+* si votre chaîne contient une apostrophe.
+
+* si votre chaîne contient une variable qui doit être interpolée.
+
+[source,perl6]
+-----------------------------------
+say 'Hello World';               #Hello World
+say "Hello World";               #Hello World
+say "Quelqu'un m'a dit";         #Quelqu'un m'a dit
+my $nom = 'Jean Dupont';
+say 'Salut $name';               #Salut $nom
+say "Salut $name";               #Salut Jean Dupont
+-----------------------------------
+
+== Operateurs
+[cols="^.^5m,^.^5m,.^20,.^20m,.^20m", options="header"]
+|===
+
+| Operateur | Type | Description | Exemple | Resultat
+
+| + | Infixe | Addition | 1 + 2 | 3
+
+| - | Infixe | Soustraction | 3 - 1 | 2
+
+| * | Infixe | Multiplication | 3 * 2 | 6
+
+| ** | Infixe | Puissance | 3 ** 2 | 9
+
+| / | Infixe | Division | 3 / 2 | 1.5
+
+| div | Infixe | Division (arrondi) | 3 div 2 | 1
+
+| % | Infixe | Reste | 7 % 4 | 3
+
+.2+| %% .2+| Infixe .2+| Divisibilité | 6 %% 4 | False
+
+<| 6 %% 3 <| True
+
+| gcd | Infixe | Plus grand dénominateur commun | 6 gcd 9 | 3
+
+| lcm | Infixe | Plus petit commun multiple | 6 lcm 9 | 18
+
+| == | Infixe | Egalité | 9 == 7  | False
+
+| != | Infixe | Inégalité | 9 != 7  | True
+
+| < | Infixe | Plus petit | 9 < 7  | False
+
+| > | Infixe | Plus grand | 9 > 7  | True
+
+| \<= | Infixe | Plus petit ou égal | 7 \<= 7  | True
+
+| >= | Infixe | Plus grand ou égal | 9 >= 7  | True
+
+| eq | Infixe | Egalité (chaînes) | "John" eq "John"  | True
+
+| ne | Infixe | Inégalité (chaînes) | "John" ne "Jane"  | True
+
+| = | Infixe | Affectation | my $var = 7  | Attribue la valeur `7` a la variable `$var`
+
+.2+| ~ .2+| Infixe .2+| Concatenation | 9 ~ 7 | 97
+
+<m| "Hi " ~ "there"  <| Hi there
+
+.2+| x .2+| Infixe .2+| Replication | 13 x 3  | 131313
+
+<| "Hello " x 3  <| Hello Hello Hello
+
+| ~~ | Infixe | Smart match |   |
+
+.2+| ++ | Préfixe | Incrémentation | my $var = 2; ++$var;  | Incrémente la variable de 1 et retourne le resultat `3`
+
+<m| Suffixe <d| Incrémentation <m| my $var = 2; $var++;  <| Retourne la variable `2` et puis l'incrémente
+
+.2+|\--| Préfixe | Décrémentation | my $var = 2; --$var;  | Decrémente la variable de 1 et retourne le resultat `1`
+
+<m| Suffixe <d| Décrémentation <m| my $var = 2; $var--;  <| Retourne la variable `2` et puis la decrémente
+
+.3+| + .3+| Préfixe .3+| Force l'opérande a une valeur numerique | +"3"  | 3
+
+<| +True <| 1
+
+<| +False <| 0
+
+.3+| - .3+| Préfixe .3+| Force l'opérande a une valeur numerique et retourne la negation | -"3"  | -3
+
+<| -True <| -1
+
+<| -False <| 0
+
+.6+| ? .6+| Préfixe .6+| Force l'opérande a une valeur booléene | ?0 | False
+
+<| ?9.8 <| True
+
+<| ?"Hello" <| True
+
+<| ?"" <| False
+
+<| my $var; ?$var; <| False
+
+<| my $var = 7; ?$var; <| True
+
+| ! | Prefixe | Force l'opérande a une valeur booléene et retourne la negation | !4 | False
+
+| .. | Infixe | Construction de gammes |  0..5  | Crée une gamme de 0 a 5
+
+| ..^ | Infixe | Construction de gammes |  0..^5  | Crée une gamme de 0 a 4
+
+| ^.. | Infixe | Construction de gammes |  0^..5  | Crée une gamme de 1 a 5
+
+| \^..^ | Infixe | Construction de gammes |  0\^..^5  | Crée une gamme de 1 a 4
+
+| ^ | Préfixe | Construction de gammes |  ^5  | Comme 0..^5 Crée une gamme de 0 a 4
+
+| ... | Infixe | Construction de listes paresseuses |  0...9999  |  Retourne les elements seulement si necessaire
+
+.2+| {vbar} .2+| Préfixe .2+| Aplanissement | {vbar}(0..5)  | (0 1 2 3 4 5)
+
+<| {vbar}(0\^..^5)  <| (1 2 3 4)
+
+|===
+
+NOTE: Pour la liste complète des opérateurs, y compris leur priorité: http://doc.perl6.org/language/operators
