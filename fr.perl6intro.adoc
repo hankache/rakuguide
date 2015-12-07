@@ -1,7 +1,7 @@
-= Perl 6 Introduction
-:description: Une introduction generale a Perl 6
+= Introduction à Perl 6
+:description: Une introduction générale à Perl 6
 :Author: Naoum Hankache
-:keywords: perl6, perl 6, introduction, perl6intro, perl 6 introduction
+:keywords: perl6, perl 6, introduction, perl6intro, perl 6 introduction, Introduction à Perl 6
 :Email: naoum@hankache.com
 :Revision: 1.0
 :icons: font
@@ -477,3 +477,115 @@ Les deux premiers ne seront probablement jamais utilisés, mais ils sont répert
 | Bool | Booléen | !True | False
 
 |===
+
+=== Introspection
+
+L'introspection est le processus d'obtention d'informations sur les propriétés d'un objet comme son type. +
+Dans l'exemple précédent, nous avons utilisé `.WHAT` pour recevoir le type de la variable.
+
+[source,perl6]
+----
+my Int $var;
+say $var.WHAT;
+my $var2;
+say $var2.WHAT;
+$var2 = 1;
+say $var2.WHAT;
+$var2 = "Hello";
+say $var2.WHAT;
+$var2 = True;
+say $var2.WHAT;
+$var2 = Nil;
+say $var2.WHAT;
+----
+
+----
+(Int)
+(Any)
+(Int)
+(Str)
+(Bool)
+(Any)
+----
+
+Le type d'une variable contenant une valeur est corrélée à sa valeur. +
+Le type d'une variable vide fortement déclarée est le type avec lequel elle a été déclarée. +
+Le type d'une variable vide qui n'a pas été déclarée fortement est `(Any)` +
+Pour vider la valeur d'une variable, vous pouvez lui affecter `Nil`.
+
+=== Portée
+Avant d'utiliser une variable pour la première fois, elle doit être déclarée.
+
+Plusieurs déclarateurs peuvent être utilisés dans Perl 6, `my` est ce que nous avons utilisé jusqu'ici.
+
+[source,perl6]
+my $var=1;
+
+Le déclarateur `my` donne à la variable une portée *lexicale*.
+En d'autres termes, la variable ne sera accessible que dans le même bloc ou elle a été déclarée.
+
+Un bloc en Perl 6 est délimité par `{ }`.
+Si aucun bloc n'est trouvé, la variable sera disponible dans l'ensemble du script.
+
+[source,perl6]
+--------------------------------
+{
+  my Str $var = 'Text';
+  say $var; #accessible
+}
+say $var; #inaccessible, renvoie une erreur
+--------------------------------
+
+Comme une variable est uniquement accessible dans le bloc où elle est définie, le même nom de variable peut être redéfini dans un autre bloc.
+
+[source,perl6]
+----
+{
+  my Str $var = 'Text';
+  say $var;
+}
+my Int $var = 123;
+say $var;
+----
+
+NOTE: Pour plus d'informations sur les variables, rendez-vous à http://doc.perl6.org/language/variables
+
+== Fonctions normales et fonctions mutantes
+
+Il est important de différencier entre les fonctions normales et les fonctions mutantes. +
+Les fonctions normales ne changent pas l'état initial de l'objet. +
+Les fonctions mutantes modifient l'état de l'objet.
+
+[source,perl6,linenums]
+.`Script`
+----
+my @numeros = [7,2,4,9,11,3];
+
+@numeros.push(99);
+say @numeros;      #1
+
+say @numeros.sort; #2
+say @numeros;      #3
+
+@numeros.=sort;
+say @numeros;      #4
+----
+
+.`Output`
+----
+[7 2 4 9 11 3 99] #1
+(2 3 4 7 9 11 99) #2
+[7 2 4 9 11 3 99] #3
+[2 3 4 7 9 11 99] #4
+----
+
+.Explication
+`.push` est une fonction mutante, elle change l'état du tableau (#1)
+
+`.sort` est une fonction normale, elle retourne un tableau trié, mais ne modifie pas l'état initial du tableau:
+
+* (#2) démontre le retour d'un tableau trié
+
+* (#3) démontre que le tableau initial reste non modifie.
+
+Afin de forcer une fonction normale à agir comme une fonction mutante, nous pouvons utiliser `.=` a la place de `.` (#4) (Ligne 9 du script)
