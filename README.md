@@ -11,8 +11,9 @@ http://perl6intro.com
 The document is written in asciidoc format and generated using asciidoctor and pygments.
 
 #### Translations
-If you wish to translate this document, always use the english version as your starting point.  
-If you want to modify the document, consider modifying the english version first. It is important that all translations be kept in sync.
+If you wish to translate this document, always use the english version as your starting point. 
+If you are starting a new translation create a new file. For example, the French translation will be in fr.perl6intro.adoc, the Deutsch translation in de.perl6intro.adoc  
+If you want to modify a translated version, consider modifying the english version first. It is important that all translations be kept in sync.
 
 #### License
 Creative Commons Attribution-ShareAlike 4.0 International License.  
