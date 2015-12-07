@@ -11,10 +11,10 @@
 :pygments-linenums-mode: table
 :toc: left
 
-L'objectif de ce document est de vous donner un aperçu rapide du language de programmation Perl 6. +
+L'objectif de ce document est de vous donner un aperçu rapide du langage de programmation Perl 6. +
 Pour ceux qui sont nouveaux à Perl 6, il devrait vous permettre de démarrer.
 
-Certaines sections de ce document référencent d'autres parties (plus completes et précises) de la documentation de Perl 6.
+Certaines sections de ce document référencent d'autres parties (plus complètes et précises) de la documentation de Perl 6.
 Vous devriez les lire si vous avez besoin de plus d'information sur un sujet précis.
 
 En lisant ce document, vous trouverez des exemples pour la plus part des sujets discutés.
@@ -25,23 +25,23 @@ Ce document est sous licence Creative Commons Attribution -  Partage dans les M�
 Pour accéder à une copie de cette licence, merci de vous rendre à l'adresse suivante http://creativecommons.org/licenses/by-sa/4.0/.
 
 .Contribution
-Si vous souhaitez contribuer à ce document rendez vous a l'adresse suivante: +
+Si vous souhaitez contribuer à ce document rendez-vous à l'adresse suivante: +
 http://github.com/hankache/perl6intro
 
 :sectnums:
 == Introduction
 === Perl 6 c'est quoi?
-Perl 6 est un language générique supportant un typage graduel.
+Perl 6 est un langage générique supportant un typage graduel.
 Perl 6 supporte plusieurs paradigmes dont, la Programmation Procédurale, Orientée Objet et Fonctionelle.
 
 .Perl 6 motto:
 * TMTOWTDI (Prononcé Tim Toady): There is more than one way to do it: +
-Il ya plus d'une façon de le faire.
+Il y a plus d'une façon de le faire.
 * Easy things should stay easy, hard things should get easier, and impossible things should get hard: +
 Les choses faciles doivent rester faciles, les choses dures devraient devenir plus faciles, et les choses impossibles devraient devenir dures.
 
 === Jargon
-Perl 6 est une spécification de language avec une suite de tests. Les implémentations qui passent la suite de tests sont considérés comme Perl 6. +
+Perl 6 est une spécification de langage avec une suite de tests. Les implémentations qui passent la suite de tests sont considérées comme Perl 6. +
 Rakudo est un compilateur pour Perl 6. +
 Rakudobrew est un gestionnaire d'installation pour Perl 6. +
 Panda est un installateur de modules pour Perl 6.
@@ -60,8 +60,8 @@ ou +
 Installer avec homebrew: `brew install rakudo-star`
 
 .Windows
-. Telecharger l'installateur le plus recent (fichier avec une extension .MSI) de http://rakudo.org/downloads/star/ +
-Si votre systeme possède une architecture 32-bit, telecharger le fichier x86. S'il possède une architecture 64-bit telecharger le fichier x86_64.
+. Téléchargez l'installateur le plus récent (fichier avec une extension .MSI) de http://rakudo.org/downloads/star/ +
+Si votre système possède une architecture 32-bit, téléchargez le fichier x86. S'il possède une architecture 64-bit téléchargez le fichier x86_64.
 . Apres l'installation, ajouter C:\rakudo\bin a votre PATH
 
 .Docker
@@ -69,11 +69,11 @@ Si votre systeme possède une architecture 32-bit, telecharger le fichier x86. S
 . Ensuite exécutez `docker run -it rakudo-star`
 
 === Exécuter Perl 6
-Pour exécuter un code écrit en Perl 6 vouz pouvez utiliser le REPL (Read-Eval-Print Loop). +
-Dans votre terminal, taper `perl6`, tapez votre code et pressez [Enter] +
+Pour exécuter un code écrit en Perl 6 vous pouvez utiliser le REPL (Read-Eval-Print Loop). +
+Dans votre terminal, tapez `perl6`, tapez votre code et pressez [Enter] +
 
 Alternativement, vous pouvez écrire votre code dans un fichier, l'enregistrer et puis l'exécuter. +
-Il est recommende de creer les fichiers Perl 6 avec l'extension `.pl6`. +
+Il est recommandé de créer les fichiers Perl 6 avec l'extension `.pl6`. +
 Exécutez le fichier du terminal en utilisant cette syntaxe: `perl6 filename.pl6`
 
 Le REPL est surtout utilisé pour essayer un morceau de code, typiquement une unique ligne de code. +
@@ -84,7 +84,7 @@ Pour les programmes contenant plusieurs lignes, il est recommandé de les stocke
 Comme la plupart du temps, nous allons écrire et stocker nos programmes en Perl 6 dans des fichiers,
 nous devrions avoir un éditeur de texte décent qui reconnaît la syntaxe de Perl 6.
 
-Je recommande personellement https://atom.io/[Atom]. C'est un editeur de texte moderne livré avec une coloration syntaxique pour Perl 6.
+Je recommande personnellement https://atom.io/[Atom]. C'est un éditeur de texte moderne livré avec une coloration syntaxique pour Perl 6.
 
 D'autres personnes de la communauté utilisent aussi http://www.vim.org/[Vim], https://www.gnu.org/software/emacs/[Emacs] ou http://padre.perlide.org/[Padre].
 
@@ -98,12 +98,12 @@ Nous allons commencer avec le rituel `hello world`.
 say 'hello world';
 
 === Aperçu de la syntaxe
-Perl 6 est en *forme libre*: Vous êtes libre (la plupart du temps) à utiliser n'importe quelle quantite d'espaces.
+Perl 6 est en *forme libre*: Vous êtes libre (la plupart du temps) à utiliser n'importe quelle quantité d'espaces.
 
-Les *Instructions* sont typiquement une ligne logique de code, un point-virgule est necessaire a leur fin: +
+Les *Instructions* sont typiquement une ligne logique de code, un point-virgule est nécessaire à leur fin: +
 `say "Hello" if True;`
 
-Les *Expressions* sont un type special d'instruction qui retournent une valeur: +
+Les *Expressions* sont un type spécial d'instructions qui retournent une valeur: +
 `1+2` retourne `3`
 
 Les expressions sont faites de *Termes* et d'*Operateurs*.
@@ -114,7 +114,7 @@ Les *Termes* sont des:
 
 * *Littérales*: Une valeur constante comme un nombre ou une chaîne.
 
-Les *Operateurs* sont classés en types:
+Les *Opérateurs* sont classés en types:
 
 |===
 
@@ -133,10 +133,10 @@ Les *Operateurs* sont classés en types:
 |===
 
 ==== Identificateurs
-Les identificateurs sont le nom donné aux termes lors de leur definition.
+Les identificateurs sont le nom donné aux termes lors de leur définition.
 
 .Règles:
-* Ils doivent commencer par un caractère alphabétique ou un tiret bas (underscore).
+* Ils doivent commencer par un caractère alphabétique ou un tiret bas (under score).
 
 * Ils peuvent contenir des chiffres (à l'exception du premier caractère).
 
@@ -193,14 +193,14 @@ say #`(Ceci est un commentaire intégré) "Hello World."
 [source,perl6]
 -----------------------------
 =begin comment
-Ceci est un commentaire sur plusieures lignes.
+Ceci est un commentaire sur plusieurs lignes.
 Commentaire 1
 Commentaire 2
 =end comment
 -----------------------------
 
 ==== Guillemets
-Les chaînes doivent être délimités par des guillemets droits doubles ou simples.
+Les chaînes doivent être délimitées par des guillemets droits doubles ou simples.
 
 Utilisez toujours des guillemets droits doubles:
 
@@ -222,7 +222,7 @@ say "Salut $name";               #Salut Jean Dupont
 [cols="^.^5m,^.^5m,.^20,.^20m,.^20m", options="header"]
 |===
 
-| Operateur | Type | Description | Exemple | Resultat
+| Operateur | Type | Description | Exemple | Résultat
 
 | + | Infixe | Addition | 1 + 2 | 3
 
@@ -264,37 +264,37 @@ say "Salut $name";               #Salut Jean Dupont
 
 | = | Infixe | Affectation | my $var = 7  | Attribue la valeur `7` a la variable `$var`
 
-.2+| ~ .2+| Infixe .2+| Concatenation | 9 ~ 7 | 97
+.2+| ~ .2+| Infixe .2+| Concaténation | 9 ~ 7 | 97
 
 <m| "Hi " ~ "there"  <| Hi there
 
-.2+| x .2+| Infixe .2+| Replication | 13 x 3  | 131313
+.2+| x .2+| Infixe .2+| Réplication | 13 x 3  | 131313
 
 <| "Hello " x 3  <| Hello Hello Hello
 
 | ~~ | Infixe | Smart match |   |
 
-.2+| ++ | Préfixe | Incrémentation | my $var = 2; ++$var;  | Incrémente la variable de 1 et retourne le resultat `3`
+.2+| ++ | Préfixe | Incrémentation | my $var = 2; ++$var;  | Incrémente la variable de 1 et retourne le résultat `3`
 
 <m| Suffixe <d| Incrémentation <m| my $var = 2; $var++;  <| Retourne la variable `2` et puis l'incrémente
 
-.2+|\--| Préfixe | Décrémentation | my $var = 2; --$var;  | Decrémente la variable de 1 et retourne le resultat `1`
+.2+|\--| Préfixe | Décrémentation | my $var = 2; --$var;  | Décrémente la variable de 1 et retourne le résultat `1`
 
-<m| Suffixe <d| Décrémentation <m| my $var = 2; $var--;  <| Retourne la variable `2` et puis la decrémente
+<m| Suffixe <d| Décrémentation <m| my $var = 2; $var--;  <| Retourne la variable `2` et puis la décrémente
 
-.3+| + .3+| Préfixe .3+| Force l'opérande a une valeur numerique | +"3"  | 3
+.3+| + .3+| Préfixe .3+| Force l'opérande a une valeur numérique | +"3"  | 3
 
 <| +True <| 1
 
 <| +False <| 0
 
-.3+| - .3+| Préfixe .3+| Force l'opérande a une valeur numerique et retourne la negation | -"3"  | -3
+.3+| - .3+| Préfixe .3+| Force l'opérande a une valeur numérique et retourne la négation | -"3"  | -3
 
 <| -True <| -1
 
 <| -False <| 0
 
-.6+| ? .6+| Préfixe .6+| Force l'opérande a une valeur booléene | ?0 | False
+.6+| ? .6+| Préfixe .6+| Force l'opérande a une valeur booléenne | ?0 | False
 
 <| ?9.8 <| True
 
@@ -306,7 +306,7 @@ say "Salut $name";               #Salut Jean Dupont
 
 <| my $var = 7; ?$var; <| True
 
-| ! | Prefixe | Force l'opérande a une valeur booléene et retourne la negation | !4 | False
+| ! | Préfixe | Force l'opérande a une valeur booléenne et retourne la négation | !4 | False
 
 | .. | Infixe | Construction de gammes |  0..5  | Crée une gamme de 0 a 5
 
@@ -318,7 +318,7 @@ say "Salut $name";               #Salut Jean Dupont
 
 | ^ | Préfixe | Construction de gammes |  ^5  | Comme 0..^5 Crée une gamme de 0 a 4
 
-| ... | Infixe | Construction de listes paresseuses |  0...9999  |  Retourne les elements seulement si necessaire
+| ... | Infixe | Construction de listes paresseuses |  0...9999  |  Retourne les éléments seulement si nécessaire
 
 .2+| {vbar} .2+| Préfixe .2+| Aplanissement | {vbar}(0..5)  | (0 1 2 3 4 5)
 
@@ -360,9 +360,9 @@ my @animaux = ['chameau','llama','hibou'];
 say @animaux;
 ----
 
-De nombreuses opérations peuvent être effectuées sur les tableaux comme demontré dans l'exemple suivant:
+De nombreuses opérations peuvent être effectuées sur les tableaux comme démontré dans l'exemple suivant:
 
-TIP: La tilde `~` est utilisée pour la concaténation.
+TIP: Le tilde `~` est utilisé pour la concaténation.
 
 [source,perl6]
 .`Script`
@@ -460,7 +460,7 @@ Les deux premiers ne seront probablement jamais utilisés, mais ils sont répert
 [cols="^.^1m,.^3m,.^2m,.^1m, options="header"]
 |===
 
-| *Type* | *Description* | *Exemple* | *Resultat*
+| *Type* | *Description* | *Exemple* | *Résultat*
 
 | Mu | La racine de la hiérarchie de types | |
 
