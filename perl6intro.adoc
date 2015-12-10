@@ -61,7 +61,7 @@ Install with homebrew: `brew install rakudo-star`
 . Download the latest installer (file with .MSI extension) from http://rakudo.org/downloads/star/ +
 If your system architecture is 32-bit, download the x86 file if it's 64-bit download the x86_64 file.
 . After installation add C:\rakudo\bin to your PATH
- 
+
 .Docker
 . Get the official Docker image `docker pull rakudo-star`
 . Then run a container with the image `docker run -it rakudo-star`
@@ -493,6 +493,7 @@ $var2 = Nil;
 say $var2.WHAT;
 ----
 
+.`Output`
 ----
 (Int)
 (Any)
@@ -540,6 +541,60 @@ Since a variable is only accessible in the block where it is defined, the same v
 }
 my Int $var = 123;
 say $var;
+----
+
+=== Assignment vs. Binding
+We've seen in the previous examples, how to *assign* values to variables. +
+*Assignment* is done using the `=` operator.
+[source,perl6]
+----
+my Int $var = 123;
+say $var;
+----
+
+We can change the value assigned to a variable:
+
+[source,perl6]
+.Assignment
+----
+my Int $var = 123;
+say $var;
+$var = 999;
+say $var;
+----
+
+.`Output`
+----
+123
+999
+----
+
+On the other hand, we cannot change the value *binded* to a variable. +
+*Binding* is done using the `:=` operator.
+
+[source,perl6]
+.Binding
+----
+my Int $var := 123;
+say $var;
+$var = 999;
+say $var;
+----
+
+.`Output`
+----
+123
+Cannot assign to an immutable value
+----
+
+[source,perl6]
+.Variables can also be binded to other variables:
+----
+my $a;
+my $b;
+$a := $b;
+$b = 7;
+say $a;
 ----
 
 NOTE: For more info on variables, see http://doc.perl6.org/language/variables
@@ -1935,6 +1990,9 @@ say $hashed-password;
 ----
 In order to run the `md5_hex()` function that creates hashes, we need to load the required module. +
 The `use` keyword loads the module for use in the script.
+
+WARNING: In practice MD5 hashing alone is not sufficient, because it is prone to dictionary attacks. +
+It should be combined with a salt https://en.wikipedia.org/wiki/Salt_(cryptography)
 
 == Unicode
 
