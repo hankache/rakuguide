@@ -10,6 +10,7 @@
 :source-language: perl6
 :pygments-linenums-mode: table
 :toc: left
+:toc-title: Table des matières
 
 L'objectif de ce document est de vous donner un aperçu rapide du langage de programmation Perl 6. +
 Pour ceux qui sont nouveaux à Perl 6, il devrait vous permettre de démarrer.
@@ -548,6 +549,60 @@ my Int $var = 123;
 say $var;
 ----
 
+=== Affectation vs. Lien
+Nous avons vu dans les exemples précédents, comment *affecter* des valeurs aux variables. +
+L'*affectation* est faite en utilisant l'opérateur `=`
+[source,perl6]
+----
+my Int $var = 123;
+say $var;
+----
+
+Nous pouvons modifier la valeur attribuée à une variable:
+
+[source,perl6]
+.Affecter
+----
+my Int $var = 123;
+say $var;
+$var = 999;
+say $var;
+----
+
+.`Output`
+----
+123
+999
+----
+
+D'autre part, nous ne pouvons pas changer la valeur *liée* à une variable. +
+Le *lien* est fait en utilisant l'opérateur `:=`
+
+[source,perl6]
+.Lier
+----
+my Int $var := 123;
+say $var;
+$var = 999;
+say $var;
+----
+
+.`Output`
+----
+123
+Cannot assign to an immutable value
+----
+
+[source,perl6]
+.Une variables peut être également liée a une autre:
+----
+my $a;
+my $b;
+$a := $b;
+$b = 7;
+say $a;
+----
+
 NOTE: Pour plus d'informations sur les variables, rendez-vous à http://doc.perl6.org/language/variables
 
 == Fonctions normales et fonctions mutantes
@@ -589,3 +644,168 @@ say @numeros;      #4
 * (#3) démontre que le tableau initial reste non modifie.
 
 Afin de forcer une fonction normale à agir comme une fonction mutante, nous pouvons utiliser `.=` a la place de `.` (#4) (Ligne 9 du script)
+
+== Structures conditionnelles et boucles
+Perl 6 possède une multitude de structures conditionnelles et structures de boucles.
+
+=== if
+Le code ne fonctionne que si la condition a été remplie.
+
+[source,perl6]
+----
+my $age = 19;
+
+if $age > 18 {
+  say 'Bienvenue'
+}
+----
+
+En Perl 6, nous pouvons inverser le code et la condition. +
+Même si le code et la condition ont été inversées, la condition est toujours évaluée en premier.
+
+[source,perl6]
+----
+my $age = 19;
+
+say 'Bienvenue' if $age > 18;
+----
+
+Si la condition n'est pas remplie, nous pouvons toujours préciser des blocs d'exécution alternatifs en utilisant:
+
+* `else`
+* `elsif`
+
+[source,perl6]
+----
+#exécuter le même code pour différentes valeurs de la variable
+my $nombre-de-places = 9;
+
+if $nombre-de-places <= 5 {
+  say 'Je suis une berline'
+} elsif $nombre-de-places <= 7 {
+  say 'Je suis un monospace'
+} else {
+  say 'Je suis un van'
+}
+----
+
+=== unless
+La version négative d'un `if` peut être écrite en utilisant `unless`.
+
+Le code suivant:
+
+[source,perl6]
+----
+my $chaussures-propres = False;
+
+if not $chaussures-propres {
+  say 'Nettoyez vos chaussures'
+}
+----
+peut aussi être écrit ainsi:
+
+[source,perl6]
+----
+my $chaussures-propres = False;
+
+unless $chaussures-propres {
+  say 'Nettoyez vos chaussures'
+}
+----
+
+La négation en Perl 6 est faite en utilisant `!` ou `not`.
+
+`unless (condition)` est utilisé à la place de `if not (condition)`.
+
+`unless` ne peux pas avoir une clause `else`.
+
+=== with
+
+`with` fonctionne comme `if`, mais vérifie si la variable est définie.
+
+[source,perl6]
+----
+my Int $var=1;
+
+with $var {
+  say 'Bonjour'
+}
+----
+
+Si vous exécutez le code sans attribuer une valeur à la variable, rien ne devrait arriver.
+[source,perl6]
+----
+my Int $var;
+
+with $var {
+  say 'Bonjour'
+}
+----
+
+`without` est la version négative de `with`. Vous devriez être capable de le relier le concept à `unless`.
+
+Si la première condition `with` n'est pas remplie, un autre chemin peut être spécifié en utilisant `orwith`. +
+`with` et `orwith` peuvent être comparés à `if` et `elsif`.
+
+=== for
+
+La boucle `for` itère sur plusieures valeurs.
+
+[source,perl6]
+----
+my @array = [1,2,3];
+
+for @array -> $array-item {
+  say $array-item*100
+}
+----
+
+Notez que nous avons créé une variable d'itération `$array-item` afin d'effectuer l'opération `*100` sur chaque élément du tableau.
+
+=== given
+
+`given` est l'équivalent Perl 6 de l'instruction switch dans d'autres langues.
+
+[source,perl6]
+----
+my $var = 42;
+
+given $var {
+    when 0..50 { say 'Plus petit que 50'}
+    when Int { say "est un Int" }
+    when 42  { say 42 }
+    default  { say "huh?" }
+}
+----
+
+Après un appariement réussi, le processus d'appariement arrêtera.
+
+Alternativement `proceed` instruira Perl 6 à poursuivre l'appariement, même après un appariement réussi.
+[source,perl6]
+----
+my $var = 42;
+
+given $var {
+    when 0..50 { say 'Plus petit que 50';proceed}
+    when Int { say "est un Int";proceed}
+    when 42  { say 42 }
+    default  { say "huh?" }
+}
+----
+
+=== loop
+
+`loop` est une autre façon d'écrire une boucle `for`.
+
+En fait `loop` est comment les boucles `for` sont écrites dans les langages de programmation appartenant a la famille-C.
+
+Perl 6 appartient à la famille-C
+
+[source,perl6]
+----
+loop (my $i=0; $i < 5; $i++) {
+  say "Le nombre actuel est $i"
+}
+----
+
+NOTE: Pour plus d'informations sur les boucles et les conditions, voir http://doc.perl6.org/language/control
