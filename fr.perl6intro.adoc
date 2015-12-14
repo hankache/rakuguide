@@ -809,3 +809,145 @@ loop (my $i=0; $i < 5; $i++) {
 ----
 
 NOTE: Pour plus d'informations sur les boucles et les conditions, voir http://doc.perl6.org/language/control
+
+== E/S
+En Perl 6, deux des interfaces _entrée/sortie_ les plus communes sont le _Terminal_ et les _Fichiers_.
+
+=== E/S Basic en utilisant le Terminal
+
+==== say
+`say` écrit sur l'interface de sortie standard. Il ajoute une nouvelle ligne à la fin. En d'autres termes, le code suivant:
+
+[source,perl6]
+----
+say 'Bonjour Madame.';
+say 'Bonjour Monsieur.';
+----
+sera écrit sur 2 lignes distinctes.
+
+==== print
+`print` d'autre part fonctionne comme `say` mais sans ajouter une nouvelle ligne.
+
+Essayez de remplacer `say` avec `print` et de comparer les deux résultats.
+
+==== get
+`get` est utilisé pour capturer l'entrée du Terminal.
+
+[source,perl6]
+----
+my $nom;
+
+say "Salut quel est ton nom?";
+$nom=get;
+
+say "Cher $nom bienvenue à Perl 6";
+----
+
+Lorsque le code ci-dessus est lancé, le terminal vous attendra pour saisir votre nom.
+Par la suite, il vous accueillera.
+
+==== prompt
+`prompt` est une combinaison de `print` et `get`.
+
+L'exemple ci-dessus peut être écrit comme ceci:
+
+[source,perl6]
+----
+my $nom = prompt("Salut quel est ton nom? ");
+
+say "Cher $nom bienvenue à Perl 6";
+----
+
+=== Exécution de commandes Shell
+Deux sous-programmes peuvent être utilisés pour exécuter des commandes shell:
+
+* `run` Exécute une commande externe sans impliquer le Shell
+
+* `shell` Exécute une commande via le shell. Tous les méta-caractères sont interprétés par le shell, y compris les tuyaux, les redirections, les variables d'environnement etc.
+
+[source,perl6]
+----
+my $nom = 'Neo';
+my $commande = run 'echo', "salut $name";
+my $commande2 = shell "ls";
+----
+`echo` et `ls` sont des mots clés communs de shell. +
+`echo` imprime le texte sur le Terminal (l'équivalent de `print` en Perl 6) +
+`ls` liste tous les fichiers et dossiers dans le répertoire courant
+
+
+=== E/S Fichier
+==== slurp
+`slurp` est utilisé pour lire les données d'un fichier.
+
+Créez un fichier texte avec le contenu suivant:
+
+.datafile.txt
+----
+John 9
+Johnnie 7
+Jane 8
+Joanna 7
+----
+[source,perl6]
+----
+my $data = slurp "datafile.txt";
+say $data;
+----
+
+==== spurt
+`spurt` est utilisé pour écrire des données sur un fichier.
+
+[source,perl6]
+----
+my $newdata = "New scores:
+Paul 10
+Paulie 9
+Paulo 11";
+
+spurt "newdatafile.txt", $newdata;
+----
+
+Après avoir exécuté le code ci-dessus, un nouveau fichier nommé _newdatafile.txt_ sera créé. Il contiendra les nouveaux scores.
+
+=== Travailler avec les fichiers et répertoires
+Perl 6 peut lister le contenu d'un répertoire sans exécuter des commandes shell (en utilisant `ls`) comme nous l'avons vu dans un exemple précédent.
+
+[source,perl6]
+----
+say dir;              #Liste les fichiers et dossiers dans le répertoire courant
+say dir "/Documents"; #Liste les fichiers et dossiers dans le répertoire spécifié
+----
+
+De plus, vous pouvez créer de nouveaux dossiers et les supprimer.
+
+[source,perl6]
+----
+mkdir "newfolder";
+rmdir "newfolder";
+----
+
+`mkdir` crée un nouveau répertoire. +
+`rmdir` supprimer un répertoire vide. Renvoie une erreur s'il n'est pas vide.
+
+Vous pouvez également vérifier si le chemin d'accès spécifié existe, s'il est un fichier ou un répertoire:
+
+Dans le répertoire où vous allez exécutez le script ci-dessous, créez un dossier vide `folder123` et un fichier .pl6 vide `script123.pl6`
+
+[source,perl6]
+----
+say "script123.pl6".IO.e;
+say "folder123".IO.e;
+
+say "script123.pl6".IO.d;
+say "folder123".IO.d;
+
+say "script123.pl6".IO.f;
+say "folder123".IO.f;
+----
+
+`IO.e` vérifie si le répertoire/fichier existe. +
+`IO.f` vérifie si c'est un fichier. +
+`IO.d` vérifie si c'est un dossier.
+
+NOTE: Pour plus d'informations sur les E/S, voir http://doc.perl6.org/type/IO
