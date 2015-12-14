@@ -841,7 +841,7 @@ When the above code runs, the terminal will be waiting for you to input your nam
 Subsequently, it will greet you.
 
 ==== prompt
-`prompt` is a combination of `print` ans `get`.
+`prompt` is a combination of `print` and `get`.
 
 The above example can be written like this:
 
