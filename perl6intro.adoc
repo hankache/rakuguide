@@ -41,7 +41,7 @@ Perl 6 is multi-paradigmatic. It supports Procedural, Object Oriented and Functi
 === Jargon
 Perl 6: Is a language specification with a test suite. Implementations that pass the specification test suite are considered Perl 6. +
 Rakudo: Is a compiler for Perl 6. +
-Rakudobrew: Is a Perl 6 installation manager. +
+Rakudobrew: Is an installation manager for Rakudo. +
 Panda: Is a Perl 6 module installer.
 
 === Installing Perl 6
@@ -81,7 +81,8 @@ For programs with more than a single line it is recommended to store them in a f
 Since most of the time we will be writing and storing our Perl 6 programs in files, we should have
 a decent text editor that recognizes Perl 6 syntax.
 
-I personally use and recommend https://atom.io/[Atom]. It is a modern text editor and comes with Perl 6 syntax highlighting out of the box.
+I personally use and recommend https://atom.io/[Atom]. It is a modern text editor and comes with Perl 6 syntax highlighting out of the box. +
+https://atom.io/packages/language-perl6fe[Perl6-fe] is an alternative Perl 6 syntax highlighter for Atom, derived from the original package but with many bugfixes and additions.
 
 Other people in the community also use http://www.vim.org/[Vim], https://www.gnu.org/software/emacs/[Emacs] or http://padre.perlide.org/[Padre].
 
@@ -93,6 +94,11 @@ We shall begin with The `hello world` ritual.
 
 [source,perl6]
 say 'hello world';
+
+that can also be written as:
+
+[source,perl6]
+'hello world'.say;
 
 === Syntax overview
 Perl 6 is *free form*: You are free (most of the time) to use any amount of whitespace.
