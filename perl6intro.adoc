@@ -400,20 +400,112 @@ We can access a specific element in the array by specifying its position `@anima
 `.pop` removes the last element from the array. +
 `.splice(a,b)` will remove the `b` elements that start at position `a`.
 
+==== Fixed-size arrays
+A basic array is declared as following:
+[source,perl6]
+my @array;
+
+The basic array can have indefinite length and thus is called auto-extending. +
+The array will accept any number of values with no restriction.
+
+In contrast, we can also create fixed-size arrays. +
+These arrays can not be accessed beyond their defined size.
+
+To declare an array of fixed size, specify its maximum number of elements in square brackets immediately after its name:
+[source,perl6]
+my @array[3];
+
+This array will be able to hold a maximum of 3 values, indexed from 0 to 2.
+
+[source,perl6]
+----
+my @array[3];
+@array[0] = "first value";
+@array[1] = "second value";
+@array[2] = "third value";
+----
+
+You will not be able to add a fourth value to this array:
+[source,perl6]
+----
+my @array[3];
+@array[0] = "first value";
+@array[1] = "second value";
+@array[2] = "third value";
+@array[3] = "fourth value";
+----
+
+----
+Index 3 for dimension 1 out of range (must be 0..2)
+----
+
+==== Multidimensional arrays
+The arrays we saw until now are one-dimensional. +
+Fortunately, we can define multi-dimentional arrays in Perl 6.
+
+[source,perl6]
+my @tbl[3;2];
+
+This array is two-dimensional.
+The first dimension can have a maximum of 3 values and the second dimension a maximum of 2 values.
+
+[source,perl6]
+----
+my @tbl[3;2];
+@tbl[0;0] = 1;
+@tbl[0;1] = "x";
+@tbl[1;0] = 2;
+@tbl[1;1] = "y";
+@tbl[2;0] = 3;
+@tbl[2;1] = "z";
+say @tbl
+----
+
 NOTE: For the complete Array reference, see http://doc.perl6.org/type/Array
 
 === Hashes
-A Hash is a set of Key/Value pairs.
+[source,perl6]
+.A Hash is a set of Key/Value pairs.
+----
+my %capitals = ('UK','London','Germany','Berlin');
+say %capitals;
+----
 
 [source,perl6]
-----------------------------------------------------
-my %capitals = ('London','UK','Berlin','Germany');
+.Another succinct way of filling the hash:
+----
+my %capitals = (UK => 'London', Germany => 'Berlin');
 say %capitals;
+----
 
-#another succinct way of filling the hash:
-my %capitals = (London => 'UK', Berlin => 'Germany');
-say %capitals;
-----------------------------------------------------
+Some of the methods that can be called on hashes are:
+[source,perl6]
+.`Script`
+----
+my %capitals = (UK => 'London', Germany => 'Berlin');
+%capitals.push: (France => 'Paris');
+say %capitals.kv;
+say %capitals.keys;
+say %capitals.values;
+say "The capital of France is: " ~ %capitals<France>;
+----
+
+.`Output`
+----
+(France Paris Germany Berlin UK London)
+(France Germany UK)
+(Paris Berlin London)
+The capital of France is: Paris
+----
+
+.Explanation
+`.push: (key => 'Value')` adds a new key/value pair. +
+`.kv` returns a list containing all keys and values. +
+`.keys` returns a list that contains all keys. +
+`.values` returns a list that contains all values. +
+We can access a specific value in the hash by specifying its key `%hash<key>`
+
+NOTE: For the complete Hash reference, see http://doc.perl6.org/type/Hash
 
 === Types
 In the previous examples, we did not specify what type of values the variables should hold.
