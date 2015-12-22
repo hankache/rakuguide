@@ -1959,6 +1959,30 @@ if "John-Doe" ~~ / \s / {
 }
 ----
 
+=== Unicode properties
+Matching against categories of characters as seen in the preceding section is convenient. +
+That being said, a more systematic approach would be to use of Unicode properties. +
+Unicode properties are enclosed in `<: >`
+
+[source,perl6]
+----
+if "John123" ~~ / <:N> / {
+  say "Contains a number";
+} else {
+  say "Doesn't contain a number"
+}
+if "John-Doe" ~~ / <:Lu> / {
+  say "Contains an uppercase letter";
+} else {
+  say "Doesn't contain an upper case letter"
+}
+if "John-Doe" ~~ / <:Pd> / {
+  say "Contains a dash";
+} else {
+  say "Doesn't contain a dash"
+}
+----
+
 === Wildcards
 Wildcards can also be used in a regex.
 
@@ -2049,6 +2073,115 @@ if 'z' ~~ m/ a+z / {
     say "No Match";
 }
 ----
+
+=== Match Results
+Whenever the process of matching a string against a regex is successful,
+the match result is stored in a special variable `$/`
+
+[source,perl6]
+.Script
+----
+if 'Rakudo is a Perl 6 compiler' ~~ m/:s Perl 6/ {
+    say "The match is: " ~ $/;
+    say "The string before the match is: " ~ $/.prematch;
+    say "The string after the match is: " ~ $/.postmatch;
+    say "The matching string starts at position: " ~ $/.from;
+    say "The matching string ends at position: " ~ $/.to;
+}
+----
+
+.Output
+----
+The match is: Perl 6
+The string before the match is: Rakudo is a
+The string after the match is:  compiler
+The matching string starts at position: 12
+The matching string ends at position: 18
+----
+
+.Explanation
+`$/` returns a _Match Object_ (the string that matches the regex) +
+The following methods can be called on the _Match Object_: +
+`.prematch` returns the string preceding the match. +
+`.postmatch` returns the string following the match. +
+`.from` returns the starting position of the match. +
+`.to` returns the ending position of the match. +
+
+TIP: By default whitespace in a regex definition is irrelevant. +
+If we want to match against a regex containing whitespace we have to do so explicitly. +
+The `:s` in the regex `m/:s Perl 6/` forces whitespace to be considered and not discarded. +
+Alternatively we could have written the regex as `m/ Perl\s6 /` and used `\s` which as we saw earlier is a placeholder for whitespace. +
+If a regex contains more than a single whitespace, using `:s` becomes more effective in contrast with using `\s` for each and every whitespace.
+
+=== Example
+Lets check if an email is valid or not. +
+For the sake of this example we will assume that a valid email address is formed as following: +
+first name [dot] last name [at] company [dot] (com/org/net)
+
+WARNING: The regex used in this example for email validation is not very accurate. +
+Its sole purpose is to demonstrate regex functionality in Perl 6. +
+Do not use it as-is in production.
+
+[source,perl6]
+.Script
+----
+my $email = 'john.doe@perl6.org';
+my $regex = / <:L>+\.<:L>+\@<:L+:N>+\.<:L>+ /;
+
+if $email ~~ $regex {
+  say $/ ~ " is a valid email";
+} else {
+  say "This is not a valid email";
+}
+----
+
+.Output
+`john.doe@perl6.org is a valid email`
+
+.Explanation
+`<:L>` matches a single letter +
+`<:L>+` matches a single letter or more +
+`\.` matches a single [dot] character +
+`\@` matches a single [at] character +
+`<:L+:N>` matches a letter and a number +
+`<:L+:N>+` matches one or more (letters and numbers) +
+
+The regex can be decomposed as following:
+
+* *first name* `<:L>+`
+
+* *[dot]* `\.`
+
+* *last name* `<:L>+`
+
+* *[at]* `\@`
+
+* *company name* `<:L+:N>+`
+
+* *[dot]* `\.`
+
+* *com/org/net* `<:L>+`
+
+[source,perl6]
+.Alternatively a regex can be broken down into multiple named regexes
+----
+my $email = 'john.doe@perl6.org';
+my regex many-letters { <:L>+ };
+my regex dot { \. };
+my regex at { \@ };
+my regex many-letters-numbers { <:L+:N>+ };
+
+if $email ~~ / <many-letters> <dot> <many-letters> <at> <many-letters-numbers> <dot> <many-letters> / {
+  say $/ ~ " is a valid email";
+} else {
+  say "This is not a valid email";
+}
+----
+
+A named regex is defined using the following syntax: `my regex regex-name { regex definition }` +
+A named regex can be called using the following syntax: `<regex-name>`
+
+NOTE: For more info on regexes, see http://doc.perl6.org/language/regexes
 
 == Perl 6 Modules
 Perl 6 is a general purpose programming language. It can be used to tackle a multitude of tasks including:
