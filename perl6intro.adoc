@@ -1077,7 +1077,7 @@ say-hello "Paul";
 say-hello "Paula";
 ----
 
-=== Multi subroutine
+=== Multiple dispatch
 It is possible to define multiple subroutines having the same name but different signatures.
 When the subroutine is called, the runtime environment will decide which version to use depending on the number and type of the supplied arguments.
 This type of subroutines is defined the same way as normal subs with the exception of swapping the `sub` keyword with `multi`.
@@ -1129,7 +1129,180 @@ say-hello("Laura");
 
 NOTE: For more info on subroutines and functions, see http://doc.perl6.org/language/functions
 
+== Functional Programming
+In this chapter we will take a look at some of the functionality that facilitates Functional Programming.
+
+=== Chaining
+In Perl 6, methods can be chained, you no longer have to pass the result of a method to another one as an argument.
+
+Lets consider that you are provided with an array of values.
+You are asked to return the unique values of this array, sorted from biggest to smallest.
+
+You might try to solve the problem by writing something close to this:
+[source,perl6]
+----
+my @array = <7 8 9 0 1 2 4 3 5 6 7 8 9 >;
+my @final-array = reverse(sort(unique(@array)));
+say @final-array;
+----
+First we call the `unique` function on `@array` then we pass the result as an argument to `sort` and then we pass the result of sorting to `reverse`.
+
+In contrast with the above example, chaining methods is allowed in Perl 6. +
+The above example can be written as following, taking advantage of *method chaining*:
+
+[source,perl6]
+----
+my @array = <7 8 9 0 1 2 4 3 5 6 7 8 9 >;
+my @final-array = @array.unique.sort.reverse;
+say @final-array;
+----
+
+You can already see that chaining methods is _easier on the eye_.
+
+=== Feed Operator
+The *feed operator*, called _pipe_ in some functional programming languages, yields yet a better visualization of method chaining.
+[source,perl6]
+.Forward Feed
+----
+my @array = <7 8 9 0 1 2 4 3 5 6>;
+@array ==> unique()
+       ==> sort()
+       ==> reverse()
+       ==> my @final-array;
+say @final-array;
+----
+
+.Explanation
+----
+Start with `@array` then return a list of unique elements
+                    then sort it
+                    then reverse it
+                    then store the result in @final-array
+----
+As you can see the flow of the method calls is top-down.
+
+
+[source,perl6]
+.Backward Feed
+----
+my @array = <7 8 9 0 1 2 4 3 5 6>;
+my @final-array-v2 <== reverse()
+                   <== sort()
+                   <== unique()
+                   <== @array;
+say @final-array-v2;
+----
+
+.Explanation
+The backward feed is like the forward feed, but written in reverse. +
+The flow of the method calls is bottom-up.
+
+=== Hyper operator
+The *hyper operator* `>>.` will call a method on all elements of a list and return a list of all results.
+[source,perl6]
+----
+my @array = <0 1 2 3 4 5 6 7 8 9 10>;
+sub is-even($var) { $var %% 2 };
+
+say @array>>.is-prime;
+say @array>>.&is-even;
+----
+
+Using the hyper operator we can call methods already defined in Perl 6, e.g. `is-prime` that tells us if a number is prime or not. +
+In addition we can define new methods/subroutines and call them using the hyper operator. In this case we have to append `&` before the name of the method. E.g. `&is-even`
+
+This is very practical as it relieves us from writing a `for` loop to iterate over each value.
+
+=== Junctions
+A *junction* is a logical superposition of values.
+
+In the below example `1|2|3` is a junction.
+[source,perl6]
+----
+my $var = 2;
+if $var == 1|2|3 {
+  say "The variable is 1 or 2 or 3"
+}
+----
+The use of junctions usually triggers *autothreading*;
+the operation is carried out for each junction element, and all the results are combined into a new junction and returned.
+
+=== Lazy Lists
+A *lazy list* is a list that is lazily evaluated. +
+Lazy evaluation delays the evaluation of an expression until required, and avoids repeating evaluations by storing results in a lookup table.
+
+The benefits include:
+
+* Performance increase by avoiding needless calculations
+
+* The ability to construct potentially infinite data structures
+
+* The ability to define control flow
+
+To build a lazy list we use the infix operator `...` +
+A lazy list has *initial element(s)*, a *generator* and an *endpoint*.
+
+[source,perl6]
+.Simple lazy list
+----
+my $lazylist = (1 ... 10);
+say $lazylist;
+----
+The initial element is 1 and the endpoint is 10. No generator was defined so the default generator is the successor (+1) +
+In other words this lazy list may return (if requested) the following elements (1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+
+[source,perl6]
+.Infinite lazy list
+----
+my $lazylist = (1 ... Inf);
+say $lazylist;
+----
+This list may return (if requested) any integer between 1 and infinity, in other words any integer number.
+
+[source,perl6]
+.Lazy list built using a deduced generator
+----
+my $lazylist = (0,2 ... 10);
+say $lazylist;
+----
+The initial elements are 0 and 2 and the endpoint is 10.
+No generator was defined, but using the initial elements, Perl 6 will deduce that the generator is (+2) +
+This lazy list may return (if requested) the following elements (0, 2, 4, 6, 8, 10)
+
+[source,perl6]
+.Lazy list built using a defined generator
+----
+my $lazylist = (0, { $_ + 3 } ... 12);
+say $lazylist;
+----
+In this example, we defined explicitly a generator enclosed in `{ }` +
+This lazy list may return (if requested) the following elements (0, 3, 6, 9, 12)
+
+[WARNING]
+--
+When using an explicit generator, the endpoint must be one of the values that the generator can return. +
+If we reproduce the above example with the endpoint being 10 instead of 12, it will not stop.
+The generator _jumps over_ the endpoint.
+
+Alternatively you can replace `0 ... 10` with `0 ...^ * > 10` +
+You can read it as: From 0 until the first value greater than 10 (excluding it)
+[source,perl6]
+.This will not stop the generator
+----
+my $lazylist = (0, { $_ + 3 } ... 10);
+say $lazylist;
+----
+
+[source,perl6]
+.This will stop the generator
+----
+my $lazylist = (0, { $_ + 3 } ...^ * > 10);
+say $lazylist;
+----
+--
 == Classes & Objects
+In the previous chapter, we learned how Perl 6 facilitates Functional Programming. +
+In this chapter we will take a look at Object Oriented programming in Perl 6.
 
 === Introduction
 
@@ -1734,7 +1907,6 @@ Introspection is facilitated by:
 
 * `~~` is called the smart-match operator.
 It evaluates to _True_ if the object is created from the class it is being compared against or any of its inheritances.
-
 
 == Exception Handling
 
