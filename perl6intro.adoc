@@ -220,6 +220,7 @@ say "Hello $name";   #Hello John Doe
 -----------------------------------
 
 == Operators
+The below table lists the most commonly used operators.
 [cols="^.^5m,^.^5m,.^20,.^20m,.^20m", options="header"]
 |===
 
@@ -1046,7 +1047,7 @@ NOTE: For more info on I/O, see http://doc.perl6.org/type/IO
 
 == Subroutines
 === Definition
-*Subroutines* or *subs* are a means of packaging a set of functionality.
+*Subroutines* (also called *subs* or *functions*) are a means of packaging a set of functionality. +
 
 A subroutine definition begins with the keyword `sub`. After their definition, they can be called by their handle. +
 Check out the below example:
@@ -1132,6 +1133,67 @@ NOTE: For more info on subroutines and functions, see http://doc.perl6.org/langu
 == Functional Programming
 In this chapter we will take a look at some of the functionality that facilitates Functional Programming.
 
+=== Functions are first-class citizens
+Functions/subroutines are first-class citizens:
+
+* They can be passed as an argument
+
+* They can be returned from another function
+
+* They can be assigned to a variable
+
+A great example to demonstrate this concept is the `map` function. +
+`map` is a *higher order function*, it accepts another function as an argument.
+
+[source,perl6]
+.Script
+----
+my @array = <1 2 3 4 5>;
+sub squared($x) {
+  $x ** 2
+}
+say map(&squared,@array);
+----
+
+.Output
+----
+(1 4 9 16 25)
+----
+
+.Explanation
+We defined a subroutine called `squared`, it will take to the power of two any number provided as argument. +
+Next, we used `map`, a higher order function and gave it two arguments, a subroutine and an array. +
+The result is a list of all squared elements of the array.
+
+Notice that when passing a subroutine as an argument, we need to append `&` to the beginning of its name.
+
+=== Closures
+All code objects in Perl 6 are closures, which means they can reference lexical variables from an outer scope.
+
+=== Anonymous functions
+An *anonymous function* is also called a *lambda*. +
+An anonymous function is not bound to an identifier (it has no name).
+
+Let's rewrite the `map` example using an anonymous function
+[source,perl6]
+----
+my @array = <1 2 3 4 5>;
+say map(-> $x {$x ** 2},@array);
+----
+Notice that instead of declaring the subroutine and passing it as an argument to `map`, we defined it directly within. +
+The anonymous subroutine `\-> $x {$x ** 2}` has no handle and cannot be called.
+
+In Perl 6 parlance we call this notation  a *pointy block*
+
+[source,perl6]
+.A pointy block may also be used to assign functions to variables:
+----
+my $squared = -> $x {
+  $x ** 2
+}
+say $squared(9);
+----
+
 === Chaining
 In Perl 6, methods can be chained, you no longer have to pass the result of a method to another one as an argument.
 
@@ -1209,7 +1271,7 @@ say @array>>.&is-even;
 ----
 
 Using the hyper operator we can call methods already defined in Perl 6, e.g. `is-prime` that tells us if a number is prime or not. +
-In addition we can define new methods/subroutines and call them using the hyper operator. In this case we have to append `&` before the name of the method. E.g. `&is-even`
+In addition we can define new subroutines and call them using the hyper operator. In this case we have to append `&` before the name of the method. E.g. `&is-even`
 
 This is very practical as it relieves us from writing a `for` loop to iterate over each value.
 
@@ -2475,7 +2537,7 @@ say $Δ;
 
 == The community
 
-Much discussion happens on the #perl6 IRC channel. This should be your go to place for any enquiry: +
+Much discussion happens on the link:irc://irc.freenode.net/#perl6[#perl6] IRC channel. This should be your go to place for any enquiry: +
 http://perl6.org/community/irc
 
 Stay tuned by reading blog posts that focus on Perl 6: +
