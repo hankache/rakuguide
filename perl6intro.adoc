@@ -1,7 +1,7 @@
 = Perl 6 Introduction
 :description: A general introduction to Perl 6
 :Author: Naoum Hankache
-:keywords: perl6, perl 6, introduction, perl6intro, perl 6 introduction
+:keywords: perl6, perl 6, introduction, perl6intro, perl 6 introduction, perl 6 tutorial, perl 6 intro
 :Email: naoum@hankache.com
 :Revision: 1.0
 :icons: font
@@ -10,6 +10,7 @@
 :source-language: perl6
 :pygments-linenums-mode: table
 :toc: left
+:doctype: book
 
 This document is intended to give you a quick overview of the Perl 6 programming language. +
 For those who are new to Perl 6 it should get you up and running.
@@ -27,6 +28,10 @@ To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/
 .Contribution
 If you would like to contribute to this document head over to: +
 http://github.com/hankache/perl6intro
+
+.Feedback
+All feedback is welcomed: +
+naoum@hankache.com
 
 :sectnums:
 == Introduction
@@ -352,6 +357,55 @@ say $name;
 my $age = 99;
 say $age;
 ----
+
+A specific set of operations can be done on a scalar, depending on the value it holds.
+
+[source,perl6]
+.String
+----
+my $name = 'John Doe';
+say $name.uc;
+say $name.chars;
+say $name.flip;
+----
+
+----
+JOHN DOE
+8
+eoD nhoJ
+----
+
+NOTE: For the complete list of methods applicable to Strings, see http://doc.perl6.org/type/Str
+
+[source,perl6]
+.Integer
+----
+my $age = 17;
+say $age.is-prime;
+----
+
+----
+True
+----
+
+NOTE: For the complete list of methods applicable to Integers, see http://doc.perl6.org/type/Int
+
+[source,perl6]
+.Rational Number
+----
+my $age = 2.3;
+say $age.numerator;
+say $age.denominator;
+say $age.nude;
+----
+
+----
+23
+10
+(23 10)
+----
+
+NOTE: For the complete list of methods applicable to Rational Numbers, see http://doc.perl6.org/type/Rat
 
 === Arrays
 Arrays are lists containing multiple values.
@@ -1510,7 +1564,7 @@ Methods are the _subroutines_ of an object. +
 Like subroutines, they are a means of packaging a set of functionality, they accept *arguments*, have a *signature* and can be defined as *multi*.
 
 Methods are defined using the `method` keyword. +
-In normal circumstances, methods a required to perform some sort of action on the objects' attributes.
+In normal circumstances, methods are required to perform some sort of action on the objects' attributes.
 This enforces the concept of encapsulation. Object attributes can only be manipulated from within the object using methods.
 The outside world, can only interact with the object methods, and has no access to its attributes.
 
