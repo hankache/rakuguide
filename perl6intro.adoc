@@ -44,10 +44,12 @@ Perl 6 is multi-paradigmatic. It supports Procedural, Object Oriented and Functi
 * Easy things should stay easy, hard things should get easier, and impossible things should get hard.
 
 === Jargon
-Perl 6: Is a language specification with a test suite. Implementations that pass the specification test suite are considered Perl 6. +
-Rakudo: Is a compiler for Perl 6. +
-Rakudobrew: Is an installation manager for Rakudo. +
-Panda: Is a Perl 6 module installer.
+*Perl 6*: Is a language specification with a test suite. +
+Implementations that pass the specification test suite are considered Perl 6. +
+*Rakudo*: Is a compiler for Perl 6. +
+*Rakudobrew*: Is an installation manager for Rakudo. +
+*Panda*: Is a Perl 6 module installer. +
+*Rakudo Star*: Is a bundle that includes Rakudo, Panda, a collection Perl 6 modules and documentation.
 
 === Installing Perl 6
 .Linux
@@ -82,12 +84,24 @@ Run the file from the terminal using the following syntax: `perl6 filename.pl6`
 The REPL is mostly used for trying a specific piece of code, typically a single line. +
 For programs with more than a single line it is recommended to store them in a file and then run them.
 
+[TIP]
+--
+Rakudo Star bundles a line editor that helps you get the most out of the REPL.
+
+If you installed plain Rakudo instead of Rakudo Star then you probably don't have line editing features enabled (using the up and down arrows for history, left and right to edit input, TAB completion). +
+Consider running the following command and you shall be all set:
+
+* `panda install Linenoise` would work on Windows, Linux and OSX
+
+* `panda install Readline` if you are on Linux and prefer the _Readline_ library
+--
+
 === Editors
 Since most of the time we will be writing and storing our Perl 6 programs in files, we should have
 a decent text editor that recognizes Perl 6 syntax.
 
 I personally use and recommend https://atom.io/[Atom]. It is a modern text editor and comes with Perl 6 syntax highlighting out of the box. +
-https://atom.io/packages/language-perl6fe[Perl6-fe] is an alternative Perl 6 syntax highlighter for Atom, derived from the original package but with many bugfixes and additions.
+https://atom.io/packages/language-perl6fe[Perl6-fe] is an alternative Perl 6 syntax highlighter for Atom, derived from the original package but with many bug fixes and additions.
 
 Other people in the community also use http://www.vim.org/[Vim], https://www.gnu.org/software/emacs/[Emacs] or http://padre.perlide.org/[Padre].
 
@@ -633,27 +647,17 @@ In one of the previous example we used `.WHAT` to return the type of the variabl
 [source,perl6]
 ----
 my Int $var;
-say $var.WHAT;
+say $var.WHAT;    # (Int)
 my $var2;
-say $var2.WHAT;
+say $var2.WHAT;   # (Any)
 $var2 = 1;
-say $var2.WHAT;
+say $var2.WHAT;   # (Int)
 $var2 = "Hello";
-say $var2.WHAT;
+say $var2.WHAT;   # (Str)
 $var2 = True;
-say $var2.WHAT;
+say $var2.WHAT;   # (Bool)
 $var2 = Nil;
-say $var2.WHAT;
-----
-
-.`Output`
-----
-(Int)
-(Any)
-(Int)
-(Str)
-(Bool)
-(Any)
+say $var2.WHAT;   # (Any)
 ----
 
 The type of a variable holding a value is correlated to its value. +
@@ -1015,8 +1019,8 @@ Two subroutines can be used to run shell commands:
 [source,perl6]
 ----
 my $name = 'Neo';
-my $command = run 'echo', "hello $name";
-my $command2 = shell "ls";
+run 'echo', "hello $name";
+shell "ls";
 ----
 `echo` and `ls` are common shell keywords. +
 `echo` prints text to the terminal (the equivalent of `print` in Perl 6) +
