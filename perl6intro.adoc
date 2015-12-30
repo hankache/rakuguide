@@ -2611,7 +2611,7 @@ Lets begin with the latter.
 ==== Data Parallelism
 [source,perl6]
 ----
-my @array = (0..50000);                    #Array population
+my @array = (0..50000);                     #Array population
 my @result = @array.map({ is-prime $_ });   #call is-prime for each array element
 say now - INIT now;                         #Output the time it took for the script to complete
 ----
@@ -2624,7 +2624,7 @@ The `is-prime` subroutine is being called for each array element sequentially: +
 .Fortunately we can call `is-prime` on multiple array elements at the same time:
 [source,perl6]
 ----
-my @array = (0..50000);                        #Array population
+my @array = (0..50000);                         #Array population
 my @result = @array.race.map({ is-prime $_ });  #call is-prime for each array element
 say now - INIT now;                             #Output the time it took to complete
 ----
