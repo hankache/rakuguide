@@ -2593,6 +2593,130 @@ $Δ++;
 say $Δ;
 ----
 
+== Parallelism, Concurrency and Asynchrony
+
+=== Parallelism
+Under normal circumstances, all tasks in a program run sequentially. +
+This might not be a problem unless what you're trying to do is consuming a lot of time.
+
+Naturally speaking Perl 6 has features that will enable you to run things in parallel. +
+At this stage, it is important to note that parallelism can mean one of two things:
+
+* *Task Parallelism*: Two (or more) independent expressions running in parallel.
+
+* *Data Parallelism*: A single expression iterating over a list of elements in parallel.
+
+Lets begin with the latter.
+
+==== Data Parallelism
+[source,perl6]
+----
+my @array = (0..50000);                    #Array population
+my @result = @array.map({ is-prime $_ });   #call is-prime for each array element
+say now - INIT now;                         #Output the time it took for the script to complete
+----
+
+.Considering the above example:
+We are only doing one operation `@array.map({ is-prime $_ })` +
+The `is-prime` subroutine is being called for each array element sequentially: +
+`is-prime @array[0]` then `is-prime @array[1]` then `is-prime @array[2]` etc.
+
+.Fortunately we can call `is-prime` on multiple array elements at the same time:
+[source,perl6]
+----
+my @array = (0..50000);                        #Array population
+my @result = @array.race.map({ is-prime $_ });  #call is-prime for each array element
+say now - INIT now;                             #Output the time it took to complete
+----
+
+Notice the use of `race` in the expression.
+This method will enable parallel iteration of the array elements.
+
+After running both examples (with and without `race`), compare the time it took for both scripts to complete.
+
+[TIP]
+--
+`race` will not preserve the order of elements. If you wish to do, so use `hyper` instead.
+
+[source,perl6]
+.race
+----
+my @array = (1..1000);
+my @result = @array.race.map( {$_ + 1} );
+@result>>.say;
+----
+
+[source,perl6]
+.hyper
+----
+my @array = (1..1000);
+my @result = @array.hyper.map( {$_ + 1} );
+@result>>.say;
+----
+
+If you run both examples, you should notice that one is sorted and the other is not.
+
+--
+
+==== Task Parallelism
+
+[source,perl6]
+----
+my @array1 = (0..49999);
+my @array2 = (2..50001);
+
+my @result1 = @array1.map( {is-prime($_ + 1)} );
+my @result2 = @array2.map( {is-prime($_ - 1)} );
+
+say @result1 == @result2;
+
+say now - INIT now;
+----
+
+.Considering the above example:
+
+. We defined 2 arrays
+
+. applied a different operation for each array and stored the results
+
+. and checked if both results are the same
+
+The script waits for `@array1.map( {is-prime($_ + 1)} )` to finish +
+and then evaluates `@array2.map( {is-prime($_ - 1)} )`
+
+Both operations applied to each array do not depend on each other.
+
+.Why not do both in parallel?
+[source,perl6]
+----
+my @array1 = (0..49999);
+my @array2 = (2..50001);
+
+my $promise1 = start @array1.map( {$_ + 1} );
+my $promise2 = start @array2.map( {$_ - 1} );
+
+my @result1 = await $promise1;
+my @result2 = await $promise2;
+
+say @result1 == @result2;
+
+say now - INIT now;
+----
+
+.Explanation
+The `start` method evaluates the code and returns *an object of type promise* or shortly *a promise*. +
+If the code is evaluated correctly, the _promise_ will be *kept*. +
+If the code throws an exception, the _promise_ will be *broken*.
+
+The `await` method waits for a *promise*. +
+If it's *kept* it will get the returned values. +
+If it's *broken* it will get the exception thrown.
+
+Check the time it took each script to complete.
+
+WARNING: Parallelism always adds a threading overhead. If that overhead is not offset by gains in computational speed, the script will seem slower. +
+This is why, using `race`, `hyper`, `start` and `await` for fairly simple scripts can actually slow them down.
+
 == The community
 
 Much discussion happens on the link:irc://irc.freenode.net/#perl6[#perl6] IRC channel. This should be your go to place for any enquiry: +
