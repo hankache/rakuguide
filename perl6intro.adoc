@@ -1645,8 +1645,8 @@ class Human {
   has $.name;
   my $.counter = 0;
   method new($name) {
-    self.bless(:$name);
     Human.counter++;
+    self.bless(:$name);
   }
 }
 my $a = Human.new('a');
