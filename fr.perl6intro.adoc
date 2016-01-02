@@ -597,10 +597,9 @@ Cannot assign to an immutable value
 .Une variables peut être également liée a une autre:
 ----
 my $a;
-my $b;
-$a := $b;
-$b = 7;
-say $a;
+my $b := $a;
+$a = 7;
+say $b;
 ----
 
 NOTE: Pour plus d'informations sur les variables, rendez-vous à http://doc.perl6.org/language/variables
