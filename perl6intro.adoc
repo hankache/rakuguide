@@ -510,7 +510,7 @@ Index 3 for dimension 1 out of range (must be 0..2)
 
 ==== Multidimensional arrays
 The arrays we saw until now are one-dimensional. +
-Fortunately, we can define multi-dimentional arrays in Perl 6.
+Fortunately, we can define multi-dimensional arrays in Perl 6.
 
 [source,perl6]
 my @tbl[3;2];
@@ -1497,7 +1497,7 @@ sub sayvar {
 }
 say sayvar;
 ----
-The method `sayvar` is an accessors. It let us access the value of the variable without getting direct access to it.
+The method `sayvar` is an accessor. It let us access the value of the variable without getting direct access to it.
 
 Encapsulation is facilitated in Perl 6 with the use of *twigils*. +
 Twigils are secondary _sigils_. They come between the sigil and the attribute name. +
