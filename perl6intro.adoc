@@ -1093,7 +1093,7 @@ rmdir "newfolder";
 `mkdir` creates a new directory. +
 `rmdir` delete an empty directory. Returns an error if not empty.
 
-You can also check if the specified path exits, if it is a file or a directory:
+You can also check if the specified path exists, if it is a file or a directory:
 
 In the directory where you will be running the below script, create an empty folder `folder123` and an empty pl6 file `script123.pl6`
 
@@ -1109,7 +1109,7 @@ say "script123.pl6".IO.f;
 say "folder123".IO.f;
 ----
 
-`IO.e` checks if the directory/file exist. +
+`IO.e` checks if the directory/file exists. +
 `IO.f` checks if the path is a file. +
 `IO.d` checks if the path is a directory.
 
