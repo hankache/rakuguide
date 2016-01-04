@@ -6,7 +6,7 @@
 :Revision: 1.0
 :icons: font
 :source-highlighter: pygments
-//:pygments-style: mannil
+//:pygments-style: manni
 :source-language: perl6
 :pygments-linenums-mode: table
 :toc: left
@@ -748,23 +748,22 @@ Cannot assign to an immutable value
 .Variables can also be bound to other variables:
 ----
 my $a;
-my $b := $a;
+my $b;
+$b := $a;
 $a = 7;
 say $b;
 $b = 8;
 say $a;
-$b := 9;
-say $a;
-say $b;
 ----
 
 .`Output`
 ----
 7
 8
-8
-9
 ----
+
+Binding variables, as you already remarked, is bi-directional. +
+`$a := $b` and `$b := $a` have the same effect.
 
 NOTE: For more info on variables, see http://doc.perl6.org/language/variables
 
