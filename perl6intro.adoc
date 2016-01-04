@@ -6,7 +6,7 @@
 :Revision: 1.0
 :icons: font
 :source-highlighter: pygments
-//:pygments-style: manni
+//:pygments-style: mannil
 :source-language: perl6
 :pygments-linenums-mode: table
 :toc: left
@@ -934,7 +934,7 @@ Notice that we created an iteration variable `$array-item` in order to perform t
 my $var = 42;
 
 given $var {
-    when 0..50 { say 'Less than 50'}
+    when 0..50 { say 'Less than or equal to 50'}
     when Int { say "is an Int" }
     when 42  { say 42 }
     default  { say "huh?" }
@@ -949,7 +949,7 @@ Alternatively `proceed` will instruct Perl 6 to continue matching even after a s
 my $var = 42;
 
 given $var {
-    when 0..50 { say 'Less than 50';proceed}
+    when 0..50 { say 'Less than or equal to 50';proceed}
     when Int { say "is an Int";proceed}
     when 42  { say 42 }
     default  { say "huh?" }
