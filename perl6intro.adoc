@@ -465,7 +465,7 @@ We're going to let go: vicuña llama and keep the camel
 .Explanation
 `.elems` returns the number of elements in an array. +
 `.push()` adds an element to the array. +
-We can access a specific element in the array by specifying its position `@animal[0]`. +
+We can access a specific element in the array by specifying its position `@animals[0]`. +
 `.pop` removes the last element from the array. +
 `.splice(a,b)` will remove the `b` elements that start at position `a`.
 
