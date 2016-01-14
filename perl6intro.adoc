@@ -2728,6 +2728,9 @@ Check the time it took each script to complete.
 WARNING: Parallelism always adds a threading overhead. If that overhead is not offset by gains in computational speed, the script will seem slower. +
 This is why, using `race`, `hyper`, `start` and `await` for fairly simple scripts can actually slow them down.
 
+=== Concurrency and Asynchrony
+NOTE: For more info on Concurrency and Asynchronous Programming, see http://doc.perl6.org/language/concurrency
+
 == The community
 
 Much discussion happens on the link:irc://irc.freenode.net/#perl6[#perl6] IRC channel. This should be your go to place for any enquiry: +
