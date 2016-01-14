@@ -978,7 +978,7 @@ In Perl 6, two of the most common _Input/Output_ interfaces are the _Terminal_ a
 === Basic I/O using the Terminal
 
 ==== say
-`say` writes to the standard output. It appends a new line at the end. In other words, the following code:
+`say` writes to the standard output. It appends a newline at the end. In other words, the following code:
 
 [source,perl6]
 ----
@@ -1173,7 +1173,7 @@ Alternatively Perl 6 provides us the ability to define subroutines with:
 * Optional Arguments
 * Default Arguments
 
-Optional arguments are defined by appending `?` after the argument name.
+Optional arguments are defined by appending `?` to the argument name.
 
 [source,perl6]
 ----
@@ -1234,7 +1234,7 @@ We defined a subroutine called `squared`, it will take to the power of two any n
 Next, we used `map`, a higher order function and gave it two arguments, a subroutine and an array. +
 The result is a list of all squared elements of the array.
 
-Notice that when passing a subroutine as an argument, we need to append `&` to the beginning of its name.
+Notice that when passing a subroutine as an argument, we need to prepend `&` to its name.
 
 === Closures
 All code objects in Perl 6 are closures, which means they can reference lexical variables from an outer scope.
@@ -1340,7 +1340,7 @@ say @array>>.&is-even;
 ----
 
 Using the hyper operator we can call methods already defined in Perl 6, e.g. `is-prime` that tells us if a number is prime or not. +
-In addition we can define new subroutines and call them using the hyper operator. In this case we have to append `&` before the name of the method. E.g. `&is-even`
+In addition we can define new subroutines and call them using the hyper operator. In this case we have to prepend `&` to the name of the method. E.g. `&is-even`
 
 This is very practical as it relieves us from writing a `for` loop to iterate over each value.
 
