@@ -615,7 +615,27 @@ This style of programming is called static typing. Static in the sense that vari
 
 Perl 6 is classified as *gradually typed*; it allows both *static* and *dynamic* typing.
 
-Below is a list of the most commonly used types. +
+.Arrays and hashes can also be statically typed:
+[source,perl6]
+----
+my Int @array = 1,2,3;
+say @array;
+say @array.WHAT;
+
+my Str @multilingual = "Hello","Salut","Hallo","您好","안녕하세요","こんにちは";
+say @multilingual;
+say @multilingual.WHAT;
+
+my Str %capitals = (UK => 'London', Germany => 'Berlin');
+say %capitals;
+say %capitals.WHAT;
+
+my Int %country-codes = (UK => 44, Germany => 49);
+say %country-codes;
+say %country-codes.WHAT;
+----
+
+.Below is a list of the most commonly used types:
 You will most probably never use the first two but they are listed for informational purpose.
 
 [cols="^.^1m,.^3m,.^2m,.^1m, options="header"]
