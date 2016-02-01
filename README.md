@@ -13,11 +13,13 @@ asciidoctor and pygments.  You will need a current version of ruby,
 pygments, and a special gem that provides a re-release version
 ofasciidoctor-pdf. Install it this way:
 
-  $ sudo gem install --pre asciidoctor-pdf
+[source,bash]
+$ sudo gem install --pre asciidoctor-pdf
 
 Then run:
 
-  $ asciidoctor-pdf perl6intro.adoc
+[source,bash]
+$ asciidoctor-pdf perl6intro.adoc
 
 which should produce **perl6intro.pdf**.
 
