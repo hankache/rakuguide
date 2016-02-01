@@ -9,10 +9,9 @@ http://perl6intro.com
 
 #### Building the document
 The document is written in asciidoc format and generated using
-asciidoctor and pygments.  You will need a current version of ruby,
-pygments, and a special gem that provides a re-release version
-ofasciidoctor-pdf. Install it this way:
-
+asciidoctor and pygments.  You will need a current version of **ruby**,
+**asciidoctor**, **pygments**, and a special gem that provides a pre-release version
+of **asciidoctor-pdf**. Install it this way:
 
     $ sudo gem install --pre asciidoctor-pdf
 
