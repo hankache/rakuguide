@@ -8,7 +8,18 @@ For online reading navigate to:
 http://perl6intro.com
 
 #### Building the document
-The document is written in asciidoc format and generated using asciidoctor and pygments.
+The document is written in asciidoc format and generated using
+asciidoctor and pygments.  You will need a current version of **ruby**,
+**asciidoctor**, **pygments**, and a special gem that provides a pre-release version
+of **asciidoctor-pdf**. Install it this way:
+
+    $ sudo gem install --pre asciidoctor-pdf
+
+Then run:
+
+    $ asciidoctor-pdf perl6intro.adoc
+
+which should produce **perl6intro.pdf**.
 
 #### Translations
 If you wish to translate this document, always use the english version as your starting point. 

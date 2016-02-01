@@ -12,7 +12,7 @@
 :toc: left
 :doctype: book
 
-This document is intended to give you a quick overview of the Perl 6 programming language. +
+This document is intended to give you a quick overview of the Perl 6 programming language.
 For those who are new to Perl 6 it should get you up and running.
 
 Some sections of this document reference other (more complete and accurate) parts of the Perl 6 documentation.
@@ -22,34 +22,37 @@ Throughout this document, you will find examples for most discussed topics.
 To better understand them, take the time to reproduce all examples.
 
 .License
-This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. +
-To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.
+This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License.
+To view a copy of this license, visit
+
+* http://creativecommons.org/licenses/by-sa/4.0/.
 
 .Contribution
-If you would like to contribute to this document head over to: +
-http://github.com/hankache/perl6intro
+If you would like to contribute to this document head over to:
+
+* http://github.com/hankache/perl6intro
 
 .Feedback
-All feedback is welcomed: +
+All feedback is welcomed: 
 naoum@hankache.com
 
 :sectnums:
 == Introduction
 === What is Perl 6
 Perl 6 is a high-level, general-purpose, gradually typed language.
-Perl 6 is multi-paradigmatic. It supports Procedural, Object Oriented and Functional programming.
+Perl 6 is multi-paradigmatic. It supports Procedural, Object Oriented, and Functional programming.
 
 .Perl 6 motto:
 * TMTOWTDI (Pronounced Tim Toady): There is more than one way to do it.
 * Easy things should stay easy, hard things should get easier, and impossible things should get hard.
 
 === Jargon
-*Perl 6*: Is a language specification with a test suite. +
-Implementations that pass the specification test suite are considered Perl 6. +
-*Rakudo*: Is a compiler for Perl 6. +
-*Rakudobrew*: Is an installation manager for Rakudo. +
-*Panda*: Is a Perl 6 module installer. +
-*Rakudo Star*: Is a bundle that includes Rakudo, Panda, a collection Perl 6 modules and documentation.
+* *Perl 6*: Is a language specification with a test suite. 
+Implementations that pass the specification test suite are considered Perl 6.
+* *Rakudo*: Is a compiler for Perl 6. 
+* *Rakudobrew*: Is an installation manager for Rakudo. 
+* *Panda*: Is a Perl 6 module installer. 
+* *Rakudo Star*: Is a bundle that includes Rakudo, Panda, a collection of Perl 6 modules, and documentation.
 
 === Installing Perl 6
 .Linux
@@ -66,7 +69,7 @@ Install with homebrew: `brew install rakudo-star`
 
 .Windows
 . Download the latest installer (file with .MSI extension) from http://rakudo.org/downloads/star/ +
-If your system architecture is 32-bit, download the x86 file if it's 64-bit download the x86_64 file.
+If your system architecture is 32-bit, download the x86 file; if it's 64-bit, download the x86_64 file.
 . After installation add C:\rakudo\bin to your PATH
 
 .Docker
@@ -74,21 +77,21 @@ If your system architecture is 32-bit, download the x86 file if it's 64-bit down
 . Then run a container with the image `docker run -it rakudo-star`
 
 === Running Perl 6 code
-Running Perl 6 code can be done using the REPL (Read-Eval-Print Loop). +
+Running Perl 6 code can be done using the REPL (Read-Eval-Print Loop). 
 Within the terminal, type `perl6`, write your code and hit [Enter] +
 
-Alternatively, write your code in a file, save it and run it. +
-It is recommended that Perl 6 files have a  `.pl6` extension. +
+Alternatively, write your code in a file, save it and run it. 
+It is recommended that Perl 6 files have a  `.pl6` extension. 
 Run the file from the terminal using the following syntax: `perl6 filename.pl6`
 
-The REPL is mostly used for trying a specific piece of code, typically a single line. +
+The REPL is mostly used for trying a specific piece of code, typically a single line. 
 For programs with more than a single line it is recommended to store them in a file and then run them.
 
 [TIP]
 --
 Rakudo Star bundles a line editor that helps you get the most out of the REPL.
 
-If you installed plain Rakudo instead of Rakudo Star then you probably don't have line editing features enabled (using the up and down arrows for history, left and right to edit input, TAB completion). +
+If you installed plain Rakudo instead of Rakudo Star then you probably don't have line editing features enabled (using the up and down arrows for history, left and right to edit input, TAB completion). 
 Consider running the following command and you shall be all set:
 
 * `panda install Linenoise` would work on Windows, Linux and OSX
@@ -100,7 +103,7 @@ Consider running the following command and you shall be all set:
 Since most of the time we will be writing and storing our Perl 6 programs in files, we should have
 a decent text editor that recognizes Perl 6 syntax.
 
-I personally use and recommend https://atom.io/[Atom]. It is a modern text editor and comes with Perl 6 syntax highlighting out of the box. +
+I personally use and recommend https://atom.io/[Atom]. It is a modern text editor and comes with Perl 6 syntax highlighting out of the box. 
 https://atom.io/packages/language-perl6fe[Perl6-fe] is an alternative Perl 6 syntax highlighter for Atom, derived from the original package but with many bug fixes and additions.
 
 Other people in the community also use http://www.vim.org/[Vim], https://www.gnu.org/software/emacs/[Emacs] or http://padre.perlide.org/[Padre].
@@ -155,14 +158,14 @@ Expressions are made of *Terms* and *Operators*.
 |===
 
 ==== Identifiers
-Identifiers are the name given to terms when you define them.
+Identifiers are the names given to terms when you define them.
 
 .Rules:
 * They must start with an alphabetic character or an underscore.
 
 * They can contain digits (except the first character).
 
-* They can contain dashes or apostrophes (except the first and last character), provided there's an alphabetic character to the right side of each dash/apostrophe.
+* They can contain dashes or apostrophes (except the first and last character), provided there's an alphabetic character to the right side of each dash or apostrophe.
 
 |===
 
@@ -189,9 +192,10 @@ Identifiers are the name given to terms when you define them.
 
 You are free to name your identifiers as you like, but it is good practice to adopt one naming convention consistently.
 
-Using meaningful names will ease your (and others) programming life. +
-`var1 = var2 * var3` is syntactically correct but its purpose is not evident. +
-`monthly-salary = daily-rate * working-days` would be a better way to name your variables.
+Using meaningful names will ease your (and others) programming life.
+
+* `var1 = var2 * var3` is syntactically correct but its purpose is not evident.
+* `monthly-salary = daily-rate * working-days` would be a better way to name your variables.
 
 ==== Comments
 A comment is a piece of text ignored by the compiler and used as a note.
@@ -201,7 +205,7 @@ Comments are divided into 3 types:
 * Single line:
 +
 [source,perl6]
-#This is a single line comment
+# This is a single line comment
 
 * Embedded:
 +
@@ -230,12 +234,12 @@ Always use double quotes:
 
 [source,perl6]
 -----------------------------------
-say 'Hello World';   #Hello World
-say "Hello World";   #Hello World
-say "Don't";         #Don't
+say 'Hello World';   # Hello World
+say "Hello World";   # Hello World
+say "Don't";         # Don't
 my $name = 'John Doe';
-say 'Hello $name';   #Hello $name
-say "Hello $name";   #Hello John Doe
+say 'Hello $name';   # Hello $name
+say "Hello $name";   # Hello John Doe
 -----------------------------------
 
 == Operators
