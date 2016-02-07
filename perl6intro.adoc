@@ -77,15 +77,27 @@ If your system architecture is 32-bit, download the x86 file; if it's 64-bit, do
 . Then run a container with the image `docker run -it rakudo-star`
 
 === Running Perl 6 code
-Running Perl 6 code can be done using the REPL (Read-Eval-Print Loop). 
-Within the terminal, type `perl6`, write your code and hit [Enter] +
 
-Alternatively, write your code in a file, save it and run it. 
-It is recommended that Perl 6 files have a  `.pl6` extension. 
-Run the file from the terminal using the following syntax: `perl6 filename.pl6`
+Running Perl 6 code can be done using the REPL (Read-Eval-Print Loop).
+To do this open a terminal, and type `perl6` into the terminal window
+and hit [Enter] +.  This will cause a prompt of ` >` to appear.
+Next, type a line of code and hit [Enter] +.  The REPL will print out
+the value of the line.  You may then type another line, or type `exit`
+and hit [Enter] + to leave the REPL.
 
-The REPL is mostly used for trying a specific piece of code, typically a single line. 
-For programs with more than a single line it is recommended to store them in a file and then run them.
+Alternatively, write your code in a file, save it and run it.
+It is recommended that Perl 6 scripts have a  `.pl6` file name extension.
+Run the file by typing `perl6 filename.pl6` into the terminal window
+and hitting [Enter] +. Unlike the REPL, this will not automatically print
+the result of each line: the code must contain a statement like `say`
+to print output.
+
+The REPL is mostly used for trying a specific piece of code, typically a
+single line. For programs with more than a single line it is recommended to
+store them in a file and then run them.
+
+Single lines may also be tried non-interactively on the command-line by
+typing `perl6 -e 'your code here'` and hitting [Enter] +.
 
 [TIP]
 --
