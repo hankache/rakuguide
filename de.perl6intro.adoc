@@ -30,7 +30,9 @@ http://github.com/hankache/perl6intro
 
 .Feedback
 Jeder feedback ist erwünscht: +
-perl@myobj.com
+naoum@hankache.com - Englisch +
+perl@myobj.com - Deutsche
+
 
 :sectnums:
 == Einführung
@@ -331,7 +333,7 @@ Diese Tabelle zeigt die am Häufigsten verwendten Operatoren.
 
 |===
 
-N.B.: Für die vollständige Liste der Operatoren gibt es eine eigene Dokumentationsseite, die auch ihre Präzedenz auflistet: http://doc.perl6.org/language/operators
+NOTE: Für die vollständige Liste der Operatoren gibt es eine eigene Dokumentationsseite, die auch ihre Präzedenz auflistet: http://doc.perl6.org/language/operators
 
 == Variablen
 Perl 6 Variables werden in drei Kategorien gegliedert: Scalare, Arrays und Hashs.
@@ -373,7 +375,7 @@ Hans Meier
 reieM snaH
 ----
 
-N.B.: Für die vollständige Liste der Methoden, die an Strings ausgeführt werden können, siehe http://doc.perl6.org/type/Str
+NOTE: Für die vollständige Liste der Methoden, die an Strings ausgeführt werden können, siehe http://doc.perl6.org/type/Str
 
 [source,perl6]
 .Integer
@@ -386,7 +388,7 @@ say $alter.is-prime;
 True
 ----
 
-N.B.: Für die vollständige Liste der Methoden, die an Integern ausgeführt werden können, siehe http://doc.perl6.org/type/Int
+NOTE: Für die vollständige Liste der Methoden, die an Integern ausgeführt werden können, siehe http://doc.perl6.org/type/Int
 
 [source,perl6]
 .Rationale Zahlen
@@ -403,7 +405,7 @@ say $alter.nude;
 (23 10)
 ----
 
-N.B.: Für die vollständige Liste der Methoden, die an Rationalen Zahlen ausgeführt werden können, siehe http://doc.perl6.org/type/Rat
+NOTE: Für die vollständige Liste der Methoden, die an Rationalen Zahlen ausgeführt werden können, siehe http://doc.perl6.org/type/Rat
 
 === Array
 Ein Array ist eine variable Liste, die mehrere Werte enthalten kann.
@@ -514,7 +516,7 @@ my @tbl[3;2];
 say @tbl
 ----
 
-N.B.: Für die vollständige Referenz zu Arrays, siehe http://doc.perl6.org/type/Array
+NOTE: Für die vollständige Referenz zu Arrays, siehe http://doc.perl6.org/type/Array
 === Hashs
 [source,perl6]
 .Ein Hash ist ein Set aus Schlüssel-Wert-Paaren (key/value pairs).
@@ -557,7 +559,7 @@ Die Hauptstadt von Frankreich ist: Paris
 `.values` gibt eine Liste mit allen Werten aus. +
 Einzelne Werte im Hash können wir über den Schlüssel wie folgt adressieren `%hash<key>`
 
-N.B.: Für die vollständige Referenz zu Hashs, siehe http://doc.perl6.org/type/Hash
+NOTE: Für die vollständige Referenz zu Hashs, siehe http://doc.perl6.org/type/Hash
 
 === Typen
 In den bisherigen Beispielen haben wir nicht erwähnt, welche Typen die Variablen beinhalten sollten.
@@ -746,7 +748,7 @@ $b = 7;
 say $a;
 ----
 
-N.B.: Für mehr Information über Variablen, siehe http://doc.perl6.org/language/variables
+NOTE: Für mehr Information über Variablen, siehe http://doc.perl6.org/language/variables
 
 == Funktionen und Mutatoren
 
@@ -951,7 +953,7 @@ loop (my $i=0; $i < 5; $i++) {
 }
 ----
 
-N.B.: Für mehr Information zu Schleifen und Bedingungen, siehe http://doc.perl6.org/language/control
+NOTE: Für mehr Information zu Schleifen und Bedingungen, siehe http://doc.perl6.org/language/control
 
 == I/O
 In Perl 6 sind zwei der häufigsten _Input/Output_ Interface das _Terminal_ und _Files_.
@@ -1093,7 +1095,7 @@ say "Verzeichnis123".IO.f;
 `IO.f` prüft ob der Pfad eine Datei ist. +
 `IO.d` prüft ob der Pfad ein Verzeichnis ist.
 
-N.B.: Für mehr Information zu I/O, siehe http://doc.perl6.org/type/IO
+NOTE: Für mehr Information zu I/O, siehe http://doc.perl6.org/type/IO
 
 == Unterprogramme
 === Definition
@@ -1178,7 +1180,7 @@ sag-hallo;
 sag-hallo("Laura");
 ----
 
-N.B.: Für mehr Information zu Subroutinen und Funktionen, siehe  http://doc.perl6.org/language/functions
+NOTE: Für mehr Information zu Subroutinen und Funktionen, siehe  http://doc.perl6.org/language/functions
 
 == Funktionelles Programmieren
 In diesem Teil geht es um Funktionelles Programmieren.
@@ -1673,7 +1675,7 @@ Sollte man Code duplizieren oder aber doch lieber wiederverwenden? +
 Letzteres! Man bedient sich der *Vererbung*.
 
 Definieren wir je eine Klasse für Mensch und Angestellte. +
-`Mensch`en haben 2 Attribute: name und alter. +
+`Mensch` en haben 2 Attribute: name und alter. +
 Angestellte haben 4 Attribute: name, alter, firma und lohn
 
 One would be tempted to define the classes as follow:
@@ -2146,7 +2148,7 @@ Alle typisierten Fehlermeldungen stammen von der Klasse `X` ab, hier ein paar Be
 `X::OS` gehört zu OS Fehlern +
 `X::Str::Numeric` gehört dazu, dass versucht wurde, aus einem String eine Zahl zu machen
 
-N.B.: Für die vollständige Aufzählung von Fehlermeldungen und den dazugehörigen Methoden, siehe http://doc.perl6.org/type.html und navigiere zu den Typen, die mit X anfangen.
+NOTE: Für die vollständige Aufzählung von Fehlermeldungen und den dazugehörigen Methoden, siehe http://doc.perl6.org/type.html und navigiere zu den Typen, die mit X anfangen.
 
 
 == Reguläre Ausdrücke (Regular Expressions)
@@ -2400,7 +2402,7 @@ Ist eine Mailadresse möglicherweise gültig oder sicherlich nicht? +
 Nur für dieses Beispiel nehmen wir einmal (fälschlich) an, das gültige Mailadresse so aussehen sollen: +
 Vorname [Punkt] Nachname [@] firma [Punkt] (com/org/net)
 
-WARNUNG: Diese Regex wird nur Beispielhaft verwendet, um Regex-Funktionalität in Perl 6 zu demonstrieren.
+WARNING: Diese Regex wird nur Beispielhaft verwendet, um Regex-Funktionalität in Perl 6 zu demonstrieren.
 Sie ist viel zu ungenau und daher nicht ernsthaft brauchbar, um echte Mailadressen auf ihre Gültigkeit zu testen! +
 So sollte man sie bitte nicht in der Produktion verwenden.
 
@@ -2463,7 +2465,7 @@ if $email ~~ / <viele-buchstaben> <punkt> <viele-buchstaben> <at> <viele-buchsta
 A benannte Regex wird mit dieser Syntax definiert: `my regex regex-name { regex definition }` +
 A benannte Regex wird mit dieser Syntax aufgerufen: `<regex-name>`
 
-N.B.: Für mehr Info über Regexen, siehe http://doc.perl6.org/language/regexes
+NOTE: Für mehr Info über Regexen, siehe http://doc.perl6.org/language/regexes
 
 == Perl 6 Module
 Perl 6 ist eine Allzweck-Programiersprache. Sie kann für vielerlei Aufgaben verwendet werden, unter anderem:
@@ -2479,7 +2481,7 @@ Um ein beliebiges Modul zu installieren, tippt man folgendes Kommando in ein Ter
 
 `panda install "module name"`
 
-N.B.: Das Perl 6 Modul-Verzeichnis findet man unter: http://modules.perl6.org/
+NOTE: Das Perl 6 Modul-Verzeichnis findet man unter: http://modules.perl6.org/
 
 === Module Verwenden
 MD5 ist eine kryptographische Hashfunktion die einen 128-Bit Hashwert erzeugt. +
@@ -2504,7 +2506,7 @@ say $passwort-gehasht;
 Um die `md5_hex()`-Funktion ausführen zu können, die die Hashs erstellt, muß das dafür notwendige Modul geladen werden. +
 Das Stichwort `use` lädt das Modul, damit es im Skript verfügbar ist.
 
-WARNUNG: In Produktion reicht MD5 hashing alleine zur Sicherheit bereits nicht mehr aus, denn sie kann über Wörterbuchattacken geknackt werden. +
+WARNING: In Produktion reicht MD5 hashing alleine zur Sicherheit bereits nicht mehr aus, denn sie kann über Wörterbuchattacken geknackt werden. +
 Sie sollte mit einem Salt link:https://en.wikipedia.org/wiki/Salt_(cryptography)[https://en.wikipedia.org/wiki/Salt_(cryptography)] kombiniert werden.
 
 == Unicode
