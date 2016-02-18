@@ -5,7 +5,9 @@ For those who are new to Perl 6 it should get you up and running.
 
 #### Website
 For online reading navigate to:  
-http://perl6intro.com
+* English: http://perl6intro.com
+* German: http://de.perl6intro.com
+
 
 #### Building the document
 The document is written in asciidoc format and generated using
@@ -36,3 +38,9 @@ All feedback is welcomed:
 * Suggestions
 * Additions
 * Translations
+
+#### Authors
+* Original English version: Naoum Hankache
+* German Translation: Sören Laird Sörries
+
+For the full list of contributors: https://github.com/hankache/perl6intro/graphs/contributors 
