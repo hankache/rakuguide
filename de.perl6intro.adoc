@@ -45,10 +45,10 @@ Perl 6 ist multi-paradigmatisch. Es unterstützt Prozedurales, Objektorientierte
 * Easy things should stay easy, hard things should get easier, und impossible things should get hard. (Einfaches soll einfach bleiben, schweres einfacher werden, und unmögliches lediglich schwierig sein.)
 
 === Jargon
-Perl 6: Ist eine Sprachenspezifikation mit einer Testserie. Implementierungen, die die Tests bestehen nennt man Perl 6. +
-Rakudo: Ist ein Compiler für Perl 6. +
-Rakudobrew: Ist ein Installationenmanager für Rakudo. +
-Panda: Ist ein Perl 6 Moduleinstallierer.
+* Perl 6: Ist eine Sprachenspezifikation mit einer Testserie. Implementierungen, die die Tests bestehen nennt man Perl 6.
+* Rakudo: Ist ein Compiler für Perl 6.
+* Rakudobrew: Ist ein Installationenmanager für Rakudo.
+* Panda: Ist ein Perl 6 Moduleinstallierer.
 
 === Perl 6 installieren
 .Linux
@@ -1637,8 +1637,8 @@ class Mensch {
   has $.name;
   my $.zaehler = 0;
   method new($name) {
-    self.bless(:$name);
     Mensch.zaehler++;
+    self.bless(:$name);
   }
 }
 my $a = Mensch.new('a');
