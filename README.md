@@ -6,6 +6,7 @@ For those who are new to Perl 6 it should get you up and running.
 #### Website
 For online reading navigate to:  
 * English: http://perl6intro.com
+* French: http://fr.perl6intro.com
 * German: http://de.perl6intro.com
 
 
@@ -24,7 +25,7 @@ Then run:
 which should produce **perl6intro.pdf**.
 
 #### Translations
-If you wish to translate this document, always use the english version as your starting point. 
+If you wish to translate this document, always use the english version as your starting point.
 If you are starting a new translation create a new file. For example, the French translation will be in fr.perl6intro.adoc, the Deutsch translation in de.perl6intro.adoc  
 If you want to modify a translated version, consider modifying the english version first. It is important that all translations be kept in sync.
 
@@ -42,5 +43,6 @@ All feedback is welcomed:
 #### Authors
 * Original English version: Naoum Hankache
 * German Translation: Sören Laird Sörries
+* French Translation: Romuald Nuguet
 
-For the full list of contributors: https://github.com/hankache/perl6intro/graphs/contributors 
+For the full list of contributors: https://github.com/hankache/perl6intro/graphs/contributors

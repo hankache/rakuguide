@@ -11,44 +11,49 @@ Naoum Hankache <naoum@hankache.com>; Sören Laird_Sörries <perl@myobj.com>
 :toc: left
 :doctype: book
 
-Dieser Text soll einen schnellen Überblick über die Programmiersprache Perl 6 bieten. +
+Dieser Text soll einen schnellen Überblick über die Programmiersprache Perl 6 bieten.
 Perl 6-Neulingen soll er beim schnellen Einstieg helfen.
 
 Manche Abschnitte dieses Texts referenzieren weitere (auführlichere/vollständige und genauere) Teile der Perl 6 Dokumentation (vorerst zumeist in englischer Sprache).
 Diese sollten zur Vertiefung speziellerer Themen gelesen werden.
 
-Immer wieder in diesem Text werden Beispiele für die meisten Themen gezeigt.
+In diesem Text werden immer wieder Beispiele für die meisten Themen gezeigt.
 Nehmen Sie sich die Zeit, alle Beispiele zu üben, um sie besser zu verstehen.
 
-.Lizens
+.Lizenz
 Dieser Text steht unter der Creative Commons Attribution-ShareAlike 4.0 International License. +
-Diese Lizenz können Sie hier ansehen oder kopieren: http://creativecommons.org/licenses/by-sa/4.0/.
+Diese Lizenz können Sie hier ansehen oder kopieren:
+
+* http://creativecommons.org/licenses/by-sa/4.0/.
 
 .Mitarbeit
-Wollen Sie an diesem Text mitarbeiten, dann geht das hier: +
-http://github.com/hankache/perl6intro
+Wollen Sie an diesem Text mitarbeiten, dann geht das hier:
+
+* http://github.com/hankache/perl6intro
 
 .Feedback
-Jeder feedback ist erwünscht: +
-naoum@hankache.com - Englisch +
-perl@myobj.com - Deutsche
+Jeder Feedback ist erwünscht:
+
+* naoum@hankache.com - Englisch
+* perl@myobj.com - Deutsch
 
 
 :sectnums:
 == Einführung
 === Was ist Perl 6?
 Perl 6 ist eine universelle stufenweise typisierte Hochsprache.
-Perl 6 ist multi-paradigmatisch. Es unterstützt Prozedurales, Objektorientiertes und Funktionales Programmieren.
+Perl 6 ist multi-paradigmatisch. Es unterstützt prozedurales, objektorientiertes und funktionales Programmieren.
 
 .Perl 6 Motto:
 * TMTOWTDI (Sprich: Tim Toady): There is more than one way to do it. (Es gibt mehrere Wege zum Ziel)
 * Easy things should stay easy, hard things should get easier, und impossible things should get hard. (Einfaches soll einfach bleiben, schweres einfacher werden, und unmögliches lediglich schwierig sein.)
 
 === Jargon
-* Perl 6: Ist eine Sprachenspezifikation mit einer Testserie. Implementierungen, die die Tests bestehen nennt man Perl 6.
-* Rakudo: Ist ein Compiler für Perl 6.
-* Rakudobrew: Ist ein Installationenmanager für Rakudo.
-* Panda: Ist ein Perl 6 Moduleinstallierer.
+* *Perl 6*: Eine Sprachenspezifikation mit einer Testsuite. Implementierungen, die diese Tests bestehen nennt man Perl 6.
+* *Rakudo*: Ein Compiler für Perl 6.
+* *Rakudobrew*: Ein Installationenmanager für Rakudo.
+* *Panda*: Ein Perl 6 Moduleinstallierer.
+* *Rakudo Star*: Ein Paket mit Rakudo, Panda, einer Sammlung von Perl 6 Modulen und Dokumentation.
 
 === Perl 6 installieren
 .Linux
@@ -65,7 +70,7 @@ Mit homebrew installieren: `brew install rakudo-star`
 
 .Windows
 . Den neusten Installer downloaden (Datei mit der Extension .MSI) auf http://rakudo.org/downloads/star/ +
-Bei einem 32-Bit-System, Die x86-Datei und bei einem 64-Bit-System die x86_64-Datei verwenden.
+Bei einem 32-Bit-System, die x86-Datei und bei einem 64-Bit-System die x86_64-Datei verwenden.
 . Nach der Installation C:\rakudo\bin dem PATH hinzufügen.
 
 .Docker
@@ -73,20 +78,35 @@ Bei einem 32-Bit-System, Die x86-Datei und bei einem 64-Bit-System die x86_64-Da
 . Dann einen Container mit dem Image starten `docker run -it rakudo-star`
 
 === Perl 6 Code ausführen
-Perl 6 Code kann mit dem REPL (Read-Eval-Print Loop) ausgeführt werden. +
-Im Terminalfenster `perl6` tippen, den Code schreiben und [Enter] drücken. +
+Perl 6 Code kann mit dem REPL (Read-Eval-Print Loop) ausgeführt werden. Dazu in ein Terminalfenster `perl6` eingeben, Enter] drücken. Darauf hin erscheint ein `>` Prompt.
+Nun kann eine Zeile Perl 6 Code eingegeben und wieder [Enter] gedrückt werden.
+Der REPL gibt das Ergebnis der Zeile aus. Nun kann eine weitere Zeile Code eingegeben und wieder [Enter] gedrückt werden. Um REPL zu verlassen, kann `exit` eingegeben und [Enter] gedrückt werden.
 
 Alternativ den Code in eine Datei schreiben, abspeichern und ausführen. +
 Es wird empfohlen, Perl 6-Dateien mit der Dateierweiterung `.pl6` zu versehen. +
-Im Terminal können sie dann so ausgeführt werden: `perl6 filename.pl6`
+Im Terminal kann nun `perl6 filename.pl6` eingegeben und [Enter] gedrückt werden, um den Code auszuführen. Anders als in REPL werden nun nicht automatisch die Ergebnisse jeder Zeile ausgegeben. Um Ausgaben auf dem Terminal zu zeigen, müßte der Code nun zum Beispiel eine Anweisung wie etwa `say` enthalten.
 
 REPL wird meistens dafür verwendet, eine bestimmte Codestelle auszuprobieren, etwa eine einzelne Zeile. +
 Programme mit mehr als einer Zeile sollten besser in eine eigene Datei geschrieben werden, aus der sie dann ausgeführt werden.
 
+Einzelne Zeilen können auch nicht-interaktiv auf der Kommandozeilte getestet werden, indem `perl6 -e 'Code steht hier'` eingegeben und [Enter] gedrückt wird.
+
+[TIP]
+--
+Rakudo Star beinhaltet einen Zeileineditor der dabei hilft, REPL leichter verwendbar zu machen.
+
+Ist nur das einfache Rakudo aber nicht Rakudo Star installiert, dann sind wahrscheinlich keine Zeileneditorfunktionen aktiviert (Auf- und Abwärtspfeile für die Kommandozeilenhistorie, Links- und Rechtspfeil um die Eingabe zu bearbeite, Tabulator zur Vervollständigung).
+Das läßt sich mit einem der folgenden Kommandos nachholen:
+
+* `panda install Linenoise` funktioniert auf Windows, Linux und OSX
+
+* `panda install Readline` funktioniert auf Linux, falls Sie die _Readline_-Bibliothek bevorzugen.
+--
+
 === Editoren
 Da die meisten Perl-6-Programme in Dateien geschrieben werden, sollte ein guter Text-Editor verwendet werden, der Perl-6-Syntax erkennt.
 
-Selbst verwende und empfehle ich https://atom.io/[Atom]. It is a modern text editor und comes with Perl 6 syntax highlighting out of the box. +
+Selbst verwende und empfehle ich https://atom.io/[Atom]: ein moderner Text-Editorder das Perl 6 Syntaxhighlighting gleich mitbringt.
 https://atom.io/packages/language-perl6fe[Perl6-fe] ist ein alternativer Perl 6 Syntax-Highlighter für Atom, der aus dem Originalpaket stammt und dann vielfach erweitert und korrigiert wurde.
 
 Andere aus der Community verwenden auch http://www.vim.org/[Vim], https://www.gnu.org/software/emacs/[Emacs] oder http://padre.perlide.org/[Padre].
@@ -105,8 +125,8 @@ kann auch so geschrieben werden:
 [source,perl6]
 'hello, world'.say;
 
-=== Syntax overview
-Perl 6 hat die sogenannte freie Form/*free form*: Meistens kann beliebig viel whitespace verwendet werden.
+=== Die Syntax
+Perl 6 unterstützt die sogenannte freie Form/*free form*: Meistens kann beliebig viel whitespace verwendet werden.
 
 Ein *Ausdruch* (Statement) ist typischerweise eine logische Code-Zeile, die mit einem Semikolon abgeschlossen wird:
 `say "Hallo" if True;`
@@ -173,11 +193,12 @@ Identifier sind Namen, die Terms gegeben werden, wenn sie definiert werden.
 
 * Schlangen-/Snake case: `variable_no1`
 
-Es steht jedem frei, welcher Namenskonvention man nun folgen möchte. Dennoch ist es guter Stil, dabei konsistent bei einer davon zu bleiben.
+Es steht jedem frei, welcher Namenskonvention man nun folgen möchte. Als guter Stil gilt es, konsistent bei einer davon zu bleiben.
 
-Die Verwendung sinnvoller Namen vereinfacht sowohl Dir als auch anderen das Programmiererleben. +
-`var1 = var2 * var3` ist syntaktisch korrekt, jedoch wird der Sinn nicht deutlich. +
-`monatlicher-lohn = tages-rate * arbeitstage` wäre ein deutlicheres Vorgehen.
+Die Verwendung sinnvoller Namen vereinfacht sowohl Dir als auch anderen das Programmiererleben.
+
+* `var1 = var2 * var3` ist syntaktisch korrekt, jedoch wird der Sinn nicht deutlich.
+* `monatlicher-lohn = tages-rate * arbeitstage` wäre ein deutlicheres Vorgehen.
 
 ==== Kommentare
 Ein Kommentar ist Text, der vom Kompiler ignoriert wird, und für Notizen verwendet wird.
@@ -187,7 +208,7 @@ Es gibt drei Sorten von Kommentaren:
 * Einzelne Zeile:
 +
 [source,perl6]
-#Dies ist ein Einzelzeilen-Kommentar
+# Dies ist ein Einzelzeilen-Kommentar
 
 * Eingebettet/embedded:
 +
@@ -216,12 +237,12 @@ Nutze immer doppelte Anführungszeichen:
 
 [source,perl6]
 -----------------------------------
-say 'Hello World';   #Hello World
-say "Hello World";   #Hello World
-say "Don't";         #Don't
+say 'Hello World';   # Hello World
+say "Hello World";   # Hello World
+say "Don't";         # Don't
 my $name = 'Hans Meier';
-say 'Hallo $name';   #Hallo $name
-say "Hallo $name";   #Hallo Hans Meier
+say 'Hallo $name';   # Hallo $name
+say "Hallo $name";   # Hallo Hans Meier
 -----------------------------------
 
 == Operatoren
@@ -338,7 +359,7 @@ NOTE: Für die vollständige Liste der Operatoren gibt es eine eigene Dokumentat
 == Variablen
 Perl 6 Variables werden in drei Kategorien gegliedert: Scalare, Arrays und Hashs.
 
-Ein *Sigil* (Signum in Latein) ist a Zeichen das als Prefix Variablen kategorisiert.
+Eine *Sigille* (Signum in Latein) ist a Zeichen das als Prefix Variablen kategorisiert.
 
 * `$` wird für Skalare verwendet
 * `@` wird für Arrays verwendet
@@ -412,7 +433,7 @@ Ein Array ist eine variable Liste, die mehrere Werte enthalten kann.
 
 [source,perl6]
 ----
-my @tiere = ['Kamel','Lama','Eule'];
+my @tiere = 'Kamel','Lama','Eule';
 say @tiere;
 ----
 
@@ -423,7 +444,7 @@ TIP: Die Tilde `~` wird verwendet um Strings zu verketten.
 [source,perl6]
 .`Script`
 ----
-my @tiere = ['Kamel','Vikunja','Lama'];
+my @tiere = 'Kamel','Vikunja','Lama';
 say "Im Zoo gibt es " ~ @tiere.elems ~ " Tiere";
 say "Die Tiere sind: " ~ @tiere;
 say "Ich werde eine Eule für den Zoo adoptieren";
@@ -517,6 +538,7 @@ say @tbl
 ----
 
 NOTE: Für die vollständige Referenz zu Arrays, siehe http://doc.perl6.org/type/Array
+
 === Hashs
 [source,perl6]
 .Ein Hash ist ein Set aus Schlüssel-Wert-Paaren (key/value pairs).
@@ -599,6 +621,26 @@ Dieser Programmierstil wird statisches Typisieren (static typing) genannt. Stati
 
 Perl 6 ist eine stufenweise typisierte Sprache *gradually typed*; es erlaubt sowohl *statisches* als auch *dynamisches* Typisieren.
 
+.Arrays und Hashs können ebenfalls statisch typisiert sein.
+[source,perl6]
+----
+my Int @array = 1,2,3;
+say @array;
+say @array.WHAT;
+
+my Str @mehrsprachig = "Hello","Salut","Hallo","您好","안녕하세요","こんにちは";
+say @mehrsprachig;
+say @mehrsprachig.WHAT;
+
+my Str %hauptstädte = (Großbritannien => 'London', Deutschland => 'Berlin');
+say %hauptstädte;
+say %hauptstädte.WHAT;
+
+my Int %ländervorwahlen = (Großbritannien => 44, Deutschland => 49);
+say %ländervorwahlen;
+say %ländervorwahlen.WHAT;
+----
+
 Nun folgt eine Liste der am häufigsten verwendeten Typen. +
 Wahrscheinlich werden Sie die ersten beiden nie verwenden, aber zur Information sind sie mit aufgeführt.
 
@@ -631,27 +673,17 @@ In einem vorherigen Beispiel haben wie `.WHAT` verwendet umd den Typ des Wertes 
 [source,perl6]
 ----
 my Int $var;
-say $var.WHAT;
+say $var.WHAT;    # (Int)
 my $var2;
-say $var2.WHAT;
+say $var2.WHAT;   # (Any)
 $var2 = 1;
-say $var2.WHAT;
+say $var2.WHAT;   # (Int)
 $var2 = "Hallo";
-say $var2.WHAT;
+say $var2.WHAT;   # (Str)
 $var2 = True;
-say $var2.WHAT;
+say $var2.WHAT;   # (Bool)
 $var2 = Nil;
-say $var2.WHAT;
-----
-
-.`Ausgabe`
-----
-(Int)
-(Any)
-(Int)
-(Str)
-(Bool)
-(Any)
+say $var2.WHAT;   # (Any)
 ----
 
 Der Typ einer Variable mit einem zugewiesenen Wert korreliert mit ihrem Wert. +
@@ -743,10 +775,21 @@ Cannot assign to an immutable value
 ----
 my $a;
 my $b;
-$a := $b;
-$b = 7;
+$b := $a;
+$a = 7;
+say $b;
+$b = 8;
 say $a;
 ----
+
+.`Ausgabe`
+----
+7
+8
+----
+
+Variablenbindungen funktionieren in beide Richtungen, wie man hier erkennen kann. +
+`$a := $b` und `$b := $a` bewirken das Gleiche.
 
 NOTE: Für mehr Information über Variablen, siehe http://doc.perl6.org/language/variables
 
@@ -916,7 +959,7 @@ Hier haben wir die Interationsvariable `$array-wert` erzeugt, um die Operation `
 my $var = 42;
 
 given $var {
-    when 0..49 { say 'Unter 50'}
+    when 0..50 { say 'Unter 50 oder gleich 50'}
     when Int { say "ist ein Integer" }
     when 42  { say 42 }
     default  { say "wie bitte?" }
@@ -931,7 +974,7 @@ Alternativ kann Perl 6 mit mit `proceed` angewiesen werden, auch nach einem erfo
 my $var = 42;
 
 given $var {
-    when 0..50 { say 'Unter 50';proceed}
+    when 0..50 { say 'Unter 50 oder gleich 50';proceed}
     when Int { say "ist ein Integer";proceed}
     when 42  { say 42 }
     default  { say "wie bitte?" }
@@ -1013,8 +1056,8 @@ Zwei Subroutinen können verwendet werden, um Shell Kommandos auszuführen:
 [source,perl6]
 ----
 my $name = 'Neo';
-my $command = run 'echo', "Hallo $name";
-my $command2 = shell "ls";
+my $kommando = run 'echo', "Hallo $name";
+my $kommando2 = shell "ls";
 ----
 `echo` und `ls` sind gewöhnliche Shell Kommandos. +
 `echo` gibt Text auf das Terminal aus (ähnlich `say` und `print` in Perl 6) +
@@ -1492,14 +1535,14 @@ say sag_wert;
 ----
 Die Methode `sag_wert` ist ein Accessor. Sie läßt uns auf den Wert der Variable zugreifen, ohne dass wir direkten Zugriff darauf benötigen.
 
-Datenkapselung wird in Perl 6 durch *Twigils* vereinfacht. +
-Twigils sind _Sigils_ zweiten Ranges. Sie werden zwischen Sigil und Attributnamen gesetzt. +
-Zwei Twigils werden in Klassen verwendet:
+Datenkapselung wird in Perl 6 durch *Twigillen* vereinfacht. +
+Twigillen sind _Sigillen_ zweiten Ranges. Sie werden zwischen Sigille und Attributnamen gesetzt. +
+Zwei Twigillen werden in Klassen verwendet:
 
 * `!` deklariert explizit, dass ein Attribut privat ist.
 * `.` wird verwendet um automatisch einen Accessor für das Attribut zu erstellen.
 
-Voreingestellt sind alle Attribute privat. Dennoch sei es eine gute Gewohnheit immer das `!` Twigil zu verwenden.
+Voreingestellt sind alle Attribute privat. Dennoch sei es eine gute Gewohnheit immer die `!` Twigille zu verwenden.
 
 Also sollten wir die obige Klasse besser so schreiben:
 [source,perl6]
@@ -1593,7 +1636,7 @@ _object_ *.* _methode_ oder wie in obigem Beispiel: `$hans.assess-geeignet`
 Wenn in der Methodendefinition das Objekt selbst referenziert wird, verwendet man das Stichwort `self`. +
 
 Soll in der Methodendefinition ein Attribut referenziert werden, verwendet man `!` auch dann, wenn das Attribut mit `.` definiert wurde. +
-Denn das `.` Twigil deklariert ein Attribut mit `!` und automatisiert dann auch noch die Erstellung des Accessors.
+Denn das `.` Twigille deklariert ein Attribut mit `!` und automatisiert dann auch noch die Erstellung des Accessors.
 
 Im obigen Beispiel haben `if self.alter < 21` und `if $!alter < 21` den gleichen Effekt, obwohl sie sich im Detail unterscheiden:
 
@@ -1609,7 +1652,7 @@ Zum Beispiel wenn eine Methode eine andere für eine spezifische Aktion aufruft.
 Die Methode, die mit der Welt um die Klasse herum interagiert ist öffentlich, die referenzierte Methode dagegen bleibt privat.
 Sollen User sie doch nicht aufrufen dürfen, wird sie als privat deklariert.
 
-Die Deklaration einer privaten Methode erfodert die Verwendung des `!` Twigil vor ihrem Namen. +
+Die Deklaration einer privaten Methode erfodert die Verwendung des `!` Twigille vor ihrem Namen. +
 Private Methoden werden mit `!` anstelle von `.` aufgerufen
 
 [source,perl6]
@@ -2584,6 +2627,133 @@ my $Δ = 1;
 $Δ++;
 say $Δ;
 ----
+
+== Parallelität, Parallele Programmierung und Ungleichzeitigkeit (Asynchrony)
+
+=== Parallelität
+Meistens laufen die Aufgaben innerhalb eines Programms nacheinander ab. +
+Das ist gut so, solange es nicht zu lange dauert.
+
+Perl 6 hat Möglichkeiten, mehrere Dinge gleichzeitig zu erledigen. +
+Parallelität hat zweierlei Bedeutungen:
+
+* *Parallele Ausführung*: Mehrere unabhängige Kommandos werden gleichzeitig ausgeführt.
+
+* *Datenparallelität*: Ein einzelnes Kommando bearbeitet mehrere Elemente einer Liste gleichzeitig.
+
+Letzteres zuerst.
+
+==== Datenparallelität
+[source,perl6]
+----
+my @array = (0..50000);                       # Array wird gefüllt
+my @ergebnis = @array.map({ is-prime $_ });   # is-prime wird auf jedes Element aufgefrufen
+say now - INIT now;                           # Gibt die Dauer des Programmlaufs aus
+----
+
+.Obiges Beispiel:
+Es wird nur die einen Operation `@array.map({ is-prime $_ })` durchgeführt. +
+Die Subroutine `is-prime` wird sequentiell (also nach-und-nach) für jedes Element des Arrays aufgerufen: +
+Zuerst `is-prime @array[0]`, dann `is-prime @array[1]` und dann `is-prime @array[2]` usw.
+
+.Zum Glück kann `is-prime` auf mehrere Arrayelemente gleichzeitig angewendet werden:
+[source,perl6]
+----
+my @array = (0..50000);                          # Array wird gefüllt
+my @ergebnis = @array.race.map({ is-prime $_ }); # is-prime wird auf jedes Element aufgefrufen
+say now - INIT now;                              # Gibt die Dauer des Programmlaufs aus
+----
+
+Der Unterschied hier ist die Verwendung von `race` in der Operation.
+Diese erlaubt die gleichzeitige Verarbeitung mehrerer Arrayelemente.
+
+Nach dem Ausführen beider Beispiele (mit und ohne `race`), wie lang hat die Ausführung gedauert?
+
+[TIP]
+--
+`race` behält die Reihenfolge der Elemente nicht bei. Sollte dies notwendig sein, verwendet man  `hyper` anstelle von `race`.
+
+[source,perl6]
+.race
+----
+my @array = (1..1000);
+my @ergebnis = @array.race.map( {$_ + 1} );
+@ergebnis>>.say;
+----
+
+[source,perl6]
+.hyper
+----
+my @array = (1..1000);
+my @ergebnis = @array.hyper.map( {$_ + 1} );
+@ergebnis>>.say;
+----
+
+Nach dem Ausführen beider Beispiele (einmal mit `race` und das andere mit `hyper`), zeigt sich, dass das eine Ergebnis sortiert ist, das andere nicht.
+
+--
+
+==== Parallele Ausführung
+
+[source,perl6]
+----
+my @array1 = (0..49999);
+my @array2 = (2..50001);
+
+my @ergebnis1 = @array1.map( {is-prime($_ + 1)} );
+my @ergebnis2 = @array2.map( {is-prime($_ - 1)} );
+
+say @ergebnis1 == @ergebnis2;
+
+say now - INIT now;
+----
+
+.Obiges Beispiel:
+
+. 2 Arrays wurden definiert.
+
+. Auf jedem der Arrays wurde einen andere Operation auf alle Elemente ausgeführt und die Ergebnisse gespeichert
+
+. Dann wurde geprüft, ob die Ergebnisse gleich waren
+
+Das Programm wartet auf die Fertigstellung von `@array1.map( {is-prime($_ + 1)} )` +
+und führt erst dann `@array2.map( {is-prime($_ - 1)} )` aus.
+
+Beide Operationen werden jeweils auf ihr eigenes Array angewendet, und sind nicht voneinander abhängig.
+
+.Warum nicht parallelisieren - also gleichzeitig ausführen?
+[source,perl6]
+----
+my @array1 = (0..49999);
+my @array2 = (2..50001);
+
+my $versprechen1 = start @array1.map( {$_ + 1} );
+my $versprechen2 = start @array2.map( {$_ - 1} );
+
+my @ergebnis1 = await $versprechen1;
+my @ergebnis2 = await $versprechen2;
+
+say @ergebnis1 == @ergebnis2;
+
+say now - INIT now;
+----
+
+.Erklärung
+Die Methode `start` evaluiert den Code und gibt ein *Versprechen-Objekt* (an object of type promise) zurück bzw. in Kurzform ein *Versprechen* (promise). +
+Wird der Code korrekt ausgeführt, wird das _Versprechen_ *gehalten*. +
+Wirft der Code einen Fehler, wird das _Versprechen_ *gebrochen*.
+
+Die Methode `await` wartet auf ein *Versprechen*. +
+Wird dieses *gehalten* bekommt sie die zurückgegebenen Ergebnisse. +
+Wird es *gebrochen*, wird eine Fehlermeldung geworfen.
+
+Wie lang dauerte der Programmlauf beider Skripte?
+
+WARNING: Parallelität brauche immer einen zusätzlichen Aufwand für das Threading. Immer wenn dieser größer wird, als die mögliche Zeiteinsparung, verlangsamt es das Skript sogar. +
+Darum können `race`, `hyper`, `start` und `await` manche besonders einfachen Programme ausbremsen.
+
+=== Parallele Programmierung und Ungleichzeitigkeit
+NOTE: Für mehr Information über Parallele Programmierung und Ungleichzeitigkeit, siehe http://doc.perl6.org/language/concurrency
 
 == Die Community
 
