@@ -33,8 +33,12 @@ If you would like to contribute to this document head over to:
 * http://github.com/hankache/perl6intro
 
 .Feedback
-All feedback is welcomed: 
+All feedback is welcomed:
 naoum@hankache.com
+
+.Translations
+* French: http://fr.perl6intro.com
+* German: http://de.perl6intro.com
 
 :sectnums:
 == Introduction
@@ -47,11 +51,11 @@ Perl 6 is multi-paradigmatic. It supports Procedural, Object Oriented, and Funct
 * Easy things should stay easy, hard things should get easier, and impossible things should get hard.
 
 === Jargon
-* *Perl 6*: Is a language specification with a test suite. 
+* *Perl 6*: Is a language specification with a test suite.
 Implementations that pass the specification test suite are considered Perl 6.
-* *Rakudo*: Is a compiler for Perl 6. 
-* *Rakudobrew*: Is an installation manager for Rakudo. 
-* *Panda*: Is a Perl 6 module installer. 
+* *Rakudo*: Is a compiler for Perl 6.
+* *Rakudobrew*: Is an installation manager for Rakudo.
+* *Panda*: Is a Perl 6 module installer.
 * *Rakudo Star*: Is a bundle that includes Rakudo, Panda, a collection of Perl 6 modules, and documentation.
 
 === Installing Perl 6
@@ -103,7 +107,7 @@ typing `perl6 -e 'your code here'` and hitting [Enter].
 --
 Rakudo Star bundles a line editor that helps you get the most out of the REPL.
 
-If you installed plain Rakudo instead of Rakudo Star then you probably don't have line editing features enabled (using the up and down arrows for history, left and right to edit input, TAB completion). 
+If you installed plain Rakudo instead of Rakudo Star then you probably don't have line editing features enabled (using the up and down arrows for history, left and right to edit input, TAB completion).
 Consider running the following command and you shall be all set:
 
 * `panda install Linenoise` would work on Windows, Linux and OSX
@@ -115,7 +119,7 @@ Consider running the following command and you shall be all set:
 Since most of the time we will be writing and storing our Perl 6 programs in files, we should have
 a decent text editor that recognizes Perl 6 syntax.
 
-I personally use and recommend https://atom.io/[Atom]. It is a modern text editor and comes with Perl 6 syntax highlighting out of the box. 
+I personally use and recommend https://atom.io/[Atom]. It is a modern text editor and comes with Perl 6 syntax highlighting out of the box.
 https://atom.io/packages/language-perl6fe[Perl6-fe] is an alternative Perl 6 syntax highlighter for Atom, derived from the original package but with many bug fixes and additions.
 
 Other people in the community also use http://www.vim.org/[Vim], https://www.gnu.org/software/emacs/[Emacs] or http://padre.perlide.org/[Padre].
@@ -442,7 +446,7 @@ Arrays are lists containing multiple values.
 
 [source,perl6]
 ----
-my @animals = ['camel','llama','owl'];
+my @animals = 'camel','llama','owl';
 say @animals;
 ----
 
@@ -453,7 +457,7 @@ TIP: The tilde `~` is used for string concatenation.
 [source,perl6]
 .`Script`
 ----
-my @animals = ['camel','vicuña','llama'];
+my @animals = 'camel','vicuña','llama';
 say "The zoo contains " ~ @animals.elems ~ " animals";
 say "The animals are: " ~ @animals;
 say "I will adopt an owl for the zoo";

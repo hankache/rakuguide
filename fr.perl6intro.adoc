@@ -1,8 +1,7 @@
 = Introduction à Perl 6
+Naoum Hankache <naoum@hankache.com>; Romuald Nuguet <kolikov@free.fr>
 :description: Une introduction générale à Perl 6
-:Author: Naoum Hankache
 :keywords: perl6, perl 6, introduction, perl6intro, perl 6 introduction, Introduction à Perl 6
-:Email: naoum@hankache.com
 :Revision: 1.0
 :icons: font
 :source-highlighter: pygments
@@ -22,12 +21,20 @@ En lisant ce document, vous trouverez des exemples pour la plus part des sujets 
 Pour mieux les comprendre, vous pouvez expérimenter en les modifiant.
 
 .Licence
-Ce document est sous licence Creative Commons Attribution -  Partage dans les Mêmes Conditions 4.0 International. +
-Pour accéder à une copie de cette licence, merci de vous rendre à l'adresse suivante http://creativecommons.org/licenses/by-sa/4.0/.
+Ce document est sous licence Creative Commons Attribution -  Partage dans les Mêmes Conditions 4.0 International.
+Pour accéder à une copie de cette licence, merci de vous rendre à l'adresse suivante
+
+* http://creativecommons.org/licenses/by-sa/4.0/.
 
 .Contribution
-Si vous souhaitez contribuer à ce document rendez-vous à l'adresse suivante: +
-http://github.com/hankache/perl6intro
+Si vous souhaitez contribuer à ce document rendez-vous à l'adresse suivante:
+
+* http://github.com/hankache/perl6intro
+
+.Feedback
+
+* naoum@hankache.com
+* kolikov@free.fr
 
 :sectnums:
 == Introduction
@@ -357,7 +364,7 @@ Les tableaux sont des listes contenant plusieurs valeurs.
 
 [source,perl6]
 ----
-my @animaux = ['chameau','llama','hibou'];
+my @animaux = 'chameau','llama','hibou';
 say @animaux;
 ----
 
@@ -368,7 +375,7 @@ TIP: Le tilde `~` est utilisé pour la concaténation.
 [source,perl6]
 .`Script`
 ----
-my @animaux = ['chameau','vigogne','lama'];
+my @animaux = 'chameau','vigogne','lama';
 say "Le zoo contient " ~ @animaux.elems ~ " animaux";
 say "Les animaux sont: " ~ @animaux;
 say "Je vais adopter un hibou pour le zoo";
@@ -951,11 +958,11 @@ say "folder123".IO.f;
 
 NOTE: Pour plus d'informations sur les E/S, voir http://doc.perl6.org/type/IO
 
-== routines
+== Routines
 === Définition
 Les *routines* ou *subroutines* ou *subs* sont un moyen de conditionnement d'un ensemble de fonctionnalités.
 
-Un routine est défini avec le mot-clé `sub`. Après leur définition, ils peuvent être appelés par leur nom. +
+Une routine est définie avec le mot-clé `sub`. Après leur définition, elles peuvent être appelés par leur nom. +
 Examinez l'exemple ci-dessous:
 
 [source,perl6]
@@ -967,13 +974,13 @@ sub salut-alien {
 salut-alien;
 ----
 
-L'exemple précédent présente un routine qui ne nécessite aucun argument.
+L'exemple précédent présente une routine qui ne nécessite aucun argument.
 
 === Signature
 Beaucoup de routines requièrent une certaine entrée pour fonctionner. Cette entrée est fournie par des *arguments*. +
-La *signature* est le nombre et le type d'arguments que le routine accepte.
+La *signature* est le nombre et le type d'arguments que la routine accepte.
 
-Le routine ci-dessous accepte une chaîne pour argument:
+La routine ci-dessous accepte une chaîne pour argument:
 
 [source,perl6]
 ----
@@ -986,8 +993,8 @@ dis-bonjour "Paula";
 
 === Multi routines
 Il est possible de définir plusieurs routines ayant le même nom, mais différentes signatures.
-Lorsque le routine est appelé, l'environnement d'exécution décidera quelle version utiliser en fonction du nombre et du type des arguments fournis.
-Ce type de routines est défini de la même manière que les routines normaux sauf que nous utilisons le mot-clé 'multi' a la place de 'sub'.
+Lorsque la routine est appelé, l'environnement d'exécution décidera quelle version utiliser en fonction du nombre et du type des arguments fournis.
+Ce type de routines est défini de la même manière que les routines normales sauf que nous utilisons le mot-clé 'multi' a la place de 'sub'.
 
 [source,perl6]
 ----
@@ -1003,7 +1010,7 @@ salut "Josiane","Mme.";
 ----
 
 === Arguments optionnels et par défaut
-Si un routine est défini comme acceptant un argument, et nous l'appelons sans fournir l'argument requis, le routine va échouer.
+Si une routine est définie comme acceptant un argument, et nous l'appelons sans fournir l'argument requis, la routine va échouer.
 
 Alternativement Perl 6 nous offre la possibilité de définir des routines avec des:
 
@@ -1022,8 +1029,8 @@ dis-bonjour;
 dis-bonjour("Laura");
 ----
 
-Si l'utilisateur ne fournit pas un argument, le routine peut fournir une valeur par défaut. +
-Cela se fait par l'attribution d'une valeur à l'argument durant la définition du routine.
+Si l'utilisateur ne fournit pas un argument, la routine peut fournir une valeur par défaut. +
+Cela se fait par l'attribution d'une valeur à l'argument durant la définition de la routine.
 
 [source,perl6]
 ----
@@ -1067,11 +1074,11 @@ say map(&carré,@tableau);
 ----
 
 .Explication
-Nous avons définit un routine appelé `carré`, qui met à la puissance 2 tous les arguments qui lui sont passés. +
-Ensuite, nous avons utilisé `map`, un fonction d'ordre supérieur en lui passant 2 arguments, un routine et un tableau.+
+Nous avons définit une routine appelé `carré`, qui met à la puissance 2 tous les arguments qui lui sont passés. +
+Ensuite, nous avons utilisé `map`, une fonction d'ordre supérieur en lui passant 2 arguments, une routine et un tableau.+
 Le résultat est une liste de tous les éléments du tableau mis à la puissance 2.
 
-Notez que quand un routine est passé comme argument, nous le préfixons avec `&`.
+Notez que quand une routine est passé comme argument, nous la préfixons avec `&`.
 
 === Fermeture
 Tous les objets code en Perl 6 sont des fermetures, ce qui implique qu'ils peuvent référencer des variables lexicales d'une portée externe.
@@ -1086,8 +1093,8 @@ Ré-écrivons l'exemple de `map` avec une fonction anonyme
 my @tableau = <1 2 3 4 5>;
 say map(-> $x {$x ** 2},@tableau);
 ----
-Notez qu'au lieu de déclarer un routine et de le passer en argument à `map`, nous le déclarons directement à l'intérieur de `map`. +
-Le routine anonyme `\-> $x {$x ** 2}` n'a pas de handle et ne peut donc pas être appelé.
+Notez qu'au lieu de déclarer une routine et de la passer en argument à `map`, nous la déclarons directement à l'intérieur de `map`. +
+La routine anonyme `\-> $x {$x ** 2}` n'a pas de handle et ne peut donc pas être appelée.
 
 En dialecte Perl 6 nous l'appelons un *bloc pointu* (pointy block)
 
@@ -1116,7 +1123,7 @@ say @tableau-final;
 Nous appelons d'abord la fonction `unique` sur `@tableau` puis nous passons le résultat comme argument à `sort` et ensuite passons le résultat à `reverse`.
 
 En miroir de l'exemple ci-dessus, l'enchaînement de methodes est aussi possible en Perl 6. +
-l'exemple ci dessus peut aussi être écrit comme suit, en prennant avantacge de *l'enchaînement des méthodes*:
+L'exemple ci dessus peut aussi être écrit comme suit, en prennant avantage de *l'enchaînement des méthodes*:
 
 [source,perl6]
 ----
@@ -1128,7 +1135,7 @@ say @tableau-final;
 Vous pouvez constater qu'enchaîner les méthodes est _plus agréable à l'oeil et au cerveau_.
 
 === Feed Operator
-Le *feed operator*, appelé _Pipe_ dans d'autres langages fonctionnels, donne une meilleure vue sur du l'enchaînement de méthodes.
+Le *feed operator*, appelé _Pipe_ dans d'autres langages fonctionnels, donne une meilleure vue de l'enchaînement de méthodes.
 [source,perl6]
 .Feed vers l'avant
 ----
@@ -1177,7 +1184,7 @@ say @tableau>>.&est-pair;
 ----
 
 En utilisant l'hyperopérateur nous pouvons appeler des méthodes déjà définies dans Perl 6, ex: `is-prime` qui nous indique si un nombre est premier ou pas. +
-Nous pouvons également définir de nouveaux routines et les appeler en utilisant l'hyperopérateur. En ce cas, il faut préfixer la méthode avec `&`. ex: `&est-pair` 
+Nous pouvons également définir de nouvelles routines et les appeler en utilisant l'hyperopérateur. En ce cas, il faut préfixer la méthode avec `&`. ex: `&est-pair`
 
 Cette façon de faire est très pratique, car elle nous évite d'écrire une boucle `for` d'itéreration sur chaque valeur.
 
@@ -1385,7 +1392,7 @@ Maintenant remplacez `has $!age` par `has $.age` et voyez quel est le résultat 
 En Perl 6, toutes les classes héritent d'un constructeur par défaut `.new()`. +
 Il peut être utilisé pour créer des objets en leur fournissant des arguments. +
 Le constructeur par défaut ne peut se voir fournir que des *arguments nommés*. +
-Si vous regardez l'exemple ci-dessus, vous voyez que les arguments passés à `.new()` sont définis par leur noms: 
+Si vous regardez l'exemple ci-dessus, vous voyez que les arguments passés à `.new()` sont définis par leur noms:
 
 * nom => 'François'
 
@@ -1957,7 +1964,7 @@ try {
 }
 ----
 
-Un bloc `CATCH` peut se définir de la même façon qu'un bloc `given`. 
+Un bloc `CATCH` peut se définir de la même façon qu'un bloc `given`.
 Ce qui implique qu'on puisse faire un _catch_ sur différent types d'exceptions.
 
 [source,perl6]
@@ -2021,7 +2028,7 @@ if 'ensoleillement' ~~ m/ soleil / {
 }
 ----
 
-Dans cet exemple l'opérateur de correspondance intelligent (smart-match) `~~` est utilisé pour vérifier si une chaîne de caractères (ensoleillement) contient le mot (soleil). + 
+Dans cet exemple l'opérateur de correspondance intelligent (smart-match) `~~` est utilisé pour vérifier si une chaîne de caractères (ensoleillement) contient le mot (soleil). +
 "ensoleillement" est comparé à la regex `m/ soleil /`
 
 === Définition d'une regex
@@ -2236,7 +2243,7 @@ if 'Rakudo pour Perl 6 est un compilateur' ~~ m/:s Perl 6/ {
 .Sortie
 ----
 La correspondance est: Perl 6
-La chaîne avant la correspondance est: Rakudo pour 
+La chaîne avant la correspondance est: Rakudo pour
 La chaîne après la correspondance est:  est un compilateur
 La chaîne correspondante commence à la position: 12
 La chaîne correspondante finit à la position: 18
@@ -2556,7 +2563,7 @@ say now - INIT now;
 
 .Explication
 La méthode `start` évalue le code et renvoie *un objet de type promesse*, en plus court *une promesse* (promise). +
-Si le code est évalué correctement, la _promesse_ sera *tenue* (kept). + 
+Si le code est évalué correctement, la _promesse_ sera *tenue* (kept). +
 Si le code lance une exception, la _promesse_ sera *non tenue* (broken).
 
 La méthode `await` s'attend à une *promesse*. +

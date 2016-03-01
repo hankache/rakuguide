@@ -433,7 +433,7 @@ Ein Array ist eine variable Liste, die mehrere Werte enthalten kann.
 
 [source,perl6]
 ----
-my @tiere = ['Kamel','Lama','Eule'];
+my @tiere = 'Kamel','Lama','Eule';
 say @tiere;
 ----
 
@@ -444,7 +444,7 @@ TIP: Die Tilde `~` wird verwendet um Strings zu verketten.
 [source,perl6]
 .`Script`
 ----
-my @tiere = ['Kamel','Vikunja','Lama'];
+my @tiere = 'Kamel','Vikunja','Lama';
 say "Im Zoo gibt es " ~ @tiere.elems ~ " Tiere";
 say "Die Tiere sind: " ~ @tiere;
 say "Ich werde eine Eule für den Zoo adoptieren";
