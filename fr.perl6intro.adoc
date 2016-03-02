@@ -94,7 +94,7 @@ le code doit contenir une instruction comme `say` pour en pour afficher une sort
 Le REPL est la plupart du temps utilisé pour essayer un morceau de code, 
 le plus souvent une seule ligne. Pour des programmes de plus d'une seule ligne la méthode fichier/exécution est recommandée
 
-Les lignes de code uniques peuvent aussi être tapées de façon non interactive sur la ligne de commandes en tapant `perl6 -e 'mon code ici'` et ensuite [Entrée].
+Les lignes de code uniques peuvent aussi être entrées de façon non interactive sur la ligne de commandes en tapant `perl6 -e 'mon code ici'` et ensuite [Entrée].
 
 [TIP]
 --
@@ -370,7 +370,7 @@ Un *sigil* (Signe en Latin) est un caractère utilisé comme préfixe pour class
 * `%` est utilisé pour les tables de hachage.
 
 === Scalaire
-Un scalaire contient une valeur ou un référence.
+Un scalaire contient une valeur ou une référence.
 
 [source,perl6]
 ----
@@ -485,7 +485,7 @@ Un tableau simple se déclare comme ceci:
 [source,perl6]
 my @tableau;
 
-Le tableau simple à une taille non définie, et peut s'auto indexer. +
+Le tableau simple à une taille non définie, et peut varier de façon automatique. +
 Ce tableau acceptera un nombre illimité de valeurs sans restriction.
 
 On peut en revanche  créer des tableaux de taille fixe. +
