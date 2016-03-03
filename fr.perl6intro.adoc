@@ -39,17 +39,18 @@ Si vous souhaitez contribuer à ce document rendez-vous à l'adresse suivante:
 :sectnums:
 == Introduction
 === Perl 6 c'est quoi?
-Perl 6 est un langage générique supportant un typage graduel.
-Perl 6 supporte plusieurs paradigmes dont, la Programmation Procédurale, Orientée Objet et Fonctionelle.
+Perl 6 est un langage de haut niveau, générique, à typage graduel.
+Il supporte plusieurs paradigmes dont: la Programmation Procédurale, Orientée Objet et Fonctionelle.
 
-.Perl 6 motto:
+.La devise de Perl 6:
 * TMTOWTDI (Prononcé Tim Toady): There is more than one way to do it: +
 Il y a plus d'une façon de le faire.
 * Easy things should stay easy, hard things should get easier, and impossible things should get hard: +
 Les choses faciles doivent rester faciles, les choses dures devraient devenir plus faciles, et les choses impossibles devraient devenir dures.
 
 === Jargon
-Perl 6 est une spécification de langage avec une suite de tests. Les implémentations qui passent la suite de tests sont considérées comme Perl 6. +
+Perl 6 est une spécification de langage avec une suite de tests. +
+Les implémentations qui passent la suite de tests sont considérées comme Perl 6. +
 Rakudo est un compilateur pour Perl 6. +
 Rakudobrew est un gestionnaire d'installation pour Perl 6. +
 Panda est un installeur de modules pour Perl 6.
@@ -76,16 +77,38 @@ Si votre système possède une architecture 32-bit, téléchargez le fichier x86
 . Obtenez l'image officielle `docker pull rakudo-star`
 . Ensuite exécutez `docker run -it rakudo-star`
 
-=== Exécuter Perl 6
-Pour exécuter un code écrit en Perl 6 vous pouvez utiliser le REPL (Read-Eval-Print Loop). +
-Dans votre terminal, tapez `perl6`, tapez votre code et pressez [Enter] +
+=== Exécuter du code Perl6
 
-Alternativement, vous pouvez écrire votre code dans un fichier, l'enregistrer et puis l'exécuter. +
-Il est recommandé de créer les fichiers Perl 6 avec l'extension `.pl6`. +
-Exécutez le fichier du terminal en utilisant cette syntaxe: `perl6 filename.pl6`
+On peut exécuter du code Perl6 en utilisant le REPL (Read-Eval-Print Loop). +
+Pour ce faire ouvrez un terminal, tapez `perl6` dans la fenêtre de terminal et ensuite la touche [Entrée]. +
+Une invite de commande `>` apparaîtra. +
+Ensuite, tapez une ligne de code puis la touche [Entrée]. Le REPL affichera la valeur de la ligne interprétée.
+Vous pouvez taper une autre ligne; ou `exit` et ensuite [Entrée] pour sortir du REPL.
 
-Le REPL est surtout utilisé pour essayer un morceau de code, typiquement une unique ligne de code. +
-Pour les programmes contenant plusieurs lignes, il est recommandé de les stocker dans un fichier, puis de les exécuter.
+D'une autre façon vous pouvez, écrire votre code dans un fichier, le sauvegarder puis l'exécuter.
+Il est conseillé, pour plus de clarté, que les scripts Perl 6 portent l'extension `.pl6`.
+Exécutez le fichier en entrant `perl6 nom-du-fichier.pl6` dans la fenêtre de terminal (puis [Entrée]). +
+A l'inverse du RELP, le résultat ne sera pas automatiquement affiché pour chaque ligne:
+le code doit contenir une instruction comme `say` pour en pour afficher une sortie.
+
+Le REPL est la plupart du temps utilisé pour essayer un morceau de code, 
+le plus souvent une seule ligne. Pour des programmes de plus d'une seule ligne la méthode fichier/exécution est recommandée
+
+Les lignes de code uniques peuvent aussi être entrées de façon non interactive sur la ligne de commandes en tapant `perl6 -e 'mon code ici'` et ensuite [Entrée].
+
+[TIP]
+--
+Rakudo Star fournit un editeur ligne par ligne, qui augmente les fonctionnalités du REPL.
+Comme: Le rappel des commandes par les flèches "haut/bas", l'édition avec les flèches "gauche/droite" et la complétion avec la touche [TAB]
+
+Si vous avez seulement installé Rakudo au lieu de Rakudo Star, vous n'aurez probablement pas les fonctions d'édition ligne par ligne.
+Lancer la commande suivante sur votre terminal pour y avoir accès:
+
+* `panda install Linenoise` Fonctionne sur Windows, Linux and OSX
+
+* `panda install Readline` Si vous êtes sur Linux et préférez la librairie _Readline_ 
+--
+
 
 === Editeurs
 
@@ -93,6 +116,7 @@ Comme la plupart du temps, nous allons écrire et stocker nos programmes en Perl
 nous devrions avoir un éditeur de texte décent qui reconnaît la syntaxe de Perl 6.
 
 Je recommande personnellement https://atom.io/[Atom]. C'est un éditeur de texte moderne livré avec une coloration syntaxique pour Perl 6.
+https://atom.io/packages/language-perl6fe[Perl6-fe] est une coloration syntaxique alternative pour Perl 6 sur Atom, basée sur l'original mais comprenant de nombreux correctifs est additions.
 
 D'autres personnes de la communauté utilisent aussi http://www.vim.org/[Vim], https://www.gnu.org/software/emacs/[Emacs] ou http://padre.perlide.org/[Padre].
 
@@ -114,7 +138,7 @@ Les *Instructions* sont typiquement une ligne logique de code, un point-virgule 
 Les *Expressions* sont un type spécial d'instructions qui retournent une valeur: +
 `1+2` retourne `3`
 
-Les expressions sont faites de *Termes* et d'*Operateurs*.
+Les expressions sont faites de *Termes* et d'*Opérateurs*.
 
 Les *Termes* sont des:
 
@@ -218,12 +242,12 @@ Utilisez toujours des guillemets droits doubles:
 
 [source,perl6]
 -----------------------------------
-say 'Bonjour Monde';               #Bonjour Monde
-say "Bonjour Monde";               #Bonjour Monde
-say "Quelqu'un m'a dit";           #Quelqu'un m'a dit
-my $nom = 'Jean Dupont';
-say 'Salut $name';               #Salut $nom
-say "Salut $name";               #Salut Jean Dupont
+say 'Bonjour Monde';             #Bonjour Monde
+say "Bonjour Monde";             #Bonjour Monde
+say "Quelqu'un m'a dit";         #Quelqu'un m'a dit
+my $nom = 'François Pinon';
+say 'Salut $nom';                #Salut $nom
+say "Salut $nom";                #Salut François Pinon
 -----------------------------------
 
 == Operateurs
@@ -266,19 +290,19 @@ say "Salut $name";               #Salut Jean Dupont
 
 | >= | Infixe | Plus grand ou égal | 9 >= 7  | True
 
-| eq | Infixe | Egalité (chaînes) | "John" eq "John"  | True
+| eq | Infixe | Egalité (chaînes) | "Tintin" eq "Tintin"  | True
 
-| ne | Infixe | Inégalité (chaînes) | "John" ne "Jane"  | True
+| ne | Infixe | Inégalité (chaînes) | "Tintin" ne "Titine"  | True
 
 | = | Infixe | Affectation | my $var = 7  | Attribue la valeur `7` a la variable `$var`
 
 .2+| ~ .2+| Infixe .2+| Concaténation | 9 ~ 7 | 97
 
-<m| "Hi " ~ "there"  <| Hi there
+<m| "Bonjour " ~ "chez vous"  <| Bonjour chez vous
 
 .2+| x .2+| Infixe .2+| Réplication | 13 x 3  | 131313
 
-<| "Hello " x 3  <| Hello Hello Hello
+<| "Salut " x 3  <| Salut Salut Salut
 
 | ~~ | Infixe | Smart match |   |
 
@@ -345,19 +369,68 @@ Un *sigil* (Signe en Latin) est un caractère utilisé comme préfixe pour class
 * `@` est utilisé pour les tableaux
 * `%` est utilisé pour les tables de hachage.
 
-=== Scalaires
-Un scalaire tient une valeur ou une référence.
+=== Scalaire
+Un scalaire contient une valeur ou une référence.
 
 [source,perl6]
 ----
-#chaîne
-my $nom = 'Jean Dupont';
-say $name;
+#String
+my $nom = 'François Pinon';
+say $nom;
 
-#Entier
-my $age = 99;
+#Integer
+my $age = 20;
 say $age;
 ----
+
+Certaines opérations peuvent être effectuées sur un scalaire, suivant le type de valeur qu'il contient.
+
+[source,perl6]
+.Chaîne
+----
+my $nom = 'François Pinon';
+say $nom.uc;
+say $nom.chars;
+say $nom.flip;
+----
+
+----
+FRANÇOIS PINON
+14
+noniP sioçnarF
+----
+
+NOTE: Pour une liste exhaustive des méthodes applicables aux Chaînes, voir http://doc.perl6.org/type/Str
+
+[source,perl6]
+.Entiers
+----
+my $age = 17;
+say $age.is-prime;
+----
+
+----
+True
+----
+
+NOTE: Pour une liste exhaustive des méthodes applicables aux Entiers, see http://doc.perl6.org/type/Int
+
+[source,perl6]
+.Nombre rationnel
+----
+my $age = 2.3;
+say $age.numerator;
+say $age.denominator;
+say $age.nude;
+----
+
+----
+23
+10
+(23 10)
+----
+
+NOTE: Pour une liste exhaustive des méthodes applicables aux Nombres rationnels, see http://doc.perl6.org/type/Rat
 
 === Tableaux
 Les tableaux sont des listes contenant plusieurs valeurs.
@@ -385,7 +458,7 @@ say "Le premier animal que nous avons adopté est le " ~ @animaux[0];
 @animaux.pop;
 say "Malheureusement, le hibou est parti, il ne nous reste que: " ~ @animaux;
 say "Nous allons fermer le zoo et laisser un animal seulement";
-say "Nous allons laisser partir: " ~ @animaux.splice(1,2) ~ " et laisser le " ~ @animaux;
+say "Nous allons faire partir: " ~ @animaux.splice(1,2) ~ " et laisser le " ~ @animaux;
 ----
 
 .`Sortie`
@@ -397,7 +470,7 @@ Maintenant, mon zoo contient: chameau vigogne lama hibou
 Le premier animal que nous avons adopté est le chameau
 Malheureusement, le hibou est parti, il ne nous reste que: chameau vigogne lama
 Nous allons fermer le zoo et laisser un animal seulement
-Nous allons laisser partir: vigogne lama et laisser le chameau
+Nous allons faire partir: vigogne lama et laisser le chameau
 ----
 
 .Explication
@@ -407,20 +480,113 @@ Nous pouvons accéder à un élément spécifique dans le tableau en spécifiant
 `.pop` supprime le dernier élément du tableau. +
 `.splice(a,b)` supprime les `b` éléments a partir de la position `a`.
 
+==== Tableau de taille fixe
+Un tableau simple se déclare comme ceci:
+[source,perl6]
+my @tableau;
+
+Le tableau simple à une taille non définie, et peut varier de façon automatique. +
+Ce tableau acceptera un nombre illimité de valeurs sans restriction.
+
+On peut en revanche  créer des tableaux de taille fixe. +
+Ces tableaux ne pourront pas excéder la taille qui leur aura été allouée (en lecture et écriture).
+
+Pour déclarer un tableau de taille fixe, spécifiez son nombre maximal d'éléments entre crochets à la suite de son nom:
+[source,perl6]
+my @tableau[3];
+
+Ce tableau pourra contenir un maximum de 3 valeurs, indexées de 0 à 2.
+
+[source,perl6]
+----
+my @tableau[3];
+@tableau[0] = "première valeur";
+@tableau[1] = "deuxième valeur";
+@tableau[2] = "troisième valeur";
+----
+
+Vous ne pourrez pas ajouter une quatrième valeur à ce tableau:
+[source,perl6]
+----
+my @tableau[3];
+@tableau[0] = "première valeur";
+@tableau[1] = "deuxième valeur";
+@tableau[2] = "troisième valeur";
+@tableau[3] = "quatrième valeur";
+----
+
+----
+Index 3 for dimension 1 out of range (must be 0..2)
+----
+
+==== Tableau à plusieurs dimmensions
+Les tableaux vus précédemment ne sont qu'à une dimension. +
+Heureusement, nous pouvons en Perl6 déclarer des tableaux de dimensions multiples.
+
+[source,perl6]
+my @multi-tab[3;2];
+
+Ce tableau a 2 dimensions.
+La première dimension peut contenir un maximum de 3 valeurs et le seconde un maximum de 2 valeurs.
+
+[source,perl6]
+----
+my @multi-tab[3;2];
+@multi-tab[0;0] = 1;
+@multi-tab[0;1] = "x";
+@multi-tab[1;0] = 2;
+@multi-tab[1;1] = "y";
+@multi-tab[2;0] = 3;
+@multi-tab[2;1] = "z";
+say @multi-tab
+----
+
 NOTE: Pour la référence complète des tableaux: http://doc.perl6.org/type/Array
 
 === Hachage
 Un hachage (table de hachage / hash) est un ensemble de paires clef / valeur.
 
 [source,perl6]
-----------------------------------------------------
+--
 my %capitales = ('Londres','Angleterre','Paris','France');
 say %capitales;
+--
 
-#une autre façon succincte de remplir le hachage:
+[source,perl6]
+.Une autre façon succincte de remplir le hachage:
+--
 my %capitales = (Londres => 'Angleterre', Paris => 'France');
 say %capitales;
-----------------------------------------------------
+--
+
+Voici quelques-unes des méthodes qui peuvent être appelées sur les hachages:
+[source,perl6]
+.`Script`
+----
+my %capitales = (Angleterre => 'Londres', Allemagne => 'Berlin');
+%capitales.push: (France => 'Paris');
+say %capitales.kv;
+say %capitales.keys;
+say %capitales.values;
+say "La capitale de la France est: " ~ %capitales<France>;
+----
+
+.`Sortie`
+----
+(France Paris Allemagne Berlin Angleterre Londres)
+(France Allemagne Angleterre)
+(Paris Berlin Londres)
+La capitale de la France est: Paris
+----
+
+.Explication
+`.push: (clef => 'Valeur')` ajoute une nouvelle paire clef/valeur. +
+`.kv` renvoie la liste contenant toutes les clefs et valeurs. +
+`.keys` renvoie une liste des clefs. +
+`.values` renvoie une liste des valeurs. +
+On peut accéder à la valeur particulière d'un hachage en spécifiant sa clef, comme suit: `%hachage<clef>`
+
+NOTE: Pour la référence complète des hachages: http://doc.perl6.org/type/Hash
 
 === Types
 Dans les exemples précédents, on n'a pas précisé quel type de valeurs les variables peuvent tenir.
@@ -601,7 +767,7 @@ Cannot assign to an immutable value
 ----
 
 [source,perl6]
-.Une variables peut être également liée a une autre:
+.Une variable peut être également liée a une autre:
 ----
 my $a;
 my $b := $a;
@@ -611,11 +777,11 @@ say $b;
 
 NOTE: Pour plus d'informations sur les variables, rendez-vous à http://doc.perl6.org/language/variables
 
-== Fonctions normales et fonctions mutantes
+== Fonctions normales et fonctions mutatrices
 
-Il est important de différencier entre les fonctions normales et les fonctions mutantes. +
+Il est important de différencier entre les fonctions normales et les fonctions mutatrices. +
 Les fonctions normales ne changent pas l'état initial de l'objet. +
-Les fonctions mutantes modifient l'état de l'objet.
+Les fonctions mutatrices modifient l'état de l'objet.
 
 [source,perl6,linenums]
 .`Script`
@@ -641,7 +807,7 @@ say @numeros;      #4
 ----
 
 .Explication
-`.push` est une fonction mutante, elle change l'état du tableau (#1)
+`.push` est une fonction mutatrice, elle change l'état du tableau (#1)
 
 `.sort` est une fonction normale, elle retourne un tableau trié, mais ne modifie pas l'état initial du tableau:
 
@@ -649,7 +815,7 @@ say @numeros;      #4
 
 * (#3) démontre que le tableau initial reste non modifie.
 
-Afin de forcer une fonction normale à agir comme une fonction mutante, nous pouvons utiliser `.=` a la place de `.` (#4) (Ligne 9 du script)
+Afin de forcer une fonction normale à agir comme une fonction mutatrice, nous pouvons utiliser `.=` a la place de `.` (#4) (Ligne 9 du script)
 
 == Structures conditionnelles et boucles
 Perl 6 possède une multitude de structures conditionnelles et structures de boucles.
@@ -1891,7 +2057,7 @@ Il renvoie _Vrai_ si l'objet correspond à sa classe de création ou à une de c
 Les *exceptions* son un comportement particulier qui intervient quand quelquechose se passe mal à l'execution. +
 On dit que les exceptions sont _lancées_.
 
-Le script ci dessous, qui s'execute correctement:
+Le script ci dessous, qui s'exécute correctement:
 
 [source,perl6]
 ----
