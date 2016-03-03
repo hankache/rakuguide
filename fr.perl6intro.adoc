@@ -49,11 +49,12 @@ Il y a plus d'une façon de le faire.
 Les choses faciles doivent rester faciles, les choses dures devraient devenir plus faciles, et les choses impossibles devraient devenir dures.
 
 === Jargon
-Perl 6 est une spécification de langage avec une suite de tests. +
-Les implémentations qui passent la suite de tests sont considérées comme Perl 6. +
-Rakudo est un compilateur pour Perl 6. +
-Rakudobrew est un gestionnaire d'installation pour Perl 6. +
-Panda est un installeur de modules pour Perl 6.
+* *Perl 6* est une spécification de langage avec une suite de tests.
+Les implémentations qui passent la suite de tests sont considérées comme Perl 6.
+* *Rakudo* est un compilateur pour Perl 6.
+* *Rakudobrew* est un gestionnaire d'installation pour Perl 6.
+* *Panda* est un installeur de modules pour Perl 6.
+* *Rakudo Star* Est un paquet qui comprend: Rakudo, Panda, une collection de modules, et de la documentation.
 
 === Installer Perl 6
 .Linux
@@ -91,7 +92,7 @@ Exécutez le fichier en entrant `perl6 nom-du-fichier.pl6` dans la fenêtre de t
 A l'inverse du RELP, le résultat ne sera pas automatiquement affiché pour chaque ligne:
 le code doit contenir une instruction comme `say` pour en pour afficher une sortie.
 
-Le REPL est la plupart du temps utilisé pour essayer un morceau de code, 
+Le REPL est la plupart du temps utilisé pour essayer un morceau de code,
 le plus souvent une seule ligne. Pour des programmes de plus d'une seule ligne la méthode fichier/exécution est recommandée
 
 Les lignes de code uniques peuvent aussi être entrées de façon non interactive sur la ligne de commandes en tapant `perl6 -e 'mon code ici'` et ensuite [Entrée].
@@ -106,7 +107,7 @@ Lancer la commande suivante sur votre terminal pour y avoir accès:
 
 * `panda install Linenoise` Fonctionne sur Windows, Linux and OSX
 
-* `panda install Readline` Si vous êtes sur Linux et préférez la librairie _Readline_ 
+* `panda install Readline` Si vous êtes sur Linux et préférez la librairie _Readline_
 --
 
 
@@ -128,6 +129,11 @@ Nous allons commencer avec le rituel `hello world`.
 
 [source,perl6]
 say 'Bonjour Monde';
+
+qui peut aussi être écrit:
+
+[source,perl6]
+'Bonjour Monde'.say;
 
 === Aperçu de la syntaxe
 Perl 6 est en *forme libre*: Vous êtes libre (la plupart du temps) à utiliser n'importe quelle quantité d'espaces.
@@ -413,7 +419,7 @@ say $age.is-prime;
 True
 ----
 
-NOTE: Pour une liste exhaustive des méthodes applicables aux Entiers, see http://doc.perl6.org/type/Int
+NOTE: Pour une liste exhaustive des méthodes applicables aux Entiers, voir http://doc.perl6.org/type/Int
 
 [source,perl6]
 .Nombre rationnel
@@ -430,7 +436,7 @@ say $age.nude;
 (23 10)
 ----
 
-NOTE: Pour une liste exhaustive des méthodes applicables aux Nombres rationnels, see http://doc.perl6.org/type/Rat
+NOTE: Pour une liste exhaustive des méthodes applicables aux Nombres rationnels, voir http://doc.perl6.org/type/Rat
 
 === Tableaux
 Les tableaux sont des listes contenant plusieurs valeurs.
@@ -544,20 +550,20 @@ say @multi-tab
 NOTE: Pour la référence complète des tableaux: http://doc.perl6.org/type/Array
 
 === Hachage
-Un hachage (table de hachage / hash) est un ensemble de paires clef / valeur.
 
 [source,perl6]
---
+.Un hachage (table de hachage / hash) est un ensemble de paires clef / valeur.
+----
 my %capitales = ('Londres','Angleterre','Paris','France');
 say %capitales;
---
+----
 
 [source,perl6]
 .Une autre façon succincte de remplir le hachage:
---
+----
 my %capitales = (Londres => 'Angleterre', Paris => 'France');
 say %capitales;
---
+----
 
 Voici quelques-unes des méthodes qui peuvent être appelées sur les hachages:
 [source,perl6]
@@ -594,7 +600,7 @@ Dans les exemples précédents, on n'a pas précisé quel type de valeurs les va
 TIP: `.WHAT` retournera le type de la valeur contenue dans la variable.
 
 [source,perl6]
----------------------
+----
 my $var = 'Texte';
 say $var;
 say $var.WHAT;
@@ -602,7 +608,7 @@ say $var.WHAT;
 $var = 123;
 say $var;
 say $var.WHAT;
----------------------
+----
 
 Comme vous pouvez le voir dans l'exemple ci-dessus, le type de valeur contenu dans `$var` était (Str) et puis (Int).
 
@@ -613,11 +619,11 @@ Maintenant, essayez d'exécuter l'exemple ci-dessous: +
 Remarquez `Int` avant le nom de la variable.
 
 [source,perl6]
------------------------------------------
+----
 my Int $var = 'Texte';
 say $var;
 say $var.WHAT;
------------------------------------------
+----
 
 Il va échouer et retourner ce message d'erreur: `Type check failed in assignment to $var; expected Int but got Str`
 
@@ -628,7 +634,7 @@ Ce style de programmation est appelé le typage statique. Statique dans le sens 
 
 Perl 6 possède un *typage graduel*; les deux typages *statique* et *dynamique* peuvent être utilisés.
 
-Voici une liste des types les plus couramment utilisés. +
+.Voici une liste des types les plus couramment utilisés.
 Les deux premiers ne seront probablement jamais utilisés, mais ils sont répertoriés à titre informatif.
 
 [cols="^.^1m,.^3m,.^2m,.^1m, options="header"]
@@ -660,26 +666,17 @@ Dans l'exemple précédent, nous avons utilisé `.WHAT` pour recevoir le type de
 [source,perl6]
 ----
 my Int $var;
-say $var.WHAT;
+say $var.WHAT;    # (Int)
 my $var2;
-say $var2.WHAT;
+say $var2.WHAT;   # (Any)
 $var2 = 1;
-say $var2.WHAT;
-$var2 = "Bonjour";
-say $var2.WHAT;
+say $var2.WHAT;   # (Int)
+$var2 = "Hello";
+say $var2.WHAT;   # (Str)
 $var2 = True;
-say $var2.WHAT;
+say $var2.WHAT;   # (Bool)
 $var2 = Nil;
-say $var2.WHAT;
-----
-
-----
-(Int)
-(Any)
-(Int)
-(Str)
-(Bool)
-(Any)
+say $var2.WHAT;   # (Any)
 ----
 
 Le type d'une variable contenant une valeur est corrélée à sa valeur. +
@@ -702,13 +699,13 @@ Un bloc en Perl 6 est délimité par `{ }`.
 Si aucun bloc n'est trouvé, la variable sera disponible dans l'ensemble du script.
 
 [source,perl6]
---------------------------------
+----
 {
   my Str $var = 'Texte';
   say $var; #accessible
 }
 say $var; #inaccessible, renvoie une erreur
---------------------------------
+----
 
 Comme une variable est uniquement accessible dans le bloc où elle est définie, le même nom de variable peut être redéfini dans un autre bloc.
 
@@ -1159,7 +1156,7 @@ dis-bonjour "Paula";
 
 === Multi routines
 Il est possible de définir plusieurs routines ayant le même nom, mais différentes signatures.
-Lorsque la routine est appelé, l'environnement d'exécution décidera quelle version utiliser en fonction du nombre et du type des arguments fournis.
+Lorsque la routine est appelée, l'environnement d'exécution décidera quelle version utiliser en fonction du nombre et du type des arguments fournis.
 Ce type de routines est défini de la même manière que les routines normales sauf que nous utilisons le mot-clé 'multi' a la place de 'sub'.
 
 [source,perl6]
@@ -1210,7 +1207,7 @@ dis-bonjour("Laura");
 NOTE: Pour plus d'informations sur les routines et fonctions, voir http://doc.perl6.org/language/functions
 
 == Programmation Fonctionnelle
-Ce chapitre traitera de des fonctionnalités facilitant la programmation fonctionnelle
+Ce chapitre traitera des fonctionnalités facilitant la programmation fonctionnelle
 
 === Les fonctions sont des entités de première classe
 Les fonctions/routines sont des entités de première classe
@@ -1241,7 +1238,7 @@ say map(&carré,@tableau);
 
 .Explication
 Nous avons définit une routine appelé `carré`, qui met à la puissance 2 tous les arguments qui lui sont passés. +
-Ensuite, nous avons utilisé `map`, une fonction d'ordre supérieur en lui passant 2 arguments, une routine et un tableau.+
+Ensuite, nous avons utilisé `map`, une fonction d'ordre supérieur en lui passant 2 arguments, une routine et un tableau. +
 Le résultat est une liste de tous les éléments du tableau mis à la puissance 2.
 
 Notez que quand une routine est passé comme argument, nous la préfixons avec `&`.
@@ -1260,7 +1257,7 @@ my @tableau = <1 2 3 4 5>;
 say map(-> $x {$x ** 2},@tableau);
 ----
 Notez qu'au lieu de déclarer une routine et de la passer en argument à `map`, nous la déclarons directement à l'intérieur de `map`. +
-La routine anonyme `\-> $x {$x ** 2}` n'a pas de handle et ne peut donc pas être appelée.
+La routine anonyme `\-> $x {$x ** 2}` n'a pas de nom et ne peut donc pas être appelée.
 
 En dialecte Perl 6 nous l'appelons un *bloc pointu* (pointy block)
 
