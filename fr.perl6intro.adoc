@@ -17,7 +17,7 @@ Pour ceux qui sont nouveaux à Perl 6, il devrait vous permettre de démarrer.
 Certaines sections de ce document référencent d'autres parties (plus complètes et précises) de la documentation de Perl 6.
 Vous devriez les lire si vous avez besoin de plus d'information sur un sujet précis.
 
-En lisant ce document, vous trouverez des exemples pour la plus part des sujets discutés.
+En lisant ce document, vous trouverez des exemples pour la plupart des sujets discutés.
 Pour mieux les comprendre, vous pouvez expérimenter en les modifiant.
 
 .Licence
@@ -71,8 +71,8 @@ Installer avec homebrew: `brew install rakudo-star`
 
 .Windows
 . Téléchargez l'installeur le plus récent (fichier avec une extension .MSI) de http://rakudo.org/downloads/star/ +
-Si votre système possède une architecture 32-bit, téléchargez le fichier x86. S'il possède une architecture 64-bit téléchargez le fichier x86_64.
-. Apres l'installation, ajouter C:\rakudo\bin a votre PATH
+Si votre système possède une architecture 32-bits, téléchargez le fichier x86. S'il possède une architecture 64-bits téléchargez le fichier x86_64.
+. Apres l'installation, ajouter C:\rakudo\bin à votre PATH
 
 .Docker
 . Obtenez l'image officielle `docker pull rakudo-star`
@@ -86,16 +86,19 @@ Une invite de commande `>` apparaîtra. +
 Ensuite, tapez une ligne de code puis la touche [Entrée]. Le REPL affichera la valeur de la ligne interprétée.
 Vous pouvez taper une autre ligne; ou `exit` et ensuite [Entrée] pour sortir du REPL.
 
-D'une autre façon vous pouvez, écrire votre code dans un fichier, le sauvegarder puis l'exécuter.
+Une autre façon serait d'écrire votre code dans un fichier, le sauvegarder puis l'exécuter.
 Il est conseillé, pour plus de clarté, que les scripts Perl 6 portent l'extension `.pl6`.
 Exécutez le fichier en entrant `perl6 nom-du-fichier.pl6` dans la fenêtre de terminal (puis [Entrée]). +
-A l'inverse du RELP, le résultat ne sera pas automatiquement affiché pour chaque ligne:
-le code doit contenir une instruction comme `say` pour en pour afficher une sortie.
+A l'inverse du REPL, le résultat ne sera pas automatiquement affiché pour chaque ligne:
+le code doit contenir une instruction comme `say` pour afficher sur la sortie standard.
 
-Le REPL est la plupart du temps utilisé pour essayer un morceau de code,
-le plus souvent une seule ligne. Pour des programmes de plus d'une seule ligne la méthode fichier/exécution est recommandée
+Le REPL et son historique permettent de construire incrémentalement des instructions courtes d'une ligne tout
+en construisant à partir des déclarations précédentes. Voir le conseil ci-dessous.
 
-Les lignes de code uniques peuvent aussi être entrées de façon non interactive sur la ligne de commandes en tapant `perl6 -e 'mon code ici'` et ensuite [Entrée].
+Pour des programmes de plus d'une seule ligne, la méthode fichier/exécution est recommandée
+
+Les lignes de code uniques peuvent aussi être entrées de façon non interactive sur la ligne de commandes en tapant `perl6 -e 'mon code ici'`
+et ensuite [Entrée].
 
 [TIP]
 --
@@ -116,8 +119,9 @@ Lancer la commande suivante sur votre terminal pour y avoir accès:
 Comme la plupart du temps, nous allons écrire et stocker nos programmes en Perl 6 dans des fichiers,
 nous devrions avoir un éditeur de texte décent qui reconnaît la syntaxe de Perl 6.
 
-Je recommande personnellement https://atom.io/[Atom]. C'est un éditeur de texte moderne livré avec une coloration syntaxique pour Perl 6.
-https://atom.io/packages/language-perl6fe[Perl6-fe] est une coloration syntaxique alternative pour Perl 6 sur Atom, basée sur l'original mais comprenant de nombreux correctifs est additions.
+Je recommande https://atom.io/[Atom]. C'est un éditeur de texte moderne livré avec une coloration syntaxique pour Perl 6.
+https://atom.io/packages/language-perl6fe[Perl6-fe] est une coloration syntaxique alternative pour Perl 6 sur Atom,
+basée sur l'original mais comprenant de nombreux correctifs et additions.
 
 D'autres personnes de la communauté utilisent aussi http://www.vim.org/[Vim], https://www.gnu.org/software/emacs/[Emacs] ou http://padre.perlide.org/[Padre].
 
@@ -136,9 +140,10 @@ qui peut aussi être écrit:
 'Bonjour Monde'.say;
 
 === Aperçu de la syntaxe
-Perl 6 est en *forme libre*: Vous êtes libre (la plupart du temps) à utiliser n'importe quelle quantité d'espaces.
+Perl 6 est en *forme libre*: Vous êtes libre (la plupart du temps) d'utiliser autant d'espaces que vous voulez.
+L'indentation n'est pas syntactiquement signifiante.
 
-Les *Instructions* sont typiquement une ligne logique de code, un point-virgule est nécessaire à leur fin: +
+Les *Instructions* sont typiquement une ligne logique de code. Le point-virgule est un séparateur d'instructions : +
 `say "Hello" if True;`
 
 Les *Expressions* sont un type spécial d'instructions qui retournent une valeur: +
@@ -148,11 +153,11 @@ Les expressions sont faites de *Termes* et d'*Opérateurs*.
 
 Les *Termes* sont des:
 
-* *Variables*: Une valeur qui peut être manipulée ou changée.
+* *Variables*: Une valeur qui peut être manipulée ou changée sauf lorsque déclarée comme constante
 
 * *Littérales*: Une valeur constante comme un nombre ou une chaîne.
 
-Les *Opérateurs* sont classés en types:
+Les *Opérateurs* sont classés en catégories :
 
 |===
 
@@ -171,14 +176,15 @@ Les *Opérateurs* sont classés en types:
 |===
 
 ==== Identificateurs
-Les identificateurs sont le nom donné aux termes lors de leur définition.
+Un identificateur est le nom d'une variables. Dans une expression, une variable est un
+terme non littéral non composite.
 
 .Règles:
-* Ils doivent commencer par un caractère alphabétique ou un tiret bas (under score).
+* Il doit commencer par un caractère alphabétique ou un tiret bas (under score).
 
-* Ils peuvent contenir des chiffres (à l'exception du premier caractère).
+* Il peut contenir des chiffres (à l'exception du premier caractère).
 
-* Ils peuvent contenir des tirets ou des apostrophes (sauf le premier et le dernier caractère),
+* Ils peut contenir des tirets ou des apostrophes (sauf le premier et le dernier caractère),
 mais avec un caractère alphabétique sur le côté droit de chaque tiret / apostrophe.
 
 |===
@@ -205,7 +211,8 @@ mais avec un caractère alphabétique sur le côté droit de chaque tiret / apos
 * Snake: `variable_no1`
 
 Vous êtes libre de nommer vos identificateurs comme vous le souhaitez,
-mais choisissez une convention de nommage et tenez-vous y.
+mais choisissez une convention de nommage et tenez-vous y. La communauté préfère
+le style kebab.
 
 L'utilisation de noms signifiants facilitera votre vie et celle des autres. +
 `var1 = var2 * var3` est syntaxiquement correct mais son but n'est pas évident. +
@@ -232,10 +239,18 @@ say #`(Ceci est un commentaire intégré) "Bonjour Monde."
 -----------------------------
 =begin comment
 Ceci est un commentaire sur plusieurs lignes.
-Commentaire 1
-Commentaire 2
+
+Avec une ou plusieurs lignes vide.
 =end comment
 -----------------------------
+
+[source,perl6]
+-----------------------------
+=for comment
+Ceci est un commentaire
+sans lignes vides
+-----------------------------
+
 
 ==== Guillemets
 Les chaînes doivent être délimitées par des guillemets droits doubles ou simples.
@@ -244,16 +259,22 @@ Utilisez toujours des guillemets droits doubles:
 
 * si votre chaîne contient une apostrophe.
 
-* si votre chaîne contient une variable qui doit être interpolée.
+* si votre chaîne contient une variable ou du code qui doit être interpolé.
+
+Les deux dernière lignes de l'exemple sont des interpolation, respectivement
+d'une variable et d'une expression.
+L'expression `tc($nom)` retourne la valeur de $nom avec une capitale par l'appel
+de la fonction `&tc`.
 
 [source,perl6]
 -----------------------------------
 say 'Bonjour Monde';             #Bonjour Monde
 say "Bonjour Monde";             #Bonjour Monde
 say "Quelqu'un m'a dit";         #Quelqu'un m'a dit
-my $nom = 'François Pinon';
+my $nom = 'françois';
 say 'Salut $nom';                #Salut $nom
-say "Salut $nom";                #Salut François Pinon
+say "Salut $nom";                #Salut françois
+say "Salut { tc($nom) }";                #Salut François
 -----------------------------------
 
 == Operateurs
@@ -300,7 +321,7 @@ say "Salut $nom";                #Salut François Pinon
 
 | ne | Infixe | Inégalité (chaînes) | "Tintin" ne "Titine"  | True
 
-| = | Infixe | Affectation | my $var = 7  | Attribue la valeur `7` a la variable `$var`
+| = | Infixe | Affectation | my $var = 7  | Attribue la valeur `7` à la variable `$var`
 
 .2+| ~ .2+| Infixe .2+| Concaténation | 9 ~ 7 | 97
 
@@ -320,19 +341,19 @@ say "Salut $nom";                #Salut François Pinon
 
 <m| Suffixe <d| Décrémentation <m| my $var = 2; $var--;  <| Retourne la variable `2` et puis la décrémente
 
-.3+| + .3+| Préfixe .3+| Force l'opérande a une valeur numérique | +"3"  | 3
+.3+| + .3+| Préfixe .3+| Force l'opérande à une valeur numérique | +"3"  | 3
 
 <| +True <| 1
 
 <| +False <| 0
 
-.3+| - .3+| Préfixe .3+| Force l'opérande a une valeur numérique et retourne la négation | -"3"  | -3
+.3+| - .3+| Préfixe .3+| Force l'opérande à une valeur numérique et retourne la négation | -"3"  | -3
 
 <| -True <| -1
 
 <| -False <| 0
 
-.6+| ? .6+| Préfixe .6+| Force l'opérande a une valeur booléenne | ?0 | False
+.6+| ? .6+| Préfixe .6+| Force l'opérande à une valeur booléenne | ?0 | False
 
 <| ?9.8 <| True
 
@@ -344,15 +365,15 @@ say "Salut $nom";                #Salut François Pinon
 
 <| my $var = 7; ?$var; <| True
 
-| ! | Préfixe | Force l'opérande a une valeur booléenne et retourne la négation | !4 | False
+| ! | Préfixe | Force l'opérande à une valeur booléenne et retourne la négation | !4 | False
 
-| .. | Infixe | Construction de gammes |  0..5  | Crée une gamme de 0 a 5
+| .. | Infixe | Construction de gammes |  0..5  | Crée une gamme de 0 à 5
 
-| ..^ | Infixe | Construction de gammes |  0..^5  | Crée une gamme de 0 a 4
+| ..^ | Infixe | Construction de gammes |  0..^5  | Crée une gamme de 0 à 4
 
-| ^.. | Infixe | Construction de gammes |  0^..5  | Crée une gamme de 1 a 5
+| ^.. | Infixe | Construction de gammes |  0^..5  | Crée une gamme de 1 à 5
 
-| \^..^ | Infixe | Construction de gammes |  0\^..^5  | Crée une gamme de 1 a 4
+| \^..^ | Infixe | Construction de gammes |  0\^..^5  | Crée une gamme de 1 à 4
 
 | ^ | Préfixe | Construction de gammes |  ^5  | Comme 0..^5 Crée une gamme de 0 a 4
 
@@ -367,14 +388,14 @@ say "Salut $nom";                #Salut François Pinon
 NOTE: Pour la liste complète des opérateurs, y compris leur priorité: http://doc.perl6.org/language/operators
 
 == Variables
-Les variables sont classées en 3 catégories: Scalaires, Tableaux et Hachages.
+Les variables sont classées en 4 catégories: Scalaires, Tableaux, Hachages et code.
 
 Un *sigil* (Signe en Latin) est un caractère utilisé comme préfixe pour classer les variables.
 
 * `$` est utilisé pour les scalaires
 * `@` est utilisé pour les tableaux
 * `%` est utilisé pour les tables de hachage.
-
+* '&' est utilisé pour du code
 === Scalaire
 Un scalaire contient une valeur ou une référence.
 
@@ -525,7 +546,7 @@ my @tableau[3];
 Index 3 for dimension 1 out of range (must be 0..2)
 ----
 
-==== Tableau à plusieurs dimmensions
+==== Tableau à plusieurs dimensions
 Les tableaux vus précédemment ne sont qu'à une dimension. +
 Heureusement, nous pouvons en Perl6 déclarer des tableaux de dimensions multiples.
 
@@ -593,6 +614,50 @@ La capitale de la France est: Paris
 On peut accéder à la valeur particulière d'un hachage en spécifiant sa clef, comme suit: `%hachage<clef>`
 
 NOTE: Pour la référence complète des hachages: http://doc.perl6.org/type/Hash
+
+== Code
+
+`sub bonjour { 'Bonjour' }`; et `my &bonjour = { 'Bonjour' }` sont similaires.
+Tous les deux définissent définissent la variable `&bonjour` avec du code
+qui, lorsque exécuté, retourne la chaîne `'bonjour'`.
+Dans le premier cas, la variable est définie dans le paquetage courant et initialiséé
+avec une `Sub`. De plus, elle ne peut être redéfinie, c'est une constante.
+Dans le second cas, la variable est définie dans le bloc courant et initialisée.
+
+On voit que dans la définition d'une routine via le mot-clé `sub`, le nom de la
+routine apparaît sans sigil. De même l'appel de `bonjour` ne prend pas d'argument.
+Avec le sigil, la routine n'est pas appelée, c'est elle-même qui est retournée,
+ce qui est très utile dans la programmation fonctionnelle, comme pour passer la
+fonction qui définit le critère de tri pour une fonction de tri.
+
+Voir dans la section ci-dessous pour la notion de type et la méthode '.WHAT'.
+
+[source,perl6]
+----
+sub bonjour { 'Bonjour' }       # définit la fonction &bonjour
+bonjour;                        # appelle &bonjour qui affiche Bonjour
+say bonjour.WHAT;               # affiche (Str), la valeur retournée par l'appel
+say &bonjour.WHAT;              # affiche (Sub), le type de &bonjour
+----
+
+[source,perl6]
+----
+my &bonjour = { 'Bonjour' };   # définit le bloc et l'affacte à la variable &bonjour
+bonjour;                       # appelle &bonjour qui affiche Bonjour
+say bonjour.WHAT;              # affiche (Str), la valeur retournée par l'appel
+say &bonjour.WHAT;             # affiche (Sub), le type de &bonjour
+---
+
+Pour conclure notre introduction sur les sigils, disons qu'ils documentent le rôle
+de la valeur contenue, qu'ils permettent l'interpolation dans une chaîne sans syntaxe
+particulière.
+
+Dans le cas de `.WHAT` ci-dessous, le point n'est pas vraiment un sigil puisqu'une
+méthode est du code qu'on ne désigne pas directement par une variable.
+Reprendre dans la documentation le point utilisé pour l'appel d'une méthode est
+un moyen pratique pour désigner une méthode. On parle de pseudo-sigil puisqu'il a
+le même intérêt documentaire qu'un sigil.
+
 
 === Types
 Dans les exemples précédents, on n'a pas précisé quel type de valeurs les variables peuvent tenir.
@@ -680,7 +745,7 @@ say $var2.WHAT;   # (Any)
 ----
 
 Le type d'une variable contenant une valeur est corrélée à sa valeur. +
-Le type d'une variable vide fortement déclarée est le type avec lequel elle a été déclarée. +
+Le type d'une variable vide déclarée statiquement est le type avec lequel elle a été déclarée. +
 Le type d'une variable vide qui n'a pas été déclarée fortement est `(Any)` +
 Pour vider la valeur d'une variable, vous pouvez lui affecter `Nil`.
 
@@ -764,7 +829,7 @@ Cannot assign to an immutable value
 ----
 
 [source,perl6]
-.Une variable peut être également liée a une autre:
+.Une variable peut être également liée à une autre:
 ----
 my $a;
 my $b := $a;
@@ -774,11 +839,12 @@ say $b;
 
 NOTE: Pour plus d'informations sur les variables, rendez-vous à http://doc.perl6.org/language/variables
 
-== Fonctions normales et fonctions mutatrices
+== Routines et méthodes pure
 
-Il est important de différencier entre les fonctions normales et les fonctions mutatrices. +
-Les fonctions normales ne changent pas l'état initial de l'objet. +
-Les fonctions mutatrices modifient l'état de l'objet.
+Elle sont déclarées avec le trait C<is pure> qui signifie qu'elles n'ont pas
+d'effet de bord. Dams le cas des méthodes, cela signifie entre autres que l'object invocant
+n'est pas modifiée. Une routine pure correspond au concept mathématique de fonction.
+
 
 [source,perl6,linenums]
 .`Script`
@@ -804,15 +870,15 @@ say @numeros;      #4
 ----
 
 .Explication
-`.push` est une fonction mutatrice, elle change l'état du tableau (#1)
+`.push` n'est pas une méthode pure, elle change l'état du tableau (#1)
 
-`.sort` est une fonction normale, elle retourne un tableau trié, mais ne modifie pas l'état initial du tableau:
+`.sort` est pure, elle retourne un tableau trié, mais ne modifie pas l'état initial du tableau:
 
 * (#2) démontre le retour d'un tableau trié
 
 * (#3) démontre que le tableau initial reste non modifie.
 
-Afin de forcer une fonction normale à agir comme une fonction mutatrice, nous pouvons utiliser `.=` a la place de `.` (#4) (Ligne 9 du script)
+Si l'on veut affecter à l'invocant le résultat de l'appel la méthode, on utilise l'opérateur `.=` à  la place de `.` (#4) (Ligne 9 du script)
 
 == Structures conditionnelles et boucles
 Perl 6 possède une multitude de structures conditionnelles et structures de boucles.
@@ -933,7 +999,11 @@ Notez que nous avons créé une variable d'itération `$element` afin d'effectue
 
 === given
 
-`given` est l'équivalent Perl 6 de l'instruction switch dans d'autres langues.
+`given` est l'équivalent Perl 6 de l'instruction switch dans d'autres langages en
+beaucoup plus puissant.
+A l'intérieur du bloc, `$_` désigne la valeur passé à `given`.
+`when expression`, où `expression` est une expression test si `$_ ~~ expression`,
+ce qui est équivalent à `expression.ACCEPTS($_)`
 
 [source,perl6]
 ----
@@ -1028,7 +1098,7 @@ say "Cher $nom bienvenue à Perl 6";
 ----
 
 === Exécution de commandes Shell
-Deux routines peuvent être utilisés pour exécuter des commandes shell:
+Deux routines peuvent être utilisées pour exécuter des commandes shell:
 
 * `run` Exécute une commande externe sans impliquer le Shell
 
@@ -1157,7 +1227,7 @@ dis-bonjour "Paula";
 === Multi routines
 Il est possible de définir plusieurs routines ayant le même nom, mais différentes signatures.
 Lorsque la routine est appelée, l'environnement d'exécution décidera quelle version utiliser en fonction du nombre et du type des arguments fournis.
-Ce type de routines est défini de la même manière que les routines normales sauf que nous utilisons le mot-clé 'multi' a la place de 'sub'.
+Ce type de routines est défini de la même manière que les routines normales sauf que nous utilisons le mot-clé 'multi' à la place de 'sub'.
 
 [source,perl6]
 ----
@@ -1693,11 +1763,11 @@ say $françois.age;
 $françois.age = 23;
 say $françois.age;
 ----
-Par défaut, tous les attribut sont déclarés en _lecture seule_ mais vous pouvez aussi les déclarer explicitement avec `is readonly`
+Par défaut, tous les attributs sont déclarés en _lecture seule_ mais vous pouvez aussi les déclarer explicitement avec `is readonly`
 
-=== Hérirage
+=== Héritage
 ==== Introduction
-L'*héritage* est un autre concept de la programmation orientéé objet.
+L'*héritage* est un autre concept de la programmation orientée objet.
 
 Quand nous définissons des classes, on se rend compte que ces classes ont certains attributs/méthodes communs. +
 Devons nous dupliquer le code. +
@@ -1707,7 +1777,7 @@ Disons que nous voulons créer deux classes, une pour les humains et une pour le
 Les Humains ont deux attributs: nom et age. +
 Les Employés ont 4 attributs: nom, age, boite et salaire
 
-On pourrait être tempté de définir les classes comme suit:
+On pourrait être tenté de définir les classes comme suit:
 [source,perl6]
 ----
 class Humain {
@@ -1911,9 +1981,10 @@ Réelles vs Prévisionelles:
 ----
 
 === Rôles
-Les *rôles* sont assimilables à des classes, en ce sens qu'elles sont une collection de classes et de méthodes.
+Les *rôles* peuvent être compris comme des classes abstraites. Si les méthodes sont déclarées mais
+on définies, on peut voir un rôle comme un interface. nt une collection de classes et de méthodes.
 
-Les rôles sont déclarés avec le mot-clef `role`, les classes qui veulent implémenter un rôle peuvent le faire en utilisant le mot-clef `does`.
+Les rôles sont déclarés avec le mot-clef `role`, les classes qui veulent mixer un rôle peuvent le faire en utilisant le mot-clef `does`.
 
 .Ré-écrivons l'exemple d'héritage multiple en utilisant des rôles:
 [source,perl6]
@@ -2051,7 +2122,7 @@ Il renvoie _Vrai_ si l'objet correspond à sa classe de création ou à une de c
 == Gestion des exceptions
 
 === Capture des Exceptions
-Les *exceptions* son un comportement particulier qui intervient quand quelquechose se passe mal à l'execution. +
+Les *exceptions*  interviennet quand quelque chose se passe mal à l'execution. +
 On dit que les exceptions sont _lancées_.
 
 Le script ci dessous, qui s'exécute correctement:
@@ -2455,7 +2526,7 @@ if $email ~~ $regex {
 `<:L>` correspond à une lettre +
 `<:L>+` correspond à une lettre ou plus +
 `\.` correspond à un caractère [point] +
-`\@` correspond a un caractère [arobase] +
+`\@` correspond à un caractère [arobase] +
 `<:L+:N>` correspond à une lettre ou un chiffre +
 `<:L+:N>+` correspond à une lettre ou un chiffre, plusieurs fois +
 
@@ -2497,7 +2568,7 @@ Une regex nommée peut être appelée en utilisant la syntaxe suivante: `<nom-de
 NOTE: Pour plus de détails sur les regexes, voir http://doc.perl6.org/language/regexes
 
 == Modules Perl 6
-Perl 6 est un langage à but générique. Il peut être utilisé pour remplir plusieurs taches, incluant:
+Perl 6 est un langage à but générique. Il peut être utilisé pour remplir plusieurs tâches, incluant:
 traitement d'un texte, image, web, bases de données, protocoles réseau etc.
 
 La réusabilité est un concept très important qui permet aux programmeurs ne ne pas réinventer la roue à chaque nouvelle tache.
@@ -2617,10 +2688,10 @@ say $Δ;
 == Parallélisme, Concurrence et Asynchronisme
 
 === Parallélisme
-En temps normal, toutes les taches d'un programme s'effectuent de façon séquencielle.
+En temps normal, toutes les taches d'un programme s'effectuent de façon séquentielle.
 Ce n'est pas un grand problème si le temps d'exécution n'est pas crucial pour vous.
 
-Perl6 intègre de façon naturelle le lancement de taches en paralléle. +
+Perl6 intègre de façon naturelle le lancement de tâches en paralléle. +
 A ce point, il est important de considérer que le parallélisme peut vouloir dire 2 choses:
 
 * *Parallélisme des taches*: Deux (ou plus) expressions indépendantes lancées en paralléle.
