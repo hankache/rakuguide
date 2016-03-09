@@ -2116,7 +2116,7 @@ L'introspection est facilitée par:
 
 * `.^parents` renvoie toutes les classes parentes auxquelles appartient l'objet.
 
-* `~~` est appelé l'opérateur de correspondance intelligent (smart-match).
+* `~~` est appelé l'opérateur de match intelligent (smart-match).
 Il renvoie _Vrai_ si l'objet correspond à sa classe de création ou à une de celles dont elle a hérité.
 
 == Gestion des exceptions
@@ -2239,10 +2239,10 @@ my Int $age = 21;
 X::AdHoc.new(payload => 'Erreur !').throw;
 ----
 
-Les exceptions ad-hoc sont lancées en utilisant le routine `die` suivit du message de l'exception.
+Les exceptions ad-hoc sont lancées en utilisant le routine `die` suivi du message de l'exception.
 
-Les exceptions Typées sont des objets, d'où l'utilisation du constructeur `.new()` dans l'exemple ci-dessus. +
-Toutes les exceptions déscendent de la classe `X`, quelques exemples ci-dessous: +
+Les exceptions typées sont des objets, d'où l'utilisation du constructeur `.new()` dans l'exemple ci-dessus. +
+Toutes les exceptions descendent de la classe `X`, quelques exemples ci-dessous: +
 `X::AdHoc` est le type le plus simple d'exception +
 `X::IO` est lié aux erreurs IO (Entrée/sortie) +
 `X::OS` est lié aux erreurs OS (Système) +
@@ -2252,32 +2252,90 @@ NOTE: Pour une liste complète des types d'exceptions et une liste de leurs mét
 
 
 == Expressions Régulières
-Une expression régulières, ou _regex_ est une séquence de caractères utilisée pour le filtrage par motif. +
+Une expression régulière, ou _regex_ est une séquence de caractères utilisée pour le filtrage par motif. +
 La méthode la plus simple pour concevoir ce système, est d'y penser comme un motif qui peut être répété/isolé/extrait.
+Le type d'une regex est Regex. Une regex est utilisé  via l'opérateur smartmatch `~~` pour reconnaître des motifs, et
+éventuellement des sous-motifs dans une chaîne. Si cette reconnaissance réussie, l'expression de smartmatch retourne
+une objet de type `Match` sinon retourne `Nil`.
+Par facilité, on parlera de match pour l'opération de reconnaissance ou, en cas de
+succès, son résultat. Et on utilisera le néologisme matché pour l'adjectif correspondant.
+le résultat du dernier match est accessible dans la variable spéciale `$/`. Il est donc de type `Match` ou `Nil`.
+
+
+
+Dans les exemples ci-dessous l'opérateur de match intelligent (smart-match) `~~` est utilisé
+pour vérifier si une chaîne de caractères (ensoleillement) contient le mot (soleil). +
+"ensoleillement" est comparé à la regex `/ soleil /`.
+Les espaces, sauf si spécifiés comme requis explicitement, ne sont pas pris en compte: `m/soleil/` and `m/ soleil /` sont identiques.
+
+
 
 [source,perl6]
 ----
-if 'ensoleillement' ~~ m/ soleil / {
+my $regex = rx/ soleil /;
+if 'ensoleillement' ~~ $rx {
     say "ensoleillement contient le mot soleil";
 }
 ----
 
-Dans cet exemple l'opérateur de correspondance intelligent (smart-match) `~~` est utilisé pour vérifier si une chaîne de caractères (ensoleillement) contient le mot (soleil). +
-"ensoleillement" est comparé à la regex `m/ soleil /`
 
-=== Définition d'une regex
+[source,perl6]
+----
+if 'ensoleillement' ~~ / soleil / {
+    say "ensoleillement contient le mot soleil";
+}
+----
 
-Une expression régulière peut être définie comme suit:
+Si la chaîne à reconnaître est `$_`, on peut se passer de l'opétateur smartmatch
 
-* `/soleil/`
+[source,perl6]
+----
+my $_ = 'ensoleillement';
+my $regex = rx/ soleil /;
+if  m/$rx/ {
+    say "ensoleillement contient le mot soleil";
+}
+----
 
-* `m/soleil/`
 
-* `rx/soleil/`
+[source,perl6]
+----
+my $_ = 'ensoleillement';
+if  m/ soleil / {
+    say "ensoleillement contient le mot soleil";
+}
+----
 
-Les espaces, sauf si spécifiés comme requis explicitement, ne sont pas pris en compte: `m/soleil/` and `m/ soleil /` sont identiques.
 
-=== Correspondance par caractères
+=== Quelque points de syntaxe
+
+On peut généralement omettre le `m` dans `m/soleil/` ou le `rx` dans `rx/soleil/` car le contexte permet de
+savoir si il s'agit d'un match ou d'une regex.
+
+[source,perl6]
+----
+$_ = 'ensoleillement';
+my $regex = /soleil/;
+say $/ if /soleil/;
+/soleil/              # contexte poubelle, expression interprétée comme un match
+---
+
+
+Alors pourquoi préfixer par `m` ou `rx`?
+Le comportement d'une regex ou un match littéral peut ëtre controllé par un ou plusieurs adverbes
+qui prennent place aprèls le `m` ou `rx`. Et non en fin d'expression contrairement à Perl 5.
+Ci-dessous deux match et une regex insensitif à la casse grâce à l'adverbe `:ignore'  et son synonyme `:i`.
+
+[source,perl6]
+----
+m:ignore/soleil/
+m:i/soleil/
+rx:i/soleil/
+---
+
+
+
+===  caractères littéraux
 Les caractères alphanumériques et le tiret bas `_` sont utilisés tels quels. +
 Tous les autres caractères doivent être "échappés" en utilisant la Barre oblique inversée, ou mis entre guillemets (simples ou doubles).
 
@@ -2368,22 +2426,25 @@ if "Albert-Ebasque" ~~ / <:Pd> / {
 ----
 
 === Métacaractères
-Les métacaractères (Wildcards) peuvent également être utilisées dans les regex.
+Dans une regex, tout caractère ni alphanumérique, ni tiret-bas est potentiellement un métacaractère,
+c'est à dire qu'il n'est pas interprété de manière littérale.
+Comme on l'a déjà vu, les métacaractères doivent être échappés pour être inteprétés de manière
+littérale.
 
 Le point `.` signifie n'importe quel caractère unique.
 
 [source,perl6]
 ----
 if 'abc' ~~ m/ a.c / {
-    say "Correspondance";
+    say "match";
 }
 if 'a2c' ~~ m/ a.c / {
-    say "Correspondance";
+    say "match";
 }
 if 'ac' ~~ m/ a.c / {
-    say "Correspondance";
+    say "match";
   } else {
-    say "Pas de Correspondance";
+    say "Pas de match";
 }
 ----
 
@@ -2395,40 +2456,40 @@ Le point d'interrogation `?` signifie zéro ou une fois.
 [source,perl6]
 ----
 if 'ac' ~~ m/ a?c / {
-    say "Correspondance";
+    say "Match";
   } else {
-    say "Pas de Correspondance";
+    say "Pas de Match";
 }
 if 'c' ~~ m/ a?c / {
-    say "Correspondance";
+    say "Match";
   } else {
-    say "Pas de Correspondance";
+    say "Pas de Match";
 }
 ----
 
-L'étoile `*` signifie zéro ou de multiples fois.
+L'étoile `*` signifie zéro ou plusieurs fois.
 
 [source,perl6]
 ----
 if 'az' ~~ m/ a*z / {
-    say "Correspondance";
+    say "Match";
   } else {
-    say "Pas de Correspondance";
+    say "Pas de Match";
 }
 if 'aaz' ~~ m/ a*z / {
-    say "Correspondance";
+    say "Match";
   } else {
-    say "Pas de Correspondance";
+    say "Pas de Match";
 }
 if 'aaaaaaaaaaz' ~~ m/ a*z / {
-    say "Correspondance";
+    say "Match";
   } else {
-    say "Pas de Correspondance";
+    say "Pas de Match";
 }
 if 'z' ~~ m/ a*z / {
-    say "Correspondance";
+    say "Match";
   } else {
-    say "Pas de Correspondance";
+    say "Pas de Match";
 }
 ----
 
@@ -2437,38 +2498,37 @@ Le `+` signifie au moins une fois.
 [source,perl6]
 ----
 if 'az' ~~ m/ a+z / {
-    say "Correspondance";
+    say "Match";
   } else {
-    say "Pas de Correspondance";
+    say "Pas de Match";
 }
 if 'aaz' ~~ m/ a+z / {
-    say "Correspondance";
+    say "Match";
   } else {
-    say "Pas de Correspondance";
+    say "Pas de Match";
 }
 if 'aaaaaaaaaaz' ~~ m/ a+z / {
-    say "Correspondance";
+    say "Match";
   } else {
-    say "Pas de Correspondance";
+    say "Pas de Match";
 }
 if 'z' ~~ m/ a+z / {
-    say "Correspondance";
+    say "Match";
   } else {
-    say "Pas de Correspondance";
+    say "Pas de Match";
 }
 ----
 
-=== Résultats de correspondance
-Quand la mise en correspondance avec une regex est positive,
-le résultat est stocké dans la variable spéciale `$/`
+=== match réussi
+Comme déjà dit, en cas de match réussi, le résultat est stocké dans la variable spéciale `$/`
 
 [source,perl6]
 .Script
 ----
 if 'Rakudo pour Perl 6 est un compilateur' ~~ m/:s Perl 6/ {
-    say "La correspondance est: " ~ $/;
-    say "La chaîne avant la correspondance est: " ~ $/.prematch;
-    say "La chaîne après la correspondance est: " ~ $/.postmatch;
+    say "Le match est: " ~ $/;
+    say "La chaîne avant le match est: " ~ $/.prematch;
+    say "La chaîne après le match est: " ~ $/.postmatch;
     say "La chaîne correspondante commence à la position: " ~ $/.from;
     say "La chaîne correspondante finit à la position: " ~ $/.to;
 }
@@ -2476,9 +2536,9 @@ if 'Rakudo pour Perl 6 est un compilateur' ~~ m/:s Perl 6/ {
 
 .Sortie
 ----
-La correspondance est: Perl 6
-La chaîne avant la correspondance est: Rakudo pour
-La chaîne après la correspondance est:  est un compilateur
+Le match est: Perl 6
+La chaîne avant le match est: Rakudo pour
+La chaîne après le match est:  est un compilateur
 La chaîne correspondante commence à la position: 12
 La chaîne correspondante finit à la position: 18
 ----
@@ -2486,10 +2546,10 @@ La chaîne correspondante finit à la position: 18
 .Explication
 `$/` renvoie un _Objet de Correspondance_ (Match Object), ie: la chaîne qui correspond à la regex +
 Les méthodes suivantes peuvent être appelées sur le l'_Objet de Correspondance_: +
-`.prematch` renvoie la chaîne qui précède la correspondance. +
-`.postmatch` renvoie la chaîne qui suit la correspondance. +
-`.from` renvoie la position de départ de la correspondance. +
-`.to` renvoie la position de départ de la correspondance. +
+`.prematch` renvoie la chaîne qui précède le match. +
+`.postmatch` renvoie la chaîne qui suit le match. +
+`.from` renvoie la position de départ de le match. +
+`.to` renvoie la position de départ de le match. +
 
 TIP: Par défaut le caractère espace n'est pas pris en compte. +
 Si nous voulons faire une correspondance avec une regex contenant un espace nous devons le définir explicitement. +
