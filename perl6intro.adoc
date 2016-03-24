@@ -923,7 +923,7 @@ Negation in Perl 6 is done using either `!` or `not`.
 
 === with
 
-`with` behave like the `if` statement, but checks if the variable is defined.
+`with` behaves like the `if` statement, but checks if the variable is defined.
 
 [source,perl6]
 ----
@@ -1028,7 +1028,7 @@ say 'Hello Sir.';
 will be written on 2 separate lines.
 
 ==== print
-`print` on the other hand behave like `say` but doesn't add a new line.
+`print` on the other hand behaves like `say` but doesn't add a new line.
 
 Try replacing `say` with `print` and compare both results.
 
