@@ -64,17 +64,19 @@ Implementations that pass the specification test suite are considered Perl 6.
 
 . Install Rakudo: Type the following command in the terminal `rakudobrew build moar`
 
-. Install Panda: Type the following command in the terminal `rakudobrew build-panda`
+. Install Panda: Type the following command in the terminal `rakudobrew build panda`
 
 .OSX
-Follow the same steps listed for installing on Linux +
-OR +
-Install with homebrew: `brew install rakudo-star`
+Three options are available:
+
+* Follow the same steps listed for installing on Linux
+* Install with homebrew: `brew install rakudo-star`
+* Download the latest installer (file with .dmg extension) from http://rakudo.org/downloads/star/
 
 .Windows
-. Download the latest installer (file with .MSI extension) from http://rakudo.org/downloads/star/ +
+. Download the latest installer (file with .msi extension) from http://rakudo.org/downloads/star/ +
 If your system architecture is 32-bit, download the x86 file; if it's 64-bit, download the x86_64 file.
-. After installation add C:\rakudo\bin to your PATH
+. After installation make sure `C:\rakudo\bin` is in the PATH
 
 .Docker
 . Get the official Docker image `docker pull rakudo-star`
@@ -313,7 +315,15 @@ The below table lists the most commonly used operators.
 
 <| "Hello " x 3  <| Hello Hello Hello
 
-| ~~ | Infix | Smart match |   |
+.5+| ~~ .5+| Infix .5+| Smart match | 2 ~~ 2  | True
+
+<| 2 ~~ Int <| True
+
+<| "Perl 6" ~~ "Perl 6" <| True
+
+<| "Perl 6" ~~ Str <| True
+
+<| "enlightenment" ~~ /light/ <| ｢light｣
 
 .2+| ++ | Prefix | Increment | my $var = 2; ++$var;  | Increment the variable by 1 and return the result `3`
 
@@ -538,6 +548,8 @@ my @tbl[3;2];
 This array is two-dimensional.
 The first dimension can have a maximum of 3 values and the second dimension a maximum of 2 values.
 
+Think of it as a 3x2 grid.
+
 [source,perl6]
 ----
 my @tbl[3;2];
@@ -548,6 +560,17 @@ my @tbl[3;2];
 @tbl[2;0] = 3;
 @tbl[2;1] = "z";
 say @tbl
+----
+
+----
+[[1 x] [2 y] [3 z]]
+----
+
+.Visual representation of the array:
+----
+[1 x]
+[2 y]
+[3 z]
 ----
 
 NOTE: For the complete Array reference, see http://doc.perl6.org/type/Array
@@ -851,7 +874,7 @@ In order to enforce a function to act as a mutator, we use `.=` instead of `.` (
 Perl 6 has a multitude of conditionals and looping constructs.
 
 === if
-The code runs only if the condition has been met.
+The code runs only if the condition has been met, or in other words the expression evaluates to `True`.
 
 [source,perl6]
 ----
@@ -1045,7 +1068,7 @@ $name=get;
 say "Dear $name welcome to Perl 6";
 ----
 
-When the above code runs, the terminal will be waiting for you to input your name.
+When the above code runs, the terminal will be waiting for you to input your name and hit [Enter].
 Subsequently, it will greet you.
 
 ==== prompt
@@ -1065,17 +1088,27 @@ Two subroutines can be used to run shell commands:
 
 * `run` Runs an external command without involving a shell
 
-* `shell` Runs a command through the system shell. All shell meta characters are interpreted by the shell, including pipes, redirects, environment variable substitutions and so on
+* `shell` Runs a command through the system shell. It is platform and shell dependent.
+All shell meta characters are interpreted by the shell, including pipes, redirects, environment variable substitutions and so on.
 
 [source,perl6]
+.Run this if you're on Linux/OSX
 ----
 my $name = 'Neo';
 run 'echo', "hello $name";
 shell "ls";
 ----
-`echo` and `ls` are common shell keywords. +
+
+[source,perl6]
+.Run this if you're on Windows
+----
+shell "dir";
+----
+`echo` and `ls` are common shell keywords on Linux: +
 `echo` prints text to the terminal (the equivalent of `print` in Perl 6) +
 `ls` lists all files and folders in the current directory
+
+`dir` is the equivalent of `ls` on Windows.
 
 
 === File I/O
@@ -1151,6 +1184,10 @@ say "folder123".IO.f;
 `IO.e` checks if the directory/file exists. +
 `IO.f` checks if the path is a file. +
 `IO.d` checks if the path is a directory.
+
+WARNING: Windows users can use `/` or `\\` to define directories +
+`C:\\rakudo\\bin` +
+`C:/rakudo/bin` +
 
 NOTE: For more info on I/O, see http://doc.perl6.org/type/IO
 
@@ -1323,7 +1360,7 @@ The above example can be written as following, taking advantage of *method chain
 
 [source,perl6]
 ----
-my @array = <7 8 9 0 1 2 4 3 5 6 7 8 9 >;
+my @array = <7 8 9 0 1 2 4 3 5 6 7 8 9>;
 my @final-array = @array.unique.sort.reverse;
 say @final-array;
 ----
@@ -1335,7 +1372,7 @@ The *feed operator*, called _pipe_ in some functional programming languages, yie
 [source,perl6]
 .Forward Feed
 ----
-my @array = <7 8 9 0 1 2 4 3 5 6>;
+my @array = <7 8 9 0 1 2 4 3 5 6 7 8 9>;
 @array ==> unique()
        ==> sort()
        ==> reverse()
@@ -1356,7 +1393,7 @@ As you can see the flow of the method calls is top-down.
 [source,perl6]
 .Backward Feed
 ----
-my @array = <7 8 9 0 1 2 4 3 5 6>;
+my @array = <7 8 9 0 1 2 4 3 5 6 7 8 9>;
 my @final-array-v2 <== reverse()
                    <== sort()
                    <== unique()
@@ -2743,11 +2780,11 @@ Both operations applied to each array do not depend on each other.
 my @array1 = (0..49999);
 my @array2 = (2..50001);
 
-my $promise1 = start @array1.map( {$_ + 1} );
-my $promise2 = start @array2.map( {$_ - 1} );
+my @promise1 = start @array1.map( {is-prime($_ + 1)} );
+my @promise2 = start @array2.map( {is-prime($_ - 1)} );
 
-my @result1 = await $promise1;
-my @result2 = await $promise2;
+my @result1 = await @promise1;
+my @result2 = await @promise2;
 
 say @result1 == @result2;
 
