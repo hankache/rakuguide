@@ -289,9 +289,9 @@ The below table lists the most commonly used operators.
 
 | lcm | Infix | Least common multiple | 6 lcm 9 | 18
 
-| == | Infix | Equal | 9 == 7  | False
+| == | Infix | Numeric equal | 9 == 7  | False
 
-| != | Infix | Not equal | 9 != 7  | True
+| != | Infix | Numeric not equal | 9 != 7  | True
 
 | < | Infix | Less than | 9 < 7  | False
 
@@ -2756,7 +2756,7 @@ my @array2 = (2..50001);
 my @result1 = @array1.map( {is-prime($_ + 1)} );
 my @result2 = @array2.map( {is-prime($_ - 1)} );
 
-say @result1 == @result2;
+say @result1 eqv @result2;
 
 say now - INIT now;
 ----
@@ -2780,13 +2780,13 @@ Both operations applied to each array do not depend on each other.
 my @array1 = (0..49999);
 my @array2 = (2..50001);
 
-my @promise1 = start @array1.map( {is-prime($_ + 1)} );
-my @promise2 = start @array2.map( {is-prime($_ - 1)} );
+my $promise1 = start @array1.map( {is-prime($_ + 1)} ).eager;
+my $promise2 = start @array2.map( {is-prime($_ - 1)} ).eager;
 
-my @result1 = await @promise1;
-my @result2 = await @promise2;
+my @result1 = await $promise1;
+my @result2 = await $promise2;
 
-say @result1 == @result2;
+say @result1 eqv @result2;
 
 say now - INIT now;
 ----
