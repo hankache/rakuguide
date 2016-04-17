@@ -61,7 +61,7 @@ Perl 6 ist multi-paradigmatisch. Es unterstützt prozedurales, objektorientierte
 
 . Installiere Rakudo: Gebe dieses Kommando in ein Terminalfenster ein `rakudobrew build moar`
 
-. Installiere Panda: Gebe dieses Kommando in ein Terminalfenster ein `rakudobrew build-panda`
+. Installiere Panda: Gebe dieses Kommando in ein Terminalfenster ein `rakudobrew build panda`
 
 .OSX
 Folgen Sie der Anleitung für Linux +
@@ -536,6 +536,11 @@ my @tbl[3;2];
 @tbl[2;1] = "z";
 say @tbl
 ----
+
+----
+[[1 x] [2 y] [3 z]]
+----
+
 
 NOTE: Für die vollständige Referenz zu Arrays, siehe http://doc.perl6.org/type/Array
 
@@ -2703,7 +2708,7 @@ my @array2 = (2..50001);
 my @ergebnis1 = @array1.map( {is-prime($_ + 1)} );
 my @ergebnis2 = @array2.map( {is-prime($_ - 1)} );
 
-say @ergebnis1 == @ergebnis2;
+say @ergebnis1 eqv @ergebnis2;
 
 say now - INIT now;
 ----
@@ -2727,13 +2732,13 @@ Beide Operationen werden jeweils auf ihr eigenes Array angewendet, und sind nich
 my @array1 = (0..49999);
 my @array2 = (2..50001);
 
-my $versprechen1 = start @array1.map( {$_ + 1} );
-my $versprechen2 = start @array2.map( {$_ - 1} );
+my $versprechen1 = start @array1.map( {is-prime($_ + 1)} ).eager;
+my $versprechen2 = start @array2.map( {is-prime($_ - 1)} ).eager;
 
 my @ergebnis1 = await $versprechen1;
 my @ergebnis2 = await $versprechen2;
 
-say @ergebnis1 == @ergebnis2;
+say @ergebnis1 eqv @ergebnis2;
 
 say now - INIT now;
 ----

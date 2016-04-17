@@ -62,7 +62,7 @@ Les implémentations qui passent la suite de tests sont considérées comme Perl
 
 . Installer Rakudo: Tapez la commande suivante dans le terminal `rakudobrew build moar`
 
-. Installer Panda: Tapez la commande suivante dans le terminal `rakudobrew build-panda`
+. Installer Panda: Tapez la commande suivante dans le terminal `rakudobrew build panda`
 
 .OSX
 Suivez les mêmes étapes indiquées pour l'installation sur Linux +
@@ -546,6 +546,11 @@ my @multi-tab[3;2];
 @multi-tab[2;1] = "z";
 say @multi-tab
 ----
+
+----
+[[1 x] [2 y] [3 z]]
+----
+
 
 NOTE: Pour la référence complète des tableaux: http://doc.perl6.org/type/Array
 
@@ -2689,7 +2694,7 @@ my @tab2 = (2..50001);
 my @résultat1 = @tab1.map( {is-prime($_ + 1)} );
 my @résultat2 = @tab2.map( {is-prime($_ - 1)} );
 
-say @résultat1 == @résultat2;
+say @résultat1 eqv @résultat2;
 
 say now - INIT now;
 ----
@@ -2713,13 +2718,13 @@ Les opérations effectuées sur chaque tableau ne dépendent pas l'une de l'autr
 my @tab1 = (0..49999);
 my @tab2 = (2..50001);
 
-my $promesse1 = start @tab1.map( {$_ + 1} );
-my $promesse2 = start @tab2.map( {$_ - 1} );
+my $promesse1 = start @tab1.map( {is-prime($_ + 1)} ).eager;
+my $promesse2 = start @tab2.map( {is-prime($_ - 1)} ).eager;
 
 my @résultat1 = await $promesse1;
 my @résultat2 = await $promesse2;
 
-say @résultat1 == @résultat2;
+say @résultat1 eqv @résultat2;
 
 say now - INIT now;
 ----
