@@ -67,10 +67,11 @@ Implementations that pass the specification test suite are considered Perl 6.
 . Install Panda: Type the following command in the terminal `rakudobrew build panda`
 
 .OSX
-Three options are available:
+Four options are available:
 
 * Follow the same steps listed for installing on Linux
 * Install with homebrew: `brew install rakudo-star`
+* Install with MacPorts: `sudo port install rakudo`
 * Download the latest installer (file with .dmg extension) from http://rakudo.org/downloads/star/
 
 .Windows
