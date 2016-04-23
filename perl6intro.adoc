@@ -741,7 +741,7 @@ The `my` declarator give the variable *lexical* scope.
 In other words, the variable will only be accessible in the same block it was declared.
 
 A block in Perl 6 is delimited by `{ }`.
-If no block is found, the variable will be available in the whole Perl script.
+If no block is found, the variable will be available in the whole Perl 6 script.
 
 [source,perl6]
 --------------------------------
