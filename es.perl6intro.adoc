@@ -358,7 +358,7 @@ La siguiente tabla muestra los operadores más utilizados.
 
 |===
 
-NOTA: En http://doc.perl6.org/language/operators tienes una lista completa de los operadores, incluyendo su precedencia.
+NOTE: En http://doc.perl6.org/language/operators tienes una lista completa de los operadores, incluyendo su precedencia.
 
 == Variables
 Las variables en Perl 6 se reparten en tres categorías: Escalares, Arrays y Hashes.
@@ -400,7 +400,7 @@ JUAN DE DIOS
 soiD eD nauJ
 ----
 
-NOTA: Consulta http://doc.perl6.org/type/Str para ver una lista completa de métodos de texto.
+NOTE: Consulta http://doc.perl6.org/type/Str para ver una lista completa de métodos de texto.
 
 [source,perl6]
 .Enteros
@@ -413,7 +413,7 @@ say $edad.is-prime;
 True
 ----
 
-NOTA: Consulta http://doc.perl6.org/type/Int para ver una lista completa de los métodos disponibles para enteros.
+NOTE: Consulta http://doc.perl6.org/type/Int para ver una lista completa de los métodos disponibles para enteros.
 
 [source,perl6]
 .Números Racionales
@@ -430,7 +430,7 @@ say $edad.nude;
 (23 10)
 ----
 
-NOTA: Consulta http://doc.perl6.org/type/Rat para ver una lista completa de los métodos disponibles para números racionales.
+NOTE: Consulta http://doc.perl6.org/type/Rat para ver una lista completa de los métodos disponibles para números racionales.
 
 === Arrays
 Los Arrays son listas que contienen varios valores.
@@ -554,7 +554,7 @@ say @tbl
 [3 z]
 ----
 
-NOTA: Consulta http://doc.perl6.org/type/Array para tener la referencia completa sobre Arrays.
+NOTE: Consulta http://doc.perl6.org/type/Array para tener la referencia completa sobre Arrays.
 
 === Hashes
 [source,perl6]
@@ -597,7 +597,7 @@ La capital de Francia es: París
 `.values` devuelve una lista con todos los valores. +
 Podemos acceder a un valor concreto del hash indicando su clave `%hash<clave>`
 
-NOTA: Consulta http://doc.perl6.org/type/Hash para una referencia completa sobre hashes.
+NOTE: Consulta http://doc.perl6.org/type/Hash para una referencia completa sobre hashes.
 
 === Tipos
 En los ejemplos anteriores no hemos especificado el tipo de valor que debería contener cada variable.
@@ -809,7 +809,7 @@ say $a;
 Como has visto, la vinculación de variables es bidireccional. +
 `$a := $b` y `$b := $a` tienen el mismo efecto.
 
-NOTA: En http://doc.perl6.org/language/variables tienes más información sobre variables.
+NOTE: En http://doc.perl6.org/language/variables tienes más información sobre variables.
 
 == Funciones y mutadores
 
@@ -1013,7 +1013,7 @@ loop (my $i=0; $i < 5; $i++) {
 }
 ----
 
-NOTA: En http://doc.perl6.org/language/control tienes más información sobre bucles y condiciones
+NOTE: En http://doc.perl6.org/language/control tienes más información sobre bucles y condiciones
 
 == I/O
 En Perl 6, las dos interfaces más utilizadas de _Entrada/Salida_ son el _Terminal_ y los _Ficheros_.
@@ -1171,7 +1171,7 @@ WARNING: en Windows puedes utilizar `/` o `\\` para separar carpetas anidadas +
 `C:\\rakudo\\bin` +
 `C:/rakudo/bin` +
 
-NOTA: En http://doc.perl6.org/type/IO tienes más información sobre E/S.
+NOTE: En http://doc.perl6.org/type/IO tienes más información sobre E/S.
 
 == Subrutinas
 === Definición
@@ -1254,7 +1254,7 @@ say-hello;
 say-hello("Laura");
 ----
 
-NOTA: En http://doc.perl6.org/language/functions encontrarás más información sobre subrutinas y funciones.
+NOTE: En http://doc.perl6.org/language/functions encontrarás más información sobre subrutinas y funciones.
 
 == Programación Funcional
 En este apartado veremos algunas funcionalidades relacionadas con la Programación Funcional.
@@ -2205,7 +2205,7 @@ Todas las excepciones por tipo pertenecen a la clase `X`. Estos son algunos ejem
 `X::OS` errores relacionados con el Sistema Operativo +
 `X::Str::Numeric` errores relacionados con la conversión de una cadena de texto a un valor numérico
 
-NOTA: Tienes una lista completa de tipos de excepciones y sus métodos asociados en http://doc.perl6.org/type.html. Busca los tipos que comienzan con X::.
+NOTE: Tienes una lista completa de tipos de excepciones y sus métodos asociados en http://doc.perl6.org/type.html. Busca los tipos que comienzan con X::.
 
 
 == Expresiones Regulares
@@ -2517,7 +2517,7 @@ if $email ~~ / <varias-letras> <punto> <varias-letras> <arroba> <varias-letras-n
 Una regex con nombre se define de la siguiente forma: `my regex nombre-regex { definición de la regex }` +
 Para utilizar una regex, la invocamos con su nombre de esta forma: `<nombre-regex>`
 
-NOTA: En http://doc.perl6.org/language/regexes tienes más información sobre regex.
+NOTE: En http://doc.perl6.org/language/regexes tienes más información sobre regex.
 
 == Módulos en Perl 6
 Perl 6 es un lenguaje de programación de propósito general. Puede utilizarse para llevar a cabo multitud de tareas, incluyendo:
@@ -2533,7 +2533,7 @@ Para instalar un módulo concreto, utiliza el siguiente comando en el terminal:
 
 `panda install "nombre del módulo"`
 
-NOTA: Puedes encontrar el directorio de módulos de Perl 6 en: http://modules.perl6.org/
+NOTE: Puedes encontrar el directorio de módulos de Perl 6 en: http://modules.perl6.org/
 
 === Utilizando Módulos
 MD5 es una función de cifrado de tipo hash que produce un valor hash de 128-bit. +
