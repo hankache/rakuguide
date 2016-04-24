@@ -8,6 +8,7 @@ For online reading navigate to:
 * English: http://perl6intro.com
 * French: http://fr.perl6intro.com
 * German: http://de.perl6intro.com
+* Spanish: http://es.perl6intro.com
 
 
 #### Building the document
@@ -44,5 +45,6 @@ All feedback is welcomed:
 * Original English version: Naoum Hankache
 * German Translation: Sören Laird Sörries
 * French Translation: Romuald Nuguet
+* Spanish Translation: Ramiro Encinas
 
 For the full list of contributors: https://github.com/hankache/perl6intro/graphs/contributors

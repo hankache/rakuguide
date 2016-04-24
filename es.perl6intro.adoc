@@ -1,0 +1,2771 @@
+= Introducción a Perl 6
+Naoum Hankache <naoum@hankache.com>; Ramiro Encinas <ramiro.encinas@gmail.com>
+:description: Una introducción general a Perl 6
+:keywords: perl6, perl 6, introducción, perl6intro, introducción a perl 6, tutorial de perl 6, perl 6 intro
+:Revision: 1.0
+:icons: font
+:source-highlighter: pygments
+//:pygments-style: manni
+:source-language: perl6
+:pygments-linenums-mode: table
+:toc: left
+:doctype: book
+
+Este documento es una guía rápida del lenguaje de programación Perl 6.
+Para los novatos en Perl 6 sería un punto de partida y puesta en marcha.
+
+Algunas partes de este documento hacen referencia a otras partes (más completas y precisas) de la documentación de Perl 6.
+Consulta la documentación de Perl 6 si necesitas más información sobre algo concreto.
+
+A lo largo de este documento encontrarás ejemplos de los temas más comentados.
+Es conveniente que pruebes todos los ejemplos para entenderlos bien.
+
+.Licencia
+Este trabajo está bajo la licencia Creative Commons Attribution-ShareAlike 4.0 International License. Puedes encontrar una copia de esta licencia en
+
+* http://creativecommons.org/licenses/by-sa/4.0/
+
+.Colaboración
+Puedes colaborar en este documento en:
+
+* http://github.com/hankache/perl6intro
+
+.Sugerencias y comentarios
+* naoum@hankache.com
+* ramiro.encinas@gmail.com
+
+:sectnums:
+== Introducción
+=== Qué es Perl 6
+Perl 6 es un lenguaje de alto nivel, de propósito general y de tipado gradual.
+Perl 6 es multiparadigma y soporta programación Procedimental, Orientada a Objetos y Funcional.
+
+.El lema de Perl 6:
+* TMTOWTDI (Pronunciado como Tim Toady): There is more than one way to do it (Hay más de una forma para hacer algo).
+* Las cosas fáciles deben permanecer fáciles, las cosas difíciles deberían ser fáciles y las cosas imposibles deberían ser difíciles.
+
+=== Jerga
+* *Perl 6*: Es una especificación con un banco de pruebas.
+Las implementaciones que pasan el banco de pruebas de la especificación se consideran Perl 6.
+* *Rakudo*: Es un compilador para Perl 6.
+* *Rakudobrew*: Es un script de Perl5 para instalar Rakudo desde su código fuente.
+* *Panda*: Es una herramienta para instalar módulos de Perl 6.
+* *Rakudo Star*: Es un paquete que incluye Rakudo, Panda, una colección de módulos de Perl 6 y documentación.
+
+=== Instalación de Perl 6
+.Linux
+. Instalación de Rakudobrew: https://github.com/tadzik/rakudobrew
+
+. Instalación de Rakudo: En el terminal, introduce el siguiente comando `rakudobrew build moar`
+
+. Instalación de Panda: En el terminal, introduce el siguiente comando `rakudobrew build panda`
+
+.OSX
+
+Tienes cuatro opciones:
+
+* Sigue los mismos pasos de la instalación para Linux
+* Realizar la instalación con homebrew: `brew install rakudo-star`
+* Realizar la instalación con MacPorts: `sudo port install rakudo`
+* Descargar el último instalador (archivo con extensión .dmg) desde http://rakudo.org/download/star/
+
+.Windows
+. Descarga el instalador más reciente (.msi) desde http://rakudo.org/downloads/star/ +
+Descarga la versión de 32-bit o 64-bit dependiendo de tu arquitectura.
+. Finalizada la instalación, comprueba que C:\rakudo\bin figura en el PATH del sistema.
+
+.Docker
+. Consigue la imagen oficial de Docker `docker pull rakudo-star`
+. Y ejecuta un contenedor con la imagen `docker run -it rakudo-star`
+
+=== Ejecutando código en Perl 6
+
+Puedes ejecutar código Perl 6 mediante REPL (Read-Eval-Print Loop). Para ello, abre un terminal, introduce `perl6` y pulsa [Enter]. Aparecerá el prompt `>`. Ahora introduce una línea de código, pulsa [Enter] y aparecerá una línea nueva con el resultado. Puedes introducir otra línea o `exit` y pulsar [Enter] para salir al sistema.
+
+También puedes escribir tu código de Perl 6 en un archivo de texto, guardarlo y ejecutarlo. Es recomendable que el nombre de este archivo de texto tenga la extensión `.pl6`. Ejecuta el archivo de esta forma: `perl6 nombre-archivo.pl6` desde un terminal y pulsa [Enter]. La ejecución suele mostrar el resultado de sentencias como `say` para visualizar por la salida estándar contenidos de texto con un salto de línea al final .
+
+REPL normalmente se utiliza para probar trozos pequeños de código, como una línea. En el caso de programas con más de una línea de código es recomendable guardarlos en un archivo y ejecutarlos como hemos visto.
+
+También puedes ejecutar una línea de código de forma "in-line" mediante el parámetro -e de la siguiente forma: `perl6 -e 'línea de código Perl 6'` y pulsando [Enter].
+
+[TIP]
+--
+Rakudo Star incorpora un editor de líneas con más funcionalidades para REPL.
+
+Si instalaste Rakudo en lugar de Rakudo Star es probable que no tengas estas funcionalidades (historial con flechas verticales, edición de la línea con flechas horizontales, autocompletar con TAB, etc.). Para instalar estas funcionalidades utiliza estos comandos:
+
+* `panda install Linenoise` debe funcionar en Windows, Linux y OSX
+
+* `panda install Readline` si tienes Linux y prefieres la librería _Readline_
+--
+
+=== Editores
+Como casi siempre vamos a guardar nuestros programas de Perl 6 en archivos, necesitamos un editor de textos decente que reconozca la sintaxis de Perl 6.
+
+Yo recomiendo y utilizo https://atom.io/[Atom]. Es un editor de textos moderno que reconoce y visualiza bien la sintaxis de Perl 6.
+https://atom.io/packages/language-perl6fe[Perl6-fe] es un paquete de Atom con una visualización alternativa de la sintaxis de Perl 6. Deriva del paquete original, tiene muchas correcciones y más funcionalidades.
+
+En la comunidad también se utiliza http://www.vim.org/[Vim], https://www.gnu.org/software/emacs/[Emacs] o http://padre.perlide.org/[Padre].
+
+Las últimas versiones de Vim incorporan la visualización de la sintaxis de Perl 6, mientras que Emacs y Padre necesitan instalar paquetes adicionales.
+
+
+=== ¡Hola Mundo!
+Comenzamos con El ritual `hola mundo`.
+
+[source,perl6]
+say 'hola mundo';
+
+que también puede escribirse como:
+
+[source,perl6]
+'hola mundo'.say;
+
+=== Sintaxis general
+Perl 6 tiene *forma libre*, esto es, eres libre (casi siempre) de utilizar cualquier cantidad de espacios en blanco.
+
+*Una Sentencia* normalmente es una línea lógica de código que finaliza en punto y coma:
+`say "Hola" if True;`
+
+*Las Expresiones* son sentencias especiales que devuelven un valor:
+`1+2` devuelve `3`
+
+Las expresiones están formadas por *Términos* y *Operadores*.
+
+*Los Términos* pueden ser:
+
+* *Variables*: Un valor que puede manipularse y ser cambiado.
+
+* *Literales*: Un valor constante como un número o un texto.
+
+*Los Operadores* se clasifican en estos tipos:
+
+|===
+
+| *Tipo* | *Significado* | *Ejemplo*
+
+| Prefijo | Antes del término | `++1`
+
+| Infijo | Entre términos | `1+2`
+
+| Sufijo | Después del término | `1++`
+
+| Circumfijo | Al principio y al final del término | `(1)`
+
+| Precircumfijo | Después del término, al principio y al final de otro | `Array[1]`
+
+|===
+
+==== Identificadores
+Los identificadores son los nombres que se le dan a los términos cuando los defines.
+
+.Reglas:
+* Deben comenzar con un carácter alfabético o un guión bajo.
+
+* Pueden contener dígitos excepto en el primer carácter.
+
+* Pueden contener guión medio o apóstrofe seguido de un carácter alfabético, no al final.
+
+|===
+
+| *Válido* | *No válido*
+
+| `var1` | `1var`
+
+| `var-uno` | `var-1`
+
+| `var'uno` | `var'1`
+
+| `var1_` | `var1'`
+
+| `_var` | `-var`
+
+|===
+
+.Convención de nombres:
+* Notación Camello: `variableNum1`
+
+* Notación Kebab: `variable-num1`
+
+* Notación Serpiente: `variable_num1`
+
+Puedes nombrar tus identificadores como quieras, pero es recomendable utilizar una convención consistente.
+
+Utiliza nombres significativos para hacerlo más fácil, a tí y a los demás.
+
+* `var1 = var2 * var3` es correcto pero no tiene un propósito evidente.
+* `mes-salario = dia-frecuencia * dias-trabajo` es una buena forma de nombrar las variables.
+
+==== Comentarios
+Un comentario es un texto, sirve como anotación y el compilador no lo tiene en cuenta.
+
+Hay 3 tipos de comentarios:
+
+* De una línea:
++
+[source,perl6]
+# Esto es un comentario de una línea
+
+* Incrustado:
++
+[source,perl6]
+say #`(Esto es un comentario incrustado) "Hola Mundo."
+
+* De varias líneas:
++
+[source,perl6]
+-----------------------------
+=begin comentario
+Esto es un comentario de varias líneas.
+Comentario 1
+Comentario 2
+=end comentario
+-----------------------------
+
+==== Comillas
+El texto tiene que ir entre comillas dobles o simples.
+
+Utiliza siempre comillas dobles:
+
+* si el texto contiene un apóstrofe.
+
+* si el texto necesita visualizar el texto de una variable (interpolación de variable).
+
+[source,perl6]
+-----------------------------------
+say 'Hola Mundo';   # Hola Mundo
+say "Hola Mundo";   # Hola Mundo
+say "Ven pa'ca cordera";    # Ven pa'ca cordera
+my $nombre = 'Juan De Dios';
+say 'Hola $nombre';   # Hola $nombre
+say "Hola $nombre";   # Hola Juan De Dios
+-----------------------------------
+
+== Operadores
+La siguiente tabla muestra los operadores más utilizados.
+[cols="^.^5m,^.^5m,.^20,.^20m,.^20m", options="header"]
+|===
+
+| Operador | Tipo | Descripción | Ejemplo | Resultado
+
+| + | Infijo | Suma | 1 + 2 | 3
+
+| - | Infijo | Resta | 3 - 1 | 2
+
+| * | Infijo | Multiplicación | 3 * 2 | 6
+
+| ** | Infijo | Potencia | 3 ** 2 | 9
+
+| / | Infijo | División | 3 / 2 | 1.5
+
+| div | Infijo | División Entera (redondeo inferior) | 3 div 2 | 1
+
+| % | Infijo | Resto | 7 % 4 | 3
+
+.2+| %% .2+| Infijo .2+| Divisible | 6 %% 4 | Falso
+
+<| 6 %% 3 <| Verdadero
+
+| gcd | Infijo | Máximo común denominador | 6 gcd 9 | 3
+
+| lcm | Infijo | Mínimo común múltiplo | 6 lcm 9 | 18
+
+| == | Infijo | Igual numérico | 9 == 7  | Falso
+
+| != | Infijo | No igual numérico | 9 != 7  | Verdadero
+
+| < | Infijo | Menor que | 9 < 7  | Falso
+
+| > | Infijo | Mayor que | 9 > 7  | Verdadero
+
+| \<= | Infijo | Menor o igual | 7 \<= 7  | Verdadero
+
+| >= | Infijo | Mayor o igual | 9 >= 7  | Verdadero
+
+| eq | Infijo | Texto igual | "Juan" eq "Juan"  | Verdadero
+
+| ne | Infijo | Texto no igual | "Juan" ne "Juana"  | Verdadero
+
+| = | Infijo | Asignación | my $var = 7  | Asigna el valor `7` a la variable `$var`
+
+.2+| ~ .2+| Infijo .2+| Texto concatenado | 9 ~ 7 | 97
+
+<m| "Buenos " ~ "días"  <| Buenos días
+
+.2+| x .2+| Infijo .2+| Texto replicado | 13 x 3  | 131313
+
+<| "Hola " x 3  <| Hola Hola Hola
+
+.5+| ~~ .5+| Infijo .5+| Expresión regular | 2 ~~ 2  | Verdadero
+
+<| 2 ~~ Int <| Verdadero
+
+<| "Perl 6" ~~ "Perl 6" <| Verdadero
+
+<| "Perl 6" ~~ Str <| Verdadero
+
+<| "iluminación" ~~ /ilumina/ <| ｢ilumina｣
+
+.2+| ++ | Prefijo | Incremento | my $var = 2; ++$var;  | Incrementa la variable por 1 y devuelve `3` como resultado
+
+<m| Sufijo <d| Incremento <m| my $var = 2; $var++;  <| Devuelve la variable `2` y después la incrementa
+
+.2+|\--| Prefijo | Decremento | my $var = 2; --$var;  | Decrementa la variable en 1 y devuelve `1` como resultado
+
+<m| Sufijo <d| Decremento <m| my $var = 2; $var--;  <| Devuelve la variable `2` y después la decrementa
+
+.3+| + .3+| Prefijo .3+| Fuerza el operando a un valor numérico | +"3"  | 3
+
+<| +Verdadero <| 1
+
+<| +Falso <| 0
+
+.3+| - .3+| Prefijo .3+| Fuerza el operando a un valor numérico y devuelve la negación | -"3"  | -3
+
+<| -Verdadero <| -1
+
+<| -Falso <| 0
+
+.6+| ? .6+| Prefijo .6+| Fuerza el operando a un valor booleano | ?0 | Falso
+
+<| ?9.8 <| Verdadero
+
+<| ?"Hola" <| Verdadero
+
+<| ?"" <| Falso
+
+<| my $var; ?$var; <| Falso
+
+<| my $var = 7; ?$var; <| Verdadero
+
+| ! | Prefijo | Fuerza el operador a un valor booleano y devuelve la negación | !4 | Falso
+
+| .. | Infijo | Constructor de Series |  0..5  | Crea una serie de 0 a 5
+
+| ..^ | Infijo | Constructor de Series |  0..^5  | Crea una serie de 0 a 4
+
+| ^.. | Infijo | Constructor de Series |  0^..5  | Crea una serie de 1 a 5
+
+| \^..^ | Infijo | Constructor de Series |  0\^..^5  | Crea una serie de 1 a 4
+
+| ^ | Prefijo | Constructor de Series |  ^5  | Igual que 0..^5 Crea una serie de 0 a 4
+
+| ... | Infijo | Constructor de listas perezosas |  0...9999  |  devuelve los elementos si son solicitados
+
+.2+| {vbar} .2+| Prefijo .2+| Aplanamiento | {vbar}(0..5)  | (0 1 2 3 4 5)
+
+<| {vbar}(0\^..^5)  <| (1 2 3 4)
+
+|===
+
+NOTA: En http://doc.perl6.org/language/operators tienes una lista completa de los operadores, incluyendo su precedencia.
+
+== Variables
+Las variables en Perl 6 se reparten en tres categorías: Escalares, Arrays y Hashes.
+
+Un *sigilo* (Signo en Latín) es un carácter utilizado como prefijo para categorizar variables.
+
+* `$` para escalares
+* `@` para arrays
+* `%` para hashes
+
+=== Escalares
+Un escalar contiene un valor o referencia.
+
+[source,perl6]
+----
+#Texto
+my $nombre = 'Juan De Dios';
+say $nombre;
+
+#Entero
+my $edad = 99;
+say $edad;
+----
+
+Dependiendo del valor contenido, un escalar puede realizar una serie de operaciones concretas.
+
+[source,perl6]
+.Texto
+----
+my $nombre = 'Juan De Dios';
+say $nombre.uc;
+say $nombre.chars;
+say $nombre.flip;
+----
+
+----
+JUAN DE DIOS
+12
+soiD eD nauJ
+----
+
+NOTA: Consulta http://doc.perl6.org/type/Str para ver una lista completa de métodos de texto.
+
+[source,perl6]
+.Enteros
+----
+my $edad = 17;
+say $edad.is-prime;
+----
+
+----
+True
+----
+
+NOTA: Consulta http://doc.perl6.org/type/Int para ver una lista completa de los métodos disponibles para enteros.
+
+[source,perl6]
+.Números Racionales
+----
+my $edad = 2.3;
+say $edad.numerator;
+say $edad.denominator;
+say $edad.nude;
+----
+
+----
+23
+10
+(23 10)
+----
+
+NOTA: Consulta http://doc.perl6.org/type/Rat para ver una lista completa de los métodos disponibles para números racionales.
+
+=== Arrays
+Los Arrays son listas que contienen varios valores.
+
+[source,perl6]
+----
+my @animales = 'camello','llama','búho';
+say @animales;
+----
+
+Los arrays permiten muchas operaciones, como las siguientes:
+
+TIP: La tilde `~` se utiliza para concatenar texto.
+
+[source,perl6]
+.`Script`
+----
+my @animales = 'camello','vicuña','llama';
+say "El zoo tiene " ~ @animales.elems ~ " animales";
+say "Los animales son: " ~ @animales;
+say "He conseguido un búho para el zoo";
+@animales.push("búho");
+say "Los animales del zoo ahora son: " ~ @animales;
+say "El primer animal del zoo es: " ~ @animales[0];
+@animales.pop;
+say "Desafortunadamente el búho se escapó y los animales que quedan son: " ~ @animales;
+say "Vamos a dejar solo una animal en el zoo";
+say "Dejamos ir a: " ~ @animales.splice(1,2) ~ " y dejamos en el zoo al " ~ @animales;
+----
+
+.`Salida`
+----
+El zoo tiene 3 animales
+Los animales son: camello vicuña llama
+He conseguido un búho para el zoo
+Los animales del zoo ahora son: camello vicuña llama búho
+El primer animal del zoo es: camello
+Desafortunadamente el búho se escapó y los animales que quedan son: camello vicuña llama
+Vamos a dejar solo una animal en el zoo
+Dejamos ir a: vicuña llama y dejamos en el zoo al camello
+----
+
+.Explicación
+`.elems` devuelve el número de elementos de un array. +
+`.push()` añade un elemento a un array. +
+Podemos acceder a un elemento concreto del array indicando su posición `@animales[0]`. +
+`.pop` elimina el último elemento del array. +
+`.splice(a,b)` elimina `b` elementos que comienzan en la posición `a`.
+
+==== Arrays de tamaño fijo
+Un array básico se declara así:
+[source,perl6]
+my @array;
+
+El array básico puede tener un número indefinido de valores y por eso se denomina auto-extendible. +
+Un array puede tener cualquier número de valores sin restricciones.
+
+En contraste, también podemos crear arrays de tamaño fijo. +
+En estos arrays se define un tamaño fijo y no puede crecer más allá de este tamaño.
+
+Para declarar un array de tamaño fijo, especifica el número máximo de elementos entre corchetes justo después de su nombre:
+[source,perl6]
+my @array[3];
+
+Este array tendrá un máximo de 3 valores, indexados desde 0 a 2.
+
+[source,perl6]
+----
+my @array[3];
+@array[0] = "primer valor";
+@array[1] = "segundo valor";
+@array[2] = "tercer valor";
+----
+
+No puedes agregar un cuarto valor a este array:
+[source,perl6]
+----
+my @array[3];
+@array[0] = "primer valor";
+@array[1] = "segundo valor";
+@array[2] = "tercer valor";
+@array[3] = "cuarto valor";
+----
+
+----
+Index 3 for dimension 1 out of range (must be 0..2)
+----
+
+==== Arrays multidimensionales
+Los arrays que hemos visto hasta ahora son de una dimensión. +
+Con Perl 6, podemos definir arrays de varias dimensiones.
+
+[source,perl6]
+my @tbl[3;2];
+
+Este array es de dos dimensiones.
+La primera dimensión puede tener un máximo de 3 valores y la segunda dimensión un máximo de 2 valores.
+
+Imagínalo como una tabla de 3x2.
+
+[source,perl6]
+----
+my @tbl[3;2];
+@tbl[0;0] = 1;
+@tbl[0;1] = "x";
+@tbl[1;0] = 2;
+@tbl[1;1] = "y";
+@tbl[2;0] = 3;
+@tbl[2;1] = "z";
+say @tbl
+----
+
+----
+[[1 x] [2 y] [3 z]]
+----
+
+.Representación visual del array:
+----
+[1 x]
+[2 y]
+[3 z]
+----
+
+NOTA: Consulta http://doc.perl6.org/type/Array para tener la referencia completa sobre Arrays.
+
+=== Hashes
+[source,perl6]
+.Un Hash es una colección de pares Clave/Valor.
+----
+my %capitales = ('UK','Londres','Alemania','Berlín');
+say %capitales;
+----
+
+[source,perl6]
+.Otra forma de insertar valores en un hash:
+----
+my %capitales = (UK => 'Londres', Alemania => 'Berlín');
+say %capitales;
+----
+Algunos de los métodos aplicables a los hashes son:
+[source,perl6]
+.`Script`
+----
+my %capitales = (UK => 'Londres', Alemania => 'Berlín');
+%capitales.push: (Francia => 'París');
+say %capitales.kv;
+say %capitales.keys;
+say %capitales.values;
+say "La capital de Francia es: " ~ %capitales<Francia>;
+----
+
+.`Salida`
+----
+(Alemania Berlín Francia París UK Londres)
+(Alemania Francia UK)
+(Berlín París Londres)
+La capital de Francia es: París
+----
+
+.Explicación
+`.push: (Clave => 'Valor')` agrega un nuevo par clave/valor. +
+`.kv` devuelve una lista con todas las claves y valores. +
+`.keys` devuelve una lista con todas las claves. +
+`.values` devuelve una lista con todos los valores. +
+Podemos acceder a un valor concreto del hash indicando su clave `%hash<clave>`
+
+NOTA: Consulta http://doc.perl6.org/type/Hash para una referencia completa sobre hashes.
+
+=== Tipos
+En los ejemplos anteriores no hemos especificado el tipo de valor que debería contener cada variable.
+
+TIP: `.WHAT` devuelve el tipo del valor que contiene la variable.
+
+[source,perl6]
+---------------------
+my $var = 'Texto';
+say $var;
+say $var.WHAT;
+
+$var = 123;
+say $var;
+say $var.WHAT;
+---------------------
+
+Como puedes ver en el ejemplo anterior, el tipo de valor en `$var` primero fue texto (Str) y después entero (Int).
+
+Este estilo de programación se caracteriza por ser de tipado dinámico. Dinámico en el sentido de que las variables pueden contener valores de Cualquier tipo.
+
+Ahora intenta ejecutar el siguiente ejemplo: +
+Fíjate en el `Int` indicado antes de la variable.
+
+[source,perl6]
+-----------------------------------------
+my Int $var = 'Texto';
+say $var;
+say $var.WHAT;
+-----------------------------------------
+
+Este ejemplo devuelve un error indicando: `Type check failed in assignment to $var; expected Int but got Str`
+
+Lo que ocurre es que hemos especificado como entero (Int) el tipo de la variable y falla al intentar asignar en ella un texto (Str).
+
+Este estilo de programación se caracteriza por ser de tipado estático. Estático en el sentido de que la variable se define con un tipo determinado antes de asignarla y este tipo no puede cambiarse después.
+
+Perl 6 es un lenguaje de *tipado gradual*; lo que permite tipado *estático* y *dinámico*.
+
+.Los arrays y hashes también pueden tener tipado estático:
+[source,perl6]
+----
+my Int @array = 1,2,3;
+say @array;
+say @array.WHAT;
+
+my Str @multilengua = "Hello","Salut","Hallo","您好","안녕하세요","こんにちは";
+say @multilengua;
+say @multilengua.WHAT;
+
+my Str %capitales = (UK => 'London', Alemania => 'Berlín');
+say %capitales;
+say %capitales.WHAT;
+
+my Int %código-país = (UK => 44, Alemania => 49);
+say %código-país;
+say %código-país.WHAT;
+----
+
+.A continuación tienes una lista con los tipos más comunes:
+Es posible que nunca utilices los dos primeros, pero aparecen en la siguiente lista para que sepas que existen.
+
+[cols="^.^1m,.^3m,.^2m,.^1m, options="header"]
+|===
+
+| *Tipo* | *Descripción* | *Ejemplo* | *Resultado*
+
+| Mu | La raíz de la jerarquía de tipos de Perl 6 | |
+
+| Any | Clase base por defecto para nuevas clases y para la mayoría de las clases nativas | |
+
+| Cool | Valor que puede tratarse como texto o número indistintamente | my Cool $var = 31; say $var.flip; say $var * 2; | 13 62
+
+| Str | Texto o cadena de carácteres | my Str $var = "NEON"; say $var.flip; | NOEN
+
+| Int | Entero (independientemente de la precisión) | 7 + 7 | 14
+
+| Rat | Número racional (precisión limitada) | 0.1 + 0.2 | 0.3
+
+| Bool | Booleano | !True | False
+
+|===
+
+=== Introspección
+
+Introspección es el proceso para adquirir información sobre las propiedades de un objeto, como por ejemplo su tipo. +
+En uno de los ejemplos anteriores utilizamos `.WHAT` para conocer el tipo de una variable.
+
+[source,perl6]
+----
+my Int $var;
+say $var.WHAT;    # (Int)
+my $var2;
+say $var2.WHAT;   # (Any)
+$var2 = 1;
+say $var2.WHAT;   # (Int)
+$var2 = "Hola";
+say $var2.WHAT;   # (Str)
+$var2 = True;
+say $var2.WHAT;   # (Bool)
+$var2 = Nil;
+say $var2.WHAT;   # (Any)
+----
+
+El tipo de una variable que contiene un valor se corresponde con su valor. +
+El tipo de una variable declarada de forma estática y sin valor es el tipo con el que se ha declarado. +
+El tipo de una variable vacía que no ha sido declarada de forma estática es `(Any)`. +
+Asigna `Nil` a una variable para eliminar su valor.
+
+=== Alcance
+Es necesario declarar una variable antes de utilizarla.
+
+Perl 6 dispone de varias formas de declaración, y en los siguientes ejemplos utilizaremos `my`.
+
+[source,perl6]
+my $var=1;
+
+La forma de declaración `my` proporciona a la variable un alcance *léxico*.
+Dicho de otro modo, la variable solo es accesible desde el mismo bloque donde es declarada.
+
+En Perl 6 un bloque está delimitado por `{ }`.
+
+En caso de no existir bloque, la variable estará disponible en el script entero.
+
+[source,perl6]
+--------------------------------
+{
+  my Str $var = 'Texto';
+  say $var; #accesible
+}
+say $var; #no accesible, da un error
+--------------------------------
+
+Como la variable solo es accesible dentro del bloque donde está definida, la misma variable puede definirse de nuevo en cualquier otro bloque.
+
+[source,perl6]
+----
+{
+  my Str $var = 'Texto';
+  say $var;
+}
+my Int $var = 123;
+say $var;
+----
+
+=== Asignación vs. Vinculación
+En los ejemplos anteriores hemos visto cómo *asignar* valores a variables. +
+La *asignación* se realiza mediante el operador `=`.
+[source,perl6]
+----
+my Int $var = 123;
+say $var;
+----
+
+Y podemos cambiar el valor asignado a la variable:
+
+[source,perl6]
+.Asignación
+----
+my Int $var = 123;
+say $var;
+$var = 999;
+say $var;
+----
+
+.`Salida`
+----
+123
+999
+----
+
+Por otro lado, no podemos cambiar el valor *vinculado* de una variable. +
+
+La *vinculación* se realiza mediante el operador `:=`.
+
+[source,perl6]
+.Vinculación
+----
+my Int $var := 123;
+say $var;
+$var = 999;
+say $var;
+----
+
+.`Salida`
+----
+123
+Cannot assign to an immutable value
+----
+
+[source,perl6]
+.Las variables también pueden vincularse a otras variables:
+----
+my $a;
+my $b;
+$b := $a;
+$a = 7;
+say $b;
+$b = 8;
+say $a;
+----
+
+.`Salida`
+----
+7
+8
+----
+
+Como has visto, la vinculación de variables es bidireccional. +
+`$a := $b` y `$b := $a` tienen el mismo efecto.
+
+NOTA: En http://doc.perl6.org/language/variables tienes más información sobre variables.
+
+== Funciones y mutadores
+
+Es importante diferenciar entre funciones y mutadores. +
+
+Las funciones no cambian el estado inicial del objeto donde se aplica. +
+
+Los mutadores modifican el estado del objeto.
+
+[source,perl6,linenums]
+.`Script`
+----
+my @números = [7,2,4,9,11,3];
+
+@números.push(99);
+say @números;      #1
+
+say @números.sort; #2
+say @números;      #3
+
+@números.=sort;
+say @números;      #4
+----
+
+.`Salida`
+----
+[7 2 4 9 11 3 99] #1
+(2 3 4 7 9 11 99) #2
+[7 2 4 9 11 3 99] #3
+[2 3 4 7 9 11 99] #4
+----
+
+.Explicación
+`.push` es un mutador porque cambia el estado del array (#1)
+
+`.sort` es una función porque devuelve un array ordenado pero no cambia el estado inicial del array:
+
+* (#2) muestra la devolución de un array ordenado.
+
+* (#3) muestra que el estado inicial del array no ha cambiado.
+
+Puedes hacer que una función se comporte como un mutador utilizando `.=` en lugar de `.` (#4) (línea 9 del script)
+
+== Bucles y condiciones
+Perl 6 tiene multitud de constructores de bucles y condiciones.
+
+=== if
+El código se ejecuta solo si se cumple la condición, o en otras palabras cuando la expresión se evalúa como `True`.
+
+[source,perl6]
+----
+my $edad = 19;
+
+if $edad > 18 {
+  say 'Bienvenido'
+}
+----
+En Perl 6 podemos invertir el código y la condición, y aún así la condición siempre se evalúa primero.
+
+[source,perl6]
+----
+my $edad = 19;
+
+say 'Bienvenido' if $edad > 18;
+----
+
+Si la condición no se cumple, podemos dar alternativas mediante bloques de ejecución utilizando:
+
+* `else`
+* `elsif`
+
+[source,perl6]
+----
+#ejecuta el mismo código para distintos valores de la variable
+my $número-de-asientos = 9;
+
+if $número-de-asientos <= 5 {
+  say 'Soy un sedan'
+} elsif $número-de-asientos <= 7 {
+  say 'Tengo 6 o 7 asientos'
+} else {
+  say 'Soy un microbus'
+}
+----
+
+=== unless
+La negación de `if` es `unless`.
+
+El siguiente código:
+
+[source,perl6]
+----
+my $limpiar-zapatos = False;
+
+if not $limpiar-zapatos {
+  say 'Limpia tus zapatos'
+}
+----
+puede escribirse como:
+
+[source,perl6]
+----
+my $limpiar-zapatos = False;
+
+unless $limpiar-zapatos {
+  say 'Limpia tus zapatos'
+}
+----
+La negación en Perl 6 se realiza con `!` o con `not`.
+
+`unless (condición)` se utiliza en lugar de `if not (condición)`.
+
+`unless` no puede utilizar la claúsula `else`.
+
+=== with
+
+`with` es como `if` pero solo comprueba si la variable está definida.
+
+[source,perl6]
+----
+my Int $var=1;
+
+with $var {
+  say 'Hola'
+}
+----
+No ocurre nada si ejecutas el código sin asignar un valor a la variable.
+[source,perl6]
+----
+my Int $var;
+
+with $var {
+  say 'Hola'
+}
+----
+
+`without` es la negación de `with` y es parecido a `unless`.
+
+Si la primera condición `with` no se cumple, puedes indicar una alternativa mediante `orwith`. +
+`with` y `orwith` son parecidos a `if` y `elsif`.
+
+=== for
+
+`for` itera sobre una serie de valores.
+
+[source,perl6]
+----
+my @array = [1,2,3];
+
+for @array -> $array-item {
+  say $array-item*100
+}
+----
+
+Observa que en la iteración hemos creado la variable `$array-item` para realizar la operación `*100` en cada elemento del array.
+
+=== given
+
+En Perl 6 `given` viene a ser `switch` en otros lenguajes.
+
+[source,perl6]
+----
+my $var = 42;
+
+given $var {
+    when 0..50 { say 'Menos o igual a 50'}
+    when Int { say "es un Entero" }
+    when 42  { say 42 }
+    default  { say "¿ejem?" }
+}
+----
+
+Cuando se produce la coincidencia no se evalúan las demás.
+
+Si utilizamos `proceed` continúa la evaluación aunque se produzca la coincidencia.
+
+[source,perl6]
+----
+my $var = 42;
+
+given $var {
+    when 0..50 { say 'Menos o igual a 50';proceed}
+    when Int { say "es un Entero";proceed}
+    when 42  { say 42 }
+    default  { say "¿ejem?" }
+}
+----
+
+=== loop
+
+`loop` es otra forma de escribir un `for`.
+
+Actualmente `loop` viene a ser el `for` utilizado en la familia de lenguajes de C.
+
+Perl 6 pertenece a la familia de lenguajes de C.
+
+[source,perl6]
+----
+loop (my $i=0; $i < 5; $i++) {
+  say "El número actual es $i"
+}
+----
+
+NOTA: En http://doc.perl6.org/language/control tienes más información sobre bucles y condiciones
+
+== I/O
+En Perl 6, las dos interfaces más utilizadas de _Entrada/Salida_ son el _Terminal_ y los _Ficheros_.
+
+=== E/S básica mediante el Terminal
+
+==== say
+`say` escribe en la salida estándar agregando al final una línea nueva. En otras palabras, el siguiente código:
+
+[source,perl6]
+----
+say 'Hola Mamá.';
+say 'Hola Señor.';
+----
+escribirá dos líneas separadas.
+
+==== print
+Por otro lado `print` es como `say` pero no agrega la línea nueva.
+
+Prueba a utilizar `say` en lugar de `print` y compara los resultados.
+
+==== get
+Para capturar la entrada desde el terminal utiliza `get`.
+
+[source,perl6]
+----
+my $nombre;
+
+say "¡Hola!, ¿cual es tu nombre?";
+$nombre=get;
+
+say "¿Que tal $nombre?, bienvenido a Perl 6";
+----
+
+Este código hace que el terminal espere la introducción de tu nombre y pulses [Enter] para después darte la bienvenida.
+
+==== prompt
+`prompt` es una combinación entre `print` y `get`.
+
+El ejemplo anterior puede escribirse de esta otra forma:
+
+[source,perl6]
+----
+my $nombre = prompt("¡Hola!, ¿cual es tu nombre? ");
+
+say "¿Que tal $nombre?, bienvenido a Perl 6";
+----
+
+=== Ejecutando Comandos de la Shell
+Podemos utilizar dos subrutinas para ejecutar comandos de la shell:
+
+* `run` Ejecuta un comando externo sin la intervención de la shell.
+
+* `shell` Ejecuta un comando desde la shell del sistema y dependerá de la plataforma y la shell.
+Todos los caracteres especiales los interpreta la shell, como pueden ser las tuberías, redirecciones, sustitución de variables de entorno, etc.
+
+[source,perl6]
+.Ejecuta el siguiente script en Linux/OSX
+----
+my $nombre = 'Neo';
+run 'echo', "Hola $nombre";
+shell "ls";
+----
+
+[source,perl6]
+.Ejecuta lo siguiente en Windows
+----
+shell "dir";
+----
+`echo` y `ls` son palabras clave típicas de la shell de Linux: +
+`echo` visualiza texto en el terminal (es el equivalente a `print` en Perl 6) +
+`ls` muestra un listado de todos los archivos y carpetas del directorio actual
+
+`dir` en Windows es el equivalente de `ls` en Linux.
+
+
+=== E/S de Archivos
+==== slurp
+`slurp` lee datos de un archivo.
+
+Crea un archivo de texto con el siguiente contenido:
+
+.datos.txt
+----
+Juan 9
+Juanito 7
+Juana 8
+Juanita 7
+----
+[source,perl6]
+----
+my $datos = slurp "datos.txt";
+say $datos;
+----
+
+==== spurt
+`spurt` escribe datos en un archivo.
+
+[source,perl6]
+----
+my $datos-nuevos = "Nuevas puntuaciones:
+Pablo 10
+Pablin 9
+Paulo 11";
+
+spurt "datos-nuevos.txt", $datos-nuevos;
+----
+
+El código anterior crea un nuevo archivo llamado _datos-nuevos.txt_ conteniendo las nuevas puntuaciones.
+
+=== Manipulando archivos y carpetas
+
+En un ejemplo anterior ya hemos visto que Perl 6 puede mostrar el contenido de una carpeta (mediante `ls`) sin utilizar la shell.
+
+[source,perl6]
+----
+say dir;               #Muestra archivos y carpetas de la carpeta actual
+say dir "/Documentos"; #Muestra archivos y carpetas de la carpeta indicada
+----
+
+Además, puedes crear carpetas nuevas y eliminarlas.
+
+[source,perl6]
+----
+mkdir "carpeta-nueva";
+rmdir "carpeta-nueva";
+----
+
+`mkdir` crea una carpeta nueva. +
+`rmdir` elimina una carpeta vacía. Si la carpeta no existe devuelve un error.
+
+También puedes comprobar si la ruta indicada existe y si se trata de un archivo o una carpeta:
+
+Crea una carpeta vacía llamada `carpeta123`, un archivo vacío llamado `script123.pl6` y el siguiente script:
+
+[source,perl6]
+----
+say "script123.pl6".IO.e;
+say "carpeta123".IO.e;
+
+say "script123.pl6".IO.d;
+say "carpeta123".IO.d;
+
+say "script123.pl6".IO.f;
+say "carpeta123".IO.f;
+----
+
+Ejecuta el script.
+
+`IO.e` comprueba si existe la carpeta/archivo. +
+`IO.f` comprueba si la ruta es un archivo. +
+`IO.d` comprueba si la ruta es una carpeta.
+
+WARNING: en Windows puedes utilizar `/` o `\\` para separar carpetas anidadas +
+`C:\\rakudo\\bin` +
+`C:/rakudo/bin` +
+
+NOTA: En http://doc.perl6.org/type/IO tienes más información sobre E/S.
+
+== Subrutinas
+=== Definición
+Las *Subrutinas* (también denominadas *subs* o *funciones*) son una forma de empaquetar un conjunto de funcionalidades. +
+
+La definición de una subrutina comienza con la palabra clave `sub`. Una vez definida puede invocarse mediante su nombre. +
+
+Fíjate en el siguiente ejemplo:
+
+[source,perl6]
+----
+sub saludo-alien {
+  say "Hola terrícolas";
+}
+
+saludo-alien;
+----
+El ejemplo anterior es una subrutina sin entrada de datos.
+
+=== Signatura
+Muchas subrutinas utilizan *argumentos* de entrada para trabajar con ellos.
+El número y tipo de argumentos que acepta una subrutina se denomina su *signatura*.
+
+La siguiente subrutina acepta un argumento de tipo string.
+
+[source,perl6]
+----
+sub di-hola (Str $nombre) {
+    say "¡¡Hola " ~ $nombre ~ "!!"
+}
+di-hola "Pablo";
+di-hola "Paula";
+----
+
+=== Subrutinas múltiples
+Es posible definir varias subrutinas con el mismo nombre pero con distintas signaturas.
+Cuando se llama a la subrutina, se decidirá en tiempo de ejecución la versión de subrutina a utilizar dependiendo del número y tipo de argumentos proporcionados.
+Este tipo de subrutinas se definen con la palabra clave `multi` en lugar de `sub`.
+
+[source,perl6]
+----
+multi saludo($nombre) {
+    say "Buenos días $nombre";
+}
+multi saludo($nombre, $título) {
+    say "Buenos días $título $nombre";
+}
+
+saludo "Juanito";
+saludo "Laura","Srta.";
+----
+
+=== Argumentos por defecto y opcionales
+Tendremos un error si se define una subrutina para aceptar un argumento y éste no es proporcionado.
+
+Con Perl 6 podemos definir subrutinas con:
+
+* Argumentos opcionales
+* Argumentos por defecto
+
+Un argumento opcional se define añadiendo `?` al nombre del argumento.
+
+[source,perl6]
+----
+sub di-hola($nombre?) {
+  with $nombre { say "Hola " ~ $nombre }
+  else { say "Hola humano" }
+}
+di-hola;
+di-hola("Laura");
+----
+Si no se proporciona un argumento, puede definirse uno por defecto asignándole un valor en la definición de la subrutina.
+
+[source,perl6]
+----
+sub di-hola($nombre="Mateo") {
+  say "Hola " ~ $nombre;
+}
+say-hello;
+say-hello("Laura");
+----
+
+NOTA: En http://doc.perl6.org/language/functions encontrarás más información sobre subrutinas y funciones.
+
+== Programación Funcional
+En este apartado veremos algunas funcionalidades relacionadas con la Programación Funcional.
+
+=== Las Funciones son de primera clase
+Las funciones/subrutinas son de primera clase:
+
+* Pueden utilizarse como un argumento
+
+* Pueden ser devueltas desde otra función
+
+* Pueden asignarse a una variable
+
+Un buen ejemplo para demostrar este concepto es la función `map`. +
+`map` es una *función de orden superior* que acepta otra función como argumento.
+
+[source,perl6]
+.Script
+----
+my @array = <1 2 3 4 5>;
+sub cuadrado($x) {
+  $x ** 2
+}
+say map(&cuadrado,@array);
+----
+
+.Salida
+----
+(1 4 9 16 25)
+----
+
+.Explicación
+Hemos definido la subrutina `cuadrado` que calcula la potencia de dos de cualquier número proporcionado como argumento. +
+Después utilizamos `map`, una función de orden superior que toma dos argumentos: una subrutina y un array. +
+El resultado es una lista de todos los cuadrados de los elementos del array.
+
+Ten en cuenta que cuando pasamos una subrutina como argumento, es necesario utilizar el prefijo `&` en el nombre.
+
+=== Clausuras
+Todos los objetos de código en Perl 6 son clausuras, lo que significa que se pueden referenciar variables léxicamente definidas desde un ámbito externo.
+
+=== Funciones anónimas
+Una *función anónima* también se denomina *lambda*. +
+Una función anónima no está vinculada a un identificador (no tiene nombre).
+
+Escribamos de nuevo el ejemplo de `map` utilizando una función anónima
+[source,perl6]
+----
+my @array = <1 2 3 4 5>;
+say map(-> $x {$x ** 2},@array);
+----
+Observa que en lugar de declarar la función y pasarla a `map` como argumento, directamente la definimos dentro. +
+La función anónima `\-> $x {$x ** 2}` no puede ser llamada.
+
+En la jerga de Perl 6 a esta notación la llamamos *punto de entrada al bloque*
+
+[source,perl6]
+.Un punto de entrada al bloque también puede utilizarse para asignar funciones a variables:
+----
+my $cuadrado = -> $x {
+  $x ** 2
+}
+say $cuadrado(9);
+----
+
+=== Encadenamiento
+En Perl 6 los métodos pueden encadenarse. Esto quiere decir que no es necesario pasar el resultado de un método como argumento de otro método.
+
+¿Cómo obtendríamos los valores únicos de un array ordenados de mayor a menor?
+
+Puedes resolver este problema escribiendo algo así:
+[source,perl6]
+----
+my @array = <7 8 9 0 1 2 4 3 5 6 7 8 9 >;
+my @final-array = reverse(sort(unique(@array)));
+say @final-array;
+----
+Primero utilizamos la función `unique` sobre `@array`, después pasamos el resultado como argumento a `sort` y por último pasamos el resultado de la ordenación a `reverse`.
+
+En contraste con el ejemplo anterior, Perl 6 permite la encadenación de métodos. +
+El ejemplo anterior puede escribirse de la siguiente forma utilizando el *encadenamiento de métodos*:
+
+[source,perl6]
+----
+my @array = <7 8 9 0 1 2 4 3 5 6 7 8 9>;
+my @final-array = @array.unique.sort.reverse;
+say @final-array;
+----
+
+Como ves, el encadenamiento de métodos es _más visual_.
+
+=== Operador de Alimentación
+El *operador de alimentación*, llamado _tubería_ en algunos lenguajes de programación funcional hace aún más visual el encadenamiento de métodos.
+
+[source,perl6]
+.Alimentación hacia adelante
+----
+my @array = <7 8 9 0 1 2 4 3 5 6 7 8 9>;
+@array ==> unique()
+       ==> sort()
+       ==> reverse()
+       ==> my @final-array;
+say @final-array;
+----
+
+.Explicación
+----
+Comienza con `@array` y devuelve una lista de elementos únicos
+                    después los ordena
+                    después invierte el orden
+                    después guarda el resultado en @final-array
+----
+Como ves, el flujo de las llamadas a los métodos es de arriba hacia abajo.
+
+
+[source,perl6]
+.Alimentación hacia atrás
+----
+my @array = <7 8 9 0 1 2 4 3 5 6 7 8 9>;
+my @final-array-v2 <== reverse()
+                   <== sort()
+                   <== unique()
+                   <== @array;
+say @final-array-v2;
+----
+
+.Explicación
+La alimentación hacia atrás es parecida a la anterior pero se escribe en orden inverso. +
+El flujo de las llamadas a los métodos es de abajo hacia arriba.
+
+=== Hiperoperador
+El *hiperoperador* `>>.` puede aplicar un método a todos los elementos de una lista y devolver una lista con todos los resultados.
+[source,perl6]
+----
+my @array = <0 1 2 3 4 5 6 7 8 9 10>;
+sub es-par($var) { $var %% 2 };
+
+say @array>>.is-prime;
+say @array>>.&es-par;
+----
+Mediante el hiperoperador podemos utilizar todos los métodos ya definidos en Perl 6, por ej. `is-prime` que devuelve si un número es primo o no. +
+Además, podemos definir funciones nuevas y utilizarlas mediante el hiperoperador agregando el prefijo `&` en el nombre del método, por ej. `&es-par`.
+
+El uso del hiperoperador es muy práctico pues evita escribir un bucle `for` para iterar sobre cada valor.
+
+=== Ensamblajes
+Un *ensamblaje* es una superposición lógica de valores.
+
+En el siguiente ejemplo `1|2|3` es un ensamblaje.
+
+[source,perl6]
+----
+my $var = 2;
+if $var == 1|2|3 {
+  say "La variable es 1 o 2 o 3"
+}
+----
+El uso de ensamblajes normalmente produce *autothreading* para cada elemento del ensamblaje y todos los resultados se combinan y se devuelven en un nuevo ensamblaje.
+
+=== Listas perezosas
+Una *lista perezosa* es una lista que se evalúa perezosamente. +
+La evaluación perezosa demora la evaluación de una expresión hasta que es requerida, guardando mientras los resultados en una tabla de búsqueda para así evitar repetir la evaluación.
+
+Entre los beneficios tenemos:
+
+* Incremento del rendimiento evitando cálculos innecesarios
+
+* La habilidad de construir estructuras de datos potencialmente infinitas
+
+* La habilidad de definir controles de flujo
+
+Podemos definir una lista perezosa utilizando el operador infijo `...` +
+Una lista perezosa tiene *elemento(s) inicial(es)*, un *generador* y un *punto final*.
+
+[source,perl6]
+.Lista perezonsa simple
+----
+my $listaperezosa = (1 ... 10);
+say $listaperezosa;
+----
+El elemento inicial es 1 y el punto final es 10. Como no hemos definido un generador, por defecto es el sucesor (+1) +
+Dicho de otra forma, esta lista perezosa puede devolver (si es requerida) los siguientes elementos (1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+
+[source,perl6]
+.Lista perezosa infinita
+----
+my $listaperezosa = (1 ... Inf);
+say $listaperezosa;
+----
+Esta lista puede devolver (si es requerida) cualquier entero entre 1 e infinito, en otras palabras cualquier número entero.
+
+[source,perl6]
+.Lista perezosa con generador deductivo
+----
+my $listaperezosa = (0,2 ... 10);
+say $listaperezosa;
+----
+Los elementos iniciales son 0 y 2, y el punto final es 10.
+Aunque no hay un generador definido, Perl 6 utiliza los elementos iniciales para deducir que el generador es (+2) +
+Esta lista puede devolver (si es requerida) los siguientes elementos (0, 2, 4, 6, 8, 10)
+
+[source,perl6]
+.Lista perezosa con generador definido
+----
+my $listaperezosa = (0, { $_ + 3 } ... 12);
+say $listaperezosa;
+----
+En este ejemplo hemos definido de forma explícita un generador entre llaves `{ }` +
+Esta lista puede devolver (si es requerida) los siguientes elementos (0, 3, 6, 9, 12)
+
+[WARNING]
+--
+Al usar un generador de forma explícita el punto final debe ser uno de los valores que el generador pueda devolver. +
+Si en el ejemplo anterior sustituimos el punto final 12 por un 10, el generador no se detendrá y saltará sobre el punto final y continuará.
+
+De forma alternativa puedes sustituir `0 ... 10` con `0 ...^ * > 10` +
+Esto lo puedes leer como: De 0 hasta el primer valor mayor a 10 (excluyendo a éste)
+
+[source,perl6]
+.Lo siguiente no detiene al generador
+----
+my $listaperezosa = (0, { $_ + 3 } ... 10);
+say $listaperezosa;
+----
+
+[source,perl6]
+.Lo siguiente detiene al generador
+----
+my $listaperezosa = (0, { $_ + 3 } ...^ * > 10);
+say $listaperezosa;
+----
+--
+== Clases y Objetos
+En el apartado anterior hemos visto cómo utilizar la Programación Funcional en Perl 6 y en el siguiente apartado veremos cómo utilizar Perl 6 en la Programación Orientada a Objetos.
+
+=== Introducción
+La programación _Orientada a Objetos_ es uno de los paradigmas de programación más utilizados actualmente. +
+Un *objeto* es un conjunto de variables y subrutinas. +
+Las variables se llaman *atributos* y las subrutinas se llaman *métodos*. +
+Los atributos definen un *estado* y los métodos definen el *comportamiento* de un objeto.
+
+Una *clase* define la estructura de un conjunto de *objetos*. +
+
+Para entender esta relación veamos el siguiente ejemplo:
+
+|===
+
+| Hay 4 individuos en una sala | *objetos* => 4 personas
+
+| Los 4 individuos son humanos | *clase* => Humano
+
+| Tienen distintos nombres, edades, sexo y nacionalidad | *atributos* => nombre, edad, sexo, nacionalidad
+
+|===
+
+En _orientación a objetos_ decimos que los objetos son *instancias* de una clase.
+
+Veamos el siguiente script:
+[source,perl6]
+----
+class Humano {
+  has $nombre;
+  has $edad;
+  has $sexo;
+  has $nacionalidad;
+}
+
+my $juan = Humano.new(nombre => 'Juan', edad => 23, sexo => 'M', nacionalidad => 'Español');
+say $juan;
+----
+La palabra clave `class` se utiliza para definir una clase. +
+La palabra clave `has` se utiliza para definir los atributos de una clase. +
+El método `.new()` se denomina *constructor* y crea el objeto como una instancia de la clase a la que ha sido llamada.
+
+En el script anterior, la variable nueva `$juan` tiene una referencia a una instancia nueva de "Humano" definida por `Humano.new()`. +
+
+Los argumentos que se pasan al método `.new()` son utilizados para establecer los atributos del objeto en cuestión.
+
+Una clase puede tener un *alcance léxico* mediante `my`:
+[source,perl6]
+----
+my class Humano {
+
+}
+----
+
+=== Encapsulación
+
+La encapsulación es un concepto de la programación Orientada a Objetos que consiste en empaquetar un conjunto de datos y métodos. +
+
+Los datos (atributos) dentro de un objeto deben ser *privados*, dicho de otro modo, solo son accesibles desde dentro del objeto. +
+Para acceder a los atributos de un objeto desde fuera de él utilizamos *métodos de acceso*.
+
+Los siguientes dos scripts dan el mismo resultado.
+
+.Acceso directo a la variable:
+[source,perl6]
+----
+my $var = 7;
+say $var;
+----
+
+.Encapsulación:
+[source,perl6]
+----
+my $var = 7;
+sub sayvar {
+  $var;
+}
+say sayvar;
+----
+El método `sayvar` es un método de acceso que nos permite acceder al valor de la variable sin acceder directamente a ella.
+
+Perl 6 realiza la encapsulación mediante *twigils* (sigilos secundarios) y se ubican entre el sigilo y el nombre del atributo. +
+En las clases se utilizan dos twigils:
+
+* `!` para indicar de forma explícita que el atributo es privado.
+* `.` para crear automáticamente un método de accceso al atributo.
+
+Por defecto todos los atributos son privados pero es muy recomendable utilizar siempre el twigil `!`.
+
+Teniendo en cuenta lo dicho, podemos escribir de nuevo la clase anterior de la siguiente forma:
+[source,perl6]
+----
+class Humano {
+  has $!nombre;
+  has $!edad;
+  has $!sexo;
+  has $!nacionalidad;
+}
+
+my $juan = Humano.new(nombre => 'Juan', edad => 23, sexo => 'M', nacionalidad => 'Español');
+say $juan;
+----
+Si añades al script la siguiente sentencia: `say $juan.edad;` +
+devolverá el siguiente error: `Method 'edad' not found for invocant of class 'Humano'` +
+Esto es debido a que `$!edad` es un atributo privado y solo puede utilizarse desde dentro del objeto. Como hemos visto, tendremos un error al intentar acceder a este atributo desde fuera del objeto.
+
+Sustituye `has $!edad` por `has $.edad` y comprueba el resultado de `say $juan.edad;`
+
+=== Argumentos Posicionales vs. Argumentos con nombre
+En Perl 6 todas las clases heredan un constructor `.new()` por defecto que puede utilizarse para crear objetos proporcionando argumentos. +
+El constructor por defecto solo acepta *argumentos con nombre*. +
+Como puedes ver en el ejemplo que vimos antes, los argumentos que tiene `.new()` están definidos con un nombre:
+
+* nombre => 'Juan'
+
+* edad => 23
+
+¿Puedo ahorrarme el nombre de cada atributo al crear un objeto? Sí, pero necesito crear otro constructor que acepte *argumentos posicionales*.
+
+[source,perl6]
+----
+class Humano {
+  has $.nombre;
+  has $.edad;
+  has $.sexo;
+  has $.nacionalidad;
+  #nuevo constructor que sustituye el de por defecto.
+  method new ($nombre,$edad,$sexo,$nacionalidad) {
+    self.bless(:$nombre,:$edad,:$sexo,:$nacionalidad);
+  }
+}
+
+my $juan = Humano.new('Juan',23,'M','Español');
+say $juan;
+----
+El constructor que acepta argumentos posicionales necesita definirse como puedes ver arriba.
+
+=== Métodos
+
+==== Introducción
+Los métodos son las _subrutinas_ de un objeto. +
+Al igual que las subrutinas, los métodos pueden empaquetar un conjunto de funcionalidades, aceptar *argumentos*, tener una *signatura* y definirse como *múltiples*.
+
+Los métodos se definen con la palabra clave `method` y normalmente se utilizan para realizar alguna acción sobre los atributos de los objetos, reforzando así el concepto de encapsulación donde los atributos del objeto solo pueden manipularse dentro del objeto mediante sus métodos.
+Desde fuera solo podemos acceder a los métodos de los objetos y no a sus atributos.
+
+[source,perl6]
+----
+class Humano {
+  has $.nombre;
+  has $.edad;
+  has $.sexo;
+  has $.nacionalidad;
+  has $.es-adulto;
+  method evalúa_es-adulto {
+      if self.edad < 18 {
+        $!es-adulto = 'No'
+      } else {
+        $!es-adulto = 'Sí'
+      }
+  }
+}
+
+my $juan = Humano.new(nombre => 'Juan', edad => 23, sexo => 'M', nacionalidad => 'Español');
+$juan.evalúa_es-adulto;
+say $juan.es-adulto;
+----
+
+Una vez definidos los métodos de una clase, pueden invocarse en un objeto mediante la _notación de punto_: +
+_objeto_ *.* _método_, como en el ejemplo que hemos visto antes: `$juan.evalúa_es-adulto`
+
+Si en la definición del método necesitamos hacer referencia al objeto en sí para invocar a otro método utilizaremos la palabra clave `self`. +
+Si en la definición del método necesitamos hacer referencia a un atributo utilizaremos `!` aunque el atributo esté definido con `.` +
+Mientras el twigil `.` declara el atributo, con `!` se realiza el método de acceso.
+En el ejemplo anterior `if self.edad < 18` y `if $!edad < 18` tendrán el mismo efecto, aunque técnicamente son distintos:
+
+* `self.edad` es una llamada al método (de acceso) `.edad` +
+También puede escribirse como `$.edad`
+* `$!edad` es una llamada directa a la variable
+
+==== Métodos privados
+Puede llamarse a un método normal de un objeto desde fuera de la clase.
+
+Los *métodos privados* solo pueden llamarse desde dentro de la clase. +
+Este es el caso donde un método llama a otro para realizar una acción concreta. El método que interactúa con el mundo exterior es público y a la vez llama al otro método que permanece privado. Al declarar el método como privado conseguimos que el usuario no pueda interactuar con él directamente.
+
+Declarar un método privado requiere utilizar el twigil `!` antes de su nombre. +
+Estos métodos privados se llaman mediante `!` en lugar de `.`
+
+[source,perl6]
+----
+method !soyprivado {
+  #código
+}
+
+method soypúblico {
+  self!soyprivado;
+  #más código
+}
+----
+
+=== Atributos de Clase
+
+Los *atributos de Clase* son atributos que pertenecen a la clase en sí y no a sus objetos. +
+Pueden inicializarse durante su definición. +
+Los atributos de Clase se declaran mediante `my` en lugar de `has`. +
+Se llaman en la clase en sí en lugar de sus objetos.
+
+[source,perl6]
+----
+class Humano {
+  has $.nombre;
+  my $.contador = 0;
+  method new($nombre) {
+    Humano.contador++;
+    self.bless(:$nombre);
+  }
+}
+my $a = Humano.new('a');
+my $b = Humano.new('b');
+
+say Humano.contador;
+----
+
+=== Tipo de Acceso
+Todos los ejemplos que hemos visto hasta ahora utilizan métodos de acceso para acceder a la información de los atributos de los objetos.
+
+¿Y si necesitamos modificar el valor de un atributo? +
+Para ello necesitamos etiquetar ese atributo como _lectura/escritura_ mediante la palabra clave `is rw`
+[source,perl6]
+----
+class Humano {
+  has $.nombre;
+  has $.edad is rw;
+}
+my $juan = Humano.new(nombre => 'Juan', edad => 21);
+say $juan.edad;
+
+$juan.edad = 23;
+say $juan.edad;
+----
+Todos los atributos se declaran por defecto como _solo lectura_ y también puedes hacerlo de forma explícita mediante `is readonly`
+
+=== Herencia
+==== Introducción
+*Herencia* es otro concepto de la programación Orientada a Objetos.
+
+Cuando definimos clases nos damos cuenta de que algunas veces utilizan los mismos métodos y atributos. +
+¿Es necesario duplicar código? +
+¡NO! Hay que utilizar la *herencia*
+
+Pensemos en definir dos clases, una clase para seres humanos y otra clase para empleados. +
+Los seres humanos tienen 2 atributos: nombre y edad. +
+Los empleados tienen 4 atributos: nombre, edad, compañía y salario.
+
+Con prisas, uno definiría las clases de la siguiente forma:
+[source,perl6]
+----
+class Humano {
+  has $.nombre;
+  has $.edad;
+}
+
+class Empleado {
+  has $.nombre;
+  has $.edad;
+  has $.compañía;
+  has $.salario;
+}
+----
+El código anterior aunque técnicamente es correcto, conceptualmente es pobre.
+
+Hay una forma mejor de escribirlo:
+[source,perl6]
+----
+class Humano {
+  has $.nombre;
+  has $.edad;
+}
+
+class Empleado is Humano {
+  has $.compañía;
+  has $.salario;
+}
+----
+La herencia se define mediante la palabra clave `is`. +
+En orientación a objetos decimos que Empleado es *hijo* de Humano, y Humano es *padre* de Empleado.
+
+Todas las clases hijas heredan los atributos y métodos de su clase padre, y así ahorramos duplicar su definición.
+
+==== Anulación de herencia
+Las clases heredan todos los atributos y métodos de sus clases padre correspondientes. +
+Hay casos donde es necesario que un método heredado actúe de forma distinta. +
+Para conseguirlo, redefinimos el método en cuestión en la clase hija. +
+Este concepto se llama *anulación de herencia*.
+
+En el siguiente ejemplo, el método `preséntate` se hereda de la clase Empleado.
+
+[source,perl6]
+----
+class Humano {
+  has $.nombre;
+  has $.edad;
+  method preséntate {
+    say 'Hola, soy un ser humano y mi nombre es ' ~ self.nombre;
+  }
+}
+
+class Empleado is Humano {
+  has $.compañía;
+  has $.salario;
+}
+
+my $juan = Humano.new(nombre =>'Juan', edad => 23,);
+my $juana = Empleado.new(nombre =>'Juana', edad => 25, compañía => 'Acme', salario => 4000);
+
+$juan.preséntate;
+$juana.preséntate;
+----
+La anulación de herencia funciona así:
+
+[source,perl6]
+----
+class Humano {
+  has $.nombre;
+  has $.edad;
+  method preséntate {
+    say 'Hola, soy un ser humano y mi nombre es ' ~ self.nombre;
+  }
+}
+
+class Empleado is Humano {
+  has $.compañía;
+  has $.salario;
+  method preséntate {
+    say 'Hola, soy un empleado, mi nombre es ' ~ self.nombre ~ ' y trabajo en: ' ~ self.compañía;
+  }
+}
+
+my $juan = Humano.new(nombre =>'Juan',edad => 23,);
+my $juana = Empleado.new(nombre =>'Juana',edad => 25,compañía => 'Acme',salario => 4000);
+
+$juan.preséntate;
+$juana.preséntate;
+----
+
+El método correspondiente será aplicado dependiendo de la clase a la que pertenece el objeto.
+
+==== Submétodos
+Los *submétodos* son métodos que no se heredan en las clases hijas. +
+Solo son accesibles desde la clase donde son declarados. +
+Se definen utilizando la palabra clave `submethod`.
+
+=== Herencia Múltiple
+Perl 6 permite la herencia múltiple. Una clase puede heredar de varias clases.
+
+[source,perl6]
+----
+class graf-barras {
+  has Int @.valores-barras;
+  method dibujar {
+    say @.valores-barras;
+  }
+}
+
+class graf-líneas {
+  has Int @.valores-líneas;
+  method dibujar {
+    say @.valores-líneas;
+  }
+}
+
+class multi-gráfica is graf-barras is graf-líneas {
+}
+
+my $ventas-actuales = graf-barras.new(valores-barras => [10,9,11,8,7,10]);
+my $previsión-ventas = graf-líneas.new(valores-líneas => [9,8,10,7,6,9]);
+
+my $actual-vs-previsión = multi-gráfica.new(valores-barras => [10,9,11,8,7,10],
+                                            valores-líneas => [9,8,10,7,6,9]);
+say "Ventas actuales:";
+$ventas-actuales.dibujar;
+say "Previsión de ventas:";
+$previsión-ventas.dibujar;
+say "Actual vs Previsión:";
+$actual-vs-previsión.dibujar;
+----
+
+.`Salida`
+----
+Ventas actuales:
+[10 9 11 8 7 10]
+Previsión de ventas:
+[9 8 10 7 6 9]
+Actual vs Previsión:
+[10 9 11 8 7 10]
+----
+
+.Explicación
+La clase `multi-gráfica` debería ser capaz de tener dos series, una para los valores actuales de las barras y otra para los valores de las previsiones de las líneas. +
+Por esa razón la hemos definido como hija de `graf-líneas` y `graf-barras`. +
+Te habrás dado cuenta que al llamar al método `dibujar` en `multi-gráfica` no tenemos el resultado deseado.
+Solo se dibuja una serie. +
+¿Qué ha ocurrido? +
+`multi-gráfica` hereda de `graf-líneas` y de `graf-barras` y ambas tienen un método llamado `dibujar`.
+Cuando llamamos a ese método desde `multi-gráfica` Perl 6 trata de resolver internamente el conflicto llamando a uno de los métodos heredados.
+
+.Correción
+Para que funcione correctamente necesitamos anular la herencia del método `dibujar` en `multi-gráfica`.
+
+[source,perl6]
+----
+class graf-barras {
+  has Int @.valores-barras;
+  method dibujar {
+    say @.valores-barras;
+  }
+}
+
+class graf-líneas {
+  has Int @.valores-líneas;
+  method dibujar {
+    say @.valores-líneas;
+  }
+}
+
+class multi-gráfica is graf-barras is graf-líneas {
+  method dibujar {
+    say @.valores-barras;
+    say @.valores-líneas;
+  }
+}
+
+my $ventas-actuales = graf-barras.new(valores-barras => [10,9,11,8,7,10]);
+my $previsión-ventas = graf-líneas.new(valores-líneas => [9,8,10,7,6,9]);
+
+my $actual-vs-previsión = multi-gráfica.new(valores-barras => [10,9,11,8,7,10],
+                                            valores-líneas => [9,8,10,7,6,9]);
+say "Ventas actuales:";
+$ventas-actuales.dibujar;
+say "Previsión de ventas:";
+$previsión-ventas.dibujar;
+say "Actual vs Previsión:";
+$actual-vs-previsión.dibujar;
+----
+
+.`Salida`
+----
+Ventas actuales:
+[10 9 11 8 7 10]
+Previsión de ventas:
+[9 8 10 7 6 9]
+Actual vs Previsión:
+[10 9 11 8 7 10]
+[9 8 10 7 6 9]
+----
+
+=== Roles
+Los *Roles* se parecen a las clases en cuanto a que son una colección de atributos y métodos.
+
+Los roles se declaran con la palabra clave `role` y las clases que quieran implementar el rol pueden hacerlo mediante la palabra clave `does`.
+
+.Vamos a escribir de nuevo el ejemplo de la herencia múltiple pero mediante roles:
+
+[source,perl6]
+----
+role graf-barras {
+  has Int @.valores-barras;
+  method dibujar {
+    say @.valores-barras;
+  }
+}
+
+role graf-líneas {
+  has Int @.valores-líneas;
+  method dibujar {
+    say @.valores-líneas;
+  }
+}
+
+class multi-gráfica does graf-barras does graf-líneas {
+  method dibujar {
+    say @.valores-barras;
+    say @.valores-líneas;
+  }
+}
+
+my $ventas-actuales = graf-barras.new(valores-barras => [10,9,11,8,7,10]);
+my $previsión-ventas = graf-líneas.new(valores-líneas => [9,8,10,7,6,9]);
+
+my $actual-vs-previsión = multi-gráfica.new(valores-barras => [10,9,11,8,7,10],
+                                            valores-líneas => [9,8,10,7,6,9]);
+say "Ventas actuales:";
+$ventas-actuales.dibujar;
+say "Previsión de ventas:";
+$previsión-ventas.dibujar;
+say "Actual vs Previsión:";
+$actual-vs-previsión.dibujar;
+----
+Verás que el resultado es el mismo que antes sin utilizar roles.
+
+Y ahora te preguntarás; si un rol es como una clase ¿cual es la función del rol? +
+Para responder la pregunta, modifica el primer script que hemos utilizado para mostrar el caso de la herencia múltiple, en el que _olvidamos_ anular la herencia del método `dibujar`, pero utilizando roles nuevamente.
+
+[source,perl6]
+----
+role graf-barras {
+  has Int @.valores-barras;
+  method dibujar {
+    say @.valores-barras;
+  }
+}
+
+role graf-líneas {
+  has Int @.valores-líneas;
+  method dibujar {
+    say @.valores-líneas;
+  }
+}
+
+class multi-gráfica does graf-barras does graf-líneas {
+}
+
+my $ventas-actuales = graf-barras.new(valores-barras => [10,9,11,8,7,10]);
+my $previsión-ventas = graf-líneas.new(valores-líneas => [9,8,10,7,6,9]);
+
+my $actual-vs-previsión = multi-gráfica.new(valores-barras => [10,9,11,8,7,10],
+                                            valores-líneas => [9,8,10,7,6,9]);
+say "Ventas actuales:";
+$ventas-actuales.dibujar;
+say "Previsión de ventas:";
+$previsión-ventas.dibujar;
+say "Actual vs Previsión:";
+$actual-vs-previsión.dibujar;
+----
+
+.`Salida`
+----
+===SORRY!=== Error while compiling
+Method 'dibujar' must be resolved by class multi-gráfica because it exists in multiple roles (graf-líneas, graf-barras)
+----
+
+.Explicación
+Tendremos un error en tiempo de compilación si aplicamos varios roles a la misma clase mientras exista un conflicto. +
+Este enfoque es mucho más seguro que la herencia múltiple donde los conflictos no se consideran errores y se resuelven simplemente en tiempo de ejecución.
+
+Los roles te avisarán si existe un conflicto.
+
+=== Introspección
+La *Introspección* es la forma de ver las propiedades de un objeto; como el tipo, atributos o métodos.
+
+[source,perl6]
+----
+class Humano {
+  has Str $.nombre;
+  has Int $.edad;
+  method preséntate {
+    say 'Hola, soy un ser humano y mi nombre es ' ~ self.nombre;
+  }
+}
+
+class Empleado is Humano {
+  has Str $.compañía;
+  has Int $.salario;
+  method preséntate {
+    say 'Hola, soy un empleado, mi nombre es ' ~ self.nombre ~ ' y trabajo en: ' ~ self.compañía;
+  }
+}
+
+my $juan = Humano.new(nombre =>'Juan',edad => 23,);
+my $juana = Empleado.new(nombre =>'Juana',edad => 25,compañía => 'Acme',salario => 4000);
+
+say $juan.WHAT;
+say $juana.WHAT;
+say $juan.^attributes;
+say $juana.^attributes;
+say $juan.^methods;
+say $juana.^methods;
+say $juana.^parents;
+if $juana ~~ Humano {say 'Juana es Humana'};
+----
+La introspeción proporciona la siguiente información:
+
+* `.WHAT` devuelve la clase a la que pertenece el objeto.
+
+* `.^attributes` devuelve una lista con todos los atributos del objeto.
+
+* `.^methods` devuelve todos los métodos accesibles del objeto.
+
+* `.^parents` devuelve todas las clases padre a las que pertenece la clase del objeto.
+
+* `~~` es el operador de coincidencia inteligente. Devuelve _True_ si el objeto pertenece a la clase con la que se compara o con cualquier clase heredada.
+
+== Control de Excepciones
+
+=== Captura de Excepciones
+Las *excepciones* son situaciones especiales que ocurren en tiempo de ejecución cuando algo va mal. +
+Decimos que las excepciones son _lanzadas_.
+
+Veamos una ejecución correcta como en el siguiente script:
+
+[source,perl6]
+----
+my Str $nombre;
+$nombre = "Juana";
+say "Hola " ~ $nombre;
+say "¿Qué haces hoy?"
+----
+
+.`Salida`
+----
+Hola Juana
+¿Qué haces hoy?
+----
+
+Ahora veamos un script que lanza una excepción:
+
+[source,perl6]
+----
+my Str $nombre;
+$nombre = 123;
+say "Hola " ~ $nombre;
+say "¿Qué haces hoy?"
+----
+
+.`Salida`
+----
+Type check failed in assignment to $nombre; expected Str but got Int
+  in block <unit> at exceptions.pl6 line 2
+----
+Debes tener en cuenta que cuando se produce un error (en este caso debido a la asignación de un número a una variable de texto) el programa se interrumpirá y no ejecutará las siguientes líneas de código aunque éstas sean correctas.
+
+El *Control de excepciones* se produce cuando se _lanza_ una excepción y es _capturada_ de forma que el script continúa su ejecución.
+
+[source,perl6]
+----
+my Str $nombre;
+try {
+  $nombre = 123;
+  say "Hola " ~ $nombre;
+  CATCH {
+    default {
+      say "¿Puedes decirme tu nombre de nuevo? No podemos encontrarlo en el registro.";
+    }
+  }
+}
+say "¿Qué haces hoy?";
+----
+
+.`Salida`
+----
+¿Puedes decirme tu nombre de nuevo? No podemos encontrarlo en el registro.
+¿Qué haces hoy?
+----
+
+El Control de excepciones se realiza utilizando un bloque `try-catch`.
+
+[source,perl6]
+----
+try {
+  #código
+  #si algo va mal, el script saltará al bloque CATCH
+  #si todo es correcto, el script ignorará el bloque CATCH
+  CATCH {
+    default {
+      #aquí se ejecuta código si se lanza una excepción
+    }
+  }
+}
+----
+El bloque `CATCH` puede definirse igual que el bloque `given`.
+Esto significa que podemos _capturar_ y controlar distintos tipos de excepciones.
+
+[source,perl6]
+----
+try {
+  #código
+  #si algo va mal, el script saltará al bloque CATCH
+  #si todo es correcto, el script ignorará el bloque CATCH
+  CATCH {
+    when X::AdHoc { #hace algo si se lanza una excepción de tipo X::AdHoc }
+    when X::IO { #hace algo si se lanza una excepción de tipo X::IO }
+    when X::OS { #hace algo si se lanza una excepción de tipo X::OS }
+    default { #hace algo si se lanza una excepción y no está contemplada en los tipos anteriores }
+  }
+}
+----
+
+=== Lanzando Excepciones
+Además de capturar excepciones, Perl 6 te permite lanzar excepciones de forma explícita. +
+Se pueden lanzar dos tipos de excepciones:
+
+* Excepciones ad-hoc
+
+* Excepciones por tipo
+
+[source,perl6]
+.ad-hoc
+----
+my Int $edad = 21;
+die "¡Error!";
+----
+
+[source,perl6]
+.por tipo
+----
+my Int $edad = 21;
+X::AdHoc.new(payload => '¡Error!').throw;
+----
+Las excepciones ad-hoc se lanzan utilizando la subrutina `die` seguida del mensaje describiendo la excepción.
+
+Las excepciones por tipo son objetos, y como vemos en el ejemplo anterior utilizan el constructor `.new()`. +
+Todas las excepciones por tipo pertenecen a la clase `X`. Estos son algunos ejemplos: +
+`X::AdHoc` es el tipo de excepción más simple +
+`X::IO` errores relacionados con operaciones de E/S +
+`X::OS` errores relacionados con el Sistema Operativo +
+`X::Str::Numeric` errores relacionados con la conversión de una cadena de texto a un valor numérico
+
+NOTA: Tienes una lista completa de tipos de excepciones y sus métodos asociados en http://doc.perl6.org/type.html. Busca los tipos que comienzan con X::.
+
+
+== Expresiones Regulares
+Una expresión regular, o _regex_ es una secuencia de caracteres que sirve para encontrar un patrón. +
+Para entenderlo mejor piensa en ello como un patrón.
+
+[source,perl6]
+----
+if 'iluminación' ~~ m/ ilumina / {
+    say "iluminación contiene la palabra ilumina";
+}
+----
+
+En este ejemplo, el operador inteligente de coincidencia `~~` sirve para comprobar si el texto (iluminación) contiene la palabra (ilumina). +
+"Iluminación" se compara con la regex `m/ ilumina /`
+
+=== Definición de Regex
+Una expresión regular puede definirse de las siguientes formas:
+
+* `/ilumina/`
+
+* `m/ilumina/`
+
+* `rx/ilumina/`
+
+A menos que se indique de forma explícita, el espacio en blanco es ignorado, da igual `m/ilumina/` que `m/ ilumina /`.
+
+=== Búsqueda de caracteres
+Los caracteres alfanuméricos y el guión bajo `_` se escriben tal cual. +
+El resto de caracteres deben ser escapados utilizando la barra invertida o backslash o ir entre comillas.
+
+[source,perl6]
+.Barra invertida o Backslash
+----
+if 'Temperatura: 13' ~~ m/ \: / {
+    say "El texto contiene el caracter dos puntos :";
+}
+----
+
+[source,perl6]
+.Comillas simples
+----
+if 'Edad = 13' ~~ m/ '=' / {
+    say "El texto contiene el caracter igual = ";
+}
+----
+
+[source,perl6]
+.Comillas dobles
+----
+if 'nombre@empresa.com' ~~ m/ "@" / {
+    say "Dirección de mail válida porque contiene el caracter @";
+}
+----
+
+=== Categorías de caracteres
+Los caracteres se pueden clasificar en categorías y podemos realizar comparaciones con ellas. +
+También podemos comparar la inversa de la categoría (todo menos ella):
+
+|===
+
+| *Categoría* | *Regex* | *Inversa* | *Regex*
+
+| Caracter de palabra (letra, dígito o guión bajo) | \w | Cualquier caracter menos un caracter de palabra | \W
+
+| Dígito | \d | Cualquier caracter menos un dígito | \D
+
+| Espacio en blanco | \s | Cualquier caracter menos un espacio en blanco | \S
+
+| Espacio en blanco horizontal | \h | Cualquier caracter menos un caracter en blanco horizontal | \H
+
+| Espacio en blanco vertical | \v | Cualquier caracter menos un caracter en blanco horizontal | \V
+
+| Tabulador | \t | Cualquier caracter menos el tabulador | \T
+
+| Línea nueva | \n | Cualquier caracter menos una línea nueva | \N
+
+|===
+
+[source,perl6]
+----
+if "Juan123" ~~ / \d / {
+  say "Nombre no válido, no se permiten números";
+} else {
+  say "Nombre válido"
+}
+if "Juan-Dios" ~~ / \s / {
+  say "El texto contiene un espacio en blanco";
+} else {
+  say "El texto no contiene un espacio en blanco"
+}
+----
+
+=== Propiedades Unicode
+Lo normal es comparar categorías de caracteres como hemos visto. +
+Dicho esto, podemos tener un enfoque más sistemático utilizando propiedades Unicode. +
+Las propiedades Unicode se indican entre `<: >`
+
+[source,perl6]
+----
+if "Juan123" ~~ / <:N> / {
+  say "Contiene un número";
+} else {
+  say "No contiene un número"
+}
+if "Juan-Dios" ~~ / <:Lu> / {
+  say "Contiene una letra en mayúsculas";
+} else {
+  say "No contiene una letra en mayúsculas"
+}
+if "Juan-Dios" ~~ / <:Pd> / {
+  say "Contiene un guión";
+} else {
+  say "No contiene un guión"
+}
+----
+
+=== Comodines
+En una regex también se pueden utilizar comodines.
+
+El punto `.` significa cualquier caracter.
+
+[source,perl6]
+----
+if 'abc' ~~ m/ a.c / {
+    say "Coincide";
+}
+if 'a2c' ~~ m/ a.c / {
+    say "Coincide";
+}
+if 'ac' ~~ m/ a.c / {
+    say "Coincide";
+  } else {
+    say "No coincide";
+}
+----
+
+=== Cuantificadores
+Los cuantificadores van después de un caracter y especifican cuantas veces se repite éste.
+
+El interrogante `?` significa que se repite una vez o ninguna.
+
+[source,perl6]
+----
+if 'ac' ~~ m/ a?c / {
+    say "Coincide";
+  } else {
+    say "No coincide";
+}
+if 'c' ~~ m/ a?c / {
+    say "Coincide";
+  } else {
+    say "No coincide";
+}
+----
+
+El asterisco `*` significa que se repite una vez o más de una vez o ninguna.
+
+[source,perl6]
+----
+if 'az' ~~ m/ a*z / {
+    say "Coincide";
+  } else {
+    say "No coincide";
+if 'aaz' ~~ m/ a*z / {
+    say "Coincide";
+  } else {
+    say "No coincide";
+}
+if 'aaaaaaaaaaz' ~~ m/ a*z / {
+    say "Coincide";
+  } else {
+    say "No coincide";
+}
+if 'z' ~~ m/ a*z / {
+    say "Coincide";
+  } else {
+    say "No coincide";
+}
+----
+
+El símbolo `+` significa que se repite al menos una vez.
+
+[source,perl6]
+----
+if 'az' ~~ m/ a+z / {
+    say "Coincide";
+  } else {
+    say "No coincide";
+}
+if 'aaz' ~~ m/ a+z / {
+    say "Coincide";
+  } else {
+    say "No coincide";
+}
+if 'aaaaaaaaaaz' ~~ m/ a+z / {
+    say "Coincide";
+  } else {
+    say "No coincide";
+}
+if 'z' ~~ m/ a+z / {
+    say "Coincide";
+  } else {
+    say "No coincide";
+}
+----
+
+=== Extracción de resultados
+Cuando se encuentra el patrón buscado, el resultado se guarda en la variable especial `$/`
+
+[source,perl6]
+.Script
+----
+if 'Rakudo es el compilador de Perl 6' ~~ m/:s Perl 6/ {
+    say "El resultado es: " ~ $/;
+    say "El texto antes del resultado es: " ~ $/.prematch;
+    say "El texto después del resultado es: " ~ $/.postmatch;
+    say "La posición de comienzo del resultado es: " ~ $/.from;
+    say "La posición final del resultado es: " ~ $/.to;
+}
+----
+
+.Salida
+----
+El resultado es: Perl 6
+El texto antes del resultado es: Rakudo es el compilador de
+El texto después del resultado es:
+La posición inicial del resultado es: 27
+La posición final del resultado es: 33
+----
+
+.Explicación
+`$/` devuelve un _Objeto de Coincidencia_ (el texto encontrado o resultado de la regex) +
+El _Objeto de Coincidencia_ tiene los siguientes métodos: +
+`.prematch` devuelve el texto que hay antes del resultado. +
+`.postmatch` devuelve el texto que hay después del resultado. +
+`.from` devuelve la posición inicial del resultado. +
+`.to` devuelve la posición final del resultado. +
+
+TIP: Por defecto el espacio en blanco en una regex es irrelevante. +
+Si queremos tener en cuenta los espacios en blanco en una regex tenemos que hacerlo de forma explícita. +
+El parámetro `:s` en la regex `m/:s Perl 6/` hace que la regex tenga en cuenta los espacios en blanco. +
+Otra forma de hacerlo sería así `m/ Perl\s6 /` donde `\s`, como hemos visto antes, es la regex para encontrar el espacio en blanco. +
+Si la regex contiene más de un espacio en blanco, es más efectivo utilizar `:s` que utilizar `\s` para cada espacio en blanco.
+
+=== Ejemplo
+Vamos a comprobar si una dirección de email es correcta o no. +
+Para este ejemplo asumiremos que una dirección de email correcta está formada así: +
+nombre [punto] apellido [arroba] compañía [punto] (com/org/net)
+
+WARNING: La regex que utilizaremos en este ejemplo para validar una dirección de email no es muy precisa, y como su propósito es demostrar el funcionamiento de las regex en Perl 6, conviene no utilizarla en producción.
+
+[source,perl6]
+.Script
+----
+my $email = 'juan.dios@perl6.org';
+my $regex = / <:L>+\.<:L>+\@<:L+:N>+\.<:L>+ /;
+
+if $email ~~ $regex {
+  say $/ ~ " es un email válido";
+} else {
+  say "No es una email válido";
+}
+----
+
+.Salida
+`juan.dios@perl6.org es un email válido`
+
+.Explicación
+`<:L>` coincide con una letra +
+`<:L>+` coincide con una letra o más de una +
+`\.` coincide con un caracter de [punto] +
+`\@` coincide con un caracter de [arroba] +
+`<:L+:N>` coincide con una letra o más de una y un número +
+`<:L+:N>+` coincide con una o más (una o más letras y un número) +
+
+La regex se puede descomponer así:
+
+* *nombre* `<:L>+`
+
+* *[punto]* `\.`
+
+* *apellido* `<:L>+`
+
+* *[arroba]* `\@`
+
+* *nombre de la compañía* `<:L+:N>+`
+
+* *[punto]* `\.`
+
+* *com/org/net* `<:L>+`
+
+[source,perl6]
+.Otra forma de hacerlo es descomponer la regex en varias regex con nombre
+----
+my $email = 'juan.dios@perl6.org';
+my regex varias-letras { <:L>+ };
+my regex punto { \. };
+my regex arroba { \@ };
+my regex varias-letras-numeros { <:L+:N>+ };
+
+if $email ~~ / <varias-letras> <punto> <varias-letras> <arroba> <varias-letras-numeros> <punto> <varias-letras> / {
+  say $/ ~ " es un email válido";
+} else {
+  say "No es una email válido";
+}
+----
+
+Una regex con nombre se define de la siguiente forma: `my regex nombre-regex { definición de la regex }` +
+Para utilizar una regex, la invocamos con su nombre de esta forma: `<nombre-regex>`
+
+NOTA: En http://doc.perl6.org/language/regexes tienes más información sobre regex.
+
+== Módulos en Perl 6
+Perl 6 es un lenguaje de programación de propósito general. Puede utilizarse para llevar a cabo multitud de tareas, incluyendo:
+manipulación de texto, gráficos, web, bases de datos, protocolos de red, etc.
+
+La reutilización es un concepto muy importante para que los programadores no tengan que reinventar la rueda cada vez que quieran llevar a cabo una nueva tarea.
+
+Perl 6 permite la creación y redistribución de *módulos*. Cada módulo es un paquete de funcionalidades que, una vez instalado, se puede reutilizar.
+
+_Panda_ es el gestor de módulos que incorpora Rakudo.
+
+Para instalar un módulo concreto, utiliza el siguiente comando en el terminal:
+
+`panda install "nombre del módulo"`
+
+NOTA: Puedes encontrar el directorio de módulos de Perl 6 en: http://modules.perl6.org/
+
+=== Utilizando Módulos
+MD5 es una función de cifrado de tipo hash que produce un valor hash de 128-bit. +
+MD5 tiene muchas aplicaciones, como el cifrado de contraseñas que se pueden alojar en una base de datos.
+Cuando se registra un nuevo usuario sus credenciales no se guardan en texto plano, se guardan _cifradas_, de forma que si un atacante compromete la base de datos, este atacante no podría conocer las contraseñas.
+Supongamos que necesitas un script que genere el hash MD5 de una contraseña para después guardarlo en la base de datos.
+
+Por suerte existe un módulo en Perl 6 que ya implementa el algoritmo MD5. Vamos a instalarlo: +
+`panda install Digest::MD5`
+
+Ahora ejecutemos el siguiente script:
+[source,perl6]
+----
+use Digest::MD5;
+my $contraseña = "contraseña123";
+my $contraseña-cifrada = Digest::MD5.new.md5_hex($contraseña);
+
+say $contraseña-cifrada;
+----
+Para utilizar la función `md5_hex()` que produce el cifrado necesitaremos antes cargar el módulo requerido. +
+La palabra clave `use` carga el módulo para después utilizarlo en el script.
+
+WARNING: En la práctica el cifrado MD5 no es suficientemente seguro pues es vulnerable a ataques de diccionario. +
+Debería combinarse con sal link:https://es.wikipedia.org/wiki/Sal_(criptografía)[https://es.wikipedia.org/wiki/Sal_(criptografía)].
+
+== Unicode
+
+Unicode es un estándar para codificar y representar texto que incluye la mayoría de los sistemas de escritura del mundo. +
+UTF-8 es una codificación de caracteres que puede codificar todos los caracteres o números de código en Unicode.
+
+Los caracteres se definen con un: +
+*Grafema*: Representación visual. +
+*Número de código*: Un número asignado a un caracter.
+
+=== Utilizando Unicode
+
+.Veamos cómo podemos visualizar caracteres mediante Unicode
+[source,perl6]
+----
+say "a";
+say "\x0061";
+say "\c[LATIN SMALL LETTER A]";
+----
+Las 3 líneas anteriores muestran formas distintas de construir un caracter:
+
+. Escribir el caracter directamente (grafema)
+
+. Utilizar `\x` y el número de código
+
+. Utilizar `\c` y el nombre del número de código
+
+.Visualicemos ahora una sonrisa
+[source,perl6]
+----
+say "☺";
+say "\x263a";
+say "\c[WHITE SMILING FACE]";
+----
+
+.Otro ejemplo combinando dos números de código
+[source,perl6]
+----
+say "á";
+say "\x00e1";
+say "\x0061\x0301";
+say "\c[LATIN SMALL LETTER A WITH ACUTE]";
+----
+
+La letra `á` puede escribirse:
+
+* utilizando su número de código único `\x00e1`
+
+* o combinando sus números de código de `a` y la tilde `\x0061\x0301`
+
+.Algunos de los métodos que pueden utilizarse:
+[source,perl6]
+----
+say "á".NFC;
+say "á".NFD;
+say "á".uniname;
+----
+
+.`Salida`
+----
+NFC:0x<00e1>
+NFD:0x<0061 0301>
+LATIN SMALL LETTER A WITH ACUTE
+----
+
+`NFC` devuelve el número de código único. +
+`NFD` descompone el caracter y devuelve el número de código de cada parte. +
+`uniname` devuelve el nombre del número de código.
+
+.Las letras Unicode pueden utilizarse como identificadores:
+[source,perl6]
+----
+my $Δ = 1;
+$Δ++;
+say $Δ;
+----
+
+== Paralelismo, Concurrencia y Asincronía
+
+=== Paralelismo
+En condiciones normales todas las tareas de un programa se ejecutan de forma secuencial. +
+Esto no suele ser un problema a menos que exista un retardo significativo.
+
+Perl 6 te permite hacer cosas en paralelo. +
+Llegados aquí, es importante saber que el paralelismo puede tener dos significados:
+
+* *Paralelismo de Tareas*: Dos (o más) expresiones independientes ejecutándose en paralelo.
+
+* *Paralelismo de Datos*: Una única expresión iterando en una lista de elementos en paralelo.
+
+Comencemos con la última.
+
+==== Paralelismo de Datos
+[source,perl6]
+----
+my @array = (0..50000);                      #Creación del array
+my @resultado = @array.map({ is-prime $_ }); #Llama a is-prime por cada elemento del array
+say now - INIT now;                          #Visualiza el tiempo que toma el script hasta finalizar
+----
+
+.Consideremos el ejemplo anterior:
+Hacemos solo una operación `@array.map({ is-prime $_ })` +
+La subrutina `is-prime` es llamada por cada elemento del array de forma secuencial: +
+`is-prime @array[0]` después `is-prime @array[1]` después `is-prime @array[2]` etc.
+
+.Afortunadamente podemos llamar a `is-prime` en múltiples elementos del array al mismo tiempo:
+[source,perl6]
+----
+my @array = (0..50000);                           #Creación del array
+my @resultado = @array.race.map({ is-prime $_ }); #Llama a is-prime por cada elemento del array
+say now - INIT now;                               #Visualiza el tiempo que toma el script hasta finalizar
+----
+
+Fíjate que la expresión utiliza `race`.
+Este método permite la iteración en paralelo de los elementos del array.
+
+Después de ejecutar ambos ejemplos (con y sin `race`), compara los tiempos consumidos de ambos scripts.
+
+[TIP]
+--
+`race` no guarda el orden de los elementos. Si quieres respetar este orden, utiliza `hyper`.
+
+[source,perl6]
+.race
+----
+my @array = (1..1000);
+my @resultado = @array.race.map( {$_ + 1} );
+@resultado>>.say;
+----
+
+[source,perl6]
+.hyper
+----
+my @array = (1..1000);
+my @resultado = @array.hyper.map( {$_ + 1} );
+@resultado>>.say;
+----
+
+Si ejecutas ambos ejemplos verás que uno muestra los resultados ordenados y el otro no.
+
+--
+
+==== Paralelismo de Tareas
+
+[source,perl6]
+----
+my @array1 = (0..49999);
+my @array2 = (2..50001);
+
+my @resultado1 = @array1.map( {is-prime($_ + 1)} );
+my @resultado2 = @array2.map( {is-prime($_ - 1)} );
+
+say @resultado1 == @resultado2;
+
+say now - INIT now;
+----
+
+.Veamos el ejemplo anterior:
+
+. Definimos 2 arrays
+
+. Realizamos una operación con cada array y guardamos los resultados
+
+. Y comprobamos si ambos resultados son iguales
+
+El script espera mientras realiza `@array1.map( {is-prime($_ + 1)} )` hasta finalizar +
+y después realiza `@array2.map( {is-prime($_ - 1)} )`
+
+Ambas operaciones realizadas en cada array son independientes.
+
+.¿Por qué no hacer las dos en paralelo?
+[source,perl6]
+----
+my @array1 = (0..49999);
+my @array2 = (2..50001);
+
+my $promesa1 = start @array1.map( {is-prime($_ + 1)} ).eager;
+my $promesa2 = start @array2.map( {is-prime($_ - 1)} ).eager;
+
+my @resultado1 = await $promesa1;
+my @resultado2 = await $promesa2;
+
+say @resultado1 eqv @resultado2;
+
+say now - INIT now;
+----
+
+.Explicación
+El método `start` evalúa el código y devuelve *un objeto de tipo promesa* o *una promesa* (promise). +
+Si el código se evalúa correctamente, la _promesa_ se *cumple* (kept). +
+Si el código lanza una excepción, la _promesa_ se *rompe* (broken).
+
+El método `await` espera a una *promesa*. +
+Si esta se *cumple* devuelve los valores. +
+Si esta se *rompe* devuelve la excepción.
+
+Comprueba lo que tarda cada script en completarse.
+
+WARNING: El paralelismo siempre añade una sobrecarga multihilo. Si esta sobrecarga no se compensa aumentando la velocidad de cómputo, el script tardará más en completarse. +
+Debido a esto, el uso de `race`, `hyper`, `start` y `await` en scripts muy simples podría ralentizarlos.
+
+=== Concurrencia y Asincronía
+NOTE: En http://doc.perl6.org/language/concurrency tienes más información sobre Concurrencia y Programación Asíncrona.
+
+== La comunidad
+
+El lugar principal para hablar de Perl 6 es el canal de IRC link:irc://irc.freenode.net/#perl6[#perl6]. Cualquier consulta al respecto puedes realizarla en: +
+http://perl6.org/community/irc
+
+Mantente al día en el siguiente agregador de blogs sobre Perl 6: +
+http://pl6anet.org/
