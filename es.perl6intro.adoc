@@ -9,6 +9,7 @@ Naoum Hankache <naoum@hankache.com>; Ramiro Encinas <ramiro.encinas@gmail.com>
 :source-language: perl6
 :pygments-linenums-mode: table
 :toc: left
+:toc-title: Tabla de Contenidos
 :doctype: book
 
 Este documento es una guía rápida del lenguaje de programación Perl 6.
