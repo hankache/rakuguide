@@ -1,7 +1,7 @@
-= Perl 6 Introduction
+= Perl6入門
 Naoum Hankache <naoum@hankache.com>; Itsuki Toyota <titsuki@cpan.org>
 :description: Perl 6 入門
-:keywords: perl6, perl 6, introduction, perl6intro, perl 6 introduction, perl 6 tutorial, perl 6 intro, perl 6 入門
+:keywords: perl6, perl 6, introduction, イントロダクション, perl6intro, perl 6 introduction, perl 6 tutorial, perl 6 intro, perl 6 入門, perl 6 イントロダクション, perl 6 イントロ
 :Revision: 1.0
 :icons: font
 :source-highlighter: pygments
@@ -9,7 +9,7 @@ Naoum Hankache <naoum@hankache.com>; Itsuki Toyota <titsuki@cpan.org>
 :source-language: perl6
 :pygments-linenums-mode: table
 :toc: left
-:toc-title: Table of Contents
+:toc-title: 目次
 :doctype: book
 
 この文書はプログラミング言語Perl6 の全体像を素早くつかんでもらうことを目的として書かれたものです。
@@ -131,16 +131,16 @@ http://www.vim.org/[Vim], https://www.gnu.org/software/emacs/[Emacs], http://pad
 最近のバージョンのVimは、はじめから革新的なシンタックスハイライティング機能を持っています。
 EmacsとPadreは追加のパッケージのインストールが必要になるでしょう。
 
-=== Hello World!
-おなじみの `hello world` の儀式をはじめましょう。
+=== こんにちは世界!
+おなじみの `こんにちは世界` の儀式をはじめましょう。
 
 [source,perl6]
-say 'hello world';
+say 'こんにちは世界';
 
 これはこういう風に書くこともできます:
 
 [source,perl6]
-'hello world'.say;
+'こんにちは世界'.say;
 
 === 文法の概要
 Perl 6 は *フリーフォーム*: (ほとんどの場合)空白文字をいくらつかってもよいです。
