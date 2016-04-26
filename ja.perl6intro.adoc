@@ -1,0 +1,2818 @@
+= Perl 6 Introduction
+Naoum Hankache <naoum@hankache.com>; Itsuki Toyota <titsuki@cpan.org>
+:description: Perl 6 入門
+:keywords: perl6, perl 6, introduction, perl6intro, perl 6 introduction, perl 6 tutorial, perl 6 intro, perl 6 入門
+:Revision: 1.0
+:icons: font
+:source-highlighter: pygments
+//:pygments-style: manni
+:source-language: perl6
+:pygments-linenums-mode: table
+:toc: left
+:doctype: book
+
+この文書はプログラミング言語Perl6 の全体像を素早くつかんでもらうことを目的として書かれたものです。
+
+まだPerl6を触ったことのない読者の方々が、ここからPerl6をはじめてもらうことを狙いとしています。
+
+この文書のいくつかの節では他のPerl6の文書(もっと複雑で正確な文書)を参照しています。
+
+特定の事項に関してもっと情報がほしいのであればそれらの文書を読んでみることをおすすめします。
+
+この文書の中では、ほとんどのトピックにおいて例がふんだんに用いられています。
+理解を深めるために、自分でもすべての例を再現してみることをおすすめします。
+
+.ライセンス
+This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License.
+To view a copy of this license, visit
+
+* http://creativecommons.org/licenses/by-sa/4.0/.
+
+.貢献
+もしこの文書に貢献したいのなら次のURLへ向かってください:
+
+* http://github.com/hankache/perl6intro
+
+.フィードバック
+フィードバックは大歓迎です！:
+naoum@hankache.com
+
+.Translations
+* French: http://fr.perl6intro.com
+* German: http://de.perl6intro.com
+* 日本語: http://ja.perl6intro.com
+
+:sectnums:
+== イントロダクション
+=== Perl 6 とは
+Perl6は高水準、汎用、漸進的型付けの言語です。
+Perl6はマルチパラダイム言語です。手続き型、オブジェクト指向、関数型プログラミングをサポートしています。
+
+.Perl 6 のモットー:
+* TMTOWTDI (ティムトゥディ と発音します): やり方はひとつじゃない
+* 簡単なことは簡単なまま、難しいことは簡単に、不可能なことは解けるように。
+
+=== 専門用語
+* *Perl 6*: はテストスイートもあわせての言語の仕様です。
+仕様に基づいたテストスイートを通るような実装はPerl6と考えられます。
+* *Rakudo* : はPerl6のためのコンパイラです。
+* *Rakudobrew* : はRakudoのためのインストール管理ツールです。
+* *Panda* : はPerl6のモジュールのインストーラーです。
+* *Rakudo Star*: はRakudo, Panda, Perl6のモジュールのコレクション, 文書を含んだバンドルソフトです。
+
+=== Perl6のインストール
+.Linux
+. Rakudobrewのインストール: https://github.com/tadzik/rakudobrew
+
+. Rakudoのインストール: 次のコマンドをターミナルで打ってください `rakudobrew build moar`
+
+. Pandaのインストール: 次のコマンドをターミナルで打ってください `rakudobrew build panda`
+
+.OSX
+四つの選択肢から選んでください:
+
+* Linuxにおけるインストール手順と同じステップを踏む
+* homebrewによるインストール: `brew install rakudo-star`
+* MacPortsによるインストール: `sudo port install rakudo`
+* 次のURLから最新のインストーラー(.dmg拡張子のついたファイル)をダウンロードする http://rakudo.org/downloads/star/
+
+.Windows
+. 次のURLから最新のインストーラー(.msi拡張子のついたファイル)をダウンロードしてください http://rakudo.org/downloads/star/ +
+もし32bit版のWindowsを使っているのであれば、x86向けのファイルをダウンロードしてください。そうではなく64bit版のWindowsを使っているのであれば、x86_64向けのファイルをダウンロードしてください。
+. インストール後 `C:\rakudo\bin` がPATH変数に含まれていることを確認してください。
+
+.Docker
+. 次のコマンドで公式のDockerイメージを入手してください `docker pull rakudo-star`
+. イメージを含んだコンテナを実行するために次のコマンドを打ってください `docker run -it rakudo-star`
+
+=== Perl6のコードを実行する
+
+Perl6のコードの実行はREPL (Read-Eval-Print Loop)を用いることによって行うことができます。
+この実行を行うために、ターミナルを開き、ターミナルの窓に向かって `perl6` と打ち、[Enter]ボタンを押してください。
+そうすると、コマンドプロンプトから `>` が表示されるはずです。
+次に、コードの行を打って[Enter]を押してください。
+REPL はこの行の値を出力するでしょう。
+そうしたら、次のコードの行を打つか、 `exit` と打った後[Enter]を押すことでREPLを去るか、どちらでも選ぶことができます。
+
+あるいは、ファイルの中にコードを書いて、保存して実行してください。
+Perl6のスクリプトは `.pl6` 拡張子を持つことが推奨されています。
+ターミナルの窓に対して `perl6 filename.pl6` と打ち、[Enter]を押してください。
+REPLとは違って、それぞれの行の結果が自動的に出力されるでしょう。: 出力を行うには、 `say` のような命令が含まれている必要があります。
+
+REPLは多くの場合、特定のコードを実行するために用いられ、そのコードは一般的には一行です。
+一行以上のプログラムに対しては、ファイルに保存してから実行することをおすすめします。
+
+一行のコードはコマンドラインで非対話的に実行することもできます。
+`perl6 -e 'あなたの書いたコード'` と打ち [Enter]を押してください.
+
+[TIP]
+--
+Rakudo StarはREPLを使い倒すためのラインエディタをバンドルしています。
+
+もしRakudo Starではなく無印のRakudoをインストールしたのなら、行編集機能を有効化(履歴閲覧のための上矢印キーと下矢印キーの使用、入力編集のための左矢印キーと右矢印キーの使用、タブによる補完機能)していないはずです。
+次のコマンドを実行してこれらの機能を有効化することを考えてみてください。:
+
+* `panda install Linenoise` Windows/Linux/OSXで動きます
+
+* `panda install Readline` もしLinux環境で _Readline_ ライブラリを使いたいのであれば
+--
+
+=== エディタ
+ほとんどの場合、Perl6のプログラムを書いて保存することになります。
+そのため、Perl6の文法を認識できるまともなテキストエディタを持っているべきです。
+
+私が個人的に使っていておすすめのエディタは https://atom.io/[Atom] です。
+モダンなテキストエディタであり、革新的なPerl6のシンタックスハイライティング機能を持っています。
+別の選択肢として、https://atom.io/packages/language-perl6fe[Perl6-fe] というAtomのためのシンタックスハイライターがあります。
+オリジナルのパッケージから派生したものですが、多くのバグフィックスと追加機能を含んでいます。
+
+http://www.vim.org/[Vim], https://www.gnu.org/software/emacs/[Emacs], http://padre.perlide.org/[Padre] もまた、Perl6コミュニティの他の人々によって使われています。
+
+最近のバージョンのVimは、はじめから革新的なシンタックスハイライティング機能を持っています。
+EmacsとPadreは追加のパッケージのインストールが必要になるでしょう。
+
+=== Hello World!
+おなじみの `hello world` の儀式をはじめましょう。
+
+[source,perl6]
+say 'hello world';
+
+これはこういう風に書くこともできます:
+
+[source,perl6]
+'hello world'.say;
+
+=== 文法の概要
+Perl 6 は *フリーフォーム*: (ほとんどの場合)空白文字をいくらつかってもよいです。
+
+*命令文* は一般的にはコードの論理的な行です。最後にセミコロンがついている必要があります:
+`say "Hello" if True;`
+
+*式* は値を返すような特殊なタイプの命令文です:
+`1+2` は `3` を返すでしょう。
+式は *項* と *演算子* でできています。
+
+*項* は:
+
+* *変数*: 操作したり変更したりできる値です。
+
+* *リテラル*: 数や文字列のような定数です。
+
+*演算子* は次のような種類に分類されます。:
+
+|===
+
+| *種類* | *説明* | *例*
+
+| 接頭辞 | 項の前 | `++1`
+
+| 接中辞 | 項の間 | `1+2`
+
+| 接尾辞 | 項の後ろ | `1++`
+
+| 接周辞 | 項の周り | `(1)`
+
+| 後置接周辞 | 項の後ろの、また別の項の周り | `Array[1]`
+
+|===
+
+==== 識別子
+識別子とは項を定義したときに与えられる名前のことです。
+
+.ルール:
+* アルファベットかアンダースコアで始まっていなければならない。
+
+* 数字をふくむことができる。(ただし先頭文字は除く)
+
+* アルファベットがダッシュやアポストロフィ(ただし最初と最後の文字は除く)の右側にあるなら、ダッシュやアポストロフィをふくむことができる。
+
+|===
+
+| *正しい例* | *間違った例*
+
+| `var1` | `1var`
+
+| `var-one` | `var-1`
+
+| `var'one` | `var'1`
+
+| `var1_` | `var1'`
+
+| `_var` | `-var`
+
+|===
+
+.命名規則:
+* キャメルケース: `variableNo1` 
+* ケバブケース: `variable-no1`
+
+* スネークケース: `variable_no1` 
+識別子には好きなように名前をつけることができます。しかし、一貫して一つの命名規則を適用していくのがグッドプラクティスです。
+
+ちゃんと意味のある名前をつければプログラミング人生を楽なものにしてくれるかもしれません。
+
+* `var1 = var2 * var3` は文法的には正しいですが目的が明白ではありません。
+* `monthly-salary = daily-rate * working-days` のほうが変数名としてふさわしいでしょう。
+
+==== コメント
+コメントはコンパイラーに無視され注釈として使われるテキストです。
+
+コメントは三つのタイプに分けられます:
+
+* 一行:
++
+[source,perl6]
+# これは一行のコメントです
+
+* 埋め込み:
++
+[source,perl6]
+say #`(これは埋めこまれたコメントです) "Hello World."
+
+* 複数行:
++
+[source,perl6]
+-----------------------------
+=begin comment
+これは複数行のコメントです。
+コメント1
+コメント2
+=end comment
+-----------------------------
+
+==== クォート
+
+文字列はダブルクォートかシングルクォートのどちらかで囲まれていなければなりません。
+
+常にダブルクォートを使うべき:
+
+* もし文字列がアポストロフィを含んでいるなら
+
+* もし文字列が展開される必要のある変数を含んでいるなら
+
+[source,perl6]
+-----------------------------------
+say 'Hello World';   # Hello World
+say "Hello World";   # Hello World
+say "Don't";         # Don't
+my $name = 'John Doe';
+say 'Hello $name';   # Hello $name
+say "Hello $name";   # Hello John Doe
+-----------------------------------
+
+== 演算子
+下記の表は最も一般的に使われている演算子を掲載しています。
+[cols="^.^5m,^.^5m,.^20,.^20m,.^20m", options="header"]
+|===
+
+| 演算子 | 種類 | 説明 | 例 | 結果
+
+| + | 接中辞 | 加算 | 1 + 2 | 3
+
+| - | 接中辞 | 減算 | 3 - 1 | 2
+
+| * | 接中辞 | 乗算 | 3 * 2 | 6
+
+| ** | 接中辞 | 冪乗 | 3 ** 2 | 9
+
+| / | 接中辞 | 除算 | 3 / 2 | 1.5
+
+| div | 接中辞 | 整数除算 (切り捨て) | 3 div 2 | 1
+
+| % | 接中辞 | 法 | 7 % 4 | 3
+
+.2+| %% .2+| 接中辞 .2+| 割り切れるか否か | 6 %% 4 | False
+
+<| 6 %% 3 <| True
+
+| gcd | 接中辞 | 最大公約数 | 6 gcd 9 | 3
+
+| lcm | 接中辞 | 最小公倍数 | 6 lcm 9 | 18
+
+| == | 接中辞 | 数値が等しい | 9 == 7  | False
+
+| != | 接中辞 | 数値が等しくない | 9 != 7  | True
+
+| < | 接中辞 | 小さい | 9 < 7  | False
+
+| > | 接中辞 | 大きい | 9 > 7  | True
+
+| \<= | 接中辞 | 以下 | 7 \<= 7  | True
+
+| >= | 接中辞 | 以上 | 9 >= 7  | True
+
+| eq | 接中辞 | 文字列が等しい | "John" eq "John"  | True
+
+| ne | 接中辞 | 文字列が等しくない | "John" ne "Jane"  | True
+
+| = | 接中辞 | 代入 | my $var = 7  | Assigns the value of `7` to the variable `$var`
+
+.2+| ~ .2+| 接中辞 .2+| 文字列の結合 | 9 ~ 7 | 97
+
+<m| "Hi " ~ "there"  <| Hi there
+
+.2+| x .2+| 接中辞 .2+| 文字列の複製 | 13 x 3  | 131313
+
+<| "Hello " x 3  <| Hello Hello Hello
+
+.5+| ~~ .5+| 接中辞 .5+| スマートマッチ | 2 ~~ 2  | True
+
+<| 2 ~~ Int <| True
+
+<| "Perl 6" ~~ "Perl 6" <| True
+
+<| "Perl 6" ~~ Str <| True
+
+<| "enlightenment" ~~ /light/ <| ｢light｣
+
+.2+| ++ | 接頭辞 | インクリメント | my $var = 2; ++$var;  | 1だけ値をインクリメントし、結果の `3` を返す
+
+<m| 接尾辞 <d| インクリメント <m| my $var = 2; $var++;  <| `2` を返して、それから値をインクリメントする
+
+.2+|\--| 接頭辞 | デクリメント | my $var = 2; --$var;  | 1だけ値をデクリメントし、結果の `1` を返す
+
+<m| 接尾辞 <d| デクリメント <m| my $var = 2; $var--;  <| `2` を返して、それから値をデクリメントする
+
+.3+| + .3+| 接頭辞 .3+| 被演算子を数値にする | +"3"  | 3
+
+<| +True <| 1
+
+<| +False <| 0
+
+.3+| - .3+| 接頭辞 .3+| 被演算子を数値にし、その負の値を返す | -"3"  | -3
+
+<| -True <| -1
+
+<| -False <| 0
+
+.6+| ? .6+| 接頭辞 .6+| 被演算子をブーリアンにする | ?0 | False
+
+<| ?9.8 <| True
+
+<| ?"Hello" <| True
+
+<| ?"" <| False
+
+<| my $var; ?$var; <| False
+
+<| my $var = 7; ?$var; <| True
+
+| ! | 接頭辞 | 被演算子をブーリアン値にし、その否定を返す | !4 | False
+
+| .. | 接中辞 | Rangeクラスのコンストラクタ |  0..5  | 0から5までの範囲をつくる
+
+| ..^ | 接中辞 | Rangeクラスのコンストラクタ |  0..^5  | 0から4までの範囲をつくる
+
+| ^.. | 接中辞 | Rangeクラスのコンストラクタ |  0^..5  | 1から5までの範囲をつくる
+
+| \^..^ | 接中辞 | Rangeクラスのコンストラクタ |  0\^..^5  | 1から4までの範囲をつくる
+
+| ^ | 接頭辞 | Rangeクラスのコンストラクタ |  ^5  | 0..^5 と同じく0から4までの範囲をつくる
+
+| ... | 接中辞 | 遅延リストのコンストラクタ |  0...9999  | リクエストのある場合のみ要素を返す
+
+.2+| {vbar} .2+| 接頭辞 .2+| 平坦化 | {vbar}(0..5)  | (0 1 2 3 4 5)
+
+<| {vbar}(0\^..^5)  <| (1 2 3 4)
+
+|===
+
+注釈: もしその演算の優先順位を含んだ、演算子のすべてのリストを知りたいのであれば、次のURLを参照することをすすめます http://doc.perl6.org/language/operators
+
+== 変数
+Perl6の変数は三つのカテゴリに分類される: スカラ、配列、ハッシュです。
+
+*シジル* (ラテン語で印という意味) は変数を分類するときに使われる接頭辞です。
+
+* `$` はスカラのために使われます
+* `@` は配列のために使われます
+* `%` はハッシュために使われます
+
+=== スカラ
+スカラはある値や参照を持っています。
+
+[source,perl6]
+----
+# 文字列
+my $name = 'John Doe';
+say $name;
+
+# 整数
+my $age = 99;
+say $age;
+----
+
+あるスカラに対して行うことのできる演算の種類は、そのスカラが保持している値に依存しています。
+
+[source,perl6]
+.文字列
+----
+my $name = 'John Doe';
+say $name.uc;
+say $name.chars;
+say $name.flip;
+----
+
+----
+JOHN DOE
+8
+eoD nhoJ
+----
+
+注釈: もし文字列に対して適用できるすべてのメソッドのリストを知りたいのであれば、次のURLを参照することをすすめます http://doc.perl6.org/type/Str
+
+[source,perl6]
+.整数
+----
+my $age = 17;
+say $age.is-prime;
+----
+
+----
+True
+----
+
+注釈: もし整数に対して適用できるすべてのメソッドのリストを知りたいのであれば、次のURLを参照することをすすめます http://doc.perl6.org/type/Int
+
+[source,perl6]
+.有理数
+----
+my $age = 2.3;
+say $age.numerator;
+say $age.denominator;
+say $age.nude;
+----
+
+----
+23
+10
+(23 10)
+----
+
+注釈: もし有理数に対して適用できるすべてのメソッドのリストを知りたいのであれば、次のURLを参照することをすすめます http://doc.perl6.org/type/Rat
+
+=== 配列
+配列は複数の値を含んだリストです。
+
+[source,perl6]
+----
+my @animals = 'camel','llama','owl';
+say @animals;
+----
+
+下記の例のように、配列に対してたくさんの演算をおこなうことが可能です:
+
+TIP: チルダ `~` は文字列の結合のために使われています。
+
+[source,perl6]
+.`スクリプト`
+----
+my @animals = 'camel','vicuña','llama';
+say "The zoo contains " ~ @animals.elems ~ " animals";
+say "The animals are: " ~ @animals;
+say "I will adopt an owl for the zoo";
+@animals.push("owl");
+say "Now my zoo has: " ~ @animals;
+say "The first animal we adopted was the " ~ @animals[0];
+@animals.pop;
+say "Unfortunately the owl got away and we're left with: " ~ @animals;
+say "We're closing the zoo and keeping one animal only";
+say "We're going to let go: " ~ @animals.splice(1,2) ~ " and keep the " ~ @animals;
+----
+
+.`出力`
+----
+The zoo contains 3 animals
+The animals are: camel vicuña llama
+I will adopt an owl for the zoo
+Now my zoo has: camel vicuña llama owl
+The first animal we adopted was the camel
+Unfortunately the owl got away and we're left with: camel vicuña llama
+We're closing the zoo and keeping one animal only
+We're going to let go: vicuña llama and keep the camel
+----
+
+.説明
+`.elems` は配列の中の要素数を返します。 +
+`.push()` は配列に要素を一つ追加します。 +
+配列の中の特定の要素の位置を指定することで、その要素にアクセスすることができます。 `@animals[0]` +
+`.pop` は配列から最後の要素を削除します。 +
+`.splice(a,b)` は位置 `a` から始まる `b` 個の要素を削除します。
+
+==== 固定サイズの配列
+基本的な配列は次のように宣言されます:
+[source,perl6]
+my @array;
+
+基本的な配列は不定の長さを持つことができ、それゆえにこの機能は自動拡張とよばれています。 +
+この配列は要素数に制限がありません。
+
+対照的に、固定サイズの配列をつくることもできます。 +
+あらかじめ定義されたサイズを超えたところにアクセスすることはできません。
+
+固定サイズの配列を宣言するためには、名前のすぐ後の角括弧の中にその最大要素数を指定してください。:
+[source,perl6]
+my @array[3];
+
+この配列は三つの値を保持することができ、その添え字は0から2までの値をとります。
+
+[source,perl6]
+----
+my @array[3];
+@array[0] = "first value";
+@array[1] = "second value";
+@array[2] = "third value";
+----
+
+四つ目の値をこの配列に対して追加することはできません。:
+[source,perl6]
+----
+my @array[3];
+@array[0] = "first value";
+@array[1] = "second value";
+@array[2] = "third value";
+@array[3] = "fourth value";
+----
+
+----
+Index 3 for dimension 1 out of range (must be 0..2)
+----
+
+==== 多次元配列
+今まで見てきた配列は一次元配列でした。 +
+幸運なことに、Perl6では多次元配列を定義することができます。
+
+[source,perl6]
+my @tbl[3;2];
+
+この配列は二次元です。
+一つ目の次元は最大で三つの値をもつことができ、二つ目の次元は最大で二つの値を持つことができます。
+
+3x2の格子だと考えてください。
+
+[source,perl6]
+----
+my @tbl[3;2];
+@tbl[0;0] = 1;
+@tbl[0;1] = "x";
+@tbl[1;0] = 2;
+@tbl[1;1] = "y";
+@tbl[2;0] = 3;
+@tbl[2;1] = "z";
+say @tbl
+----
+
+----
+[[1 x] [2 y] [3 z]]
+----
+
+.配列の視覚的表現:
+----
+[1 x]
+[2 y]
+[3 z]
+----
+
+注釈: もし配列に関するすべての情報を知りたいのであれば、次のURLを参照することをすすめます http://doc.perl6.org/type/Array
+
+=== ハッシュ
+[source,perl6]
+.ハッシュはキー/値のペアの集合です。
+----
+my %capitals = ('UK','London','Germany','Berlin');
+say %capitals;
+----
+
+[source,perl6]
+.ハッシュに対して要素を入れるための別の簡潔な方法:
+----
+my %capitals = (UK => 'London', Germany => 'Berlin');
+say %capitals;
+----
+
+ハッシュに対して呼び出すことのできるいくつかのメソッド:
+[source,perl6]
+.`スクリプト`
+----
+my %capitals = (UK => 'London', Germany => 'Berlin');
+%capitals.push: (France => 'Paris');
+say %capitals.kv;
+say %capitals.keys;
+say %capitals.values;
+say "The capital of France is: " ~ %capitals<France>;
+----
+
+.`出力`
+----
+(France Paris Germany Berlin UK London)
+(France Germany UK)
+(Paris Berlin London)
+The capital of France is: Paris
+----
+
+.説明
+`.push: (key => 'Value')` は新たな キー/値のペアを追加します。 +
+`.kv` はすべてのキーと値を含んだリストを返します。 +
+`.keys` はすべてのキーを含んだリストを返します。 +
+`.values` はすべての値を含んだリストを返します。 +
+キーを指定することでハッシュの中の特定の値にアクセスすることができます。`%hash<key>`
+
+注釈: もしハッシュに関するすべての情報を知りたいのであれば、次のURLを参照することをすすめます http://doc.perl6.org/type/Hash
+
+=== 型
+今までの例では、変数が保持しているべき値の型について指定してはいませんでした。
+
+TIP: `.WHAT` は変数が保持している値の型を返します。
+
+[source,perl6]
+---------------------
+my $var = 'Text';
+say $var;
+say $var.WHAT;
+
+$var = 123;
+say $var;
+say $var.WHAT;
+---------------------
+
+上記の例からわかるように、 `$var` の中の値の型は一度 (Str) になり、それから (Int) になっています。
+
+このプログラミングのスタイルは動的型付けと呼ばれています。
+変数はAny型の値を持つことができるという意味で動的なのです。
+
+では、下記の例を実行してみましょう: +
+変数名の前の `Int` に注目してください。
+
+[source,perl6]
+-----------------------------------------
+my Int $var = 'Text';
+say $var;
+say $var.WHAT;
+-----------------------------------------
+
+これは実行に失敗して次のようなメッセージを返すでしょう: `Type check failed in assignment to $var; expected Int but got Str`
+
+あらかじめ変数の型は(Int)でなければならないと指定したのが原因です。
+この変数に対して(Str)型の値を代入しようとしたときに、失敗してしまいました。
+
+このプログラミングのスタイルは静的型付けとよばれています。
+変数の型は代入の前に定義され、変えることができないという意味で静的なのです。
+
+Perl6は *漸進的型付け* に分類されます; *静的* 型付けと *動的* 型付けの両方を使うことができるのです。
+
+.配列とハッシュもまた静的型付けを行うことができます:
+[source,perl6]
+----
+my Int @array = 1,2,3;
+say @array;
+say @array.WHAT;
+
+my Str @multilingual = "Hello","Salut","Hallo","您好","안녕하세요","こんにちは";
+say @multilingual;
+say @multilingual.WHAT;
+
+my Str %capitals = (UK => 'London', Germany => 'Berlin');
+say %capitals;
+say %capitals.WHAT;
+
+my Int %country-codes = (UK => 44, Germany => 49);
+say %country-codes;
+say %country-codes.WHAT;
+----
+
+.下記は最も一般的に使われている型のリストです:
+最初の二つの型は使わないかもしれませんが情報提供のために掲載しておきます。
+
+[cols="^.^1m,.^3m,.^2m,.^1m, options="header"]
+|===
+
+| *型* | *説明* | *例* | *結果*
+
+| Mu | Perl6の型階層のルート | |
+
+| Any | 新しいクラスやほとんどの組み込みのクラスのためのデフォルトの基底クラス | |
+
+| Cool | 文字列と数値を交互に扱うことのできる値 | my Cool $var = 31; say $var.flip; say $var * 2; | 13 62
+
+| Str | 文字列 | my Str $var = "NEON"; say $var.flip; | NOEN
+
+| Int | 整数 (任意の精度) | 7 + 7 | 14
+
+| Rat | 有理数 (制限された精度) | 0.1 + 0.2 | 0.3
+
+| Bool | ブーリアン | !True | False
+
+|===
+
+=== イントロスペクション
+
+イントロスペクションはその型といったオブジェクトのプロパティについて情報を得るための処理です。 +
+前節の例の一つでは変数の型を返すために `.WHAT` を使いました。
+
+[source,perl6]
+----
+my Int $var;
+say $var.WHAT;    # (Int)
+my $var2;
+say $var2.WHAT;   # (Any)
+$var2 = 1;
+say $var2.WHAT;   # (Int)
+$var2 = "Hello";
+say $var2.WHAT;   # (Str)
+$var2 = True;
+say $var2.WHAT;   # (Bool)
+$var2 = Nil;
+say $var2.WHAT;   # (Any)
+----
+
+値を持っている変数の型はその値と相互に関連があります。 +
+型の指定された空の変数の型はその変数が宣言されたときの型です。 +
+型の指定されていない空の変数の型は `(Any)` です。 +
+変数の値をクリアするためには `Nil` を代入してください。
+
+=== スコーピング
+初めに変数を使う前に、宣言されている必要があります。
+
+様々な宣言子がPerl6では使われています。上の例の中では `my` をずっと使ってきました。
+
+[source,perl6]
+my $var=1;
+
+`my` 宣言子は変数に対して *レキシカル* スコープを与えます。
+つまり、その変数はそれが宣言されたのと同じブロックの中でしかアクセスできなくなります。
+
+
+Perl6のブロックは `{ }` で囲まれます。
+もしブロックがみつからないのなら、その変数はPerl6のスクリプト全体で使える状態になっています。
+
+[source,perl6]
+--------------------------------
+{
+  my Str $var = 'Text';
+  say $var; # はアクセス可能です
+}
+say $var; # はアクセス可能ではありません。エラーを返します。
+--------------------------------
+
+変数はその変数が定義されたブロックの中でのみアクセスが可能なので、別のブロックでは同じ変数名で再定義できます。
+
+[source,perl6]
+----
+{
+  my Str $var = 'Text';
+  say $var;
+}
+my Int $var = 123;
+say $var;
+----
+
+=== 代入と束縛
+前節の例では、どうやって変数に値を *代入* するかをみてきました。 +
+*代入* は `=` 演算子を用いて行われます。
+[source,perl6]
+----
+my Int $var = 123;
+say $var;
+----
+
+変数に代入された値は変更することができます:
+
+[source,perl6]
+.代入
+----
+my Int $var = 123;
+say $var;
+$var = 999;
+say $var;
+----
+
+.`出力`
+----
+123
+999
+----
+
+一方、変数に *束縛* された値は変えることはできません。 +
+*束縛* は `:=` 演算子を用いて行われます。
+
+[source,perl6]
+.束縛
+----
+my Int $var := 123;
+say $var;
+$var = 999;
+say $var;
+----
+
+.`出力`
+----
+123
+Cannot assign to an immutable value
+----
+
+[source,perl6]
+.変数はほかの変数により束縛することができます:
+----
+my $a;
+my $b;
+$b := $a;
+$a = 7;
+say $b;
+$b = 8;
+say $a;
+----
+
+.`出力`
+----
+7
+8
+----
+
+束縛変数は、すでにお気づきのように、双方向性をもっています。 +
+`$a := $b` と `$b := $a` は同じ効果を持っています。
+
+注釈: もし変数に関する情報をもっと知りたいのであれば、次のURLを参照することをすすめます http://doc.perl6.org/type/variables
+
+== 関数とミューテーター
+
+関数とミューテーターを区別することは重要です。 +
+関数はそれが呼ばれたときのオブジェクトの状態を変更しません。 +
+ミューテーターはオブジェクトの状態を変更します。
+
+[source,perl6,linenums]
+.`スクリプト`
+----
+my @numbers = [7,2,4,9,11,3];
+
+@numbers.push(99);
+say @numbers;      #1
+
+say @numbers.sort; #2
+say @numbers;      #3
+
+@numbers.=sort;
+say @numbers;      #4
+----
+
+.`出力`
+----
+[7 2 4 9 11 3 99] #1
+(2 3 4 7 9 11 99) #2
+[7 2 4 9 11 3 99] #3
+[2 3 4 7 9 11 99] #4
+----
+
+.Explanation
+`.push` はミューテーターです。配列の状態を変更します。 (#1)
+
+`.sort` は関数です。ソートされた配列を返しますが、配列の初期状態を変更するわけではありません。:
+
+* (#2) はソートされた配列が返されたことを示しています。
+
+* (#3) は元々の配列は変更されていないことを示しています。
+
+関数にミューテーターとしてふるまうように強制するために `.` のかわりに `.=` を使っています。(#4) (スクリプトの9行目)
+
+== ループと条件文
+Perl6は多数の条件文とループ構文を持っています。
+
+=== if
+条件が満たされた時、つまり式が `True` と評価された時だけコードが実行されます。
+
+[source,perl6]
+----
+my $age = 19;
+
+if $age > 18 {
+  say 'Welcome'
+}
+----
+
+Perl6ではコードと条件は反転することができます。 +
+コードと条件が反転されていたとしても、いつも先に条件が評価されます。
+
+[source,perl6]
+----
+my $age = 19;
+
+say 'Welcome' if $age > 18;
+----
+
+もし条件が満たされないなら、下記を使って、別のブロックを実行するように指定することができます:
+
+* `else` 
+* `elsif` 
+
+[source,perl6]
+----
+# 変数の値を変えて同じコードを実行
+my $number-of-seats = 9;
+
+if $number-of-seats <= 5 {
+  say 'I am a sedan'
+} elsif $number-of-seats <= 7 {
+  say 'I am 7 seater'
+} else {
+  say 'I am a van'
+}
+----
+
+=== unless
+`unless` を使えば、if命令の否定版を書くことができます。
+
+次のコード:
+
+[source,perl6]
+----
+my $clean-shoes = False;
+
+if not $clean-shoes {
+  say 'Clean your shoes'
+}
+----
+は次のように書くことができます:
+
+[source,perl6]
+----
+my $clean-shoes = False;
+
+unless $clean-shoes {
+  say 'Clean your shoes'
+}
+----
+
+Perl6での否定は `!` か `not` を使って行われます。
+
+`unless (condition)` は `if not (condition)` のかわりに用いられます。
+
+`unless` は `else` 節を持つことができません。
+
+=== with
+
+`with` は `if` 命令のようにふるまいます。しかし変数が定義されているかどうかを調べます。
+
+[source,perl6]
+----
+my Int $var=1;
+
+with $var {
+  say 'Hello'
+}
+----
+
+変数に対して値を代入しないでコードを実行した場合何も起こらないでしょう。
+[source,perl6]
+----
+my Int $var;
+
+with $var {
+  say 'Hello'
+}
+----
+
+`without` は `with` の否定版です。 `unless` と関連づけて覚えておくとよいでしょう。
+
+もしはじめの `with` 条件が満たされないなら、 `orwith` を使って代替となるパスを指定することができます。 +
+`with` と `orwith` の関係性は `if` と `elsif` の関係性にたとえることができます。
+
+=== for
+
+`for` ループは複数の値に対する反復処理を行うことができます。
+
+[source,perl6]
+----
+my @array = [1,2,3];
+
+for @array -> $array-item {
+  say $array-item*100
+}
+----
+
+配列のそれぞれの要素に対して `*100` の操作を行うために、反復変数 `$array-item` を作ったことに注目してください。
+
+=== given
+
+`given` は他の言語においてswitch命令と呼ばれているものと等価なPerl6の命令です。
+
+[source,perl6]
+----
+my $var = 42;
+
+given $var {
+    when 0..50 { say 'Less than or equal to 50'}
+    when Int { say "is an Int" }
+    when 42  { say 42 }
+    default  { say "huh?" }
+}
+----
+
+条件が満たされると、条件が満たされるかどうか調べる処理は止まります。
+
+別の選択肢として、 `proceed` を使うと、Perl6は条件が満たされた後も処理の実行を続けます。
+[source,perl6]
+----
+my $var = 42;
+
+given $var {
+    when 0..50 { say 'Less than or equal to 50';proceed}
+    when Int { say "is an Int";proceed}
+    when 42  { say 42 }
+    default  { say "huh?" }
+}
+----
+
+=== loop
+
+`loop` は `for` を書くための別の選択肢です。
+
+実際に、 `loop` はC言語族において書かれる `for` と同じです。
+
+Perl6はC言語族の一員なのです。
+
+[source,perl6]
+----
+loop (my $i=0; $i < 5; $i++) {
+  say "The current number is $i"
+}
+----
+
+注釈: もしループ構文と条件文に関する情報をもっと知りたいのであれば、次のURLを参照することをすすめます http://doc.perl6.org/language/control
+
+== I/O
+Perl6において、二つの最も一般的な _入力/出力_ のインタフェースは _ターミナル_ と _ファイル_ です。
+
+=== ターミナルを用いた基本的なI/O
+
+==== say
+`say` は標準出力に対する書き込みを行います。その最後に改行を付加します。つまり、次のようなコードは:
+
+[source,perl6]
+----
+say 'Hello Mam.';
+say 'Hello Sir.';
+----
+二つの行に分かれて書き込まれることになります。
+
+==== print
+一方、 `print` は `say` のようにふるまいますが、改行を付加しないという違いがあります。
+
+`say` を `print` で置き換えてみて両方の結果を比べてみましょう。
+
+==== get
+`get` はターミナルからの入力を取得するために使われます。
+
+[source,perl6]
+----
+my $name;
+
+say "Hi, what's your name?";
+$name=get;
+
+say "Dear $name welcome to Perl 6";
+----
+
+上記のコードが実行されると、ターミナルは、あなたが名前を入力して [Enter] を押すのを待つようになるでしょう。
+その後、あいさつをしてくれるでしょう。
+
+==== prompt
+`prompt` は `print` と `get` の組み合わせです。
+
+上の例は次のように書くことができます:
+
+[source,perl6]
+----
+my $name = prompt("Hi, what's your name? ");
+
+say "Dear $name welcome to Perl 6";
+----
+
+=== シェルコマンドの実行
+二つのサブルーチンをシェルコマンドを実行するために使うことができます:
+
+* `run` シェルを介在せずに外部コマンドを実行します
+
+* `shell` システムシェルを通じてコマンドを実行します。プラットフォームとシェル依存です。
+すべてのシェルのメタ文字はシェルによって解釈されます。これには、パイプ、リダイレクト、ユーザー環境変数などが含まれます。
+
+[source,perl6]
+.もし Linux/OSX 環境にいるなら、次のコードを実行してください。
+----
+my $name = 'Neo';
+run 'echo', "hello $name";
+shell "ls";
+----
+
+[source,perl6]
+.もし Windows 環境にいるなら、次のコードを実行してください。
+----
+shell "dir";
+----
+`echo` と `ls` はLinuxにおける一般的なシェルのキーワードです。: +
+`echo` はターミナルにテキストを出力します。 (Perl6における `print` と等価です。) +
+`ls` はカレントディレクトリのすべてのファイルとフォルダを表示します。
+
+`dir` はWindowsにおける `ls` と等価なキーワードです。
+
+=== ファイル I/O
+==== slurp
+`slurp` はファイルからデータを読み込むために使われます。
+
+次のような内容のテキストファイルを作ってください:
+
+.datafile.txt
+----
+John 9
+Johnnie 7
+Jane 8
+Joanna 7
+----
+[source,perl6]
+----
+my $data = slurp "datafile.txt";
+say $data;
+----
+
+==== spurt
+`spurt` はデータをファイルに書き込むために使われます。
+
+[source,perl6]
+----
+my $newdata = "New scores:
+Paul 10
+Paulie 9
+Paulo 11";
+
+spurt "newdatafile.txt", $newdata;
+----
+
+上記のコードの実行後、 _newdatafile.txt_ という名前の新しいファイルが作られるはずです。
+このファイルは新しいスコアを含んでいるでしょう。
+
+=== ファイルとディレクトリの操作
+前節の例で見たように、Perl6はシェルコマンド( `ls` )を実行せずにディレクトリの内容を表示することができます。
+
+[source,perl6]
+----
+say dir;              # カレントディレクトリのファイルとフォルダを表示する
+say dir "/Documents"; # 指定されたディレクトリのファイルとフォルダを表示する
+----
+
+これらに加えて、新しいディレクトリを作ったり削除したりすることもできます。
+
+[source,perl6]
+----
+mkdir "newfolder";
+rmdir "newfolder";
+----
+
+`mkdir` は新しいディレクトリをつくります +
+`rmdir` は空のディレクトリを削除します。もし空でないのならエラーを返します。
+
+ファイルかディレクトリであれば、指定したパスが存在するかどうか確かめることもできます。:
+
+下記のスクリプトは、実行されているディレクトリにおいて、 `folder123` という空のフォルダと `script123.pl6` という空のpl6ファイルを生成します。
+
+[source,perl6]
+----
+say "script123.pl6".IO.e;
+say "folder123".IO.e;
+
+say "script123.pl6".IO.d;
+say "folder123".IO.d;
+
+say "script123.pl6".IO.f;
+say "folder123".IO.f;
+----
+
+`IO.e` はディレクトリ/ファイルが存在するかどうか調べます。 +
+`IO.f` はパスがファイルかどうか調べます。 +
+`IO.d` はパスがディレクトリかどうか調べます。
+
+警告: Windowsのユーザーはディレクトリを定義するために `/` か `\\` を使うことができます +
+`C:\\rakudo\\bin` +
+`C:/rakudo/bin` +
+
+注釈: もしI/Oに関する情報をもっと知りたいのであれば、次のURLを参照することをすすめます http://doc.perl6.org/type/IO
+
+== サブルーチン
+=== 定義
+*サブルーチン* (*サブ* や *関数* とも呼ばれます) は機能の集合のパッケージングの手段です +
+
+サブルーチンの定義は `sub` というキーワードから始まります。定義の後、つけた名前を使って呼び出すことができます。 +
+下記の例をよく見てください:
+
+[source,perl6]
+----
+sub alien-greeting {
+  say "Hello earthlings";
+}
+
+alien-greeting;
+----
+
+先ほどの例では、入力を必要としないサブルーチンを紹介しました。
+
+=== シグネチャ
+多くのサブルーチンでは、それを実行するために入力が必要になる場合があります。この時の入力は *引数* によって与えられます。
+また、サブルーチンが引数として受け取る数や型は *シグネチャ* と呼ばれます。
+
+下記のサブルーチンは引数として文字列を受け取っています。
+
+[source,perl6]
+----
+sub say-hello (Str $name) {
+    say "Hello " ~ $name ~ "!!!!"
+}
+say-hello "Paul";
+say-hello "Paula";
+----
+
+=== 多重ディスパッチ
+同じ名前を持っているが異なったシグネチャを持つように複数のサブルーチンを定義することができます。
+サブルーチンが呼ばれると、ランタイム環境は引数として与えられた数と型をもとにしてどのバージョンを使うべきであるか決定します。
+このタイプのサブルーチンは普通のサブルーチンと同じように定義できます。ただし、このとき `sub` を `multi` というキーワードに置き換えてください。
+
+[source,perl6]
+----
+multi greet($name) {
+    say "Good morning $name";
+}
+multi greet($name, $title) {
+    say "Good morning $title $name";
+}
+
+greet "Johnnie";
+greet "Laura","Mrs.";
+----
+
+=== デフォルト引数とオプション引数
+もしサブルーチンが一つの引数を受け取るように定義されていて、必要となる引数が与えられずに呼び出されたのなら、このサブルーチンの実行は失敗します。
+
+その代わりにPerl6では次のような引数をともなったサブルーチンを定義することができます:
+
+* オプション引数
+* デフォルト引数
+
+オプション引数は引数の名前に対して `?` を付加することで定義できます。
+
+[source,perl6]
+----
+sub say-hello($name?) {
+  with $name { say "Hello " ~ $name }
+  else { say "Hello Human" }
+}
+say-hello;
+say-hello("Laura");
+----
+
+ユーザーが引数を与えていない場合に備えて、その引数の値を特定の値にしておくことができます。 +
+これは、サブルーチンの定義内で引数に対して値を代入することで行うことができます。
+
+[source,perl6]
+----
+sub say-hello($name="Matt") {
+  say "Hello " ~ $name;
+}
+say-hello;
+say-hello("Laura");
+----
+
+注釈: もしサブルーチンと関数に関する情報をもっと知りたいのであれば、次のURLを参照することをすすめます http://doc.perl6.org/language/functions
+
+== 関数型プログラミング
+この章では関数型プログラミングを容易にしてくれるいくつかの機能を見ていこうと思います。
+
+=== 関数は第一級オブジェクト
+関数/サブルーチンは第一級オブジェクトです:
+
+* 引数として用いることができます
+
+* 別の関数から返すことができます
+
+* 変数に代入することができます
+
+この概念を説明するためのよい例は `map` 関数です。 +
+`map` は *高階関数* です。ほかの関数を引数として受け取ります。
+
+[source,perl6]
+.スクリプト
+----
+my @array = <1 2 3 4 5>;
+sub squared($x) {
+  $x ** 2
+}
+say map(&squared,@array);
+----
+
+.出力
+----
+(1 4 9 16 25)
+----
+
+.説明
+まず `squared` と呼ばれるサブルーチンを定義しました。このサブルーチンは引数として与えられた数を二乗します。
+次に、高階関数である `map` に対して、サブルーチンと配列の二つの引数を与えます。
+結果は、配列の各要素の平方のリストとなります。
+
+引数としてサブルーチンを用いるときはその名前の前に `&` をつけなければならないことに注意してください。
+
+=== クロージャ
+Perl6のすべてのCode型のインスタンスはクロージャです。これは外のスコープのレキシカル変数を参照できるということを意味しています。
+
+=== 無名関数
+*無名関数* は *ラムダ* とも呼ばれています。 +
+
+無名関数は識別子に束縛されません。(名前をもっていないため）
+
+`map` の例を無名関数を使って書き換えてみましょう
+[source,perl6]
+----
+my @array = <1 2 3 4 5>;
+say map(-> $x {$x ** 2},@array);
+----
+サブルーチンを宣言して `map` の引数として渡す代わりに、 `map` の中で直接定義していることに注意してください。 +
+無名関数 `\-> $x {$x ** 2}` は名前を持たないので呼び出されることはありません。
+
+Perl6ではこのような無名関数の使い方を *ポインティブロック* と呼びます。
+
+[source,perl6]
+.ポインティブロックは関数を変数に代入するときにも使われます:
+----
+my $squared = -> $x {
+  $x ** 2
+}
+say $squared(9);
+----
+
+=== チェイン
+Perl6では、メソッドはチェインすることができます。メソッドの結果を引数としてほかのメソッドに渡す必要はもはやありません。
+
+ここであなたに問題です。
+値の配列が与えられているとしましょう。
+この配列が降順にソートされていて、さらに値の重複が無いようにしてください。
+
+あなたは下記のようなコードを書いてこの問題を解決しようとするかもしれません:
+[source,perl6]
+----
+my @array = <7 8 9 0 1 2 4 3 5 6 7 8 9 >;
+my @final-array = reverse(sort(unique(@array)));
+say @final-array;
+----
+まず `@array` に対して `unique` 関数を呼び、その結果を `sort` の引数として渡します。さらにそのソートした結果を `reverse` に渡します。
+
+上記の例とは対照的に、Perl6ではメソッドのチェーンを行うことができます。 +
+上記の例は *メソッドチェーン* を利用して、次のように書くことができます。
+
+[source,perl6]
+----
+my @array = <7 8 9 0 1 2 4 3 5 6 7 8 9>;
+my @final-array = @array.unique.sort.reverse;
+say @final-array;
+----
+
+メソッドチェーンは _見た目が良い_ ということが一目瞭然ですね。
+
+=== フィード演算子
+*フィード演算子* は、関数型言語では _パイプ_ と呼ばれ、メソッドチェーンをさらに見やすくしてくれます。
+[source,perl6]
+.前方フィード
+----
+my @array = <7 8 9 0 1 2 4 3 5 6 7 8 9>;
+@array ==> unique()
+       ==> sort()
+       ==> reverse()
+       ==> my @final-array;
+say @final-array;
+----
+
+.説明
+----
+まず `@array`で始まり 次に重複のないリストを返します
+                      次にソートします
+                      次にリバースします
+                      次に結果を `@final-array` に格納します
+----
+見ての通りメソッドの呼び出し順はトップダウンです。
+
+
+[source,perl6]
+.後方フィード
+----
+my @array = <7 8 9 0 1 2 4 3 5 6 7 8 9>;
+my @final-array-v2 <== reverse()
+                   <== sort()
+                   <== unique()
+                   <== @array;
+say @final-array-v2;
+----
+
+.説明
+後方フィードは前方フィードに似ていますが、逆の順序で書かれます。 +
+メソッドの呼び出し順はボトムアップです。
+
+=== ハイパー演算子
+*ハイパー演算子* `>>.` はリストの要素のすべてに対してメソッドの呼び出しを行い、そのすべての結果のリストを返します。
+
+[source,perl6]
+----
+my @array = <0 1 2 3 4 5 6 7 8 9 10>;
+sub is-even($var) { $var %% 2 };
+
+say @array>>.is-prime;
+say @array>>.&is-even;
+----
+
+ハイパー演算子を用いることでPerl6に組み込まれているメソッドを呼び出すこともできます。例えば、`is-prime` は数値が素数かそうでないかを判別する組み込みのメソッドです。
+加えて、新しいサブルーチンを定義してハイパーオペレーターを使って呼び出すこともできます。この場合、 `&` をメソッドの先頭に追加しなければなりません。 例えば、`&is-even` といった具合です。
+
+配列に対して反復処理を行うための `for` によるループを書くことから脱却することができ、とても実用的です。
+
+=== ジャンクション
+*ジャンクション* は値の論理的な重ね合わせです。
+
+下記の例では `1|2|3` がジャンクションです。
+[source,perl6]
+----
+my $var = 2;
+if $var == 1|2|3 {
+  say "The variable is 1 or 2 or 3"
+}
+----
+ジャンクションの使用は通常は *オートスレッディング* のトリガーとなります。;
+この演算はジャンクションの要素それぞれに対して実行され、すべての結果を結合した新たなジャンクションが生成され、それが返されます。
+
+=== 遅延リスト
+*遅延リスト* は遅延評価されるリストです。 +
+遅延評価とは、必要な時まで式の評価を遅らせ、ルックアップテーブルに結果を保存しておくことで不要な繰り返しの評価を避けるものです。
+
+以下のような恩恵を含んでいます:
+
+* 不要な計算を避けることでパフォーマンスが向上する
+
+* 潜在的には無限のデータ構造をつくることができる
+
+* 制御フローを定義することができる
+
+遅延リストをつくるためには接中辞演算子 `...` を用います。 +
+遅延リストは、*初期要素(複数可)* 、*ジェネレータ* 、*終点* を持っています。
+
+[source,perl6]
+.シンプルな遅延リスト
+----
+my $lazylist = (1 ... 10);
+say $lazylist;
+----
+初期要素は1、終点は10です。ジェネレータは定義されていないので、デフォルトのジェネレータは次の値(+1)です +
+つまり、この遅延リストは(もし要求されれば)、(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)という要素のリストを返すでしょう。
+
+[source,perl6]
+.無限遅延リスト
+----
+my $lazylist = (1 ... Inf);
+say $lazylist;
+----
+この遅延リストは(もし要求されれば)1から無限までの間のすべての整数、つまり任意の整数を返します。
+
+[source,perl6]
+.演繹的に作られたジェネレータによる遅延リスト
+----
+my $lazylist = (0,2 ... 10);
+say $lazylist;
+----
+初期要素は0と2で終点は10です。
+ジェネレータは定義されていませんが、初期要素を使ってPerl6はジェネレータは(+2)であると演繹します。 +
+この遅延リストは(もし要求されれば)次のような要素を返します。(0, 2, 4, 6, 8, 10)
+
+[source,perl6]
+.定義されたジェネレータによる遅延リスト
+----
+my $lazylist = (0, { $_ + 3 } ... 12);
+say $lazylist;
+----
+この例では、明示的に `{ }` で囲まれたジェネレータを定義しています。 +
+この遅延リストは(もし要求されれば)次のような要素を返します。(0, 3, 6, 9, 12)
+
+[WARNING]
+--
+明示的なジェネレータを使うときは、終点はジェネレータが返すことのできるような値のひとつでなければなりません。 +
+もし、終点が10になっている上の例で、かわりに終点を12にしたら処理が止まらなくなります。
+ジェネレータは終点を _ジャンプして超える_ のです。
+
+
+別の選択肢として、`0 ... 10` を `0 ...^ * > 10` に置き換えることもできます +
+このように読みます: 0から10を超えるような最初の値まで(10は除く)
+[source,perl6]
+.これではジェネレータは止まりません
+----
+my $lazylist = (0, { $_ + 3 } ... 10);
+say $lazylist;
+----
+
+[source,perl6]
+.これならジェネレータは止まります
+----
+my $lazylist = (0, { $_ + 3 } ...^ * > 10);
+say $lazylist;
+----
+--
+== クラスとオブジェクト
+前章では、どうやってPerl6が関数型プログラミングを楽にしてくれるかについて学びました。 +
+この章ではPerl6におけるオブジェクト指向プログラミングについてみていきましょう。
+
+=== イントロダクション
+
+_オブジェクト指向_ プログラミングは昨今広く使われているパラダイムの一つです。 +
+*オブジェクト* は一緒にバンドルされた変数やサブルーチンの集合です。 +
+変数は *属性* と呼ばれ、サブルーチンは *メソッド* とよばれます。 +
+属性はオブジェクトの *状態* を定義し、メソッドはオブジェクトの *ふるまい* を定義します。
+
+*クラス* は *オブジェクト* の集合の構造を定義します。 +
+
+これらの関係を理解するために、下記の例を考えてみてください:
+
+|===
+
+| 現在四人が部屋にいる | *オブジェクト* => 4 人
+
+| 四人は人間である | *クラス* => 人間
+
+| 四人はそれぞれ異なった名前、年齢、性別、国籍を持っている | *属性* => 名前、年齢、性別、国籍
+
+|===
+
+_オブジェクト指向_ の用語では、これらのオブジェクトはクラスの *インスタンス* と呼ばれています。
+
+下記のスクリプトについて考えてみてください:
+[source,perl6]
+----
+class Human {
+  has $name;
+  has $age;
+  has $sex;
+  has $nationality;
+}
+
+my $john = Human.new(name => 'John', age => 23, sex => 'M', nationality => 'American');
+say $john;
+----
+`class` キーワードはクラスを定義するのに使われます。 +
+`has` キーワードはクラスの属性を定義するのに使われます。 +
+`.new()` メソッドは *コンストラクタ* と呼ばれるものです。そのメソッドの呼ばれたクラスのインスタンスとしてオブジェクトを生成します。
+
+上記のスクリプトでは、新しい変数 `$john` は、 `Human.new()` によって定義された"Human"の新しいインスタンスを持っています。
+クラスは `my` を使うことで _レキシカルスコープ_ とすることもできます:
+[source,perl6]
+----
+my class Human {
+
+}
+----
+
+=== カプセル化
+カプセル化は、データとメソッドの集合を一緒にバンドルするというオブジェクト指向の概念です。 +
+オブジェクト内のデータ(属性)は *プライベート* であるべきです。つまり、オブジェクトの中からしかアクセスできないようにするべきです。 +
+オブジェクトの外から属性にアクセスするためには *アクセッサ* と呼ばれるメソッドを用います。
+
+下記の二つのスクリプトは同じ結果を返します。
+
+.変数への直接のアクセス:
+[source,perl6]
+----
+my $var = 7;
+say $var;
+----
+
+.カプセル化:
+[source,perl6]
+----
+my $var = 7;
+sub sayvar {
+  $var;
+}
+say sayvar;
+----
+`sayvar` メソッドはアクセッサです。変数に直接アクセスしなくても、変数の値にアクセスできるようにしてくれます。
+
+Perl6では *トゥイジル* の使用によって楽にカプセル化を行うことができます。 +
+トゥイジルは補助的な _シジル_ です。シジルと属性の名前の間に書きます。 +
+二つのトゥイジルがクラスでは使われます:
+
+* `!` は明示的に属性がプライベートであることを宣言するときに使います
+* `.` は属性のアクセッサを自動的に生成するときに使います
+
+デフォルトでは、すべての属性はprivateですが、いつも `!` トゥイジルを使うことはよい習慣です。
+
+これまで述べてきたことに沿って、上のクラスは次のように書き換えるべきです:
+[source,perl6]
+----
+class Human {
+  has $!name;
+  has $!age;
+  has $!sex;
+  has $!nationality;
+}
+
+my $john = Human.new(name => 'John', age => 23, sex => 'M', nationality => 'American');
+say $john;
+----
+次の命令をスクリプトに追加してみましょう: `say $john.age;` +
+次のようなエラーが返ってくるはずです: `Method 'age' not found for invocant of class 'Human'` +
+`$!age` はプライベートでありオブジェクト内でしか使えないというのが原因です。
+オブジェクトの外からアクセスしようとするとエラーが返ります。
+
+では、`has $!age` を `has $.age` に置き換えて、`say $john.age;` の結果を見てみましょう。
+
+=== 名前付き引数と固定引数
+Perl6では、すべてのクラスはデフォルトの `.new()` コンストラクタを継承しています。 +
+このコンストラクタは引数を与えてオブジェクトを生成することもできます。 +
+デフォルトのコンストラクタは *名前付き引数* のみ使用することができます。 +
+もし上の例について考えてみたなら、 `.new()` に与えられている引数がすべて名前付きであることに気づいているでしょう。
+
+* name => 'John'
+
+* age => 23
+
+では、もし新しいオブジェクトを生成するときにいちいち属性の名前を指定したくなかったらどうしたらいいでしょう？ +
+そういう場合は、 *固定引数* を受け取るような別のコンストラクタを作る必要があります。
+
+[source,perl6]
+----
+class Human {
+  has $.name;
+  has $.age;
+  has $.sex;
+  has $.nationality;
+  # デフォルトのコンストラクタをオーバーライドする
+  method new ($name,$age,$sex,$nationality) {
+    self.bless(:$name,:$age,:$sex,:$nationality);
+  }
+}
+
+my $john = Human.new('John',23,'M','American');
+say $john;
+----
+固定引数を受け取るようなコンストラクタは上記のように定義します。
+
+=== メソッド
+
+==== イントロダクション
+メソッドはオブジェクトの _サブルーチン_ です。 +
+サブルーチンのように、機能の集合をパッケージングするための手段であり、 *引数* を受け取り、 *シグネチャ* を持ち、*複数* として定義することができます。
+
+メソッドは `method` キーワードを用いることで定義されます。
+一般的な状況では、メソッドはオブジェクトの属性に対して何かしらの処理を行うことを要求されます。
+これはカプセル化の考え方を強化します。オブジェクトの属性はメソッドを通じてオブジェクトの中からしか操作できません。
+外の世界からはオブジェクトのメソッドとしかやりとりすることができず、そのオブジェクトの属性にアクセスすることはできません。
+
+[source,perl6]
+----
+class Human {
+  has $.name;
+  has $.age;
+  has $.sex;
+  has $.nationality;
+  has $.eligible;
+  method assess-eligibility {
+      if self.age < 21 {
+        $!eligible = 'No'
+      } else {
+        $!eligible = 'Yes'
+      }
+  }
+
+}
+
+my $john = Human.new(name => 'John', age => 23, sex => 'M', nationality => 'American');
+$john.assess-eligibility;
+say $john.eligible;
+----
+
+一度クラスの中でメソッドが定義されたら、 _ドット表記法_ によってオブジェクトから呼び出すことができます。: +
+_オブジェクト_ *.* _メソッド_ として、上記の例のように: `$john.assess-eligibility`
+
+メソッドの定義の中では、他のメソッドを呼び出すためにオブジェクトそれ自身への参照が必要な場合は `self` キーワードを使います。 +
+
+メソッドの定義の中では、属性を参照する必要がある場合は、その属性が `.` をともなって定義されていても `!` を使います。 +
+そういったことを行う論理的根拠は、 `.` トゥイジルが行っていることは `!` をともなった属性を宣言し、アクセッサを自動で生成することであるということです。
+
+上の例では `if self.age < 21` と `if $!age < 21` は同じ効果を持っているかもしれませんが、理屈の上では違うということになっています:
+
+* `self.age` は `.age` メソッド (アクセッサ) を呼びます +
+`$.age` とも書けます
+* `$!age` は変数への直接の呼び出しです
+
+==== プライベートメソッド
+通常のメソッドはクラスの外でもオブジェクトから呼び出すことができます。
+
+*プライベートメソッド* はクラスの中からしか呼び出せないメソッドです。 +
+ユースケースとしては、あるメソッドが、特定の機能を使うために、ほかのメソッドを呼び出すようなときでしょう。 +
+外の世界とインタフェースで接続されているメソッドはパブリックですが、そこから参照されているメソッドはプライベートなままであるべきです。 +
+直接ユーザーに呼び出してほしくないのです。そのため、プライベートとして宣言することになります。
+
+プライベートメソッドの宣言では名前の前で `!` トゥイジルを使う必要があります。 +
+プライベートメソッドは `.` の代わりに `!` によって呼び出します。
+
+[source,perl6]
+----
+method !iamprivate {
+  # コードはここに
+}
+
+method iampublic {
+  self!iamprivate;
+  # さらに処理を行う
+}
+----
+
+=== クラス属性
+
+*クラス属性* はクラス自身に属しているがオブジェクトには属していないような属性です。 +
+定義のときに初期化することができます。 +
+クラス属性は `has` の代わりに `my` をつかうことで宣言します。
+クラス属性はそのオブジェクトではなくクラスそれ自身を呼び出します。
+
+[source,perl6]
+----
+class Human {
+  has $.name;
+  my $.counter = 0;
+  method new($name) {
+    Human.counter++;
+    self.bless(:$name);
+  }
+}
+my $a = Human.new('a');
+my $b = Human.new('b');
+
+say Human.counter;
+----
+
+=== アクセスタイプ
+今までの見てきた例では、アクセッサはオブジェクトの属性から情報を得るために使われてきました。
+
+属性の値を変更する必要があるとしたらどうでしょう？ +
+`is rw` キーワードを使って、_読み/書き_ ラベルを付与する必要があります。
+[source,perl6]
+----
+class Human {
+  has $.name;
+  has $.age is rw;
+}
+my $john = Human.new(name => 'John', age => 21);
+say $john.age;
+
+$john.age = 23;
+say $john.age;
+----
+デフォルトでは、すべての属性は _読み込み専用_ として宣言されます。しかし明示的に `is readonly` を使うこともできます。
+
+=== 継承
+==== イントロダクション
+*継承は* オブジェクト指向プログラミングのもう一つの考え方です。
+
+クラスを定義すると、たくさんのクラスで同じ属性/メソッドを使っているということにすぐ気づくでしょう。 +
+コードは重複しているべきでしょうか？
+ダメです！ *継承* を使うべきです。
+
+人間クラスと従業員クラスの二つのクラスを定義したいという状況を考えてみましょう。 +
+人間は二つの属性を持っています: 名前と年齢 +
+従業員は四つの属性を持っています: 名前、年齢、会社、給料
+
+次のようにクラスを定義しようとするかもしれません:
+[source,perl6]
+----
+class Human {
+  has $.name;
+  has $.age;
+}
+
+class Employee {
+  has $.name;
+  has $.age;
+  has $.company;
+  has $.salary;
+}
+----
+理屈の上では正しいですが、上記のコードの考え方はお粗末です。
+
+次のような書き方のほうが良いでしょう:
+[source,perl6]
+----
+class Human {
+  has $.name;
+  has $.age;
+}
+
+class Employee is Human {
+  has $.company;
+  has $.salary;
+}
+----
+`is` キーワードは継承を宣言しています。 +
+オブジェクト指向の用語では従業員は人間の *子* であり、従業員の *親* であるといいます。
+
+すべての子クラスは親クラスの属性とメソッドを継承します。そのため再定義する必要はありません。
+
+==== オーバーライド
+クラスは親クラスからすべての属性とメソッドを継承します。 +
+継承したメソッドとは違うふるまいを子クラスのそれが行う必要がある場合があります。 +
+こういった場合は子クラスにおいてメソッドを再定義します。 +
+この考え方は *オーバーライド* と呼ばれます。
+
+下記の例では、`introduce-yourself` メソッドが従業員クラスによって継承されています。
+
+[source,perl6]
+----
+class Human {
+  has $.name;
+  has $.age;
+  method introduce-yourself {
+    say 'Hi i am a human being, my name is ' ~ self.name;
+  }
+}
+
+class Employee is Human {
+  has $.company;
+  has $.salary;
+}
+
+my $john = Human.new(name =>'John', age => 23,);
+my $jane = Employee.new(name =>'Jane', age => 25, company => 'Acme', salary => 4000);
+
+$john.introduce-yourself;
+$jane.introduce-yourself;
+----
+オーバーライドは次のように実行されます:
+
+[source,perl6]
+----
+class Human {
+  has $.name;
+  has $.age;
+  method introduce-yourself {
+    say 'Hi i am a human being, my name is ' ~ self.name;
+  }
+}
+
+class Employee is Human {
+  has $.company;
+  has $.salary;
+  method introduce-yourself {
+    say 'Hi i am a employee, my name is ' ~ self.name ~ ' and I work at: ' ~ self.company;
+  }
+
+}
+
+my $john = Human.new(name =>'John',age => 23,);
+my $jane = Employee.new(name =>'Jane',age => 25,company => 'Acme',salary => 4000);
+
+$john.introduce-yourself;
+$jane.introduce-yourself;
+----
+
+オブジェクトがどのクラスのものであるかに依存して、正しいメソッドが呼ばれます。
+
+==== サブメソッド
+*サブメソッド* は子クラスによって継承されないメソッドです。 +
+宣言されたクラスからのみアクセスすることができます。 +
+ `submethod` キーワードを使って定義されます。
+
+=== 多重継承
+Perl6では多重継承を行うことができます。あるクラスは複数の他のクラスから継承を行うことができます。
+
+[source,perl6]
+----
+class bar-chart {
+  has Int @.bar-values;
+  method plot {
+    say @.bar-values;
+  }
+}
+
+class line-chart {
+  has Int @.line-values;
+  method plot {
+    say @.line-values;
+  }
+}
+
+class combo-chart is bar-chart is line-chart {
+}
+
+my $actual-sales = bar-chart.new(bar-values => [10,9,11,8,7,10]);
+my $forecast-sales = line-chart.new(line-values => [9,8,10,7,6,9]);
+
+my $actual-vs-forecast = combo-chart.new(bar-values => [10,9,11,8,7,10],
+                                         line-values => [9,8,10,7,6,9]);
+say "Actual sales:";
+$actual-sales.plot;
+say "Forecast sales:";
+$forecast-sales.plot;
+say "Actual vs Forecast:";
+$actual-vs-forecast.plot;
+----
+
+.`出力`
+----
+Actual sales:
+[10 9 11 8 7 10]
+Forecast sales:
+[9 8 10 7 6 9]
+Actual vs Forecast:
+[10 9 11 8 7 10]
+----
+
+.説明
+`combo-chart` クラスは二つの系列を保持できるようになっているべきです。一つは実際の値でバーにプロットされます。
+もう一つは予測値で線にプロットされます。 +
+これが `combo-chart` クラスを `line-chart` クラスと `bar-chart` クラスの子として定義した理由です。 +
+`combo-chart` の `plot` メソッドが要求された結果を生成しなかったことに気づいたと思います。
+系列一つだけがプロットされました。 +
+なぜこんなことが起こったのでしょうか？ +
+`combo-chart` は `line-chart` と `bar-chart` を継承しており、両方とも `plot` と呼ばれるメソッドを持っています。
+`combo-chart` からこのメソッドが呼ばれるとき、Perl6の内部では継承されたメソッドのうちの一つだけを呼ぶことでコンフリクトを解消しているのです。
+
+.修正
+正しくふるまうようにするには、 `combo-chart` の中の `plot` メソッドをオーバーライドするべきでした。
+[source,perl6]
+----
+class bar-chart {
+  has Int @.bar-values;
+  method plot {
+    say @.bar-values;
+  }
+}
+
+class line-chart {
+  has Int @.line-values;
+  method plot {
+    say @.line-values;
+  }
+}
+
+class combo-chart is bar-chart is line-chart {
+  method plot {
+    say @.bar-values;
+    say @.line-values;
+  }
+}
+
+my $actual-sales = bar-chart.new(bar-values => [10,9,11,8,7,10]);
+my $forecast-sales = line-chart.new(line-values => [9,8,10,7,6,9]);
+
+my $actual-vs-forecast = combo-chart.new(bar-values => [10,9,11,8,7,10],
+                                         line-values => [9,8,10,7,6,9]);
+say "Actual sales:";
+$actual-sales.plot;
+say "Forecast sales:";
+$forecast-sales.plot;
+say "Actual vs Forecast:";
+$actual-vs-forecast.plot;
+----
+
+.`出力`
+----
+Actual sales:
+[10 9 11 8 7 10]
+Forecast sales:
+[9 8 10 7 6 9]
+Actual vs Forecast:
+[10 9 11 8 7 10]
+[9 8 10 7 6 9]
+----
+
+=== ロール
+*ロール* はクラスが属性とメソッドのコレクションであるという意味においてはどことなくクラスと似ています。
+
+ロールは `role` キーワードによって宣言され、ロールを実装したいクラスにおいては `does` キーワードを使うことでそれを行うことができます。
+
+.ロールを使って多重継承を書き換えてみましょう:
+[source,perl6]
+----
+role bar-chart {
+  has Int @.bar-values;
+  method plot {
+    say @.bar-values;
+  }
+}
+
+role line-chart {
+  has Int @.line-values;
+  method plot {
+    say @.line-values;
+  }
+}
+
+class combo-chart does bar-chart does line-chart {
+  method plot {
+    say @.bar-values;
+    say @.line-values;
+  }
+}
+
+my $actual-sales = bar-chart.new(bar-values => [10,9,11,8,7,10]);
+my $forecast-sales = line-chart.new(line-values => [9,8,10,7,6,9]);
+
+my $actual-vs-forecast = combo-chart.new(bar-values => [10,9,11,8,7,10],
+                                         line-values => [9,8,10,7,6,9]);
+say "Actual sales:";
+$actual-sales.plot;
+say "Forecast sales:";
+$forecast-sales.plot;
+say "Actual vs Forecast:";
+$actual-vs-forecast.plot;
+----
+
+上記のスクリプトを実行すると全く同じ結果が出力されることを確認できるはずです。
+
+そろそろこんなひとり言が聞こえてきそうです: もしロールがクラスのようにふるまうなら、ロールの使い道って何だろう？ +
+この質問に答えるために、多重継承の例を見せるために使われた最初のスクリプトを修正してください。
+`plot` メソッドをオーバーライドするのを _忘れた_ 例のスクリプトです。
+
+[source,perl6]
+----
+role bar-chart {
+  has Int @.bar-values;
+  method plot {
+    say @.bar-values;
+  }
+}
+
+role line-chart {
+  has Int @.line-values;
+  method plot {
+    say @.line-values;
+  }
+}
+
+class combo-chart does bar-chart does line-chart {
+}
+
+my $actual-sales = bar-chart.new(bar-values => [10,9,11,8,7,10]);
+my $forecast-sales = line-chart.new(line-values => [9,8,10,7,6,9]);
+
+my $actual-vs-forecast = combo-chart.new(bar-values => [10,9,11,8,7,10],
+                                         line-values => [9,8,10,7,6,9]);
+say "Actual sales:";
+$actual-sales.plot;
+say "Forecast sales:";
+$forecast-sales.plot;
+say "Actual vs Forecast:";
+$actual-vs-forecast.plot;
+----
+
+.`出力`
+----
+===SORRY!===
+Method 'plot' must be resolved by class combo-chart because it exists in multiple roles (line-chart, bar-chart)
+----
+
+.説明
+もし複数のロールが同じクラスに対して適用され、コンフリクトが起こったなら、コンパイルタイムのエラーが投げられます。 +
+これは、多重継承よりもずっと安全なアプローチです。なぜなら、多重継承ではコンフリクトはエラーとして考えられておらずランタイムで単純に解決されてしまうからです。
+
+ロールはコンフリクトがあるときに警告してくれるのです。
+
+=== イントロスペクション
+*イントロスペクション* はオブジェクトのプロパティについての情報を得るための処理です。例えば、プロパティとして、オブジェクトの型、オブジェクトの属性、オブジェクトのメソッドといったものが挙げられます。
+
+[source,perl6]
+----
+class Human {
+  has Str $.name;
+  has Int $.age;
+  method introduce-yourself {
+    say 'Hi i am a human being, my name is ' ~ self.name;
+  }
+}
+
+class Employee is Human {
+  has Str $.company;
+  has Int $.salary;
+  method introduce-yourself {
+    say 'Hi i am a employee, my name is ' ~ self.name ~ ' and I work at: ' ~ self.company;
+  }
+}
+
+my $john = Human.new(name =>'John',age => 23,);
+my $jane = Employee.new(name =>'Jane',age => 25,company => 'Acme',salary => 4000);
+
+say $john.WHAT;
+say $jane.WHAT;
+say $john.^attributes;
+say $jane.^attributes;
+say $john.^methods;
+say $jane.^methods;
+say $jane.^parents;
+if $jane ~~ Human {say 'Jane is a Human'};
+----
+イントロスペクションは次のように容易に行えます:
+
+* `.WHAT` はオブジェクトがどのクラスから作られたかを返します。
+
+* `.^attributes` はオブジェクトのすべての属性を含んだリストを返します。
+
+* `.^methods` はオブジェクトから呼ぶことのできるすべてのメソッドを返します。
+
+* `.^parents` はオブジェクトの属しているクラスのすべての親クラスを返します。
+
+* `~~` はスマートマッチ演算子を呼びます。
+もしオブジェクトが比較している相手のクラスか、その相手のクラスの継承先のいずれかのクラスから生成されているなら _True_ と評価されます。
+
+== 例外処理
+
+=== 例外のキャッチ
+*例外* はランライムで何かが失敗したときに発生する特別なふるまいです。 +
+例外が _投げられる_ と表現します。
+
+正しく実行される下記のスクリプトについて考えてみてください:
+
+[source,perl6]
+----
+my Str $name;
+$name = "Joanna";
+say "Hello " ~ $name;
+say "How are you doing today?"
+----
+
+.`出力`
+----
+Hello Joanna
+How are you doing today?
+----
+
+では、例外を投げる次のスクリプトについて考えてみてください:
+
+[source,perl6]
+----
+my Str $name;
+$name = 123;
+say "Hello " ~ $name;
+say "How are you doing today?"
+----
+
+.`出力`
+----
+Type check failed in assignment to $name; expected Str but got Int
+   in block <unit> at exceptions.pl6:2
+----
+
+エラーが発生したとき(この場合は文字列変数に数値を代入している)は必ずプログラムが停止し、コードの他の行がたとえ正しく書かれていても評価されないということに気づいたかもしれません。
+
+*エラー処理* は _投げられた_ 例外の _キャッチ_ 処理を行うことでスクリプトが実行を続けられるようにすることです。
+
+[source,perl6]
+----
+my Str $name;
+try {
+  $name = 123;
+  say "Hello " ~ $name;
+  CATCH {
+    default {
+      say "Can you tell us your name again, we couldn't find it in the register.";
+    }
+  }
+}
+say "How are you doing today?";
+----
+
+.`出力`
+----
+Can you tell us your name again, we couldn't find it in the register.
+How are you doing today?
+----
+
+例外処理は `try-catch` ブロックを用いることで行われます。
+
+[source,perl6]
+----
+try {
+  # コードはここに
+  # もし何かが失敗したなら下記のCATCHブロックに入ります
+  # もし問題がなかったのなら下記のCATCHブロックは無視されます
+  CATCH {
+    default {
+      # ここのコードは例外が投げられたときだけ評価されます
+    }
+  }
+}
+----
+
+`CATCH` ブロックは `given` ブロックが定義されるときと同じように定義できます。
+これは様々なタイプの例外を _キャッチ_ して扱うことができることを意味しています。
+
+[source,perl6]
+----
+try {
+  # コードはここに
+  # もし何かが失敗したなら下記のCATCHブロックに入ります
+  # もし問題がなかったのなら下記のCATCHブロックは無視されます
+  CATCH {
+    when X::AdHoc { # X::AdHoc型の例外が投げられたのなら何かを実行します }
+    when X::IO { # X::IO型の例外が投げられたのなら何かを実行します }
+    when X::OS { # X::OS型の例外が投げられたのなら何かを実行します }
+    default { # 上記の型に該当しない例外が投げられたのなら何かを実行します }
+  }
+}
+----
+
+=== 例外を投げる
+例外のキャッチとは対照的に、Perl6は明示的に例外を投げることができます。 +
+二つのタイプの例外を投げることができます:
+
+* アドホック例外
+
+* 型付き例外
+
+[source,perl6]
+.アドホック
+----
+my Int $age = 21;
+die "Error !";
+----
+
+[source,perl6]
+.型付き
+----
+my Int $age = 21;
+X::AdHoc.new(payload => 'Error !').throw;
+----
+
+アドホック例外は、例外メッセージのともなった `die` サブルーチンを使って投げられます。
+
+型付き例外はオブジェクトです。したがって上記の例では `.new()` コンストラクタを使用しています。 +
+すべての型付き例外はクラス `X` の子孫です。下記は少数の例です:
+`X::AdHoc` は最もシンプルな例外のタイプです　 +
+`X::IO` はIOエラーに関する例外です +
+`X::OS` はOSエラーに関する例外です +
+`X::Str::Numeric` は文字列を数値にしようとすることに関する例外です
+
+注釈: もし例外の型と、関連するメソッドのすべてのリストを知りたいのであれば、次のURLを参照し、Xから始まる型のところへ進むのをすすめます http://doc.perl6.org/type.html
+
+== 正規表現
+正規表現、または _regex_ はパターンマッチングのための文字のシーケンスです。
+理解するための最も近道は、これをパターンとして考えることです。
+
+[source,perl6]
+----
+if 'enlightenment' ~~ m/ light / {
+    say "enlightenment contains the word light";
+}
+----
+
+この例では、スマートマッチ演算子 `~~` は文字列(enlightenment)が単語(light)を含んでいるかどうか調べるのに使われています。 +
+"Enlightenment" は 正規表現 `m/ light /` にマッチします。
+
+=== 正規表現の定義
+
+正規表現は次のように定義できます:
+
+* `/light/`
+
+* `m/light/`
+
+* `rx/light/`
+
+明示的に指定されない限り、空白は無視されます。つまり、`m/light/` と `m/ light /` は等価です。
+
+=== 文字のマッチング
+アルファベット文字とアンダースコア `_` はそのまま書かれます。 +
+他の文字はバックスラッシュを使うかクォートで囲むことでエスケープされている必要があります。
+
+[source,perl6]
+.バックスラッシュ
+----
+if 'Temperature: 13' ~~ m/ \: / {
+    say "The string provided contains a colon :";
+}
+----
+
+[source,perl6]
+.シングルクォート
+----
+if 'Age = 13' ~~ m/ '=' / {
+    say "The string provided contains an equal character = ";
+}
+----
+
+[source,perl6]
+.ダブルクォート
+----
+if 'name@company.com' ~~ m/ "@" / {
+    say "This is a valid email address because it contains an @ character";
+}
+----
+
+=== 文字種へのマッチング
+文字は文字種に分類することができ、これらに対してマッチングを行うことができます。 +
+またその分類と逆の分類(その分類を除いたものすべて)に対してマッチングを行うこともできます。
+
+|===
+
+| *種類* | *正規表現* | *逆* | *正規表現*
+
+| 単語構成文字 [a-zA-Z0-9_] | \w | 非単語構成文字 | \W
+
+| 10進数字 | \d | 非10進数字 | \D
+
+| 空白文字 | \s | 非空白文字 | \S
+
+| 水平空白文字 | \h | 非水平空白文字 | \H
+
+| 垂直空白文字 | \v | 非垂直空白文字 | \V
+
+| タブ | \t | 非タブ | \T
+
+| 改行 | \n | 非改行 | \N
+
+|===
+
+[source,perl6]
+----
+if "John123" ~~ / \d / {
+  say "This is not a valid name, numbers are not allowed";
+} else {
+  say "This is a valid name"
+}
+if "John-Doe" ~~ / \s / {
+  say "This string contains whitespace";
+} else {
+  say "This string doesn't contain whitespace"
+}
+----
+
+=== ユニコードのプロパティ
+前節での文字種に対するマッチングは便利です。 +
+そうはいっても、もっと系統的なアプローチはユニコードのプロパティを使うことです。 +
+ユニコードのプロパティは `<: >` で囲まれます。
+
+[source,perl6]
+----
+if "John123" ~~ / <:N> / {
+  say "Contains a number";
+} else {
+  say "Doesn't contain a number"
+}
+if "John-Doe" ~~ / <:Lu> / {
+  say "Contains an uppercase letter";
+} else {
+  say "Doesn't contain an upper case letter"
+}
+if "John-Doe" ~~ / <:Pd> / {
+  say "Contains a dash";
+} else {
+  say "Doesn't contain a dash"
+}
+----
+
+=== ワイルドカード
+正規表現ではワイルドカードも用いることができます。
+
+ドット `.` は任意の一文字を意味します。
+
+[source,perl6]
+----
+if 'abc' ~~ m/ a.c / {
+    say "Match";
+}
+if 'a2c' ~~ m/ a.c / {
+    say "Match";
+}
+if 'ac' ~~ m/ a.c / {
+    say "Match";
+  } else {
+    say "No Match";
+}
+----
+
+=== 量指定子
+量指定子は文字の後に付けられ、その文字が何回出現するのか指定するために使われます。
+
+クエスチョンマーク `?` は0か1回を意味します。
+
+[source,perl6]
+----
+if 'ac' ~~ m/ a?c / {
+    say "Match";
+  } else {
+    say "No Match";
+}
+if 'c' ~~ m/ a?c / {
+    say "Match";
+  } else {
+    say "No Match";
+}
+----
+
+スター `*` は0か複数回を意味します。
+
+[source,perl6]
+----
+if 'az' ~~ m/ a*z / {
+    say "Match";
+  } else {
+    say "No Match";
+}
+if 'aaz' ~~ m/ a*z / {
+    say "Match";
+  } else {
+    say "No Match";
+}
+if 'aaaaaaaaaaz' ~~ m/ a*z / {
+    say "Match";
+  } else {
+    say "No Match";
+}
+if 'z' ~~ m/ a*z / {
+    say "Match";
+  } else {
+    say "No Match";
+}
+----
+
+`+` は少なくとも一回を意味します。
+
+[source,perl6]
+----
+if 'az' ~~ m/ a+z / {
+    say "Match";
+  } else {
+    say "No Match";
+}
+if 'aaz' ~~ m/ a+z / {
+    say "Match";
+  } else {
+    say "No Match";
+}
+if 'aaaaaaaaaaz' ~~ m/ a+z / {
+    say "Match";
+  } else {
+    say "No Match";
+}
+if 'z' ~~ m/ a+z / {
+    say "Match";
+  } else {
+    say "No Match";
+}
+----
+
+=== マッチ結果
+正規表現に対する文字列のマッチング処理が成功したときはいつでも、
+そのマッチ結果は特別な変数 `$/` に格納されます。
+
+[source,perl6]
+.スクリプト
+----
+if 'Rakudo is a Perl 6 compiler' ~~ m/:s Perl 6/ {
+    say "The match is: " ~ $/;
+    say "The string before the match is: " ~ $/.prematch;
+    say "The string after the match is: " ~ $/.postmatch;
+    say "The matching string starts at position: " ~ $/.from;
+    say "The matching string ends at position: " ~ $/.to;
+}
+----
+
+.出力
+----
+The match is: Perl 6
+The string before the match is: Rakudo is a
+The string after the match is:  compiler
+The matching string starts at position: 12
+The matching string ends at position: 18
+----
+
+.説明
+`$/` は _マッチオブジェクト_ (正規表現がマッチした文字列) を返します +
+_マッチオブジェクト_ から次のようなメソッドを呼ぶことができます: +
+`.prematch` はマッチの前の文字列を返します。 +
+`.postmatch` はマッチの後ろの文字列を返します。 +
+`.from` はマッチの開始位置を返します。 +
+`.to` はマッチの終了位置を返します。 +
+
+TIP: デフォルトでは正規表現の定義における空白文字は無視されます。 +
+もし、空白文字を含んだ正規表現に対してマッチさせたいのであれば明示的にそうする必要があります。 +
+正規表現 `m/:s Perl 6/` の中の `:s` は空白文字も考慮して捨てないように強制します。 +
+別の選択肢としては `m/ Perl\s6 /` と書くこともできます。はじめに触れたように `\s` は空白文字のためのプレースホルダです。 +
+もし正規表現が空白文字を一つより多く含んでいるなら、`:s` を使うと `\s` を空白文字が出現する箇所でいちいち書くのと比べると効率的です。
+
+=== 例
+emailが正しいかどうか調べましょう。 +
+この例のために正しいemailのアドレスは次のような形式であるとしましょう:
+ファーストネーム [dot] ラストネーム [at] 会社名 [dot] (com/org/net)
+
+警告: この例で使われている正規表現はあまり正確ではありません。 +
+Perl6における正規表現の機能を説明することが唯一の目的です。
+プロダクションでそのまま使わないでください。
+
+[source,perl6]
+.スクリプト
+----
+my $email = 'john.doe@perl6.org';
+my $regex = / <:L>+\.<:L>+\@<:L+:N>+\.<:L>+ /;
+
+if $email ~~ $regex {
+  say $/ ~ " is a valid email";
+} else {
+  say "This is not a valid email";
+}
+----
+
+.出力
+`john.doe@perl6.org is a valid email`
+
+.説明
+`<:L>` は一つの文字にマッチします +
+`<:L>+` は一つ以上の文字にマッチします +
+`\.` は一つの[dot] 文字にマッチします +
+`\@` は一つの[at] 文字にマッチします +
+`<:L+:N>` は一つの文字か数字にマッチします +
+`<:L+:N>+` は一つ以上の文字か、一つ以上の数字にマッチします +
+
+この正規表現は次のように分解することができます。:
+
+* *ファーストネーム* `<:L>+`
+
+* *[dot]* `\.`
+
+* *ラストネーム* `<:L>+`
+
+* *[at]* `\@`
+
+* *会社名* `<:L+:N>+`
+
+* *[dot]* `\.`
+
+* *com/org/net* `<:L>+`
+
+[source,perl6]
+.また、ある正規表現は複数の名前付き正規表現に分解することができます
+----
+my $email = 'john.doe@perl6.org';
+my regex many-letters { <:L>+ };
+my regex dot { \. };
+my regex at { \@ };
+my regex many-letters-numbers { <:L+:N>+ };
+
+if $email ~~ / <many-letters> <dot> <many-letters> <at> <many-letters-numbers> <dot> <many-letters> / {
+  say $/ ~ " is a valid email";
+} else {
+  say "This is not a valid email";
+}
+----
+
+名前付き正規表現は次のような文法で定義されます: `my regex regex-name { regex definition }` +
+名前付き正規表現は次のような文法で呼び出されます: `<regex-name>`
+
+注釈: もしもっと正規表現について知りたいのであれば、次のURLを参照するのをすすめます http://doc.perl6.org/language/regexes
+
+== Perl6のモジュール
+Perl6は汎用プログラミング言語です。下記を含む多数のタスクに取り組むのに使うことができます。
+テキスト操作、グラフィックス、ウェブ、データベース、ネットワークプロトコルなど。
+
+再利用性はとても重要な概念です、それによってプログラマは新しいタスクに取り組もうとするたびに車輪の再発明を行う必要がなくなります。
+
+Perl6はでは *モジュール* の作成と再配布ができます。それぞれのモジュールはインストールされれば再利用できる機能のパッケージです。
+
+_Panda_ はRakudoに付属しているモジュール管理ツールです。
+
+特定のモジュールをインストールするには、次のコマンドをターミナルで打ってください:
+
+`panda install "モジュールの名前"`
+
+注釈: Perl6のモジュールの一覧を見るには次のURLを参照してください: http://modules.perl6.org/
+
+=== モジュールの使用
+MD5は128ビットのハッシュ値を生成する暗号学的ハッシュ関数です。 +
+MD5による、データベースに格納されているパスワードの暗号化は様々なアプリケーションで使われています。
+新たなユーザーが登録されるとき、資格情報は平文として保存されずに _ハッシュ_ 化されます。
+この背景にある根拠は、もしDBがハッキングの被害にあっていたとしても、攻撃者はパスワードが何であるかを知ることができないということです。
+
+DBにパスワードを格納するのに備えて、そのパスワードのMD5ハッシュを生成するスクリプトが必要だとしましょう。
+
+幸運なことに、MD5アルゴリズムを実装したPerl6モジュールがすでにあります。インストールしましょう: +
+`panda install Digest::MD5`
+
+では、次のスクリプトを実行してください:
+[source,perl6]
+----
+use Digest::MD5;
+my $password = "password123";
+my $hashed-password = Digest::MD5.new.md5_hex($password);
+
+say $hashed-password;
+----
+ハッシュを生成する `md5_hex()` 関数を実行するために、要求されたモジュールをロードしなくてはなりません。 +
+ `use` キーワードはスクリプトの中で使いたいモジュールをロードします。
+
+警告: 実用的にはMD5ハッシュ単独では不十分です、なぜなら辞書攻撃を受けやすいからです。 +
+サルトと組み合わせるべきです。 link:https://en.wikipedia.org/wiki/Salt_(cryptography)[https://en.wikipedia.org/wiki/Salt_(cryptography)].
+
+== ユニコード
+
+ユニコードは標準的なエンコーディングで、テキストを表現します。世界のほとんどの書込システムに提供されています。 +
+UTF-8は、ユニコードにおける、すべての文字や符号点をエンコーディングすることができる文字エンコードです。
+
+文字は次によって定義されます: +
+*書記素*: 視覚的表現。 +
+*符号点*: 文字に割り当てられた数。
+
+=== ユニコードの使用
+
+.ユニコードを使ってどうやって文字を出力することができるのか見てみましょう
+[source,perl6]
+----
+say "a";
+say "\x0061";
+say "\c[LATIN SMALL LETTER A]";
+----
+上記の三つの行は文字を作るためにそれぞれ異なった方法をとっています:
+
+. 直接文字を書く (書記素)
+
+. `\x` と符号点を使う
+
+. `\c` と符号点の名前を使う
+
+.では、スマイリーを出力してみましょう
+[source,perl6]
+----
+say "☺";
+say "\x263a";
+say "\c[WHITE SMILING FACE]";
+----
+
+.二つの符号点を組み合わせている例です
+[source,perl6]
+----
+say "á";
+say "\x00e1";
+say "\x0061\x0301";
+say "\c[LATIN SMALL LETTER A WITH ACUTE]";
+----
+
+`a` は次のように書けます:
+
+* ユニークな符号点 `\x00e1` を使う
+
+* もしくは `a` とアキュート・アクセントの符号点を組み合わせる `\x0061\x0301`
+
+.いくつかのメソッドを使うことができます:
+[source,perl6]
+----
+say "á".NFC;
+say "á".NFD;
+say "á".uniname;
+----
+
+.`出力`
+----
+NFC:0x<00e1>
+NFD:0x<0061 0301>
+LATIN SMALL LETTER A WITH ACUTE
+----
+
+`NFC` はユニークな符号点を返します。 +
+`NFD` は文字を分解し、それぞれの符号点を返します。 +
+`uniname` は符号点の名前を返します。
+
+.ユニコード文字は識別子として用いることができます:
+[source,perl6]
+----
+my $Δ = 1;
+$Δ++;
+say $Δ;
+----
+
+== 並列処理、並行性、非同期性
+
+=== 並列処理
+一般的な状況では、プログラムのすべてのタスクは上から順に実行されます。 +
+もし、たくさんの時間を消費するようなことを行おうとしているのでないかぎりは問題にはなりません。
+
+ありのままを言うと、Perl6には並列実行のための機能があります。 +
+現在のところ、二つの事柄のうちの一つを意味するということを頭にとどめておくことが重要です:
+
+* *タスクの並列処理*: 二つ(もしくはそれ以上)の独立した式が並列実行されます。
+* *データの並列処理*: 一つの式が要素のリストに対して並列的に反復処理を行います。
+
+まずは後者の方から始めましょう.
+
+==== データの並列処理
+[source,perl6]
+----
+my @array = (0..50000);                     # 配列の作成
+my @result = @array.map({ is-prime $_ });   # それぞれの配列の要素に対して is-prime を呼ぶ
+say now - INIT now;                         # スクリプトの処理が完了するまでにかかる時間を出力
+----
+
+.上記の例について考えてみましょう:
+`@array.map({ is-prime $_ })` という操作を行っているだけです +
+配列のそれぞれの要素に対して `is-prime` サブルーチンが経時的に呼び出されています:
+`is-prime @array[0]`、`is-prime @array[1]` 、`is-prime @array[2]` ・・・の順です
+
+.幸運なことに `is-prime` を複数の配列の要素に対して同時に呼び出すことができます:
+[source,perl6]
+----
+my @array = (0..50000);                         # 配列の作成
+my @result = @array.race.map({ is-prime $_ });  # それぞれの配列の要素に対して is-prime を呼ぶ
+say now - INIT now;                             # スクリプトの処理が完了するまでにかかる時間を出力
+----
+
+式の中で `race` を使用していることに注目してください。
+このメソッドは配列に対する並列的な反復処理を可能にします。
+
+両方の例( `race` の有る方と無い方)を実行したのち、両方のスクリプトにおいて処理が完了するのにかかる時間を比べてください。
+
+[TIP]
+--
+`race` は要素の順番を保ちません。もし要素の順番を保ちたいのであれば、代わりに `hyper` を用いてください。
+
+[source,perl6]
+.race
+----
+my @array = (1..1000);
+my @result = @array.race.map( {$_ + 1} );
+@result>>.say;
+----
+
+[source,perl6]
+.hyper
+----
+my @array = (1..1000);
+my @result = @array.hyper.map( {$_ + 1} );
+@result>>.say;
+----
+
+もし両方の例を実行したなら、片方はソートされていてもう片方はソートされていないことに気づいたはずです。
+
+--
+
+==== タスクの並列処理
+
+[source,perl6]
+----
+my @array1 = (0..49999);
+my @array2 = (2..50001);
+
+my @result1 = @array1.map( {is-prime($_ + 1)} );
+my @result2 = @array2.map( {is-prime($_ - 1)} );
+
+say @result1 eqv @result2;
+
+say now - INIT now;
+----
+
+.上記の例について考えてみてください:
+
+. 二つの配列を定義しました
+
+. それぞれの配列に対して異なる操作を適用し、結果を保存しました
+
+. そして、両方の結果が同じであるかを調べました
+
+このスクリプトは `@array1.map( {is-prime($_ + 1)} )` が終了するのを待っています +
+それから、`@array2.map( {is-prime($_ - 1)} )` を評価します。
+
+それぞれの配列に対して適用された操作の両方が互いに依存していません。
+
+.同時に実行してみたらどうでしょう？
+[source,perl6]
+----
+my @array1 = (0..49999);
+my @array2 = (2..50001);
+
+my $promise1 = start @array1.map( {is-prime($_ + 1)} ).eager;
+my $promise2 = start @array2.map( {is-prime($_ - 1)} ).eager;
+
+my @result1 = await $promise1;
+my @result2 = await $promise2;
+
+say @result1 eqv @result2;
+
+say now - INIT now;
+----
+
+.説明
+`start` メソッドはコードを評価し、`Promise型のオブジェクト` (端的には `約束` )を返します。 +
+もしコードが正しく評価されたのなら _約束_ は *守られ* ているでしょう。 +
+もしコードが例外を投げたのなら _約束_ は *破られ* ているでしょう。
+
+`await` メソッドは *約束* を待ちます。 +
+もし約束が *守られた* なら返された値を取得するでしょう。 +
+もし約束が *破られた* なら投げられた例外を取得するでしょう。
+
+それぞれのスクリプトにおいて処理が終了するのにかかった時間を調べてください。
+
+警告: 並列処理にはスレッディングのオーバーヘッドがあります。もしオーバーヘッドが計算速度で相殺されないのなら、スクリプトが遅くなってしまったように見えるでしょう。 +
+これが `race` 、 `hyper` 、 `start` 、 `await` をいたってシンプルなスクリプトに対して用いると実際には遅くなってしまう理由です。
+
+=== 並行性と非同期性
+注釈: 並行/非同期プログラミングについてもっと情報を知りたいのなら、次のURLを参照してください: http://doc.perl6.org/language/concurrency
+
+== コミュニティ
+
+次のIRCチャンネルでは活発な議論が行われています link:irc://irc.freenode.net/#perl6[#perl6] 何でも気軽に質問してください: +
+http://perl6.org/community/irc
+
+Perl6にフォーカスしたブログ記事にこうご期待ください: +
+http://pl6anet.org/ ではPerl6のブログを集約しています。
