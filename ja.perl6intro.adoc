@@ -123,7 +123,7 @@ Rakudo StarはREPLを使い倒すためのラインエディタをバンドル�
 
 私が個人的に使っていておすすめのエディタは https://atom.io/[Atom] です。
 モダンなテキストエディタであり、革新的なPerl6のシンタックスハイライティング機能を持っています。
-別の選択肢として、https://atom.io/packages/language-perl6fe[Perl6-fe] というAtomのためのシンタックスハイライターがあります。
+別の選択肢として、 https://atom.io/packages/language-perl6fe[Perl6-fe] というAtomのためのシンタックスハイライターがあります。
 オリジナルのパッケージから派生したものですが、多くのバグフィックスと追加機能を含んでいます。
 
 http://www.vim.org/[Vim], https://www.gnu.org/software/emacs/[Emacs], http://padre.perlide.org/[Padre] もまた、Perl6コミュニティの他の人々によって使われています。
