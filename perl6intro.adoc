@@ -39,6 +39,7 @@ naoum@hankache.com
 .Translations
 * French: http://fr.perl6intro.com
 * German: http://de.perl6intro.com
+* Japanese: http://ja.perl6intro.com
 * Spanish: http://es.perl6intro.com
 
 :sectnums:
