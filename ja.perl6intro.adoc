@@ -9,6 +9,7 @@ Naoum Hankache <naoum@hankache.com>; Itsuki Toyota <titsuki@cpan.org>
 :source-language: perl6
 :pygments-linenums-mode: table
 :toc: left
+:toc-title: Table of Contents
 :doctype: book
 
 この文書はプログラミング言語Perl6 の全体像を素早くつかんでもらうことを目的として書かれたものです。
@@ -35,12 +36,11 @@ To view a copy of this license, visit
 
 .フィードバック
 フィードバックは大歓迎です！:
-naoum@hankache.com
 
-.Translations
-* French: http://fr.perl6intro.com
-* German: http://de.perl6intro.com
-* 日本語: http://ja.perl6intro.com
+* naoum@hankache.com
+
+* titsuki@cpan.org
+
 
 :sectnums:
 == イントロダクション
@@ -203,10 +203,10 @@ Perl 6 は *フリーフォーム*: (ほとんどの場合)空白文字をいく
 |===
 
 .命名規則:
-* キャメルケース: `variableNo1` 
+* キャメルケース: `variableNo1`
 * ケバブケース: `variable-no1`
 
-* スネークケース: `variable_no1` 
+* スネークケース: `variable_no1`
 識別子には好きなように名前をつけることができます。しかし、一貫して一つの命名規則を適用していくのがグッドプラクティスです。
 
 ちゃんと意味のある名前をつければプログラミング人生を楽なものにしてくれるかもしれません。
@@ -900,8 +900,8 @@ say 'Welcome' if $age > 18;
 
 もし条件が満たされないなら、下記を使って、別のブロックを実行するように指定することができます:
 
-* `else` 
-* `elsif` 
+* `else`
+* `elsif`
 
 [source,perl6]
 ----
