@@ -131,16 +131,16 @@ http://www.vim.org/[Vim], https://www.gnu.org/software/emacs/[Emacs], http://pad
 最近のバージョンのVimは、はじめから革新的なシンタックスハイライティング機能を持っています。
 EmacsとPadreは追加のパッケージのインストールが必要になるでしょう。
 
-=== Hello World!
-おなじみの `hello world` の儀式をはじめましょう。
+=== こんにちは世界!
+おなじみの `こんにちは世界` の儀式をはじめましょう。
 
 [source,perl6]
-say 'hello world';
+say 'こんにちは世界';
 
 これはこういう風に書くこともできます:
 
 [source,perl6]
-'hello world'.say;
+'こんにちは世界'.say;
 
 === 文法の概要
 Perl 6 は *フリーフォーム*: (ほとんどの場合)空白文字をいくらつかってもよいです。
