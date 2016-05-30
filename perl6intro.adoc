@@ -1277,6 +1277,60 @@ say-hello;
 say-hello("Laura");
 ----
 
+=== Returning values
+All the subroutines we saw so far *do something*, they display some text on the terminal.
+
+While this is perfectly normal, sometimes we do want a subroutine to *return* some kind of value that we can reuse later in the flow of our program.
+
+Under normal circumstances, the last line of code of a subroutine is considered to be the return value.
+[source,perl6]
+.Implicit return
+----
+sub squared ($x) {
+  $x ** 2;
+}
+say "7 squared is equal to " ~ squared(7);
+----
+
+Once our code gets bigger, it might be a good idea to _explicitly_ specify what we do want to return.
+This can be done using the `return` keyword.
+[source,perl6]
+.Explicit return
+----
+sub squared ($x) {
+  return $x ** 2;
+}
+say "7 squared is equal to " ~ squared(7);
+----
+==== Restricting return values
+In one of the previous examples, we saw how we can restrict the accepted argument to be of a certain type.
+The same can be done with return values.
+
+To restrict the return value to a certain type, we either use the `returns` trait or the arrow notation `-\->` in the signature.
+
+[source,perl6]
+.Using the returns trait
+----
+sub squared ($x) returns Int {
+  return $x ** 2;
+}
+say "1.2 squared is equal to " ~ squared(1.2);
+----
+
+[source,perl6]
+.Using the arrow
+----
+sub squared ($x --> Int) {
+  return $x ** 2;
+}
+say "1.2 squared is equal to " ~ squared(1.2);
+----
+If we fail to provide a return value that matches the type constraint, an error will be thrown.
+
+----
+Type check failed for return value; expected Int but got Rat (1.44)
+----
+
 NOTE: For more info on subroutines and functions, see http://doc.perl6.org/language/functions
 
 == Functional Programming
