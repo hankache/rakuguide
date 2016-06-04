@@ -1192,9 +1192,9 @@ saludo-alien;
 ----
 El ejemplo anterior es una subrutina sin entrada de datos.
 
-=== Signatura
+=== Sobrecarga
 Muchas subrutinas utilizan *argumentos* de entrada para trabajar con ellos.
-El número y tipo de argumentos que acepta una subrutina se denomina su *signatura*.
+El número y tipo de argumentos que acepta una subrutina se denomina su *sobrecarga*.
 
 La siguiente subrutina acepta un argumento de tipo string.
 
@@ -1208,7 +1208,7 @@ di-hola "Paula";
 ----
 
 === Subrutinas múltiples
-Es posible definir varias subrutinas con el mismo nombre pero con distintas signaturas.
+Es posible definir varias subrutinas con el mismo nombre pero con distintas sobrecargas.
 Cuando se llama a la subrutina, se decidirá en tiempo de ejecución la versión de subrutina a utilizar dependiendo del número y tipo de argumentos proporcionados.
 Este tipo de subrutinas se definen con la palabra clave `multi` en lugar de `sub`.
 
@@ -1251,8 +1251,62 @@ Si no se proporciona un argumento, puede definirse uno por defecto asignándole 
 sub di-hola($nombre="Mateo") {
   say "Hola " ~ $nombre;
 }
-say-hello;
-say-hello("Laura");
+di-hola;
+di-hola("Laura");
+----
+
+=== Valores de retorno
+
+Hemos visto que todas las subrutinas hasta ahora siempre *hacen algo*: mostrar resultados en la pantalla del terminal.
+
+Esto es lo normal, pero a veces nos interesa que la subrutina *devuelva* algún tipo de valor que podamos utilizar después en el flujo del programa.
+
+En condiciones normales la última línea de la subrutina se considera como el valor de retorno.
+[source,perl6]
+.Retorno implícito
+----
+sub cuadrado ($x) {
+  $x ** 2;
+}
+say "7 al cuadrado es igual a " ~ cuadrado(7);
+----
+
+Cuando hay mucho código, es mejor indicar de forma _explícita_ qué es lo que queremos devolver.
+Esto se realiza mediante la palabra clave `return`.
+[source,perl6]
+----
+sub cuadrado ($x) {
+  return $x ** 2;
+}
+say "7 al cuadrado es igual a " ~ cuadrado(7);
+----
+==== Restricción de valores de retorno
+En uno de los ejemplos anteriores vimos cómo restringir el tipo del argumento aceptado.
+Lo mismo podemos hacer con los valores de retorno.
+
+Para restringir el valor de retorno a un tipo determinado podemos utilizar `returns` o la notación de flecha `-\->` en la sobrecarga.
+
+[source,perl6]
+.Utilizando returns
+----
+sub cuadrado ($x) returns Int {
+  return $x ** 2;
+}
+say "1.2 al cuadrado es igual a " ~ cuadrado(1.2);
+----
+
+[source,perl6]
+.Utilizando la notación de flecha
+----
+sub cuadrado ($x --> Int) {
+  return $x ** 2;
+}
+say "1.2 al cuadrado es igual a " ~ cuadrado(1.2);
+----
+Si el tipo del valor devuelto no coincide con el indicado, tendremos un error.
+
+----
+Type check failed for return value; expected Int but got Rat (1.44)
 ----
 
 NOTE: En http://doc.perl6.org/language/functions encontrarás más información sobre subrutinas y funciones.
@@ -1629,7 +1683,7 @@ El constructor que acepta argumentos posicionales necesita definirse como puedes
 
 ==== Introducción
 Los métodos son las _subrutinas_ de un objeto. +
-Al igual que las subrutinas, los métodos pueden empaquetar un conjunto de funcionalidades, aceptar *argumentos*, tener una *signatura* y definirse como *múltiples*.
+Al igual que las subrutinas, los métodos pueden empaquetar un conjunto de funcionalidades, aceptar *argumentos*, tener una *sobrecargas* y definirse como *múltiples*.
 
 Los métodos se definen con la palabra clave `method` y normalmente se utilizan para realizar alguna acción sobre los atributos de los objetos, reforzando así el concepto de encapsulación donde los atributos del objeto solo pueden manipularse dentro del objeto mediante sus métodos.
 Desde fuera solo podemos acceder a los métodos de los objetos y no a sus atributos.
