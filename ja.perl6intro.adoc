@@ -1279,6 +1279,60 @@ say-hello;
 say-hello("Laura");
 ----
 
+=== 値の返却
+
+今まで見てきたすべてのサブルーチンは、ターミナルにテキストを出力するといった具合に *何かをするもの* でした 。
+一方、プログラムの後段の処理で利用できるような何らかの値をサブルーチンに *返して* ほしいと思うことだってごく当たり前に発生するでしょう。
+普通の状況では、サブルーチンのコードの最後の行は返り値とみなされます。
+[source,perl6]
+.暗黙的な返却
+----
+sub squared ($x) {
+  $x ** 2;
+}
+say "7 squared is equal to " ~ squared(7);
+----
+
+コードが大きくなってしまったなら _明示的に_ 何を返そうとしているのかを指定することは良い対処法かもしれません。
+`return` キーワードを用いることでこれを行うことができます。
+[source,perl6]
+.明示的な返却
+----
+sub squared ($x) {
+  return $x ** 2;
+}
+say "7 squared is equal to " ~ squared(7);
+----
+==== 返り値の制限
+前回の例の一つでは、どうやって引数の受け取る型をある型に制限するかについて見ました。
+同じことを返り値でも行うことができます。
+
+返り値をある型に制限するには、 `returns` トレイトを使うか、矢印記号 `-\->` をシグネチャで使ってください。
+
+[source,perl6]
+.returns トレイトの使用
+----
+sub squared ($x) returns Int {
+  return $x ** 2;
+}
+say "1.2 squared is equal to " ~ squared(1.2);
+----
+
+[source,perl6]
+.矢印記号の使用
+----
+sub squared ($x --> Int) {
+  return $x ** 2;
+}
+say "1.2 squared is equal to " ~ squared(1.2);
+----
+もし、型の制約にマッチする返り値を渡しそびれてしまったなら、エラーが投げられるでしょう。
+
+----
+Type check failed for return value; expected Int but got Rat (1.44)
+----
+
+
 NOTE: もしサブルーチンと関数に関する情報をもっと知りたいのであれば、次のURLを参照することをすすめます http://doc.perl6.org/language/functions
 
 == 関数型プログラミング
