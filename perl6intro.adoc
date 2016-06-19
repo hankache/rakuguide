@@ -1311,7 +1311,7 @@ To restrict the return value to a certain type, we either use the `returns` trai
 [source,perl6]
 .Using the returns trait
 ----
-sub squared ($x) returns Int {
+sub squared ($x) returns Int:D {
   return $x ** 2;
 }
 say "1.2 squared is equal to " ~ squared(1.2);
@@ -1320,7 +1320,7 @@ say "1.2 squared is equal to " ~ squared(1.2);
 [source,perl6]
 .Using the arrow
 ----
-sub squared ($x --> Int) {
+sub squared ($x --> Int:D) {
   return $x ** 2;
 }
 say "1.2 squared is equal to " ~ squared(1.2);

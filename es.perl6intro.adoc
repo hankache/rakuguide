@@ -1289,7 +1289,7 @@ Para restringir el valor de retorno a un tipo determinado podemos utilizar `retu
 [source,perl6]
 .Utilizando returns
 ----
-sub cuadrado ($x) returns Int {
+sub cuadrado ($x) returns Int:D {
   return $x ** 2;
 }
 say "1.2 al cuadrado es igual a " ~ cuadrado(1.2);
@@ -1298,7 +1298,7 @@ say "1.2 al cuadrado es igual a " ~ cuadrado(1.2);
 [source,perl6]
 .Utilizando la notación de flecha
 ----
-sub cuadrado ($x --> Int) {
+sub cuadrado ($x --> Int:D) {
   return $x ** 2;
 }
 say "1.2 al cuadrado es igual a " ~ cuadrado(1.2);

@@ -1312,7 +1312,7 @@ say "7 squared is equal to " ~ squared(7);
 [source,perl6]
 .returns トレイトの使用
 ----
-sub squared ($x) returns Int {
+sub squared ($x) returns Int:D {
   return $x ** 2;
 }
 say "1.2 squared is equal to " ~ squared(1.2);
@@ -1321,7 +1321,7 @@ say "1.2 squared is equal to " ~ squared(1.2);
 [source,perl6]
 .矢印記号の使用
 ----
-sub squared ($x --> Int) {
+sub squared ($x --> Int:D) {
   return $x ** 2;
 }
 say "1.2 squared is equal to " ~ squared(1.2);
