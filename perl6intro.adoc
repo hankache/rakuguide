@@ -264,6 +264,8 @@ say "Hello $name";   # Hello John Doe
 -----------------------------------
 
 == Operators
+
+=== Common Operators
 The below table lists the most commonly used operators.
 [cols="^.^5m,^.^5m,.^20,.^20m,.^20m", options="header"]
 |===
@@ -377,6 +379,35 @@ The below table lists the most commonly used operators.
 .2+| {vbar} .2+| Prefix .2+| Flattening | {vbar}(0..5)  | (0 1 2 3 4 5)
 
 <| {vbar}(0\^..^5)  <| (1 2 3 4)
+
+|===
+
+=== Reversed Operators
+
+Adding `R` before any operator will have the effect of reversing its operands.
+
+[cols=".^m,.^m,.^m,.^m", options="header"]
+|===
+| Normal Operation | Result | Reversed Operator | Result
+
+| 2 / 3 | 0.666667 | 2 R/ 3 | 1.5
+
+| 2 - 1 | 1 | 2 R- 1 | -1
+
+|===
+
+=== Reduction Operators
+
+Reduction operators work on lists of values.
+They are formed by surrounding the operator with brackets `[]`
+
+[cols=".^m,.^m,.^m,.^m", options="header"]
+|===
+| Normal Operation | Result | Reduction Operator | Result
+
+| 1 + 2 + 3 + 4 + 5 | 15 | [+] 1,2,3,4,5 | 15
+
+| 1 * 2 * 3 * 4 * 5 | 120 | [*] 1,2,3,4,5 | 120
 
 |===
 
@@ -2628,7 +2659,7 @@ Reusability is a very important concept whereby programmers don't have to reinve
 
 Perl 6 allows the creation and redistribution of *modules*. Each module is a packaged set of functionality that can be reused once installed.
 
-_Panda_ is a module management tool that comes with Rakudo.
+_Panda_ is a module management tool that comes with Rakudo Star.
 
 To install a specific module, type the below command in your terminal:
 
