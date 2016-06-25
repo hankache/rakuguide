@@ -12,6 +12,7 @@
 :toc: left
 :doctype: book
 
+
 This document is intended to give you a quick overview of the Perl 6 programming language.
 For those who are new to Perl 6 it should get you up and running.
 
@@ -1342,7 +1343,7 @@ To restrict the return value to a certain type, we either use the `returns` trai
 [source,perl6]
 .Using the returns trait
 ----
-sub squared ($x) returns Int:D {
+sub squared ($x) returns Int {
   return $x ** 2;
 }
 say "1.2 squared is equal to " ~ squared(1.2);
@@ -1351,7 +1352,7 @@ say "1.2 squared is equal to " ~ squared(1.2);
 [source,perl6]
 .Using the arrow
 ----
-sub squared ($x --> Int:D) {
+sub squared ($x --> Int) {
   return $x ** 2;
 }
 say "1.2 squared is equal to " ~ squared(1.2);
@@ -1361,6 +1362,26 @@ If we fail to provide a return value that matches the type constraint, an error 
 ----
 Type check failed for return value; expected Int but got Rat (1.44)
 ----
+
+[TIP]
+--
+Not only can type constraints control the type of the return value; they can also control its definedness.
+
+In the previous examples, we specified that the return value should be an `Int`, irrespective of its definedness.
+Alternatively we could have specified that the returned `Int` should be strictly defined or undefined using the following signatures: +
+`--> Int:D` and `--> Int:U`
+
+That being said, it is good practice to use those type constraints. +
+Below is the modified version of the previous example that uses `:D` to force the returned  `Int` to be defined.
+
+[source,perl6]
+----
+sub squared ($x --> Int:D) {
+  return $x ** 2;
+}
+say "1.2 squared is equal to " ~ squared(1.2);
+----
+--
 
 NOTE: For more info on subroutines and functions, see http://doc.perl6.org/language/functions
 
