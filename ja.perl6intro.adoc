@@ -307,7 +307,7 @@ say "Hello $name";   # Hello John Doe
 
 | ne | 接中辞 | 文字列が等しくない | "John" ne "Jane"  | True
 
-| = | 接中辞 | 代入 | my $var = 7  | Assigns the value of `7` to the variable `$var`
+| = | 接中辞 | 代入 | my $var = 7  | 変数 `$var` に値 `7` を代入する
 
 .2+| ~ .2+| 接中辞 .2+| 文字列の結合 | 9 ~ 7 | 97
 
