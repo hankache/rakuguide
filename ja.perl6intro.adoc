@@ -1312,7 +1312,7 @@ say "7 squared is equal to " ~ squared(7);
 [source,perl6]
 .returns トレイトの使用
 ----
-sub squared ($x) returns Int:D {
+sub squared ($x) returns Int {
   return $x ** 2;
 }
 say "1.2 squared is equal to " ~ squared(1.2);
@@ -1321,7 +1321,7 @@ say "1.2 squared is equal to " ~ squared(1.2);
 [source,perl6]
 .矢印記号の使用
 ----
-sub squared ($x --> Int:D) {
+sub squared ($x --> Int) {
   return $x ** 2;
 }
 say "1.2 squared is equal to " ~ squared(1.2);
@@ -1332,6 +1332,26 @@ say "1.2 squared is equal to " ~ squared(1.2);
 Type check failed for return value; expected Int but got Rat (1.44)
 ----
 
+[TIP]
+--
+型の制限は返り値の型を指定できるだけではなく; 定義済みか否かも指定することができます。
+
+以前の例では、定義済みか否かはさておき、返り値は `Int` であると指定しました。
+代わりに、次のようなシグネチャを使って返り値の `Int` が厳密に定義されているべきか否かを指定することもできました。:
+
+`--> Int:D` and `--> Int:U`
+
+それはそれとして、これらの型の制限をつかうことはとても実用的です。 +
+下記は以前の例の修正版です。返り値の `Int` が定義されているように強制するために `:D`を使っています。
+
+[source,perl6]
+----
+sub squared ($x --> Int:D) {
+  return $x ** 2;
+}
+say "1.2 squared is equal to " ~ squared(1.2);
+----
+--
 
 NOTE: もしサブルーチンと関数に関する情報をもっと知りたいのであれば、次のURLを参照することをすすめます http://doc.perl6.org/language/functions
 
