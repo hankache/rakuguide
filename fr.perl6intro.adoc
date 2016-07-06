@@ -10,6 +10,7 @@ Naoum Hankache <naoum@hankache.com>; Romuald Nuguet <kolikov@free.fr>
 :pygments-linenums-mode: table
 :toc: left
 :toc-title: Table des Matières
+:lang: fr
 
 L'objectif de ce document est de vous donner un aperçu rapide du langage de programmation Perl 6. +
 Pour ceux qui sont nouveaux à Perl 6, il devrait vous permettre de démarrer.
@@ -239,13 +240,13 @@ say #`(Ceci est un commentaire intégré) "Bonjour Monde."
 * multi ligne:
 +
 [source,perl6]
------------------------------
+----
 =begin comment
 Ceci est un commentaire sur plusieurs lignes.
 Commentaire 1
 Commentaire 2
 =end comment
------------------------------
+----
 
 ==== Guillemets
 Les chaînes doivent être délimitées par des guillemets droits, doubles ou simples (apostrophes).
@@ -257,14 +258,14 @@ Utilisez toujours des guillemets droits doubles:
 * si votre chaîne contient une variable qui doit être interpolée.
 
 [source,perl6]
------------------------------------
+----
 say 'Bonjour Monde';             #Bonjour Monde
 say "Bonjour Monde";             #Bonjour Monde
 say "Quelqu'un m'a dit";         #Quelqu'un m'a dit
 my $nom = 'François Pinon';
 say 'Salut $nom';                #Salut $nom
 say "Salut $nom";                #Salut François Pinon
------------------------------------
+----
 
 == Opérateurs
 [cols="^.^5m,^.^5m,.^20,.^20m,.^20m", options="header"]
@@ -1465,7 +1466,7 @@ Dans cet exemple, nous définissons explicitement un générateur mis entre `{ }
 Cette liste paresseuse retournera (à la demande) les éléments suivants: (0, 3, 6, 9, 12)
 
 [WARNING]
---
+====
 Si vous utilisez un générateur explicite, l'élément final doit être une valeur que le générateur puisse retourner. +
 Si nous reproduisons l'exemple ci-dessus avec un élément final égal à 10 au lieu de 12, il n'y aura pas de fin.
 Le générateur _saute par dessus_ l'élément final.
@@ -1485,7 +1486,7 @@ say $lazylist;
 my $lazylist = (0, { $_ + 3 } ...^ * > 10);
 say $lazylist;
 ----
---
+====
 
 == Classes & Objets
 Dans le chapitre précédent nous avons vu comment Perl 6 facilite la programmation fonctionnelle. +
@@ -1741,7 +1742,7 @@ say $françois.age;
 ----
 Par défaut, tous les attribut sont déclarés en _lecture seule_ mais vous pouvez aussi les déclarer explicitement avec `is readonly`
 
-=== Hérirage
+=== Héritage
 ==== Introduction
 L'*héritage* est un autre concept de la programmation orientée objet.
 
@@ -2702,7 +2703,7 @@ Cette méthode permet l'itération en parallèle des éléments du tableau.
 Après avoir lancé les deux exemples (avec et sans `race`), comparez les temps d'exécution de chaque programme.
 
 [TIP]
---
+====
 `race` ne préservera pas l'ordre des éléments. Pour le préserver, utilisez à sa place `hyper`.
 
 [source,perl6]
@@ -2723,7 +2724,7 @@ my @résultat = @tableau.hyper.map( {$_ + 1} );
 
 En lançant les deux exemples, vous remarquerez que l'un est trié et l'autre non.
 
---
+====
 
 ==== Parallélisme des tâches
 

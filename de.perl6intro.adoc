@@ -10,6 +10,7 @@ Naoum Hankache <naoum@hankache.com>; Sören Laird_Sörries <perl@myobj.com>
 :pygments-linenums-mode: table
 :toc: left
 :doctype: book
+:lang: de
 
 Dieser Text soll einen schnellen Überblick über die Programmiersprache Perl 6 bieten.
 Perl 6-Neulingen soll er beim schnellen Einstieg helfen.
@@ -218,13 +219,13 @@ say #`(Dies ist ein eingebetteter Kommentar) "Hello, world."
 * Mehrzeilig/multi line:
 +
 [source,perl6]
------------------------------
+----
 =begin comment
 Dies ist ein mehrzeiliger Kommentar.
 Kommentar 1
 Kommentar 2
 =end comment
------------------------------
+----
 
 ==== Anführungszeichen (quotes)
 Strings müssen durch entweder doppelte oder einfache Anführungszeichen eingerahmt werden.
@@ -236,14 +237,14 @@ Nutze immer doppelte Anführungszeichen:
 * wenn der String eine Variable enthält, die interpoliert werden soll.
 
 [source,perl6]
------------------------------------
+----
 say 'Hello World';   # Hello World
 say "Hello World";   # Hello World
 say "Don't";         # Don't
 my $name = 'Hans Meier';
 say 'Hallo $name';   # Hallo $name
 say "Hallo $name";   # Hallo Hans Meier
------------------------------------
+----
 
 == Operatoren
 Diese Tabelle zeigt die am Häufigsten verwendten Operatoren.
@@ -594,7 +595,7 @@ In den bisherigen Beispielen haben wir nicht erwähnt, welche Typen die Variable
 TIP: `.WHAT` gibt den Typ des Wertes einer Variable zurück.
 
 [source,perl6]
----------------------
+----
 my $var = 'Text';
 say $var;
 say $var.WHAT;
@@ -602,7 +603,7 @@ say $var.WHAT;
 $var = 123;
 say $var;
 say $var.WHAT;
----------------------
+----
 
 Im obigen Beispiel zu sehen war der Typ des Wertes der Variable `$var` zuerst (Str) und dann (Int).
 
@@ -611,11 +612,11 @@ Dieser Programmierstil wird dynamisches Typisieren (dynamic typing) genannt. Dyn
 Nun probieren wir ein weiteres Beispiel: +
 Wichtig ist das `Int` vor dem Namen der Variable.
 [source,perl6]
------------------------------------------
+----
 my Int $var = 'Text';
 say $var;
 say $var.WHAT;
------------------------------------------
+----
 
 Das schlägt fehl und gibt diese Fehlermeldung aus: `Type check failed in assignment to $var; expected Int but got Str`
 
@@ -711,13 +712,13 @@ Ein Block in Perl 6 wird durch `{ }` begrenzt.
 Wenn noch kein Block da ist, ist der Gültigkeitsbereich der Variable das ganze Perl Skript.
 
 [source,perl6]
---------------------------------
+----
 {
   my Str $var = 'Text';
   say $var; #ist verfügbar
 }
 say $var; #ist nicht verfügbar, gibt einen Fehler zurück
---------------------------------
+----
 
 Da eine lexikalische Variable nur in dem Block verfügbar ist, in dem sie definiert wurde, kann die selbe Variable in einem weitern Block erneut definiert werden.
 
@@ -1439,7 +1440,7 @@ In diesem Beispiel wurde der Generator definiert in `{ }` +
 Diese gemütliche Lazy Liste kann, wenn sie abgefragt werden, die folgenden Elemente zurückgeben (0, 3, 6, 9, 12)
 
 [WARNING]
---
+====
 Wird ein definierter Generator verwendet, muss der Endpunkt einer der Werte sein, die der Generator zurückgeben kann. +
 Wird das obige Beispiel mit dem Endpunkt 10 anstelle von 12 probiert, dann endet die Liste nicht.
 Der Generator _überspringt_ dann den Endpunkt.
@@ -1459,7 +1460,8 @@ say $lazyliste;
 my $lazyliste = (0, { $_ + 3 } ...^ * > 10);
 say $lazyliste;
 ----
---
+====
+
 == Klassen & Objekte
 Im vorangegangenen Kapitel wurde gelernt, wie Perl 6 Funktionales Programmieren erleichtert. +
 In diesem Kapitel sehen wir Objektorientiertes Programmieren in Perl 6.
@@ -2675,7 +2677,7 @@ Diese erlaubt die gleichzeitige Verarbeitung mehrerer Arrayelemente.
 Nach dem Ausführen beider Beispiele (mit und ohne `race`), wie lang hat die Ausführung gedauert?
 
 [TIP]
---
+====
 `race` behält die Reihenfolge der Elemente nicht bei. Sollte dies notwendig sein, verwendet man  `hyper` anstelle von `race`.
 
 [source,perl6]
@@ -2696,7 +2698,7 @@ my @ergebnis = @array.hyper.map( {$_ + 1} );
 
 Nach dem Ausführen beider Beispiele (einmal mit `race` und das andere mit `hyper`), zeigt sich, dass das eine Ergebnis sortiert ist, das andere nicht.
 
---
+====
 
 ==== Parallele Ausführung
 

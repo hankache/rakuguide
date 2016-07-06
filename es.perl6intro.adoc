@@ -11,6 +11,7 @@ Naoum Hankache <naoum@hankache.com>; Ramiro Encinas <ramiro.encinas@gmail.com>
 :toc: left
 :toc-title: Tabla de Contenidos
 :doctype: book
+:lang: es
 
 Este documento es una guía rápida del lenguaje de programación Perl 6.
 Para los novatos en Perl 6 sería un punto de partida y puesta en marcha.
@@ -215,13 +216,13 @@ say #`(Esto es un comentario incrustado) "Hola Mundo."
 * De varias líneas:
 +
 [source,perl6]
------------------------------
+----
 =begin comentario
 Esto es un comentario de varias líneas.
 Comentario 1
 Comentario 2
 =end comentario
------------------------------
+----
 
 ==== Comillas
 El texto tiene que ir entre comillas dobles o simples.
@@ -233,14 +234,14 @@ Utiliza siempre comillas dobles:
 * si el texto necesita visualizar el texto de una variable (interpolación de variable).
 
 [source,perl6]
------------------------------------
+----
 say 'Hola Mundo';   # Hola Mundo
 say "Hola Mundo";   # Hola Mundo
 say "Ven pa'ca cordera";    # Ven pa'ca cordera
 my $nombre = 'Juan De Dios';
 say 'Hola $nombre';   # Hola $nombre
 say "Hola $nombre";   # Hola Juan De Dios
------------------------------------
+----
 
 == Operadores
 La siguiente tabla muestra los operadores más utilizados.
@@ -606,7 +607,7 @@ En los ejemplos anteriores no hemos especificado el tipo de valor que debería c
 TIP: `.WHAT` devuelve el tipo del valor que contiene la variable.
 
 [source,perl6]
----------------------
+----
 my $var = 'Texto';
 say $var;
 say $var.WHAT;
@@ -614,7 +615,7 @@ say $var.WHAT;
 $var = 123;
 say $var;
 say $var.WHAT;
----------------------
+----
 
 Como puedes ver en el ejemplo anterior, el tipo de valor en `$var` primero fue texto (Str) y después entero (Int).
 
@@ -624,11 +625,11 @@ Ahora intenta ejecutar el siguiente ejemplo: +
 Fíjate en el `Int` indicado antes de la variable.
 
 [source,perl6]
------------------------------------------
+----
 my Int $var = 'Texto';
 say $var;
 say $var.WHAT;
------------------------------------------
+----
 
 Este ejemplo devuelve un error indicando: `Type check failed in assignment to $var; expected Int but got Str`
 
@@ -724,13 +725,13 @@ En Perl 6 un bloque está delimitado por `{ }`.
 En caso de no existir bloque, la variable estará disponible en el script entero.
 
 [source,perl6]
---------------------------------
+----
 {
   my Str $var = 'Texto';
   say $var; #accesible
 }
 say $var; #no accesible, da un error
---------------------------------
+----
 
 Como la variable solo es accesible dentro del bloque donde está definida, la misma variable puede definirse de nuevo en cualquier otro bloque.
 
@@ -1289,7 +1290,7 @@ Para restringir el valor de retorno a un tipo determinado podemos utilizar `retu
 [source,perl6]
 .Utilizando returns
 ----
-sub cuadrado ($x) returns Int:D {
+sub cuadrado ($x) returns Int {
   return $x ** 2;
 }
 say "1.2 al cuadrado es igual a " ~ cuadrado(1.2);
@@ -1298,7 +1299,7 @@ say "1.2 al cuadrado es igual a " ~ cuadrado(1.2);
 [source,perl6]
 .Utilizando la notación de flecha
 ----
-sub cuadrado ($x --> Int:D) {
+sub cuadrado ($x --> Int) {
   return $x ** 2;
 }
 say "1.2 al cuadrado es igual a " ~ cuadrado(1.2);
@@ -1521,7 +1522,7 @@ En este ejemplo hemos definido de forma explícita un generador entre llaves `{ 
 Esta lista puede devolver (si es requerida) los siguientes elementos (0, 3, 6, 9, 12)
 
 [WARNING]
---
+====
 Al usar un generador de forma explícita el punto final debe ser uno de los valores que el generador pueda devolver. +
 Si en el ejemplo anterior sustituimos el punto final 12 por un 10, el generador no se detendrá y saltará sobre el punto final y continuará.
 
@@ -1541,7 +1542,8 @@ say $listaperezosa;
 my $listaperezosa = (0, { $_ + 3 } ...^ * > 10);
 say $listaperezosa;
 ----
---
+====
+
 == Clases y Objetos
 En el apartado anterior hemos visto cómo utilizar la Programación Funcional en Perl 6 y en el siguiente apartado veremos cómo utilizar Perl 6 en la Programación Orientada a Objetos.
 
@@ -2732,7 +2734,7 @@ Este método permite la iteración en paralelo de los elementos del array.
 Después de ejecutar ambos ejemplos (con y sin `race`), compara los tiempos consumidos de ambos scripts.
 
 [TIP]
---
+====
 `race` no guarda el orden de los elementos. Si quieres respetar este orden, utiliza `hyper`.
 
 [source,perl6]
@@ -2753,7 +2755,7 @@ my @resultado = @array.hyper.map( {$_ + 1} );
 
 Si ejecutas ambos ejemplos verás que uno muestra los resultados ordenados y el otro no.
 
---
+====
 
 ==== Paralelismo de Tareas
 

@@ -11,6 +11,7 @@
 :pygments-linenums-mode: table
 :toc: left
 :doctype: book
+:lang: en
 
 
 This document is intended to give you a quick overview of the Perl 6 programming language.
@@ -660,7 +661,7 @@ In the previous examples, we did not specify what type of values the variables s
 TIP: `.WHAT` will return the type of value held in a variable.
 
 [source,perl6]
----------------------
+----
 my $var = 'Text';
 say $var;
 say $var.WHAT;
@@ -668,7 +669,7 @@ say $var.WHAT;
 $var = 123;
 say $var;
 say $var.WHAT;
----------------------
+----
 
 As you can see in the above example, the type of value in `$var` was once (Str) and then (Int).
 
@@ -678,11 +679,11 @@ Now try running the below example: +
 Notice `Int` before the variable name.
 
 [source,perl6]
------------------------------------------
+----
 my Int $var = 'Text';
 say $var;
 say $var.WHAT;
------------------------------------------
+----
 
 It will fail and return this error message: `Type check failed in assignment to $var; expected Int but got Str`
 
@@ -778,13 +779,13 @@ A block in Perl 6 is delimited by `{ }`.
 If no block is found, the variable will be available in the whole Perl 6 script.
 
 [source,perl6]
---------------------------------
+----
 {
   my Str $var = 'Text';
   say $var; #is accessible
 }
 say $var; #is not accessible, returns an error
---------------------------------
+----
 
 Since a variable is only accessible in the block where it is defined, the same variable name can be redefined in another block.
 
@@ -1364,7 +1365,7 @@ Type check failed for return value; expected Int but got Rat (1.44)
 ----
 
 [TIP]
---
+====
 Not only can type constraints control the type of the return value; they can also control its definedness.
 
 In the previous examples, we specified that the return value should be an `Int`, irrespective of its definedness.
@@ -1381,7 +1382,7 @@ sub squared ($x --> Int:D) {
 }
 say "1.2 squared is equal to " ~ squared(1.2);
 ----
---
+====
 
 NOTE: For more info on subroutines and functions, see http://doc.perl6.org/language/functions
 
@@ -1596,7 +1597,7 @@ In this example, we defined explicitly a generator enclosed in `{ }` +
 This lazy list may return (if requested) the following elements (0, 3, 6, 9, 12)
 
 [WARNING]
---
+====
 When using an explicit generator, the endpoint must be one of the values that the generator can return. +
 If we reproduce the above example with the endpoint being 10 instead of 12, it will not stop.
 The generator _jumps over_ the endpoint.
@@ -1616,7 +1617,8 @@ say $lazylist;
 my $lazylist = (0, { $_ + 3 } ...^ * > 10);
 say $lazylist;
 ----
---
+====
+
 == Classes & Objects
 In the previous chapter, we learned how Perl 6 facilitates Functional Programming. +
 In this chapter we will take a look at Object Oriented programming in Perl 6.
@@ -2832,7 +2834,7 @@ This method will enable parallel iteration of the array elements.
 After running both examples (with and without `race`), compare the time it took for both scripts to complete.
 
 [TIP]
---
+====
 `race` will not preserve the order of elements. If you wish to do, so use `hyper` instead.
 
 [source,perl6]
@@ -2853,7 +2855,7 @@ my @result = @array.hyper.map( {$_ + 1} );
 
 If you run both examples, you should notice that one is sorted and the other is not.
 
---
+====
 
 ==== Task Parallelism
 
