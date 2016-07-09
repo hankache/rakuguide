@@ -17,7 +17,7 @@
 This document is intended to give you a quick overview of the Perl 6 programming language.
 For those who are new to Perl 6 it should get you up and running.
 
-Some sections of this document reference other (more complete and accurate) parts of the Perl 6 documentation.
+Some sections of this document reference other (more complete and accurate) parts of the http://docs.perl6.org[Perl 6 documentation].
 You should read them if you need more information on a specific subject.
 
 Throughout this document, you will find examples for most discussed topics.
