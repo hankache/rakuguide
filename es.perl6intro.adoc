@@ -13,10 +13,11 @@ Naoum Hankache <naoum@hankache.com>; Ramiro Encinas <ramiro.encinas@gmail.com>
 :doctype: book
 :lang: es
 
+
 Este documento es una guía rápida del lenguaje de programación Perl 6.
 Para los novatos en Perl 6 sería un punto de partida y puesta en marcha.
 
-Algunas partes de este documento hacen referencia a otras partes (más completas y precisas) de la documentación de Perl 6.
+Algunas partes de este documento hacen referencia a otras partes (más completas y precisas) de la http://docs.perl6.org[Documentación de Perl 6].
 Consulta la documentación de Perl 6 si necesitas más información sobre algo concreto.
 
 A lo largo de este documento encontrarás ejemplos de los temas más comentados.
@@ -244,6 +245,8 @@ say "Hola $nombre";   # Hola Juan De Dios
 ----
 
 == Operadores
+
+=== Operadores comunes
 La siguiente tabla muestra los operadores más utilizados.
 [cols="^.^5m,^.^5m,.^20,.^20m,.^20m", options="header"]
 |===
@@ -357,6 +360,34 @@ La siguiente tabla muestra los operadores más utilizados.
 .2+| {vbar} .2+| Prefijo .2+| Aplanamiento | {vbar}(0..5)  | (0 1 2 3 4 5)
 
 <| {vbar}(0\^..^5)  <| (1 2 3 4)
+
+|===
+
+=== Intercambio de Operandos
+
+Al agregar `R` delante de cualquier operador hace que se intercambien sus operandos.
+
+[cols=".^m,.^m,.^m,.^m", options="header"]
+|===
+| Operación original | Resultado | Intercambio de operandos | Resultado
+
+| 2 / 3 | 0.666667 | 2 R/ 3 | 1.5
+
+| 2 - 1 | 1 | 2 R- 1 | -1
+
+|===
+
+=== Reducción de Operadores
+
+La reducción de operadores se utiliza en listas de valores. Se forman encerrando el operador entre corchetes `[]`
+
+[cols=".^m,.^m,.^m,.^m", options="header"]
+|===
+| Operación original | Resultado | Reducción de Operadores | Resultado
+
+| 1 + 2 + 3 + 4 + 5 | 15 | [+] 1,2,3,4,5 | 15
+
+| 1 * 2 * 3 * 4 * 5 | 120 | [*] 1,2,3,4,5 | 120
 
 |===
 
@@ -1309,6 +1340,26 @@ Si el tipo del valor devuelto no coincide con el indicado, tendremos un error.
 ----
 Type check failed for return value; expected Int but got Rat (1.44)
 ----
+
+[TIP]
+====
+La restricción del tipo del valor de retorno tambień puede controlar si este valor está definido o no.
+
+En los ejemplos anteriores restringimos el valor de retorno a `Int`, esté definido o no.
+Además, podemos indicar que el valor de retorno esté obligatoriamente definido o no utilizando, de forma correspondiente, las siguientes signaturas: +
+`--> Int:D` y `--> Int:U`
+
+Como hemos visto es una buena costumbre utilizar estas restricciones. +
+A continuación puedes ver la versión modificada del ejemplo anterior utilizando `:D` para que el tipo devuelto `Int` esté definido obligatoriamente.
+
+[source,perl6]
+----
+sub cuadrado ($x --> Int:D) {
+  return $x ** 2;
+}
+say "1.2 al cuadrado es igual a " ~ cuadrado(1.2);
+----
+====
 
 NOTE: En http://doc.perl6.org/language/functions encontrarás más información sobre subrutinas y funciones.
 
