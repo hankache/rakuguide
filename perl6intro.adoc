@@ -1874,7 +1874,7 @@ By default, all attributes are declared as _read only_ but you can explicitly do
 
 === Inheritance
 ==== Introduction
-*Inheritance* is yet another concept of object oriented programming.
+*Inheritance* is another concept of object oriented programming.
 
 When defining classes, soon enough we will realize that some attributes/methods are common to many classes. +
 Should we duplicate code? +
