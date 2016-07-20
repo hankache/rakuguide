@@ -2029,7 +2029,7 @@ Actual vs Forecast:
 ----
 
 .Explanation
-The `combo-chart` class should be a able to hold two series, one for the actual values plotted on bars,
+The `combo-chart` class should be able to hold two series, one for the actual values plotted on bars,
 and another for forecast values plotted on a line. +
 This is why we defined it as a child of `line-chart` and `bar-chart`. +
 You should have noticed that calling the method `plot` on the `combo-chart` didn't yield the required result.
