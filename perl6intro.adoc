@@ -1758,7 +1758,6 @@ class Human {
 my $john = Human.new('John',23,'M','American');
 say $john;
 ----
-The constructor that accepts positional arguments need to be defined as seen above.
 
 === Methods
 
