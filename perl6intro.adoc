@@ -1880,7 +1880,7 @@ When defining classes, soon enough we will realize that some attributes/methods 
 Should we duplicate code? +
 NO! We should use *inheritance*
 
-Let's consider we want to define two classes a class for Human beings and a class for Employees. +
+Let's consider we want to define two classes, a class for Human beings and a class for Employees. +
 Human beings have 2 attributes: name and age. +
 Employees have 4 attributes: name, age, company and salary
 
