@@ -1730,7 +1730,6 @@ class Humano {
 my $juan = Humano.new('Juan',23,'M','Español');
 say $juan;
 ----
-El constructor que acepta argumentos posicionales necesita definirse como puedes ver arriba.
 
 === Métodos
 
