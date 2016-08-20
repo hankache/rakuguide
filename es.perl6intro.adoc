@@ -26,16 +26,18 @@ Es conveniente que pruebes todos los ejemplos para entenderlos bien.
 .Licencia
 Este trabajo está bajo la licencia Creative Commons Attribution-ShareAlike 4.0 International License. Puedes encontrar una copia de esta licencia en
 
-* http://creativecommons.org/licenses/by-sa/4.0/
+* https://creativecommons.org/licenses/by-sa/4.0/
 
 .Colaboración
 Puedes colaborar en este documento en:
 
-* http://github.com/hankache/perl6intro
+* https://github.com/hankache/perl6intro
 
 .Sugerencias y comentarios
 * naoum@hankache.com
 * ramiro.encinas@gmail.com
+
+Si te gusta este trabajo clica en _Star_ del link:https://github.com/hankache/perl6intro[repositorio de Github].
 
 :sectnums:
 == Introducción
@@ -391,7 +393,7 @@ La reducción de operadores se utiliza en listas de valores. Se forman encerrand
 
 |===
 
-NOTE: En http://doc.perl6.org/language/operators tienes una lista completa de los operadores, incluyendo su precedencia.
+NOTE: En https://docs.perl6.org/language/operators tienes una lista completa de los operadores, incluyendo su precedencia.
 
 == Variables
 Las variables en Perl 6 se reparten en tres categorías: Escalares, Arrays y Hashes.
@@ -433,7 +435,7 @@ JUAN DE DIOS
 soiD eD nauJ
 ----
 
-NOTE: Consulta http://doc.perl6.org/type/Str para ver una lista completa de métodos de texto.
+NOTE: Consulta https://docs.perl6.org/type/Str para ver una lista completa de métodos de texto.
 
 [source,perl6]
 .Enteros
@@ -446,7 +448,7 @@ say $edad.is-prime;
 True
 ----
 
-NOTE: Consulta http://doc.perl6.org/type/Int para ver una lista completa de los métodos disponibles para enteros.
+NOTE: Consulta https://docs.perl6.org/type/Int para ver una lista completa de los métodos disponibles para enteros.
 
 [source,perl6]
 .Números Racionales
@@ -463,7 +465,7 @@ say $edad.nude;
 (23 10)
 ----
 
-NOTE: Consulta http://doc.perl6.org/type/Rat para ver una lista completa de los métodos disponibles para números racionales.
+NOTE: Consulta https://docs.perl6.org/type/Rat para ver una lista completa de los métodos disponibles para números racionales.
 
 === Arrays
 Los Arrays son listas que contienen varios valores.
@@ -587,7 +589,7 @@ say @tbl
 [3 z]
 ----
 
-NOTE: Consulta http://doc.perl6.org/type/Array para tener la referencia completa sobre Arrays.
+NOTE: Consulta https://docs.perl6.org/type/Array para tener la referencia completa sobre Arrays.
 
 === Hashes
 [source,perl6]
@@ -630,7 +632,7 @@ La capital de Francia es: París
 `.values` devuelve una lista con todos los valores. +
 Podemos acceder a un valor concreto del hash indicando su clave `%hash<clave>`
 
-NOTE: Consulta http://doc.perl6.org/type/Hash para una referencia completa sobre hashes.
+NOTE: Consulta https://docs.perl6.org/type/Hash para una referencia completa sobre hashes.
 
 === Tipos
 En los ejemplos anteriores no hemos especificado el tipo de valor que debería contener cada variable.
@@ -842,7 +844,7 @@ say $a;
 Como has visto, la vinculación de variables es bidireccional. +
 `$a := $b` y `$b := $a` tienen el mismo efecto.
 
-NOTE: En http://doc.perl6.org/language/variables tienes más información sobre variables.
+NOTE: En https://docs.perl6.org/language/variables tienes más información sobre variables.
 
 == Funciones y mutadores
 
@@ -993,7 +995,7 @@ Si la primera condición `with` no se cumple, puedes indicar una alternativa med
 my @array = [1,2,3];
 
 for @array -> $array-item {
-  say $array-item*100
+  say $array-item * 100
 }
 ----
 
@@ -1041,12 +1043,12 @@ Perl 6 pertenece a la familia de lenguajes de C.
 
 [source,perl6]
 ----
-loop (my $i=0; $i < 5; $i++) {
+loop (my $i = 0; $i < 5; $i++) {
   say "El número actual es $i"
 }
 ----
 
-NOTE: En http://doc.perl6.org/language/control tienes más información sobre bucles y condiciones
+NOTE: En https://docs.perl6.org/language/control tienes más información sobre bucles y condiciones
 
 == I/O
 En Perl 6, las dos interfaces más utilizadas de _Entrada/Salida_ son el _Terminal_ y los _Ficheros_.
@@ -1076,7 +1078,7 @@ Para capturar la entrada desde el terminal utiliza `get`.
 my $nombre;
 
 say "¡Hola!, ¿cual es tu nombre?";
-$nombre=get;
+$nombre = get;
 
 say "¿Que tal $nombre?, bienvenido a Perl 6";
 ----
@@ -1090,7 +1092,7 @@ El ejemplo anterior puede escribirse de esta otra forma:
 
 [source,perl6]
 ----
-my $nombre = prompt("¡Hola!, ¿cual es tu nombre? ");
+my $nombre = prompt "¡Hola!, ¿cual es tu nombre? ";
 
 say "¿Que tal $nombre?, bienvenido a Perl 6";
 ----
@@ -1204,7 +1206,7 @@ WARNING: en Windows puedes utilizar `/` o `\\` para separar carpetas anidadas +
 `C:\\rakudo\\bin` +
 `C:/rakudo/bin` +
 
-NOTE: En http://doc.perl6.org/type/IO tienes más información sobre E/S.
+NOTE: En https://docs.perl6.org/type/IO tienes más información sobre E/S.
 
 == Subrutinas
 === Definición
@@ -1361,7 +1363,7 @@ say "1.2 al cuadrado es igual a " ~ cuadrado(1.2);
 ----
 ====
 
-NOTE: En http://doc.perl6.org/language/functions encontrarás más información sobre subrutinas y funciones.
+NOTE: En https://docs.perl6.org/language/functions encontrarás más información sobre subrutinas y funciones.
 
 == Programación Funcional
 En este apartado veremos algunas funcionalidades relacionadas con la Programación Funcional.
@@ -1435,7 +1437,7 @@ En Perl 6 los métodos pueden encadenarse. Esto quiere decir que no es necesario
 Puedes resolver este problema escribiendo algo así:
 [source,perl6]
 ----
-my @array = <7 8 9 0 1 2 4 3 5 6 7 8 9 >;
+my @array = <7 8 9 0 1 2 4 3 5 6 7 8 9>;
 my @final-array = reverse(sort(unique(@array)));
 say @final-array;
 ----
@@ -2187,6 +2189,15 @@ La introspeción proporciona la siguiente información:
 
 * `~~` es el operador de coincidencia inteligente. Devuelve _True_ si el objeto pertenece a la clase con la que se compara o con cualquier clase heredada.
 
+[NOTE]
+--
+Consulta:
+
+* https://docs.perl6.org/language/classtut
+* https://docs.perl6.org/language/objects
+
+para obtener más información sobre Programación Orientada a Objetos en Perl6.
+--
 == Control de Excepciones
 
 === Captura de Excepciones
@@ -2312,7 +2323,7 @@ Todas las excepciones por tipo pertenecen a la clase `X`. Estos son algunos ejem
 `X::OS` errores relacionados con el Sistema Operativo +
 `X::Str::Numeric` errores relacionados con la conversión de una cadena de texto a un valor numérico
 
-NOTE: Tienes una lista completa de tipos de excepciones y sus métodos asociados en http://doc.perl6.org/type.html. Busca los tipos que comienzan con X::.
+NOTE: Tienes una lista completa de tipos de excepciones y sus métodos asociados en https://docs.perl6.org/type-exceptions.html
 
 
 == Expresiones Regulares
@@ -2624,7 +2635,7 @@ if $email ~~ / <varias-letras> <punto> <varias-letras> <arroba> <varias-letras-n
 Una regex con nombre se define de la siguiente forma: `my regex nombre-regex { definición de la regex }` +
 Para utilizar una regex, la invocamos con su nombre de esta forma: `<nombre-regex>`
 
-NOTE: En http://doc.perl6.org/language/regexes tienes más información sobre regex.
+NOTE: En https://docs.perl6.org/language/regexes tienes más información sobre regex.
 
 == Módulos en Perl 6
 Perl 6 es un lenguaje de programación de propósito general. Puede utilizarse para llevar a cabo multitud de tareas, incluyendo:
@@ -2640,7 +2651,7 @@ Para instalar un módulo concreto, utiliza el siguiente comando en el terminal:
 
 `panda install "nombre del módulo"`
 
-NOTE: Puedes encontrar el directorio de módulos de Perl 6 en: http://modules.perl6.org/
+NOTE: Puedes encontrar el directorio de módulos de Perl 6 en: https://modules.perl6.org/
 
 === Utilizando Módulos
 MD5 es una función de cifrado de tipo hash que produce un valor hash de 128-bit. +
@@ -2740,6 +2751,13 @@ LATIN SMALL LETTER A WITH ACUTE
 my $Δ = 1;
 $Δ++;
 say $Δ;
+----
+
+.Se pueden utilizar símbolos matemáticos Unicode:
+[source,perl6]
+----
+my $var = 2 + ⅒;
+say $var;
 ----
 
 == Paralelismo, Concurrencia y Asincronía
@@ -2867,12 +2885,11 @@ WARNING: El paralelismo siempre añade una sobrecarga multihilo. Si esta sobreca
 Debido a esto, el uso de `race`, `hyper`, `start` y `await` en scripts muy simples podría ralentizarlos.
 
 === Concurrencia y Asincronía
-NOTE: En http://doc.perl6.org/language/concurrency tienes más información sobre Concurrencia y Programación Asíncrona.
+NOTE: En https://docs.perl6.org/language/concurrency tienes más información sobre Concurrencia y Programación Asíncrona.
 
-== La comunidad
+== La Comunidad
+* En el canal de IRC link:irc://irc.freenode.net/#perl6[#perl6] encontrarás el lugar principal para hablar de Perl 6. Consulta: https://perl6.org/community/irc si tienes dudas.
 
-El lugar principal para hablar de Perl 6 es el canal de IRC link:irc://irc.freenode.net/#perl6[#perl6]. Cualquier consulta al respecto puedes realizarla en: +
-http://perl6.org/community/irc
+* Mantente al día con los blogs que tratan de Perl 6 en link:http://pl6anet.org[pl6anet]. 
 
-Mantente al día en el siguiente agregador de blogs sobre Perl 6: +
-http://pl6anet.org/
+* Suscríbete en el apartado de Perl6 de Reddit clicando en link:https://www.reddit.com/r/perl6/[/r/perl6].
