@@ -113,7 +113,7 @@ Linhas individuais também podem ser executadas de modo não interativo
 na linha de comando digitando `perl6 -e 'seu código aqui'` e apertando
 [Enter].
 
-[DICA]
+[TIP]
 --
 O pacote Rakudo Star inclui um editor de linhas que ajuda a obter o máximo da REPL.
 
@@ -431,7 +431,7 @@ Eles são formados colocando o operador entre colchetes `[]`
 
 |===
 
-NOTA: Para a lista completa de operadores, incluindo sua precedência, visite https://docs.perl6.org/language/operators
+NOTE: Para a lista completa de operadores, incluindo sua precedência, visite https://docs.perl6.org/language/operators
 
 == Variáveis
 Variáveis em Perl 6 são classificadas em 3 categorias: Scalars (escalares), Arrays e Hashes.
@@ -474,7 +474,7 @@ MARIA SILVA
 avliS airaM
 ----
 
-NOTA: Para a lista completa de métodos aplicáveis a Strings, veja https://docs.perl6.org/type/Str
+NOTE: Para a lista completa de métodos aplicáveis a Strings, veja https://docs.perl6.org/type/Str
 
 [source,perl6]
 .Inteiros
@@ -487,7 +487,7 @@ say $idade.is-prime;
 True
 ----
 
-NOTA: Para a lista completa de métodos aplicáveis a Inteiros, visite https://docs.perl6.org/type/Int
+NOTE: Para a lista completa de métodos aplicáveis a Inteiros, visite https://docs.perl6.org/type/Int
 
 [source,perl6]
 .Números Racionais
@@ -504,7 +504,7 @@ say $idade.nude;
 (23 10)
 ----
 
-NOTA: Para a lista completa de métodos aplicáveis a Números Racionais, visite http://doc.perl6.org/type/Rat
+NOTE: Para a lista completa de métodos aplicáveis a Números Racionais, visite http://doc.perl6.org/type/Rat
 
 === Arrays
 Arrays são listas contendo vários valores.
@@ -517,7 +517,7 @@ say @animais;
 
 Muitas operações podem ser feitas em arrays como mostrado no exemplo abaixo:
 
-DICA: O til `~` é usado para concatenar strings.
+TIP: O til `~` é usado para concatenar strings.
 
 [source,perl6]
 .`Script`
@@ -628,7 +628,7 @@ say @tbl
 [3 z]
 ----
 
-NOTA: Para uma referência completa sobre Arrays, veja https://docs.perl6.org/type/Array
+NOTE: Para uma referência completa sobre Arrays, veja https://docs.perl6.org/type/Array
 
 === Hashes
 [source,perl6]
@@ -672,12 +672,12 @@ A capital da França é: Paris
 `.values` retorna uma lista contendo todos os valores. +
 Podemos acessar um valor específico no hash especificando sua chave `%hash<chave>`
 
-NOTA: Para uma referência completa sobre Hashes, veja https://docs.perl6.org/type/Hash
+NOTE: Para uma referência completa sobre Hashes, veja https://docs.perl6.org/type/Hash
 
 === Tipos
 Nos exemplos anteriores, nós não especificamos o tipo dos valores que as variáveis devem conter.
 
-DICA: `.WHAT` retorna o tipo do valor contido em uma variável.
+TIP: `.WHAT` retorna o tipo do valor contido em uma variável.
 
 [source,perl6]
 ----
@@ -883,7 +883,7 @@ say $a;
 Vinculação de variáveis, como você já percebeu, é bidirecional. +
 `$a := $b` e `$b := $a` têm o mesmo afeito.
 
-NOTA: Para mais informações sobre variáveis, veja https://docs.perl6.org/language/variables
+NOTE: Para mais informações sobre variáveis, veja https://docs.perl6.org/language/variables
 
 == Funções e modificadores (mutators)
 
@@ -1088,7 +1088,7 @@ loop (my $i = 0; $i < 5; $i++) {
 }
 ----
 
-NOTA: Para mais informações sobre laços e condicionais, veja https://docs.perl6.org/language/control
+NOTE: Para mais informações sobre laços e condicionais, veja https://docs.perl6.org/language/control
 
 == I/O
 Em Perl 6, as duas interfaces mais comuns para _Entrada/Saída_ (_Input/Output_ ou simplesmente I/O) são o _Terminal_ e _Arquivos_.
@@ -1240,11 +1240,11 @@ say "folder123".IO.f;
 `IO.f` verifica se o caminho é um arquivo. +
 `IO.d` verifica se o caminho é um diretório.
 
-ATENÇÃO: Usuários de Windows podem usar `/` ou `\\` para definir diretórios. +
+WARNING: Usuários de Windows podem usar `/` ou `\\` para definir diretórios. +
 `C:\\rakudo\\bin` +
 `C:/rakudo/bin` +
 
-NOTA: Para mais informação sobre I/O, veja https://docs.perl6.org/type/IO
+NOTE: Para mais informação sobre I/O, veja https://docs.perl6.org/type/IO
 
 == Sub-rotinas
 === Definição
@@ -1386,7 +1386,7 @@ Se o valor retornado não casar com o tipo especificado, um erro será lançado.
 Type check failed for return value; expected Int but got Rat (1.44)
 ----
 
-[DICA]
+[TIP]
 ====
 Restrições de tipo podem não só controlar o tipo dos valores de retorno, como também se o valor está definido ou não.
 
@@ -1406,7 +1406,7 @@ say "1.2 ao quadrado é " ~ ao-quadrado(1.2);
 ----
 ====
 
-NOTA: Para mais informações sobre sub-rotinas e funções, veja http://doc.perl6.org/language/functions
+NOTE: Para mais informações sobre sub-rotinas e funções, veja http://doc.perl6.org/language/functions
 
 == Programação Funcional
 Nesse capítulo vamos olhar para algumas das funcionalidades que facilitam Programação Funcional.
@@ -1626,7 +1626,7 @@ say $lazy;
 Nesse exemplo, definimos explicitamente um gerador entre `{ }` +
 Essa lista preguiçosa pode retornar (se pedido) os seguintes elementos (0, 3, 6, 9, 12)
 
-[ATENÇÃO]
+[WARNING]
 ====
 Ao usar um gerador explícito, o elemento final deve ter um valor que o gerador possa retornar. +
 Se reproduzirmos o exemplo acima com o final sendo 10 em vez de 12, ele não vai parar nunca.
@@ -2257,7 +2257,7 @@ Introspecção é facilitada por:
 * `~~` é chamado de operador smart-match (comparação inteligente).
 Ele avalia como _True_ (verdadeiro) se o objeto foi criado da mesma classe que está sendo comparada, ou qualquer uma de suas heranças.
 
-[NOTA]
+[NOTE]
 --
 Para mais informações sobre Programação Orientada a Objetos em Perl 6, veja:
 
@@ -2392,7 +2392,7 @@ Todas as exceções tipadas descendem da classe `X`, abaixo seguem alguns exempl
 `X::OS` é para erros do sistema operacional (OS) +
 `X::Str::Numeric` é relacionada a errors tentando converter strings em números
 
-NOTA: Para uma lista completa de tipos de exceção e seus métodos associados visite https://docs.perl6.org/type-exceptions.html
+NOTE: Para uma lista completa de tipos de exceção e seus métodos associados visite https://docs.perl6.org/type-exceptions.html
 
 
 == Expressões Regulares
@@ -2634,7 +2634,7 @@ Os seguintes métodos podem ser chamados no _Objeto de Match_: +
 `.from` retorna a posição na string em que a sequência casada começa. +
 `.to` retorna a posição na string em que a sequência casada termina. +
 
-DICA: Por padrão os espaços em branco numa definição de regex são irrelevantes. +
+TIP: Por padrão os espaços em branco numa definição de regex são irrelevantes. +
 Se queremos casar uma expressão regular contendo espaços temos que dizer isso explicitamente. +
 O `:s` na regex `m/:s Perl 6/` força que espaços em branco sejam considerados e não descartados. +
 Poderíamos ter escrito essa regex como `m/ Perl\s6 /` e usado `\s` que, como vimos antes, é um placeholder para espaços. +
@@ -2645,7 +2645,7 @@ Vamos verificar se um email é válido ou não. +
 Para esse exemplo vamos assumir que um email válido é formado por: +
 primeiro nome [ponto] último nome [arroba] empresa [ponto] (com/org/net)
 
-ATENÇÃO: a regex usada nesse exemplo não é muito precisa para validação de emails. +
+WARNING: a regex usada nesse exemplo não é muito precisa para validação de emails. +
 Seu único propósito é demonstrar a funcionalidade das regexes em Perl 6. +
 Não use como está aqui em ambientes de produção.
 
@@ -2708,7 +2708,7 @@ if $email ~~ / <muitas-letras> <ponto> <muitas-letras> <arroba> <muitas-letras-e
 Uma regex rotulada é definida usando a seguinte sintaxe: `my regex nome-da-regex { definição da regex }` +
 Uma regex rotulada pode ser chamada usando a seguinte sintaxe: `<nome-da-regex>`
 
-NOTA: Para mais informações sobre regexes, veja https://docs.perl6.org/language/regexes
+NOTE: Para mais informações sobre regexes, veja https://docs.perl6.org/language/regexes
 
 == Módulos em Perl 6
 Perl 6 é uma linguagem de uso geral. Ela pode ser usada para resolver uma série de tarefas incluindo:
@@ -2724,7 +2724,7 @@ Para instalar um módulo específico, digite o comando abaixo no seu terminal:
 
 `panda install "nome do módulo"`
 
-NOTA: O diretório de módulos Perl 6 pode ser encontrado em: https://modules.perl6.org/
+NOTE: O diretório de módulos Perl 6 pode ser encontrado em: https://modules.perl6.org/
 
 === Usando Módulos
 MD5 é uma função de hash criptográfico que produz um valor de 128 bits. +
@@ -2749,7 +2749,7 @@ say $hash-da-senha;
 Para executar a função `md5_hex()` que cria os hashes MD5, precisamos carregar o módulo relacionado. +
 A palavra-chave `use` carrega o módulo para ser usado no script.
 
-ATENÇÃO: O uso de hashing MD5 não é suficiente, porque é um método vulnerável a ataques de dicionário. +
+WARNING: O uso de hashing MD5 não é suficiente, porque é um método vulnerável a ataques de dicionário. +
 Hashes de senhas devem ser "salgados" para mais segurança link:https://en.wikipedia.org/wiki/Salt_(cryptography)[https://en.wikipedia.org/wiki/Salt_(cryptography)].
 
 == Unicode
@@ -2876,7 +2876,7 @@ Esse método vai ativar a iteração em paralelo dos elementos do array.
 
 Após executar ambos os exemplos (com e sem `race`), compare o tempo que levou para cada um dos scripts executar.
 
-[DICA]
+[TIP]
 ====
 `race` não vai preservar a ordem dos elementos. Para fazer isso, use `hyper`.
 
@@ -2956,11 +2956,11 @@ Se ela for *quebrada* o método obterá a exceção lançada.
 
 Observe o tempo que o script levou para executar.
 
-ATENÇÃO: Paralelismo sempre adiciona um custo (overhead) de threading. Se esse overhead não for compensado pelo ganho em velocidade computacional, o script pode parecer mais lento. +
+WARNING: Paralelismo sempre adiciona um custo (overhead) de threading. Se esse overhead não for compensado pelo ganho em velocidade computacional, o script pode parecer mais lento. +
 É por isso que usar `race`, `hyper`, `start` and `await` para scripts muito simples pode de fato deixá-los mais lentos.
 
 === Concorrência e Assincronicidade
-NOTA: Para mais informações sobre Concorrência e Programação Assíncrona, veja https://docs.perl6.org/language/concurrency
+NOTE: Para mais informações sobre Concorrência e Programação Assíncrona, veja https://docs.perl6.org/language/concurrency
 
 == A Comunidade
 
