@@ -882,7 +882,7 @@ say $a;
 ----
 
 Vinculação de variáveis, como você já percebeu, é bidirecional. +
-`$a := $b` e `$b := $a` têm o mesmo afeito.
+`$a := $b` e `$b := $a` têm o mesmo efeito.
 
 NOTE: Para mais informações sobre variáveis, veja https://docs.perl6.org/language/variables
 
