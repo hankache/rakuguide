@@ -10,6 +10,7 @@ For online reading navigate to:
 * German: http://de.perl6intro.com
 * Japanese: http://ja.perl6intro.com
 * Spanish: http://es.perl6intro.com
+* Portuguese: http://pt.perl6intro.com
 
 
 ### Building the document
@@ -55,5 +56,6 @@ All feedback is welcomed:
 * German Translation: Sören Laird Sörries
 * Japanese Translation: Itsuki Toyota
 * Spanish Translation: Ramiro Encinas
+* Portuguese Translation: Breno G. de Oliveira
 
 For the full list of contributors: https://github.com/hankache/perl6intro/graphs/contributors
