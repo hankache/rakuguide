@@ -1,8 +1,7 @@
 = Introdução ao Perl 6
+Naoum Hankache <naoum@hankache.com>; Breno de_Oliveira <garu@cpan.org>
 :description: Uma introdução geral ao Perl 6
-:Author: Naoum Hankache
 :keywords: perl6, perl 6, introdução, perl6intro, introdução ao perl 6, tutorial perl 6, perl 6 intro
-:Email: naoum@hankache.com
 :Revision: 1.0
 :icons: font
 :source-highlighter: pygments
@@ -35,16 +34,17 @@ Para contribuir com esse documento acesse:
 
 .Feedback
 Todo feedback é bem-vindo:
-naoum@hankache.com
+* naoum@hankache.com
+* garu@cpan.org
 
 Se você gostou desse trabalho, clique na _estrela_ do repositório no link:https://github.com/hankache/perl6intro[Github].
 
 .Traduções
+* Inglês: http://perl6intro.com
 * Francês: http://fr.perl6intro.com
 * Alemão: http://de.perl6intro.com
 * Japonês: http://ja.perl6intro.com
 * Espanhol: http://es.perl6intro.com
-* Português do Brasil: http://pt.perl6intro.com
 
 :sectnums:
 == Introdução

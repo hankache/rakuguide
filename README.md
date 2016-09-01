@@ -32,7 +32,7 @@ To produce **perl6intro.pdf**, run:
 
 To produce **perl6intro.html**, run:
 
-        $ asciidoctor perl6intro.adoc
+    $ asciidoctor perl6intro.adoc
 
 ### Translations
 If you wish to translate this document, always use the english version as your starting point.
