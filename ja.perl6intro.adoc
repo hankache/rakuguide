@@ -27,12 +27,12 @@ Naoum Hankache <naoum@hankache.com>; Itsuki Toyota <titsuki@cpan.org>
 This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License.
 To view a copy of this license, visit
 
-* http://creativecommons.org/licenses/by-sa/4.0/.
+* https://creativecommons.org/licenses/by-sa/4.0/.
 
 .貢献
 もしこの文書に貢献したいのなら次のURLへ向かってください:
 
-* http://github.com/hankache/perl6intro
+* https://github.com/hankache/perl6intro
 
 .フィードバック
 フィードバックは大歓迎です！:
@@ -41,6 +41,8 @@ To view a copy of this license, visit
 
 * titsuki@cpan.org
 
+もし、このPerl6入門を気に入ったのなら、 _Star_ を押していただければ幸いです。
+link:https://github.com/hankache/perl6intro[Github].
 
 :sectnums:
 == イントロダクション
@@ -411,7 +413,7 @@ say "Hello $name";   # Hello John Doe
 
 |===
 
-NOTE: もしその演算の優先順位を含んだ、演算子のすべてのリストを知りたいのであれば、次のURLを参照することをすすめます http://doc.perl6.org/language/operators
+NOTE: もしその演算の優先順位を含んだ、演算子のすべてのリストを知りたいのであれば、次のURLを参照することをすすめます https://docs.perl6.org/language/operators
 
 == 変数
 Perl6の変数は三つのカテゴリに分類されます: スカラ、配列、ハッシュです。
@@ -453,7 +455,7 @@ JOHN DOE
 eoD nhoJ
 ----
 
-NOTE: もし文字列に対して適用できるすべてのメソッドのリストを知りたいのであれば、次のURLを参照することをすすめます http://doc.perl6.org/type/Str
+NOTE: もし文字列に対して適用できるすべてのメソッドのリストを知りたいのであれば、次のURLを参照することをすすめます https://docs.perl6.org/type/Str
 
 [source,perl6]
 .整数
@@ -466,7 +468,7 @@ say $age.is-prime;
 True
 ----
 
-NOTE: もし整数に対して適用できるすべてのメソッドのリストを知りたいのであれば、次のURLを参照することをすすめます http://doc.perl6.org/type/Int
+NOTE: もし整数に対して適用できるすべてのメソッドのリストを知りたいのであれば、次のURLを参照することをすすめます https://docs.perl6.org/type/Int
 
 [source,perl6]
 .有理数
@@ -483,7 +485,7 @@ say $age.nude;
 (23 10)
 ----
 
-NOTE: もし有理数に対して適用できるすべてのメソッドのリストを知りたいのであれば、次のURLを参照することをすすめます http://doc.perl6.org/type/Rat
+NOTE: もし有理数に対して適用できるすべてのメソッドのリストを知りたいのであれば、次のURLを参照することをすすめます https://docs.perl6.org/type/Rat
 
 === 配列
 配列は複数の値を含んだリストです。
@@ -607,7 +609,7 @@ say @tbl
 [3 z]
 ----
 
-NOTE: もし配列に関するすべての情報を知りたいのであれば、次のURLを参照することをすすめます http://doc.perl6.org/type/Array
+NOTE: もし配列に関するすべての情報を知りたいのであれば、次のURLを参照することをすすめます https://docs.perl6.org/type/Array
 
 === ハッシュ
 [source,perl6]
@@ -651,7 +653,7 @@ The capital of France is: Paris
 `.values` はすべての値を含んだリストを返します。 +
 キーを指定することでハッシュの中の特定の値にアクセスすることができます。`%hash<key>`
 
-NOTE: もしハッシュに関するすべての情報を知りたいのであれば、次のURLを参照することをすすめます http://doc.perl6.org/type/Hash
+NOTE: もしハッシュに関するすべての情報を知りたいのであれば、次のURLを参照することをすすめます https://docs.perl6.org/type/Hash
 
 === 型
 今までの例では、変数が保持しているべき値の型について指定してはいませんでした。
@@ -865,7 +867,7 @@ say $a;
 束縛変数は、すでにお気づきのように、双方向性をもっています。 +
 `$a := $b` と `$b := $a` は同じ効果を持っています。
 
-NOTE: もし変数に関する情報をもっと知りたいのであれば、次のURLを参照することをすすめます http://doc.perl6.org/type/variables
+NOTE: もし変数に関する情報をもっと知りたいのであれば、次のURLを参照することをすすめます https://docs.perl6.org/type/variables
 
 == 関数とミューテータ
 
@@ -1018,7 +1020,7 @@ with $var {
 my @array = [1,2,3];
 
 for @array -> $array-item {
-  say $array-item*100
+  say $array-item * 100
 }
 ----
 
@@ -1065,12 +1067,12 @@ Perl6はC言語族の一員なのです。
 
 [source,perl6]
 ----
-loop (my $i=0; $i < 5; $i++) {
+loop (my $i = 0; $i < 5; $i++) {
   say "The current number is $i"
 }
 ----
 
-NOTE: もしループ構文と条件文に関する情報をもっと知りたいのであれば、次のURLを参照することをすすめます http://doc.perl6.org/language/control
+NOTE: もしループ構文と条件文に関する情報をもっと知りたいのであれば、次のURLを参照することをすすめます https://docs.perl6.org/language/control
 
 == I/O
 Perl6において、二つの最も一般的な _入力/出力_ のインタフェースは _ターミナル_ と _ファイル_ です。
@@ -1100,7 +1102,7 @@ say 'Hello Sir.';
 my $name;
 
 say "Hi, what's your name?";
-$name=get;
+$name = get;
 
 say "Dear $name welcome to Perl 6";
 ----
@@ -1115,7 +1117,7 @@ say "Dear $name welcome to Perl 6";
 
 [source,perl6]
 ----
-my $name = prompt("Hi, what's your name? ");
+my $name = prompt "Hi, what's your name? ";
 
 say "Dear $name welcome to Perl 6";
 ----
@@ -1226,7 +1228,7 @@ WARNING: Windowsのユーザーはディレクトリを定義するために `/`
 `C:\\rakudo\\bin` +
 `C:/rakudo/bin` +
 
-NOTE: もしI/Oに関する情報をもっと知りたいのであれば、次のURLを参照することをすすめます http://doc.perl6.org/type/IO
+NOTE: もしI/Oに関する情報をもっと知りたいのであれば、次のURLを参照することをすすめます https://docs.perl6.org/type/IO
 
 == サブルーチン
 === 定義
@@ -1385,7 +1387,7 @@ say "1.2 squared is equal to " ~ squared(1.2);
 ----
 ====
 
-NOTE: もしサブルーチンと関数に関する情報をもっと知りたいのであれば、次のURLを参照することをすすめます http://doc.perl6.org/language/functions
+NOTE: もしサブルーチンと関数に関する情報をもっと知りたいのであれば、次のURLを参照することをすすめます https://docs.perl6.org/language/functions
 
 == 関数型プログラミング
 この章では関数型プログラミングを容易にしてくれるいくつかの機能を見ていこうと思います。
@@ -1462,7 +1464,7 @@ Perl6では、メソッドはチェインすることができます。メソッ
 あなたは下記のようなコードを書いてこの問題を解決しようとするかもしれません:
 [source,perl6]
 ----
-my @array = <7 8 9 0 1 2 4 3 5 6 7 8 9 >;
+my @array = <7 8 9 0 1 2 4 3 5 6 7 8 9>;
 my @final-array = reverse(sort(unique(@array)));
 say @final-array;
 ----
@@ -2228,6 +2230,14 @@ if $jane ~~ Human {say 'Jane is a Human'};
 * `~~` はスマートマッチ演算子を呼びます。
 もしオブジェクトが比較している相手のクラスか、その相手のクラスの継承先のいずれかのクラスから生成されているなら _True_ と評価されます。
 
+[NOTE]
+--
+もしPerl6におけるオブジェクト指向についてより深く知りたいのであれば、次のURLを参照することをすすめます
+
+* https://docs.perl6.org/language/classtut
+* https://docs.perl6.org/language/objects
+--
+
 == 例外処理
 
 === 例外のキャッチ
@@ -2356,7 +2366,7 @@ X::AdHoc.new(payload => 'Error !').throw;
 `X::OS` はOSエラーに関する例外です +
 `X::Str::Numeric` は文字列を数値にしようとすることに関する例外です
 
-NOTE: もし例外の型と、関連するメソッドのすべてのリストを知りたいのであれば、次のURLを参照し、Xから始まる型のところへ進むのをすすめます http://doc.perl6.org/type.html
+NOTE: もし例外の型と、関連するメソッドのすべてのリストを知りたいのであれば、次のURLを参照することをすすめます https://docs.perl6.org/type.html
 
 == 正規表現
 正規表現、または _regex_ はパターンマッチングのための文字のシーケンスです。
@@ -2672,7 +2682,7 @@ if $email ~~ / <many-letters> <dot> <many-letters> <at> <many-letters-numbers> <
 名前付き正規表現は次のような文法で定義されます: `my regex regex-name { regex definition }` +
 名前付き正規表現は次のような文法で呼び出されます: `<regex-name>`
 
-NOTE: もしもっと正規表現について知りたいのであれば、次のURLを参照するのをすすめます http://doc.perl6.org/language/regexes
+NOTE: もしもっと正規表現について知りたいのであれば、次のURLを参照するのをすすめます https://docs.perl6.org/language/regexes
 
 == Perl6のモジュール
 Perl6は汎用プログラミング言語です。下記を含む多数のタスクに取り組むのに使うことができます。
@@ -2688,7 +2698,7 @@ _Panda_ はRakudo Starに付属しているモジュール管理ツールです�
 
 `panda install "モジュールの名前"`
 
-NOTE: Perl6のモジュールの一覧を見るには次のURLを参照してください: http://modules.perl6.org/
+NOTE: Perl6のモジュールの一覧を見るには次のURLを参照してください: https://modules.perl6.org/
 
 === モジュールの使用
 MD5は128ビットのハッシュ値を生成する暗号学的ハッシュ関数です。 +
@@ -2790,6 +2800,12 @@ LATIN SMALL LETTER A WITH ACUTE
 my $Δ = 1;
 $Δ++;
 say $Δ;
+---
+
+.ユニコード文字で算数をすることができます:
+----
+my $var = 2 + ⅒;
+say $var;
 ----
 
 == 並列処理、並行性、非同期性
@@ -2916,12 +2932,12 @@ WARNING: 並列処理にはスレッディングのオーバーヘッドがあ�
 これが `race` 、 `hyper` 、 `start` 、 `await` をいたってシンプルなスクリプトに対して用いると実際には遅くなってしまう理由です。
 
 === 並行性と非同期性
-NOTE: 並行/非同期プログラミングについてもっと情報を知りたいのなら、次のURLを参照してください: http://doc.perl6.org/language/concurrency
+NOTE: 並行/非同期プログラミングについてもっと情報を知りたいのなら、次のURLを参照してください: https://docs.perl6.org/language/concurrency
 
 == コミュニティ
 
-次のIRCチャンネルでは活発な議論が行われています link:irc://irc.freenode.net/#perl6[#perl6] 何でも気軽に質問してください: +
-http://perl6.org/community/irc
+* link:irc://irc.freenode.net/#perl6[#perl6] IRCチャンネルです。活発な議論が行われています。何でも気軽に質問してください: https://perl6.org/community/irc
 
-Perl6にフォーカスしたブログ記事にこうご期待ください: +
-http://pl6anet.org/ ではPerl6のブログを集約しています。
+* link:http://pl6anet.org[pl6anet] Perl6のブログを集約しています。Perl6にフォーカスしたブログ記事にこうご期待ください。
+
+* link:https://www.reddit.com/r/perl6/[/r/perl6] Perl6のsubredditを購読しましょう。
