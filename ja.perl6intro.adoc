@@ -1762,7 +1762,6 @@ class Human {
 my $john = Human.new('John',23,'M','American');
 say $john;
 ----
-固定引数を受け取るようなコンストラクタは上記のように定義します。
 
 === メソッド
 
