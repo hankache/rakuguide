@@ -231,14 +231,14 @@ Commentaar 2
 =end comment
 -----------------------------
 
-==== Quotes
-Strings need to be delimited by either double quotes or single quotes.
+==== Aanhalingstekens (Quotes)
+Letterlijke reeksen van tekens (strings) worden aangegeven door middel van enkele of dubbele aanhalingstekens.
 
-Always use double quotes:
+Gebruik altijd dubbele aanhalingstekens:
 
-* if your string contains an apostrophe.
+* als er een enkel aanhalingsteken in de reeks voorkomt.
 
-* if your string contains a variable that needs to be interpolated.
+* indien de reeks een variabele bevat die geinterpoleerd moet worden.
 
 [source,perl6]
 -----------------------------------
@@ -250,64 +250,64 @@ say 'Hello $name';   # Hello $name
 say "Hello $name";   # Hello John Doe
 -----------------------------------
 
-== Operators
+== Operatoren
 
-=== Common Operators
-The below table lists the most commonly used operators.
+=== Algemene operatoren
+Onderstaande tabel toont de meest voorkomende operatoren.
 [cols="^.^5m,^.^5m,.^20,.^20m,.^20m", options="header"]
 |===
 
-| Operator | Type | Description | Example | Result
+| Operator | Type | Beschrijving | Voorbeeld | Resultaat
 
-| + | Infix | Addition | 1 + 2 | 3
+| + | Infix | Optelling | 1 + 2 | 3
 
-| - | Infix | Subtraction | 3 - 1 | 2
+| - | Infix | Aftrekking | 3 - 1 | 2
 
-| * | Infix | Multiplication | 3 * 2 | 6
+| * | Infix | Vermenigvuldiging | 3 * 2 | 6
 
-| ** | Infix | Power | 3 ** 2 | 9
+| ** | Infix | Machtsverheffen | 3 ** 2 | 9
 
-| / | Infix | Division | 3 / 2 | 1.5
+| / | Infix | Delen | 3 / 2 | 1.5
 
-| div | Infix | Integer Division (rounds down) | 3 div 2 | 1
+| div | Infix | Geheel getal deling (rond af) | 3 div 2 | 1
 
 | % | Infix | Modulo | 7 % 4 | 3
 
-.2+| %% .2+| Infix .2+| Divisibility | 6 %% 4 | False
+.2+| %% .2+| Infix .2+| Deelbaarheid | 6 %% 4 | False
 
 <| 6 %% 3 <| True
 
-| gcd | Infix | Greatest common denominator | 6 gcd 9 | 3
+| gcd | Infix | Grootse gemene deler | 6 gcd 9 | 3
 
-| lcm | Infix | Least common multiple | 6 lcm 9 | 18
+| lcm | Infix | Kleinste gemene veelvoud | 6 lcm 9 | 18
 
-| == | Infix | Numeric equal | 9 == 7  | False
+| == | Infix | Numeriek gelijk | 9 == 7  | False
 
-| != | Infix | Numeric not equal | 9 != 7  | True
+| != | Infix | Numeriek ongelijk | 9 != 7  | True
 
-| < | Infix | Less than | 9 < 7  | False
+| < | Infix | Numeriek kleiner dan | 9 < 7  | False
 
-| > | Infix | Greater than | 9 > 7  | True
+| > | Infix | Numeriek groter dan | 9 > 7  | True
 
-| \<= | Infix | Less than or equal | 7 \<= 7  | True
+| \<= | Infix | Numeriek kleiner dan of gelijk aan | 7 \<= 7  | True
 
-| >= | Infix | Greater than or equal | 9 >= 7  | True
+| >= | Infix | Numeriek groter dan of gelijk aan | 9 >= 7  | True
 
-| eq | Infix | String equal | "John" eq "John"  | True
+| eq | Infix | Letterreeks gelijk | "John" eq "John"  | True
 
-| ne | Infix | String not equal | "John" ne "Jane"  | True
+| ne | Infix | Letterreeks ongelijk | "John" ne "Jane"  | True
 
-| = | Infix | Assignment | my $var = 7  | Assigns the value of `7` to the variable `$var`
+| = | Infix | Toewijzing | my $var = 7  | Wijst de waarde `7` toe aan de variabele `$var`
 
-.2+| ~ .2+| Infix .2+| String concatenation | 9 ~ 7 | 97
+.2+| ~ .2+| Infix .2+| Letterreeks aaneenschakelen | 9 ~ 7 | 97
 
 <m| "Hi " ~ "there"  <| Hi there
 
-.2+| x .2+| Infix .2+| String replication | 13 x 3  | 131313
+.2+| x .2+| Infix .2+| Letterreeks herhalen | 13 x 3  | 131313
 
 <| "Hello " x 3  <| Hello Hello Hello
 
-.5+| ~~ .5+| Infix .5+| Smart match | 2 ~~ 2  | True
+.5+| ~~ .5+| Infix .5+| Slim vergelijken | 2 ~~ 2  | True
 
 <| 2 ~~ Int <| True
 
@@ -317,27 +317,27 @@ The below table lists the most commonly used operators.
 
 <| "enlightenment" ~~ /light/ <| ｢light｣
 
-.2+| ++ | Prefix | Increment | my $var = 2; ++$var;  | Increment the variable by 1 and return the result `3`
+.2+| ++ | Prefix | Verhoging | my $var = 2; ++$var;  | Verhoog de variabele met `1` en geef de verhoogde waarde terug: `3`
 
-<m| Postfix <d| Increment <m| my $var = 2; $var++;  <| Return the variable `2` and then increment it
+<m| Postfix <d| Verhoging <m| my $var = 2; $var++;  <| Geef de waarde van de variabele terug (`2`) en verhoog de variabele dan met `1`
 
-.2+|\--| Prefix | Decrement | my $var = 2; --$var;  | Decrement the variable by 1 and return the result `1`
+.2+|\--| Prefix | Verlaging | my $var = 2; --$var;  | Verlaag de variabele met `1` en geef de verlaagde waarde terug: `1`
 
-<m| Postfix <d| Decrement <m| my $var = 2; $var--;  <| Return the variable `2` and then decrement it
+<m| Postfix <d| Verlaging <m| my $var = 2; $var--;  <| Geef de waarde van de variabele terug (`2`) en verlaag die dan met `1`
 
-.3+| + .3+| Prefix .3+| Coerce the operand to a numeric value | +"3"  | 3
+.3+| + .3+| Prefix .3+| Forceer naar de numerieke waarde | +"3"  | 3
 
 <| +True <| 1
 
 <| +False <| 0
 
-.3+| - .3+| Prefix .3+| Coerce the operand to a numeric value and return the negation | -"3"  | -3
+.3+| - .3+| Prefix .3+| Forceer naar de negatieve numerieke waarde | -"3"  | -3
 
 <| -True <| -1
 
 <| -False <| 0
 
-.6+| ? .6+| Prefix .6+| Coerce the operand to a boolean value | ?0 | False
+.6+| ? .6+| Prefix .6+| Forceer naar de boolean waarde | ?0 | False
 
 <| ?9.8 <| True
 
@@ -349,33 +349,33 @@ The below table lists the most commonly used operators.
 
 <| my $var = 7; ?$var; <| True
 
-| ! | Prefix | Coerce the operand to a boolean value and return the negation | !4 | False
+| ! | Prefix | Forceer naar de tegenovergestelde boolean waarde | !4 | False
 
-| .. | Infix | Range Constructor |  0..5  | Creates a range from 0 to 5
+| .. | Infix | Rij constructeur |  0..5  | Maak een rij van 0 t/m 5
 
-| ..^ | Infix | Range Constructor |  0..^5  | Creates a range from 0 to 4
+| ..^ | Infix | Rij constructeur |  0..^5  | Maak een rij van 0 t/m 4
 
-| ^.. | Infix | Range Constructor |  0^..5  | Creates a range from 1 to 5
+| ^.. | Infix | Rij constructeur |  0^..5  | Maak een rij van 1 t/m 5
 
-| \^..^ | Infix | Range Constructor |  0\^..^5  | Creates a range from 1 to 4
+| \^..^ | Infix | Rij constructeur |  0\^..^5  | maak een rij van 1 t/m 4
 
-| ^ | Prefix | Range Constructor |  ^5  | Same as 0..^5 Creates a range from 0 to 4
+| ^ | Prefix | Rij constructeur |  ^5  | Zelfde als 0..^5, maakt een rij van 0 t/m 4
 
-| ... | Infix | Lazy List Constructor |  0...9999  |  return the elements only if requested
+| ... | Infix | Luie rij constructeur |  0...9999  | Maak waarden alleen aan indien daar expliciet om gevraagd wordt
 
-.2+| {vbar} .2+| Prefix .2+| Flattening | {vbar}(0..5)  | (0 1 2 3 4 5)
+.2+| {vbar} .2+| Prefix .2+| Pletten | {vbar}(0..5)  | (0 1 2 3 4 5)
 
 <| {vbar}(0\^..^5)  <| (1 2 3 4)
 
 |===
 
-=== Reversed Operators
+=== Reversi operatoren
 
-Adding `R` before any operator will have the effect of reversing its operands.
+Door een `R` te plaatsen direct voor een operator, zorg je ervoor dat er termen omgewisseld worden.
 
 [cols=".^m,.^m,.^m,.^m", options="header"]
 |===
-| Normal Operation | Result | Reversed Operator | Result
+| Normale operator | Resultaat | Reversi Operator | Resultaat
 
 | 2 / 3 | 0.666667 | 2 R/ 3 | 1.5
 
@@ -383,14 +383,14 @@ Adding `R` before any operator will have the effect of reversing its operands.
 
 |===
 
-=== Reduction Operators
+=== Herleidingsoperatoren
 
-Reduction operators work on lists of values.
-They are formed by surrounding the operator with brackets `[]`
+Herleidingsoperatoren werken op rijen van waarden.
+Je maakt een herleidingsoperator door vierkante haken om de operator te plaatsen `[]`
 
 [cols=".^m,.^m,.^m,.^m", options="header"]
 |===
-| Normal Operation | Result | Reduction Operator | Result
+| Normal Operator | Resultaat | Herleidingsoperator | Resultaat
 
 | 1 + 2 + 3 + 4 + 5 | 15 | [+] 1,2,3,4,5 | 15
 
@@ -398,7 +398,7 @@ They are formed by surrounding the operator with brackets `[]`
 
 |===
 
-NOTE: For the complete list of operators, including their precedence, go to https://docs.perl6.org/language/operators
+Merk op: voor een compleet overzicht van operatoren, inclusief hun prioriteit, ga dan naar https://docs.perl6.org/language/operators
 
 == Variables
 Perl 6 variables are classified into 3 categories: Scalars, Arrays and Hashes.
