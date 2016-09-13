@@ -81,112 +81,103 @@ Op een 32-bit systeem, download het bestand met x86; op een 64-bit, download dan
 . Gebruik het officiele Docker image `docker pull rakudo-star`
 . Voer dan een container uit met het image `docker run -it rakudo-star`
 
-=== Running Perl 6 code
+=== Uitvoeren van Perl 6 code
 
-Running Perl 6 code can be done using the REPL (Read-Eval-Print Loop).
-To do this, open a terminal, type `perl6` into the terminal window,
-and hit [Enter].  This will cause a prompt of `>` to appear.
-Next, type a line of code and hit [Enter]. The REPL will print out
-the value of the line.  You may then type another line, or type `exit`
-and hit [Enter] to leave the REPL.
+Je kunt eenvoudig Perl 6 code uitvoeren in de REPL (Read-Eval-Print-Loop,
+oftewel een lees, evalueer, print, lus).
+Om dit te doen open je een terminal venster, type `perl6` en druk op [Enter].  Er verschijnt dan een `>` prompt.
+Vervolgens kun je een regel code intypen en weer op [Enter] drukken.  De REPL zal dan de uiteindelijke waarde van die code afdrukken.  Je kunt dan weer een regel code intypen, of `exit` intypen en op [Enter] drukken om de REPL te verlaten.
 
-Alternatively, write your code in a file, save it and run it.
-It is recommended that Perl 6 scripts have a  `.pl6` file name extension.
-Run the file by typing `perl6 filename.pl6` into the terminal window
-and hitting [Enter]. Unlike the REPL, this will not automatically print
-the result of each line: the code must contain a statement like `say`
-to print output.
+Een andere mogelijkheid is om je code in een bestand op te slaan en dan uit te voeren.
+Het wordt aangeraden om een Perl 6 script de extensie `.pl6` te geven.
+Voer het bestand uit door `perl6 bestandsnaam.pl6` in het terminal venster in te typen en op [Enter] te drukken.  Anders dan bij de REPL zal die niet automatisch het resultaat van elke regel afdrukken: daarvoor moet je een opdracht als `say` in je programma plaatsen om iets af te drukken.
 
-The REPL is mostly used for trying a specific piece of code, typically a
-single line. For programs with more than a single line it is recommended to
-store them in a file and then run them.
+De REPL wordt meestal gebruikt om een specifiek stukje code uit te proberen, meestal niet meer dan een enkele regel.  Voor programma's die uit meer dan een regel bestaan, wordt het aangeraden om die regels in een bestand op te slaan en dan dat bestand uit te voeren.
 
-Single lines may also be tried non-interactively on the command-line by
-typing `perl6 -e 'your code here'` and hitting [Enter].
+Je kunt ook een regel code non-interactief uitproberen op de commando-regel in een terminal venster met `perl6 -e 'jouw regel code'` in te typen en dan op [Enter] te drukken.
 
 [TIP]
 --
-Rakudo Star bundles a line editor that helps you get the most out of the REPL.
+In de Rakudo Star bundel zit ook een regel-editor die het uitproberen in de REPL nog gemakkelijker maakt.
 
-If you installed plain Rakudo instead of Rakudo Star then you probably don't have line editing features enabled (using the up and down arrows for history, left and right to edit input, TAB completion).
-Consider running the following command and you shall be all set:
+Indien je alleen maar Rakudo hebt geinstalleerd, en niet Rakudo Star, dan zijn niet alle handige regel-editor mogelijkheden (zoals pijltje naar onder/boven om eerder ingetypte regels te bekijken, pijltje links/rechts om je invoer te veranderen, en automatisch invullen met TAB).
+Denk er dan over om het volgende command uit te voeren om deze functionaliteit te installeren:
 
-* `panda install Linenoise` would work on Windows, Linux and OSX
+* `panda install Linenoise` werkt op Windows, Linux en OSX
 
-* `panda install Readline` if you are on Linux and prefer the _Readline_ library
+* `panda install Readline` als je op Linux werkt en de _Readline_ bibliotheek prefereert
 --
 
-=== Editors
-Since most of the time we will be writing and storing our Perl 6 programs in files, we should have
-a decent text editor that recognizes Perl 6 syntax.
+=== Bewerkingsprogramma's (Editors)
+Aangezien je het grootste deel van je tijd Perl 6 programma's in bestanden aan het opslaan bent, is het handig om een goede editor te hebben die Perl 6 syntax herkent.
 
-I personally use and recommend https://atom.io/[Atom]. It is a modern text editor and comes with Perl 6 syntax highlighting out of the box.
-https://atom.io/packages/language-perl6fe[Perl6-fe] is an alternative Perl 6 syntax highlighter for Atom, derived from the original package but with many bug fixes and additions.
+Ik gebruik https://atom.io/[Atom] en raadt het gebruik daarvan ook een.  Het is een moderne tekst-editor die standaard uitgeleverd wordt met Perl 6 syntax-markeeerder.
+https://atom.io/packages/language-perl6fe[Perl6-fe] is een alternatieve Perl 6 syntax-markeerder voor Atom, afgeleid van het origineel, maar met vele bug-fixes en toevoegingen.
 
-Other people in the community also use http://www.vim.org/[Vim], https://www.gnu.org/software/emacs/[Emacs] or http://padre.perlide.org/[Padre].
+Andere mensen in de gemeenschap gebruiken ook http://www.vim.org/[Vim], https://www.gnu.org/software/emacs/[Emacs] of http://padre.perlide.org/[Padre].
 
-Recent versions of Vim ship with syntax highlighting out of the box. Emacs and Padre will require installation of additional packages.
+Recent versies van Vim worden standaard uitgeleverd met een syntax-markeerder. Emacs en Padre hebben de installatie van extra bibliotheken nodig.
 
 
 === Hello World!
-We shall begin with The `hello world` ritual.
+Laten we beginnen met het `hello world` ritueel.
 
 [source,perl6]
 say 'hello world';
 
-that can also be written as:
+hetgeen ook geschreven kan worden als:
 
 [source,perl6]
 'hello world'.say;
 
 === Syntax overview
-Perl 6 is *free form*: You are free (most of the time) to use any amount of whitespace.
+Perl 6 kent weinig beperkingen: over het algemeen kun je zoveel spaties (witregels) gebruiken als je zelf wilt.
 
-*Statements* are typically a logical line of code, they need to end with a semicolon:
-`say "Hello" if True;`
+Opdrachten bestaan over het algemeen uit een regel code die beeindigd wordt door een punt-komma.
+`say "Hallo" if True;`
 
-*Expressions* are a special type of statement that returns a value:
-`1+2` will return `3`
+*Expressies* zijn een speciaal soort opdracht die resulteren in een waarde:
+`1+2` geeft `3` terug
 
-Expressions are made of *Terms* and *Operators*.
+Expressies bestaan uit *Termen* en *Operatoren*.
 
-*Terms* are:
+*Termen* zijn:
 
-* *Variables*: A value that can be manipulated and changed.
+* *Variabelen*: Een waarde die bekeken en veranderd kan worden.
 
-* *Literals*: A constant value like a number or a string.
+* *Literals* (Letterlijke waarden): een constante waard zoals een getal of een aantal letters (string).
 
-*Operators* are classified into types:
-
-|===
-
-| *Type* | *Explanation* | *Example*
-
-| Prefix | Before the term. | `++1`
-
-| Infix | Between terms | `1+2`
-
-| Postfix | After the term | `1++`
-
-| Circumfix | Around the term | `(1)`
-
-| Postcircumfix | After one term, around another  | `Array[1]`
+*Operatoren* worden onderverdeeld in deze typen:
 
 |===
 
-==== Identifiers
-Identifiers are the names given to terms when you define them.
+| *Type* | *Uitleg* | *Voorbeeld*
 
-.Rules:
-* They must start with an alphabetic character or an underscore.
+| Prefix | Voor de term. | `++1`
 
-* They can contain digits (except the first character).
+| Infix | Tussen twee termen | `1+2`
 
-* They can contain dashes or apostrophes (except the first and last character), provided there's an alphabetic character to the right side of each dash or apostrophe.
+| Postfix | Volgt na een term | `1++`
+
+| Circumfix | Staat om een term heen | `(1)`
+
+| Postcircumfix | Achter een term, om een andere term heen  | `Array[1]`
 
 |===
 
-| *Valid* | *Invalid*
+==== Naamgeving
+Je moet termen een naam geven op het moment dat je ze definieert.
+
+.Regels:
+* Ze moeten beginnen met een alphabetisch karakter of een underscore.
+
+* Ze mogen cijfers bevatten (behalve als eerste karakter).
+
+* Ze mogen een of meer koppeltekens `-` en/of enkele aanhalingstekens `'` bevatten (mits omgeven door alphabetische karakters, dus niet als eerste of laatste karakter).
+
+|===
+
+| *Geldig* | *Niet geldig*
 
 | `var1` | `1var`
 
@@ -200,43 +191,43 @@ Identifiers are the names given to terms when you define them.
 
 |===
 
-.Naming conventions:
-* Camel case: `variableNo1`
+.Naamgevingsconventies:
+* Kameelkast (Camel case): `variableNo1`
 
-* Kebab case: `variable-no1`
+* Kebabkast (Kebab case): `variable-no1`
 
-* Snake case: `variable_no1`
+* Slangenkast (Snake case): `variable_no1`
 
-You are free to name your identifiers as you like, but it is good practice to adopt one naming convention consistently.
+Je mag je termen namen geven zoals je zelf wilt, maar het is een goede gewoonte om vast te houden aan een enkele naamgevingsconventie in een programma.
 
-Using meaningful names will ease your (and others) programming life.
+Het gebruik van betekenisvolle namen zal jouw leven als programmeur gemakkelijker maken (en van anderen die later aan jouw programma moeten werken).
 
-* `var1 = var2 * var3` is syntactically correct but its purpose is not evident.
-* `monthly-salary = daily-rate * working-days` would be a better way to name your variables.
+* `var1 = var2 * var3` is syntactisch correct, maar de betekenis is niet duidelijk.
+* `maandsalaris = dagloon * gewerkte-dagen` geeft beter aan waar het hierover gaat.
 
-==== Comments
-A comment is a piece of text ignored by the compiler and used as a note.
+==== Commentaar
+Een commentaar is een stuk tekst dat bij uitvoering genegeerd wordt, maar van belang kan zijn voor de lezer van de programma-code.
 
-Comments are divided into 3 types:
+Er zijn 3 manieren om commentaren in een programma te stoppen:
 
-* Single line:
+* Enkele regel;
 +
 [source,perl6]
-# This is a single line comment
+# Dit is een regel met commentaar
 
-* Embedded:
+* Ingebed (embedded):
 +
 [source,perl6]
-say #`(This is an embedded comment) "Hello World."
+say #`(Dit is een ingebed commentaar) "Hello World."
 
-* Multi line:
+* Meer dan 1 regel
 +
 [source,perl6]
 -----------------------------
 =begin comment
-This is a multi line comment.
-Comment 1
-Comment 2
+Dit is een commentaar over meer dan 1 regel
+Commentaar 1
+Commentaar 2
 =end comment
 -----------------------------
 
