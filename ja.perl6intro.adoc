@@ -2799,9 +2799,10 @@ LATIN SMALL LETTER A WITH ACUTE
 my $Δ = 1;
 $Δ++;
 say $Δ;
----
+----
 
 .ユニコード文字で算数をすることができます:
+[source,perl6]
 ----
 my $var = 2 + ⅒;
 say $var;
