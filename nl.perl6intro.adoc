@@ -45,7 +45,7 @@ Perl 6 is een programmeertaal voor algemeen gebruik met geleidelijke typering.
 In Perl 6 kan met diverse paradigma's geprogrammeerd worden.  Ondersteund worden onder andere procedureel, object-georienteerd en functioneel programmeren.
 
 .Perl 6 motto:
-* TIMTOWTDI (uitgesproken "Timtoodi", oftewel "TimToady" in Engels): There Is More Than One Way To Do It. (Er is meer dan 1 manier om het te doen)
+* TIMTOWTDI (uitgesproken "Timtoodi", oftewel "TimToady" in het Engels): There Is More Than One Way To Do It. (Er is meer dan 1 manier om het te doen)
 * Gemakkelijke dingen moeten gemakkelijk blijven, moeilijke dingen moeten gemakkelijker worden en onmogelijk dingen moeten slechts moeilijk zijn.
 
 === Jargon
