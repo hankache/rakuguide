@@ -602,56 +602,66 @@ MERK OP: zie https://docs.perl6.org/type/Array voor volledige informatie over ar
 
 === Hashes
 [source,perl6]
-.A Hash is a set of Key/Value pairs.
+.Een Hash is een verzameling van naam/waarde paren (key/value pairs)
 ----
-my %capitals = ('UK','London','Germany','Berlin');
-say %capitals;
+my %hoofdsteden = ('VK','Londen','Duitsland','Berlijn');
+say %hoofdsteden;
+----
+
+.`Uitvoer`
+----
+{Duitsland => Berlijn, VK => Londen}
 ----
 
 [source,perl6]
-.Another succinct way of filling the hash:
+.Een andere manier om een hash te vullen:
 ----
-my %capitals = (UK => 'London', Germany => 'Berlin');
-say %capitals;
+my %hoofdsteden = (UK => 'London', Germany => 'Berlin');
+say %hoofdsteden;
 ----
 
-Some of the methods that can be called on hashes are:
+.`Uitvoer`
+----
+{Duitsland => Berlijn, VK => Londen}
+----
+
+Dit zijn een aantal van de methoden die men op een hash kan uitvoeren:
 [source,perl6]
 .`Script`
 ----
-my %capitals = (UK => 'London', Germany => 'Berlin');
-%capitals.push: (France => 'Paris');
-say %capitals.kv;
-say %capitals.keys;
-say %capitals.values;
-say "The capital of France is: " ~ %capitals<France>;
+my %hoofdsteden = (VK => 'Londen', Duitsland => 'Berlijn');
+%hoofdsteden.push: (Frankrijk => 'Parijs');
+say %hoofdsteden.kv;
+say %hoofdsteden.keys;
+say %hoofdsteden.values;
+say "De hoofdstad van Frankrijk is: " ~ %hoofdsteden<Frankrijk>;
 ----
 
-.`Output`
+.`Uitvoer`
 ----
-(France Paris Germany Berlin UK London)
-(France Germany UK)
-(Paris Berlin London)
-The capital of France is: Paris
+(Frankrijk Parijs Duitsland Berlijn VK Londen)
+(Frankrijk Duitsland VK)
+(Parijs Berlijn Londen)
+De hoofdstad van Frankrijk is: Parijs
 ----
 
-.Explanation
-`.push: (key => 'Value')` adds a new key/value pair. +
-`.kv` returns a list containing all keys and values. +
-`.keys` returns a list that contains all keys. +
-`.values` returns a list that contains all values. +
-We can access a specific value in the hash by specifying its key `%hash<key>`
+.Uitleg
+`.push: (naam => 'Waarde')` voegt een nieuw naam/waarde paar toe. +
+`.kv` geeft een lijst met alle namen en waarden terug. +
+`.keys` geeft een lijst met alle namen terug. +
+`.values` geeft een lijst met alle waarden terug. +
+De waarde behorende bij een gegeven naam kun je opvragen door die naam te specificeren `%hash<naam>`
 
-NOTE: For the complete Hash reference, see https://docs.perl6.org/type/Hash
+MERK OP: Zie https://docs.perl6.org/type/Hash voor alle informatie over hashes.
 
 === Types
-In the previous examples, we did not specify what type of values the variables should hold.
+In de voorafgaande voorbeelden hebben we niet het type van de waarde aangegeven die in een variabele opgeslagen kan worden.
 
-TIP: `.WHAT` will return the type of value held in a variable.
+TIP: `.WHAT` geeft het type van de waarde in een variabele terug.
 
 [source,perl6]
 ----
-my $var = 'Text';
+my $var = 'Tekst';
 say $var;
 say $var.WHAT;
 
@@ -660,68 +670,68 @@ say $var;
 say $var.WHAT;
 ----
 
-As you can see in the above example, the type of value in `$var` was once (Str) and then (Int).
+Zoals je kunt zien in bovenstaand voorbeeld, was het type van de waarde in `$var` eerst (Str) en daarna (Int).
 
-This style of programming is called dynamic typing. Dynamic in the sense that variables may contain values of Any type.
+Deze stijl van programmeren wordt dynamische typering (dynamic typing) genoemd.  Dynamisch in de betekenis dat de variable waarden mag bevatten van elk (Any) type.
 
-Now try running the below example: +
-Notice `Int` before the variable name.
+Probeer nu onderstaand voorbeeld uit te voeren: +
+Merk op dat we `Int` voor de naam van de variabele hebben geplaatst.
 
 [source,perl6]
 ----
-my Int $var = 'Text';
+my Int $var = 'Tekst';
 say $var;
 say $var.WHAT;
 ----
 
-It will fail and return this error message: `Type check failed in assignment to $var; expected Int but got Str`
+Het zal fout gaan en terug komen met dit foutbericht: `Type check failed in assignment to $var; expected Int but got Str`
 
-What happened is that we specified beforehand that the variable should be of type (Int).
-When we tried to assign an (Str) to it, it failed.
+Wat hier gebeurde is dat we van te voren hadden aangegeven dat de variabele alleen maar (Int) zou accepteren.
+Toen we probeerden om er een string (Str) aan toe te wijzen, was dat niet mogelijk en ging het fout.
 
-This style of programming is called static typing. Static in the sense that variable types are defined before assignment and cannot change.
+Deze stijl van programmeren wordt "statische typering" (static typing) genoemd.  Statisch omdat het type van variabelen wordt gedefinieerd voordat er aan wordt toegewezen, en deze later niet kan worden veranderd.
 
-Perl 6 is classified as *gradually typed*; it allows both *static* and *dynamic* typing.
+Perl 6 wordt aangeduid met "graduele typering": het laat namelijk zowel *statische* als *dynamische* typering toe.
 
-.Arrays and hashes can also be statically typed:
+.Arrays en hashes kunnen ook statisch getypeerd worden:
 [source,perl6]
 ----
 my Int @array = 1,2,3;
 say @array;
 say @array.WHAT;
 
-my Str @multilingual = "Hello","Salut","Hallo","您好","안녕하세요","こんにちは";
-say @multilingual;
-say @multilingual.WHAT;
+my Str @veeltalig = "Hello","Salut","Hallo","您好","안녕하세요","こんにちは";
+say @veeltalig;
+say @veeltalig.WHAT;
 
-my Str %capitals = (UK => 'London', Germany => 'Berlin');
-say %capitals;
-say %capitals.WHAT;
+my Str %hoofdsteden = (VK => 'Londen', Duitsland => 'Berlijn');
+say %hoofdsteden;
+say %hoofdsteden.WHAT;
 
-my Int %country-codes = (UK => 44, Germany => 49);
-say %country-codes;
-say %country-codes.WHAT;
+my Int %landennummers = (VK => 44, Duitsland => 49);
+say %landennummers;
+say %landennummers.WHAT;
 ----
 
-.Below is a list of the most commonly used types:
-You will most probably never use the first two but they are listed for informational purpose.
+.Hieronder vind je een lijst van meest voorkomende typen:
+Je zult hoogstwaarschijnlijk de eerste twee nooit gebruiken, maar we laten ze hier zien om je te laten weten dat ze bestaan.
 
 [cols="^.^1m,.^3m,.^2m,.^1m, options="header"]
 |===
 
-| *Type* | *Description* | *Example* | *Result*
+| *Type* | *Beschrijving* | *Voorbeeld* | *Resultaat*
 
-| Mu | The root of the Perl 6 type hierarchy | |
+| Mu | De ultieme basis van de Perl 6 typen hierarchie | |
 
-| Any | Default base class for new classes and for most built-in classes | |
+| Any | Het basis type voor nieuwe klassen en de meeste standaard klassen | |
 
-| Cool | Value that can be treated as a string or number interchangeably | my Cool $var = 31; say $var.flip; say $var * 2; | 13 62
+| Cool | Waarden die zowel als string of als number kunnen worden beschouwd | my Cool $var = 31; say $var.flip; say $var * 2; | 13 62
 
-| Str | String of characters | my Str $var = "NEON"; say $var.flip; | NOEN
+| Str | Een string: reeks van karakters | my Str $var = "NEON"; say $var.flip; | NOEN
 
-| Int | Integer (arbitrary-precision) | 7 + 7 | 14
+| Int | Integer (elke gewenste precisie) | 7 + 7 | 14
 
-| Rat | Rational number (limited-precision) | 0.1 + 0.2 | 0.3
+| Rat | Rationeel nummer (beperkte precisie) | 0.1 + 0.2 | 0.3
 
 | Bool | Boolean | !True | False
 
