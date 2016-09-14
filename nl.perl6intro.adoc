@@ -13,10 +13,10 @@ Naoum Hankache <naoum@hankache.com>; Elizabeth Mattijsen <perl6intro@liz.nl>
 :lang: nl
 
 Dit document is bedoeld om je een kort overzicht te geven van de Perl 6 programmeertaal.
-Het moet je helpen om snel iets met Perl 6 te kunnen doen.
+Het is zo opgezet dat je snel leert iets met Perl 6 te kunnen doen.
 
-Sommige onderdelen van dit document refereren aan (meer complete en accuratere) delen van de (engelstalige) http://docs.perl6.org[Perl 6 documentatie].
-Indien je meer informatie over een bepaald onderwerp nodig hebt, is dat de beste plaats om die te vinden.
+Sommige onderdelen van dit document verwijzen aan (completere en preciezere) delen van de (Engelstalige) http://docs.perl6.org[Perl 6 documentatie].
+Als je meer informatie over een bepaald onderwerp nodig hebt, is dat de beste plaats om die te vinden.
 
 Je zult voorbeelden vinden bij de meeste onderwerpen in dit document.
 Neem de tijd om ze allemaal uit te proberen om ze beter te begrijpen.
@@ -28,7 +28,7 @@ Om deze in te zien, ga naar
 * https://creativecommons.org/licenses/by-sa/4.0/.
 
 .Bijdragen
-Indien je wilt bijdragen aan dit document, ga dan naar:
+Als je wilt bijdragen aan dit document, ga dan naar:
 
 * https://github.com/hankache/perl6intro
 
@@ -41,7 +41,7 @@ Alle feedback is welkom:
 :sectnums:
 == Inleiding
 === Wat is Perl 6
-Perl 6 is een programmeertaal voor algemeen gebruik met geleidelijke typering.
+Perl 6 is een hogere programmeertaal voor algemeen gebruik met graduele typering.
 In Perl 6 kan met diverse paradigma's geprogrammeerd worden.  Ondersteund worden onder andere procedureel, object-georienteerd en functioneel programmeren.
 
 .Perl 6 motto:
@@ -49,7 +49,7 @@ In Perl 6 kan met diverse paradigma's geprogrammeerd worden.  Ondersteund worden
 * Gemakkelijke dingen moeten gemakkelijk blijven, moeilijke dingen moeten gemakkelijker worden en onmogelijk dingen moeten slechts moeilijk zijn.
 
 === Jargon
-* *Perl 6*: Is een taal-specificatie met een verzameling tests.
+* *Perl 6*: Is een taalspecificatie met een verzameling tests.
 Een implementatie van Perl 6 die al deze tests succesvol kan uitvoeren, mag zich een "Perl 6" implementatie noemen.
 * *Rakudo*: Is een compiler voor Perl 6.
 * *Rakudobrew*: Is een installatie-manager van Perl 6.
@@ -60,16 +60,19 @@ Een implementatie van Perl 6 die al deze tests succesvol kan uitvoeren, mag zich
 .Linux
 . Installeer Rakudobrew: https://github.com/tadzik/rakudobrew
 
-. Installeer Rakudo: Type het volgende commando in een terminal venster `rakudobrew build moar`
+. Installeer Rakudo: Type het volgende commando in een terminalvenster `rakudobrew build moar`
 
-. Installeer Panda: Type het volgende commando in een terminal venster `rakudobrew build panda`
+. Installeer Panda: Type het volgende commando in een terminalvenster `rakudobrew build panda`
 
 .OSX
 OS X kent vier mogelijkheden:
 
 * Volg dezelfde stappen als voor Linux
+
 * Installeer met homebrew: `brew install rakudo-star`
+
 * Installeer met MacPorts: `sudo port install rakudo`
+
 * Download de meest recente installer (bestand met .dmg extensie) van http://rakudo.org/downloads/star/
 
 .Windows
