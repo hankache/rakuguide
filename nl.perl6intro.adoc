@@ -235,13 +235,13 @@ Commentaar 2
 -----------------------------
 
 ==== Aanhalingstekens (Quotes)
-Letterlijke reeksen van tekens (strings) worden aangegeven door middel van enkele of dubbele aanhalingstekens.
+Een string wordt gedefinieerd door middel van enkele of dubbele aanhalingstekens.
 
 Gebruik altijd dubbele aanhalingstekens:
 
-* als er een enkel aanhalingsteken in de reeks voorkomt.
+* als er een enkel aanhalingsteken in de string voorkomt.
 
-* indien de reeks een variabele bevat die geinterpoleerd moet worden.
+* indien de string een variabele bevat die geinterpoleerd moet worden.
 
 [source,perl6]
 -----------------------------------
@@ -296,9 +296,9 @@ Onderstaande tabel toont de meest voorkomende operatoren.
 
 | >= | Infix | Numeriek groter dan of gelijk aan | 9 >= 7  | True
 
-| eq | Infix | Letterreeks gelijk | "John" eq "John"  | True
+| eq | Infix | String gelijk | "John" eq "John"  | True
 
-| ne | Infix | Letterreeks ongelijk | "John" ne "Jane"  | True
+| ne | Infix | String ongelijk | "John" ne "Jane"  | True
 
 | = | Infix | Toewijzing | my $var = 7  | Wijst de waarde `7` toe aan de variabele `$var`
 
@@ -354,17 +354,17 @@ Onderstaande tabel toont de meest voorkomende operatoren.
 
 | ! | Prefix | Forceer naar de tegenovergestelde boolean waarde | !4 | False
 
-| .. | Infix | Rij constructeur |  0..5  | Maak een rij van 0 t/m 5
+| .. | Infix | Lijst constructeur |  0..5  | Maak een lijst van 0 t/m 5
 
-| ..^ | Infix | Rij constructeur |  0..^5  | Maak een rij van 0 t/m 4
+| ..^ | Infix | Lijst constructeur |  0..^5  | Maak een lijst van 0 t/m 4
 
-| ^.. | Infix | Rij constructeur |  0^..5  | Maak een rij van 1 t/m 5
+| ^.. | Infix | Lijst constructeur |  0^..5  | Maak een lijst van 1 t/m 5
 
-| \^..^ | Infix | Rij constructeur |  0\^..^5  | maak een rij van 1 t/m 4
+| \^..^ | Infix | Lijst constructeur |  0\^..^5  | maak een lijst van 1 t/m 4
 
-| ^ | Prefix | Rij constructeur |  ^5  | Zelfde als 0..^5, maakt een rij van 0 t/m 4
+| ^ | Prefix | Lijst constructeur |  ^5  | Zelfde als 0..^5, maakt een lijst van 0 t/m 4
 
-| ... | Infix | Luie rij constructeur |  0...9999  | Maak waarden alleen aan indien daar expliciet om gevraagd wordt
+| ... | Infix | Luie lijst constructeur |  0...9999  | Maak waarden alleen aan indien daar expliciet om gevraagd wordt
 
 .2+| {vbar} .2+| Prefix .2+| Pletten | {vbar}(0..5)  | (0 1 2 3 4 5)
 
@@ -374,7 +374,7 @@ Onderstaande tabel toont de meest voorkomende operatoren.
 
 === Reversi operatoren
 
-Door een `R` te plaatsen direct voor een operator, zorg je ervoor dat er termen omgewisseld worden.
+Door een `R` te plaatsen direct voor een operator, zorg je ervoor dat de termen omgewisseld worden.
 
 [cols=".^m,.^m,.^m,.^m", options="header"]
 |===
@@ -388,7 +388,7 @@ Door een `R` te plaatsen direct voor een operator, zorg je ervoor dat er termen 
 
 === Herleidingsoperatoren
 
-Herleidingsoperatoren werken op rijen van waarden.
+Herleidingsoperatoren werken op lijsten.
 Je maakt een herleidingsoperator door vierkante haken om de operator te plaatsen `[]`
 
 [cols=".^m,.^m,.^m,.^m", options="header"]
@@ -403,17 +403,17 @@ Je maakt een herleidingsoperator door vierkante haken om de operator te plaatsen
 
 Merk op: voor een compleet overzicht van operatoren, inclusief hun prioriteit, ga dan naar https://docs.perl6.org/language/operators
 
-== Variables
-Perl 6 variables are classified into 3 categories: Scalars, Arrays and Hashes.
+== Variabelen
+Perl 6 variabelen kunnen worden geclassificeerd in 3 categorieen: Scalars, Arrays en Hashes.
 
-A *sigil* (Sign in Latin) is a character that is used as a prefix to categorize variables.
+Een *voorteken* (sigil) is een karakter dat als prefix gebruikt wordt om aan te geven in welke categorie een variabele hoort.
 
-* `$` is used for scalars
-* `@` is used for arrays
-* `%` is used for hashes
+* `$` geeft een scalar aan
+* `@` geeft een array aan
+* `%` geeft een hash aan
 
 === Scalars
-A scalar holds one value or reference.
+Een scalar kan 1 waarde bevatten.
 
 [source,perl6]
 ----
@@ -426,7 +426,7 @@ my $age = 99;
 say $age;
 ----
 
-A specific set of operations can be done on a scalar, depending on the value it holds.
+Afhankelijk van het type waarde dat een scalar bevat, kun je daar bepaalde operaties op uitvoeren.
 
 [source,perl6]
 .String
@@ -443,7 +443,7 @@ JOHN DOE
 eoD nhoJ
 ----
 
-NOTE: For the complete list of methods applicable to Strings, see https://docs.perl6.org/type/Str
+MERK OP: Bekijk https://docs.perl6.org/type/Str voor de complete lijst van methoden die men op een string kan uitvoeren.
 
 [source,perl6]
 .Integer
@@ -456,7 +456,7 @@ say $age.is-prime;
 True
 ----
 
-NOTE: For the complete list of methods applicable to Integers, see https://docs.perl6.org/type/Int
+MERK OP: Bekijk https://docs.perl6.org/type/Int voor de complete lijst van methoden die men op een geheel getal (integer) kan uitvoeren.
 
 [source,perl6]
 .Rational Number
@@ -473,10 +473,10 @@ say $age.nude;
 (23 10)
 ----
 
-NOTE: For the complete list of methods applicable to Rational Numbers, see https://docs.perl6.org/type/Rat
+MERK OP: Bekijk https://docs.perl6.org/type/Rat voor de complete lijst van methoden die men op een rationeel getal kan uitvoeren.
 
 === Arrays
-Arrays are lists containing multiple values.
+Arrays bestaan uit een lijst van scalar variabelen.
 
 [source,perl6]
 ----
@@ -484,95 +484,96 @@ my @animals = 'camel','llama','owl';
 say @animals;
 ----
 
-Many operations can be done on arrays as shown in the below example:
+Vele operaties kunnen op arrays uitgevoerd worden, zoals getoond in onderstaand voorbeeld:
 
-TIP: The tilde `~` is used for string concatenation.
+TIP: De tilde `~` wordt gebruikt om strings aan elkaar te plakken.
 
 [source,perl6]
 .`Script`
 ----
-my @animals = 'camel','vicuña','llama';
-say "The zoo contains " ~ @animals.elems ~ " animals";
-say "The animals are: " ~ @animals;
-say "I will adopt an owl for the zoo";
+my @animals = 'kameel','vicuña','lama';
+say "De dierentuin heeft " ~ @animals.elems ~ " dieren";
+say "De dieren zijn: " ~ @animals;
+say "Ik ga een uil adopteren voor de dierentuin";
 @animals.push("owl");
-say "Now my zoo has: " ~ @animals;
-say "The first animal we adopted was the " ~ @animals[0];
+say "Nu heeft mijn dierentuin: " ~ @animals;
+say "Het eerste dier dat we adopteerden was de " ~ @animals[0];
 @animals.pop;
-say "Unfortunately the owl got away and we're left with: " ~ @animals;
-say "We're closing the zoo and keeping one animal only";
-say "We're going to let go: " ~ @animals.splice(1,2) ~ " and keep the " ~ @animals;
+say "Helaas is de uil ontsnapt, dus hebben we nu alleen nog: " ~ @animals;
+say "We gaan de dierention sluiten en houden nog maar 1 dier over";
+say "We laten de " ~ @animals.splice(1,2) ~ " gaan en houden de " ~ @animals;
 ----
 
-.`Output`
+.`Uitvoer`
 ----
-The zoo contains 3 animals
-The animals are: camel vicuña llama
-I will adopt an owl for the zoo
-Now my zoo has: camel vicuña llama owl
-The first animal we adopted was the camel
-Unfortunately the owl got away and we're left with: camel vicuña llama
-We're closing the zoo and keeping one animal only
-We're going to let go: vicuña llama and keep the camel
+De dierentuin heeft 3 dieren
+De dieren zijn: kameel vicuña lama
+Ik ga een uil adopteren voor de dierentuin
+Nu heeft mijn dierentuin: kameel vicuña lama uil
+Het eerste dier dat we adopteerden was de kameel
+Helaas is de uil ontsnapt, dus hebben we nu alleen nog: kameel vicuña lama
+We gaan de dierention sluiten en houden nog maar 1 dier over
+We laten de vicuña llama gaan en houden de kameel
 ----
 
-.Explanation
-`.elems` returns the number of elements in an array. +
-`.push()` adds an element to the array. +
-We can access a specific element in the array by specifying its position `@animals[0]`. +
-`.pop` removes the last element from the array. +
-`.splice(a,b)` will remove the `b` elements that start at position `a`.
+.Uitleg
+`.elems` geeft het aantal elementen in een array. +
+`.push()` voegt een element toe aan een array. +
+We kunnen een specifiek element van een array bekijken door de positie aan te geven `@animals[0]`. +
+`.pop` verwijdert het laatste element van het array. +
+`.splice(a,b)` verwijdert `b` elementen vanaf positie `a`.
 
-==== Fixed-size arrays
-A basic array is declared as following:
+==== Arrays met beperkt aantal elementen
+Een gewoon array kun je als volgt specificeren:
 [source,perl6]
 my @array;
 
-The basic array can have indefinite length and thus is called auto-extending. +
-The array will accept any number of values with no restriction.
+Een gewoon array is niet beperkt wat betreft aantal elementen, het past zichzelf aan (auto-extending). +
+Men kan in een gewoon array zoveel waarden opslaan als men wil.
 
-In contrast, we can also create fixed-size arrays. +
-These arrays can not be accessed beyond their defined size.
+Daarentegen is het ook mogelijk om een array aan te maken met een beperkt aantal elementen.
+Dit soort arrays verbieden toegang tot niet-bestaande elementen.
 
-To declare an array of fixed size, specify its maximum number of elements in square brackets immediately after its name:
+Specificeer het aantal elementen in vierkante haken direct achter de naam van een array om een array met beperkt aantal elementen te specificeren:
 [source,perl6]
 my @array[3];
 
-This array will be able to hold a maximum of 3 values, indexed from 0 to 2.
+Dit array kan hoogstens 3 waarden bevatten, met als indexwaarden 0 t/m 2.
 
 [source,perl6]
 ----
 my @array[3];
-@array[0] = "first value";
-@array[1] = "second value";
-@array[2] = "third value";
+@array[0] = "eerste waarde";
+@array[1] = "tweede waarde";
+@array[2] = "derde waarde";
 ----
 
-You will not be able to add a fourth value to this array:
+Het is niet mogelijk om een vierde waarde aan dit array toe te voegen:
 [source,perl6]
 ----
 my @array[3];
-@array[0] = "first value";
-@array[1] = "second value";
-@array[2] = "third value";
-@array[3] = "fourth value";
+@array[0] = "eerste waarde";
+@array[1] = "tweede waarde";
+@array[2] = "derde waarde
+@array[3] = "vierde waarde";
 ----
 
 ----
 Index 3 for dimension 1 out of range (must be 0..2)
 ----
 
-==== Multidimensional arrays
+==== Multidimensionele arrays
+De arrays die we tot nu toe gezien hebben, hadden maar 1 dimensie. +
 The arrays we saw until now are one-dimensional. +
-Fortunately, we can define multi-dimensional arrays in Perl 6.
+We kunnen echter ook arrays met meer dan 1 dimensie in Perl 6 specificeren.
 
 [source,perl6]
 my @tbl[3;2];
 
-This array is two-dimensional.
-The first dimension can have a maximum of 3 values and the second dimension a maximum of 2 values.
+Dit array heeft 2 dimensies.
+De eerste dimensie kan maximaal 3 waarden hebben, en de tweede dimensie maximaal 2 waarden.
 
-Think of it as a 3x2 grid.
+Zie het als een rooster van 3x2.
 
 [source,perl6]
 ----
@@ -590,14 +591,14 @@ say @tbl
 [[1 x] [2 y] [3 z]]
 ----
 
-.Visual representation of the array:
+.Visuele weergave van het array:
 ----
 [1 x]
 [2 y]
 [3 z]
 ----
 
-NOTE: For the complete Array reference, see https://docs.perl6.org/type/Array
+MERK OP: zie https://docs.perl6.org/type/Array voor volledige informatie over arrays.
 
 === Hashes
 [source,perl6]
