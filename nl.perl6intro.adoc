@@ -737,10 +737,10 @@ Je zult hoogstwaarschijnlijk de eerste twee nooit gebruiken, maar we laten ze hi
 
 |===
 
-=== Introspection
+=== Introspectie
 
-Introspection is the process of getting information about an object properties like its type. +
-In one of the previous example we used `.WHAT` to return the type of the variable.
+Met introspectie bedoelen we het process waarmee we informatie over de eigenschappen van een object kunnen bekijken, zoals het type. +
+In een van de vorige voorbeelden gebruikten we `.WHAT` om het type van een variabele te achterhalen.
 
 [source,perl6]
 ----
@@ -758,10 +758,10 @@ $var2 = Nil;
 say $var2.WHAT;   # (Any)
 ----
 
-The type of a variable holding a value is correlated to its value. +
-The type of a strongly declared empty variable is the type with which it was declared. +
-The type of an empty variable that wasn't strongly declared is `(Any)` +
-To clear the value of a variable, assign `Nil` to it.
+Het type van een variabele waarin een waarde is opgeslagen, is gecorreleerd aan die waarde. +
+Het type van een lege variabele die gespecificeerd is met een type, is het type waarmee het werd gespecificeerd. +
+Het type van een lege variabele die niet is gespecificeerd met een type, is `(Any)` +
+Om de waarde uit een variabele te verwijderen, kun je de waarde `Nil` toewijzen.
 
 === Scoping
 Before using a variable for the first time, it needs to be declared.
