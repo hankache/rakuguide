@@ -1073,88 +1073,88 @@ loop (my $i = 0; $i < 5; $i++) {
 MERK OP: Zie https://docs.perl6.org/language/control voor meer informatie over conditionele- en lusconstructies.
 
 == I/O
-In Perl 6, two of the most common _Input/Output_ interfaces are the _Terminal_ and _Files_.
+De twee meest voorkomende manieren van _Invoer/Uitvoer_ zijn _Terminal_ en _Bestanden_.
 
 === Basic I/O using the Terminal
 
 ==== say
-`say` writes to the standard output. It appends a newline at the end. In other words, the following code:
+`say` schrijft naar de standaard uitvoer.  Het voegt een regeleinde (newline) toe aan het einde.  In andere woorden, de volgende code:
 
 [source,perl6]
 ----
-say 'Hello Mam.';
-say 'Hello Sir.';
+say 'Hallo mevrouw.';
+say 'Hallo meneer.';
 ----
-will be written on 2 separate lines.
+zullen op 2 aparte lijnen worden getoond.
 
 ==== print
-`print` on the other hand behaves like `say` but doesn't add a new line.
+Aan de andere kant doet `print` precies hetzelfde, maar het voegt geen regeleinde toe.
 
-Try replacing `say` with `print` and compare both results.
+Probeer eens om de `say` door een `print` te vervangen en vergelijk de resultaten.
 
 ==== get
-`get` is used to capture input from the terminal.
+Men kan `get` gebruiken om invoer van de terminal te krijgen.
 
 [source,perl6]
 ----
-my $name;
+my $naam;
 
-say "Hi, what's your name?";
+say "Hoi, hoe heet je?";
 $name = get;
 
-say "Dear $name welcome to Perl 6";
+say "Welkom bij Perl 6, beste $naam";
 ----
 
-When the above code runs, the terminal will be waiting for you to input your name and hit [Enter].
-Subsequently, it will greet you.
+Indien je bovenstaande code uitvoert zal de terminal wachten tot je je naam intypt en op [Enter] drukt.
+Vervolgens zal het je begroeten.
 
 ==== prompt
-`prompt` is a combination of `print` and `get`.
+`prompt` is een combinatie van `print` en `get`.
 
-The above example can be written like this:
-
-[source,perl6]
-----
-my $name = prompt "Hi, what's your name? ";
-
-say "Dear $name welcome to Perl 6";
-----
-
-=== Running Shell Commands
-Two subroutines can be used to run shell commands:
-
-* `run` Runs an external command without involving a shell
-
-* `shell` Runs a command through the system shell. It is platform and shell dependent.
-All shell meta characters are interpreted by the shell, including pipes, redirects, environment variable substitutions and so on.
+Het bovenstaande voorbeeld kan ook worden geschreven als:
 
 [source,perl6]
-.Run this if you're on Linux/OSX
 ----
-my $name = 'Neo';
-run 'echo', "hello $name";
+my $naam = prompt "Hoi, hoe heet je? ";
+
+say "Welkom bij Perl 6, beste $naam";
+----
+
+=== Uitvoeren van externe commando's
+Deze twee subroutines kunnen worden gebruikt om externe commando's uit te voeren:
+
+* `run` voert een extern commando direct uit.
+
+* `shell` voert een extern commando uit alsof je het hebt ingetypt op een commando regel (via een z.g. "shell").  Het hangt af van de systeem software die je gebruikt.
+Alle meta-karakters worden geinterpreteerd door de shell, inclusief z.g. "pipes", "redirects" en specificaties van environment variabelen.
+
+[source,perl6]
+.Voer dit uit als je met Linux/OSX werkt
+----
+my $naam = 'Neo';
+run 'echo', "hallo $naam";
 shell "ls";
 ----
 
 [source,perl6]
-.Run this if you're on Windows
+.Voer dit uit als je met Windows werkt
 ----
 shell "dir";
 ----
-`echo` and `ls` are common shell keywords on Linux: +
-`echo` prints text to the terminal (the equivalent of `print` in Perl 6) +
-`ls` lists all files and folders in the current directory
+`echo` en `ls` zijn veel voorkomende commando's op Linux/OSX: +
+`echo` drukt de parameters af (het equivalent van `print` in Perl 6) +
+`ls` laat alle bestanden en directories zien in de huidige directory
 
-`dir` is the equivalent of `ls` on Windows.
+`dir` is het equivalent van `ls` bij Windows.
 
 
 === File I/O
 ==== slurp
-`slurp` is used to read data from a file.
+Men kan `slurp` gebruiken om een geheel bestand in te lezen.
 
-Create a text file with the following content:
+Maak een tekstbestand aan met de volgende inhoud:
 
-.datafile.txt
+.scores.txt
 ----
 John 9
 Johnnie 7
@@ -1163,70 +1163,70 @@ Joanna 7
 ----
 [source,perl6]
 ----
-my $data = slurp "datafile.txt";
+my $data = slurp "scores.txt";
 say $data;
 ----
 
 ==== spurt
-`spurt` is used to write data to a file.
+Men kan `spurt` gebruiken om data naar een bestand te schrijven.
 
 [source,perl6]
 ----
-my $newdata = "New scores:
+my $nieuw = "Nieuwe scores:
 Paul 10
 Paulie 9
 Paulo 11";
 
-spurt "newdatafile.txt", $newdata;
+spurt "nieuwescores.txt", $nieuw;
 ----
 
-After running the above code, a new file named _newdatafile.txt_ will be created. It will contain the new scores.
+Nadat je de bovenstaande code hebt uitgevoerd, bestaat er een bestand _nieuwescores.txt_ .  Dat zal dan de nieuwe scores bevatten.
 
-=== Working with files and directories
-Perl 6 can list the contents of a directory without running shell commands (using `ls`) as seen in a previous example.
+=== Werken met bestanden en directories
+Perl 6 kan de inhoud van een directory ook direct tonen zonder dat er externe commando's voor hoeven te worden uitgevoerd, net zoals in een van de vorige voorbeelden.
 
 [source,perl6]
 ----
-say dir;              #List files and folders in the current directory
-say dir "/Documents"; #List files and folders in the specified directory
+say dir;              #Laat bestanden/directories uit de huidige directory zien
+say dir "/Documents"; #Laat bestanden/directories zien van de gegeven directory
 ----
 
-In addition to that you can create new directories and delete them.
+Tevens kun je ook nieuwe directories aanmaken en verwijderen.
 
 [source,perl6]
 ----
-mkdir "newfolder";
-rmdir "newfolder";
+mkdir "nieuwdir";
+rmdir "nieuwdir";
 ----
 
-`mkdir` creates a new directory. +
-`rmdir` delete an empty directory. Returns an error if not empty.
+`mkdir` maakt een nieuwe directory aan. +
+`rmdir` verwijdert een lege directory.  Returned een foutmelding indien niet leeg.
 
-You can also check if the specified path exists, if it is a file or a directory:
+Je kunt ook kijken of een specifieke naam bestaat, en of het een bestand of een directory is:
 
-In the directory where you will be running the below script, create an empty folder `folder123` and an empty pl6 file `script123.pl6`
+Maak in de directory waar je dit script gaat uitvoeren een lege directory `dir123` en een leeg bestand genaamd `script123.pl6`
 
 [source,perl6]
 ----
 say "script123.pl6".IO.e;
-say "folder123".IO.e;
+say "dir123".IO.e;
 
 say "script123.pl6".IO.d;
-say "folder123".IO.d;
+say "dir123".IO.d;
 
 say "script123.pl6".IO.f;
-say "folder123".IO.f;
+say "dir123".IO.f;
 ----
 
-`IO.e` checks if the directory/file exists. +
-`IO.f` checks if the path is a file. +
-`IO.d` checks if the path is a directory.
+`IO.e` geeft terug of de naam bestaat. +
+`IO.f` geeft terug of het een bestand is. +
+`IO.d` geeft terug of het een directory is.
 
-WARNING: Windows users can use `/` or `\\` to define directories +
+WAARSCHUWING: Gebruikers van Windows kunnen zowel de `/` als de `\\` gebruiken om directories aan te maken +
 `C:\\rakudo\\bin` +
 `C:/rakudo/bin` +
 
-NOTE: For more info on I/O, see https://docs.perl6.org/type/IO
+MERK OP: Zie https://docs.perl6.org/type/IO voor meer informatie over invoer en uitvoer.
 
 == Subroutines
 === Definition
