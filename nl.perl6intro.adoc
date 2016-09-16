@@ -401,7 +401,7 @@ Je maakt een herleidingsoperator door vierkante haken om de operator te plaatsen
 
 |===
 
-Merk op: voor een compleet overzicht van operatoren, inclusief hun prioriteit, ga dan naar https://docs.perl6.org/language/operators
+NOTE: voor een compleet overzicht van operatoren, inclusief hun prioriteit, ga dan naar https://docs.perl6.org/language/operators
 
 == Variabelen
 Perl 6 variabelen kunnen worden geclassificeerd in 3 categorieen: Scalars, Arrays en Hashes.
@@ -443,7 +443,7 @@ JOHN DOE
 eoD nhoJ
 ----
 
-MERK OP: Bekijk https://docs.perl6.org/type/Str voor de complete lijst van methoden die men op een string kan uitvoeren.
+NOTE: Bekijk https://docs.perl6.org/type/Str voor de complete lijst van methoden die men op een string kan uitvoeren.
 
 [source,perl6]
 .Integer
@@ -456,7 +456,7 @@ say $age.is-prime;
 True
 ----
 
-MERK OP: Bekijk https://docs.perl6.org/type/Int voor de complete lijst van methoden die men op een geheel getal (integer) kan uitvoeren.
+NOTE: Bekijk https://docs.perl6.org/type/Int voor de complete lijst van methoden die men op een geheel getal (integer) kan uitvoeren.
 
 [source,perl6]
 .Rational Number
@@ -473,7 +473,7 @@ say $age.nude;
 (23 10)
 ----
 
-MERK OP: Bekijk https://docs.perl6.org/type/Rat voor de complete lijst van methoden die men op een rationeel getal kan uitvoeren.
+NOTE: Bekijk https://docs.perl6.org/type/Rat voor de complete lijst van methoden die men op een rationeel getal kan uitvoeren.
 
 === Arrays
 Arrays bestaan uit een lijst van scalar variabelen.
@@ -598,7 +598,7 @@ say @tbl
 [3 z]
 ----
 
-MERK OP: zie https://docs.perl6.org/type/Array voor volledige informatie over arrays.
+NOTE: zie https://docs.perl6.org/type/Array voor volledige informatie over arrays.
 
 === Hashes
 [source,perl6]
@@ -652,7 +652,7 @@ De hoofdstad van Frankrijk is: Parijs
 `.values` geeft een lijst met alle waarden terug. +
 De waarde behorende bij een gegeven naam kun je opvragen door die naam te specificeren `%hash<naam>`
 
-MERK OP: Zie https://docs.perl6.org/type/Hash voor alle informatie over hashes.
+NOTE: Zie https://docs.perl6.org/type/Hash voor alle informatie over hashes.
 
 === Types
 In de voorafgaande voorbeelden hebben we niet het type van de waarde aangegeven die in een variabele opgeslagen kan worden.
@@ -864,7 +864,7 @@ say $a;
 Het verbinden van variabelen werkt twee kanten op, zoals je al gezien hebt. +
 `$a := $b` en `$b := $a` hebben hetzelfde effect.
 
-MERK OP: Zie https://docs.perl6.org/language/variables voor meer informatie over variabelen.
+NOTE: Zie https://docs.perl6.org/language/variables voor meer informatie over variabelen.
 
 == Functies en mutators
 
@@ -1070,7 +1070,7 @@ loop (my $i = 0; $i < 5; $i++) {
 }
 ----
 
-MERK OP: Zie https://docs.perl6.org/language/control voor meer informatie over conditionele- en lusconstructies.
+NOTE: Zie https://docs.perl6.org/language/control voor meer informatie over conditionele- en lusconstructies.
 
 == I/O
 De twee meest voorkomende manieren van _Invoer/Uitvoer_ zijn _Terminal_ en _Bestanden_.
@@ -1222,11 +1222,11 @@ say "dir123".IO.f;
 `IO.f` geeft terug of het een bestand is. +
 `IO.d` geeft terug of het een directory is.
 
-WAARSCHUWING: Gebruikers van Windows kunnen zowel de `/` als de `\\` gebruiken om directories aan te maken +
+WARNING: Gebruikers van Windows kunnen zowel de `/` als de `\\` gebruiken om directories aan te maken +
 `C:\\rakudo\\bin` +
 `C:/rakudo/bin` +
 
-MERK OP: Zie https://docs.perl6.org/type/IO voor meer informatie over invoer en uitvoer.
+NOTE: Zie https://docs.perl6.org/type/IO voor meer informatie over invoer en uitvoer.
 
 == Subroutines
 === Definition
