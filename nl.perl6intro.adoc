@@ -1142,7 +1142,7 @@ shell "ls";
 shell "dir";
 ----
 `echo` en `ls` zijn veel voorkomende commando's op Linux/OSX: +
-`echo` drukt de parameters af (het equivalent van `print` in Perl 6) +
+`echo` drukt de argumenten af (het equivalent van `print` in Perl 6) +
 `ls` laat alle bestanden en directories zien in de huidige directory
 
 `dir` is het equivalent van `ls` bij Windows.
@@ -1229,25 +1229,26 @@ WARNING: Gebruikers van Windows kunnen zowel de `/` als de `\\` gebruiken om dir
 NOTE: Zie https://docs.perl6.org/type/IO voor meer informatie over invoer en uitvoer.
 
 == Subroutines
-=== Definition
-*Subroutines* (also called *subs* or *functions*) are a means of packaging a set of functionality. +
+=== Definitie
+*Subroutines* (ook wel *subs* of *functies*) zijn een manier om een stuk functionaliteit in een pakketje te stoppen. +
 
-A subroutine definition begins with the keyword `sub`. After their definition, they can be called by their handle. +
-Check out the below example:
+De definitie van een subroutine begint met het sleutelwoord `sub`.  Na de definitie kun je het aanroepen met de naam die je het gegeven hebt. +
+Bekijk onderstaand voorbeeld:
 
 [source,perl6]
 ----
-sub alien-greeting {
-  say "Hello earthlings";
+sub buitenaardse-groet {
+  say "Hallo aardlingen";
 }
 
-alien-greeting;
+buitenaardse-groet;
 ----
 
-The previous example showcased a subroutine that  doesn't require any input.
+Het vorige voorbeeld laat een subroutine zien die geen invoer nodig heeft.
 
-=== Signature
-Many subroutines would require some input in order to work. That input is provided by *arguments*.
+=== Signatuur
+Veel subroutines hebben een vorm van invoer nodig om hun werk te kunnen doen.  Die invoer wordt gegeven door *argumenten*.
+Het aantal en type van de 
 The number and type of arguments that this subroutine accepts is called its *signature*.
 
 The below subroutine accepts a string argument.
