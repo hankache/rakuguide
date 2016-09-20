@@ -1251,7 +1251,8 @@ The previous example showcased a subroutine that  doesn't require any input.
 
 === Signature
 Many subroutines would require some input in order to work. That input is provided by *arguments*.
-The number and type of arguments that this subroutine accepts is called its *signature*.
+A subroutine may accept zero or more *parameters*.
+The number and type of parameters that a subroutine accepts is called its *signature*.
 
 The below subroutine accepts a string argument.
 
@@ -1282,15 +1283,15 @@ greet "Johnnie";
 greet "Laura","Mrs.";
 ----
 
-=== Default and Optional Arguments
+=== Default and Optional Parameters
 If a subroutine is defined to accept an argument, and we call it without providing it with the required argument, it will fail.
 
 Alternatively Perl 6 provides us the ability to define subroutines with:
 
-* Optional Arguments
-* Default Arguments
+* Optional Parameters
+* Default Parameters
 
-Optional arguments are defined by appending `?` to the argument name.
+Optional parameters are defined by appending `?` to the parameter name.
 
 [source,perl6]
 ----
@@ -1303,7 +1304,7 @@ say-hello("Laura");
 ----
 
 If the user doesn't supply an argument, it can default to a specific value. +
-This is done by assigning a value to the argument within the subroutine definition.
+This is done by assigning a value to the parameter within the subroutine definition.
 
 [source,perl6]
 ----
@@ -1732,7 +1733,7 @@ Trying to access it outside the object will return an error.
 
 Now replace `has $!age` with `has $.age` and see what will be the result of `say $john.age;`
 
-=== Named vs. Positional Arguments
+=== Named vs. Positional Parameters
 In Perl 6, all classes inherit a default `.new()` constructor. +
 It can be used to create objects by providing it with arguments. +
 The default constructor can only be provided with *named arguments*. +
