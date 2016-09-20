@@ -1744,7 +1744,7 @@ If you consider the above example, you'll remark that all the arguments supplied
 * age => 23
 
 
-What if i do not want to supply the name of each attribute each time i want to create a new object? +
+What if I do not want to supply the name of each attribute each time I want to create a new object? +
 Then I need to create another constructor that accepts *positional arguments*.
 
 [source,perl6]
@@ -1938,7 +1938,7 @@ class Human {
   has $.name;
   has $.age;
   method introduce-yourself {
-    say 'Hi i am a human being, my name is ' ~ self.name;
+    say 'Hi I am a human being, my name is ' ~ self.name;
   }
 }
 
@@ -1961,7 +1961,7 @@ class Human {
   has $.name;
   has $.age;
   method introduce-yourself {
-    say 'Hi i am a human being, my name is ' ~ self.name;
+    say 'Hi I am a human being, my name is ' ~ self.name;
   }
 }
 
@@ -1969,7 +1969,7 @@ class Employee is Human {
   has $.company;
   has $.salary;
   method introduce-yourself {
-    say 'Hi i am a employee, my name is ' ~ self.name ~ ' and I work at: ' ~ self.company;
+    say 'Hi I am a employee, my name is ' ~ self.name ~ ' and I work at: ' ~ self.company;
   }
 
 }
@@ -2194,7 +2194,7 @@ class Human {
   has Str $.name;
   has Int $.age;
   method introduce-yourself {
-    say 'Hi i am a human being, my name is ' ~ self.name;
+    say 'Hi I am a human being, my name is ' ~ self.name;
   }
 }
 
@@ -2202,7 +2202,7 @@ class Employee is Human {
   has Str $.company;
   has Int $.salary;
   method introduce-yourself {
-    say 'Hi i am a employee, my name is ' ~ self.name ~ ' and I work at: ' ~ self.company;
+    say 'Hi I am a employee, my name is ' ~ self.name ~ ' and I work at: ' ~ self.company;
   }
 }
 
