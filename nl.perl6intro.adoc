@@ -45,7 +45,7 @@ Perl 6 is een hogere programmeertaal voor algemeen gebruik met graduele typering
 In Perl 6 kan met diverse paradigma's geprogrammeerd worden.  Ondersteund worden onder andere procedureel, object-georienteerd en functioneel programmeren.
 
 .Perl 6 motto:
-* TIMTOWTDI (uitgesproken "Timtoodi", oftewel "TimToady" in het Engels): There Is More Than One Way To Do It. (Er is meer dan 1 manier om het te doen)
+* TIMTOWTDI (uitgesproken "Timtoodi", oftewel "TimToady" in het Engels): There Is More Than One Way To Do It. (Er is meer dan één manier om het te doen)
 * Gemakkelijke dingen moeten gemakkelijk blijven, moeilijke dingen moeten gemakkelijker worden en onmogelijk dingen moeten slechts moeilijk zijn.
 
 === Jargon
@@ -60,9 +60,9 @@ Een implementatie van Perl 6 die al deze tests succesvol kan uitvoeren, mag zich
 .Linux
 . Installeer Rakudobrew: https://github.com/tadzik/rakudobrew
 
-. Installeer Rakudo: Type het volgende commando in een terminalvenster `rakudobrew build moar`
+. Installeer Rakudo: Typ het volgende commando in een terminalvenster `rakudobrew build moar`
 
-. Installeer Panda: Type het volgende commando in een terminalvenster `rakudobrew build panda`
+. Installeer Panda: Typ het volgende commando in een terminalvenster `rakudobrew build panda`
 
 .OSX
 OS X kent vier mogelijkheden:
@@ -76,39 +76,38 @@ OS X kent vier mogelijkheden:
 * Download de meest recente installer (bestand met .dmg extensie) van http://rakudo.org/downloads/star/
 
 .Windows
-. Download de meest recenter installer (bestand met .msi extensie) van http://rakudo.org/downloads/star/ +
-Op een 32-bit systeem, download het bestand met x86; op een 64-bit, download dan het x86_64 bestand.
+. Download de meest recente installer (bestand met .msi extensie) van http://rakudo.org/downloads/star/ +
+Op een 32-bit systeem, download het bestand met x86; op een 64-bit, download het x86_64 bestand.
 . Zorg ervoor dat `C:\rakudo\bin` in je PATH is na het installeren.
 
 .Docker
 . Gebruik het officiele Docker image `docker pull rakudo-star`
-. Voer dan een container uit met het image `docker run -it rakudo-star`
+. Voer daarna een container uit met het image `docker run -it rakudo-star`
 
 === Uitvoeren van Perl 6 code
 
-Je kunt eenvoudig Perl 6 code uitvoeren in de REPL (Read-Eval-Print-Loop,
-oftewel een lees, evalueer, print, lus).
-Om dit te doen open je een terminal venster, type `perl6` en druk op [Enter].  Er verschijnt dan een `>` prompt.
-Vervolgens kun je een regel code intypen en weer op [Enter] drukken.  De REPL zal dan de uiteindelijke waarde van die code afdrukken.  Je kunt dan weer een regel code intypen, of `exit` intypen en op [Enter] drukken om de REPL te verlaten.
+Je kunt eenvoudig Perl 6 code uitvoeren in de REPL (Read-Eval-Print-Loop, oftewel een lees, evalueer, print, lus).
+Open daarvoor een terminalvenster, type `perl6` en druk op [Enter].  Er verschijnt dan een `>` prompt.
+Vervolgens kun je een regel code intypen en weer op [Enter] drukken.  De REPL zal dan de uiteindelijke waarde van die code afdrukken op het scherm.  Je kunt dan weer een regel code intypen, of `exit` intypen en op [Enter] drukken om de REPL te verlaten.
 
-Een andere mogelijkheid is om je code in een bestand op te slaan en dan uit te voeren.
-Het wordt aangeraden om een Perl 6 script de extensie `.pl6` te geven.
+Je kunt je code natuurlijk ook opslaan in een bestand, dat je daarna gaat uitvoeren.
+We raden aan om een Perl 6 script de extensie `.pl6` te geven, zodat het later te herkennen is als Perl 6 bestand.
 Voer het bestand uit door `perl6 bestandsnaam.pl6` in het terminal venster in te typen en op [Enter] te drukken.  Anders dan bij de REPL zal die niet automatisch het resultaat van elke regel afdrukken: daarvoor moet je een opdracht als `say` in je programma plaatsen om iets af te drukken.
 
-De REPL wordt meestal gebruikt om een specifiek stukje code uit te proberen, meestal niet meer dan een enkele regel.  Voor programma's die uit meer dan een regel bestaan, wordt het aangeraden om die regels in een bestand op te slaan en dan dat bestand uit te voeren.
+De REPL wordt meestal gebruikt om een specifiek stukje code uit te proberen, meestal niet meer dan een enkele regel.  Voor programma's die uit meer dan een regel bestaan, wordt aangeraden om die regels in een bestand op te slaan en dan dat bestand uit te voeren.
 
-Je kunt ook een regel code non-interactief uitproberen op de commando-regel in een terminal venster met `perl6 -e 'jouw regel code'` in te typen en dan op [Enter] te drukken.
+Je kunt ook een regel code non-interactief uitproberen op de commando-regel in een terminal venster, door `perl6 -e 'jouw regel code'` in te typen en dan op [Enter] te drukken.
 
 [TIP]
 --
-In de Rakudo Star bundel zit ook een regel-editor die het uitproberen in de REPL nog gemakkelijker maakt.
+In de bundel Rakudo Star zit ook een regel-editor die het uitproberen in de REPL nog gemakkelijker maakt.
 
-Indien je alleen maar Rakudo hebt geinstalleerd, en niet Rakudo Star, dan zijn niet alle handige regel-editor mogelijkheden (zoals pijltje naar onder/boven om eerder ingetypte regels te bekijken, pijltje links/rechts om je invoer te veranderen, en automatisch invullen met TAB).
-Denk er dan over om het volgende command uit te voeren om deze functionaliteit te installeren:
+Als je alleen maar Rakudo hebt geinstalleerd, en niet Rakudo Star, dan heb je standaard niet alle handige regel-editor mogelijkheden (zoals pijltje naar onder/boven om eerder ingetypte regels te bekijken, pijltje links/rechts om je invoer te veranderen, en automatisch invullen met TAB).
+Voer het volgende commando uit om deze functionaliteit te installeren:
 
 * `panda install Linenoise` werkt op Windows, Linux en OSX
 
-* `panda install Readline` als je op Linux werkt en de _Readline_ bibliotheek prefereert
+* `panda install Readline` als je op Linux werkt en liever werkt met de _Readline_ bibliotheek
 --
 
 === Bewerkingsprogramma's (Editors)
@@ -119,7 +118,7 @@ https://atom.io/packages/language-perl6fe[Perl6-fe] is een alternatieve Perl 6 s
 
 Andere mensen in de gemeenschap gebruiken ook http://www.vim.org/[Vim], https://www.gnu.org/software/emacs/[Emacs] of http://padre.perlide.org/[Padre].
 
-Recent versies van Vim worden standaard uitgeleverd met een syntax-markeerder. Emacs en Padre hebben de installatie van extra bibliotheken nodig.
+Recente versies van Vim worden standaard uitgeleverd met een syntax-markeerder. Emacs en Padre hebben de installatie van extra bibliotheken nodig.
 
 
 === Hello World!
@@ -1248,68 +1247,68 @@ Het vorige voorbeeld laat een subroutine zien die geen invoer nodig heeft.
 
 === Signatuur
 Veel subroutines hebben een vorm van invoer nodig om hun werk te kunnen doen.  Die invoer wordt gegeven door *argumenten*.
-Een subroutine kan nul of meer *parameters* definieren.
-Het aantal en type van de parameters wordt het *signatuur* van de subroutine genoemd.
+Het aantal en type van de 
+The number and type of arguments that this subroutine accepts is called its *signature*.
 
-Onderstaande subroutine accepteert een string argument.
+The below subroutine accepts a string argument.
 
 [source,perl6]
 ----
-sub zeg-hallo (Str $naam) {
-    say "Hallo " ~ $naam ~ "!!!!"
+sub say-hello (Str $name) {
+    say "Hello " ~ $name ~ "!!!!"
 }
-zeg-hallo "Paul";
-zeg-hallo "Paula";
+say-hello "Paul";
+say-hello "Paula";
 ----
 
 === Multiple dispatch
-Het is mogelijk om meer dan een subroutine met dezelfde naam, maar met een andere signatuur te definieren.
-Zodra men de subroutine aanroept, bepaalt de uitvoerder welke versie van de subroutine wordt aangeroepen, afhankelijk van het aantal en type van de gegeven argumenten.
-Dit soort van subroutines definieert men verder hetzelfde als normale subroutines, echter men vervangt het sleutelwoord `sub` door `multi`.
+It is possible to define multiple subroutines having the same name but different signatures.
+When the subroutine is called, the runtime environment will decide which version to use depending on the number and type of the supplied arguments.
+This type of subroutines is defined the same way as normal subs with the exception of swapping the `sub` keyword with `multi`.
 
 [source,perl6]
 ----
-multi groet($naam) {
-    say "Goede morgen $naam";
+multi greet($name) {
+    say "Good morning $name";
 }
-multi groet($naam, $titel) {
-    say "Goede morgen $titel $naam";
+multi greet($name, $title) {
+    say "Good morning $title $name";
 }
 
-groet "Johnnie";
-groet "Laura","Mrs.";
+greet "Johnnie";
+greet "Laura","Mrs.";
 ----
 
-=== Default en Optionele Parameters
-Als een subroutine gedefinieerd is om een argument te accepteren en we roepen het aan zonder dit benodigde argument, dan zal de aanroep een foutmelding geven.
+=== Default and Optional Arguments
+If a subroutine is defined to accept an argument, and we call it without providing it with the required argument, it will fail.
 
-Anderszins geeft Perl 6 ons de mogelijkheid om subroutines te definieren met:
+Alternatively Perl 6 provides us the ability to define subroutines with:
 
-* Optional Parameters
-* Default Waarden van Parameters
+* Optional Arguments
+* Default Arguments
 
-Optionele parameters worden gedefinieerd foor een `?` achter de naam van de parameter te plakken.
+Optional arguments are defined by appending `?` to the argument name.
 
 [source,perl6]
 ----
-sub zeg-hallo($naam?) {
-  with $name { say "Hallo " ~ $naam }
-  else { say "Hallo Mens" }
+sub say-hello($name?) {
+  with $name { say "Hello " ~ $name }
+  else { say "Hello Human" }
 }
-zeg-hallo;
-zeg-hallo("Laura");
+say-hello;
+say-hello("Laura");
 ----
 
-Als de gebruiker geen argument aan de subroutine geeft, dan kan men voor een default waarde zorgen. +
-Dit wordt gedaan door een waarde toe te kennen aan de parameter in de definitie van de subroutine.
+If the user doesn't supply an argument, it can default to a specific value. +
+This is done by assigning a value to the argument within the subroutine definition.
 
 [source,perl6]
 ----
-sub zeg-hallo($naam="Matt") {
+sub say-hello($name="Matt") {
   say "Hello " ~ $name;
 }
-zeg-hallo;
-zeg-hallo("Laura");
+say-hello;
+say-hello("Laura");
 ----
 
 === Returning values
