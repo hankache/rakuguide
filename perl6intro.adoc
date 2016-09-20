@@ -1251,8 +1251,8 @@ The previous example showcased a subroutine that  doesn't require any input.
 
 === Signature
 Many subroutines would require some input in order to work. That input is provided by *arguments*.
-A subroutine may accept zero or more *parameters*.
-The number and type of parameters that a subroutine accepts is called its *signature*.
+A subroutine may define zero or more *parameters*.
+The number and type of parameters that a subroutine defines is called its *signature*.
 
 The below subroutine accepts a string argument.
 
