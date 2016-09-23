@@ -1327,40 +1327,40 @@ sub kwadrateer ($x) {
 say "7 gekwadrateerd is gelijk aan " ~ kwadrateer(7);
 ----
 
-Once our code gets bigger, it might be a good idea to _explicitly_ specify what we do want to return.
-This can be done using the `return` keyword.
+Zodra je programma groter wordt, is het wellicht een goed idee om _expliciet_ aan te geven wat we terug willen geven.
+Dit kunnen we doen met het `return` sleutelwoord.
 [source,perl6]
-.Explicit return
+.Expliciete teruggave
 ----
-sub squared ($x) {
+sub kwadrateer ($x) {
   return $x ** 2;
 }
-say "7 squared is equal to " ~ squared(7);
+say "7 gekwadrateerd is gelijk aan " ~ kwadrateer(7);
 ----
-==== Restricting return values
-In one of the previous examples, we saw how we can restrict the accepted argument to be of a certain type.
-The same can be done with return values.
+==== Beperken van mogelijke teruggegeven waarden
+In een van de vorige voorbeelden hebben we gezien dat we parameters kunnen beperken tot een bepaald type.
+Hetzelfde kan worden gedaan met waarden die we teruggeven.
 
-To restrict the return value to a certain type, we either use the `returns` trait or the arrow notation `-\->` in the signature.
-
-[source,perl6]
-.Using the returns trait
-----
-sub squared ($x) returns Int {
-  return $x ** 2;
-}
-say "1.2 squared is equal to " ~ squared(1.2);
-----
+Om de teruggeven waarde te beperken tot een bepaald type kunnen we of de `returns` eigenschap gebruiken, of de pijlnotatie `-\->` in de signatuur gebruiken.
 
 [source,perl6]
-.Using the arrow
+.Gebruik van de returns eigenschap
 ----
-sub squared ($x --> Int) {
+sub kwadrateer ($x) returns Int {
   return $x ** 2;
 }
-say "1.2 squared is equal to " ~ squared(1.2);
+say "1.2 gekwadrateerd is gelijk aan " ~ kwadrateer(1.2);
 ----
-If we fail to provide a return value that matches the type constraint, an error will be thrown.
+
+[source,perl6]
+.Gebruik van de pijlnotatie
+----
+sub kwadrateer ($x --> Int) {
+  return $x ** 2;
+}
+say "1.2 gekwadrateerd is gelijk aan " ~ kwadrateer(1.2);
+----
+Als we niet een waarde voor teruggave van het juiste type aangeven, zal er een foutmelding worden geproduceerd.
 
 ----
 Type check failed for return value; expected Int but got Rat (1.44)
@@ -1368,25 +1368,25 @@ Type check failed for return value; expected Int but got Rat (1.44)
 
 [TIP]
 ====
-Not only can type constraints control the type of the return value; they can also control its definedness.
+We kunnen niet alleen de typebeperking van de teruggeven waarde controleren; we kunnen ook laten controleren of het gedefinieerd is.
 
-In the previous examples, we specified that the return value should be an `Int`, irrespective of its definedness.
-Alternatively we could have specified that the returned `Int` should be strictly defined or undefined using the following signatures: +
-`--> Int:D` and `--> Int:U`
+In het vorige voorbeeld gaven we aan dat de teruggegeven waarde een `Int` most zijn, zonder iets te zeggen over het wel of niet gedefinieerd zijn.
+We zouden ook hebben kunnen aangeven dat de teruggegeven `Int` wel of niet gedefinieerd moet zijn, met de volgende signaturen: +
+`--> Int:D` en `--> Int:U`
 
-That being said, it is good practice to use those type constraints. +
-Below is the modified version of the previous example that uses `:D` to force the returned  `Int` to be defined.
+Het is een goede gewoonte om dit soort typebeperkingen te gebruiken. +
+Hieronder is een aangepaste versie van het vorige voorbeeld die `:D` gebruikt om aan te geven dat de teruggegeven `Int` gedefinieerd moet zijn.
 
 [source,perl6]
 ----
-sub squared ($x --> Int:D) {
+sub kwadrateer ($x --> Int:D) {
   return $x ** 2;
 }
-say "1.2 squared is equal to " ~ squared(1.2);
+say "1.2 gekwadrateerd is gelijk aan " ~ kwadrateer(1.2);
 ----
 ====
 
-NOTE: For more info on subroutines and functions, see https://docs.perl6.org/language/functions
+NOTE: Zie https://docs.perl6.org/language/functions voor meer informatie over subroutines en functies.
 
 == Functional Programming
 In this chapter we will take a look at some of the functionality that facilitates Functional Programming.
