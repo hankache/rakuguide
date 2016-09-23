@@ -1452,73 +1452,73 @@ my $kwadrateer = -> $x {
 say $kwadrateer(9);
 ----
 
-=== Chaining
-In Perl 6, methods can be chained, you no longer have to pass the result of a method to another one as an argument.
+=== Aankoppelen
+In Perl 6 kun je methoden aan elkaar koppelen, zodat je niet langer het resultaat van de aanroep van de ene subroutine als een argument aan een andere hoeft te geven.
 
-Lets consider that you are provided with an array of values.
-You are asked to return the unique values of this array, sorted from biggest to smallest.
+Laten we het geval bekijken waarbij we een array met waarden kregen.
+Je wordt gevraagd om alle unieke (maar een keer voorkomende) waarden uit het array te halen en te sorteren van hoog naar laag.
 
-You might try to solve the problem by writing something close to this:
+Je zou dit probleem kunnen oplossen door iets te schrijven als:
 [source,perl6]
 ----
 my @array = <7 8 9 0 1 2 4 3 5 6 7 8 9>;
-my @final-array = reverse(sort(unique(@array)));
-say @final-array;
+my @resultaat = reverse(sort(unique(@array)));
+say @resultaat;
 ----
-First we call the `unique` function on `@array` then we pass the result as an argument to `sort` and then we pass the result of sorting to `reverse`.
+Eerst roepen we de `unique` functie aan op `@array`.  Het resultaat daarvan geven we als argument aan `sort` en dan geven we het resultaat daarvan door aan `reverse`.
 
-In contrast with the above example, chaining methods is allowed in Perl 6. +
-The above example can be written as following, taking advantage of *method chaining*:
+In tegenstelling tot bovenstaand voorbeeld mag je methodes aan elkaar koppelen in Perl 6. +
+Bovenstaand voorbeeld kan dus als volgt worden geschreven, waarbij we gebruik maken van het *aankoppelen van methoden* (method chaining):
 
 [source,perl6]
 ----
 my @array = <7 8 9 0 1 2 4 3 5 6 7 8 9>;
-my @final-array = @array.unique.sort.reverse;
-say @final-array;
+my @resultaat = @array.unique.sort.reverse;
+say @resultaat;
 ----
 
-You can already see that chaining methods is _easier on the eye_.
+Je kunt zien dat het aankoppelen van methoden _veel beter leest_.
 
-=== Feed Operator
-The *feed operator*, called _pipe_ in some functional programming languages, yields yet a better visualization of method chaining.
+=== Aanvoer Operator
+De *aanvoer operator*, ook wel _pipe_ genoemd in sommige functioneel programmeertalen, geeft een nog beter visualisatie van het aankoppelen van methoden.
 [source,perl6]
-.Forward Feed
+.Voorwaardse Aanvoer
 ----
 my @array = <7 8 9 0 1 2 4 3 5 6 7 8 9>;
 @array ==> unique()
        ==> sort()
        ==> reverse()
-       ==> my @final-array;
-say @final-array;
+       ==> my @resultaat;
+say @resultaat;
 ----
 
-.Explanation
+.Uitleg
 ----
-Start with `@array` then return a list of unique elements
-                    then sort it
-                    then reverse it
-                    then store the result in @final-array
+Start met `array` en geef een lijst van unieke elementen
+                  en sorteer dat
+                  en keer de volgorde om
+                  en sla het resultaat daarvan op in @resultaat
 ----
-As you can see the flow of the method calls is top-down.
+Zoals je kunt zien is de volgorde van de aanroepen van de methoden van voor naar achter.
 
 
 [source,perl6]
-.Backward Feed
+.Achterwaardse Aanvoer
 ----
 my @array = <7 8 9 0 1 2 4 3 5 6 7 8 9>;
-my @final-array-v2 <== reverse()
-                   <== sort()
-                   <== unique()
-                   <== @array;
-say @final-array-v2;
+my @resultaat <== reverse()
+              <== sort()
+              <== unique()
+              <== @array;
+say @resultaat;
 ----
 
-.Explanation
-The backward feed is like the forward feed, but written in reverse. +
-The flow of the method calls is bottom-up.
+.Uitleg
+De achterwaardse aanvoer is net als de voorwaardse aanvoer, maar dan andersom. +
+De volgorde van de aanroepen van de methoden is van achteren naar voren.
 
-=== Hyper operator
-The *hyper operator* `>>.` will call a method on all elements of a list and return a list of all results.
+=== Hyper Operator
+De *hyper operator* `>>.` roept de methode aan op elke element van een lijst en geeft een lijst terug met het resultaat van die aanroepen.
 [source,perl6]
 ----
 my @array = <0 1 2 3 4 5 6 7 8 9 10>;
@@ -1528,10 +1528,14 @@ say @array>>.is-prime;
 say @array>>.&is-even;
 ----
 
-Using the hyper operator we can call methods already defined in Perl 6, e.g. `is-prime` that tells us if a number is prime or not. +
-In addition we can define new subroutines and call them using the hyper operator. In this case we have to prepend `&` to the name of the method. E.g. `&is-even`
+Met de hyper operator kunnen we methoden aanroepen die standaar al in Perl 6 zijn gedefinieerd, zoals `is-prime` dat ons vertelt of een getal een priemgetal is of niet. +
+Daarnaast kun je nieuwe subroutines definieren en ze aanroepen met de hyper operator.  In dat geval moeten we een `&` voor de naam plaatsen, bijvoorbeeld `is-even`
 
-This is very practical as it relieves us from writing a `for` loop to iterate over each value.
+Dit is erg practisch want daardoor hoeven we geen `for` lus te schrijven om over elk element te itereren.
+
+WARNING: Perl 6 garandeert dat de volgorde van de resultaten hetzelfde is als de volgorde van de originele waarden. +
+Maar er is *geen garantie* dat Perl 6 de methoden in de zelfde volgorde of in dezelfde thread zal uitvoeren. +
+Men moet dus voorzichtig zijn bij het aanroepen van methoden met neveneffecten, zoals `say` (waarbij het neveneffect het tonen van de waarden is).
 
 === Junctions
 A *junction* is a logical superposition of values.
