@@ -417,12 +417,12 @@ Een scalar kan 1 waarde bevatten.
 [source,perl6]
 ----
 #String
-my $naam = 'John Doe';
+my $naam = 'Jan Jansen';
 say $naam;
 
 #Integer
-my $age = 99;
-say $age;
+my $leeftijd = 99;
+say $leeftijd;
 ----
 
 Afhankelijk van het type waarde dat een scalar bevat, kun je daar bepaalde operaties op uitvoeren.
@@ -430,16 +430,16 @@ Afhankelijk van het type waarde dat een scalar bevat, kun je daar bepaalde opera
 [source,perl6]
 .String
 ----
-my $naam = 'John Doe';
+my $naam = 'Jan Jansen';
 say $naam.uc;
 say $naam.chars;
 say $naam.flip;
 ----
 
 ----
-JOHN DOE
-8
-eoD nhoJ
+JAN JANSEN
+10
+nesnaJ naJ
 ----
 
 NOTE: Bekijk https://docs.perl6.org/type/Str voor de complete lijst van methoden die men op een string kan uitvoeren.
@@ -447,8 +447,8 @@ NOTE: Bekijk https://docs.perl6.org/type/Str voor de complete lijst van methoden
 [source,perl6]
 .Integer
 ----
-my $age = 17;
-say $age.is-prime;
+my $leeftijd = 17;
+say $leeftijd.is-prime;
 ----
 
 ----
@@ -460,10 +460,10 @@ NOTE: Bekijk https://docs.perl6.org/type/Int voor de complete lijst van methoden
 [source,perl6]
 .Rational Number
 ----
-my $age = 2.3;
-say $age.numerator;
-say $age.denominator;
-say $age.nude;
+my $leeftijd = 2.3;
+say $leeftijd.numerator;
+say $leeftijd.denominator;
+say $leeftijd.nude;
 ----
 
 ----
