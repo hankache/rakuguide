@@ -1536,6 +1536,10 @@ In addition we can define new subroutines and call them using the hyper operator
 
 This is very practical as it relieves us from writing a `for` loop to iterate over each value.
 
+WARNING: Perl 6 will guarantee that the order of the results is the same as the order of the original values. +
+But there is *no guarantee* that Perl 6 will actually call the methods in the same order or in the same thread. +
+So be careful with methods that have side-effects, such as `say` (where the side-effect is displaying the values).
+
 === Junctions
 A *junction* is a logical superposition of values.
 
