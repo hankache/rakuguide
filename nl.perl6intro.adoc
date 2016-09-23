@@ -1388,68 +1388,68 @@ say "1.2 gekwadrateerd is gelijk aan " ~ kwadrateer(1.2);
 
 NOTE: Zie https://docs.perl6.org/language/functions voor meer informatie over subroutines en functies.
 
-== Functional Programming
-In this chapter we will take a look at some of the functionality that facilitates Functional Programming.
+== Functioneel Programmeren
+In dit hoofdstuk gaan we kijken naar een aantal functionaliteiten die men kan gebruiken voor Functioneel Programmeren.
 
-=== Functions are first-class citizens
-Functions/subroutines are first-class citizens:
+=== Functies zijn ook objecten.
+Functies en subroutines zijn ook objecten, net als alle andere:
 
-* They can be passed as an argument
+* Ze kunnen worden doorgegeven als argument aan een subroutine
 
-* They can be returned from another function
+* Ze kunnen worden teruggegeven als waarde door een subroutine
 
-* They can be assigned to a variable
+* Ze kunnen worden toegekend aan een variabele
 
-A great example to demonstrate this concept is the `map` function. +
-`map` is a *higher order function*, it accepts another function as an argument.
+Een prachtig voorbeeld om dit concept te demonstreren is de `map` functie. +
+`map` is een zogenaamde *hogere orde functie*, want het accepteert een andere functie als argument.
 
 [source,perl6]
 .Script
 ----
 my @array = <1 2 3 4 5>;
-sub squared($x) {
+sub kwadrateer($x) {
   $x ** 2
 }
-say map(&squared,@array);
+say map(&kwadrateer,@array);
 ----
 
-.Output
+.Uitvoer
 ----
 (1 4 9 16 25)
 ----
 
-.Explanation
-We defined a subroutine called `squared`, it will take to the power of two any number provided as argument. +
-Next, we used `map`, a higher order function and gave it two arguments, a subroutine and an array. +
-The result is a list of all squared elements of the array.
+.Uitleg
+We hebben een subroutine `kwadrateer` gedefinieerd die het argument tot de tweede macht verheft. +
+Vervolgens hebben we `map` aangeroepen met twee argumenten: een subroutine en een array. +
+Het resultaat is dat alle elementen van het array zijn gekwadrateerd.
 
-Notice that when passing a subroutine as an argument, we need to prepend `&` to its name.
+Merk op dat als we een subroutine als argument willen doorgeven, we een `&` voor de naam moeten zetten.
 
-=== Closures
-All code objects in Perl 6 are closures, which means they can reference lexical variables from an outer scope.
+=== Closure
+Alle code objecten in Perl 6 zijn zogenaamde `closures`, hetgeen betekent dat ze kunnen refereren aan lokale variabelen die zichtbaar zijn buiten het directe eigen bereik.
 
-=== Anonymous functions
-An *anonymous function* is also called a *lambda*. +
-An anonymous function is not bound to an identifier (it has no name).
+=== Anonieme Functies
+Een *anonieme functie* wordt ook wel een *lambda* genoemd. +
+Een anonieme functie is niet bekend onder een naam (want die heeft het niet).
 
-Let's rewrite the `map` example using an anonymous function
+Laten we het `map` voorbeeld herschrijven met een anonieme functie
 [source,perl6]
 ----
 my @array = <1 2 3 4 5>;
 say map(-> $x {$x ** 2},@array);
 ----
-Notice that instead of declaring the subroutine and passing it as an argument to `map`, we defined it directly within. +
-The anonymous subroutine `\-> $x {$x ** 2}` has no handle and cannot be called.
+Merk op dat in plaats van een subroutine te declareren en het door middel van de naam als argument aan `map` door te geven, we het direct in de aanroep definieren. +
+De anonieme subroutine `\-> $x { $x ** 2 }` can niet als zodanig worden aangeroepen want het heeft geen naam.
 
-In Perl 6 parlance we call this notation  a *pointy block*
+In Perl 6 noemen we deze notatie een *pointy block*
 
 [source,perl6]
-.A pointy block may also be used to assign functions to variables:
+.Een pointy block kan ook aan een variabele worden toegekend:
 ----
-my $squared = -> $x {
+my $kwadrateer = -> $x {
   $x ** 2
 }
-say $squared(9);
+say $kwadrateer(9);
 ----
 
 === Chaining
