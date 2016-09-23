@@ -1005,7 +1005,7 @@ with $var {
 
 `without` is de ontkennende versie van `with`.  Net als `unless` van `if`.
 
-Indien de eerste `with` niet waar is, dan kan men een alternatief bereik aangeven met `orwith`. +
+Als de eerste `with` niet waar is, dan kan men een alternatief bereik aangeven met `orwith`. +
 Je kunt `with` en `orwith` zien als een soort `if` en `elsif`.
 
 === for
@@ -1104,7 +1104,7 @@ $name = get;
 say "Welkom bij Perl 6, beste $naam";
 ----
 
-Indien je bovenstaande code uitvoert zal de terminal wachten tot je je naam intypt en op [Enter] drukt.
+Als je bovenstaande code uitvoert zal de terminal wachten tot je je naam intypt en op [Enter] drukt.
 Vervolgens zal het je begroeten.
 
 ==== prompt
@@ -1247,83 +1247,84 @@ Het vorige voorbeeld laat een subroutine zien die geen invoer nodig heeft.
 
 === Signatuur
 Veel subroutines hebben een vorm van invoer nodig om hun werk te kunnen doen.  Die invoer wordt gegeven door *argumenten*.
-Het aantal en type van de 
-The number and type of arguments that this subroutine accepts is called its *signature*.
+Een subroutine mag 0 of meer *parameters* definieren.
+Het aantal en het type van de parameters die door een subroutine worden gedefinieerd, noemen we *signatuur*
 
-The below subroutine accepts a string argument.
+Onderstaande subroutine accepteert een string argument.
 
 [source,perl6]
 ----
-sub say-hello (Str $name) {
-    say "Hello " ~ $name ~ "!!!!"
+sub zeg-hallo (Str $naam) {
+    say "Hallo " ~ $naam ~ "!!!!"
 }
-say-hello "Paul";
-say-hello "Paula";
+zeg-hallo "Paul";
+zeg-hallo "Paula";
 ----
 
 === Multiple dispatch
-It is possible to define multiple subroutines having the same name but different signatures.
-When the subroutine is called, the runtime environment will decide which version to use depending on the number and type of the supplied arguments.
-This type of subroutines is defined the same way as normal subs with the exception of swapping the `sub` keyword with `multi`.
+Het is mogelijk om meer dan een subroutine met dezelfde naam, maar met een verschillende signatuur, te definieren.
+
+Op het moment dat de subroutine wordt aangeroepen, zal de uitvoerder besluiten welke versie van de subroutine werkelijk zal worden aangeroepen, afhankelijk van het aantal en het type van de gegeven argumenten.
+Dit soort subroutines wordt op dezelfde manier gedefinieerd als normale subroutines, maar in plaats van `sub` worden ze gedefinieerd met `multi`.
 
 [source,perl6]
 ----
-multi greet($name) {
-    say "Good morning $name";
+multi groet($naam) {
+    say "Good morning $naam";
 }
-multi greet($name, $title) {
-    say "Good morning $title $name";
+multi groet($naam, $titel) {
+    say "Good morning $titel $naam";
 }
 
-greet "Johnnie";
-greet "Laura","Mrs.";
+groet "Johnnie";
+groet "Laura","Mevr.";
 ----
 
-=== Default and Optional Arguments
-If a subroutine is defined to accept an argument, and we call it without providing it with the required argument, it will fail.
+=== Default end Optionele Parameters
+Als een siubroutine is gedefinieerd om een argument te acceptern en we roepen het aan zonder dat benodigde argument, dan zal er een fout optreden.
 
-Alternatively Perl 6 provides us the ability to define subroutines with:
+Als alternatief biedt Perl 6 de mogelijk om subroutines te definieren met:
 
-* Optional Arguments
-* Default Arguments
+* Optionele Parameters
+* Parameters met een default waarde
 
-Optional arguments are defined by appending `?` to the argument name.
+Je kunt een optionele parameter aangeven door een `?` achter de naam te plaatsen.
 
 [source,perl6]
 ----
-sub say-hello($name?) {
-  with $name { say "Hello " ~ $name }
-  else { say "Hello Human" }
+sub zeg-hallo($naam?) {
+  with $naam { say "Hallo " ~ $naam }
+  else { say "Hallo Mens" }
 }
-say-hello;
-say-hello("Laura");
+zeg-hallo;
+zeg-hallo("Laura");
 ----
 
-If the user doesn't supply an argument, it can default to a specific value. +
-This is done by assigning a value to the argument within the subroutine definition.
+Als de gebruiker een bepaald argument niet meegeeft, dan wordt de eventuele default waarde van de parameter gebruikt. +
+Dit wordt aangegeven door een waarde toe te wijzen aan de parameter in de definitie van de subroutine.
 
 [source,perl6]
 ----
-sub say-hello($name="Matt") {
-  say "Hello " ~ $name;
+sub zeg-hallo($naam="Mens") {
+  say "Hallo " ~ $naam;
 }
-say-hello;
-say-hello("Laura");
+zeg-hallo;
+zeg-hallo("Laura");
 ----
 
-=== Returning values
-All the subroutines we saw so far *do something*, they display some text on the terminal.
+=== Teruggeven van waarden
+Alle subroutines die we tot nu toe hebben gezien *doen iets* en laten dan het resultaat op het scherm zien.
 
-While this is perfectly normal, sometimes we do want a subroutine to *return* some kind of value that we can reuse later in the flow of our program.
+Ook al is dit heel normaal, soms willen we dat een subroutine een waarde *teruggeeft* dat we later in het programma kunnen gebruiken.
 
-Under normal circumstances, the last line of code of a subroutine is considered to be the return value.
+Onder normal omstandigheden is de waarde van de laatste regel van een subroutine de waarde die door de subroutine terug wordt gegeven.
 [source,perl6]
-.Implicit return
+.Impliciet teruggeven
 ----
-sub squared ($x) {
+sub kwadrateer ($x) {
   $x ** 2;
 }
-say "7 squared is equal to " ~ squared(7);
+say "7 gekwadrateerd is gelijk aan " ~ kwadrateer(7);
 ----
 
 Once our code gets bigger, it might be a good idea to _explicitly_ specify what we do want to return.
