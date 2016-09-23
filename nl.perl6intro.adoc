@@ -243,14 +243,14 @@ Gebruik altijd dubbele aanhalingstekens:
 * indien de string een variabele bevat die geinterpoleerd moet worden.
 
 [source,perl6]
------------------------------------
-say 'Hello World';   # Hello World
-say "Hello World";   # Hello World
-say "Don't";         # Don't
-my $name = 'John Doe';
-say 'Hello $name';   # Hello $name
-say "Hello $name";   # Hello John Doe
------------------------------------
+---------------------------------------
+say 'Hallo Wereld';   # Hallo Wereld
+say "Hallo Wereld";   # Hallo Wereld
+say "Doe 't niet";    # Doe 't niet
+my $naam = 'Jan Jansen';
+say 'Hallo $naam';   # Hallo $naam
+say "Hallo $naam";   # Hallo Jan Jansen
+---------------------------------------
 
 == Operatoren
 
@@ -417,8 +417,8 @@ Een scalar kan 1 waarde bevatten.
 [source,perl6]
 ----
 #String
-my $name = 'John Doe';
-say $name;
+my $naam = 'John Doe';
+say $naam;
 
 #Integer
 my $age = 99;
@@ -430,10 +430,10 @@ Afhankelijk van het type waarde dat een scalar bevat, kun je daar bepaalde opera
 [source,perl6]
 .String
 ----
-my $name = 'John Doe';
-say $name.uc;
-say $name.chars;
-say $name.flip;
+my $naam = 'John Doe';
+say $naam.uc;
+say $naam.chars;
+say $naam.flip;
 ----
 
 ----
@@ -1099,7 +1099,7 @@ Men kan `get` gebruiken om invoer van de terminal te krijgen.
 my $naam;
 
 say "Hoi, hoe heet je?";
-$name = get;
+$naam = get;
 
 say "Welkom bij Perl 6, beste $naam";
 ----
