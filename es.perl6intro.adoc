@@ -1228,7 +1228,8 @@ El ejemplo anterior es una subrutina sin entrada de datos.
 
 === Signatura
 Muchas subrutinas utilizan *argumentos* de entrada para trabajar con ellos.
-El número y tipo de argumentos que acepta una subrutina se denomina su *signatura*.
+Una subrutina puede definir ninguno o varios *parámetros*.
+La signatura de una subrutina es el número y el tipo de los parámetros que puede definir.
 
 La siguiente subrutina acepta un argumento de tipo string.
 
@@ -1259,15 +1260,15 @@ saludo "Juanito";
 saludo "Laura","Srta.";
 ----
 
-=== Argumentos por defecto y opcionales
+=== Parámetros por defecto y opcionales
 Tendremos un error si se define una subrutina para aceptar un argumento y éste no es proporcionado.
 
 Con Perl 6 podemos definir subrutinas con:
 
-* Argumentos opcionales
-* Argumentos por defecto
+* Parámetros opcionales
+* Parámetros por defecto
 
-Un argumento opcional se define añadiendo `?` al nombre del argumento.
+Un parámetro opcional se define añadiendo `?` al nombre del parámetro.
 
 [source,perl6]
 ----
@@ -1278,7 +1279,7 @@ sub di-hola($nombre?) {
 di-hola;
 di-hola("Laura");
 ----
-Si no se proporciona un argumento, puede definirse uno por defecto asignándole un valor en la definición de la subrutina.
+Si no se proporciona un argumento, puede definirse uno por defecto asignándole un valor al parámetro en la definición de la subrutina.
 
 [source,perl6]
 ----
@@ -1705,7 +1706,7 @@ Esto es debido a que `$!edad` es un atributo privado y solo puede utilizarse des
 
 Sustituye `has $!edad` por `has $.edad` y comprueba el resultado de `say $juan.edad;`
 
-=== Argumentos Posicionales vs. Argumentos con nombre
+=== Parámetros Posicionales vs. Parámetros con nombre
 En Perl 6 todas las clases heredan un constructor `.new()` por defecto que puede utilizarse para crear objetos proporcionando argumentos. +
 El constructor por defecto solo acepta *argumentos con nombre*. +
 Como puedes ver en el ejemplo que vimos antes, los argumentos que tiene `.new()` están definidos con un nombre:
@@ -2890,6 +2891,6 @@ NOTE: En https://docs.perl6.org/language/concurrency tienes más información so
 == La Comunidad
 * En el canal de IRC link:irc://irc.freenode.net/#perl6[#perl6] encontrarás el lugar principal para hablar de Perl 6. Consulta: https://perl6.org/community/irc si tienes dudas.
 
-* Mantente al día con los blogs que tratan de Perl 6 en link:http://pl6anet.org[pl6anet]. 
+* Mantente al día con los blogs que tratan de Perl 6 en link:http://pl6anet.org[pl6anet].
 
 * Suscríbete en el apartado de Perl6 de Reddit clicando en link:https://www.reddit.com/r/perl6/[/r/perl6].
