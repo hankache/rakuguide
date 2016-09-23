@@ -1237,7 +1237,7 @@ Bekijk onderstaand voorbeeld:
 [source,perl6]
 ----
 sub buitenaardse-groet {
-  say "Hallo aardlingen";
+    say "Hallo aardlingen";
 }
 
 buitenaardse-groet;
@@ -1293,8 +1293,8 @@ Je kunt een optionele parameter aangeven door een `?` achter de naam te plaatsen
 [source,perl6]
 ----
 sub zeg-hallo($naam?) {
-  with $naam { say "Hallo " ~ $naam }
-  else { say "Hallo Mens" }
+    with $naam { say "Hallo " ~ $naam }
+    else { say "Hallo Mens" }
 }
 zeg-hallo;
 zeg-hallo("Laura");
@@ -1306,7 +1306,7 @@ Dit wordt aangegeven door een waarde toe te wijzen aan de parameter in de defini
 [source,perl6]
 ----
 sub zeg-hallo($naam="Mens") {
-  say "Hallo " ~ $naam;
+    say "Hallo " ~ $naam;
 }
 zeg-hallo;
 zeg-hallo("Laura");
@@ -1322,7 +1322,7 @@ Onder normal omstandigheden is de waarde van de laatste regel van een subroutine
 .Impliciet teruggeven
 ----
 sub kwadrateer ($x) {
-  $x ** 2;
+    $x ** 2;
 }
 say "7 gekwadrateerd is gelijk aan " ~ kwadrateer(7);
 ----
@@ -1333,7 +1333,7 @@ Dit kunnen we doen met het `return` sleutelwoord.
 .Expliciete teruggave
 ----
 sub kwadrateer ($x) {
-  return $x ** 2;
+    return $x ** 2;
 }
 say "7 gekwadrateerd is gelijk aan " ~ kwadrateer(7);
 ----
@@ -1347,7 +1347,7 @@ Om de teruggeven waarde te beperken tot een bepaald type kunnen we of de `return
 .Gebruik van de returns eigenschap
 ----
 sub kwadrateer ($x) returns Int {
-  return $x ** 2;
+    return $x ** 2;
 }
 say "1.2 gekwadrateerd is gelijk aan " ~ kwadrateer(1.2);
 ----
@@ -1356,7 +1356,7 @@ say "1.2 gekwadrateerd is gelijk aan " ~ kwadrateer(1.2);
 .Gebruik van de pijlnotatie
 ----
 sub kwadrateer ($x --> Int) {
-  return $x ** 2;
+    return $x ** 2;
 }
 say "1.2 gekwadrateerd is gelijk aan " ~ kwadrateer(1.2);
 ----
@@ -1380,7 +1380,7 @@ Hieronder is een aangepaste versie van het vorige voorbeeld die `:D` gebruikt om
 [source,perl6]
 ----
 sub kwadrateer ($x --> Int:D) {
-  return $x ** 2;
+    return $x ** 2;
 }
 say "1.2 gekwadrateerd is gelijk aan " ~ kwadrateer(1.2);
 ----
@@ -1408,7 +1408,7 @@ Een prachtig voorbeeld om dit concept te demonstreren is de `map` functie. +
 ----
 my @array = <1 2 3 4 5>;
 sub kwadrateer($x) {
-  $x ** 2
+    $x ** 2
 }
 say map(&kwadrateer,@array);
 ----
@@ -1447,7 +1447,7 @@ In Perl 6 noemen we deze notatie een *pointy block*
 .Een pointy block kan ook aan een variabele worden toegekend:
 ----
 my $kwadrateer = -> $x {
-  $x ** 2
+    $x ** 2
 }
 say $kwadrateer(9);
 ----
