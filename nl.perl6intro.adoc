@@ -1537,91 +1537,91 @@ WARNING: Perl 6 garandeert dat de volgorde van de resultaten hetzelfde is als de
 Maar er is *geen garantie* dat Perl 6 de methoden in de zelfde volgorde of in dezelfde thread zal uitvoeren. +
 Men moet dus voorzichtig zijn bij het aanroepen van methoden met neveneffecten, zoals `say` (waarbij het neveneffect het tonen van de waarden is).
 
-=== Junctions
-A *junction* is a logical superposition of values.
+=== Juncties
+Een *junctie* is een logische superpositie van waarden.
 
-In the below example `1|2|3` is a junction.
+In onderstaand voorbeeld is `1|2|3` een junctie.
 [source,perl6]
 ----
 my $var = 2;
 if $var == 1|2|3 {
-  say "The variable is 1 or 2 or 3"
+    say "De variabele is 1 of 2 of 3"
 }
 ----
-The use of junctions usually triggers *autothreading*;
-the operation is carried out for each junction element, and all the results are combined into a new junction and returned.
+Het gebruik van juncties zorgt meestal voor zogenaamde *autothreading*;
+een opdracht wordt voor elk element van de junctie uitgevoerd en de resultaten daarvan worden in een nieuwe junctie opgeslagen en teruggegeven.
 
-=== Lazy Lists
-A *lazy list* is a list that is lazily evaluated. +
-Lazy evaluation delays the evaluation of an expression until required, and avoids repeating evaluations by storing results in a lookup table.
+=== Luie Lijsten
+Een *luie lijst* is een lijst die lamlendig wordt geevalueerd. +
+Lamlendig evalueren stelt de evaluatie van een expressie uit totdat deze echt nodig is en probeert herhaalde evaluaties te voorkomen door resultaten op te slaan.
 
-The benefits include:
+De voordelen zijn:
 
-* Performance increase by avoiding needless calculations
+* Verbeterde prestaties doordat onnodige berekening worden vermeden
 
-* The ability to construct potentially infinite data structures
+* De mogelijkheid om potentieel oneindige datastructuren aan te maken
 
-* The ability to define control flow
+* De mogelijkheid om de besturingsstroom te definieren
 
-To build a lazy list we use the infix operator `...` +
-A lazy list has *initial element(s)*, a *generator* and an *endpoint*.
-
-[source,perl6]
-.Simple lazy list
-----
-my $lazylist = (1 ... 10);
-say $lazylist;
-----
-The initial element is 1 and the endpoint is 10. No generator was defined so the default generator is the successor (+1) +
-In other words this lazy list may return (if requested) the following elements (1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+Om een luie lijst te maken gebruiken we de `...` infix operator. +
+Een luie lijst heeft een of meer *startelementen*, een *generator* en een *eindpunt*.
 
 [source,perl6]
-.Infinite lazy list
+.Simpele luie lijst
 ----
-my $lazylist = (1 ... Inf);
-say $lazylist;
+my $luielijst = (1 ... 10);
+say $luielijst;
 ----
-This list may return (if requested) any integer between 1 and infinity, in other words any integer number.
+Het start element is 1 en het eindpunt is 10.  Er is geen generator aangegeven, dus de default generator wordt gebruikt (+1). +
+In andere woorden, deze luie lijst zal de volgende waarden teruggeven (indien daarom wordt gevraagd): (1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
 
 [source,perl6]
-.Lazy list built using a deduced generator
+.Oneindige luie lijst
 ----
-my $lazylist = (0,2 ... 10);
-say $lazylist;
+my $luielijst = (1 ... Inf);
+say $luielijst;
 ----
-The initial elements are 0 and 2 and the endpoint is 10.
-No generator was defined, but using the initial elements, Perl 6 will deduce that the generator is (+2) +
-This lazy list may return (if requested) the following elements (0, 2, 4, 6, 8, 10)
+Deze luie lijst kan een getal tussen 1 en oneindig geven, in andere woorden alle natuurlijke getallen.
 
 [source,perl6]
-.Lazy list built using a defined generator
+.Luie lijst met een afgeleide generator
 ----
-my $lazylist = (0, { $_ + 3 } ... 12);
-say $lazylist;
+my $luielijst = (0,2 ... 10);
+say $luielijst;
 ----
-In this example, we defined explicitly a generator enclosed in `{ }` +
-This lazy list may return (if requested) the following elements (0, 3, 6, 9, 12)
+The startelementen zijn 0 en 2 en het eindpunt is 10.
+Er is geen generator aangegeven, maar door de aangegeven startelementen kan Perl 6 deduceren dat de generator (+2) is +
+Deze luie lijst zal de volgende waarden teruggeven (indien daarom wordt gevraagd): (0, 2, 4, 6, 8, 10)
+
+[source,perl6]
+.Luie lijst met een specifieke generator
+----
+my $luielijst = (0, { $_ + 3 } ... 12);
+say $luielijst;
+----
+In dit voorbeeld specificeren we expliciet een generator tussen `{ }` +
+Deze luie lijst zal de volgende waarden teruggeven (indien daarom wordt gevraagd): (0, 3, 6, 9, 12)
 
 [WARNING]
 ====
-When using an explicit generator, the endpoint must be one of the values that the generator can return. +
-If we reproduce the above example with the endpoint being 10 instead of 12, it will not stop.
-The generator _jumps over_ the endpoint.
+Indien men een expliciete generator specificeert moet het eindpunt een van de waarden zijn die door de generator terug kan worden gegeven. +
+Als we in bovenstaand voorbeeld het eindpunt vervangen door 10 in plaats van 12, dan zal de generator nooit stoppen.
+De generator springt dan _over_ het eindpunt.
 
-Alternatively you can replace `0 ... 10` with `0 ...^ * > 10` +
-You can read it as: From 0 until the first value greater than 10 (excluding it)
+In plaats van `0 ...^ * > 10` kun je ook `0 ... 10` schrijven +
+Je kunt dat lezen als: vanaf 0 tot de eerste waarde die groter is dan 10 (maar sluit die dan uit)
 [source,perl6]
-.This will not stop the generator
+.Deze generator zal nooit stoppen
 ----
-my $lazylist = (0, { $_ + 3 } ... 10);
-say $lazylist;
+my $luielijst = (0, { $_ + 3 } ... 10);
+say $luielijst;
 ----
 
 [source,perl6]
-.This will stop the generator
+.Deze generator zal wel stoppen
 ----
-my $lazylist = (0, { $_ + 3 } ...^ * > 10);
-say $lazylist;
+my $luielijst = (0, { $_ + 3 } ...^ * > 10);
+say $luielijst;
 ----
 ====
 
