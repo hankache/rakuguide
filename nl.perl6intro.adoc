@@ -553,7 +553,7 @@ Het is niet mogelijk om een vierde waarde aan dit array toe te voegen:
 my @array[3];
 @array[0] = "eerste waarde";
 @array[1] = "tweede waarde";
-@array[2] = "derde waarde
+@array[2] = "derde waarde";
 @array[3] = "vierde waarde";
 ----
 
