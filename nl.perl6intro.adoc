@@ -1625,94 +1625,94 @@ say $luielijst;
 ----
 ====
 
-== Classes & Objects
-In the previous chapter, we learned how Perl 6 facilitates Functional Programming. +
-In this chapter we will take a look at Object Oriented programming in Perl 6.
+== Klassen en Objecten
+In het vorige hoofdstuk hebben we geleerd hoe Perl 6 het gemakkelijker maakt om Functioneel te Programmeren. +
+In dit hoofdstuk gaan we kijken naar het object georienteerd programmeren in Perl 6.
 
 === Inleiding
 
-_Object Oriented_ programming is one of the widely used paradigms nowadays. +
-An *object* is a set of variables and subroutines bundled together. +
-The variables are called *attributes* and the subroutines are called *methods*. +
-Attributes define the *state* and methods define the *behavior* of an object.
+_Object Georienteerd_ Programmeren is een van de programmeerstijl paradigma's die tegenwoordig veel wordt gebruikt. +
+Een *object* is een verzameling van variabelen en subroutines die bij elkaar gevoegd zijn. +
+De variabelen noemen we *attributen* en de subroutines noemen we *methoden*. +
+Attributen bepalen de *staat* van een object, methoden bepalen het *gedrag* van het object.
 
-A *class* defines the structure of a set of *objects*. +
+Een *klasse* definieert de structuur van een verzameling *objecten*. +
 
-In order to understand the relationship consider the below example:
-
-|===
-
-| There are 4 people present in a room | *objects* => 4 people
-
-| These 4 people are humans | *class* => Human
-
-| They have different names, age, sex and nationality | *attributes* => name, age, sex, nationality
+Bijkijk onderstaand voorbeeld om deze relatie beter te begrijpen:
 
 |===
 
-In _object oriented_ parlance, we say that objects are *instances* of a class.
+| Er bevinden zich 4 personen in een kamer | *objecten* => 4 personen
 
-Consider the below script:
+| Deze 4 personen zijn menselijk | *klasse* => Mens
+
+| Ze hebben een allen een naam, leeftijd, geslacht en nationaliteit | *attributen* => naam, leeftijd, geslacht en nationaliteit
+
+|===
+
+In het taalgebruik van _object georienteerd_ programmeren zeggen we dat de objecten *instanties* zijn van een klasse.
+
+Bekijk het onderstaande script:
 [source,perl6]
 ----
-class Human {
-  has $name;
-  has $age;
-  has $sex;
-  has $nationality;
+class Mens {
+  has $.naam;
+  has $.leeftijd;
+  has $.geslacht;
+  has $.nationaliteit;
 }
 
-my $john = Human.new(name => 'John', age => 23, sex => 'M', nationality => 'American');
-say $john;
+my $jan = Mens.new(naam => 'Jan', leeftijd => 23, sex => 'M', nationality => 'American');
+say $jan;
 ----
-The `class` keyword is used to define a class. +
-The `has` keyword is used to define attributes of a class. +
-The `.new()` method is called a *constructor*. It creates the object as an instance of the class it has been called on.
+Met het `class` sleutelwoord definieert men een klasse. +
+Met het `has` sleutelwoord definieert men een attribuut van een klasse. +
+De `.new()` methode wordt een *constructeur* genoemd.  Het maakt een object als een instantie van de klasse waarop het wordt aangeroepen.
 
-In the above script, a new variable `$john` holds a reference to a new instance of "Human" defined by `Human.new()`. +
-The arguments passed to the `.new()` method are used to set the attributes of the underlying object.
+In het bovenstaande script, bevat de variabele `$jan` de nieuwe instantie van "Mens" aangemaakt met `Mens.new()`. +
+De argumenten op naam die we aan de `.new()` methode meegeven, worden gebruikt om de attributen van het nieuwe object te initialiseren.
 
-A class can be given _lexical scope_ using `my`:
+We kunnen een klasse ook een _lexicaal gebied_ geven door middel van `my`:
 [source,perl6]
 ----
-my class Human {
+my class Mens {
 
 }
 ----
 
-=== Encapsulation
-Encapsulation  is an object oriented concept that bundles a set of data and methods together. +
-The data (attributes) within an object should be *private*, in other words, accessible only from within the object. +
-In order to access the attributes from outside the object we use methods that we call *accessors*.
+=== Inkapseling
+Inkapseling is een concept uit het object georienteerd programmeren waarmee we de bundeling van data en methoden aangeven. +
+De gegevens (attributen) binnen een object zouden *prive* moeten zijn.  In andere woorden, alleen maar toegankelijk vanaf binnen in het object. +
+Om toegang te verlenen aan de attributen vanaf buiten het object, gebruiken we methoden die we *accessors* noemen.
 
-The below two scripts have the same result.
+Onderstaande scripts geven hetzelfde resultaat.
 
-.Direct access to the variable:
+.Directe toegang tot een variabele
 [source,perl6]
 ----
 my $var = 7;
 say $var;
 ----
 
-.Encapsulation:
+.Inkapseling
 [source,perl6]
 ----
 my $var = 7;
-sub sayvar {
-  $var;
+sub geef-var {
+    $var;
 }
-say sayvar;
+say geef-var;
 ----
-The method `sayvar` is an accessor. It let us access the value of the variable without getting direct access to it.
+De subroutine `geef-var` kan men als een accessor beschouwen.  Het maakt het mogelijk om aan de waarde van de variabele te komen zonder er direct toegang daarvoor nodig te hebben.
 
-Encapsulation is facilitated in Perl 6 with the use of *twigils*. +
-Twigils are secondary _sigils_. They come between the sigil and the attribute name. +
-Two twigils are used in classes:
+Inkapseling wordt in Perl 6 mogelijk gemaakt door middel van zogenaamde *twigils*. +
+Twigils zijn secondaire _sigils_.  Ze worden tussen de sigil en de naam van het attribuut geplaatst. +
+Bij klassen kunnen twee sigils worden gebruikt:
 
-* `!` is used to explicitly declare that the attribute is private.
-* `.` is used to automatically generate an accessor for the attribute.
+* `!` om aan te geven dat een attribuut prive is.
+* `.` om aan te geven dat een accessor voor de attribuut aangemaakt moet worden.
 
-By default, all attributes are private but it is a good habit to always use the `!` twigil.
+Als men geen twigil meegeeft, is een attribuut prive.  Voor de leesbaarheid is het een goede gewoonte om in zo'n geval altijd de `!` twigil te gebruiken.
 
 In line with what we said we should rewrite the above class as following:
 [source,perl6]
