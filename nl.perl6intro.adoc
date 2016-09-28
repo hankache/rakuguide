@@ -295,9 +295,9 @@ Onderstaande tabel toont de meest voorkomende operatoren.
 
 | >= | Infix | Numeriek groter dan of gelijk aan | 9 >= 7  | True
 
-| eq | Infix | String gelijk | "John" eq "John"  | True
+| eq | Infix | String gelijk | "Jan" eq "Jan"  | True
 
-| ne | Infix | String ongelijk | "John" ne "Jane"  | True
+| ne | Infix | String ongelijk | "Jan" ne "Jolanda"  | True
 
 | = | Infix | Toewijzing | my $var = 7  | Wijst de waarde `7` toe aan de variabele `$var`
 
@@ -1155,10 +1155,10 @@ Maak een tekstbestand aan met de volgende inhoud:
 
 .scores.txt
 ----
-John 9
-Johnnie 7
-Jane 8
-Joanna 7
+Jan 9
+Japie 7
+Jolanda 8
+Jessica 7
 ----
 [source,perl6]
 ----
@@ -1276,7 +1276,7 @@ multi groet($naam, $titel) {
     say "Good morning $titel $naam";
 }
 
-groet "Johnnie";
+groet "Jan";
 groet "Laura","Mevr.";
 ----
 
@@ -1869,7 +1869,7 @@ class Mens {
     has $.naam;
     has $.leeftijd is rw;
 }
-my $jan = Mens.new(naam => 'John', leeftijd => 21);
+my $jan = Mens.new(naam => 'Jann', leeftijd => 21);
 say $jan.leeftijd;
 
 $jan.leeftijd = 23;
