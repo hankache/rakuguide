@@ -1656,13 +1656,13 @@ Bekijk het onderstaande script:
 [source,perl6]
 ----
 class Mens {
-  has $naam;
-  has $leeftijd;
-  has $geslacht;
-  has $nationaliteit;
+    has $naam;
+    has $leeftijd;
+    has $geslacht;
+    has $nationaliteit;
 }
 
-my $jan = Mens.new(naam => 'Jan', leeftijd => 23, sex => 'M', nationality => 'American');
+my $jan = Mens.new(naam => 'Jan', leeftijd => 23, sex => 'M', nationaliteit => 'Nederlands');
 say $jan;
 ----
 Met het `class` sleutelwoord definieert men een klasse. +
@@ -1717,14 +1717,14 @@ Als men geen twigil meegeeft, is een attribuut prive.  Voor de leesbaarheid is h
 Met wat we zojuist gezien hebben, zouden we bovenstaande klasse moeten herschrijven als:
 [source,perl6]
 ----
-class Human {
-  has $!naam;
-  has $!leeftijd;
-  has $!geslacht;
-  has $!nationaliteit;
+class Mens {
+    has $!naam;
+    has $!leeftijd;
+    has $!geslacht;
+    has $!nationaliteit;
 }
 
-my $jan = Mens.new(naam => 'Jan', leeftijd => 23, sex => 'M', nationality => 'American');
+my $jan = Mens.new(naam => 'Jan', leeftijd => 23, sex => 'M', nationaliteit => 'Nederlands');
 say $jan;
 ----
 Voeg het volgende commando to: `say $jan.leeftijd` +
@@ -1734,35 +1734,34 @@ Pogingen om aan het attribuut te komen van buiten het object zal je een foutmeld
 
 Vervang nu `has $!leeftijd` with `has $.leeftijd` en bekijk dan het resultaat van `say $jan.leeftijd;`
 
-=== Named vs. Positional Arguments
-In Perl 6, all classes inherit a default `.new()` constructor. +
-It can be used to create objects by providing it with arguments. +
-The default constructor can only be provided with *named arguments*. +
-If you consider the above example, you'll remark that all the arguments supplied to `.new()` are defined by name:
+=== Argumenten op naam vs. argumenten op positie
+Alle klassen hebben beschikking over een `.new()` constructor` door overerving. +
+Het kan worden gebruikt om objecten aan te maken door het argumenten te geven. +
+De default constructeur accepteert alleen *argumentn op naam*. +
+Als je bovenstaande voorbeelden bekijkt, dan zul je zien dat alle argumenten die we aan `.new()` hebben gegeven, op naam zijn:
 
-* name => 'John'
+* naam => 'Jan'
 
-* age => 23
+* leeftijd => 23
 
-
-What if i do not want to supply the name of each attribute each time i want to create a new object? +
-Then I need to create another constructor that accepts *positional arguments*.
+Wat indien ik niet telkens de naam van elk attribuut wil meegeven als ik een nieuw object wil maken? +
+In dat geval moeten we een andere constructeur maken die *argumenten op positie* accepteert.
 
 [source,perl6]
 ----
-class Human {
-  has $.name;
-  has $.age;
-  has $.sex;
-  has $.nationality;
-  #new constructor that overrides the default one.
-  method new ($name,$age,$sex,$nationality) {
-    self.bless(:$name,:$age,:$sex,:$nationality);
-  }
+class Mens {
+    has $.naam;
+    has $.leeftijd;
+    has $.geslacht;
+    has $.nationaliteit;
+    #nieuwe constructeur die de default constructeur vervangt voor deze klasse
+    method new ($naam,$leeftijd,$geslacht,$nationaliteit) {
+        self.bless(:$naam,:$leeftijd,:$geslacht,:$nationaliteit);
+    }
 }
 
-my $john = Human.new('John',23,'M','American');
-say $john;
+my $jan = Human.new('Jan',23,'M','Nederlands');
+say $jan;
 ----
 
 === Methods
