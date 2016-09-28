@@ -1656,10 +1656,10 @@ Bekijk het onderstaande script:
 [source,perl6]
 ----
 class Mens {
-  has $.naam;
-  has $.leeftijd;
-  has $.geslacht;
-  has $.nationaliteit;
+  has $naam;
+  has $leeftijd;
+  has $geslacht;
+  has $nationaliteit;
 }
 
 my $jan = Mens.new(naam => 'Jan', leeftijd => 23, sex => 'M', nationality => 'American');
@@ -1714,25 +1714,25 @@ Bij klassen kunnen twee sigils worden gebruikt:
 
 Als men geen twigil meegeeft, is een attribuut prive.  Voor de leesbaarheid is het een goede gewoonte om in zo'n geval altijd de `!` twigil te gebruiken.
 
-In line with what we said we should rewrite the above class as following:
+Met wat we zojuist gezien hebben, zouden we bovenstaande klasse moeten herschrijven als:
 [source,perl6]
 ----
 class Human {
-  has $!name;
-  has $!age;
-  has $!sex;
-  has $!nationality;
+  has $!naam;
+  has $!leeftijd;
+  has $!geslacht;
+  has $!nationaliteit;
 }
 
-my $john = Human.new(name => 'John', age => 23, sex => 'M', nationality => 'American');
-say $john;
+my $jan = Mens.new(naam => 'Jan', leeftijd => 23, sex => 'M', nationality => 'American');
+say $jan;
 ----
-Append to the script the following statement: `say $john.age;` +
-It will return the following error: `Method 'age' not found for invocant of class 'Human'` +
-The reason being that `$!age` is private and can only be used within the object.
-Trying to access it outside the object will return an error.
+Voeg het volgende commando to: `say $jan.leeftijd` +
+Het zal de volgende fout geven: `Method 'leeftijd' not found for invocant of class 'Mens'` +
+De reden hiervoor is dat `$!leeftijd` prive is en daardoor alleen maar binnen het object gebruikt kan worden.
+Pogingen om aan het attribuut te komen van buiten het object zal je een foutmelding geven.
 
-Now replace `has $!age` with `has $.age` and see what will be the result of `say $john.age;`
+Vervang nu `has $!leeftijd` with `has $.leeftijd` en bekijk dan het resultaat van `say $jan.leeftijd;`
 
 === Named vs. Positional Arguments
 In Perl 6, all classes inherit a default `.new()` constructor. +
