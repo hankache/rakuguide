@@ -1764,10 +1764,11 @@ my $jan = Human.new('Jan',23,'M','Nederlands');
 say $jan;
 ----
 
-=== Methods
+=== Methoden
 
 ==== Inleiding
-Methods are the _subroutines_ of an object. +
+Methoden zijn de _subroutines_ van een object. +
+Net als subroutines
 Like subroutines, they are a means of packaging a set of functionality, they accept *arguments*, have a *signature* and can be defined as *multi*.
 
 Methods are defined using the `method` keyword. +
@@ -1777,105 +1778,104 @@ The outside world, can only interact with the object methods, and has no access 
 
 [source,perl6]
 ----
-class Human {
-  has $.name;
-  has $.age;
-  has $.sex;
-  has $.nationality;
-  has $.eligible;
-  method assess-eligibility {
-      if self.age < 21 {
-        $!eligible = 'No'
-      } else {
-        $!eligible = 'Yes'
-      }
-  }
-
+class Mens {
+    has $.naam;
+    has $.leeftijd;
+    has $.geslacht;
+    has $.nationaliteit;
+    has $.geschiktheid;
+    method bepaal-geschiktheid
+        if self.leeftijd < 21 {
+            $!geschiktheid = 'Nee'
+        } else {
+            $!geschiktheid = 'Ja'
+        }
+    }
 }
 
-my $john = Human.new(name => 'John', age => 23, sex => 'M', nationality => 'American');
-$john.assess-eligibility;
-say $john.eligible;
+my $jan = Mens.new(naam => 'Jan', leeftijd => 23, geslacht => 'M', nationaliteit => 'Nederlands');
+$jan.bepaal-geschiktheid;
+say $jan.geschiktheid;
 ----
 
-Once methods are defined within a class, they can be called on an object using the _dot notation_: +
-_object_ *.* _method_ or as in the above example: `$john.assess-eligibility`
+Door een methode te definieren in een klasse, kun je deze aanroepen op een object met de _punt notatie_: +
+_object_ *.* _methode_ of als in bovenstaand voorbeeld: `$jan.bepaal-geschiktheid`
 
-Within the definition of a method, if we need to reference the object itself to call another method we use the `self` keyword. +
+Binnen de definitie van een methode kunnen we het sleutelwoord `self` gebruiken om te refereren aan het object zelf om een andere methode aan te roepen. +
 
-Within the definition of a method, if we need to reference an attribute we use `!` even if it was defined with `.` +
-The rationale being that what the `.` twigil does is declare an attribute with `!` and automate the creation of an accessor.
+Binnen de definitie van een methode kunnen we direct een attribuut gebruiken door de `!` twigil te gebruiken, zelfs als het attribuut is gedefinieerd met de `.` twigil. +
+De reden daarachter is dat wat de `.` twigil doet is een attribuut met `!` te definieren en automatisch te zorgen voor het aanmaken van een accessor.
 
-In the above example `if self.age < 21` and `if $!age < 21` would have the same effect, although they are technically different:
+In bovenstaand voorbeeld hebben `if self.leeftijd < 21` en `if $!leeftijd < 21` hetzelfde effect, maar technisch gezien zijn ze verschillend:
 
-* `self.age` calls the `.age` method (accessor) +
-Can be written alternatively as `$.age`
-* `$!age` is a direct call to the variable
+* `self.leeftijd` roept de `.leeftijd` methode (accessor) aan +
+Hetgeen overigens ook geschreven can worden als `$.leeftijd`
+* `$!leeftijd` is een directe toegang tot de variabele
 
-==== Private methods
-Normal methods can be called on objects from outside the class.
+==== Prive methoden
+Normale methoden kunnen op objecten buiten de klasse zelf worden aangeroepen.
 
-*Private methods* are methods that can only be called from within the class. +
-A possible use case would be a method that calls another one for specific action.
-The method that interfaces with the outside world is public while the one referenced should stay private.
-We do not want users to call it directly, so we declare it as private.
+*Prive methoden* zijn methoden die alleen maar kunnen worden aangeroepen binnen een klasse. +
+Dit kan bijvoorbeeld gebruikt worden als een methode een andere methode moet aanroepen voor een specifieke actie.
+De methode die gebruikt kan worden vanaf de buitenwereld is publiek, terwijl de andere methode onzichtbaar moet blijven.
+Aangezien we niet willen dat gebruikers die methode direct kunnen aanroepen, definieren we het als een prive methode.
 
-The declaration of a private method requires the use of the `!` twigil before its name. +
-Private methods are called with `!` instead of `.`
+Door een `!` voor de naam van een methode te plaatsen, geven we aan dat het om een prive methode gaat.
+Prive methoden moeten worden aangeroepen met een `!` in plaats van met `.`
 
 [source,perl6]
 ----
-method !iamprivate {
-  #code goes in here
+method !ikbenprive {
+    #code waar het over gaat
 }
 
-method iampublic {
-  self!iamprivate;
-  #do additional things
+method ikbenprive {
+  self!ikbenprive;
+  #doe extra dingen
 }
 ----
 
-=== Class Attributes
+=== Klasse Attributen
 
-*Class attributes* are attributes that belong to the class itself and not to its objects. +
-They can be initialized during definition. +
-Class attributes are declared using `my` instead of `has`. +
-They are called on the class itself instead of its objects.
+*Klasse Attributen* zijn attributen die bij de klasse zelf horen en niet bij de objecten van die klasse. +
+Zij kunnen worden geinitialiseerd bij de definitie. +
+Klasse attributen worden gedefinieerd met `my` in plaats van met `has`. +
+Zij worden aangeroepen op de klasse zelf in plaats van op haar objecten.
 
 [source,perl6]
 ----
-class Human {
-  has $.name;
-  my $.counter = 0;
-  method new($name) {
-    Human.counter++;
-    self.bless(:$name);
-  }
+class Mens {
+    has $.naam;
+    my $.aantal = 0;
+    method new($naam) {
+        Mens.aantal++;
+        self.bless(:$naam);
+    }
 }
-my $a = Human.new('a');
-my $b = Human.new('b');
+my $a = Mens.new('a');
+my $b = Mens.new('b');
 
-say Human.counter;
+say Mens.aantal;
 ----
 
-=== Access Type
-Until now all the examples that we've seen, used accessors to get information from the objects' attributes.
+=== Toegangssoorten
+In alle voorbeelden die we tot nu toe hebben gezien, hebben we accessors alleen maar gebruikt om informatie uit een object te halen.
 
-What if we need to modify the value of an attribute? +
-We need to label it as _read/write_ using the following keywords `is rw`
+Maar wat nu als we de waarde van een attribuut willen veranderen? +
+In dat geval moeten we die attribuut als _lees/schrijf_ markeren met de sleutelwoorden `is rw` (read/write)
 [source,perl6]
 ----
-class Human {
-  has $.name;
-  has $.age is rw;
+class Mens {
+    has $.naam;
+    has $.leeftijd is rw;
 }
-my $john = Human.new(name => 'John', age => 21);
-say $john.age;
+my $jan = Mens.new(naam => 'John', leeftijd => 21);
+say $jan.leeftijd;
 
-$john.age = 23;
-say $john.age;
+$jan.leeftijd = 23;
+say $jan.leeftijd;
 ----
-By default, all attributes are declared as _read only_ but you can explicitly do it using `is readonly`
+Als je bij de definitie niets aangeeft, wordt een attribuut als _alleen lezen_ gedefinieerd, maar je kunt ook expliciet `is readonly` aangeven
 
 === Inheritance
 ==== Inleiding
