@@ -405,7 +405,7 @@ NOTE: voor een compleet overzicht van operatoren, inclusief hun prioriteit, ga d
 == Variabelen
 Perl 6 variabelen kunnen worden geclassificeerd in 3 categorieen: Scalars, Arrays en Hashes.
 
-Een *voorteken* (sigil) is een karakter dat als prefix gebruikt wordt om aan te geven in welke categorie een variabele hoort.
+Een *sigil* is een karakter dat als prefix gebruikt wordt om aan te geven in welke categorie een variabele hoort.
 
 * `$` geeft een scalar aan
 * `@` geeft een array aan
@@ -1877,7 +1877,7 @@ say $jan.leeftijd;
 ----
 Als je bij de definitie niets aangeeft, wordt een attribuut als _alleen lezen_ gedefinieerd, maar je kunt ook expliciet `is readonly` aangeven
 
-=== Inheritance
+=== Overerving
 ==== Inleiding
 *Inheritance* is another concept of object oriented programming.
 
