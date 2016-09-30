@@ -1923,64 +1923,64 @@ In het taalgebruik van object georienteerd programmeren, zeggen we dat Werknemer
 
 Alle kinderklassen erven de attributen en methoden van de ouderklasse, zodat het niet nodig is om deze overnieuw te definieren.
 
-==== Overriding
-Classes inherit all attributes and methods from their parent classes. +
-There are cases where we need the method in the child class to behave differently than the one inherited. +
+==== Overnemen
+Klassen erven alle attributen en methoden van hun ouderklas. +
+Er zijn gevallen waarin we willen det de methode in een kinderklasse zich anders gedraagt als methode die geerfd is van de ouderklasse. +
+Om dit te bereiken, definieren we die methode ook in de kinderklasse. +
 To achieve this, we redefine the method in the child class. +
-This concept is called *overriding*.
+We noemen dit concept *overnemen* (overriding).
 
-In the below example, the method `introduce-yourself` is inherited by the Employee class.
-
-[source,perl6]
-----
-class Human {
-  has $.name;
-  has $.age;
-  method introduce-yourself {
-    say 'Hi i am a human being, my name is ' ~ self.name;
-  }
-}
-
-class Employee is Human {
-  has $.company;
-  has $.salary;
-}
-
-my $john = Human.new(name =>'John', age => 23,);
-my $jane = Employee.new(name =>'Jane', age => 25, company => 'Acme', salary => 4000);
-
-$john.introduce-yourself;
-$jane.introduce-yourself;
-----
-Overriding works as follow:
+In het onderstaande voorbeeld wordt de method `stel-jezelf-voor` geerfd door de Werknemer klasse.
 
 [source,perl6]
 ----
-class Human {
-  has $.name;
-  has $.age;
-  method introduce-yourself {
-    say 'Hi i am a human being, my name is ' ~ self.name;
-  }
+class Mens {
+    has $.naam;
+    has $.leeftijd;
+    method stel-jezelf-voor {
+        say 'Hoi, ik ben een mens en mijn naam is ' ~ self.name;
+    }
 }
 
-class Employee is Human {
-  has $.company;
-  has $.salary;
-  method introduce-yourself {
-    say 'Hi i am a employee, my name is ' ~ self.name ~ ' and I work at: ' ~ self.company;
-  }
-
+class Werknemer is Mens {
+    has $.bedrijf;
+    has $.salaris;
 }
 
-my $john = Human.new(name =>'John',age => 23,);
-my $jane = Employee.new(name =>'Jane',age => 25,company => 'Acme',salary => 4000);
+my $jan = Mens.new(naam =>'Jan', leeftijd => 23,);
+my $jessica = Werknemer.new(naam =>'Jessica', leeftijd => 25, bedrijf => 'Bureco', salaris => 4000);
 
-$john.introduce-yourself;
-$jane.introduce-yourself;
+$jan.stel-jezelf-voor;
+$jessica.stel-jezelf-voor;
+----
+Het overnemen werkt als volgt:
+
+[source,perl6]
+----
+class Mens {
+    has $.naam;
+    has $.leeftijd;
+    method stel-jezelf-voor {
+        say 'Hoi, ik ben een mens en mijn naam is ' ~ self.name;
+    }
+}
+
+class Werknemer is Mens {
+    has $.bedrijf;
+    has $.salaris;
+    method stel-jezelf-voor {
+        say 'Hoi, ik ben een werknemer, mijn naam is ' ~ self.name ~ ' en ik werk bij: ' ~ self.bedrijf;
+    }
+}
+
+my $jan = Mens.new(naam =>'Jan', leeftijd => 23,);
+my $jessica = Werknemer.new(naam =>'Jessica', leeftijd => 25, bedrijf => 'Bureco', salaris => 4000);
+
+$jan.stel-jezelf-voor;
+$jessica.stel-jezelf-voor;
 ----
 
-Depending of which class the object is, the right method will be called.
+Afhankelijk van de klasse van het object, zal de juiste methode worden aangeroepen.
 
 ==== Submethods
 *Submethods* are a type of method that are not inherited by child classes. +
