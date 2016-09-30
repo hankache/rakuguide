@@ -1768,13 +1768,12 @@ say $jan;
 
 ==== Inleiding
 Methoden zijn de _subroutines_ van een object. +
-Net als subroutines
-Like subroutines, they are a means of packaging a set of functionality, they accept *arguments*, have a *signature* and can be defined as *multi*.
+Zij zijn, net als subroutines, een manier om een aantal functies te bundelen, ze accepteren *argumenten*, hebben een *signatuur* en kunnen worden gedefinieerd als *multi*.
 
-Methods are defined using the `method` keyword. +
-In normal circumstances, methods are required to perform some sort of action on the objects' attributes.
-This enforces the concept of encapsulation. Object attributes can only be manipulated from within the object using methods.
-The outside world, can only interact with the object methods, and has no access to its attributes.
+Je definieert een methode met het `method` sleutelwoord. +
+Normaal gesproken zijn methoden nodig om bepaalde acties op de attributen van een object uit te voeren.
+Dit bekrachtigd het concept van inkapseling.  De attributen van een object kunnen alleen worden gemanipuleerd vanaf binnen de klasse van het object door gebruik van methoden.
+De buitenwereld kan alleen maar gebruik maken van de methoden van het object en heeft geen toegang tot de attributen van het object.
 
 [source,perl6]
 ----
