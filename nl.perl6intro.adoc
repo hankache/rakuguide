@@ -1878,50 +1878,50 @@ Als je bij de definitie niets aangeeft, wordt een attribuut als _alleen lezen_ g
 
 === Overerving
 ==== Inleiding
-*Inheritance* is another concept of object oriented programming.
+*Overerving* is een ander concept van object georienteerd programmeren.
 
-When defining classes, soon enough we will realize that some attributes/methods are common to many classes. +
-Should we duplicate code? +
-NO! We should use *inheritance*
+Wanneer men klassen aan het definieren is, komt men er snel genoeg achter dat sommige attributen/methoden in vele klassen voorkomen. +
+Moeten we dus maar code gaan dupliceren? +
+NEE! We moeten gebruik maken van *overerving*
 
-Let's consider we want to define two classes, a class for Human beings and a class for Employees. +
-Human beings have 2 attributes: name and age. +
-Employees have 4 attributes: name, age, company and salary
+Laten we aannemen dat we twee klassen willen definieren, een klasse voor Mensen en een klasse voor Werknemers. +
+Mensen hebben twee attributen: naam en leeftijd. +
+Werknemers hebben 4 attributen: naam, leeftijd, bedrijf en salaris
 
-One would be tempted to define the classes as follow:
+Men zou geneigd kunnen zijn om de klassen als volgt te definieren:
 [source,perl6]
 ----
-class Human {
-  has $.name;
-  has $.age;
+class Mens {
+    has $.naam;
+    has $.leeftijd;
 }
 
-class Employee {
-  has $.name;
-  has $.age;
-  has $.company;
-  has $.salary;
+class Werknemer {
+    has $.naam;
+    has $.leeftijd;
+    has $.bedrijf;
+    has $.salaris;
 }
 ----
-While technically correct the above piece of code is considered conceptually poor.
+Hoewel bovenstaande code technisch gezien correct is, is het qua concept van lage kwaliteit.
 
-A better way to write it would be as follow:
+Een beter manier om zoiets te schrijven is als volgt:
 [source,perl6]
 ----
-class Human {
-  has $.name;
-  has $.age;
+class Mens {
+    has $.naam;
+    has $.leeftijd;
 }
 
-class Employee is Human {
-  has $.company;
-  has $.salary;
+class Werknemer is Mens {
+    has $.bedrijf;
+    has $.salaris;
 }
 ----
-The `is` keyword defines inheritance. +
-In object oriented parlance we say Employee is a *child* of Human, and Human is a *parent* of Employee.
+Het `is` sleutelwoord definieert de overerving. +
+In het taalgebruik van object georienteerd programmeren, zeggen we dat Werknemer een *kind* is van Mens, en dat Mens de *ouder* is van Werknemer.
 
-All child classes inherit the attributes and methods of the parent class, so there is no need to redefine them.
+Alle kinderklassen erven de attributen en methoden van de ouderklasse, zodat het niet nodig is om deze overnieuw te definieren.
 
 ==== Overriding
 Classes inherit all attributes and methods from their parent classes. +
