@@ -1982,112 +1982,113 @@ $jessica.stel-jezelf-voor;
 
 Afhankelijk van de klasse van het object, zal de juiste methode worden aangeroepen.
 
-==== Submethods
-*Submethods* are a type of method that are not inherited by child classes. +
-They are only accessible from the class they were declared in. +
-They are defined using the `submethod` keyword.
+==== Submethoden
+*Submethoden* zijn een soort methoden die niet worden geerfd door kinderklassen. +
+Ze zijn alleen toegankelijk in de klasse waarin ze worden gedefinieerd. +
+Ze worden gedefinieerd met het `submethod` sleutelwoord.
 
-=== Multiple Inheritance
-Multiple inheritance is allowed in Perl 6. A class can inherit from multiple other classes.
-
-[source,perl6]
-----
-class bar-chart {
-  has Int @.bar-values;
-  method plot {
-    say @.bar-values;
-  }
-}
-
-class line-chart {
-  has Int @.line-values;
-  method plot {
-    say @.line-values;
-  }
-}
-
-class combo-chart is bar-chart is line-chart {
-}
-
-my $actual-sales = bar-chart.new(bar-values => [10,9,11,8,7,10]);
-my $forecast-sales = line-chart.new(line-values => [9,8,10,7,6,9]);
-
-my $actual-vs-forecast = combo-chart.new(bar-values => [10,9,11,8,7,10],
-                                         line-values => [9,8,10,7,6,9]);
-say "Actual sales:";
-$actual-sales.plot;
-say "Forecast sales:";
-$forecast-sales.plot;
-say "Actual vs Forecast:";
-$actual-vs-forecast.plot;
-----
-
-.`Output`
-----
-Actual sales:
-[10 9 11 8 7 10]
-Forecast sales:
-[9 8 10 7 6 9]
-Actual vs Forecast:
-[10 9 11 8 7 10]
-----
-
-.Explanation
-The `combo-chart` class should be able to hold two series, one for the actual values plotted on bars,
-and another for forecast values plotted on a line. +
-This is why we defined it as a child of `line-chart` and `bar-chart`. +
-You should have noticed that calling the method `plot` on the `combo-chart` didn't yield the required result.
-Only one series was plotted. +
-Why did this happen? +
-`combo-chart` inherits from `line-chart` and `bar-chart`, and both of them have a method called `plot`.
-When we call that method on `combo-chart` Perl 6 internals will try to resolve the conflict by calling one of the inherited methods.
-
-.Correction
-In order to behave correctly, we should have overridden the method `plot` in the `combo-chart`.
+=== Meervoudige Overerving
+Meervoudige overerving is toegestaan in Perl 6.  Een klasse kan van meer dan een andere klasse erven.
 
 [source,perl6]
 ----
-class bar-chart {
-  has Int @.bar-values;
-  method plot {
-    say @.bar-values;
-  }
+class staafdiagram {
+    has Int @.staaf-waarden;
+    method plot {
+        say @.staaf-waarden;
+    }
 }
 
-class line-chart {
-  has Int @.line-values;
-  method plot {
-    say @.line-values;
-  }
+class lijndiagram{
+    has Int @.lijn-waarden
+    method plot {
+        say @.lijn-waarden
+    }
 }
 
-class combo-chart is bar-chart is line-chart {
-  method plot {
-    say @.bar-values;
-    say @.line-values;
-  }
+class combo-diagram is staafdiagram is lijndiagram {
 }
 
-my $actual-sales = bar-chart.new(bar-values => [10,9,11,8,7,10]);
-my $forecast-sales = line-chart.new(line-values => [9,8,10,7,6,9]);
+my $verkocht  = staafdigram.new(staaf-waarden => [10,9,11,8,7,10]);
+my $voorspeld = lijndiagram.new(lijn-waarden  => [9,8,10,7,6,9]);
 
-my $actual-vs-forecast = combo-chart.new(bar-values => [10,9,11,8,7,10],
-                                         line-values => [9,8,10,7,6,9]);
-say "Actual sales:";
-$actual-sales.plot;
-say "Forecast sales:";
-$forecast-sales.plot;
-say "Actual vs Forecast:";
-$actual-vs-forecast.plot;
+my $verkocht-vs-voorspeld =
+  combo-diagram.new(staaf-waarden => [10,9,11,8,7,10],
+                    lijn-waarden  => [9,8,10,7,6,9]);
+say "Verkocht:";
+$verkocht.plot;
+say "Voorspeld:";
+$voorspeld.plot;
+say "Verkocht vs Voorspeld:";
+$verkocht-vs-voorspeld.plot;
 ----
 
-.`Output`
+.`Uitvoer`
 ----
-Actual sales:
+Verkocht:
 [10 9 11 8 7 10]
-Forecast sales:
+Voorspeld:
 [9 8 10 7 6 9]
-Actual vs Forecast:
+Verkocht vs Voorspeld:
+[10 9 11 8 7 10]
+----
+
+.Uitleg
+De `combo-diagram` klasse zou in staat moeten zijn om de twee reeksen van waarden, een van "verkocht" in een staafdiagram en een van "voorspeld" in het lijndiagram, te tonen. +
+Dat is de reden waarom we het hebben gedefinieerd als een kinderklasse van `lijndiagram` en `staafdiagram`. +
+Je hebt waarschijnlijk gemerkt dat het aanroepen van de methode `plot` op het `combo-diagram` niet het gewenste resultaat gaf.
+Slechts een reeks van waarden werd getoond. +
+Waarom gebeurde dit? +
+`combo-diagram` erft van `lijndiagram` en `staafdiagram` en beide hebben ze een methode die `plot` heet.
+Indien we die methode op `combo-diagram` aanroepen zal Perl 6 dit conflict proberen op te lossen door een van de geerfde methoden aan te roepen.
+
+.Correctie
+Om ervoor te zorgen dat dit correct functioneert, hadden we een methode `plot` in de `combo-diagram` klasse moeten definieren.
+
+[source,perl6]
+----
+class staafdiagram {
+    has Int @.staaf-waarden;
+    method plot {
+        say @.staaf-waarden;
+    }
+}
+
+class lijndiagram{
+    has Int @.lijn-waarden
+    method plot {
+        say @.lijn-waarden
+    }
+}
+
+class combo-diagram is staafdiagram is lijndiagram {
+    method plot {
+        say @.staaf-waarden;
+        say @.lijn-waarden;
+    }
+}
+
+my $verkocht  = staafdigram.new(staaf-waarden => [10,9,11,8,7,10]);
+my $voorspeld = lijndiagram.new(lijn-waarden  => [9,8,10,7,6,9]);
+
+my $verkocht-vs-voorspeld =
+  combo-diagram.new(staaf-waarden => [10,9,11,8,7,10],
+                    lijn-waarden  => [9,8,10,7,6,9]);
+say "Verkocht:";
+$verkocht.plot;
+say "Voorspeld:";
+$voorspeld.plot;
+say "Verkocht vs Voorspeld:";
+$verkocht-vs-voorspeld.plot;
+----
+
+.`Uitvoer`
+----
+Verkocht:
+[10 9 11 8 7 10]
+Voorspeld:
+[9 8 10 7 6 9]
+Verkocht vs Voorspeld:
 [10 9 11 8 7 10]
 [9 8 10 7 6 9]
 ----
