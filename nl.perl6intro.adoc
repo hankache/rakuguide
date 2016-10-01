@@ -2093,97 +2093,99 @@ Verkocht vs Voorspeld:
 [9 8 10 7 6 9]
 ----
 
-=== Roles
-*Roles* are somehow similar to classes in the sense that they are a collection of attributes and methods.
+=== Rollen
+*Rollen* zijn net als klassen in de zin van dat zij een verzamelijk van attributen en methoden zijn.
 
-Roles are declared with the keyword `role` and classes that wish to implement the role can do so using the `does` keyword.
+Rollen kunnen worden gedefinieerd met het sleutelwoord `role` en klassen die een rol willen "spelen" kunnen dat aangeven met het `does` sleutelwoord.
 
-.Lets rewrite the multiple inheritance example using roles:
+.Laten we het voorbeeld van meervoudige overerving herschrijven met rollen:
 [source,perl6]
 ----
-role bar-chart {
-  has Int @.bar-values;
-  method plot {
-    say @.bar-values;
-  }
+role staafdiagram {
+    has Int @.staaf-waarden;
+    method plot {
+        say @.staaf-waarden;
+    }
 }
 
-role line-chart {
-  has Int @.line-values;
-  method plot {
-    say @.line-values;
-  }
+role lijndiagram{
+    has Int @.lijn-waarden
+    method plot {
+        say @.lijn-waarden
+    }
 }
 
-class combo-chart does bar-chart does line-chart {
-  method plot {
-    say @.bar-values;
-    say @.line-values;
-  }
+class combo-diagram does staafdiagram does lijndiagram {
+    method plot {
+        say @.staaf-waarden;
+        say @.lijn-waarden;
+    }
 }
 
-my $actual-sales = bar-chart.new(bar-values => [10,9,11,8,7,10]);
-my $forecast-sales = line-chart.new(line-values => [9,8,10,7,6,9]);
+my $verkocht  = staafdigram.new(staaf-waarden => [10,9,11,8,7,10]);
+my $voorspeld = lijndiagram.new(lijn-waarden  => [9,8,10,7,6,9]);
 
-my $actual-vs-forecast = combo-chart.new(bar-values => [10,9,11,8,7,10],
-                                         line-values => [9,8,10,7,6,9]);
-say "Actual sales:";
-$actual-sales.plot;
-say "Forecast sales:";
-$forecast-sales.plot;
-say "Actual vs Forecast:";
-$actual-vs-forecast.plot;
+my $verkocht-vs-voorspeld =
+  combo-diagram.new(staaf-waarden => [10,9,11,8,7,10],
+                    lijn-waarden  => [9,8,10,7,6,9]);
+say "Verkocht:";
+$verkocht.plot;
+say "Voorspeld:";
+$voorspeld.plot;
+say "Verkocht vs Voorspeld:";
+$verkocht-vs-voorspeld.plot;
 ----
 
-Run the above script and you will see that results are the same.
+Voer het bovenstaande script uit en je zult zien dat de resultaten hetzelfde zijn.
 
-By now you're asking yourself; if roles behave like classes what's their use? +
-To answer your question modify the first script used to showcase multiple inheritance,
-the one where we _forgot_ to override the `plot` method.
+Nu zul je jezelf afvragen: als rollen net als klassen werken, wat is dan hun nut? +
+Om deze vraag te beantwoorden passen we het eerste script dat we gebruikten om meervodige overerving te laten zien,
+degene waarin we hadden _vergeten_ om de `plot` methode te definieren.
 
 [source,perl6]
 ----
-role bar-chart {
-  has Int @.bar-values;
-  method plot {
-    say @.bar-values;
-  }
+role staafdiagram {
+    has Int @.staaf-waarden;
+    method plot {
+        say @.staaf-waarden;
+    }
 }
 
-role line-chart {
-  has Int @.line-values;
-  method plot {
-    say @.line-values;
-  }
+role lijndiagram{
+    has Int @.lijn-waarden
+    method plot {
+        say @.lijn-waarden
+    }
 }
 
-class combo-chart does bar-chart does line-chart {
+class combo-diagram does staafdiagram does lijndiagram {
 }
 
-my $actual-sales = bar-chart.new(bar-values => [10,9,11,8,7,10]);
-my $forecast-sales = line-chart.new(line-values => [9,8,10,7,6,9]);
+my $verkocht  = staafdigram.new(staaf-waarden => [10,9,11,8,7,10]);
+my $voorspeld = lijndiagram.new(lijn-waarden  => [9,8,10,7,6,9]);
 
-my $actual-vs-forecast = combo-chart.new(bar-values => [10,9,11,8,7,10],
-                                         line-values => [9,8,10,7,6,9]);
-say "Actual sales:";
-$actual-sales.plot;
-say "Forecast sales:";
-$forecast-sales.plot;
-say "Actual vs Forecast:";
-$actual-vs-forecast.plot;
+my $verkocht-vs-voorspeld =
+  combo-diagram.new(staaf-waarden => [10,9,11,8,7,10],
+                    lijn-waarden  => [9,8,10,7,6,9]);
+say "Verkocht:";
+$verkocht.plot;
+say "Voorspeld:";
+$voorspeld.plot;
+say "Verkocht vs Voorspeld:";
+$verkocht-vs-voorspeld.plot;
 ----
 
-.`Output`
+.`Uitvoer`
 ----
 ===SORRY!===
-Method 'plot' must be resolved by class combo-chart because it exists in multiple roles (line-chart, bar-chart)
+Method 'plot' must be resolved by class combo-diagram because it exists in multiple roles (lijndiagram, staafdiagram)
 ----
 
-.Explanation
-If multiple roles are applied to the same class, and a conflict arises, a compile-time error will be thrown. +
-This is a much safer approach than multiple inheritance where conflicts are not considered errors and are simply resolved at runtime.
+.Uitleg
+Indien een klasse meer dan een rol doet en er daarbij een conflict optreedt, dan zal de compiler een foutmelding geven. +
+Dit is een veel veiligere aanpak van meervoudige overerving waarbij conflicten niet als een probleem worden gezien en er bij de uitvoering zo maar iets gedaan wordt.
 
-Roles will warn you that there's a conflict.
+Rollen waarschuwen je wanneer er een conflict is.
 
 === Introspection
 *Introspection* is the process of getting information about an object properties like its type, or its attributes or its methods.
