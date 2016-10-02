@@ -2187,55 +2187,56 @@ Dit is een veel veiligere aanpak van meervoudige overerving waarbij conflicten n
 
 Rollen waarschuwen je wanneer er een conflict is.
 
-=== Introspection
-*Introspection* is the process of getting information about an object properties like its type, or its attributes or its methods.
+=== Introspectie
+*Introspectie* is het verkrijgen van informatie over de eigenschappen van een object, zoals het type, haar attributen of haar methoden.
+
 
 [source,perl6]
 ----
-class Human {
-  has Str $.name;
-  has Int $.age;
-  method introduce-yourself {
-    say 'Hi i am a human being, my name is ' ~ self.name;
-  }
+class Mens {
+    has $.naam;
+    has $.leeftijd;
+    method stel-jezelf-voor {
+        say 'Hoi, ik ben een mens en mijn naam is ' ~ self.name;
+    }
 }
 
-class Employee is Human {
-  has Str $.company;
-  has Int $.salary;
-  method introduce-yourself {
-    say 'Hi i am a employee, my name is ' ~ self.name ~ ' and I work at: ' ~ self.company;
-  }
+class Werknemer is Mens {
+    has $.bedrijf;
+    has $.salaris;
+    method stel-jezelf-voor {
+        say 'Hoi, ik ben een werknemer, mijn naam is ' ~ self.name ~ ' en ik werk bij: ' ~ self.bedrijf;
+    }
 }
 
-my $john = Human.new(name =>'John',age => 23,);
-my $jane = Employee.new(name =>'Jane',age => 25,company => 'Acme',salary => 4000);
+my $jan = Mens.new(naam =>'Jan', leeftijd => 23,);
+my $jessica = Werknemer.new(naam =>'Jessica', leeftijd => 25, bedrijf => 'Bureco', salaris => 4000);
 
-say $john.WHAT;
-say $jane.WHAT;
-say $john.^attributes;
-say $jane.^attributes;
-say $john.^methods;
-say $jane.^methods;
-say $jane.^parents;
-if $jane ~~ Human {say 'Jane is a Human'};
+say $jan.WHAT;
+say $jessica.WHAT;
+say $jan.^attributes;
+say $jessica.^attributes;
+say $jan.^methods;
+say $jessica.^methods;
+say $jessica.^parents;
+if $jessica ~~ Mens { say 'Jessica is een Mens'};
 ----
-Introspection is facilitated by:
+Introspectue is mogelijk door:
 
-* `.WHAT` returns the class from which the object has been created.
+* `.WHAT` geeft de klasse van het object.
 
-* `.^attributes` returns a list containing all attributes of the objects.
+* `.^attributes` geeft een lijst met attributen van het object.
 
-* `.^methods` returns all methods that can be called on the object.
+* `.^methods` geeft een lijst van alle methoden die op het object kunnen worden uitgevoerd.
 
-* `.^parents` returns all parent classes of the class the object belongs.
+* `.^parents` geeft een lijst met alle ouderklassen van het object.
 
-* `~~` is called the smart-match operator.
-It evaluates to _True_ if the object is created from the class it is being compared against or any of its inheritances.
+* `~~` wordt de smart-match operator genoemd.
+Het geeft de waarde _True_ indien het object is aangemaakt met de gegeven klasse, of met een van de ouderklassen van de gegeven klasse.
 
 [NOTE]
 --
-For more info on Object Oriented Programming in Perl 6, see:
+Voor meer informatie over Object Georienteerd Programmeren in Perl 6, bekijk dan:
 
 * https://docs.perl6.org/language/classtut
 * https://docs.perl6.org/language/objects
