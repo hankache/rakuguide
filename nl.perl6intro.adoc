@@ -2221,7 +2221,7 @@ say $jessica.^methods;
 say $jessica.^parents;
 if $jessica ~~ Mens { say 'Jessica is een Mens'};
 ----
-Introspectue is mogelijk door:
+Introspectie is mogelijk door:
 
 * `.WHAT` geeft de klasse van het object.
 
