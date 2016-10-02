@@ -9,6 +9,7 @@
 :source-language: perl6
 :pygments-linenums-mode: table
 :toc: left
+:toc-title: Съдържание
 :doctype: book
 :lang: bg
 
@@ -19,71 +20,76 @@
 В някои от разделите ще намерите препратки към други по-пълни и точни части от http://docs.perl6.org[документацията на Perl 6].
 Така ще можете да четете направо от източника, в случай че се нуждаете от повече информация по определена тема.
 
-Throughout this document, you will find examples for most discussed topics.
-To better understand them, take the time to reproduce all examples.
+В този урок ше намерите примери по най-обсъжданите теми.
+За да ги разберете по-добре отделяйте време да правите примерите.
 
-.License
-This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License.
-To view a copy of this license, visit
+.Лиценз
+Тази работа е лицензирана под "Признание-Споделяне на Споделеното 4.0 Международен Лиценз".
+За да видите лиценза, посетете
 
 * https://creativecommons.org/licenses/by-sa/4.0/.
 
-.Contribution
-If you would like to contribute to this document head over to:
+.Принос
+Ако желаете да допринесте за подобряването на това писание, отидете на
 
 * https://github.com/hankache/perl6intro
 
-.Feedback
-All feedback is welcomed:
-naoum@hankache.com
+.Отзиви
+Всякакви отзиви са добре дошли:
 
-If you liked this work, _Star_ the repository on
+* naoum@hankache.com
+* berov@cpan.org
+
+Ако тази работа ви харесва, отбележете хранилището със звезда на следния адрес:
 link:https://github.com/hankache/perl6intro[Github].
 
-.Translations
-* French: http://fr.perl6intro.com
-* German: http://de.perl6intro.com
-* Japanese: http://ja.perl6intro.com
-* Portuguese: http://pt.perl6intro.com
-* Spanish: http://es.perl6intro.com
+.Преводи
+
+* Български: http://bg.perl6intro.com
+* Испански: http://es.perl6intro.com
+* Немски: http://de.perl6intro.com
+* Португалски: http://pt.perl6intro.com
+* Френски: http://fr.perl6intro.com
+* Японски: http://ja.perl6intro.com
 
 :sectnums:
-== Introduction
-=== What is Perl 6
-Perl 6 is a high-level, general-purpose, gradually typed language.
-Perl 6 is multi-paradigmatic. It supports Procedural, Object Oriented, and Functional programming.
+== Увод
+=== Какво е Perl 6
+Perl 6 е език от високо ниво, с общо предназначение и постепенна типизация на променливите.
+Perl 6 е много-парадигмен. Той поддържа процедурно, обектно-ориентирано и функционално програмиране.
 
-.Perl 6 motto:
-* TMTOWTDI (Pronounced Tim Toady): There is more than one way to do it.
-* Easy things should stay easy, hard things should get easier, and impossible things should get hard.
+.Девизи на Perl 6:
+* ИННН Има няколко начина да се направи. TMTOWTDI (Произнася се Tim Toady): There is more than one way to do it.
+* Лесните неща трябва да са лесни, трудните да стават лесни, а невъзможните - трудни.
 
-=== Jargon
-* *Perl 6*: Is a language specification with a test suite.
-Implementations that pass the specification test suite are considered Perl 6.
-* *Rakudo*: Is a compiler for Perl 6.
-* *Rakudobrew*: Is an installation manager for Rakudo.
-* *Panda*: Is a Perl 6 module installer.
-* *Rakudo Star*: Is a bundle that includes Rakudo, Panda, a collection of Perl 6 modules, and documentation.
+=== Понятия
+* *Perl 6*: Това е спецификация за език за програмиране с набор от тестове.
+Реализации, които изпълняват тестовете без грешка, могат да се нарекат Perl 6.
+* *Rakudo*: Е компилатор за Пърл 6.
+* *Rakudobrew*: Е програма за управление инсталациите на Ракудо.
+* *Panda*: Е инсталатор на модули за Пърл 6.
+* *Rakudo Star*: Е вързоп: Ракудо, Панда, набор от модули за Пърл Perl 6, и документация.
 
-=== Installing Perl 6
-.Linux
-. Install Rakudobrew: https://github.com/tadzik/rakudobrew
+=== Инсталиране на Пърл 6
+.Линукс
+. Инсталирайте Ракудобрю: https://github.com/tadzik/rakudobrew
 
-. Install Rakudo: Type the following command in the terminal `rakudobrew build moar`
+. Инсталирайте Ракудо: Изпълнете следната команда в терминал `rakudobrew build moar`
 
-. Install Panda: Type the following command in the terminal `rakudobrew build panda`
+. Инсталирайте Панда: Изпълнете следната команда в терминал `rakudobrew build panda`
 
 .OSX
-Four options are available:
+Имате четири възмоности:
 
-* Follow the same steps listed for installing on Linux
-* Install with homebrew: `brew install rakudo-star`
-* Install with MacPorts: `sudo port install rakudo`
-* Download the latest installer (file with .dmg extension) from http://rakudo.org/downloads/star/
+* Следвайте същите стъпки като в Линукс
+* Инсталирайте с хоумбрю: `brew install rakudo-star`
+* Инсталирайте с МакПортс: `sudo port install rakudo`
+* Свалете най-новият инсталатор (файл с разширение .dmg) от http://rakudo.org/downloads/star/
 
 .Windows
-. Download the latest installer (file with .msi extension) from http://rakudo.org/downloads/star/ +
-If your system architecture is 32-bit, download the x86 file; if it's 64-bit, download the x86_64 file.
+. Свалете най-новия инсталатор (файл с разширение .msi) от http://rakudo.org/downloads/star/
+Ако архитектурата на системата ви е  32-битова, свалете файла с x86 в името; ако е 64 битова,
+свалете файла съдържащ x86_64 в името.
 . After installation make sure `C:\rakudo\bin` is in the PATH
 
 .Docker
