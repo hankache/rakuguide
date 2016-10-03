@@ -46,7 +46,7 @@ In Perl 6 kan met diverse paradigma's geprogrammeerd worden.  Ondersteund worden
 
 .Perl 6 motto:
 * TIMTOWTDI (uitgesproken "Timtoodi", oftewel "TimToady" in het Engels): There Is More Than One Way To Do It. (Er is meer dan één manier om het te doen)
-* Gemakkelijke dingen moeten gemakkelijk blijven, moeilijke dingen moeten gemakkelijker worden en onmogelijk dingen moeten slechts moeilijk zijn.
+* Gemakkelijke dingen moeten gemakkelijk blijven, moeilijke dingen moeten gemakkelijker worden en onmogelijke dingen moeten slechts moeilijk zijn.
 
 === Jargon
 * *Perl 6*: Is een taalspecificatie met een verzameling tests.
@@ -64,7 +64,7 @@ Een implementatie van Perl 6 die al deze tests succesvol kan uitvoeren, mag zich
 
 . Installeer Panda: Typ het volgende commando in een terminalvenster `rakudobrew build panda`
 
-.OSX
+.OS X
 OS X kent vier mogelijkheden:
 
 * Volg dezelfde stappen als voor Linux
@@ -88,13 +88,13 @@ Op een 32-bit systeem, download het bestand met x86; op een 64-bit, download het
 
 Je kunt eenvoudig Perl 6 code uitvoeren in de REPL (Read-Eval-Print-Loop, oftewel een lees, evalueer, print, lus).
 Open daarvoor een terminalvenster, type `perl6` en druk op [Enter].  Er verschijnt dan een `>` prompt.
-Vervolgens kun je een regel code intypen en weer op [Enter] drukken.  De REPL zal dan de uiteindelijke waarde van die code afdrukken op het scherm.  Je kunt dan weer een regel code intypen, of `exit` intypen en op [Enter] drukken om de REPL te verlaten.
+Vervolgens kun je een regel code intypen en weer op [Enter] drukken.  De REPL zal dan de uiteindelijke waarde van die code laten zien op het scherm.  Je kunt dan weer een regel code intypen, of `exit` intypen en op [Enter] drukken om de REPL te verlaten.
 
 Je kunt je code natuurlijk ook opslaan in een bestand, dat je daarna gaat uitvoeren.
 We raden aan om een Perl 6 script de extensie `.pl6` te geven, zodat het later te herkennen is als Perl 6 bestand.
-Voer het bestand uit door `perl6 bestandsnaam.pl6` in het terminal venster in te typen en op [Enter] te drukken.  Anders dan bij de REPL zal die niet automatisch het resultaat van elke regel afdrukken: daarvoor moet je een opdracht als `say` in je programma plaatsen om iets af te drukken.
+Voer het bestand uit door `perl6 bestandsnaam.pl6` in het terminal venster in te typen en op [Enter] te drukken.  Anders dan bij de REPL zal die niet automatisch het resultaat van elke regel laten zien: daarvoor moet je een opdracht als `say` in je programma plaatsen om iets te tonen.
 
-De REPL wordt meestal gebruikt om een specifiek stukje code uit te proberen, meestal niet meer dan een enkele regel.  Voor programma's die uit meer dan een regel bestaan, wordt aangeraden om die regels in een bestand op te slaan en dan dat bestand uit te voeren.
+De REPL wordt meestal gebruikt om een specifiek stukje code uit te proberen, meestal niet meer dan een enkele regel.  Voor programma's die uit meer dan een regel bestaan, wordt het aangeraden om die regels in een bestand op te slaan en dan dat bestand uit te voeren.
 
 Je kunt ook een regel code non-interactief uitproberen op de commando-regel in een terminal venster, door `perl6 -e 'jouw regel code'` in te typen en dan op [Enter] te drukken.
 
@@ -105,7 +105,7 @@ In de bundel Rakudo Star zit ook een regel-editor die het uitproberen in de REPL
 Als je alleen maar Rakudo hebt geinstalleerd, en niet Rakudo Star, dan heb je standaard niet alle handige regel-editor mogelijkheden (zoals pijltje naar onder/boven om eerder ingetypte regels te bekijken, pijltje links/rechts om je invoer te veranderen, en automatisch invullen met TAB).
 Voer het volgende commando uit om deze functionaliteit te installeren:
 
-* `panda install Linenoise` werkt op Windows, Linux en OSX
+* `panda install Linenoise` werkt op Windows, Linux en OS X
 
 * `panda install Readline` als je op Linux werkt en liever werkt met de _Readline_ bibliotheek
 --
@@ -113,7 +113,7 @@ Voer het volgende commando uit om deze functionaliteit te installeren:
 === Bewerkingsprogramma's (Editors)
 Aangezien je het grootste deel van je tijd Perl 6 programma's in bestanden aan het opslaan bent, is het handig om een goede editor te hebben die Perl 6 syntax herkent.
 
-Ik gebruik https://atom.io/[Atom] en raadt het gebruik daarvan ook een.  Het is een moderne tekst-editor die standaard uitgeleverd wordt met Perl 6 syntax-markeeerder.
+Ik gebruik https://atom.io/[Atom] en raadt het gebruik daarvan ook aan.  Het is een moderne tekst-editor die standaard uitgeleverd wordt met Perl 6 syntax-markeerder.
 https://atom.io/packages/language-perl6fe[Perl6-fe] is een alternatieve Perl 6 syntax-markeerder voor Atom, afgeleid van het origineel, maar met vele bug-fixes en toevoegingen.
 
 Andere mensen in de gemeenschap gebruiken ook http://www.vim.org/[Vim], https://www.gnu.org/software/emacs/[Emacs] of http://padre.perlide.org/[Padre].
@@ -133,9 +133,9 @@ hetgeen ook geschreven kan worden als:
 'hello world'.say;
 
 === Syntax overview
-Perl 6 kent weinig beperkingen: over het algemeen kun je zoveel spaties (witregels) gebruiken als je zelf wilt.
+Perl 6 kent weinig beperkingen: over het algemeen kun je zoveel spaties (witruimte) gebruiken als je zelf wilt.
 
-Opdrachten bestaan over het algemeen uit een regel code die beeindigd wordt door een punt-komma.
+Opdrachten bestaan over het algemeen uit een regel code die beëindigd wordt door een punt-komma:
 `say "Hallo" if True;`
 
 *Expressies* zijn een speciaal soort opdracht die resulteren in een waarde:
@@ -147,7 +147,7 @@ Expressies bestaan uit *Termen* en *Operatoren*.
 
 * *Variabelen*: Een waarde die bekeken en veranderd kan worden.
 
-* *Literals* (Letterlijke waarden): een constante waard zoals een getal of een aantal letters (string).
+* *Literals* (Letterlijke waarden): een constante waarde zoals een getal of een aantal letters (string).
 
 *Operatoren* worden onderverdeeld in deze typen:
 
@@ -155,7 +155,7 @@ Expressies bestaan uit *Termen* en *Operatoren*.
 
 | *Type* | *Uitleg* | *Voorbeeld*
 
-| Prefix | Voor de term. | `++1`
+| Prefix | Voor de term | `++1`
 
 | Infix | Tussen twee termen | `1+2`
 
@@ -171,7 +171,7 @@ Expressies bestaan uit *Termen* en *Operatoren*.
 Je moet termen een naam geven op het moment dat je ze definieert.
 
 .Regels:
-* Ze moeten beginnen met een alphabetisch karakter of een underscore.
+* Ze moeten beginnen met een alphabetisch karakter of een liggend streepje (underscore).
 
 * Ze mogen cijfers bevatten (behalve als eerste karakter).
 
@@ -212,7 +212,7 @@ Een commentaar is een stuk tekst dat bij uitvoering genegeerd wordt, maar van be
 
 Er zijn 3 manieren om commentaren in een programma te stoppen:
 
-* Enkele regel;
+* Enkele regel:
 +
 [source,perl6]
 # Dit is een regel met commentaar
@@ -220,14 +220,14 @@ Er zijn 3 manieren om commentaren in een programma te stoppen:
 * Ingebed (embedded):
 +
 [source,perl6]
-say #`(Dit is een ingebed commentaar) "Hello World."
+say #`(Dit is een ingebed commentaar) "Hallo wereld."
 
-* Meer dan 1 regel
+* Meer dan  regel
 +
 [source,perl6]
 -----------------------------
 =begin comment
-Dit is een commentaar over meer dan 1 regel
+Dit is een commentaar over meer dan één regel
 Commentaar 1
 Commentaar 2
 =end comment
@@ -301,11 +301,11 @@ Onderstaande tabel toont de meest voorkomende operatoren.
 
 | = | Infix | Toewijzing | my $var = 7  | Wijst de waarde `7` toe aan de variabele `$var`
 
-.2+| ~ .2+| Infix .2+| Letterreeks aaneenschakelen | 9 ~ 7 | 97
+.2+| ~ .2+| Infix .2+| Strings aaneenschakelen | 9 ~ 7 | 97
 
 <m| "Hi " ~ "there"  <| Hi there
 
-.2+| x .2+| Infix .2+| Letterreeks herhalen | 13 x 3  | 131313
+.2+| x .2+| Infix .2+| String herhalen | 13 x 3  | 131313
 
 <| "Hello " x 3  <| Hello Hello Hello
 
@@ -371,13 +371,13 @@ Onderstaande tabel toont de meest voorkomende operatoren.
 
 |===
 
-=== Reversi operatoren
+=== Omkeringsoperatoren
 
 Door een `R` te plaatsen direct voor een operator, zorg je ervoor dat de termen omgewisseld worden.
 
 [cols=".^m,.^m,.^m,.^m", options="header"]
 |===
-| Normale operator | Resultaat | Reversi Operator | Resultaat
+| Normale operator | Resultaat | Omkeringsoperator | Resultaat
 
 | 2 / 3 | 0.666667 | 2 R/ 3 | 1.5
 
@@ -400,7 +400,7 @@ Je maakt een herleidingsoperator door vierkante haken om de operator te plaatsen
 
 |===
 
-NOTE: voor een compleet overzicht van operatoren, inclusief hun prioriteit, ga dan naar https://docs.perl6.org/language/operators
+NOTE: Voor een compleet overzicht van operatoren, inclusief hun prioriteit, ga dan naar https://docs.perl6.org/language/operators
 
 == Variabelen
 Perl 6 variabelen kunnen worden geclassificeerd in 3 categorieen: Scalars, Arrays en Hashes.
@@ -412,7 +412,7 @@ Een *sigil* is een karakter dat als prefix gebruikt wordt om aan te geven in wel
 * `%` geeft een hash aan
 
 === Scalars
-Een scalar kan 1 waarde bevatten.
+Een scalar kan één waarde bevatten.
 
 [source,perl6]
 ----
@@ -499,7 +499,7 @@ say "Nu heeft mijn dierentuin: " ~ @animals;
 say "Het eerste dier dat we adopteerden was de " ~ @animals[0];
 @animals.pop;
 say "Helaas is de uil ontsnapt, dus hebben we nu alleen nog: " ~ @animals;
-say "We gaan de dierention sluiten en houden nog maar 1 dier over";
+say "We gaan de dierention sluiten en houden nog maar één dier over";
 say "We laten de " ~ @animals.splice(1,2) ~ " gaan en houden de " ~ @animals;
 ----
 
@@ -511,7 +511,7 @@ Ik ga een uil adopteren voor de dierentuin
 Nu heeft mijn dierentuin: kameel vicuña lama uil
 Het eerste dier dat we adopteerden was de kameel
 Helaas is de uil ontsnapt, dus hebben we nu alleen nog: kameel vicuña lama
-We gaan de dierention sluiten en houden nog maar 1 dier over
+We gaan de dierention sluiten en houden nog maar één dier over
 We laten de vicuña llama gaan en houden de kameel
 ----
 
@@ -562,9 +562,8 @@ Index 3 for dimension 1 out of range (must be 0..2)
 ----
 
 ==== Multidimensionele arrays
-De arrays die we tot nu toe gezien hebben, hadden maar 1 dimensie. +
-The arrays we saw until now are one-dimensional. +
-We kunnen echter ook arrays met meer dan 1 dimensie in Perl 6 specificeren.
+De arrays die we tot nu toe gezien hebben, hadden maar één dimensie. +
+We kunnen echter ook arrays met meer dan één dimensie in Perl 6 specificeren.
 
 [source,perl6]
 my @tbl[3;2];
@@ -597,7 +596,7 @@ say @tbl
 [3 z]
 ----
 
-NOTE: zie https://docs.perl6.org/type/Array voor volledige informatie over arrays.
+NOTE: Zie https://docs.perl6.org/type/Array voor volledige informatie over arrays.
 
 === Hashes
 [source,perl6]
@@ -615,7 +614,7 @@ say %hoofdsteden;
 [source,perl6]
 .Een andere manier om een hash te vullen:
 ----
-my %hoofdsteden = (UK => 'London', Germany => 'Berlin');
+my %hoofdsteden = (VK => 'Londen', Duitsland => 'Berlijn');
 say %hoofdsteden;
 ----
 
@@ -645,7 +644,7 @@ De hoofdstad van Frankrijk is: Parijs
 ----
 
 .Uitleg
-`.push: (naam => 'Waarde')` voegt een nieuw naam/waarde paar toe. +
+`.push: (naam => 'Waarde')` voegt een nieuwe naam/waarde paar toe. +
 `.kv` geeft een lijst met alle namen en waarden terug. +
 `.keys` geeft een lijst met alle namen terug. +
 `.values` geeft een lijst met alle waarden terug. +
@@ -685,7 +684,7 @@ say $var.WHAT;
 
 Het zal fout gaan en terug komen met dit foutbericht: `Type check failed in assignment to $var; expected Int but got Str`
 
-Wat hier gebeurde is dat we van te voren hadden aangegeven dat de variabele alleen maar (Int) zou accepteren.
+Wat hier gebeurde is dat we van te voren hadden aangegeven dat de variabele alleen maar (Int) mag accepteren.
 Toen we probeerden om er een string (Str) aan toe te wijzen, was dat niet mogelijk en ging het fout.
 
 Deze stijl van programmeren wordt "statische typering" (static typing) genoemd.  Statisch omdat het type van variabelen wordt gedefinieerd voordat er aan wordt toegewezen, en deze later niet kan worden veranderd.
@@ -724,7 +723,7 @@ Je zult hoogstwaarschijnlijk de eerste twee nooit gebruiken, maar we laten ze hi
 
 | Any | Het basis type voor nieuwe klassen en de meeste standaard klassen | |
 
-| Cool | Waarden die zowel als string of als number kunnen worden beschouwd | my Cool $var = 31; say $var.flip; say $var * 2; | 13 62
+| Cool | Waarden die zowel als string of als getal kunnen worden beschouwd | my Cool $var = 31; say $var.flip; say $var * 2; | 13 62
 
 | Str | Een string: reeks van karakters | my Str $var = "NEON"; say $var.flip; | NOEN
 
@@ -763,15 +762,15 @@ Het type van een lege variabele die niet is gespecificeerd met een type, is `(An
 Om de waarde uit een variabele te verwijderen, kun je de waarde `Nil` toewijzen.
 
 === Bereik (scoping)
-Voordat men een variabele voor de eerste keer kan gebruiken, moet deze worden gespecificeerd.
+Voordat men een variabele voor de eerste keer kan gebruiken, moet deze worden gedefinieerd.
 
 Dit kan op diverse manieren in Perl 6, `my` is wat we tot nu toe in de bovenstaande voorbeelden hebben gebruikt.
 
 [source,perl6]
-my $var=1;
+my $var = 1;
 
-Met `my` geeft men de variabele een *statisch* bereik (ook wel *lexicaal bereik genoemd).
-In andere woorden, de variabele zal alleen maar toegankelijk zijn in het gebied (scope) waarin het was gespecificeerd.
+Met `my` geeft men de variabele een *statisch* bereik (ook wel *lexicaal* bereik genoemd).
+In andere woorden, de variabele zal alleen maar toegankelijk zijn in het gebied (scope) waarin het was gedefinieerd.
 
 Zo'n gebied (scope) wordt in Perl 6 begrensd door `{ }`.
 Een variabele zal alleen toegankelijk zijn in een Perl 6 script als er geen gebiedsbegrenzing gevonden wordt.
@@ -779,19 +778,19 @@ Een variabele zal alleen toegankelijk zijn in een Perl 6 script als er geen gebi
 [source,perl6]
 ----
 {
-  my Str $var = 'Tekst';
-  say $var; # is toegankelijk
+    my Str $var = 'Tekst';
+    say $var; # is toegankelijk
 }
 say $var; #is niet toegankelijk, geeft een foutmelding
 ----
 
-Aangzien zo'n variabele alleen toegankelijk is in het gebied waarin het was gedefinieerd, kan men dezelfde naam voor een variabele gebruiken in een ander gebied.
+Aangezien zo'n variabele alleen toegankelijk is in het gebied waarin het was gedefinieerd, kan men dezelfde naam voor een variabele gebruiken in een ander gebied.
 
 [source,perl6]
 ----
 {
-  my Str $var = 'Tekst';
-  say $var;
+    my Str $var = 'Tekst';
+    say $var;
 }
 my Int $var = 123;
 say $var;
@@ -824,7 +823,7 @@ say $var;
 999
 ----
 
-Daarentegen kunnen we de waarde van een variabele niet veranderen als deze is *verbonden* met een variabele. +
+Daarentegen kunnen we de waarde van een variabele niet veranderen als deze is *verbonden* met een waarde. +
 *Verbinding* wordt gedaan met de `:=` operator.
 
 [source,perl6]
