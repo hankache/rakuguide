@@ -2372,210 +2372,210 @@ Alle getypeerde exceptions erven van de klasse `X` , hieronder zie je een paar v
 NOTE: Zie https://docs.perl6.org/type-exceptions.html voor een complete lijst van exception types en de daarbij behorende methoden.
 
 
-== Regular Expressions
-A regular expression, or _regex_ is a sequence of characters that is used for pattern matching. +
-The easiest way to understand it is to think of it as a pattern.
+== Reguliere Expressies
+Een reguliere expressie, of _regex_, is een reeks van karakters die worden gebruikt voor patroonherkenning. +
+De gemakkelijkste manier om dit te begrijpen, is om het te beschouwen als een patroon.
 
 [source,perl6]
 ----
-if 'enlightenment' ~~ m/ light / {
-    say "enlightenment contains the word light";
+if 'verlichting' ~~ m/ licht / {
+    say "verlichting bevat het woord licht';
 }
 ----
 
-In this example, the smart match operator `~~` is used to check if a string (enlightenment) contains the word (light). +
-"Enlightenment" is matched against a regex `m/ light /`
+In dit voorbeeld werd de smart match operator `~~` gebruikt om te kijken of een string (verlichting) het woord (licht) bevat. +
+"Verlichting" wordt vergeleken met de regex `m/ light /`
 
-=== Regex definition
+=== Definieren Van Een Regex
 
-A regular expression can be defined as follows:
+Een reguliere expressie kan als volgt worden gedefinieerd:
 
-* `/light/`
+* `/licht/`
 
-* `m/light/`
+* `m/licht/`
 
-* `rx/light/`
+* `rx/licht/`
 
-Unless specified explicitly, white space is irrelevant, `m/light/` and `m/ light /` are the same.
+Tenzij het specifiek wordt aangeduid, is witruimte zonder betekenis, dus `m/licht/` en `m/ licht /` zijn hetzelfde.
 
-=== Matching characters
-Alphanumeric characters and the underscore `_` are written as is. +
-All other characters have to be escaped using a backslash or surrounded by quotes.
+=== Vergelijken van karaketers
+Alphanumerieke karakters en het liggend streepje `_` mogen als zichzelf worden geschreven. +
+Alle andere karakters moeten speciaal worden behandeld door er een backslash `\\` voor te plaatsen of te omgeven door aanhalingstekens.
 
 [source,perl6]
 .Backslash
 ----
-if 'Temperature: 13' ~~ m/ \: / {
-    say "The string provided contains a colon :";
+if 'Temperatuur: 13' ~~ m/ \: / {
+    say "De string bevat een dubbele punt :";
 }
 ----
 
 [source,perl6]
-.Single quotes
+.Enkele Aanhalingstekens
 ----
-if 'Age = 13' ~~ m/ '=' / {
-    say "The string provided contains an equal character = ";
+if 'Leeftijd = 13' ~~ m/ '=' / {
+    say "De string bevat een is-gelijk teken =";
 }
 ----
 
 [source,perl6]
-.Double quotes
+.Dubbele Aanhalingstekens
 ----
-if 'name@company.com' ~~ m/ "@" / {
-    say "This is a valid email address because it contains an @ character";
+if 'naam@bedrijf.nl' ~~ m/ "@" / {
+    say "Dit is een juist emailadres want het bevat een @ karakter";
 }
 ----
 
-=== Matching categories of characters
-Characters can be classified into categories and we can match against them. +
-We can also match against the inverse of that category (everything except it):
+=== Vergelijken Van Categorieen Van Karakters
+Karakters kunnen worden geclassificeerd in categorieen en ook daarmee kunnen we vergelijken. +
+We kunnen ook vergelijken de inverse van een categorie (alle karaketers behalve degene in die categorie).
 
 |===
 
-| *Category* | *Regex* | *Inverse* | *Regex*
+| *Categorie* | *Regex* | *Inverse* | *Regex*
 
-| Word character (letter, digit or underscore) | \w | Any character except a word character | \W
+| Woord karakter (letter, cijfer or liggend streepje) | \w | Alle karakters behalve een woord karakter | \W
 
-| Digit | \d | Any character except a digit | \D
+| Cijfer | \d | Elk karakter die geen cijfer zijn | \D
 
-| Whitespace | \s | Any character except a whitespace | \S
+| Witruimte | \s | Elk karakter dat geen witruimte is | \S
 
-| Horizontal whitespace | \h | Any character except a horizontal whitespace | \H
+| Horizontale witruimte | \h | Elk karakter dat geen horizontale witruimte is | \H
 
-| Vertical whitespace | \v | Any character except a vertical whitespace | \V
+| Verticale witruimte | \v | Elk karakter dat geen verticale witruimte is | \V
 
-| Tab | \t | Any character except a Tab | \T
+| Tab | \t | Elk karakter behalve de Tab | \T
 
-| New line | \n | Any character except a new line | \N
+| Nieuwe regel | \n | Elk karakter dat geen nieuwe regel aangeeft | \N
 
 |===
 
 [source,perl6]
 ----
-if "John123" ~~ / \d / {
-  say "This is not a valid name, numbers are not allowed";
+if "Jan123" ~~ / \d / {
+    say "Deze naam is niet toegestaan want het bevat cijfers";
 } else {
-  say "This is a valid name"
+    say "Deze naam is toegestaan"
 }
-if "John-Doe" ~~ / \s / {
-  say "This string contains whitespace";
+if "Jan-Met" ~~ / \s / {
+    say "Deze string bevat witruimte";
 } else {
-  say "This string doesn't contain whitespace"
+    say "Deze string bevat geen witruimte"
 }
 ----
 
-=== Unicode properties
-Matching against categories of characters as seen in the preceding section is convenient. +
-That being said, a more systematic approach would be to use of Unicode properties. +
-Unicode properties are enclosed in `<: >`
+=== Unicode eigenschappen
+Het vergelijken van categorieen van karakters zoals we in de vorige sectie zagen, is erg gemakkelijk. +
+Maar wellicht is het gebruik van Unicode eigenschappen een meer systematische aanpak. +
+Unicode eigenschappen worden omgeven door `<: >`
 
 [source,perl6]
 ----
-if "John123" ~~ / <:N> / {
-  say "Contains a number";
+if "Jan123" ~~ / <:N> / {
+    say "Bevat een cijfer";
 } else {
-  say "Doesn't contain a number"
+    say "Bevat geen enkel cijfer"
 }
-if "John-Doe" ~~ / <:Lu> / {
-  say "Contains an uppercase letter";
+if "Jan-Met" ~~ / <:Lu> / {
+    say "Bevat een hoofdletter";
 } else {
-  say "Doesn't contain an upper case letter"
+    say "Bevat geen enkele hoofdletter"
 }
-if "John-Doe" ~~ / <:Pd> / {
-  say "Contains a dash";
+if "Jan-Met" ~~ / <:Pd> / {
+    say "Bevat een streepje";
 } else {
-  say "Doesn't contain a dash"
+    say "Bevat geen enkel streepje"
 }
 ----
 
-=== Wildcards
-Wildcards can also be used in a regex.
+=== Jokers
+Jokers (wildcards) kunnen ook in een regex worden gebruikt.
 
-The dot `.` means any single character.
+De punt `.` betekent elk enkel karakter.
 
 [source,perl6]
 ----
 if 'abc' ~~ m/ a.c / {
-    say "Match";
+    say "Komt overeen";
 }
 if 'a2c' ~~ m/ a.c / {
-    say "Match";
+    say "Komt overeen";
 }
 if 'ac' ~~ m/ a.c / {
-    say "Match";
-  } else {
-    say "No Match";
+    say "Komt overeen";
+} else {
+    say "Komt niet overeen";
 }
 ----
 
-=== Quantifiers
-Quantifiers come after a character and are used to specify how many times we are expecting it.
+=== Factoren
+Factoren (quantifiers) komen na een karakter en worden gebruikt om aan te geven hoe vaak we dat karakter verwachten.
 
-The question mark `?` means zero or one time.
+Het vraagteken `?` betekent nul of een keer.
 
 [source,perl6]
 ----
 if 'ac' ~~ m/ a?c / {
-    say "Match";
-  } else {
-    say "No Match";
+    say "Komt overeen";
+} else {
+    say "Komt niet overeen";
 }
 if 'c' ~~ m/ a?c / {
-    say "Match";
-  } else {
-    say "No Match";
+    say "Komt overeen";
+} else {
+    say "Komt niet overeen";
 }
 ----
 
-The star `*` means zero or multiple times.
+De asterisk `*` betekent nul of meer keer.
 
 [source,perl6]
 ----
 if 'az' ~~ m/ a*z / {
-    say "Match";
-  } else {
-    say "No Match";
+    say "Komt overeen";
+} else {
+    say "Komt niet overeen";
 }
 if 'aaz' ~~ m/ a*z / {
-    say "Match";
-  } else {
-    say "No Match";
+    say "Komt overeen";
+} else {
+    say "Komt niet overeen";
 }
 if 'aaaaaaaaaaz' ~~ m/ a*z / {
-    say "Match";
-  } else {
-    say "No Match";
+    say "Komt overeen";
+} else {
+    say "Komt niet overeen";
 }
 if 'z' ~~ m/ a*z / {
-    say "Match";
-  } else {
-    say "No Match";
+    say "Komt overeen";
+} else {
+    say "Komt niet overeen";
 }
 ----
 
-The `+` means at least one time.
+Het plusteken `+` betekent tenminste een keer.
 
 [source,perl6]
 ----
 if 'az' ~~ m/ a+z / {
-    say "Match";
-  } else {
-    say "No Match";
+    say "Komt overeen";
+} else {
+    say "Komt niet overeen";
 }
 if 'aaz' ~~ m/ a+z / {
-    say "Match";
-  } else {
-    say "No Match";
+    say "Komt overeen";
+} else {
+    say "Komt niet overeen";
 }
 if 'aaaaaaaaaaz' ~~ m/ a+z / {
-    say "Match";
-  } else {
-    say "No Match";
+    say "Komt overeen";
+} else {
+    say "Komt niet overeen";
 }
 if 'z' ~~ m/ a+z / {
-    say "Match";
-  } else {
-    say "No Match";
+    say "Komt overeen";
+} else {
+    say "Komt niet overeen";
 }
 ----
 
