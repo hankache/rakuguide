@@ -2579,114 +2579,114 @@ if 'z' ~~ m/ a+z / {
 }
 ----
 
-=== Match Results
-Whenever the process of matching a string against a regex is successful,
+=== Resultaten van een vergelijking
+Elke keer wanneer het vergelijken van een string met een regex succesvol is, wordt het resultaat in een speciale variable `$/` geplaatst
 the match result is stored in a special variable `$/`
 
 [source,perl6]
 .Script
 ----
-if 'Rakudo is a Perl 6 compiler' ~~ m/:s Perl 6/ {
-    say "The match is: " ~ $/;
-    say "The string before the match is: " ~ $/.prematch;
-    say "The string after the match is: " ~ $/.postmatch;
-    say "The matching string starts at position: " ~ $/.from;
-    say "The matching string ends at position: " ~ $/.to;
+if 'Rakudo is een Perl 6 compiler' ~~ m/:s Perl 6/ {
+    say "Het resultaat is: " ~ $/;
+    say "De string voor de gevonden string is: " ~ $/.prematch;
+    say "De string achter de gevonden string is: " ~ $/.postmatch;
+    say "De gevonden string begint op positie: " ~ $/.from;
+    say "De gevonden string eindigt op positie: " ~ $/.to;
 }
 ----
 
-.Output
+.Uitvoer
 ----
-The match is: Perl 6
-The string before the match is: Rakudo is a
-The string after the match is:  compiler
-The matching string starts at position: 12
-The matching string ends at position: 18
+Het resultaat is: ｢Perl 6｣
+De string voor de gevonden string is: Rakudo is een
+De string achter de gevonden string is: compiler
+De gevonden string begint op positie: 14
+De gevonden string eindigt op positie: 20
 ----
 
-.Explanation
-`$/` returns a _Match Object_ (the string that matches the regex) +
-The following methods can be called on the _Match Object_: +
-`.prematch` returns the string preceding the match. +
-`.postmatch` returns the string following the match. +
-`.from` returns the starting position of the match. +
-`.to` returns the ending position of the match. +
+.Uitleg
+`$/` geeft een _Match Object_ terug (de string die gevonden is door de regex) +
+Deze methoden kunnen worden aangeroepen op een _Match Object_: +
+`.prematch` geeft de string voor de gevonden string terug. +
+`.postmatch` geeft de string na de gevonden string terug. +
+`.from` geeft de positie van het eerste karakter van de gevonden string terug. +
+`.to` geeft de positie van het laatste karakter van de gevonden string terug. +
 
-TIP: By default whitespace in a regex definition is irrelevant. +
-If we want to match against a regex containing whitespace we have to do so explicitly. +
-The `:s` in the regex `m/:s Perl 6/` forces whitespace to be considered and not discarded. +
-Alternatively we could have written the regex as `m/ Perl\s6 /` and used `\s` which as we saw earlier is a placeholder for whitespace. +
-If a regex contains more than a single whitespace, using `:s` becomes more effective in contrast with using `\s` for each and every whitespace.
+TIP: Witruimte heeft per default geen betekening in een regex. +
+Als we willen vergelijken met een regex die witruimte bevat, dan moeten we dat expliciet aangeven. +
+De `:s` in de regex `m/:s Perl 6/` geeft aan dat witruimte niet moet worden genegeerd. +
+We zouden de regex ook kunnen hebben schrijven als `m/ Perl \s 6 /` waarbij we `\s` als een teken voor witruimte hebben gebruikt, zoals we eerder hebben gezien. +
+Indien een regex meer dan een witruimte bevat, dan is het gebruik van `:s` gemakkelijker in plaats van `\s` te specificeren voor elke witruimte.
 
-=== Example
-Lets check if an email is valid or not. +
-For the sake of this example we will assume that a valid email address is formed as following: +
-first name [dot] last name [at] company [dot] (com/org/net)
+=== Voorbeeld
+Laten we eens kijken of een emailadres goed is of niet. +
+Voor dit voorbeeld zullen we aannemen dat een werkend emailadres wordt gevormd door: +
+voornaam [punt] achternaam [bij] bedrijfsnaam [punt] top-niveau (e.g. nl)
 
-WARNING: The regex used in this example for email validation is not very accurate. +
-Its sole purpose is to demonstrate regex functionality in Perl 6. +
-Do not use it as-is in production.
+WARNING: De regex die in dit voorbeeld wordt gebruikt voor het valideren van een emailadres is niet erg accuraat. +
+Het is alleen bedoeld om de functionaliteit van een regex in Perl 6 te tonen. +
+Gebruik deze regex niet in deze vorm in productie.
 
 [source,perl6]
 .Script
 ----
-my $email = 'john.doe@perl6.org';
-my $regex = / <:L>+\.<:L>+\@<:L+:N>+\.<:L>+ /;
+my $email = 'jan.met@perl6.org';
+my $regex = / <:L>+ \. <:L>+ \@<:L+:N>+ \. <:L>+ /;
 
 if $email ~~ $regex {
-  say $/ ~ " is a valid email";
+    say $/ ~ " is een gevalideerd emailadres";
 } else {
-  say "This is not a valid email";
+    say "Dit emailadres kon niet gevalideerd worden";
 }
 ----
 
-.Output
-`john.doe@perl6.org is a valid email`
+.Uitvoer
+`jan.mete@perl6.org is een gevalideerd emailadres`
 
-.Explanation
-`<:L>` matches a single letter +
-`<:L>+` matches a single letter or more +
-`\.` matches a single [dot] character +
-`\@` matches a single [at] character +
-`<:L+:N>` matches a letter and a number +
-`<:L+:N>+` matches one or more (letters and numbers) +
+.Uitleg
+`<:L>` accepteert een enkele letter +
+`<:L>+` accepteert een of meer letters +
+`\.` accepteert een enkele [punt] +
+`\@` accepteert een enkel @-karakter +
+`<:L+:N>` accepteert een of meer letters gevolgd door een cijfer +
+`<:L+:N>+` accepteert een of meer letters + cijfer een of meer keer +
 
-The regex can be decomposed as following:
+De regex kan als volgt uit elkaar worden gehaald:
 
-* *first name* `<:L>+`
+* *voornaam* `<:L>+`
 
-* *[dot]* `\.`
+* *[punt]* `\.`
 
-* *last name* `<:L>+`
+* *achternaam* `<:L>+`
 
-* *[at]* `\@`
+* *[bij]* `\@`
 
-* *company name* `<:L+:N>+`
+* *bedrijfsnaam* `<:L+:N>+`
 
-* *[dot]* `\.`
+* *[punt]* `\.`
 
-* *com/org/net* `<:L>+`
+* *top-niveau* `<:L>+`
 
 [source,perl6]
-.Alternatively a regex can be broken down into multiple named regexes
+.We kunnen een regex ook in aparte regexen op naam opdelen
 ----
-my $email = 'john.doe@perl6.org';
-my regex many-letters { <:L>+ };
-my regex dot { \. };
-my regex at { \@ };
-my regex many-letters-numbers { <:L+:N>+ };
+my $email = 'jan.met@perl6.org';
+my regex veel-letters { <:L>+ };
+my regex punt { \. };
+my regex bij { \@ };
+my regex veel-letters-cijfers { <:L+:N>+ };
 
-if $email ~~ / <many-letters> <dot> <many-letters> <at> <many-letters-numbers> <dot> <many-letters> / {
-  say $/ ~ " is a valid email";
+if $email ~~ / <veel-letters> <punt> <veel-letters> <bij> <veel-letters-nummers> <dot> <veel-letters> / {
+    say $/ ~ " is een gevalideerd emailadres";
 } else {
-  say "This is not a valid email";
+    say "Dit emailadres kon niet gevalideerd worden";
 }
 ----
 
-A named regex is defined using the following syntax: `my regex regex-name { regex definition }` +
-A named regex can be called using the following syntax: `<regex-name>`
+Een regex op naam wordt als volgt gedefinieerd: `my regex regex-naam { regex definitie }` +
+Een regex op naam kan als volgt worden aangeroepen: `<regex-naam>`
 
-NOTE: For more info on regexes, see https://docs.perl6.org/language/regexes
+NOTE: Zie https://docs.perl6.org/language/regexes voor meer informatie over regexen.
 
 == Perl 6 Modules
 Perl 6 is a general purpose programming language. It can be used to tackle a multitude of tasks including:
