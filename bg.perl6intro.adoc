@@ -9,6 +9,7 @@
 :source-language: perl6
 :pygments-linenums-mode: table
 :toc: left
+:toc-title: Съдържание
 :doctype: book
 :lang: bg
 
@@ -16,116 +17,131 @@
 Предназначението на това писание е да ви въведе набързо в езика за програмиране Perl 6. 
 То ще ви даде начален тласък в изучаването му. 
 
-В някои от разделите ще намерите препратки към други по-пълни и точни части от http://docs.perl6.org[документацията на Perl 6].
-Така ще можете да четете направо от източника, в случай че се нуждаете от повече информация по определена тема.
+В някои от разделите ще намерите препратки към други по-пълни и точни части от
+http://docs.perl6.org[документацията на Perl 6].  Така ще можете да четете
+направо от източника, в случай че се нуждаете от повече информация по
+определена тема.
 
-Throughout this document, you will find examples for most discussed topics.
-To better understand them, take the time to reproduce all examples.
+В този урок ше намерите примери по най-обсъжданите теми.
+За да ги разберете по-добре отделяйте време да правите примерите.
 
-.License
-This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License.
-To view a copy of this license, visit
+.Лиценз
+Тази работа е лицензирана под "Признание-Споделяне на Споделеното 4.0 Международен Лиценз".
+За да видите лиценза, посетете
 
 * https://creativecommons.org/licenses/by-sa/4.0/.
 
-.Contribution
-If you would like to contribute to this document head over to:
+.Принос
+Ако желаете да допринесте за подобряването на това писание, отидете на
 
 * https://github.com/hankache/perl6intro
 
-.Feedback
-All feedback is welcomed:
-naoum@hankache.com
+.Отзиви
+Всякакви отзиви са добре дошли:
 
-If you liked this work, _Star_ the repository on
+* naoum@hankache.com
+* berov@cpan.org
+
+Ако тази работа ви харесва, отбележете хранилището със звезда на следния адрес:
 link:https://github.com/hankache/perl6intro[Github].
 
-.Translations
-* French: http://fr.perl6intro.com
-* German: http://de.perl6intro.com
-* Japanese: http://ja.perl6intro.com
-* Portuguese: http://pt.perl6intro.com
-* Spanish: http://es.perl6intro.com
+.Преводи
+
+* Български: http://bg.perl6intro.com
+* Испански: http://es.perl6intro.com
+* Немски: http://de.perl6intro.com
+* Португалски: http://pt.perl6intro.com
+* Френски: http://fr.perl6intro.com
+* Японски: http://ja.perl6intro.com
 
 :sectnums:
-== Introduction
-=== What is Perl 6
-Perl 6 is a high-level, general-purpose, gradually typed language.
-Perl 6 is multi-paradigmatic. It supports Procedural, Object Oriented, and Functional programming.
+== Увод
+=== Какво е Perl 6
+Perl 6 е език от високо ниво, с общо предназначение и постепенна типизация на променливите.
+Perl 6 е много-парадигмен. Той поддържа процедурно, обектно-ориентирано и функционално програмиране.
 
-.Perl 6 motto:
-* TMTOWTDI (Pronounced Tim Toady): There is more than one way to do it.
-* Easy things should stay easy, hard things should get easier, and impossible things should get hard.
+.Девизи на Perl 6:
+* ИННН Има няколко начина да се направи. TMTOWTDI (Произнася се Tim Toady):
+There is more than one way to do it.
+* Лесните неща трябва да са лесни, трудните да стават лесни, а невъзможните - трудни.
 
-=== Jargon
-* *Perl 6*: Is a language specification with a test suite.
-Implementations that pass the specification test suite are considered Perl 6.
-* *Rakudo*: Is a compiler for Perl 6.
-* *Rakudobrew*: Is an installation manager for Rakudo.
-* *Panda*: Is a Perl 6 module installer.
-* *Rakudo Star*: Is a bundle that includes Rakudo, Panda, a collection of Perl 6 modules, and documentation.
+=== Понятия
+* *Perl 6*: Това е спецификация за език за програмиране с набор от тестове.
+Реализации, които изпълняват тестовете без грешка, могат да се нарекат Perl 6.
+* *Rakudo*: Е компилатор за Пърл 6.
+* *Rakudobrew*: Е програма за управление инсталациите на Ракудо.
+* *Panda*: Е инсталатор на модули за Пърл 6.
+* *Rakudo Star*: Е вързоп: Ракудо, Панда, набор от модули за Пърл Perl 6, и документация.
 
-=== Installing Perl 6
-.Linux
-. Install Rakudobrew: https://github.com/tadzik/rakudobrew
+=== Инсталиране на Пърл 6
+.Линукс
+. Инсталирайте Ракудобрю: https://github.com/tadzik/rakudobrew
 
-. Install Rakudo: Type the following command in the terminal `rakudobrew build moar`
+. Инсталирайте Ракудо: Изпълнете следната команда в терминал `rakudobrew build moar`
 
-. Install Panda: Type the following command in the terminal `rakudobrew build panda`
+. Инсталирайте Панда: Изпълнете следната команда в терминал `rakudobrew build panda`
 
 .OSX
-Four options are available:
+Имате четири възмоности:
 
-* Follow the same steps listed for installing on Linux
-* Install with homebrew: `brew install rakudo-star`
-* Install with MacPorts: `sudo port install rakudo`
-* Download the latest installer (file with .dmg extension) from http://rakudo.org/downloads/star/
+* Следвайте същите стъпки като в Линукс
+* Инсталирайте с хоумбрю: `brew install rakudo-star`
+* Инсталирайте с МакПортс: `sudo port install rakudo`
+* Свалете най-новият инсталатор (файл с разширение .dmg) от http://rakudo.org/downloads/star/
 
 .Windows
-. Download the latest installer (file with .msi extension) from http://rakudo.org/downloads/star/ +
-If your system architecture is 32-bit, download the x86 file; if it's 64-bit, download the x86_64 file.
-. After installation make sure `C:\rakudo\bin` is in the PATH
+. Свалете най-новия инсталатор (файл с разширение .msi) от
+http://rakudo.org/downloads/star/ Ако архитектурата на системата ви е
+32-битова, свалете файла с x86 в името; ако е 64-битова, свалете файла съдържащ
+x86_64 в името.
+. След инсталацията се уверете, че `C:\rakudo\bin` се намира в системната
+променлива PATH
 
 .Docker
-. Get the official Docker image `docker pull rakudo-star`
-. Then run a container with the image `docker run -it rakudo-star`
+. Вземете официалната картина за Docker `docker pull rakudo-star`
+. След това стартирайте контейнер с картината `docker run -it rakudo-star`
 
-=== Running Perl 6 code
+=== Изпълнение на код, написан на Perl 6
 
-Running Perl 6 code can be done using the REPL (Read-Eval-Print Loop).
-To do this, open a terminal, type `perl6` into the terminal window,
-and hit [Enter].  This will cause a prompt of `>` to appear.
-Next, type a line of code and hit [Enter]. The REPL will print out
-the value of the line.  You may then type another line, or type `exit`
-and hit [Enter] to leave the REPL.
+Можете да изпълнявате код на Пърл 6 като използвате директно неговата
+интерактивна конзола - REPL (Read-Eval-Print Loop). За да направите това,
+отворете терминал, напишете `perl6` в терминала и натиснете [Enter]. Това ще
+отвори конзолата и в нея ще се появи `>`.  След това напише някакъв програмен
+код и натиснете [Enter]. На следващия ред в конзолата ще се появи резултатът от
+изпълнението на кода.  Въведете друг ред съдържащ, програмен код или въведете
+`exit` и натиснете [Enter], за да напуснете конзолата (REPL).
 
-Alternatively, write your code in a file, save it and run it.
-It is recommended that Perl 6 scripts have a  `.pl6` file name extension.
-Run the file by typing `perl6 filename.pl6` into the terminal window
-and hitting [Enter]. Unlike the REPL, this will not automatically print
-the result of each line: the code must contain a statement like `say`
-to print output.
+Друг начин за изпълнение е като въведете програмния код във файл, запишете го и
+го изпълните. Препоръчва се за разширение на скриптовете, написани на Пърл 6 да
+се използва `.pl6`. Изпълнете файла като напишете в терминал `perl6
+filename.pl6` и натиснете  [Enter]. За разлика от интерактивната конзола
+(REPL), всеки ред код ще се изпълни последователно но резултатът не ще се
+изпише на екрана автоматично. Кодът трябва да съдържа израз, използващ командата
+`say`, за да изведе нещо на стандартния изход (екрана).
 
-The REPL is mostly used for trying a specific piece of code, typically a
-single line. For programs with more than a single line it is recommended to
-store them in a file and then run them.
+Интерактивната конзола се използва най-вече за пробване на специфични парченца
+код, обикновено едноредови изрази. За програми, състоящи се от повече редове, се
+препоръчва да се записват във файл и след това да се изпълняват.
 
-Single lines may also be tried non-interactively on the command-line by
-typing `perl6 -e 'your code here'` and hitting [Enter].
+Едноредови изрази могат да се изпробват и на командния ред без интерактиванта
+конзола като напишете `perl6 -e 'your code here'` и натиснете [Enter].
 
 [TIP]
 --
-Rakudo Star bundles a line editor that helps you get the most out of the REPL.
+Rakudo Star върви с едноредов редактор, който се използва в интерактивната конзола (REPL).
 
-If you installed plain Rakudo instead of Rakudo Star then you probably don't have line editing features enabled (using the up and down arrows for history, left and right to edit input, TAB completion).
-Consider running the following command and you shall be all set:
+Ако сте инсталирали обикновен Rakudo вместо Rakudo Star, най-вероятно
+интерактивната конзола не ви дава възможност да редактирате текущия ред, да
+ползвате стрелка нагоре и надолу, за да извиквате предишни команди и
+да ги променяте или да ползвате табулация (клавишът TAB) за допълване на
+частично въведени низове. Изпълнете една от следните команда и сте готови.
 
 * `panda install Linenoise` would work on Windows, Linux and OSX
 
 * `panda install Readline` if you are on Linux and prefer the _Readline_ library
 --
 
-=== Editors
+=== Редактори
 Since most of the time we will be writing and storing our Perl 6 programs in files, we should have
 a decent text editor that recognizes Perl 6 syntax.
 
