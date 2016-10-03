@@ -1458,7 +1458,7 @@ say $squared(9);
 === Chaining
 In Perl 6, methods can be chained, you no longer have to pass the result of a method to another one as an argument.
 
-Lets consider that you are provided with an array of values.
+Let's consider that you are provided with an array of values.
 You are asked to return the unique values of this array, sorted from biggest to smallest.
 
 You might try to solve the problem by writing something close to this:
@@ -2102,7 +2102,7 @@ Actual vs Forecast:
 
 Roles are declared with the keyword `role` and classes that wish to implement the role can do so using the `does` keyword.
 
-.Lets rewrite the multiple inheritance example using roles:
+.Let's rewrite the multiple inheritance example using roles:
 [source,perl6]
 ----
 role bar-chart {
@@ -2620,7 +2620,7 @@ Alternatively we could have written the regex as `m/ Perl\s6 /` and used `\s` wh
 If a regex contains more than a single whitespace, using `:s` becomes more effective in contrast with using `\s` for each and every whitespace.
 
 === Example
-Lets check if an email is valid or not. +
+Let's check if an email is valid or not. +
 For the sake of this example we will assume that a valid email address is formed as following: +
 first name [dot] last name [at] company [dot] (com/org/net)
 
@@ -2711,9 +2711,9 @@ MD5 has a variety of applications of which encryption of passwords stored in a d
 When a new user registers, their credentials are not stored as plain text but rather _hashed_.
 The rationale behind this is that if the DB gets compromised, the attacker will not be able to know what the passwords are.
 
-Lets say you need a script that generates the MD5 hash of a password in preparation for storing it in the DB.
+Let's say you need a script that generates the MD5 hash of a password in preparation for storing it in the DB.
 
-Luckily there's a Perl 6 module that already implemented the MD5 algorithm. Lets install it: +
+Luckily there's a Perl 6 module that already implemented the MD5 algorithm. Let's install it: +
 `panda install Digest::MD5`
 
 Now run the below script:
@@ -2742,7 +2742,7 @@ Characters are defined by a: +
 
 === Using Unicode
 
-.Lets look at how we can output characters using Unicode
+.Let's look at how we can output characters using Unicode
 [source,perl6]
 ----
 say "a";
@@ -2827,7 +2827,7 @@ At this stage, it is important to note that parallelism can mean one of two thin
 
 * *Data Parallelism*: A single expression iterating over a list of elements in parallel.
 
-Lets begin with the latter.
+Let's begin with the latter.
 
 ==== Data Parallelism
 [source,perl6]
