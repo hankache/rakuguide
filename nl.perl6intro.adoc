@@ -2243,133 +2243,133 @@ Voor meer informatie over Object Georienteerd Programmeren in Perl 6, bekijk dan
 --
 == Exception Handling
 
-=== Catching Exceptions
-*Exceptions* are a special behavior that happens at runtime when something goes wrong. +
-We say that exceptions are _thrown_.
+=== Opvangen van Exceptions
+*Exceptions* zijn de uitzonderingsgevallen die optreden bij het uitvoeren van een programma op het moment dat er iets fout gaat. +
+We zeggen dat exceptions worden _geworpen_ (thrown).
 
-Consider the below script that runs correctly:
-
-[source,perl6]
-----
-my Str $name;
-$name = "Joanna";
-say "Hello " ~ $name;
-say "How are you doing today?"
-----
-
-.`Output`
-----
-Hello Joanna
-How are you doing today?
-----
-
-Now consider this script that throws an exception:
+Bekijk onderstaand script dat correct kan worden uitgevoerd:
 
 [source,perl6]
 ----
-my Str $name;
-$name = 123;
-say "Hello " ~ $name;
-say "How are you doing today?"
+my Str $naam;
+$naam = "Joanna";
+say "Hallo " ~ $naam;
+say "Hoe gaat het?"
 ----
 
-.`Output`
+.`Uitvoer`
 ----
-Type check failed in assignment to $name; expected Str but got Int
-   in block <unit> at exceptions.pl6:2
+Hallo Joanna
+Hoe gaat het?
 ----
 
-You should have remarked that whenever an error occurs (in this case assigning a number to a string variable) the program will stop and other lines of code will not be evaluated, even if correct.
-
-*Exception handling* is the process of _catching_ an exception that has been _thrown_ in order for the script to continue working.
+Bekijk nu onderstaand script dat een exception werpt:
 
 [source,perl6]
 ----
-my Str $name;
+my Str $naam;
+$naam = 123;
+say "Hallo " ~ $naam;
+say "Hoe gaat het?"
+----
+
+.`Uitvoer`
+----
+Type check failed in assignment to $naam; expected Str but got Int
+   in block <unit> at bestandsnaam.pl6:2
+----
+
+Je zou hebben moeten zien dat zodra er een fout optreedt (in dit geval het toewijzen van een getal aan een string variabele) het programma stopt en de regels code na de fout niet worden uitgevoerd, zelfs als deze wel juist zijn.
+
+*Exception handling* is het proces van het _opvangen_ van de exceptions die worden _geworpen_ om ervoor te zorgen dat het script blijft werken.
+
+[source,perl6]
+----
+my Str $naam;
 try {
-  $name = 123;
-  say "Hello " ~ $name;
-  CATCH {
-    default {
-      say "Can you tell us your name again, we couldn't find it in the register.";
+    $naam = 123;
+    say "Hallo " ~ $naam;
+    CATCH {
+        default {
+            say "Kun je ons je naam nog eens vertellen?  We konden hem niet vinden.";
+        }
     }
-  }
 }
-say "How are you doing today?";
+say "Hoe gaat het?"
 ----
 
 .`Output`
 ----
-Can you tell us your name again, we couldn't find it in the register.
-How are you doing today?
+Kun je ons je naam nog eens vertellen?  We konden hem niet vinden.
+Hoe gaat het?
 ----
 
-Exception handling is done by using a `try-catch` block.
+Exception handling wordt gedaan door middel van een `try-catch` block.
 
 [source,perl6]
 ----
 try {
-  #code goes in here
-  #if anything goes wrong, the script will enter the below CATCH block
-  #if nothing goes wrong the CATCH block will be ignored
-  CATCH {
-    default {
-      #the code in here will be evaluated only if an exception has been thrown
+    #voer hier de code in
+    #als er iets fout gaat, zal de code in het CATCH block uitgevoerd worden
+    #als alles goed gaat, wordt de code in het CATCH block genegeerd
+    CATCH {
+        default {
+            #deze code zal alleen uitgevoerd worden als een exception is geworpen
+        }
     }
-  }
 }
 ----
 
-The `CATCH` block can be defined the same way a `given` block is defined.
-This means we can _catch_ and handle differently many types of exceptions.
+Het `CATCH` block kan worden gedefinieerd op dezelfde manier als een `given` block.
+Dat betekent dat we verschillende soorten van exceptions kunnen _opvangen_ en afhandelen.
 
 [source,perl6]
 ----
 try {
-  #code goes in here
-  #if anything goes wrong, the script will enter the below CATCH block
-  #if nothing goes wrong the CATCH block will be ignored
-  CATCH {
-    when X::AdHoc { #do something if an exception of type X::AdHoc is thrown }
-    when X::IO { #do something if an exception of type X::IO is thrown }
-    when X::OS { #do something if an exception of type X::OS is thrown }
-    default { #do something if an exception is thrown and doesn't belong to the above types }
-  }
+    #voer hier de code in
+    #als er iets fout gaat, zal de code in het CATCH block uitgevoerd worden
+    #als alles goed gaat, wordt de code in het CATCH block genegeerd
+    CATCH {
+        when X::AdHoc { #doe iets als een exception van het type X::AdHoc is geworpen }
+        when X::IO { #doe iets als een exception van het type X::IO is geworpen }
+        when X::OS { #doe iets als een exception van het type X::OS is geworpen }
+        default { #doe iets als een ander soort exception is geworpen }
+    }
 }
 ----
 
-=== Throwing Exceptions
-In contrast to catching exceptions, Perl 6 also allows you to explicitly throw exceptions. +
-Two types of exceptions can be thrown:
+=== Het Werpen Van Exceptions
+Naast het vangen van exceptions, laat Perl 6 het ook toe om een exception expliciet te werpen. +
+Man kan twee soorten van exceptions werpen:
 
 * ad-hoc exceptions
 
-* typed exceptions
+* getypeerde exceptions
 
 [source,perl6]
 .ad-hoc
 ----
-my Int $age = 21;
-die "Error !";
+my Int $leeftijd = 21;
+die "Fout !";
 ----
 
 [source,perl6]
-.typed
+.getypeerd
 ----
 my Int $age = 21;
-X::AdHoc.new(payload => 'Error !').throw;
+X::AdHoc.new(payload => 'Fout !').throw;
 ----
 
-Ad-hoc exceptions are thrown using the `die` subroutine followed by the exception message.
+Ad-hoc exceptions worden geworpen door de `die` subroutine gevolgd door het bericht van de exception.
 
-Typed exceptions are objects, hence the use of the `.new()` constructor in the above example. +
-All typed exceptions descend from class `X` , below are a few examples: +
-`X::AdHoc` is the simplest exception type +
-`X::IO` is related to IO errors +
-`X::OS` is related to OS errors +
-`X::Str::Numeric` related to trying to coerce a string to a number
+Getypeerde exceptions zijn object, daarom moeten we de `.new()` constructeur gebruiken in bovenstaand voorbeeld. +
+Alle getypeerde exceptions erven van de klasse `X` , hieronder zie je een paar voorbeelden: +
+`X::AdHoc` is het simpelste exception type +
+`X::IO` is gerelateerd aan IO fouten +
+`X::OS` is gerelateerd aan OS fouten +
+`X::Str::Numeric` wordt geworpen bij een fout in het veranderen van een string naar een getal.
 
-NOTE: For a complete list of exception types and their associated methods go to https://docs.perl6.org/type-exceptions.html
+NOTE: Zie https://docs.perl6.org/type-exceptions.html voor een complete lijst van exception types en de daarbij behorende methoden.
 
 
 == Regular Expressions
