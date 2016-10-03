@@ -2732,31 +2732,31 @@ Het zou altijd gecombineerd moeten worden met een "salt", zie daarvoor link:http
 
 == Unicode
 
-Unicode is a standard for encoding and representing text, that caters for most writing systems in the world. +
-UTF-8 is a character encoding capable of encoding all possible characters, or code points, in Unicode.
+Unicode is een standaard voor het coderen en representeren van tekst die de meeste schriften van de wereld ondersteund. +
+UTF-8 is een manier van het coderen in Unicode van alle mogelijke karakters (ook wel "codepoints" genoemd).
 
-Characters are defined by a: +
-*Grapheme*: Visual representation. +
-*Code point*: A number assigned to the character.
+Karakters zijn gedefinieerd door een: +
+*Grafeem*: Visuele voorstelling. +
+*Codepoint*: Een nummer toegewezen aan dat karakter.
 
-=== Using Unicode
+=== Het gebruik van Unicode
 
-.Lets look at how we can output characters using Unicode
+.Laten we eens zien hoe we met Unicode karakters kunnen laten zien
 [source,perl6]
 ----
 say "a";
 say "\x0061";
 say "\c[LATIN SMALL LETTER A]";
 ----
-The above 3 lines showcase different ways of building a character:
+Bovenstaande 3 regels laten verschillende manieren zien om een karakter op te bouwen:
 
-. Writing the character directly (grapheme)
+. Door het karakter (grafeem) direct te schrijven
 
-. Using `\x` and the code point
+. Door `\x` te gebruiken en het codepoint in hexadecimaal aan te geven
 
-. Using `\c` and the code point name
+. Door `\c` te gebruiken en de naam van het codepoint aan te geven.
 
-.Now lets output a smiley
+.Laten we eens proberen om een smiley te tonen:
 [source,perl6]
 ----
 say "☺";
@@ -2764,7 +2764,7 @@ say "\x263a";
 say "\c[WHITE SMILING FACE]";
 ----
 
-.Another example combining two code points
+.Voorbeeld van het gebruik van twee codepoints
 [source,perl6]
 ----
 say "á";
@@ -2773,13 +2773,13 @@ say "\x0061\x0301";
 say "\c[LATIN SMALL LETTER A WITH ACUTE]";
 ----
 
-The letter `á` can be written:
+De letter `á` kan  worden geschreven als:
 
-* using its unique code point `\x00e1`
+* door het unieke codepoint `\x00e1` te gebruiken
 
-* or as a combination of the code points of `a` and acute `\x0061\x0301`
+* door combinatie van codepoints voor `a` en acute `\x0061\x0301`
 
-.Some of the methods that can be used:
+.Sommige van de methoden die kunnen worden gebruikt:
 [source,perl6]
 ----
 say "á".NFC;
@@ -2794,11 +2794,11 @@ NFD:0x<0061 0301>
 LATIN SMALL LETTER A WITH ACUTE
 ----
 
-`NFC` returns the unique code point. +
-`NFD` decomposes the character and return the code point of each part. +
-`uniname` returns the code point name.
+`NFC` geeft het unieke codepoint. +
+`NFD` haalt het karakter uit elkaar en geeft de codepoints van elk onderdeel. +
+`uniname` geeft de naam van de codepoint.
 
-.Unicode letters can be used as identifiers:
+.Unicode letters kunnen ook gebruikt worden in namen:
 [source,perl6]
 ----
 my $Δ = 1;
@@ -2806,7 +2806,7 @@ $Δ++;
 say $Δ;
 ----
 
-.Unicode can be used to do math:
+.Unicode kan ook worden gebruikt in berekeningen
 [source,perl6]
 ----
 my $var = 2 + ⅒;
