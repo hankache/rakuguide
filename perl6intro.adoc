@@ -1659,10 +1659,10 @@ Consider the below script:
 [source,perl6]
 ----
 class Human {
-  has $name;
-  has $age;
-  has $sex;
-  has $nationality;
+  has $.name;
+  has $.age;
+  has $.sex;
+  has $.nationality;
 }
 
 my $john = Human.new(name => 'John', age => 23, sex => 'M', nationality => 'American');
