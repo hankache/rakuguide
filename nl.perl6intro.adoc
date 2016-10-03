@@ -2878,67 +2878,67 @@ Als je beide voorbeelden uitvoert, zul je zien dat de ene wel gesorteerd is en d
 
 ====
 
-==== Task Parallelism
+==== Taak Parallelisme
 
 [source,perl6]
 ----
 my @array1 = (0..49999);
 my @array2 = (2..50001);
 
-my @result1 = @array1.map( {is-prime($_ + 1)} );
-my @result2 = @array2.map( {is-prime($_ - 1)} );
+my @resultaat1 = @array1.map( {is-prime($_ + 1)} );
+my @resultaat2 = @array2.map( {is-prime($_ - 1)} );
 
-say @result1 eqv @result2;
+say @resultaat1 eqv @resultaat2;
 
 say now - INIT now;
 ----
 
-.Considering the above example:
+.Bekijk bovenstaand voorbeeld:
 
-. We defined 2 arrays
+. We definieren 2 arrays
 
-. applied a different operation for each array and stored the results
+. we voeren dezelfde operatie uit op beide arrays en slaan het resultaat op
 
-. and checked if both results are the same
+. en kijken of beide resultaten hetzelfde zijn
 
-The script waits for `@array1.map( {is-prime($_ + 1)} )` to finish +
-and then evaluates `@array2.map( {is-prime($_ - 1)} )`
+Het script wacht totdat `@array1.map( {is-prime($_ + 1)} )` klaar is +
+en gaat dan `@array2.map( {is-prime($_ - 1)} )` uitvoeren.
 
-Both operations applied to each array do not depend on each other.
+De operaties die we op elk array uitvoeren zijn niet afhankelijk van elkaar.
 
-.Why not do both in parallel?
+.Dus waarom niet in parallel?
 [source,perl6]
 ----
 my @array1 = (0..49999);
 my @array2 = (2..50001);
 
-my $promise1 = start @array1.map( {is-prime($_ + 1)} ).eager;
-my $promise2 = start @array2.map( {is-prime($_ - 1)} ).eager;
+my $belofte1 = start @array1.map( {is-prime($_ + 1)} );
+my $belofte2 = start @array2.map( {is-prime($_ - 1)} );
 
-my @result1 = await $promise1;
-my @result2 = await $promise2;
+my @resultaat1 = await $belofte1;
+my @resultaat2 = await $belofte2;
 
-say @result1 eqv @result2;
+say @resultaat1 eqv @resultaat2;
 
 say now - INIT now;
 ----
 
-.Explanation
-The `start` method evaluates the code and returns *an object of type promise* or shortly *a promise*. +
-If the code is evaluated correctly, the _promise_ will be *kept*. +
-If the code throws an exception, the _promise_ will be *broken*.
+.Uitleg
+De `start` subroutine gaat de gegeven code in parallel uitvoeren maar geeft eerst *een Promise (belofte) object* terug, of kortweg een *belofte*. +
+Als de code kan worden uitgevoerd zonder problemen, dan wordt de _belofte_ *gehouden* (kept). +
+Als de code een exception werpt, dan zal de _belofte_ worden *gebroken* (broken).
 
-The `await` method waits for a *promise*. +
-If it's *kept* it will get the returned values. +
-If it's *broken* it will get the exception thrown.
+De `await` subroutine wacht op een *belofte*. +
+Als de belofte *gehouden* wordt, dan geeft het de geproduceerde waarden terug. +
+Als de belofte is *gebroken* dan zal het de exception (opnieuw) werpen.
 
-Check the time it took each script to complete.
+Controleer de tijd die nodig was om elk script uit te voeren.
 
-WARNING: Parallelism always adds a threading overhead. If that overhead is not offset by gains in computational speed, the script will seem slower. +
-This is why, using `race`, `hyper`, `start` and `await` for fairly simple scripts can actually slow them down.
+WARNING: Parallelisme voegt altijd extra overhead toe.  Als die overhead relatief groot is, zal een script trager zijn dan de niet parallele versie. +
+Dat is de reden waarom het gebruik van `race`, `hyper` en `start` in tamelijk simpele scripts een reden van vertraging kan zijn.
 
-=== Concurrency and Asynchrony
-NOTE: For more info on Concurrency and Asynchronous Programming, see https://docs.perl6.org/language/concurrency
+=== Gelijktijdigheid en Asynchroniciteit
+NOTE: Zie https://docs.perl6.org/language/concurrency voor meer informatie over asynchroon programmeren in Perl 6
 
 == The Community
 
