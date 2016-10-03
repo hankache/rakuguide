@@ -2689,46 +2689,46 @@ Een regex op naam kan als volgt worden aangeroepen: `<regex-naam>`
 NOTE: Zie https://docs.perl6.org/language/regexes voor meer informatie over regexen.
 
 == Perl 6 Modules
-Perl 6 is a general purpose programming language. It can be used to tackle a multitude of tasks including:
-text manipulation, graphics, web, databases, network protocols etc.
+Perl 6 is een algemeen toepasbare programmeertaal.  Het kan worden gebruikt om vele taken uit te voeren, zoals:
+manipulatie van tekst, plaatjes, web, databases, netwerkprotocollen, etc.
 
-Reusability is a very important concept whereby programmers don't have to reinvent the wheel each time they want to do a new task.
+Herbruikbaarheid is een erg belangrijke eigenschap waardoor programmeurs niet telkens het wiel opnieuw hoeven uit te vinden als ze aan een nieuwe taak beginnen.
 
-Perl 6 allows the creation and redistribution of *modules*. Each module is a packaged set of functionality that can be reused once installed.
+Perl 6 maakt het mogelijk om *modules* aan te maken en die te distribueren.  Elke module is een bundel van functionaliteit die kan worden gebruikt zodra deze is geinstalleerd.
 
-_Panda_ is a module management tool that comes with Rakudo Star.
+_Panda_ is een programma om modules te beheren dat deel is van Rakudo Star.
 
-To install a specific module, type the below command in your terminal:
+Om een specifieke module te installeren moet men onderstaand commando in een terminalvenster intypen:
 
 `panda install "module name"`
 
-NOTE: The Perl 6 modules directory can be found on: https://modules.perl6.org/
+NOTE: Een overzicht van beschikbare Perl 6 modules is te vinden op: https://modules.perl6.org/
 
-=== Using Modules
-MD5 is a cryptographic hash function that produces a 128-bit hash value. +
-MD5 has a variety of applications of which encryption of passwords stored in a database.
-When a new user registers, their credentials are not stored as plain text but rather _hashed_.
-The rationale behind this is that if the DB gets compromised, the attacker will not be able to know what the passwords are.
+=== Gebruiken van Modules
+MD5 is een cryptografische functie die een unieke 128bit waarde (hash) produceert. +
+MD5 heeft een grote varieteit van applicaties waarvan het opslaan van wachtwoorden in een database er een is. 
+Zodra een nieuwe gebruiker zich registreerd worden de inloggegevens niet als platte tekst opgeslagen, maar als een _hash_.
+Het idee daarachter is dat in het geval dat een database wordt gestolen, de dief dan niet zal kunnen weten wat de wachtwoorden zijn.
 
-Lets say you need a script that generates the MD5 hash of a password in preparation for storing it in the DB.
+Laat ons een script schrijven dat een MD5 hash van een wachtwoord maakt voordat het in een database wordt opgeslagen.
 
-Luckily there's a Perl 6 module that already implemented the MD5 algorithm. Lets install it: +
+Gelukkig is er al een Perl 6 module geimplementeerd voor het MD5 algoritme.  Laten we het eerst installeren: +
 `panda install Digest::MD5`
 
-Now run the below script:
+Voer daarna onderstaand script uit:
 [source,perl6]
 ----
 use Digest::MD5;
-my $password = "password123";
-my $hashed-password = Digest::MD5.new.md5_hex($password);
+my $wachtwoord = "wachtwoord123";
+my $gehashed = Digest::MD5.new.md5_hex($wachtwoord);
 
-say $hashed-password;
+say $gehashed;
 ----
-In order to run the `md5_hex()` function that creates hashes, we need to load the required module. +
-The `use` keyword loads the module for use in the script.
+Om de `md5_hex()` functie, die de hashes aanmaakt, aan te kunnen roepen moeten we eerst de benodigde module laden. +
+Het `use` sleutelwoord laadt een module voor gebruik in het script.
 
-WARNING: In practice MD5 hashing alone is not sufficient, because it is prone to dictionary attacks. +
-It should be combined with a salt link:https://en.wikipedia.org/wiki/Salt_(cryptography)[https://en.wikipedia.org/wiki/Salt_(cryptography)].
+WARNING: In de praktijk is MD5 hashing alleen niet voldoende, omdat het vatbaar is voor zg. "dictionary attacks". +
+Het zou altijd gecombineerd moeten worden met een "salt", zie daarvoor link:https://en.wikipedia.org/wiki/Salt_(cryptography)[https://en.wikipedia.org/wiki/Salt_(cryptography)].
 
 == Unicode
 
