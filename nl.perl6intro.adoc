@@ -2813,68 +2813,68 @@ my $var = 2 + ⅒;
 say $var;
 ----
 
-== Parallelism, Concurrency and Asynchrony
+== Parallelisme, Gelijktijdigheid en Asynchroniciteit
 
-=== Parallelism
-Under normal circumstances, all tasks in a program run sequentially. +
-This might not be a problem unless what you're trying to do is consuming a lot of time.
+=== Parallelisme
+Onder normale omstandigheden worden alle taken in een programma achter elkaar uitgevoerd. +
+Dit hoeft niet noodzakelijkerwijs een probleem te zijn tenzij dat je probeert te doen een hoop tijd vergt.
 
-Naturally speaking Perl 6 has features that will enable you to run things in parallel. +
-At this stage, it is important to note that parallelism can mean one of two things:
+Natuurlijk heeft Perl 6 een aantal mogelijkheden die het mogelijk maken om delen van een programma in parallel uit te laten voeren. +
+Op dit moment is het belangrijk om op te merken dat parallelisme twee dingen kan betekenen:
 
-* *Task Parallelism*: Two (or more) independent expressions running in parallel.
+* *Taak Parallelisme*: Twee (of meer) onafhankelijke expressies die parallel worden uitgevoerd..
 
-* *Data Parallelism*: A single expression iterating over a list of elements in parallel.
+* *Data Parallelisme*: Een enkele expressie die over een lijst van elementen parallel wordt uitgevoerd.
 
-Lets begin with the latter.
+Laten we beginnen met de laatste.
 
-==== Data Parallelism
+==== Data Parallelisme
 [source,perl6]
 ----
-my @array = (0..50000);                     #Array population
-my @result = @array.map({ is-prime $_ });   #call is-prime for each array element
-say now - INIT now;                         #Output the time it took for the script to complete
+my @array = (0..50000);                      #vullen van het Array
+my @resultaat = @array.map({ is-prime $_ }); #roep is-prime aan op elk element van het Array
+say now - INIT now;                          #laat de tijd zien die het script nodig had om te voltooien
 ----
 
-.Considering the above example:
-We are only doing one operation `@array.map({ is-prime $_ })` +
-The `is-prime` subroutine is being called for each array element sequentially: +
-`is-prime @array[0]` then `is-prime @array[1]` then `is-prime @array[2]` etc.
+.Laten we naar bovenstaand voorbeeld kijken:
+We doen maar een enkele opdracht: `@array.map({ is-prime $_ })` +
+De `is-prime` subroutine wordt voor elk element van het array achter elkaar aangeroepen: +
+`is-prime @array[0]` en dan `is-prime @array[1]` en dan `is-prime @array[2]` etc.
 
-.Fortunately we can call `is-prime` on multiple array elements at the same time:
+.Gelukkig kunnen we `is-prime` tegelijkertijd op meer dan een array element aanroepen:
 [source,perl6]
 ----
-my @array = (0..50000);                         #Array population
-my @result = @array.race.map({ is-prime $_ });  #call is-prime for each array element
-say now - INIT now;                             #Output the time it took to complete
+my @array = (0..50000);                           #vullen van het Array
+my @resultaat = @array.race.map({ is-prime $_ }); #roep is-prime aan op elk element van het Array
+say now - INIT now;                               #laat de tijd zien die het script nodig had om te voltooien
 ----
 
-Notice the use of `race` in the expression.
-This method will enable parallel iteration of the array elements.
+Merk op dat we `race` in deze expressie hebben gebruikt.
+Deze methode maakt het mogelijk om in parallel over de array elementen te gaan.
 
-After running both examples (with and without `race`), compare the time it took for both scripts to complete.
+Nadat je beide voorbeelden (met en zonder `race`) hebt uitgevoerd, vergelijk dan de tijd die nodig was om de scripts te laten voltooien.
 
 [TIP]
 ====
-`race` will not preserve the order of elements. If you wish to do, so use `hyper` instead.
+`race` behoudt de volgorde van de elementen niet.  Als je de volgorde wilt behouden, dan moet je `hyper` gebruiken.
 
 [source,perl6]
 .race
 ----
 my @array = (1..1000);
-my @result = @array.race.map( {$_ + 1} );
-@result>>.say;
+my @resultaat = @array.race.map( {$_ + 1} );
+.say for @resultaat;
 ----
 
 [source,perl6]
 .hyper
 ----
 my @array = (1..1000);
-my @result = @array.hyper.map( {$_ + 1} );
-@result>>.say;
+my @resultaat = @array.hyper.map( {$_ + 1} );
+.say for @resultaat;
 ----
 
-If you run both examples, you should notice that one is sorted and the other is not.
+Als je beide voorbeelden uitvoert, zul je zien dat de ene wel gesorteerd is en de andere niet.
 
 ====
 
