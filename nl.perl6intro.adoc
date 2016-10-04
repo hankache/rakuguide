@@ -222,7 +222,7 @@ Er zijn 3 manieren om commentaren in een programma te stoppen:
 [source,perl6]
 say #`(Dit is een ingebed commentaar) "Hallo wereld."
 
-* Meer dan  regel
+* Meer dan één regel
 +
 [source,perl6]
 -----------------------------
