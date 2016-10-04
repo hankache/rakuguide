@@ -2857,7 +2857,7 @@ say now - INIT now;                             # スクリプトの処理が完
 ----
 my @array = (1..1000);
 my @result = @array.race.map( {$_ + 1} );
-@result>>.say;
+.say for @result;
 ----
 
 [source,perl6]
@@ -2865,7 +2865,7 @@ my @result = @array.race.map( {$_ + 1} );
 ----
 my @array = (1..1000);
 my @result = @array.hyper.map( {$_ + 1} );
-@result>>.say;
+.say for @result;
 ----
 
 もし両方の例を実行したなら、片方はソートされていてもう片方はソートされていないことに気づいたはずです。

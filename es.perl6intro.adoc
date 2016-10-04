@@ -2811,7 +2811,7 @@ Después de ejecutar ambos ejemplos (con y sin `race`), compara los tiempos cons
 ----
 my @array = (1..1000);
 my @resultado = @array.race.map( {$_ + 1} );
-@resultado>>.say;
+.say for @resultado;
 ----
 
 [source,perl6]
@@ -2819,7 +2819,7 @@ my @resultado = @array.race.map( {$_ + 1} );
 ----
 my @array = (1..1000);
 my @resultado = @array.hyper.map( {$_ + 1} );
-@resultado>>.say;
+.say for @resultado;
 ----
 
 Si ejecutas ambos ejemplos verás que uno muestra los resultados ordenados y el otro no.

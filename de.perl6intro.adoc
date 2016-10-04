@@ -2685,7 +2685,7 @@ Nach dem Ausführen beider Beispiele (mit und ohne `race`), wie lang hat die Aus
 ----
 my @array = (1..1000);
 my @ergebnis = @array.race.map( {$_ + 1} );
-@ergebnis>>.say;
+.say for @ergebnis;
 ----
 
 [source,perl6]
@@ -2693,7 +2693,7 @@ my @ergebnis = @array.race.map( {$_ + 1} );
 ----
 my @array = (1..1000);
 my @ergebnis = @array.hyper.map( {$_ + 1} );
-@ergebnis>>.say;
+.say for @ergebnis;
 ----
 
 Nach dem Ausführen beider Beispiele (einmal mit `race` und das andere mit `hyper`), zeigt sich, dass das eine Ergebnis sortiert ist, das andere nicht.
