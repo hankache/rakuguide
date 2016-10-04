@@ -11,6 +11,7 @@ For online reading navigate to:
 * Japanese: http://ja.perl6intro.com
 * Spanish: http://es.perl6intro.com
 * Portuguese: http://pt.perl6intro.com
+* Dutch: http://nl.perl6intro.com
 
 
 ### Building the document
@@ -57,5 +58,6 @@ All feedback is welcomed:
 * Japanese Translation: Itsuki Toyota
 * Spanish Translation: Ramiro Encinas
 * Portuguese Translation: Breno G. de Oliveira
+* Dutch Translation: Elizabeth Mattijsen
 
 For the full list of contributors: https://github.com/hankache/perl6intro/graphs/contributors
