@@ -2925,11 +2925,11 @@ say now - INIT now;
 ----
 
 .Explanation
-The `start` method evaluates the code and returns *an object of type promise* or shortly *a promise*. +
+The `start` subroutine evaluates the code and returns *an object of type promise* or shortly *a promise*. +
 If the code is evaluated correctly, the _promise_ will be *kept*. +
 If the code throws an exception, the _promise_ will be *broken*.
 
-The `await` method waits for a *promise*. +
+The `await` subroutine waits for a *promise*. +
 If it's *kept* it will get the returned values. +
 If it's *broken* it will get the exception thrown.
 
