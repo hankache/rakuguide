@@ -2945,6 +2945,8 @@ NOTE: For more info on Concurrency and Asynchronous Programming, see https://doc
 
 * link:irc://irc.freenode.net/#perl6[#perl6] IRC channel. Much discussion happens on IRC. This should be your go to place for any enquiry: https://perl6.org/community/irc
 
+* link:https://p6weekly.wordpress.com a weekly overview of changes in and around Perl 6
+
 * link:http://pl6anet.org[pl6anet] blog aggregator. Stay tuned by reading blog posts that focus on Perl 6.
 
 * link:https://www.reddit.com/r/perl6/[/r/perl6] Subscribe to the Perl 6 subreddit.
