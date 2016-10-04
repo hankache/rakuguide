@@ -42,7 +42,7 @@ Alle feedback is welkom:
 == Inleiding
 === Wat is Perl 6
 Perl 6 is een hogere programmeertaal voor algemeen gebruik met graduele typering.
-In Perl 6 kan met diverse paradigma's geprogrammeerd worden.  Ondersteund worden onder andere procedureel, object-georienteerd en functioneel programmeren.
+In Perl 6 kan met diverse paradigma's geprogrammeerd worden.  Ondersteund worden onder andere procedureel, object-georiënteerd en functioneel programmeren.
 
 .Perl 6 motto:
 * TIMTOWTDI (uitgesproken "Timtoodi", oftewel "TimToady" in het Engels): There Is More Than One Way To Do It. (Er is meer dan één manier om het te doen)
@@ -94,7 +94,7 @@ Je kunt je code natuurlijk ook opslaan in een bestand, dat je daarna gaat uitvoe
 We raden aan om een Perl 6 script de extensie `.pl6` te geven, zodat het later te herkennen is als Perl 6 bestand.
 Voer het bestand uit door `perl6 bestandsnaam.pl6` in het terminal venster in te typen en op [Enter] te drukken.  Anders dan bij de REPL zal die niet automatisch het resultaat van elke regel laten zien: daarvoor moet je een opdracht als `say` in je programma plaatsen om iets te tonen.
 
-De REPL wordt meestal gebruikt om een specifiek stukje code uit te proberen, meestal niet meer dan een enkele regel.  Voor programma's die uit meer dan een regel bestaan, wordt het aangeraden om die regels in een bestand op te slaan en dan dat bestand uit te voeren.
+De REPL wordt meestal gebruikt om een specifiek stukje code uit te proberen, meestal niet meer dan één enkele regel.  Voor programma's die uit meer dan één regel bestaan, wordt het aangeraden om die regels in een bestand op te slaan en dan dat bestand uit te voeren.
 
 Je kunt ook een regel code non-interactief uitproberen op de commando-regel in een terminal venster, door `perl6 -e 'jouw regel code'` in te typen en dan op [Enter] te drukken.
 
@@ -102,7 +102,7 @@ Je kunt ook een regel code non-interactief uitproberen op de commando-regel in e
 --
 In de bundel Rakudo Star zit ook een regel-editor die het uitproberen in de REPL nog gemakkelijker maakt.
 
-Als je alleen maar Rakudo hebt geinstalleerd, en niet Rakudo Star, dan heb je standaard niet alle handige regel-editor mogelijkheden (zoals pijltje naar onder/boven om eerder ingetypte regels te bekijken, pijltje links/rechts om je invoer te veranderen, en automatisch invullen met TAB).
+Als je alleen maar Rakudo hebt geïnstalleerd, en niet Rakudo Star, dan heb je standaard niet alle handige regel-editor mogelijkheden (zoals pijltje naar onder/boven om eerder ingetypte regels te bekijken, pijltje links/rechts om je invoer te veranderen, en automatisch invullen met TAB).
 Voer het volgende commando uit om deze functionaliteit te installeren:
 
 * `panda install Linenoise` werkt op Windows, Linux en OS X
@@ -240,7 +240,7 @@ Gebruik altijd dubbele aanhalingstekens:
 
 * als er een enkel aanhalingsteken in de string voorkomt.
 
-* indien de string een variabele bevat die geinterpoleerd moet worden.
+* als de string een variabele bevat die geïnterpoleerd moet worden.
 
 [source,perl6]
 ---------------------------------------
@@ -363,7 +363,7 @@ Onderstaande tabel toont de meest voorkomende operatoren.
 
 | ^ | Prefix | Lijst constructeur |  ^5  | Zelfde als 0..^5, maakt een lijst van 0 t/m 4
 
-| ... | Infix | Luie lijst constructeur |  0...9999  | Maak waarden alleen aan indien daar expliciet om gevraagd wordt
+| ... | Infix | Luie lijst constructeur |  0...9999  | Maak waarden alleen aan als daar expliciet om gevraagd wordt
 
 .2+| {vbar} .2+| Prefix .2+| Pletten | {vbar}(0..5)  | (0 1 2 3 4 5)
 
@@ -403,7 +403,7 @@ Je maakt een herleidingsoperator door vierkante haken om de operator te plaatsen
 NOTE: Voor een compleet overzicht van operatoren, inclusief hun prioriteit, ga dan naar https://docs.perl6.org/language/operators
 
 == Variabelen
-Perl 6 variabelen kunnen worden geclassificeerd in 3 categorieen: Scalars, Arrays en Hashes.
+Perl 6 variabelen kunnen worden geclassificeerd in 3 categorieën: Scalars, Arrays en Hashes.
 
 Een *sigil* is een karakter dat als prefix gebruikt wordt om aan te geven in welke categorie een variabele hoort.
 
@@ -908,7 +908,7 @@ Men kan een functie als een mutator laten optreden door `.=` in plaats van `.` t
 Perl 6 heeft een veelheid aan conditionele- en lusconstructies.
 
 === if
-De code in het bereik van de conditionele constructie  wordt alleen maar uitgevoerd *indien* de conditie waar (`True`) is.
+De code in het bereik van de conditionele constructie  wordt alleen maar uitgevoerd *als* de conditie waar (`True`) is.
 
 [source,perl6]
 ----
@@ -1073,7 +1073,7 @@ NOTE: Zie https://docs.perl6.org/language/control voor meer informatie over cond
 == I/O
 De twee meest voorkomende manieren van _Invoer/Uitvoer_ zijn _Terminal_ en _Bestanden_.
 
-=== Basic I/O using the Terminal
+=== Basic I/O op de Terminal
 
 ==== say
 `say` schrijft naar de standaard uitvoer.  Het voegt een regeleinde (newline) toe aan het einde.  In andere woorden, de volgende code:
@@ -1124,10 +1124,10 @@ Deze twee subroutines kunnen worden gebruikt om externe commando's uit te voeren
 * `run` voert een extern commando direct uit.
 
 * `shell` voert een extern commando uit alsof je het hebt ingetypt op een commando regel (via een z.g. "shell").  Het hangt af van de systeem software die je gebruikt.
-Alle meta-karakters worden geinterpreteerd door de shell, inclusief z.g. "pipes", "redirects" en specificaties van environment variabelen.
+Alle meta-karakters worden geïnterpreteerd door de shell, inclusief z.g. "pipes", "redirects" en specificaties van environment variabelen.
 
 [source,perl6]
-.Voer dit uit als je met Linux/OSX werkt
+.Voer dit uit als je met Linux/OS X werkt
 ----
 my $naam = 'Neo';
 run 'echo', "hallo $naam";
@@ -1139,7 +1139,7 @@ shell "ls";
 ----
 shell "dir";
 ----
-`echo` en `ls` zijn veel voorkomende commando's op Linux/OSX: +
+`echo` en `ls` zijn veel voorkomende commando's op Linux/OS X: +
 `echo` drukt de argumenten af (het equivalent van `print` in Perl 6) +
 `ls` laat alle bestanden en directories zien in de huidige directory
 
@@ -1198,7 +1198,7 @@ rmdir "nieuwdir";
 ----
 
 `mkdir` maakt een nieuwe directory aan. +
-`rmdir` verwijdert een lege directory.  Returned een foutmelding indien niet leeg.
+`rmdir` verwijdert een lege directory.  Geeft een foutmelding terug indien niet leeg.
 
 Je kunt ook kijken of een specifieke naam bestaat, en of het een bestand of een directory is:
 
@@ -1246,8 +1246,8 @@ Het vorige voorbeeld laat een subroutine zien die geen invoer nodig heeft.
 
 === Signatuur
 Veel subroutines hebben een vorm van invoer nodig om hun werk te kunnen doen.  Die invoer wordt gegeven door *argumenten*.
-Een subroutine mag 0 of meer *parameters* definieren.
-Het aantal en het type van de parameters die door een subroutine worden gedefinieerd, noemen we *signatuur*
+Een subroutine mag 0 of meer *parameters* definiëren.
+Het aantal en het type van de parameters die door een subroutine worden gedefinieerd, noemen we de *signatuur*.
 
 Onderstaande subroutine accepteert een string argument.
 
@@ -1261,7 +1261,7 @@ zeg-hallo "Paula";
 ----
 
 === Multiple dispatch
-Het is mogelijk om meer dan een subroutine met dezelfde naam, maar met een verschillende signatuur, te definieren.
+Het is mogelijk om meer dan één subroutine met dezelfde naam, maar met een verschillende signatuur, te definiëren.
 
 Op het moment dat de subroutine wordt aangeroepen, zal de uitvoerder besluiten welke versie van de subroutine werkelijk zal worden aangeroepen, afhankelijk van het aantal en het type van de gegeven argumenten.
 Dit soort subroutines wordt op dezelfde manier gedefinieerd als normale subroutines, maar in plaats van `sub` worden ze gedefinieerd met `multi`.
@@ -1279,10 +1279,10 @@ groet "Jan";
 groet "Laura","Mevr.";
 ----
 
-=== Default end Optionele Parameters
-Als een siubroutine is gedefinieerd om een argument te acceptern en we roepen het aan zonder dat benodigde argument, dan zal er een fout optreden.
+=== Default en Optionele Parameters
+Als een subroutine is gedefinieerd om een argument te accepteren en we roepen het aan zonder dat benodigde argument, dan zal er een fout optreden.
 
-Als alternatief biedt Perl 6 de mogelijk om subroutines te definieren met:
+Als alternatief biedt Perl 6 de mogelijk om subroutines te definiëren met:
 
 * Optionele Parameters
 * Parameters met een default waarde
@@ -1437,10 +1437,10 @@ Laten we het `map` voorbeeld herschrijven met een anonieme functie
 my @array = <1 2 3 4 5>;
 say map(-> $x {$x ** 2},@array);
 ----
-Merk op dat in plaats van een subroutine te declareren en het door middel van de naam als argument aan `map` door te geven, we het direct in de aanroep definieren. +
-De anonieme subroutine `\-> $x { $x ** 2 }` can niet als zodanig worden aangeroepen want het heeft geen naam.
+Merk op dat in plaats van een subroutine te declareren en het door middel van de naam als argument aan `map` door te geven, we het direct in de aanroep definiëren. +
+De anonieme subroutine `\-> $x { $x ** 2 }` kan niet als zodanig worden aangeroepen want het heeft geen naam.
 
-In Perl 6 noemen we deze notatie een *pointy block*
+In Perl 6 noemen we deze notatie een *pointy block*.
 
 [source,perl6]
 .Een pointy block kan ook aan een variabele worden toegekend:
@@ -1527,8 +1527,8 @@ say @array>>.is-prime;
 say @array>>.&is-even;
 ----
 
-Met de hyper operator kunnen we methoden aanroepen die standaar al in Perl 6 zijn gedefinieerd, zoals `is-prime` dat ons vertelt of een getal een priemgetal is of niet. +
-Daarnaast kun je nieuwe subroutines definieren en ze aanroepen met de hyper operator.  In dat geval moeten we een `&` voor de naam plaatsen, bijvoorbeeld `is-even`
+Met de hyper operator kunnen we methoden aanroepen die standaard al in Perl 6 zijn gedefinieerd, zoals `is-prime` dat ons vertelt of een getal een priemgetal is of niet. +
+Daarnaast kun je nieuwe subroutines definiëren en ze aanroepen met de hyper operator.  In dat geval moeten we een `&` voor de naam plaatsen, bijvoorbeeld `is-even`
 
 Dit is erg practisch want daardoor hoeven we geen `for` lus te schrijven om over elk element te itereren.
 
@@ -1551,16 +1551,16 @@ Het gebruik van juncties zorgt meestal voor zogenaamde *autothreading*;
 een opdracht wordt voor elk element van de junctie uitgevoerd en de resultaten daarvan worden in een nieuwe junctie opgeslagen en teruggegeven.
 
 === Luie Lijsten
-Een *luie lijst* is een lijst die lamlendig wordt geevalueerd. +
+Een *luie lijst* is een lijst die lamlendig wordt geëvalueerd. +
 Lamlendig evalueren stelt de evaluatie van een expressie uit totdat deze echt nodig is en probeert herhaalde evaluaties te voorkomen door resultaten op te slaan.
 
 De voordelen zijn:
 
-* Verbeterde prestaties doordat onnodige berekening worden vermeden
+* Verbeterde prestaties doordat onnodige berekeningen worden vermeden
 
 * De mogelijkheid om potentieel oneindige datastructuren aan te maken
 
-* De mogelijkheid om de besturingsstroom te definieren
+* De mogelijkheid om de besturingsstroom te definiëren
 
 Om een luie lijst te maken gebruiken we de `...` infix operator. +
 Een luie lijst heeft een of meer *startelementen*, een *generator* en een *eindpunt*.
@@ -1572,7 +1572,7 @@ my $luielijst = (1 ... 10);
 say $luielijst;
 ----
 Het start element is 1 en het eindpunt is 10.  Er is geen generator aangegeven, dus de default generator wordt gebruikt (+1). +
-In andere woorden, deze luie lijst zal de volgende waarden teruggeven (indien daarom wordt gevraagd): (1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+In andere woorden, deze luie lijst zal de volgende waarden teruggeven (als daarom wordt gevraagd): (1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
 
 [source,perl6]
 .Oneindige luie lijst
@@ -1588,9 +1588,9 @@ Deze luie lijst kan een getal tussen 1 en oneindig geven, in andere woorden alle
 my $luielijst = (0,2 ... 10);
 say $luielijst;
 ----
-The startelementen zijn 0 en 2 en het eindpunt is 10.
+De startelementen zijn 0 en 2 en het eindpunt is 10.
 Er is geen generator aangegeven, maar door de aangegeven startelementen kan Perl 6 deduceren dat de generator (+2) is +
-Deze luie lijst zal de volgende waarden teruggeven (indien daarom wordt gevraagd): (0, 2, 4, 6, 8, 10)
+Deze luie lijst zal de volgende waarden teruggeven (als daarom wordt gevraagd): (0, 2, 4, 6, 8, 10)
 
 [source,perl6]
 .Luie lijst met een specifieke generator
@@ -1599,11 +1599,11 @@ my $luielijst = (0, { $_ + 3 } ... 12);
 say $luielijst;
 ----
 In dit voorbeeld specificeren we expliciet een generator tussen `{ }` +
-Deze luie lijst zal de volgende waarden teruggeven (indien daarom wordt gevraagd): (0, 3, 6, 9, 12)
+Deze luie lijst zal de volgende waarden teruggeven (als daarom wordt gevraagd): (0, 3, 6, 9, 12)
 
 [WARNING]
 ====
-Indien men een expliciete generator specificeert moet het eindpunt een van de waarden zijn die door de generator terug kan worden gegeven. +
+Als men een expliciete generator specificeert moet het eindpunt één van de waarden zijn die door de generator terug kan worden gegeven. +
 Als we in bovenstaand voorbeeld het eindpunt vervangen door 10 in plaats van 12, dan zal de generator nooit stoppen.
 De generator springt dan _over_ het eindpunt.
 
@@ -1626,11 +1626,11 @@ say $luielijst;
 
 == Klassen en Objecten
 In het vorige hoofdstuk hebben we geleerd hoe Perl 6 het gemakkelijker maakt om Functioneel te Programmeren. +
-In dit hoofdstuk gaan we kijken naar het object georienteerd programmeren in Perl 6.
+In dit hoofdstuk gaan we kijken naar het object georiënteerd programmeren in Perl 6.
 
 === Inleiding
 
-_Object Georienteerd_ Programmeren is een van de programmeerstijl paradigma's die tegenwoordig veel wordt gebruikt. +
+_Object Georiënteerd_ Programmeren is een van de programmeerstijl paradigma's die tegenwoordig veel wordt gebruikt. +
 Een *object* is een verzameling van variabelen en subroutines die bij elkaar gevoegd zijn. +
 De variabelen noemen we *attributen* en de subroutines noemen we *methoden*. +
 Attributen bepalen de *staat* van een object, methoden bepalen het *gedrag* van het object.
@@ -1649,19 +1649,19 @@ Bijkijk onderstaand voorbeeld om deze relatie beter te begrijpen:
 
 |===
 
-In het taalgebruik van _object georienteerd_ programmeren zeggen we dat de objecten *instanties* zijn van een klasse.
+In het taalgebruik van _object georiënteerd_ programmeren zeggen we dat de objecten *instanties* zijn van een klasse.
 
 Bekijk het onderstaande script:
 [source,perl6]
 ----
 class Mens {
-    has $naam;
-    has $leeftijd;
-    has $geslacht;
-    has $nationaliteit;
+    has $.naam;
+    has $.leeftijd;
+    has $.geslacht;
+    has $.nationaliteit;
 }
 
-my $jan = Mens.new(naam => 'Jan', leeftijd => 23, sex => 'M', nationaliteit => 'Nederlands');
+my $jan = Mens.new(naam => 'Jan', leeftijd => 23, geslacht => 'M', nationaliteit => 'Nederlands');
 say $jan;
 ----
 Met het `class` sleutelwoord definieert men een klasse. +
@@ -1680,8 +1680,8 @@ my class Mens {
 ----
 
 === Inkapseling
-Inkapseling is een concept uit het object georienteerd programmeren waarmee we de bundeling van data en methoden aangeven. +
-De gegevens (attributen) binnen een object zouden *prive* moeten zijn.  In andere woorden, alleen maar toegankelijk vanaf binnen in het object. +
+Inkapseling is een concept uit het object georiënteerd programmeren waarmee we de bundeling van data en methoden aangeven. +
+De gegevens (attributen) binnen een object zouden *privé* moeten zijn.  In andere woorden, alleen maar toegankelijk vanaf binnen in het object. +
 Om toegang te verlenen aan de attributen vanaf buiten het object, gebruiken we methoden die we *accessors* noemen.
 
 Onderstaande scripts geven hetzelfde resultaat.
@@ -1708,10 +1708,10 @@ Inkapseling wordt in Perl 6 mogelijk gemaakt door middel van zogenaamde *twigils
 Twigils zijn secondaire _sigils_.  Ze worden tussen de sigil en de naam van het attribuut geplaatst. +
 Bij klassen kunnen twee sigils worden gebruikt:
 
-* `!` om aan te geven dat een attribuut prive is.
+* `!` om aan te geven dat een attribuut privé is.
 * `.` om aan te geven dat een accessor voor de attribuut aangemaakt moet worden.
 
-Als men geen twigil meegeeft, is een attribuut prive.  Voor de leesbaarheid is het een goede gewoonte om in zo'n geval altijd de `!` twigil te gebruiken.
+Als men geen twigil meegeeft, is een attribuut privé.  Voor de leesbaarheid is het een goede gewoonte om in zo'n geval altijd de `!` twigil te gebruiken.
 
 Met wat we zojuist gezien hebben, zouden we bovenstaande klasse moeten herschrijven als:
 [source,perl6]
@@ -1723,27 +1723,27 @@ class Mens {
     has $!nationaliteit;
 }
 
-my $jan = Mens.new(naam => 'Jan', leeftijd => 23, sex => 'M', nationaliteit => 'Nederlands');
+my $jan = Mens.new(naam => 'Jan', leeftijd => 23, geslacht => 'M', nationaliteit => 'Nederlands');
 say $jan;
 ----
 Voeg het volgende commando to: `say $jan.leeftijd` +
 Het zal de volgende fout geven: `Method 'leeftijd' not found for invocant of class 'Mens'` +
-De reden hiervoor is dat `$!leeftijd` prive is en daardoor alleen maar binnen het object gebruikt kan worden.
+De reden hiervoor is dat `$!leeftijd` privé is en daardoor alleen maar binnen het object gebruikt kan worden.
 Pogingen om aan het attribuut te komen van buiten het object zal je een foutmelding geven.
 
 Vervang nu `has $!leeftijd` with `has $.leeftijd` en bekijk dan het resultaat van `say $jan.leeftijd;`
 
 === Argumenten op naam vs. argumenten op positie
-Alle klassen hebben beschikking over een `.new()` constructor` door overerving. +
+Alle klassen hebben beschikking over een `.new()` constructeur door overerving. +
 Het kan worden gebruikt om objecten aan te maken door het argumenten te geven. +
-De default constructeur accepteert alleen *argumentn op naam*. +
+De default constructeur accepteert alleen *argumenten op naam*. +
 Als je bovenstaande voorbeelden bekijkt, dan zul je zien dat alle argumenten die we aan `.new()` hebben gegeven, op naam zijn:
 
 * naam => 'Jan'
 
 * leeftijd => 23
 
-Wat indien ik niet telkens de naam van elk attribuut wil meegeven als ik een nieuw object wil maken? +
+Wat als ik niet telkens de naam van elk attribuut wil meegeven als ik een nieuw object wil maken? +
 In dat geval moeten we een andere constructeur maken die *argumenten op positie* accepteert.
 
 [source,perl6]
@@ -1771,7 +1771,7 @@ Zij zijn, net als subroutines, een manier om een aantal functies te bundelen, ze
 
 Je definieert een methode met het `method` sleutelwoord. +
 Normaal gesproken zijn methoden nodig om bepaalde acties op de attributen van een object uit te voeren.
-Dit bekrachtigd het concept van inkapseling.  De attributen van een object kunnen alleen worden gemanipuleerd vanaf binnen de klasse van het object door gebruik van methoden.
+Dit bekrachtigt het concept van inkapseling.  De attributen van een object kunnen alleen worden gemanipuleerd vanaf binnen de klasse van het object door gebruik van methoden.
 De buitenwereld kan alleen maar gebruik maken van de methoden van het object en heeft geen toegang tot de attributen van het object.
 
 [source,perl6]
@@ -1796,13 +1796,13 @@ $jan.bepaal-geschiktheid;
 say $jan.geschiktheid;
 ----
 
-Door een methode te definieren in een klasse, kun je deze aanroepen op een object met de _punt notatie_: +
+Door een methode te definiëren in een klasse, kun je deze aanroepen op een object met de _punt notatie_: +
 _object_ *.* _methode_ of als in bovenstaand voorbeeld: `$jan.bepaal-geschiktheid`
 
 Binnen de definitie van een methode kunnen we het sleutelwoord `self` gebruiken om te refereren aan het object zelf om een andere methode aan te roepen. +
 
 Binnen de definitie van een methode kunnen we direct een attribuut gebruiken door de `!` twigil te gebruiken, zelfs als het attribuut is gedefinieerd met de `.` twigil. +
-De reden daarachter is dat wat de `.` twigil doet is een attribuut met `!` te definieren en automatisch te zorgen voor het aanmaken van een accessor.
+De reden daarachter is dat wat de `.` twigil doet is een attribuut met `!` te definiëren en automatisch te zorgen voor het aanmaken van een accessor.
 
 In bovenstaand voorbeeld hebben `if self.leeftijd < 21` en `if $!leeftijd < 21` hetzelfde effect, maar technisch gezien zijn ze verschillend:
 
@@ -1810,25 +1810,25 @@ In bovenstaand voorbeeld hebben `if self.leeftijd < 21` en `if $!leeftijd < 21` 
 Hetgeen overigens ook geschreven can worden als `$.leeftijd`
 * `$!leeftijd` is een directe toegang tot de variabele
 
-==== Prive methoden
+==== Privé methoden
 Normale methoden kunnen op objecten buiten de klasse zelf worden aangeroepen.
 
-*Prive methoden* zijn methoden die alleen maar kunnen worden aangeroepen binnen een klasse. +
+*Privé methoden* zijn methoden die alleen maar kunnen worden aangeroepen binnen een klasse. +
 Dit kan bijvoorbeeld gebruikt worden als een methode een andere methode moet aanroepen voor een specifieke actie.
 De methode die gebruikt kan worden vanaf de buitenwereld is publiek, terwijl de andere methode onzichtbaar moet blijven.
-Aangezien we niet willen dat gebruikers die methode direct kunnen aanroepen, definieren we het als een prive methode.
+Aangezien we niet willen dat gebruikers die methode direct kunnen aanroepen, definiëren we het als een privé methode.
 
-Door een `!` voor de naam van een methode te plaatsen, geven we aan dat het om een prive methode gaat.
-Prive methoden moeten worden aangeroepen met een `!` in plaats van met `.`
+Door een `!` voor de naam van een methode te plaatsen, geven we aan dat het om een privé methode gaat.
+Privé methoden moeten worden aangeroepen met een `!` in plaats van met `.`
 
 [source,perl6]
 ----
-method !ikbenprive {
+method !ikbenprivé {
     #code waar het over gaat
 }
 
-method ikbenprive {
-  self!ikbenprive;
+method ikbenprivé {
+  self!ikbenprivé;
   #doe extra dingen
 }
 ----
@@ -1836,7 +1836,7 @@ method ikbenprive {
 === Klasse Attributen
 
 *Klasse Attributen* zijn attributen die bij de klasse zelf horen en niet bij de objecten van die klasse. +
-Zij kunnen worden geinitialiseerd bij de definitie. +
+Zij kunnen worden geïnitialiseerd bij de definitie. +
 Klasse attributen worden gedefinieerd met `my` in plaats van met `has`. +
 Zij worden aangeroepen op de klasse zelf in plaats van op haar objecten.
 
@@ -1867,7 +1867,7 @@ class Mens {
     has $.naam;
     has $.leeftijd is rw;
 }
-my $jan = Mens.new(naam => 'Jann', leeftijd => 21);
+my $jan = Mens.new(naam => 'Jan', leeftijd => 21);
 say $jan.leeftijd;
 
 $jan.leeftijd = 23;
@@ -1877,17 +1877,17 @@ Als je bij de definitie niets aangeeft, wordt een attribuut als _alleen lezen_ g
 
 === Overerving
 ==== Inleiding
-*Overerving* is een ander concept van object georienteerd programmeren.
+*Overerving* is een ander concept van object georiënteerd programmeren.
 
-Wanneer men klassen aan het definieren is, komt men er snel genoeg achter dat sommige attributen/methoden in vele klassen voorkomen. +
+Wanneer men klassen aan het definiëren is, komt men er snel genoeg achter dat sommige attributen/methoden in vele klassen voorkomen. +
 Moeten we dus maar code gaan dupliceren? +
-NEE! We moeten gebruik maken van *overerving*
+NEE! We moeten gebruik maken van *overerving*.
 
-Laten we aannemen dat we twee klassen willen definieren, een klasse voor Mensen en een klasse voor Werknemers. +
+Laten we aannemen dat we twee klassen willen definiëren, een klasse voor Mensen en een klasse voor Werknemers. +
 Mensen hebben twee attributen: naam en leeftijd. +
 Werknemers hebben 4 attributen: naam, leeftijd, bedrijf en salaris
 
-Men zou geneigd kunnen zijn om de klassen als volgt te definieren:
+Men zou geneigd kunnen zijn om de klassen als volgt te definiëren:
 [source,perl6]
 ----
 class Mens {
@@ -1918,18 +1918,17 @@ class Werknemer is Mens {
 }
 ----
 Het `is` sleutelwoord definieert de overerving. +
-In het taalgebruik van object georienteerd programmeren, zeggen we dat Werknemer een *kind* is van Mens, en dat Mens de *ouder* is van Werknemer.
+In het taalgebruik van object georiënteerd programmeren, zeggen we dat Werknemer een *kind* is van Mens, en dat Mens de *ouder* is van Werknemer.
 
-Alle kinderklassen erven de attributen en methoden van de ouderklasse, zodat het niet nodig is om deze overnieuw te definieren.
+Alle kinderklassen erven de attributen en methoden van de ouderklasse, zodat het niet nodig is om deze overnieuw te definiëren.
 
 ==== Overnemen
 Klassen erven alle attributen en methoden van hun ouderklas. +
-Er zijn gevallen waarin we willen det de methode in een kinderklasse zich anders gedraagt als methode die geerfd is van de ouderklasse. +
-Om dit te bereiken, definieren we die methode ook in de kinderklasse. +
-To achieve this, we redefine the method in the child class. +
+Er zijn gevallen waarin we willen det de methode in een kinderklasse zich anders gedraagt als methode die geërfd is van de ouderklasse. +
+Om dit te bereiken, definiëren we die methode ook in de kinderklasse. +
 We noemen dit concept *overnemen* (overriding).
 
-In het onderstaande voorbeeld wordt de method `stel-jezelf-voor` geerfd door de Werknemer klasse.
+In het onderstaande voorbeeld wordt de method `stel-jezelf-voor` geërfd door de Werknemer klasse.
 
 [source,perl6]
 ----
@@ -1982,12 +1981,12 @@ $jessica.stel-jezelf-voor;
 Afhankelijk van de klasse van het object, zal de juiste methode worden aangeroepen.
 
 ==== Submethoden
-*Submethoden* zijn een soort methoden die niet worden geerfd door kinderklassen. +
+*Submethoden* zijn een soort methoden die niet worden geërfd door kinderklassen. +
 Ze zijn alleen toegankelijk in de klasse waarin ze worden gedefinieerd. +
 Ze worden gedefinieerd met het `submethod` sleutelwoord.
 
 === Meervoudige Overerving
-Meervoudige overerving is toegestaan in Perl 6.  Een klasse kan van meer dan een andere klasse erven.
+Meervoudige overerving is toegestaan in Perl 6.  Een klasse kan van meer dan één andere klasse erven.
 
 [source,perl6]
 ----
@@ -2036,13 +2035,13 @@ Verkocht vs Voorspeld:
 De `combo-diagram` klasse zou in staat moeten zijn om de twee reeksen van waarden, een van "verkocht" in een staafdiagram en een van "voorspeld" in het lijndiagram, te tonen. +
 Dat is de reden waarom we het hebben gedefinieerd als een kinderklasse van `lijndiagram` en `staafdiagram`. +
 Je hebt waarschijnlijk gemerkt dat het aanroepen van de methode `plot` op het `combo-diagram` niet het gewenste resultaat gaf.
-Slechts een reeks van waarden werd getoond. +
+Slechts één reeks van waarden werd getoond. +
 Waarom gebeurde dit? +
 `combo-diagram` erft van `lijndiagram` en `staafdiagram` en beide hebben ze een methode die `plot` heet.
-Indien we die methode op `combo-diagram` aanroepen zal Perl 6 dit conflict proberen op te lossen door een van de geerfde methoden aan te roepen.
+Als we die methode op `combo-diagram` aanroepen zal Perl 6 dit conflict proberen op te lossen door één van de geërfde methoden aan te roepen.
 
 .Correctie
-Om ervoor te zorgen dat dit correct functioneert, hadden we een methode `plot` in de `combo-diagram` klasse moeten definieren.
+Om ervoor te zorgen dat dit correct functioneert, hadden we een methode `plot` in de `combo-diagram` klasse moeten definiëren.
 
 [source,perl6]
 ----
@@ -2093,7 +2092,7 @@ Verkocht vs Voorspeld:
 ----
 
 === Rollen
-*Rollen* zijn net als klassen in de zin van dat zij een verzamelijk van attributen en methoden zijn.
+*Rollen* zijn net als klassen in de zin van dat zij een verzameling van attributen en methoden zijn.
 
 Rollen kunnen worden gedefinieerd met het sleutelwoord `role` en klassen die een rol willen "spelen" kunnen dat aangeven met het `does` sleutelwoord.
 
@@ -2139,7 +2138,7 @@ Voer het bovenstaande script uit en je zult zien dat de resultaten hetzelfde zij
 
 Nu zul je jezelf afvragen: als rollen net als klassen werken, wat is dan hun nut? +
 Om deze vraag te beantwoorden passen we het eerste script dat we gebruikten om meervodige overerving te laten zien,
-degene waarin we hadden _vergeten_ om de `plot` methode te definieren.
+degene waarin we hadden _vergeten_ om de `plot` methode te definiëren.
 
 [source,perl6]
 ----
@@ -2181,8 +2180,8 @@ Method 'plot' must be resolved by class combo-diagram because it exists in multi
 ----
 
 .Uitleg
-Indien een klasse meer dan een rol doet en er daarbij een conflict optreedt, dan zal de compiler een foutmelding geven. +
-Dit is een veel veiligere aanpak van meervoudige overerving waarbij conflicten niet als een probleem worden gezien en er bij de uitvoering zo maar iets gedaan wordt.
+Als een klasse meer dan één rol doet en er daarbij een conflict optreedt, dan zal de compiler een foutmelding geven. +
+Dit is een veel veiligere aanpak dan meervoudige overerving waarbij conflicten niet als een probleem worden gezien en er bij de uitvoering zo maar iets gedaan wordt.
 
 Rollen waarschuwen je wanneer er een conflict is.
 
@@ -2231,11 +2230,11 @@ Introspectie is mogelijk door:
 * `.^parents` geeft een lijst met alle ouderklassen van het object.
 
 * `~~` wordt de smart-match operator genoemd.
-Het geeft de waarde _True_ indien het object is aangemaakt met de gegeven klasse, of met een van de ouderklassen van de gegeven klasse.
+Het geeft de waarde _True_ als het object is aangemaakt met de gegeven klasse, of met een van de ouderklassen van de gegeven klasse.
 
 [NOTE]
 --
-Voor meer informatie over Object Georienteerd Programmeren in Perl 6, bekijk dan:
+Voor meer informatie over Object Georiënteerd Programmeren in Perl 6, bekijk dan:
 
 * https://docs.perl6.org/language/classtut
 * https://docs.perl6.org/language/objects
@@ -2361,7 +2360,7 @@ X::AdHoc.new(payload => 'Fout !').throw;
 
 Ad-hoc exceptions worden geworpen door de `die` subroutine gevolgd door het bericht van de exception.
 
-Getypeerde exceptions zijn object, daarom moeten we de `.new()` constructeur gebruiken in bovenstaand voorbeeld. +
+Getypeerde exceptions zijn objecten, daarom moeten we de `.new()` constructeur gebruiken in bovenstaand voorbeeld. +
 Alle getypeerde exceptions erven van de klasse `X` , hieronder zie je een paar voorbeelden: +
 `X::AdHoc` is het simpelste exception type +
 `X::IO` is gerelateerd aan IO fouten +
@@ -2385,7 +2384,7 @@ if 'verlichting' ~~ m/ licht / {
 In dit voorbeeld werd de smart match operator `~~` gebruikt om te kijken of een string (verlichting) het woord (licht) bevat. +
 "Verlichting" wordt vergeleken met de regex `m/ light /`
 
-=== Definieren Van Een Regex
+=== Definiëren van een Regex
 
 Een reguliere expressie kan als volgt worden gedefinieerd:
 
@@ -2397,9 +2396,9 @@ Een reguliere expressie kan als volgt worden gedefinieerd:
 
 Tenzij het specifiek wordt aangeduid, is witruimte zonder betekenis, dus `m/licht/` en `m/ licht /` zijn hetzelfde.
 
-=== Vergelijken van karaketers
+=== Vergelijken van Karakters
 Alphanumerieke karakters en het liggend streepje `_` mogen als zichzelf worden geschreven. +
-Alle andere karakters moeten speciaal worden behandeld door er een backslash `\\` voor te plaatsen of te omgeven door aanhalingstekens.
+Alle andere karakters moeten speciaal worden behandeld door er een backslash `\\` voor te plaatsen of door ze te omgeven door aanhalingstekens.
 
 [source,perl6]
 .Backslash
@@ -2425,9 +2424,9 @@ if 'naam@bedrijf.nl' ~~ m/ "@" / {
 }
 ----
 
-=== Vergelijken Van Categorieen Van Karakters
-Karakters kunnen worden geclassificeerd in categorieen en ook daarmee kunnen we vergelijken. +
-We kunnen ook vergelijken de inverse van een categorie (alle karaketers behalve degene in die categorie).
+=== Vergelijken van Categorieën van Karakters
+Karakters kunnen worden geclassificeerd in categorieën en ook daarmee kunnen we vergelijken. +
+We kunnen ook vergelijken met de inverse van een categorie (alle karakters behalve degene in die categorie).
 
 |===
 
@@ -2464,7 +2463,7 @@ if "Jan-Met" ~~ / \s / {
 ----
 
 === Unicode eigenschappen
-Het vergelijken van categorieen van karakters zoals we in de vorige sectie zagen, is erg gemakkelijk. +
+Het vergelijken van categorieën van karakters zoals we in de vorige sectie zagen, is erg gemakkelijk. +
 Maar wellicht is het gebruik van Unicode eigenschappen een meer systematische aanpak. +
 Unicode eigenschappen worden omgeven door `<: >`
 
@@ -2510,7 +2509,7 @@ if 'ac' ~~ m/ a.c / {
 === Factoren
 Factoren (quantifiers) komen na een karakter en worden gebruikt om aan te geven hoe vaak we dat karakter verwachten.
 
-Het vraagteken `?` betekent nul of een keer.
+Het vraagteken `?` betekent nul of één keer.
 
 [source,perl6]
 ----
@@ -2552,7 +2551,7 @@ if 'z' ~~ m/ a*z / {
 }
 ----
 
-Het plusteken `+` betekent tenminste een keer.
+Het plusteken `+` betekent tenminste één keer.
 
 [source,perl6]
 ----
@@ -2578,16 +2577,15 @@ if 'z' ~~ m/ a+z / {
 }
 ----
 
-=== Resultaten van een vergelijking
-Elke keer wanneer het vergelijken van een string met een regex succesvol is, wordt het resultaat in een speciale variable `$/` geplaatst
-the match result is stored in a special variable `$/`
+=== Resultaten van een Vergelijking
+Elke keer wanneer het vergelijken van een string met een regex succesvol is, wordt het resultaat in een speciale variable `$/` geplaatst.
 
 [source,perl6]
 .Script
 ----
 if 'Rakudo is een Perl 6 compiler' ~~ m/:s Perl 6/ {
     say "Het resultaat is: " ~ $/;
-    say "De string voor de gevonden string is: " ~ $/.prematch;
+    say "De string vóór de gevonden string is: " ~ $/.prematch;
     say "De string achter de gevonden string is: " ~ $/.postmatch;
     say "De gevonden string begint op positie: " ~ $/.from;
     say "De gevonden string eindigt op positie: " ~ $/.to;
@@ -2597,7 +2595,7 @@ if 'Rakudo is een Perl 6 compiler' ~~ m/:s Perl 6/ {
 .Uitvoer
 ----
 Het resultaat is: ｢Perl 6｣
-De string voor de gevonden string is: Rakudo is een
+De string vóór de gevonden string is: Rakudo is een
 De string achter de gevonden string is: compiler
 De gevonden string begint op positie: 14
 De gevonden string eindigt op positie: 20
@@ -2606,7 +2604,7 @@ De gevonden string eindigt op positie: 20
 .Uitleg
 `$/` geeft een _Match Object_ terug (de string die gevonden is door de regex) +
 Deze methoden kunnen worden aangeroepen op een _Match Object_: +
-`.prematch` geeft de string voor de gevonden string terug. +
+`.prematch` geeft de string vóór de gevonden string terug. +
 `.postmatch` geeft de string na de gevonden string terug. +
 `.from` geeft de positie van het eerste karakter van de gevonden string terug. +
 `.to` geeft de positie van het laatste karakter van de gevonden string terug. +
@@ -2615,7 +2613,7 @@ TIP: Witruimte heeft per default geen betekening in een regex. +
 Als we willen vergelijken met een regex die witruimte bevat, dan moeten we dat expliciet aangeven. +
 De `:s` in de regex `m/:s Perl 6/` geeft aan dat witruimte niet moet worden genegeerd. +
 We zouden de regex ook kunnen hebben schrijven als `m/ Perl \s 6 /` waarbij we `\s` als een teken voor witruimte hebben gebruikt, zoals we eerder hebben gezien. +
-Indien een regex meer dan een witruimte bevat, dan is het gebruik van `:s` gemakkelijker in plaats van `\s` te specificeren voor elke witruimte.
+Als een regex meer dan één witruimte bevat, dan is het gebruik van `:s` gemakkelijker in plaats van `\s` te specificeren voor elke witruimte.
 
 === Voorbeeld
 Laten we eens kijken of een emailadres goed is of niet. +
@@ -2640,15 +2638,15 @@ if $email ~~ $regex {
 ----
 
 .Uitvoer
-`jan.mete@perl6.org is een gevalideerd emailadres`
+`jan.met@perl6.org is een gevalideerd emailadres`
 
 .Uitleg
 `<:L>` accepteert een enkele letter +
-`<:L>+` accepteert een of meer letters +
+`<:L>+` accepteert één of meer letters +
 `\.` accepteert een enkele [punt] +
 `\@` accepteert een enkel @-karakter +
-`<:L+:N>` accepteert een of meer letters gevolgd door een cijfer +
-`<:L+:N>+` accepteert een of meer letters + cijfer een of meer keer +
+`<:L+:N>` accepteert één of meer letters gevolgd door een cijfer +
+`<:L+:N>+` accepteert één of meer letters + cijfer één of meer keer +
 
 De regex kan als volgt uit elkaar worden gehaald:
 
@@ -2693,7 +2691,7 @@ manipulatie van tekst, plaatjes, web, databases, netwerkprotocollen, etc.
 
 Herbruikbaarheid is een erg belangrijke eigenschap waardoor programmeurs niet telkens het wiel opnieuw hoeven uit te vinden als ze aan een nieuwe taak beginnen.
 
-Perl 6 maakt het mogelijk om *modules* aan te maken en die te distribueren.  Elke module is een bundel van functionaliteit die kan worden gebruikt zodra deze is geinstalleerd.
+Perl 6 maakt het mogelijk om *modules* aan te maken en die te distribueren.  Elke module is een bundel van functionaliteit die kan worden gebruikt zodra deze is geïnstalleerd.
 
 _Panda_ is een programma om modules te beheren dat deel is van Rakudo Star.
 
@@ -2705,7 +2703,7 @@ NOTE: Een overzicht van beschikbare Perl 6 modules is te vinden op: https://modu
 
 === Gebruiken van Modules
 MD5 is een cryptografische functie die een unieke 128bit waarde (hash) produceert. +
-MD5 heeft een grote varieteit van applicaties waarvan het opslaan van wachtwoorden in een database er een is. 
+MD5 heeft een grote variëteit van applicaties waarvan het opslaan van wachtwoorden in een database er een is. 
 Zodra een nieuwe gebruiker zich registreerd worden de inloggegevens niet als platte tekst opgeslagen, maar als een _hash_.
 Het idee daarachter is dat in het geval dat een database wordt gestolen, de dief dan niet zal kunnen weten wat de wachtwoorden zijn.
 
@@ -2816,9 +2814,9 @@ say $var;
 
 === Parallelisme
 Onder normale omstandigheden worden alle taken in een programma achter elkaar uitgevoerd. +
-Dit hoeft niet noodzakelijkerwijs een probleem te zijn tenzij dat je probeert te doen een hoop tijd vergt.
+Dit hoeft niet noodzakelijkerwijs een probleem te zijn tenzij wat je probeert te doen een hoop tijd vergt.
 
-Natuurlijk heeft Perl 6 een aantal mogelijkheden die het mogelijk maken om delen van een programma in parallel uit te laten voeren. +
+Natuurlijk heeft Perl 6 een aantal mogelijkheden die het mogelijk maken om delen van een programma parallel uit te laten voeren. +
 Op dit moment is het belangrijk om op te merken dat parallelisme twee dingen kan betekenen:
 
 * *Taak Parallelisme*: Twee (of meer) onafhankelijke expressies die parallel worden uitgevoerd..
@@ -2840,7 +2838,7 @@ We doen maar een enkele opdracht: `@array.map({ is-prime $_ })` +
 De `is-prime` subroutine wordt voor elk element van het array achter elkaar aangeroepen: +
 `is-prime @array[0]` en dan `is-prime @array[1]` en dan `is-prime @array[2]` etc.
 
-.Gelukkig kunnen we `is-prime` tegelijkertijd op meer dan een array element aanroepen:
+.Gelukkig kunnen we `is-prime` tegelijkertijd op meer dan één array element aanroepen:
 [source,perl6]
 ----
 my @array = (0..50000);                           #vullen van het Array
@@ -2894,11 +2892,11 @@ say now - INIT now;
 
 .Bekijk bovenstaand voorbeeld:
 
-. We definieren 2 arrays
+. We definiëren 2 arrays
 
 . we voeren dezelfde operatie uit op beide arrays en slaan het resultaat op
 
-. en kijken of beide resultaten hetzelfde zijn
+. en kijken of beide resultaten hetzelfde zijn.
 
 Het script wacht totdat `@array1.map( {is-prime($_ + 1)} )` klaar is +
 en gaat dan `@array2.map( {is-prime($_ - 1)} )` uitvoeren.
@@ -2939,7 +2937,7 @@ Dat is de reden waarom het gebruik van `race`, `hyper` en `start` in tamelijk si
 === Gelijktijdigheid en Asynchroniciteit
 NOTE: Zie https://docs.perl6.org/language/concurrency voor meer informatie over asynchroon programmeren in Perl 6
 
-== The Community
+== De Community
 
 * link:irc://irc.freenode.net/#perl6[#perl6] IRC kanaal. Veel discussies vinden plaats op IRC. Mocht je vragen hebben die relatief snel een antwoord nodig hebben, dan kun je het beste naar  https://perl6.org/community/irc gaan
 
