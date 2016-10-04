@@ -2703,7 +2703,7 @@ NOTE: Een overzicht van beschikbare Perl 6 modules is te vinden op: https://modu
 
 === Gebruiken van Modules
 MD5 is een cryptografische functie die een unieke 128bit waarde (hash) produceert. +
-MD5 heeft een grote variëteit van applicaties waarvan het opslaan van wachtwoorden in een database er een is. 
+MD5 heeft een grote variëteit van applicaties waarvan het opslaan van wachtwoorden in een database er een is.
 Zodra een nieuwe gebruiker zich registreerd worden de inloggegevens niet als platte tekst opgeslagen, maar als een _hash_.
 Het idee daarachter is dat in het geval dat een database wordt gestolen, de dief dan niet zal kunnen weten wat de wachtwoorden zijn.
 
@@ -2941,7 +2941,7 @@ NOTE: Zie https://docs.perl6.org/language/concurrency voor meer informatie over 
 
 * link:irc://irc.freenode.net/#perl6[#perl6] IRC kanaal. Veel discussies vinden plaats op IRC. Mocht je vragen hebben die relatief snel een antwoord nodig hebben, dan kun je het beste naar  https://perl6.org/community/irc gaan
 
-* link:https://p6weekly.wordpress.com een wekelijks overzicht van veranderingen in en rond Perl 6
+* link:https://p6weekly.wordpress.com[p6weekly] een wekelijks overzicht van veranderingen in en rond Perl 6
 
 * link:http://pl6anet.org[pl6anet] is een blog aggregator. Hier kun je blog posts over Perl 6 lezen
 
