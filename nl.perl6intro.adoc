@@ -2941,6 +2941,8 @@ NOTE: Zie https://docs.perl6.org/language/concurrency voor meer informatie over 
 
 * link:irc://irc.freenode.net/#perl6[#perl6] IRC kanaal. Veel discussies vinden plaats op IRC. Mocht je vragen hebben die relatief snel een antwoord nodig hebben, dan kun je het beste naar  https://perl6.org/community/irc gaan
 
+* link:https://p6weekly.wordpress.com een wekelijks overzicht van veranderingen in en rond Perl 6
+
 * link:http://pl6anet.org[pl6anet] is een blog aggregator. Hier kun je blog posts over Perl 6 lezen
 
 * link:https://www.reddit.com/r/perl6/[/r/perl6] ook op reddit kun je over Perl 6 lezen
