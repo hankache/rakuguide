@@ -169,23 +169,24 @@ say 'Здравей, Свят!';
 'Здравей, Свят!'.say;
 
 === Преглед на синтаксиса
-Пърл 6 е *свободна форма*: Свободни сте (през повечето време) да използвате паузи колкото ви е угодно.
+Пърл 6 е *свободна форма*: Свободни сте (през повечето време) да използвате
+колкото ви е угодно празни пространства (за разлика от Питон).
 
-*Твърденията* са обикновено логически ред код. Те завършват с точка и запетая.
+*Твърденията* са обикновено логически ред код. Те завършват с точка и запетая. +
 `say "Здрасти" if True;`
 
 *Изразите* са специален тип твърдение, което връща стойност:
 `1+2` ще върне `3`
 
-Изразите са съставени от *Членове* и *Оператори*.
+Изразите се състоят от *Членове* и *Оператори*.
 
 *Членове*. Те са:
 
 * *Променливи*: Съдържат стойност, която може да бъде променяна.
 
-* *Буквални стойности (литерали)*: Непроменяема,буквална стойност - число или низ.
+* *Буквални стойности (литерали)*: Непроменяема, буквална стойност - число или низ.
 
-*Оператори*. Те са разпределени по типове:
+*Оператори*. Те са няколко типа:
 
 |===
 
@@ -199,23 +200,24 @@ say 'Здравей, Свят!';
 
 | Ограждащ | Около члена | `(1)`
 
-| Следващ и ограждащ | След един член и ограждащ друг член | `Array[1]`
+| Ограждаща наставка | След един член и ограждащ друг член | `Array[1]`
 
 |===
 
-==== Идентификатори
+==== Идентификатори (Имена)
 Идентификаторите представляват имена, дадени на членовете.
 
 .Правила:
-* They must start with an alphabetic character or an underscore.
+* Трябва да започват с буква или знак за подчертавка.
 
-* They can contain digits (except the first character).
+* Могат да съдържат числа (ако не са първия знак в името на променливата).
 
-* They can contain dashes or apostrophes (except the first and last character), provided there's an alphabetic character to the right side of each dash or apostrophe.
+* Могат да съдържат тирета или апострофи (ако не са първи или последен знак).
+От дясната страна на тирето или апострофа винаги трябва да има буква.
 
 |===
 
-| *Valid* | *Invalid*
+| *Правилно* | *Неправилно*
 
 | `var1` | `1var`
 
@@ -229,54 +231,55 @@ say 'Здравей, Свят!';
 
 |===
 
-.Naming conventions:
-* Camel case: `variableNo1`
+.Честo използвани начини за именуване (конвенции):
+* КамилоОбразно: `variableNo1`
 
-* Kebab case: `variable-no1`
+* шиш-кебап: `variable-no1`
 
-* Snake case: `variable_no1`
+* змие_видно: `variable_no1`
 
-You are free to name your identifiers as you like, but it is good practice to adopt one naming convention consistently.
+Можете да именувате променливите си както искате, но е добра практика да се
+спрете на един вариант и да го следвате.
 
-Using meaningful names will ease your (and others) programming life.
+Като използвате смислени имена, ще улесните живота на всички, вашият и на вашите колеги.
 
-* `var1 = var2 * var3` is syntactically correct but its purpose is not evident.
-* `monthly-salary = daily-rate * working-days` would be a better way to name your variables.
+* `var1 = var2 * var3` е правилно синтактично, но безсмислено.
+* `monthly-salary = daily-rate * working-days` тези са по-смислени имена за променливи.
 
-==== Comments
-A comment is a piece of text ignored by the compiler and used as a note.
+==== Коментари
+Коментарът е текст, който компилаторът подминава и се ползва като бележка или пояснение.
 
-Comments are divided into 3 types:
+Коментарите са три типа:
 
-* Single line:
+* Едноредови:
 +
 [source,perl6]
-# This is a single line comment
+# Това е едноредов коментар
 
-* Embedded:
+* Вложен/вмъкнат:
 +
 [source,perl6]
-say #`(This is an embedded comment) "Hello World."
+say #`(Това е вмъкнат коментар) "Hello World."
 
-* Multi line:
+* Многоредови:
 +
 [source,perl6]
 -----------------------------
 =begin comment
-This is a multi line comment.
-Comment 1
-Comment 2
+Това е многоредов коментар.
+Първа бележка
+Второ пояснение
 =end comment
 -----------------------------
 
-==== Quotes
-Strings need to be delimited by either double quotes or single quotes.
+==== Кавички
+Низовете се ограждат с двойни или единични кавички.
 
-Always use double quotes:
+Използвайте двойни кавички, когато:
 
-* if your string contains an apostrophe.
+* низът ви съдържа апостроф;
 
-* if your string contains a variable that needs to be interpolated.
+* низът ви съдържа променливи.
 
 [source,perl6]
 -----------------------------------
@@ -288,64 +291,64 @@ say 'Hello $name';   # Hello $name
 say "Hello $name";   # Hello John Doe
 -----------------------------------
 
-== Operators
+== Оператори
 
-=== Common Operators
-The below table lists the most commonly used operators.
+=== Често използвани оператори
+Следващата таблица изрежда най-често използваните оператори.
 [cols="^.^5m,^.^5m,.^20,.^20m,.^20m", options="header"]
 |===
 
-| Operator | Type | Description | Example | Result
+| Оператор | Тип | Описание | Пример | Резултат
 
-| + | Infix | Addition | 1 + 2 | 3
+| + | Вставка | Събиране | 1 + 2 | 3
 
-| - | Infix | Subtraction | 3 - 1 | 2
+| - | Вставка | Изваждане | 3 - 1 | 2
 
-| * | Infix | Multiplication | 3 * 2 | 6
+| * | Вставка | Умножение | 3 * 2 | 6
 
-| ** | Infix | Power | 3 ** 2 | 9
+| ** | Вставка | Степенуване | 3 ** 2 | 9
 
-| / | Infix | Division | 3 / 2 | 1.5
+| / | Вставка | Деление | 3 / 2 | 1.5
 
-| div | Infix | Integer Division (rounds down) | 3 div 2 | 1
+| div | Вставка | Деление до цели числа (закръгля надолу) | 3 div 2 | 1
 
-| % | Infix | Modulo | 7 % 4 | 3
+| % | Вставка | Деление до остатък | 7 % 4 | 3
 
-.2+| %% .2+| Infix .2+| Divisibility | 6 %% 4 | False
+.2+| %% .2+| Вставка .2+| Divisibility | 6 %% 4 | False
 
 <| 6 %% 3 <| True
 
-| gcd | Infix | Greatest common denominator | 6 gcd 9 | 3
+| gcd | Вставка | Greatest common denominator | 6 gcd 9 | 3
 
-| lcm | Infix | Least common multiple | 6 lcm 9 | 18
+| lcm | Вставка | Least common multiple | 6 lcm 9 | 18
 
-| == | Infix | Numeric equal | 9 == 7  | False
+| == | Вставка | Numeric equal | 9 == 7  | False
 
-| != | Infix | Numeric not equal | 9 != 7  | True
+| != | Вставка | Numeric not equal | 9 != 7  | True
 
-| < | Infix | Less than | 9 < 7  | False
+| < | Вставка | Less than | 9 < 7  | False
 
-| > | Infix | Greater than | 9 > 7  | True
+| > | Вставка | Greater than | 9 > 7  | True
 
-| \<= | Infix | Less than or equal | 7 \<= 7  | True
+| \<= | Вставка | Less than or equal | 7 \<= 7  | True
 
-| >= | Infix | Greater than or equal | 9 >= 7  | True
+| >= | Вставка | Greater than or equal | 9 >= 7  | True
 
-| eq | Infix | String equal | "John" eq "John"  | True
+| eq | Вставка | String equal | "John" eq "John"  | True
 
-| ne | Infix | String not equal | "John" ne "Jane"  | True
+| ne | Вставка | String not equal | "John" ne "Jane"  | True
 
-| = | Infix | Assignment | my $var = 7  | Assigns the value of `7` to the variable `$var`
+| = | Вставка | Assignment | my $var = 7  | Assigns the value of `7` to the variable `$var`
 
-.2+| ~ .2+| Infix .2+| String concatenation | 9 ~ 7 | 97
+.2+| ~ .2+| Вставка .2+| String concatenation | 9 ~ 7 | 97
 
 <m| "Hi " ~ "there"  <| Hi there
 
-.2+| x .2+| Infix .2+| String replication | 13 x 3  | 131313
+.2+| x .2+| Вставка .2+| String replication | 13 x 3  | 131313
 
 <| "Hello " x 3  <| Hello Hello Hello
 
-.5+| ~~ .5+| Infix .5+| Smart match | 2 ~~ 2  | True
+.5+| ~~ .5+| Вставка .5+| Smart match | 2 ~~ 2  | True
 
 <| 2 ~~ Int <| True
 
@@ -389,17 +392,17 @@ The below table lists the most commonly used operators.
 
 | ! | Prefix | Coerce the operand to a boolean value and return the negation | !4 | False
 
-| .. | Infix | Range Constructor |  0..5  | Creates a range from 0 to 5
+| .. | Вставка | Range Constructor |  0..5  | Creates a range from 0 to 5
 
-| ..^ | Infix | Range Constructor |  0..^5  | Creates a range from 0 to 4
+| ..^ | Вставка | Range Constructor |  0..^5  | Creates a range from 0 to 4
 
-| ^.. | Infix | Range Constructor |  0^..5  | Creates a range from 1 to 5
+| ^.. | Вставка | Range Constructor |  0^..5  | Creates a range from 1 to 5
 
-| \^..^ | Infix | Range Constructor |  0\^..^5  | Creates a range from 1 to 4
+| \^..^ | Вставка | Range Constructor |  0\^..^5  | Creates a range from 1 to 4
 
 | ^ | Prefix | Range Constructor |  ^5  | Same as 0..^5 Creates a range from 0 to 4
 
-| ... | Infix | Lazy List Constructor |  0...9999  |  return the elements only if requested
+| ... | Вставка | Lazy List Constructor |  0...9999  |  return the elements only if requested
 
 .2+| {vbar} .2+| Prefix .2+| Flattening | {vbar}(0..5)  | (0 1 2 3 4 5)
 
@@ -447,7 +450,7 @@ A *sigil* (Sign in Latin) is a character that is used as a prefix to categorize 
 * `@` is used for arrays
 * `%` is used for hashes
 
-=== Scalars
+=== Скалари
 A scalar holds one value or reference.
 
 [source,perl6]
@@ -510,7 +513,7 @@ say $age.nude;
 
 NOTE: For the complete list of methods applicable to Rational Numbers, see https://docs.perl6.org/type/Rat
 
-=== Arrays
+=== Масиви
 Arrays are lists containing multiple values.
 
 [source,perl6]
@@ -551,7 +554,7 @@ We're closing the zoo and keeping one animal only
 We're going to let go: vicuña llama and keep the camel
 ----
 
-.Explanation
+.Обяснение
 `.elems` returns the number of elements in an array. +
 `.push()` adds an element to the array. +
 We can access a specific element in the array by specifying its position `@animals[0]`. +
@@ -597,7 +600,7 @@ my @array[3];
 Index 3 for dimension 1 out of range (must be 0..2)
 ----
 
-==== Multidimensional arrays
+==== Многомерни масиви
 The arrays we saw until now are one-dimensional. +
 Fortunately, we can define multi-dimensional arrays in Perl 6.
 
@@ -669,7 +672,7 @@ say "The capital of France is: " ~ %capitals<France>;
 The capital of France is: Paris
 ----
 
-.Explanation
+.Обяснение
 `.push: (key => 'Value')` adds a new key/value pair. +
 `.kv` returns a list containing all keys and values. +
 `.keys` returns a list that contains all keys. +
@@ -822,7 +825,7 @@ my Int $var = 123;
 say $var;
 ----
 
-=== Assignment vs. Binding
+=== Присвояване и обвързване
 We've seen in the previous examples, how to *assign* values to variables. +
 *Assignment* is done using the `=` operator.
 [source,perl6]
@@ -918,7 +921,7 @@ say @numbers;      #4
 [2 3 4 7 9 11 99] #4
 ----
 
-.Explanation
+.Обяснение
 `.push` is a mutator, it changes the state of the array (#1)
 
 `.sort` is a function, it returns a sorted array but doesn't modify the state of the initial array:
@@ -929,7 +932,7 @@ say @numbers;      #4
 
 In order to enforce a function to act as a mutator, we use `.=` instead of `.` (#4) (Line 9 of the script)
 
-== Loops and conditions
+== Цикли и условия
 Perl 6 has a multitude of conditionals and looping constructs.
 
 === if
@@ -1094,7 +1097,7 @@ loop (my $i = 0; $i < 5; $i++) {
 
 NOTE: For more info on loops and conditions, see https://docs.perl6.org/language/control
 
-== I/O
+== Вход/Изход (I/O)
 In Perl 6, two of the most common _Input/Output_ interfaces are the _Terminal_ and _Files_.
 
 === Basic I/O using the Terminal
@@ -1142,7 +1145,7 @@ my $name = prompt "Hi, what's your name? ";
 say "Dear $name welcome to Perl 6";
 ----
 
-=== Running Shell Commands
+=== Пускане на команди от системната обвивка
 Two subroutines can be used to run shell commands:
 
 * `run` Runs an external command without involving a shell
@@ -1204,7 +1207,7 @@ spurt "newdatafile.txt", $newdata;
 
 After running the above code, a new file named _newdatafile.txt_ will be created. It will contain the new scores.
 
-=== Working with files and directories
+=== Работа с файлове и папки
 Perl 6 can list the contents of a directory without running shell commands (using `ls`) as seen in a previous example.
 
 [source,perl6]
@@ -1250,8 +1253,8 @@ WARNING: Windows users can use `/` or `\\` to define directories +
 
 NOTE: For more info on I/O, see https://docs.perl6.org/type/IO
 
-== Subroutines
-=== Definition
+== Подпрограми
+=== Определение
 *Subroutines* (also called *subs* or *functions*) are a means of packaging a set of functionality. +
 
 A subroutine definition begins with the keyword `sub`. After their definition, they can be called by their handle. +
@@ -1302,7 +1305,7 @@ greet "Johnnie";
 greet "Laura","Mrs.";
 ----
 
-=== Default and Optional Parameters
+=== Незадължителни и Подразбиращи се Параметри
 If a subroutine is defined to accept an argument, and we call it without providing it with the required argument, it will fail.
 
 Alternatively Perl 6 provides us the ability to define subroutines with:
@@ -1334,7 +1337,7 @@ say-hello;
 say-hello("Laura");
 ----
 
-=== Returning values
+=== Връщани Стойности
 All the subroutines we saw so far *do something*, they display some text on the terminal.
 
 While this is perfectly normal, sometimes we do want a subroutine to *return* some kind of value that we can reuse later in the flow of our program.
@@ -1359,7 +1362,7 @@ sub squared ($x) {
 }
 say "7 squared is equal to " ~ squared(7);
 ----
-==== Restricting return values
+==== Ограничаване на връщаните стойности
 In one of the previous examples, we saw how we can restrict the accepted argument to be of a certain type.
 The same can be done with return values.
 
@@ -1410,7 +1413,7 @@ say "1.2 squared is equal to " ~ squared(1.2);
 
 NOTE: For more info on subroutines and functions, see https://docs.perl6.org/language/functions
 
-== Functional Programming
+== Функционално Програмиране
 In this chapter we will take a look at some of the functionality that facilitates Functional Programming.
 
 === Functions are first-class citizens
@@ -1426,7 +1429,7 @@ A great example to demonstrate this concept is the `map` function. +
 `map` is a *higher order function*, it accepts another function as an argument.
 
 [source,perl6]
-.Script
+.Скрипт
 ----
 my @array = <1 2 3 4 5>;
 sub squared($x) {
@@ -1435,12 +1438,12 @@ sub squared($x) {
 say map(&squared,@array);
 ----
 
-.Output
+.Изход
 ----
 (1 4 9 16 25)
 ----
 
-.Explanation
+.Обяснение
 We defined a subroutine called `squared`, it will take to the power of two any number provided as argument. +
 Next, we used `map`, a higher order function and gave it two arguments, a subroutine and an array. +
 The result is a list of all squared elements of the array.
@@ -1514,7 +1517,7 @@ my @array = <7 8 9 0 1 2 4 3 5 6 7 8 9>;
 say @final-array;
 ----
 
-.Explanation
+.Обяснение
 ----
 Start with `@array` then return a list of unique elements
                     then sort it
@@ -1535,7 +1538,7 @@ my @final-array-v2 <== reverse()
 say @final-array-v2;
 ----
 
-.Explanation
+.Обяснение
 The backward feed is like the forward feed, but written in reverse. +
 The flow of the method calls is bottom-up.
 
@@ -1585,7 +1588,7 @@ The benefits include:
 
 * The ability to define control flow
 
-To build a lazy list we use the infix operator `...` +
+To build a lazy list we use the Вставка operator `...` +
 A lazy list has *initial element(s)*, a *generator* and an *endpoint*.
 
 [source,perl6]
@@ -2011,7 +2014,7 @@ Depending of which class the object is, the right method will be called.
 They are only accessible from the class they were declared in. +
 They are defined using the `submethod` keyword.
 
-=== Multiple Inheritance
+=== Множествено наследяване
 Multiple inheritance is allowed in Perl 6. A class can inherit from multiple other classes.
 
 [source,perl6]
@@ -2056,7 +2059,7 @@ Actual vs Forecast:
 [10 9 11 8 7 10]
 ----
 
-.Explanation
+.Обяснение
 The `combo-chart` class should be able to hold two series, one for the actual values plotted on bars,
 and another for forecast values plotted on a line. +
 This is why we defined it as a child of `line-chart` and `bar-chart`. +
@@ -2202,7 +2205,7 @@ $actual-vs-forecast.plot;
 Method 'plot' must be resolved by class combo-chart because it exists in multiple roles (line-chart, bar-chart)
 ----
 
-.Explanation
+.Обяснение
 If multiple roles are applied to the same class, and a conflict arises, a compile-time error will be thrown. +
 This is a much safer approach than multiple inheritance where conflicts are not considered errors and are simply resolved at runtime.
 
@@ -2624,7 +2627,7 @@ The matching string starts at position: 12
 The matching string ends at position: 18
 ----
 
-.Explanation
+.Обяснение
 `$/` returns a _Match Object_ (the string that matches the regex) +
 The following methods can be called on the _Match Object_: +
 `.prematch` returns the string preceding the match. +
@@ -2663,7 +2666,7 @@ if $email ~~ $regex {
 .Output
 `john.doe@perl6.org is a valid email`
 
-.Explanation
+.Обяснение
 `<:L>` matches a single letter +
 `<:L>+` matches a single letter or more +
 `\.` matches a single [dot] character +
@@ -2724,7 +2727,7 @@ To install a specific module, type the below command in your terminal:
 
 NOTE: The Perl 6 modules directory can be found on: https://modules.perl6.org/
 
-=== Using Modules
+=== Използване на Модули
 MD5 is a cryptographic hash function that produces a 128-bit hash value. +
 MD5 has a variety of applications of which encryption of passwords stored in a database.
 When a new user registers, their credentials are not stored as plain text but rather _hashed_.
@@ -2750,7 +2753,7 @@ The `use` keyword loads the module for use in the script.
 WARNING: In practice MD5 hashing alone is not sufficient, because it is prone to dictionary attacks. +
 It should be combined with a salt link:https://en.wikipedia.org/wiki/Salt_(cryptography)[https://en.wikipedia.org/wiki/Salt_(cryptography)].
 
-== Unicode
+== Уникод
 
 Unicode is a standard for encoding and representing text, that caters for most writing systems in the world. +
 UTF-8 is a character encoding capable of encoding all possible characters, or code points, in Unicode.
@@ -2759,7 +2762,7 @@ Characters are defined by a: +
 *Grapheme*: Visual representation. +
 *Code point*: A number assigned to the character.
 
-=== Using Unicode
+=== Използване на Унукод
 
 .Lets look at how we can output characters using Unicode
 [source,perl6]
@@ -2943,7 +2946,7 @@ say @result1 eqv @result2;
 say now - INIT now;
 ----
 
-.Explanation
+.Обяснение
 The `start` method evaluates the code and returns *an object of type promise* or shortly *a promise*. +
 If the code is evaluated correctly, the _promise_ will be *kept*. +
 If the code throws an exception, the _promise_ will be *broken*.
@@ -2960,7 +2963,7 @@ This is why, using `race`, `hyper`, `start` and `await` for fairly simple script
 === Concurrency and Asynchrony
 NOTE: For more info on Concurrency and Asynchronous Programming, see https://docs.perl6.org/language/concurrency
 
-== The Community
+== Общността
 
 * link:irc://irc.freenode.net/#perl6[#perl6] IRC channel. Much discussion happens on IRC. This should be your go to place for any enquiry: https://perl6.org/community/irc
 
