@@ -310,45 +310,45 @@ say "Hello $name";   # Hello John Doe
 
 | / | Вставка | Деление | 3 / 2 | 1.5
 
-| div | Вставка | Деление до цели числа (закръгля надолу) | 3 div 2 | 1
+| div | Вставка | Деление на цели числа (закръгля надолу) | 3 div 2 | 1
 
 | % | Вставка | Деление до остатък | 7 % 4 | 3
 
-.2+| %% .2+| Вставка .2+| Divisibility | 6 %% 4 | False
+.2+| %% .2+| Вставка .2+| Делимост | 6 %% 4 | False
 
 <| 6 %% 3 <| True
 
-| gcd | Вставка | Greatest common denominator | 6 gcd 9 | 3
+| gcd | Вставка | Най-голям общ знаменател | 6 gcd 9 | 3
 
-| lcm | Вставка | Least common multiple | 6 lcm 9 | 18
+| lcm | Вставка | Най-малко общо кратно | 6 lcm 9 | 18
 
-| == | Вставка | Numeric equal | 9 == 7  | False
+| == | Вставка | Цифрово равенство | 9 == 7  | False
 
-| != | Вставка | Numeric not equal | 9 != 7  | True
+| != | Вставка | Цифрово неравенство | 9 != 7  | True
 
-| < | Вставка | Less than | 9 < 7  | False
+| < | Вставка | По-малко | 9 < 7  | False
 
-| > | Вставка | Greater than | 9 > 7  | True
+| > | Вставка | По-голямо | 9 > 7  | True
 
-| \<= | Вставка | Less than or equal | 7 \<= 7  | True
+| \<= | Вставка | По-малко или равно | 7 \<= 7  | True
 
-| >= | Вставка | Greater than or equal | 9 >= 7  | True
+| >= | Вставка | По-голямо или равно | 9 >= 7  | True
 
-| eq | Вставка | String equal | "John" eq "John"  | True
+| eq | Вставка | Еднаквост между низове | "John" eq "John"  | True
 
-| ne | Вставка | String not equal | "John" ne "Jane"  | True
+| ne | Вставка | Низовете не са еднакви | "John" ne "Jane"  | True
 
-| = | Вставка | Assignment | my $var = 7  | Assigns the value of `7` to the variable `$var`
+| = | Вставка | Присвояване | my $var = 7  | Присвояване на стойността `7` на променливата `$var`
 
-.2+| ~ .2+| Вставка .2+| String concatenation | 9 ~ 7 | 97
+.2+| ~ .2+| Вставка .2+| Свързване на низове | 9 ~ 7 | 97
 
-<m| "Hi " ~ "there"  <| Hi there
+<m| "Ей, " ~ "здрасти"  <| Ей, здрасти
 
-.2+| x .2+| Вставка .2+| String replication | 13 x 3  | 131313
+.2+| x .2+| Вставка .2+| Повторение на низове | 13 x 3  | 131313
 
-<| "Hello " x 3  <| Hello Hello Hello
+<| "Здрасти " x 3  <| Здрасти Здрасти Здрасти 
 
-.5+| ~~ .5+| Вставка .5+| Smart match | 2 ~~ 2  | True
+.5+| ~~ .5+| Вставка .5+| Умно съвпадение | 2 ~~ 2  | True
 
 <| 2 ~~ Int <| True
 
@@ -358,27 +358,27 @@ say "Hello $name";   # Hello John Doe
 
 <| "enlightenment" ~~ /light/ <| ｢light｣
 
-.2+| ++ | Prefix | Increment | my $var = 2; ++$var;  | Increment the variable by 1 and return the result `3`
+.2+| ++ | Представка | Увеличаване | my $var = 2; ++$var;  | Увеличава стойността на променливата с 1 и връща резулата `3`
 
-<m| Postfix <d| Increment <m| my $var = 2; $var++;  <| Return the variable `2` and then increment it
+<m| Наставка <d| Увеличаване <m| my $var = 2; $var++;  <| Връща стойността на променливата `2` и след това я увеличава с 1
 
-.2+|\--| Prefix | Decrement | my $var = 2; --$var;  | Decrement the variable by 1 and return the result `1`
+.2+|\--| Представка | Намаляване | my $var = 2; --$var;  | Намалява стойността на променливата с 1 и връща резултата `1`
 
-<m| Postfix <d| Decrement <m| my $var = 2; $var--;  <| Return the variable `2` and then decrement it
+<m| Наставка <d| Намаляване <m| my $var = 2; $var--;  <| Връща стойността на променливата `2` и след това я намалява
 
-.3+| + .3+| Prefix .3+| Coerce the operand to a numeric value | +"3"  | 3
+.3+| + .3+| Prefix .3+| Свежда операнда до числова стойност | +"3"  | 3
 
 <| +True <| 1
 
 <| +False <| 0
 
-.3+| - .3+| Prefix .3+| Coerce the operand to a numeric value and return the negation | -"3"  | -3
+.3+| - .3+| Представка .3+| Свежда операнда до числова стойност и връща отрицанието | -"3"  | -3
 
 <| -True <| -1
 
 <| -False <| 0
 
-.6+| ? .6+| Prefix .6+| Coerce the operand to a boolean value | ?0 | False
+.6+| ? .6+| Prefix .6+| Свежда операнда до булева стойност | ?0 | False
 
 <| ?9.8 <| True
 
@@ -390,33 +390,33 @@ say "Hello $name";   # Hello John Doe
 
 <| my $var = 7; ?$var; <| True
 
-| ! | Prefix | Coerce the operand to a boolean value and return the negation | !4 | False
+| ! | Prefix | Свежда операнда до булева стойност и връща отрицанието | !4 | False
 
-| .. | Вставка | Range Constructor |  0..5  | Creates a range from 0 to 5
+| .. | Вставка | Създател на поредица |  0..5  | Създава поредица от 0 до 5
 
-| ..^ | Вставка | Range Constructor |  0..^5  | Creates a range from 0 to 4
+| ..^ | Вставка | Създател на поредица |  0..^5  | Създава поредица от 0 до 4
 
-| ^.. | Вставка | Range Constructor |  0^..5  | Creates a range from 1 to 5
+| ^.. | Вставка | Създател на поредица |  0^..5  | Създава поредица от 1 до 5
 
-| \^..^ | Вставка | Range Constructor |  0\^..^5  | Creates a range from 1 to 4
+| \^..^ | Вставка |  Създател на поредица |  0\^..^5  | Създава поредица от 1 до 4
 
-| ^ | Prefix | Range Constructor |  ^5  | Same as 0..^5 Creates a range from 0 to 4
+| ^ | Представка | Създател на поредица |  ^5  | Също като 0..^5 Създава поредица от 0 до 4
 
-| ... | Вставка | Lazy List Constructor |  0...9999  |  return the elements only if requested
+| ... | Вставка | Мързелив създател на списък |  0...9999  |  return the elements only if requested
 
-.2+| {vbar} .2+| Prefix .2+| Flattening | {vbar}(0..5)  | (0 1 2 3 4 5)
+.2+| {vbar} .2+| Представка .2+| Сплескване | {vbar}(0..5)  | (0 1 2 3 4 5)
 
 <| {vbar}(0\^..^5)  <| (1 2 3 4)
 
 |===
 
-=== Reversed Operators
+=== Обърнати Оператори
 
-Adding `R` before any operator will have the effect of reversing its operands.
+Добавяне на `R` преди който и да е оператор, ще обърне операндите му.
 
 [cols=".^m,.^m,.^m,.^m", options="header"]
 |===
-| Normal Operation | Result | Reversed Operator | Result
+| Нормална операция | Резултат | Обърнат Оператор | Резултат
 
 | 2 / 3 | 0.666667 | 2 R/ 3 | 1.5
 
@@ -424,14 +424,14 @@ Adding `R` before any operator will have the effect of reversing its operands.
 
 |===
 
-=== Reduction Operators
+=== Съкращаващи Оператори
 
-Reduction operators work on lists of values.
-They are formed by surrounding the operator with brackets `[]`
+Операторите за съкращения се прилагат върху списък от стойности.
+Съставят се като операторът се огради със `[]`
 
 [cols=".^m,.^m,.^m,.^m", options="header"]
 |===
-| Normal Operation | Result | Reduction Operator | Result
+| Нормална операция | Резултат | Съкращаващ оператор | Резултат
 
 | 1 + 2 + 3 + 4 + 5 | 15 | [+] 1,2,3,4,5 | 15
 
@@ -439,9 +439,10 @@ They are formed by surrounding the operator with brackets `[]`
 
 |===
 
-NOTE: For the complete list of operators, including their precedence, go to https://docs.perl6.org/language/operators
+NOTE:  За да видите пълния списък с оператори и приоритетите им, отидете на
+https://docs.perl6.org/language/operators
 
-== Variables
+== Променливи
 Perl 6 variables are classified into 3 categories: Scalars, Arrays and Hashes.
 
 A *sigil* (Sign in Latin) is a character that is used as a prefix to categorize variables.
