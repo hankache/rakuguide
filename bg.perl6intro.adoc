@@ -444,7 +444,7 @@ https://docs.perl6.org/language/operators
 == Променливи
 Променливите в Пърл 6 биват три типа - Скалари, Масиви и Хешове.
 
-Променливите се различават по т.нар *сиджил* (означава знак на латински). Този
+Променливите се различават по т.нар *сиджил* (означава "знак" на латински). Този
 знак се намира в началото на всяка променлива.
 
 * `$` се използва за скалари
@@ -452,7 +452,7 @@ https://docs.perl6.org/language/operators
 * `%` се използва за хешове
 
 === Скалари
-Скаларът съдържа единична стойност или указател(reference).
+Скаларът съдържа единична стойност или указател (reference).
 Бел. прев.: Указателите в Пърл не са като указателите в C и затова са познати
 повече като референции.
 
@@ -517,4 +517,128 @@ say $age.nude;
 ----
 
 ВАЖНО: За да видите пълния списък с методите, приложими върху цели числа (скаларни променливи от тип Rat), вижте https://docs.perl6.org/type/Rat
+
+=== Масиви
+Масивите са списъци, които съдържат множество стойности.
+
+[source,perl6]
+----
+my @animals = 'камила','лама','сова';
+say @animals;
+----
+
+От долния пример се вижда, че върху масивите могат да се извършват много операции:
+
+СЪВЕТ: Тилдата `~` се използва за свързване на низове.
+
+[source,perl6]
+.`Script`
+----
+my @animals = 'camel','vicuña','llama';
+say "В зоологическата градина има " ~ @animals.elems ~ " животни.";
+say "Животните са: " ~ @animals;
+say "Аз ще осиновя една сова";
+@animals.push("owl");
+say "Сега в градината ми има: " ~ @animals;
+say "The first animal we adopted was the " ~ @animals[0];
+@animals.pop;
+say "Unfortunately the owl got away and we're left with: " ~ @animals;
+say "We're closing the zoo and keeping one animal only";
+say "We're going to let go: " ~ @animals.splice(1,2) ~ " and keep the " ~ @animals;
+----
+
+.`Изход`
+----
+В зоологическата градина има 3 животни.
+Животните са: camel vicuña llama
+Аз ще осиновя една сова
+Сега в градината ми има: camel vicuña llama owl
+The first animal we adopted was the camel
+Unfortunately the owl got away and we're left with: camel vicuña llama
+We're closing the zoo and keeping one animal only
+We're going to let go: vicuña llama and keep the camel
+----
+
+.Обяснение
+`.elems` връща броя на елементите в масива. +
+`.push()` добавя един или повече елементи към масива. +
+Можем да достъпим отделен елемент от масива като укажем мястото му `@animals[0]`. +
+`.pop` премахва последния елемент от масива и го връща. +
+`.splice(a,b)` ще премахне `b` елемента като започне от позиция `a`.
+
+==== Fixed-size arrays
+A basic array is declared as following:
+[source,perl6]
+my @array;
+
+The basic array can have indefinite length and thus is called auto-extending. +
+The array will accept any number of values with no restriction.
+
+In contrast, we can also create fixed-size arrays. +
+These arrays can not be accessed beyond their defined size.
+
+To declare an array of fixed size, specify its maximum number of elements in square brackets immediately after its name:
+[source,perl6]
+my @array[3];
+
+This array will be able to hold a maximum of 3 values, indexed from 0 to 2.
+
+[source,perl6]
+----
+my @array[3];
+@array[0] = "first value";
+@array[1] = "second value";
+@array[2] = "third value";
+----
+
+You will not be able to add a fourth value to this array:
+[source,perl6]
+----
+my @array[3];
+@array[0] = "first value";
+@array[1] = "second value";
+@array[2] = "third value";
+@array[3] = "fourth value";
+----
+
+----
+Index 3 for dimension 1 out of range (must be 0..2)
+----
+
+==== Multidimensional arrays
+The arrays we saw until now are one-dimensional. +
+Fortunately, we can define multi-dimensional arrays in Perl 6.
+
+[source,perl6]
+my @tbl[3;2];
+
+This array is two-dimensional.
+The first dimension can have a maximum of 3 values and the second dimension a maximum of 2 values.
+
+Think of it as a 3x2 grid.
+
+[source,perl6]
+----
+my @tbl[3;2];
+@tbl[0;0] = 1;
+@tbl[0;1] = "x";
+@tbl[1;0] = 2;
+@tbl[1;1] = "y";
+@tbl[2;0] = 3;
+@tbl[2;1] = "z";
+say @tbl
+----
+
+----
+[[1 x] [2 y] [3 z]]
+----
+
+.Visual representation of the array:
+----
+[1 x]
+[2 y]
+[3 z]
+----
+
+NOTE: For the complete Array reference, see https://docs.perl6.org/type/Array
 
