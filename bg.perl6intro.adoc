@@ -739,3 +739,73 @@ say $var.WHAT;
 
 Пърл 6 е *постепенно типизиран*; позволява *статично* и *динамично* типизиране.
 
+.Масивите и хешовете могат също да бъдат статично типизирани:
+[source,perl6]
+----
+my Int @array = 1,2,3;
+say @array;
+say @array.WHAT;
+
+my Str @multilingual = "Здравей", "Hello","Salut","Hallo","您好","안녕하세요","こんにちは";
+say @multilingual;
+say @multilingual.WHAT;
+
+my Str %capitals = (UK => 'London', Germany => 'Berlin');
+say %capitals;
+say %capitals.WHAT;
+
+my Int %country-codes = (UK => 44, Germany => 49);
+say %country-codes;
+say %country-codes.WHAT;
+----
+
+.Ето спиаък с най-често използваните типове:
+Най-вероятно никога няма да използвате първите два, но са упоменати, да ги знаете.
+
+[cols="^.^1m,.^3m,.^2m,.^1m, options="header"]
+|===
+
+| *Тип* | *Описание* | *Пример* | *Резултат*
+
+| Mu | Коренът на йерархията типовете в Перл 6 | |
+
+| Any | Подразбиращият се базов клас за нови класове и за повечето стандартни класове | |
+
+| Cool | Стойност, която може да бъде ползвана като низ и число едновременно | my Cool $var = 31; say $var.flip; say $var * 2; | 13 62
+
+| Str | НИз от знакове | my Str $var = "NEON"; say $var.flip; | NOEN
+
+| Int | Цяло число (случайна точност) | 7 + 7 | 14
+
+| Rat | Рационално числоr (ограничена точност) | 0.1 + 0.2 | 0.3
+
+| Bool | Булева стойност (Истина или Лъжа) | !True | False
+
+|===
+
+=== Introspection
+
+Introspection is the process of getting information about an object properties like its type. +
+In one of the previous example we used `.WHAT` to return the type of the variable.
+
+[source,perl6]
+----
+my Int $var;
+say $var.WHAT;    # (Int)
+my $var2;
+say $var2.WHAT;   # (Any)
+$var2 = 1;
+say $var2.WHAT;   # (Int)
+$var2 = "Hello";
+say $var2.WHAT;   # (Str)
+$var2 = True;
+say $var2.WHAT;   # (Bool)
+$var2 = Nil;
+say $var2.WHAT;   # (Any)
+----
+
+The type of a variable holding a value is correlated to its value. +
+The type of a strongly declared empty variable is the type with which it was declared. +
+The type of an empty variable that wasn't strongly declared is `(Any)` +
+To clear the value of a variable, assign `Nil` to it.
+
