@@ -451,10 +451,15 @@ https://docs.perl6.org/language/operators
 * `@` се използва за масиви
 * `%` се използва за хешове
 
-=== Скалари
-Скаларът съдържа единична стойност или указател (reference).
-Бел. прев.: Указателите в Пърл не са като указателите в C и затова са познати
-повече като референции.
+=== Скалари 
+Скаларът (Scalar) съдържа единична стойност или указател (reference).
+[NOTE]
+====
+Бел. прев.:
+Указателите в Пърл не са като указателите в C и затова са познати
+повече като референции. Все пак по-подходящата дума е указател, а не
+референция.
+====
 
 [source,perl6]
 ----
@@ -499,7 +504,8 @@ say $age.is-prime;
 True
 ----
 
-ВАЖНО: За да видите пълния списък с методите, приложими върху цели числа (скаларни променливи от тип Int), вижте https://docs.perl6.org/type/Int
+ВАЖНО: За да видите пълния списък с методите, приложими върху цели числа
+(скаларни променливи от тип Int), вижте https://docs.perl6.org/type/Int
 
 [source,perl6]
 .Рационално число
@@ -516,10 +522,11 @@ say $age.nude;
 (23 10)
 ----
 
-ВАЖНО: За да видите пълния списък с методите, приложими върху цели числа (скаларни променливи от тип Rat), вижте https://docs.perl6.org/type/Rat
+ВАЖНО: За да видите пълния списък с методите, приложими върху цели числа
+(скаларни променливи от тип Rat), вижте https://docs.perl6.org/type/Rat
 
-=== Масиви
-Масивите са списъци, които съдържат множество стойности.
+=== Масиви 
+Масивите (Arrays) са списъци, които съдържат множество стойности.
 
 [source,perl6]
 ----
@@ -566,56 +573,58 @@ We're going to let go: vicuña llama and keep the camel
 `.pop` премахва последния елемент от масива и го връща. +
 `.splice(a,b)` ще премахне `b` елемента като започне от позиция `a`.
 
-==== Fixed-size arrays
-A basic array is declared as following:
+==== Масиви с предопределен размер
+Обикновено масив се обявява по следния начин:
 [source,perl6]
 my @array;
 
-The basic array can have indefinite length and thus is called auto-extending. +
-The array will accept any number of values with no restriction.
+По подразбиране масивът има неопределен брой елементи и затова го наричат
+автоматично-разширяващ се.  Масивът ще приеме какъвто и да е брой стойности без
+ограничение.
 
-In contrast, we can also create fixed-size arrays. +
-These arrays can not be accessed beyond their defined size.
+Но можем да създаваме и масиви с определен брой елементи.  В такива масиви не
+можете да достъпите или добавяте елементи извън определения размер на масива.
 
-To declare an array of fixed size, specify its maximum number of elements in square brackets immediately after its name:
+За да обявите масив с определен брой елементи, добавете броя на елементите в
+квадратни скоби веднага след името на масива.
 [source,perl6]
 my @array[3];
 
-This array will be able to hold a maximum of 3 values, indexed from 0 to 2.
+Този масив ще може да съдържа най-много три стойности с места от 0 до 2.
 
 [source,perl6]
 ----
 my @array[3];
-@array[0] = "first value";
-@array[1] = "second value";
-@array[2] = "third value";
+@array[0] = "първа стойност";
+@array[1] = "втора стойност";
+@array[2] = "трета стойност";
 ----
 
-You will not be able to add a fourth value to this array:
+Не можете да добавите четвърта стойност в този масив:
 [source,perl6]
 ----
 my @array[3];
-@array[0] = "first value";
-@array[1] = "second value";
-@array[2] = "third value";
-@array[3] = "fourth value";
+@array[0] = "първа стойност";
+@array[1] = "втора стойност";
+@array[2] = "трета стойност";
+@array[3] = "четвърта стойност";
 ----
 
 ----
 Index 3 for dimension 1 out of range (must be 0..2)
 ----
 
-==== Multidimensional arrays
-The arrays we saw until now are one-dimensional. +
-Fortunately, we can define multi-dimensional arrays in Perl 6.
+==== Многомерни масиви 
+Масивите, които видяхме до тук са едномерни. За щастие можем да създаваме и
+многомерни масиви в Пърл 6.
 
 [source,perl6]
 my @tbl[3;2];
 
-This array is two-dimensional.
-The first dimension can have a maximum of 3 values and the second dimension a maximum of 2 values.
+Този масив е двумерен.
+Първото измерение може да съдържа най-много 3 стойности, а второто - най-много 2.
 
-Think of it as a 3x2 grid.
+Представете си го като таблица с 3 реда и 2 колони.
 
 [source,perl6]
 ----
@@ -633,12 +642,170 @@ say @tbl
 [[1 x] [2 y] [3 z]]
 ----
 
-.Visual representation of the array:
+.Нагледно представяне на масива:
 ----
 [1 x]
 [2 y]
 [3 z]
 ----
 
-NOTE: For the complete Array reference, see https://docs.perl6.org/type/Array
+ВАЖНО: За да видите пълния справочник за масив (Array), посетете
+https://docs.perl6.org/type/Array
+
+=== Хешове
+[source,perl6]
+.Хешът (Hash) е набор от двойки Ключ/Стойност.
+----
+my %столици = ('UK','London','Germany','Berlin');
+say %столици;
+----
+
+[source,perl6]
+.Ето и друг сбит начин за попълване на хеша:
+----
+my %capitals = (UK => 'London', Germany => 'Berlin');
+say %capitals;
+----
+
+Някои от методите, които могат да се извикват върху хешове са:
+[source,perl6]
+.`Скрипт`
+----
+my %capitals = (UK => 'London', Germany => 'Berlin');
+%capitals.push: (France => 'Paris');
+say %capitals.kv;
+say %capitals.keys;
+say %capitals.values;
+say "The capital of France is: " ~ %capitals<France>;
+----
+
+.`Изход`
+----
+(France Paris Germany Berlin UK London)
+(France Germany UK)
+(Paris Berlin London)
+The capital of France is: Paris
+----
+
+.Обяснение
+`.push: (key => 'Value')` добавя нова двойка ключ/стойност. +
+`.kv` връща списък, съдържаш всички ключове и стойности. +
+`.keys` връща списък, съдържаш всички ключове. +
+`.values` връща списък, съдържаш всички стойности. +
+Можем да достъпим отделна стойност в хеша като укажем нейния ключ `%hash<key>`
+
+ВАЖНО: За да видите пълния справочник за хешовете, посетете https://docs.perl6.org/type/Hash
+
+=== Типове
+В примерите досега не задавахме типа стойност, който да съдържа променливата.
+
+СЪВЕТ: `.WHAT` Ще върне типа на стойността, съдържаща се в променливата.
+
+[source,perl6]
+----
+my $var = 'Text';
+say $var;
+say $var.WHAT;
+
+$var = 123;
+say $var;
+say $var.WHAT;
+----
+
+Както виждате от горния пример, типа на стойността в променливата `$var` първо
+беше (Str)  и след това (Int).
+
+Този начин на програмиране се нарича динамично типизиране. Динамично означава,
+че променливите могат да съдържат стойности от Всякакъв (Any) тип.
+
+Сега опитайте да изпълните следния пример. Обърнете внимание на използването на
+`Int` пред името на променливата.
+
+[source,perl6]
+----
+my Int $var = 'Text';
+say $var;
+say $var.WHAT;
+----
+
+Присвояването ще се провали и ще върне следната грешка: +
+ `Type check failed in assignment to $var; expected Int but got Str` +
+ `Проверката за тип е неуспешна при присвояване на $var; очакваше се Int, но бе подаден Str`
+
+Този път указахме, че типа на променливата ще бъде (Int).
+Опитът да му присвоим низ (Str), не беше успешен.
+
+Този начин на програмиране се нарича статично типизиране. Статично означава, че типа на променливите се указва предварително и не може да бъде променян.
+
+Пърл 6 е *постепенно типизиран*; позволява *статично* и *динамично* типизиране.
+
+.Масивите и хешовете могат също да бъдат статично типизирани:
+[source,perl6]
+----
+my Int @array = 1,2,3;
+say @array;
+say @array.WHAT;
+
+my Str @multilingual = "Здравей", "Hello","Salut","Hallo","您好","안녕하세요","こんにちは";
+say @multilingual;
+say @multilingual.WHAT;
+
+my Str %capitals = (UK => 'London', Germany => 'Berlin');
+say %capitals;
+say %capitals.WHAT;
+
+my Int %country-codes = (UK => 44, Germany => 49);
+say %country-codes;
+say %country-codes.WHAT;
+----
+
+.Ето спиаък с най-често използваните типове:
+Най-вероятно никога няма да използвате първите два, но са упоменати, да ги знаете.
+
+[cols="^.^1m,.^3m,.^2m,.^1m, options="header"]
+|===
+
+| *Тип* | *Описание* | *Пример* | *Резултат*
+
+| Mu | Коренът на йерархията типовете в Перл 6 | |
+
+| Any | Подразбиращият се базов клас за нови класове и за повечето стандартни класове | |
+
+| Cool | Стойност, която може да бъде ползвана като низ и число едновременно | my Cool $var = 31; say $var.flip; say $var * 2; | 13 62
+
+| Str | НИз от знакове | my Str $var = "NEON"; say $var.flip; | NOEN
+
+| Int | Цяло число (случайна точност) | 7 + 7 | 14
+
+| Rat | Рационално числоr (ограничена точност) | 0.1 + 0.2 | 0.3
+
+| Bool | Булева стойност (Истина или Лъжа) | !True | False
+
+|===
+
+=== Introspection
+
+Introspection is the process of getting information about an object properties like its type. +
+In one of the previous example we used `.WHAT` to return the type of the variable.
+
+[source,perl6]
+----
+my Int $var;
+say $var.WHAT;    # (Int)
+my $var2;
+say $var2.WHAT;   # (Any)
+$var2 = 1;
+say $var2.WHAT;   # (Int)
+$var2 = "Hello";
+say $var2.WHAT;   # (Str)
+$var2 = True;
+say $var2.WHAT;   # (Bool)
+$var2 = Nil;
+say $var2.WHAT;   # (Any)
+----
+
+The type of a variable holding a value is correlated to its value. +
+The type of a strongly declared empty variable is the type with which it was declared. +
+The type of an empty variable that wasn't strongly declared is `(Any)` +
+To clear the value of a variable, assign `Nil` to it.
 
