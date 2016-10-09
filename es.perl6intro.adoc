@@ -510,9 +510,9 @@ Dejamos ir a: vicuña llama y dejamos en el zoo al camello
 
 .Explicación
 `.elems` devuelve el número de elementos de un array. +
-`.push()` añade un elemento a un array. +
+`.push()` añade uno o más elementos a un array. +
 Podemos acceder a un elemento concreto del array indicando su posición `@animales[0]`. +
-`.pop` elimina el último elemento del array. +
+`.pop` elimina el último elemento del array y lo devuelve. +
 `.splice(a,b)` elimina `b` elementos que comienzan en la posición `a`.
 
 ==== Arrays de tamaño fijo
@@ -766,7 +766,7 @@ En caso de no existir bloque, la variable estará disponible en el script entero
 say $var; #no accesible, da un error
 ----
 
-Como la variable solo es accesible dentro del bloque donde está definida, la misma variable puede definirse de nuevo en cualquier otro bloque.
+Como la variable solo es accesible dentro del bloque donde está definida, el mismo nombre de variable puede utilizarse en cualquier otro bloque.
 
 [source,perl6]
 ----
@@ -1627,10 +1627,10 @@ Veamos el siguiente script:
 [source,perl6]
 ----
 class Humano {
-  has $nombre;
-  has $edad;
-  has $sexo;
-  has $nacionalidad;
+  has $.nombre;
+  has $.edad;
+  has $.sexo;
+  has $.nacionalidad;
 }
 
 my $juan = Humano.new(nombre => 'Juan', edad => 23, sexo => 'M', nacionalidad => 'Español');
@@ -2457,7 +2457,7 @@ if 'a2c' ~~ m/ a.c / {
 }
 if 'ac' ~~ m/ a.c / {
     say "Coincide";
-  } else {
+} else {
     say "No coincide";
 }
 ----
@@ -2471,12 +2471,12 @@ El interrogante `?` significa que se repite una vez o ninguna.
 ----
 if 'ac' ~~ m/ a?c / {
     say "Coincide";
-  } else {
+} else {
     say "No coincide";
 }
 if 'c' ~~ m/ a?c / {
     say "Coincide";
-  } else {
+} else {
     say "No coincide";
 }
 ----
@@ -2487,21 +2487,21 @@ El asterisco `*` significa que se repite una vez o más de una vez o ninguna.
 ----
 if 'az' ~~ m/ a*z / {
     say "Coincide";
-  } else {
+} else {
     say "No coincide";
 if 'aaz' ~~ m/ a*z / {
     say "Coincide";
-  } else {
+} else {
     say "No coincide";
 }
 if 'aaaaaaaaaaz' ~~ m/ a*z / {
     say "Coincide";
-  } else {
+} else {
     say "No coincide";
 }
 if 'z' ~~ m/ a*z / {
     say "Coincide";
-  } else {
+} else {
     say "No coincide";
 }
 ----
@@ -2512,22 +2512,22 @@ El símbolo `+` significa que se repite al menos una vez.
 ----
 if 'az' ~~ m/ a+z / {
     say "Coincide";
-  } else {
+} else {
     say "No coincide";
 }
 if 'aaz' ~~ m/ a+z / {
     say "Coincide";
-  } else {
+} else {
     say "No coincide";
 }
 if 'aaaaaaaaaaz' ~~ m/ a+z / {
     say "Coincide";
-  } else {
+} else {
     say "No coincide";
 }
 if 'z' ~~ m/ a+z / {
     say "Coincide";
-  } else {
+} else {
     say "No coincide";
 }
 ----
@@ -2872,11 +2872,11 @@ say now - INIT now;
 ----
 
 .Explicación
-El método `start` evalúa el código y devuelve *un objeto de tipo promesa* o *una promesa* (promise). +
+La subrutina `start` evalúa el código y devuelve *un objeto de tipo promesa* o *una promesa* (promise). +
 Si el código se evalúa correctamente, la _promesa_ se *cumple* (kept). +
 Si el código lanza una excepción, la _promesa_ se *rompe* (broken).
 
-El método `await` espera a una *promesa*. +
+La subrutina `await` espera a una *promesa*. +
 Si esta se *cumple* devuelve los valores. +
 Si esta se *rompe* devuelve la excepción.
 
@@ -2890,6 +2890,8 @@ NOTE: En https://docs.perl6.org/language/concurrency tienes más información so
 
 == La Comunidad
 * En el canal de IRC link:irc://irc.freenode.net/#perl6[#perl6] encontrarás el lugar principal para hablar de Perl 6. Consulta: https://perl6.org/community/irc si tienes dudas.
+
+* Resumen de los link:https://p6weekly.wordpress.com[cambios semanales en Perl 6].
 
 * Mantente al día con los blogs que tratan de Perl 6 en link:http://pl6anet.org[pl6anet].
 
