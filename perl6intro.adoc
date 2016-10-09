@@ -1030,7 +1030,8 @@ Notice that we created an iteration variable `$array-item` in order to perform t
 
 === given
 
-`given` is the Perl 6 equivalent of the switch statement in other languages.
+`given` is the Perl 6 equivalent of the switch statement in other languages,
+but much more powerful.
 
 [source,perl6]
 ----
