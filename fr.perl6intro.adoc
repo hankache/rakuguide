@@ -2711,7 +2711,7 @@ Après avoir lancé les deux exemples (avec et sans `race`), comparez les temps 
 ----
 my @tableau = (1..1000);
 my @résultat = @tableau.race.map( {$_ + 1} );
-@résultat>>.say;
+.say for @résultat;
 ----
 
 [source,perl6]
@@ -2719,7 +2719,7 @@ my @résultat = @tableau.race.map( {$_ + 1} );
 ----
 my @tableau = (1..1000);
 my @résultat = @tableau.hyper.map( {$_ + 1} );
-@résultat>>.say;
+.say for @résultat;
 ----
 
 En lançant les deux exemples, vous remarquerez que l'un est trié et l'autre non.

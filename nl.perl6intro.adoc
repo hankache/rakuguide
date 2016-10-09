@@ -1,0 +1,2948 @@
+= Perl 6 Inleiding
+Naoum Hankache <naoum@hankache.com>; Elizabeth Mattijsen <perl6intro@liz.nl>
+:description: Een algemene inleiding van Perl 6
+:keywords: perl6, perl 6, inleiding, perl6intro, perl 6 inleiding, perl 6 tutorial, perl 6 intro
+:Revision: 1.0
+:icons: font
+:source-highlighter: pygments
+//:pygments-style: manni
+:source-language: perl6
+:pygments-linenums-mode: table
+:toc: left
+:doctype: book
+:lang: nl
+
+Dit document is bedoeld om je een kort overzicht te geven van de Perl 6 programmeertaal.
+Het is zo opgezet dat je snel leert iets met Perl 6 te kunnen doen.
+
+Sommige onderdelen van dit document verwijzen aan (completere en preciezere) delen van de (Engelstalige) http://docs.perl6.org[Perl 6 documentatie].
+Als je meer informatie over een bepaald onderwerp nodig hebt, is dat de beste plaats om die te vinden.
+
+Je zult voorbeelden vinden bij de meeste onderwerpen in dit document.
+Neem de tijd om ze allemaal uit te proberen om ze beter te begrijpen.
+
+.Licentie
+De inhoud is gelicenseerd met de Creative Commons Attribution-ShareAlike 4.0 International License.
+Om deze in te zien, ga naar
+
+* https://creativecommons.org/licenses/by-sa/4.0/.
+
+.Bijdragen
+Als je wilt bijdragen aan dit document, ga dan naar:
+
+* https://github.com/hankache/perl6intro
+
+.Feedback
+Alle feedback is welkom:
+
+* naoum@hankache.com - Engels
+* perl6intro@liz.nl - Nederlands
+
+:sectnums:
+== Inleiding
+=== Wat is Perl 6
+Perl 6 is een hogere programmeertaal voor algemeen gebruik met graduele typering.
+In Perl 6 kan met diverse paradigma's geprogrammeerd worden.  Ondersteund worden onder andere procedureel, object-georiënteerd en functioneel programmeren.
+
+.Perl 6 motto:
+* TIMTOWTDI (uitgesproken "Timtoodi", oftewel "TimToady" in het Engels): There Is More Than One Way To Do It. (Er is meer dan één manier om het te doen)
+* Gemakkelijke dingen moeten gemakkelijk blijven, moeilijke dingen moeten gemakkelijker worden en onmogelijke dingen moeten slechts moeilijk zijn.
+
+=== Jargon
+* *Perl 6*: Is een taalspecificatie met een verzameling tests.
+Een implementatie van Perl 6 die al deze tests succesvol kan uitvoeren, mag zich een "Perl 6" implementatie noemen.
+* *Rakudo*: Is een compiler voor Perl 6.
+* *Rakudobrew*: Is een installatie-manager van Perl 6.
+* *Panda*: Is een installatie-programma voor modules.
+* *Rakudo Star*: Is een bundel software waarin zich Rakudo, Panda, documentatie en een verzameling van Perl 6 modules bevindt.
+
+=== Installeren van Perl 6
+.Linux
+. Installeer Rakudobrew: https://github.com/tadzik/rakudobrew
+
+. Installeer Rakudo: Typ het volgende commando in een terminalvenster `rakudobrew build moar`
+
+. Installeer Panda: Typ het volgende commando in een terminalvenster `rakudobrew build panda`
+
+.OS X
+OS X kent vier mogelijkheden:
+
+* Volg dezelfde stappen als voor Linux
+
+* Installeer met homebrew: `brew install rakudo-star`
+
+* Installeer met MacPorts: `sudo port install rakudo`
+
+* Download de meest recente installer (bestand met .dmg extensie) van http://rakudo.org/downloads/star/
+
+.Windows
+. Download de meest recente installer (bestand met .msi extensie) van http://rakudo.org/downloads/star/ +
+Op een 32-bit systeem, download het bestand met x86; op een 64-bit, download het x86_64 bestand.
+. Zorg ervoor dat `C:\rakudo\bin` in je PATH is na het installeren.
+
+.Docker
+. Gebruik het officiele Docker image `docker pull rakudo-star`
+. Voer daarna een container uit met het image `docker run -it rakudo-star`
+
+=== Uitvoeren van Perl 6 code
+
+Je kunt eenvoudig Perl 6 code uitvoeren in de REPL (Read-Eval-Print-Loop, oftewel een lees, evalueer, print, lus).
+Open daarvoor een terminalvenster, type `perl6` en druk op [Enter].  Er verschijnt dan een `>` prompt.
+Vervolgens kun je een regel code intypen en weer op [Enter] drukken.  De REPL zal dan de uiteindelijke waarde van die code laten zien op het scherm.  Je kunt dan weer een regel code intypen, of `exit` intypen en op [Enter] drukken om de REPL te verlaten.
+
+Je kunt je code natuurlijk ook opslaan in een bestand, dat je daarna gaat uitvoeren.
+We raden aan om een Perl 6 script de extensie `.pl6` te geven, zodat het later te herkennen is als Perl 6 bestand.
+Voer het bestand uit door `perl6 bestandsnaam.pl6` in het terminal venster in te typen en op [Enter] te drukken.  Anders dan bij de REPL zal die niet automatisch het resultaat van elke regel laten zien: daarvoor moet je een opdracht als `say` in je programma plaatsen om iets te tonen.
+
+De REPL wordt meestal gebruikt om een specifiek stukje code uit te proberen, meestal niet meer dan één enkele regel.  Voor programma's die uit meer dan één regel bestaan, wordt het aangeraden om die regels in een bestand op te slaan en dan dat bestand uit te voeren.
+
+Je kunt ook een regel code non-interactief uitproberen op de commando-regel in een terminal venster, door `perl6 -e 'jouw regel code'` in te typen en dan op [Enter] te drukken.
+
+[TIP]
+--
+In de bundel Rakudo Star zit ook een regel-editor die het uitproberen in de REPL nog gemakkelijker maakt.
+
+Als je alleen maar Rakudo hebt geïnstalleerd, en niet Rakudo Star, dan heb je standaard niet alle handige regel-editor mogelijkheden (zoals pijltje naar onder/boven om eerder ingetypte regels te bekijken, pijltje links/rechts om je invoer te veranderen, en automatisch invullen met TAB).
+Voer het volgende commando uit om deze functionaliteit te installeren:
+
+* `panda install Linenoise` werkt op Windows, Linux en OS X
+
+* `panda install Readline` als je op Linux werkt en liever werkt met de _Readline_ bibliotheek
+--
+
+=== Bewerkingsprogramma's (Editors)
+Aangezien je het grootste deel van je tijd Perl 6 programma's in bestanden aan het opslaan bent, is het handig om een goede editor te hebben die Perl 6 syntax herkent.
+
+Ik gebruik https://atom.io/[Atom] en raadt het gebruik daarvan ook aan.  Het is een moderne tekst-editor die standaard uitgeleverd wordt met Perl 6 syntax-markeerder.
+https://atom.io/packages/language-perl6fe[Perl6-fe] is een alternatieve Perl 6 syntax-markeerder voor Atom, afgeleid van het origineel, maar met vele bug-fixes en toevoegingen.
+
+Andere mensen in de gemeenschap gebruiken ook http://www.vim.org/[Vim], https://www.gnu.org/software/emacs/[Emacs] of http://padre.perlide.org/[Padre].
+
+Recente versies van Vim worden standaard uitgeleverd met een syntax-markeerder. Emacs en Padre hebben de installatie van extra bibliotheken nodig.
+
+
+=== Hello World!
+Laten we beginnen met het `hello world` ritueel.
+
+[source,perl6]
+say 'hello world';
+
+hetgeen ook geschreven kan worden als:
+
+[source,perl6]
+'hello world'.say;
+
+=== Syntax overview
+Perl 6 kent weinig beperkingen: over het algemeen kun je zoveel spaties (witruimte) gebruiken als je zelf wilt.
+
+Opdrachten bestaan over het algemeen uit een regel code die beëindigd wordt door een punt-komma:
+`say "Hallo" if True;`
+
+*Expressies* zijn een speciaal soort opdracht die resulteren in een waarde:
+`1+2` geeft `3` terug
+
+Expressies bestaan uit *Termen* en *Operatoren*.
+
+*Termen* zijn:
+
+* *Variabelen*: Een waarde die bekeken en veranderd kan worden.
+
+* *Literals* (Letterlijke waarden): een constante waarde zoals een getal of een aantal letters (string).
+
+*Operatoren* worden onderverdeeld in deze typen:
+
+|===
+
+| *Type* | *Uitleg* | *Voorbeeld*
+
+| Prefix | Voor de term | `++1`
+
+| Infix | Tussen twee termen | `1+2`
+
+| Postfix | Volgt na een term | `1++`
+
+| Circumfix | Staat om een term heen | `(1)`
+
+| Postcircumfix | Achter een term, om een andere term heen  | `Array[1]`
+
+|===
+
+==== Naamgeving
+Je moet termen een naam geven op het moment dat je ze definieert.
+
+.Regels:
+* Ze moeten beginnen met een alphabetisch karakter of een liggend streepje (underscore).
+
+* Ze mogen cijfers bevatten (behalve als eerste karakter).
+
+* Ze mogen een of meer koppeltekens `-` en/of enkele aanhalingstekens `'` bevatten (mits omgeven door alphabetische karakters, dus niet als eerste of laatste karakter).
+
+|===
+
+| *Geldig* | *Niet geldig*
+
+| `var1` | `1var`
+
+| `var-one` | `var-1`
+
+| `var'one` | `var'1`
+
+| `var1_` | `var1'`
+
+| `_var` | `-var`
+
+|===
+
+.Naamgevingsconventies:
+* Kameelkast (Camel case): `variableNo1`
+
+* Kebabkast (Kebab case): `variable-no1`
+
+* Slangenkast (Snake case): `variable_no1`
+
+Je mag je termen namen geven zoals je zelf wilt, maar het is een goede gewoonte om vast te houden aan een enkele naamgevingsconventie in een programma.
+
+Het gebruik van betekenisvolle namen zal jouw leven als programmeur gemakkelijker maken (en van anderen die later aan jouw programma moeten werken).
+
+* `var1 = var2 * var3` is syntactisch correct, maar de betekenis is niet duidelijk.
+* `maandsalaris = dagloon * gewerkte-dagen` geeft beter aan waar het hierover gaat.
+
+==== Commentaar
+Een commentaar is een stuk tekst dat bij uitvoering genegeerd wordt, maar van belang kan zijn voor de lezer van de programma-code.
+
+Er zijn 3 manieren om commentaren in een programma te stoppen:
+
+* Enkele regel:
++
+[source,perl6]
+# Dit is een regel met commentaar
+
+* Ingebed (embedded):
++
+[source,perl6]
+say #`(Dit is een ingebed commentaar) "Hallo wereld."
+
+* Meer dan één regel
++
+[source,perl6]
+-----------------------------
+=begin comment
+Dit is een commentaar over meer dan één regel
+Commentaar 1
+Commentaar 2
+=end comment
+-----------------------------
+
+==== Aanhalingstekens (Quotes)
+Een string wordt gedefinieerd door middel van enkele of dubbele aanhalingstekens.
+
+Gebruik altijd dubbele aanhalingstekens:
+
+* als er een enkel aanhalingsteken in de string voorkomt.
+
+* als de string een variabele bevat die geïnterpoleerd moet worden.
+
+[source,perl6]
+---------------------------------------
+say 'Hallo Wereld';   # Hallo Wereld
+say "Hallo Wereld";   # Hallo Wereld
+say "Doe 't niet";    # Doe 't niet
+my $naam = 'Jan Jansen';
+say 'Hallo $naam';   # Hallo $naam
+say "Hallo $naam";   # Hallo Jan Jansen
+---------------------------------------
+
+== Operatoren
+
+=== Algemene operatoren
+Onderstaande tabel toont de meest voorkomende operatoren.
+[cols="^.^5m,^.^5m,.^20,.^20m,.^20m", options="header"]
+|===
+
+| Operator | Type | Beschrijving | Voorbeeld | Resultaat
+
+| + | Infix | Optelling | 1 + 2 | 3
+
+| - | Infix | Aftrekking | 3 - 1 | 2
+
+| * | Infix | Vermenigvuldiging | 3 * 2 | 6
+
+| ** | Infix | Machtsverheffen | 3 ** 2 | 9
+
+| / | Infix | Delen | 3 / 2 | 1.5
+
+| div | Infix | Geheel getal deling (rond af) | 3 div 2 | 1
+
+| % | Infix | Modulo | 7 % 4 | 3
+
+.2+| %% .2+| Infix .2+| Deelbaarheid | 6 %% 4 | False
+
+<| 6 %% 3 <| True
+
+| gcd | Infix | Grootse gemene deler | 6 gcd 9 | 3
+
+| lcm | Infix | Kleinste gemene veelvoud | 6 lcm 9 | 18
+
+| == | Infix | Numeriek gelijk | 9 == 7  | False
+
+| != | Infix | Numeriek ongelijk | 9 != 7  | True
+
+| < | Infix | Numeriek kleiner dan | 9 < 7  | False
+
+| > | Infix | Numeriek groter dan | 9 > 7  | True
+
+| \<= | Infix | Numeriek kleiner dan of gelijk aan | 7 \<= 7  | True
+
+| >= | Infix | Numeriek groter dan of gelijk aan | 9 >= 7  | True
+
+| eq | Infix | String gelijk | "Jan" eq "Jan"  | True
+
+| ne | Infix | String ongelijk | "Jan" ne "Jolanda"  | True
+
+| = | Infix | Toewijzing | my $var = 7  | Wijst de waarde `7` toe aan de variabele `$var`
+
+.2+| ~ .2+| Infix .2+| Strings aaneenschakelen | 9 ~ 7 | 97
+
+<m| "Hi " ~ "there"  <| Hi there
+
+.2+| x .2+| Infix .2+| String herhalen | 13 x 3  | 131313
+
+<| "Hello " x 3  <| Hello Hello Hello
+
+.5+| ~~ .5+| Infix .5+| Slim vergelijken | 2 ~~ 2  | True
+
+<| 2 ~~ Int <| True
+
+<| "Perl 6" ~~ "Perl 6" <| True
+
+<| "Perl 6" ~~ Str <| True
+
+<| "enlightenment" ~~ /light/ <| ｢light｣
+
+.2+| ++ | Prefix | Verhoging | my $var = 2; ++$var;  | Verhoog de variabele met `1` en geef de verhoogde waarde terug: `3`
+
+<m| Postfix <d| Verhoging <m| my $var = 2; $var++;  <| Geef de waarde van de variabele terug (`2`) en verhoog de variabele dan met `1`
+
+.2+|\--| Prefix | Verlaging | my $var = 2; --$var;  | Verlaag de variabele met `1` en geef de verlaagde waarde terug: `1`
+
+<m| Postfix <d| Verlaging <m| my $var = 2; $var--;  <| Geef de waarde van de variabele terug (`2`) en verlaag die dan met `1`
+
+.3+| + .3+| Prefix .3+| Forceer naar de numerieke waarde | +"3"  | 3
+
+<| +True <| 1
+
+<| +False <| 0
+
+.3+| - .3+| Prefix .3+| Forceer naar de negatieve numerieke waarde | -"3"  | -3
+
+<| -True <| -1
+
+<| -False <| 0
+
+.6+| ? .6+| Prefix .6+| Forceer naar de boolean waarde | ?0 | False
+
+<| ?9.8 <| True
+
+<| ?"Hello" <| True
+
+<| ?"" <| False
+
+<| my $var; ?$var; <| False
+
+<| my $var = 7; ?$var; <| True
+
+| ! | Prefix | Forceer naar de tegenovergestelde boolean waarde | !4 | False
+
+| .. | Infix | Lijst constructeur |  0..5  | Maak een lijst van 0 t/m 5
+
+| ..^ | Infix | Lijst constructeur |  0..^5  | Maak een lijst van 0 t/m 4
+
+| ^.. | Infix | Lijst constructeur |  0^..5  | Maak een lijst van 1 t/m 5
+
+| \^..^ | Infix | Lijst constructeur |  0\^..^5  | maak een lijst van 1 t/m 4
+
+| ^ | Prefix | Lijst constructeur |  ^5  | Zelfde als 0..^5, maakt een lijst van 0 t/m 4
+
+| ... | Infix | Luie lijst constructeur |  0...9999  | Maak waarden alleen aan als daar expliciet om gevraagd wordt
+
+.2+| {vbar} .2+| Prefix .2+| Pletten | {vbar}(0..5)  | (0 1 2 3 4 5)
+
+<| {vbar}(0\^..^5)  <| (1 2 3 4)
+
+|===
+
+=== Omkeringsoperatoren
+
+Door een `R` te plaatsen direct voor een operator, zorg je ervoor dat de termen omgewisseld worden.
+
+[cols=".^m,.^m,.^m,.^m", options="header"]
+|===
+| Normale operator | Resultaat | Omkeringsoperator | Resultaat
+
+| 2 / 3 | 0.666667 | 2 R/ 3 | 1.5
+
+| 2 - 1 | 1 | 2 R- 1 | -1
+
+|===
+
+=== Herleidingsoperatoren
+
+Herleidingsoperatoren werken op lijsten.
+Je maakt een herleidingsoperator door vierkante haken om de operator te plaatsen `[]`
+
+[cols=".^m,.^m,.^m,.^m", options="header"]
+|===
+| Normal Operator | Resultaat | Herleidingsoperator | Resultaat
+
+| 1 + 2 + 3 + 4 + 5 | 15 | [+] 1,2,3,4,5 | 15
+
+| 1 * 2 * 3 * 4 * 5 | 120 | [*] 1,2,3,4,5 | 120
+
+|===
+
+NOTE: Voor een compleet overzicht van operatoren, inclusief hun prioriteit, ga dan naar https://docs.perl6.org/language/operators
+
+== Variabelen
+Perl 6 variabelen kunnen worden geclassificeerd in 3 categorieën: Scalars, Arrays en Hashes.
+
+Een *sigil* is een karakter dat als prefix gebruikt wordt om aan te geven in welke categorie een variabele hoort.
+
+* `$` geeft een scalar aan
+* `@` geeft een array aan
+* `%` geeft een hash aan
+
+=== Scalars
+Een scalar kan één waarde bevatten.
+
+[source,perl6]
+----
+#String
+my $naam = 'Jan Jansen';
+say $naam;
+
+#Integer
+my $leeftijd = 99;
+say $leeftijd;
+----
+
+Afhankelijk van het type waarde dat een scalar bevat, kun je daar bepaalde operaties op uitvoeren.
+
+[source,perl6]
+.String
+----
+my $naam = 'Jan Jansen';
+say $naam.uc;
+say $naam.chars;
+say $naam.flip;
+----
+
+----
+JAN JANSEN
+10
+nesnaJ naJ
+----
+
+NOTE: Bekijk https://docs.perl6.org/type/Str voor de complete lijst van methoden die men op een string kan uitvoeren.
+
+[source,perl6]
+.Integer
+----
+my $leeftijd = 17;
+say $leeftijd.is-prime;
+----
+
+----
+True
+----
+
+NOTE: Bekijk https://docs.perl6.org/type/Int voor de complete lijst van methoden die men op een geheel getal (integer) kan uitvoeren.
+
+[source,perl6]
+.Rational Number
+----
+my $leeftijd = 2.3;
+say $leeftijd.numerator;
+say $leeftijd.denominator;
+say $leeftijd.nude;
+----
+
+----
+23
+10
+(23 10)
+----
+
+NOTE: Bekijk https://docs.perl6.org/type/Rat voor de complete lijst van methoden die men op een rationeel getal kan uitvoeren.
+
+=== Arrays
+Arrays bestaan uit een lijst van scalar variabelen.
+
+[source,perl6]
+----
+my @animals = 'camel','llama','owl';
+say @animals;
+----
+
+Vele operaties kunnen op arrays uitgevoerd worden, zoals getoond in onderstaand voorbeeld:
+
+TIP: De tilde `~` wordt gebruikt om strings aan elkaar te plakken.
+
+[source,perl6]
+.`Script`
+----
+my @animals = 'kameel','vicuña','lama';
+say "De dierentuin heeft " ~ @animals.elems ~ " dieren";
+say "De dieren zijn: " ~ @animals;
+say "Ik ga een uil adopteren voor de dierentuin";
+@animals.push("owl");
+say "Nu heeft mijn dierentuin: " ~ @animals;
+say "Het eerste dier dat we adopteerden was de " ~ @animals[0];
+@animals.pop;
+say "Helaas is de uil ontsnapt, dus hebben we nu alleen nog: " ~ @animals;
+say "We gaan de dierention sluiten en houden nog maar één dier over";
+say "We laten de " ~ @animals.splice(1,2) ~ " gaan en houden de " ~ @animals;
+----
+
+.`Uitvoer`
+----
+De dierentuin heeft 3 dieren
+De dieren zijn: kameel vicuña lama
+Ik ga een uil adopteren voor de dierentuin
+Nu heeft mijn dierentuin: kameel vicuña lama uil
+Het eerste dier dat we adopteerden was de kameel
+Helaas is de uil ontsnapt, dus hebben we nu alleen nog: kameel vicuña lama
+We gaan de dierention sluiten en houden nog maar één dier over
+We laten de vicuña llama gaan en houden de kameel
+----
+
+.Uitleg
+`.elems` geeft het aantal elementen in een array. +
+`.push()` voegt een element toe aan een array. +
+We kunnen een specifiek element van een array bekijken door de positie aan te geven `@animals[0]`. +
+`.pop` verwijdert het laatste element van het array. +
+`.splice(a,b)` verwijdert `b` elementen vanaf positie `a`.
+
+==== Arrays met beperkt aantal elementen
+Een gewoon array kun je als volgt specificeren:
+[source,perl6]
+my @array;
+
+Een gewoon array is niet beperkt wat betreft aantal elementen, het past zichzelf aan (auto-extending). +
+Men kan in een gewoon array zoveel waarden opslaan als men wil.
+
+Daarentegen is het ook mogelijk om een array aan te maken met een beperkt aantal elementen.
+Dit soort arrays verbieden toegang tot niet-bestaande elementen.
+
+Specificeer het aantal elementen in vierkante haken direct achter de naam van een array om een array met beperkt aantal elementen te specificeren:
+[source,perl6]
+my @array[3];
+
+Dit array kan hoogstens 3 waarden bevatten, met als indexwaarden 0 t/m 2.
+
+[source,perl6]
+----
+my @array[3];
+@array[0] = "eerste waarde";
+@array[1] = "tweede waarde";
+@array[2] = "derde waarde";
+----
+
+Het is niet mogelijk om een vierde waarde aan dit array toe te voegen:
+[source,perl6]
+----
+my @array[3];
+@array[0] = "eerste waarde";
+@array[1] = "tweede waarde";
+@array[2] = "derde waarde";
+@array[3] = "vierde waarde";
+----
+
+----
+Index 3 for dimension 1 out of range (must be 0..2)
+----
+
+==== Multidimensionele arrays
+De arrays die we tot nu toe gezien hebben, hadden maar één dimensie. +
+We kunnen echter ook arrays met meer dan één dimensie in Perl 6 specificeren.
+
+[source,perl6]
+my @tbl[3;2];
+
+Dit array heeft 2 dimensies.
+De eerste dimensie kan maximaal 3 waarden hebben, en de tweede dimensie maximaal 2 waarden.
+
+Zie het als een rooster van 3x2.
+
+[source,perl6]
+----
+my @tbl[3;2];
+@tbl[0;0] = 1;
+@tbl[0;1] = "x";
+@tbl[1;0] = 2;
+@tbl[1;1] = "y";
+@tbl[2;0] = 3;
+@tbl[2;1] = "z";
+say @tbl
+----
+
+----
+[[1 x] [2 y] [3 z]]
+----
+
+.Visuele weergave van het array:
+----
+[1 x]
+[2 y]
+[3 z]
+----
+
+NOTE: Zie https://docs.perl6.org/type/Array voor volledige informatie over arrays.
+
+=== Hashes
+[source,perl6]
+.Een Hash is een verzameling van naam/waarde paren (key/value pairs)
+----
+my %hoofdsteden = ('VK','Londen','Duitsland','Berlijn');
+say %hoofdsteden;
+----
+
+.`Uitvoer`
+----
+{Duitsland => Berlijn, VK => Londen}
+----
+
+[source,perl6]
+.Een andere manier om een hash te vullen:
+----
+my %hoofdsteden = (VK => 'Londen', Duitsland => 'Berlijn');
+say %hoofdsteden;
+----
+
+.`Uitvoer`
+----
+{Duitsland => Berlijn, VK => Londen}
+----
+
+Dit zijn een aantal van de methoden die men op een hash kan uitvoeren:
+[source,perl6]
+.`Script`
+----
+my %hoofdsteden = (VK => 'Londen', Duitsland => 'Berlijn');
+%hoofdsteden.push: (Frankrijk => 'Parijs');
+say %hoofdsteden.kv;
+say %hoofdsteden.keys;
+say %hoofdsteden.values;
+say "De hoofdstad van Frankrijk is: " ~ %hoofdsteden<Frankrijk>;
+----
+
+.`Uitvoer`
+----
+(Frankrijk Parijs Duitsland Berlijn VK Londen)
+(Frankrijk Duitsland VK)
+(Parijs Berlijn Londen)
+De hoofdstad van Frankrijk is: Parijs
+----
+
+.Uitleg
+`.push: (naam => 'Waarde')` voegt een nieuwe naam/waarde paar toe. +
+`.kv` geeft een lijst met alle namen en waarden terug. +
+`.keys` geeft een lijst met alle namen terug. +
+`.values` geeft een lijst met alle waarden terug. +
+De waarde behorende bij een gegeven naam kun je opvragen door die naam te specificeren `%hash<naam>`
+
+NOTE: Zie https://docs.perl6.org/type/Hash voor alle informatie over hashes.
+
+=== Types
+In de voorafgaande voorbeelden hebben we niet het type van de waarde aangegeven die in een variabele opgeslagen kan worden.
+
+TIP: `.WHAT` geeft het type van de waarde in een variabele terug.
+
+[source,perl6]
+----
+my $var = 'Tekst';
+say $var;
+say $var.WHAT;
+
+$var = 123;
+say $var;
+say $var.WHAT;
+----
+
+Zoals je kunt zien in bovenstaand voorbeeld, was het type van de waarde in `$var` eerst (Str) en daarna (Int).
+
+Deze stijl van programmeren wordt dynamische typering (dynamic typing) genoemd.  Dynamisch in de betekenis dat de variable waarden mag bevatten van elk (Any) type.
+
+Probeer nu onderstaand voorbeeld uit te voeren: +
+Merk op dat we `Int` voor de naam van de variabele hebben geplaatst.
+
+[source,perl6]
+----
+my Int $var = 'Tekst';
+say $var;
+say $var.WHAT;
+----
+
+Het zal fout gaan en terug komen met dit foutbericht: `Type check failed in assignment to $var; expected Int but got Str`
+
+Wat hier gebeurde is dat we van te voren hadden aangegeven dat de variabele alleen maar (Int) mag accepteren.
+Toen we probeerden om er een string (Str) aan toe te wijzen, was dat niet mogelijk en ging het fout.
+
+Deze stijl van programmeren wordt "statische typering" (static typing) genoemd.  Statisch omdat het type van variabelen wordt gedefinieerd voordat er aan wordt toegewezen, en deze later niet kan worden veranderd.
+
+Perl 6 wordt aangeduid met "graduele typering": het laat namelijk zowel *statische* als *dynamische* typering toe.
+
+.Arrays en hashes kunnen ook statisch getypeerd worden:
+[source,perl6]
+----
+my Int @array = 1,2,3;
+say @array;
+say @array.WHAT;
+
+my Str @veeltalig = "Hello","Salut","Hallo","您好","안녕하세요","こんにちは";
+say @veeltalig;
+say @veeltalig.WHAT;
+
+my Str %hoofdsteden = (VK => 'Londen', Duitsland => 'Berlijn');
+say %hoofdsteden;
+say %hoofdsteden.WHAT;
+
+my Int %landennummers = (VK => 44, Duitsland => 49);
+say %landennummers;
+say %landennummers.WHAT;
+----
+
+.Hieronder vind je een lijst van meest voorkomende typen:
+Je zult hoogstwaarschijnlijk de eerste twee nooit gebruiken, maar we laten ze hier zien om je te laten weten dat ze bestaan.
+
+[cols="^.^1m,.^3m,.^2m,.^1m, options="header"]
+|===
+
+| *Type* | *Beschrijving* | *Voorbeeld* | *Resultaat*
+
+| Mu | De ultieme basis van de Perl 6 typen hierarchie | |
+
+| Any | Het basis type voor nieuwe klassen en de meeste standaard klassen | |
+
+| Cool | Waarden die zowel als string of als getal kunnen worden beschouwd | my Cool $var = 31; say $var.flip; say $var * 2; | 13 62
+
+| Str | Een string: reeks van karakters | my Str $var = "NEON"; say $var.flip; | NOEN
+
+| Int | Integer (elke gewenste precisie) | 7 + 7 | 14
+
+| Rat | Rationeel nummer (beperkte precisie) | 0.1 + 0.2 | 0.3
+
+| Bool | Boolean | !True | False
+
+|===
+
+=== Introspectie
+
+Met introspectie bedoelen we het process waarmee we informatie over de eigenschappen van een object kunnen bekijken, zoals het type. +
+In een van de vorige voorbeelden gebruikten we `.WHAT` om het type van een variabele te achterhalen.
+
+[source,perl6]
+----
+my Int $var;
+say $var.WHAT;    # (Int)
+my $var2;
+say $var2.WHAT;   # (Any)
+$var2 = 1;
+say $var2.WHAT;   # (Int)
+$var2 = "Hello";
+say $var2.WHAT;   # (Str)
+$var2 = True;
+say $var2.WHAT;   # (Bool)
+$var2 = Nil;
+say $var2.WHAT;   # (Any)
+----
+
+Het type van een variabele waarin een waarde is opgeslagen, is gecorreleerd aan die waarde. +
+Het type van een lege variabele die gespecificeerd is met een type, is het type waarmee het werd gespecificeerd. +
+Het type van een lege variabele die niet is gespecificeerd met een type, is `(Any)` +
+Om de waarde uit een variabele te verwijderen, kun je de waarde `Nil` toewijzen.
+
+=== Bereik (scoping)
+Voordat men een variabele voor de eerste keer kan gebruiken, moet deze worden gedefinieerd.
+
+Dit kan op diverse manieren in Perl 6, `my` is wat we tot nu toe in de bovenstaande voorbeelden hebben gebruikt.
+
+[source,perl6]
+my $var = 1;
+
+Met `my` geeft men de variabele een *statisch* bereik (ook wel *lexicaal* bereik genoemd).
+In andere woorden, de variabele zal alleen maar toegankelijk zijn in het gebied (scope) waarin het was gedefinieerd.
+
+Zo'n gebied (scope) wordt in Perl 6 begrensd door `{ }`.
+Een variabele zal alleen toegankelijk zijn in een Perl 6 script als er geen gebiedsbegrenzing gevonden wordt.
+
+[source,perl6]
+----
+{
+    my Str $var = 'Tekst';
+    say $var; # is toegankelijk
+}
+say $var; #is niet toegankelijk, geeft een foutmelding
+----
+
+Aangezien zo'n variabele alleen toegankelijk is in het gebied waarin het was gedefinieerd, kan men dezelfde naam voor een variabele gebruiken in een ander gebied.
+
+[source,perl6]
+----
+{
+    my Str $var = 'Tekst';
+    say $var;
+}
+my Int $var = 123;
+say $var;
+----
+
+=== Toewijzing vs. verbinden
+We hebben in de vorige voorbeelden gezien hoe we waarden aan variabelen kunnen *toewijzen*. +
+*Toewijzing* wordt gedaan met de `=` operator.
+
+[source,perl6]
+----
+my Int $var = 123;
+say $var;
+----
+
+We kunnen de waarde van een variabele veranderen:
+
+[source,perl6]
+.Toewijzing
+----
+my Int $var = 123;
+say $var;
+$var = 999;
+say $var;
+----
+
+.`Uitvoer`
+----
+123
+999
+----
+
+Daarentegen kunnen we de waarde van een variabele niet veranderen als deze is *verbonden* met een waarde. +
+*Verbinding* wordt gedaan met de `:=` operator.
+
+[source,perl6]
+.Verbinden
+----
+my Int $var := 123;
+say $var;
+$var = 999;
+say $var;
+----
+
+.`Output`
+----
+123
+Cannot assign to an immutable value
+----
+
+[source,perl6]
+.Variabelen kunnen ook verbonden worden met andere variabelen:
+----
+my $a;
+my $b;
+$b := $a;
+$a = 7;
+say $b;
+$b = 8;
+say $a;
+----
+
+.`Uitvoer`
+----
+7
+8
+----
+
+Het verbinden van variabelen werkt twee kanten op, zoals je al gezien hebt. +
+`$a := $b` en `$b := $a` hebben hetzelfde effect.
+
+NOTE: Zie https://docs.perl6.org/language/variables voor meer informatie over variabelen.
+
+== Functies en mutators
+
+Het is belangrijk om verschil te maken tussen functies en mutators. +
+Functies veranderen de toestand van een object waarop ze worden uitgevoerd *niet*. +
+Mutators veranderen de toestand van een object *wel*.
+
+[source,perl6,linenums]
+.`Script`
+----
+my @nummers = [7,2,4,9,11,3];
+
+@nummers.push(99);
+say @nummers;      #1
+
+say @nummers.sort; #2
+say @nummers;      #3
+
+@nummers.=sort;
+say @nummers;      #4
+----
+
+.`Output`
+----
+[7 2 4 9 11 3 99] #1
+(2 3 4 7 9 11 99) #2
+[7 2 4 9 11 3 99] #3
+[2 3 4 7 9 11 99] #4
+----
+
+.Uitleg
+`.push` is een mutator, het verandert de toestand van het array (#1)
+
+`.sort` is een functie, het geeft het gesorteerde array terug als een lijst, maar verandert de toestand van het array zelf niet.
+
+* (#2) laat zien dat een gesorteerde lijst is teruggegeven.
+
+* (#3) laat zien dat het array zelf onveranderd is.
+
+Men kan een functie als een mutator laten optreden door `.=` in plaats van `.` te gebruiken (#4) (regel 9 van het script)
+
+== Lussen en condities
+Perl 6 heeft een veelheid aan conditionele- en lusconstructies.
+
+=== if
+De code in het bereik van de conditionele constructie  wordt alleen maar uitgevoerd *als* de conditie waar (`True`) is.
+
+[source,perl6]
+----
+my $leeftijd = 19;
+
+if $leeftijd > 18 {
+    say 'Welkom'
+}
+----
+
+In Perl 6 kunnen we de volgorde van de code en de conditie omkeren. +
+Maar zelfs als de volgorde is omgekeerd, zal de conditie altijd eerst worden uitgevoerd.
+
+[source,perl6]
+----
+my $leeftijd = 19;
+
+say 'Welkom' if $leeftijd > 18;
+----
+
+We kunnen alternatieve bereiken voor uitvoering aangeven voor het geval dat de conditie niet waar is:
+
+* `else`
+* `elsif`
+
+[source,perl6]
+----
+#voer deze code uit voor verschillende waarden van de variabele
+my $aantal-stoelen = 9;
+
+if $aantal-stoelen <= 5 {
+    say 'Ik ben een personenauto'
+} elsif $aantal-stoelen <= 7 {
+    say 'Ik ben een busje'
+} else {
+    say 'Ik ben een bus'
+}
+----
+
+=== unless
+De tegenovergestelde, ontkennende versie van een if command is `unless` (tenzij).
+
+Deze code:
+
+[source,perl6]
+----
+my $schone-schoenen = False;
+
+if not $schone-schoenen {
+    say 'Maak je schoenen schoon'
+}
+----
+Kan geschreven worden als:
+
+[source,perl6]
+----
+my $schone-schoenen = False;
+
+unless $schone-schoenen {
+    say 'Maak je schoenen schoon'
+}
+----
+
+Ontkenning (negation) wordt in Perl 6 gedaan met `!` of `not`.
+
+`unless (conditie)` kan worden gebruikt in plaats van `if not (conditie)`.
+
+`unless` kan geen `else` bereik hebben.
+
+=== with
+
+`with` gedraagt zich als een `if` commando, maar kijkt of de variabele een waarde heeft.
+
+[source,perl6]
+----
+my Int $var=1;
+
+with $var {
+    say 'Hallo'
+}
+----
+
+Als je deze code uitvoert zonder dat je een waarde aan de variabele hebt toegekend, dan zou je geen uitvoer moeten zien.
+
+[source,perl6]
+----
+my Int $var;
+
+with $var {
+    say 'Hallo'
+}
+----
+
+`without` is de ontkennende versie van `with`.  Net als `unless` van `if`.
+
+Als de eerste `with` niet waar is, dan kan men een alternatief bereik aangeven met `orwith`. +
+Je kunt `with` en `orwith` zien als een soort `if` en `elsif`.
+
+=== for
+
+Met het `for` commando kun je over een aantal waarden repeteren.
+
+[source,perl6]
+----
+my @array = [1,2,3];
+
+for @array -> $array-item {
+    say $array-item * 100
+}
+----
+
+Merk op dat we een lusvariabele `$array-item` aanmaken om de operatie `*100` op elk element van het array uit te kunnen voeren.
+
+=== given
+
+`given` is het Perl 6 equivalent van het `switch` commando in andere programmeertalen.
+
+[source,perl6]
+----
+my $var = 42;
+
+given $var {
+    when 0..50 { say 'Minder dan of gelijk aan 50'}
+    when Int { say "is een Int" }
+    when 42  { say 42 }
+    default  { say "huh?" }
+}
+----
+
+Het testen van condities stops zodra een conditie van een `when` waar is geweest.
+
+Met `proceed` kun je in Perl 6 aangeven dat je door wilt gaan met testen van condities nadat een conditie waar was.
+[source,perl6]
+----
+my $var = 42;
+
+given $var {
+    when 0..50 { say 'Minder dan of gelijk aan 50';proceed}
+    when Int { say "is een Int";proceed}
+    when 42  { say 42 }
+    default  { say "huh?" }
+}
+----
+
+=== loop
+
+`loop` is een andere manier om een `for` lus aan te geven.
+
+In feite is `loop` precies zoals `for` lussen geschreven worden in de familie C-programmeertalen.
+
+Perl 6 hoort bij de familie C-programmeertalen.
+
+[source,perl6]
+----
+loop (my $i = 0; $i < 5; $i++) {
+    say "Het huidige nummer is $i"
+}
+----
+
+NOTE: Zie https://docs.perl6.org/language/control voor meer informatie over conditionele- en lusconstructies.
+
+== I/O
+De twee meest voorkomende manieren van _Invoer/Uitvoer_ zijn _Terminal_ en _Bestanden_.
+
+=== Basic I/O op de Terminal
+
+==== say
+`say` schrijft naar de standaard uitvoer.  Het voegt een regeleinde (newline) toe aan het einde.  In andere woorden, de volgende code:
+
+[source,perl6]
+----
+say 'Hallo mevrouw.';
+say 'Hallo meneer.';
+----
+zullen op 2 aparte lijnen worden getoond.
+
+==== print
+Aan de andere kant doet `print` precies hetzelfde, maar het voegt geen regeleinde toe.
+
+Probeer eens om de `say` door een `print` te vervangen en vergelijk de resultaten.
+
+==== get
+Men kan `get` gebruiken om invoer van de terminal te krijgen.
+
+[source,perl6]
+----
+my $naam;
+
+say "Hoi, hoe heet je?";
+$naam = get;
+
+say "Welkom bij Perl 6, beste $naam";
+----
+
+Als je bovenstaande code uitvoert zal de terminal wachten tot je je naam intypt en op [Enter] drukt.
+Vervolgens zal het je begroeten.
+
+==== prompt
+`prompt` is een combinatie van `print` en `get`.
+
+Het bovenstaande voorbeeld kan ook worden geschreven als:
+
+[source,perl6]
+----
+my $naam = prompt "Hoi, hoe heet je? ";
+
+say "Welkom bij Perl 6, beste $naam";
+----
+
+=== Uitvoeren van externe commando's
+Deze twee subroutines kunnen worden gebruikt om externe commando's uit te voeren:
+
+* `run` voert een extern commando direct uit.
+
+* `shell` voert een extern commando uit alsof je het hebt ingetypt op een commando regel (via een z.g. "shell").  Het hangt af van de systeem software die je gebruikt.
+Alle meta-karakters worden geïnterpreteerd door de shell, inclusief z.g. "pipes", "redirects" en specificaties van environment variabelen.
+
+[source,perl6]
+.Voer dit uit als je met Linux/OS X werkt
+----
+my $naam = 'Neo';
+run 'echo', "hallo $naam";
+shell "ls";
+----
+
+[source,perl6]
+.Voer dit uit als je met Windows werkt
+----
+shell "dir";
+----
+`echo` en `ls` zijn veel voorkomende commando's op Linux/OS X: +
+`echo` drukt de argumenten af (het equivalent van `print` in Perl 6) +
+`ls` laat alle bestanden en directories zien in de huidige directory
+
+`dir` is het equivalent van `ls` bij Windows.
+
+
+=== File I/O
+==== slurp
+Men kan `slurp` gebruiken om een geheel bestand in te lezen.
+
+Maak een tekstbestand aan met de volgende inhoud:
+
+.scores.txt
+----
+Jan 9
+Japie 7
+Jolanda 8
+Jessica 7
+----
+[source,perl6]
+----
+my $data = slurp "scores.txt";
+say $data;
+----
+
+==== spurt
+Men kan `spurt` gebruiken om data naar een bestand te schrijven.
+
+[source,perl6]
+----
+my $nieuw = "Nieuwe scores:
+Paul 10
+Paulie 9
+Paulo 11";
+
+spurt "nieuwescores.txt", $nieuw;
+----
+
+Nadat je de bovenstaande code hebt uitgevoerd, bestaat er een bestand _nieuwescores.txt_ .  Dat zal dan de nieuwe scores bevatten.
+
+=== Werken met bestanden en directories
+Perl 6 kan de inhoud van een directory ook direct tonen zonder dat er externe commando's voor hoeven te worden uitgevoerd, net zoals in een van de vorige voorbeelden.
+
+[source,perl6]
+----
+say dir;              #Laat bestanden/directories uit de huidige directory zien
+say dir "/Documents"; #Laat bestanden/directories zien van de gegeven directory
+----
+
+Tevens kun je ook nieuwe directories aanmaken en verwijderen.
+
+[source,perl6]
+----
+mkdir "nieuwdir";
+rmdir "nieuwdir";
+----
+
+`mkdir` maakt een nieuwe directory aan. +
+`rmdir` verwijdert een lege directory.  Geeft een foutmelding terug indien niet leeg.
+
+Je kunt ook kijken of een specifieke naam bestaat, en of het een bestand of een directory is:
+
+Maak in de directory waar je dit script gaat uitvoeren een lege directory `dir123` en een leeg bestand genaamd `script123.pl6`
+
+[source,perl6]
+----
+say "script123.pl6".IO.e;
+say "dir123".IO.e;
+
+say "script123.pl6".IO.d;
+say "dir123".IO.d;
+
+say "script123.pl6".IO.f;
+say "dir123".IO.f;
+----
+
+`IO.e` geeft terug of de naam bestaat. +
+`IO.f` geeft terug of het een bestand is. +
+`IO.d` geeft terug of het een directory is.
+
+WARNING: Gebruikers van Windows kunnen zowel de `/` als de `\\` gebruiken om directories aan te maken +
+`C:\\rakudo\\bin` +
+`C:/rakudo/bin` +
+
+NOTE: Zie https://docs.perl6.org/type/IO voor meer informatie over invoer en uitvoer.
+
+== Subroutines
+=== Definitie
+*Subroutines* (ook wel *subs* of *functies*) zijn een manier om een stuk functionaliteit in een pakketje te stoppen. +
+
+De definitie van een subroutine begint met het sleutelwoord `sub`.  Na de definitie kun je het aanroepen met de naam die je het gegeven hebt. +
+Bekijk onderstaand voorbeeld:
+
+[source,perl6]
+----
+sub buitenaardse-groet {
+    say "Hallo aardlingen";
+}
+
+buitenaardse-groet;
+----
+
+Het vorige voorbeeld laat een subroutine zien die geen invoer nodig heeft.
+
+=== Signatuur
+Veel subroutines hebben een vorm van invoer nodig om hun werk te kunnen doen.  Die invoer wordt gegeven door *argumenten*.
+Een subroutine mag 0 of meer *parameters* definiëren.
+Het aantal en het type van de parameters die door een subroutine worden gedefinieerd, noemen we de *signatuur*.
+
+Onderstaande subroutine accepteert een string argument.
+
+[source,perl6]
+----
+sub zeg-hallo (Str $naam) {
+    say "Hallo " ~ $naam ~ "!!!!"
+}
+zeg-hallo "Paul";
+zeg-hallo "Paula";
+----
+
+=== Multiple dispatch
+Het is mogelijk om meer dan één subroutine met dezelfde naam, maar met een verschillende signatuur, te definiëren.
+
+Op het moment dat de subroutine wordt aangeroepen, zal de uitvoerder besluiten welke versie van de subroutine werkelijk zal worden aangeroepen, afhankelijk van het aantal en het type van de gegeven argumenten.
+Dit soort subroutines wordt op dezelfde manier gedefinieerd als normale subroutines, maar in plaats van `sub` worden ze gedefinieerd met `multi`.
+
+[source,perl6]
+----
+multi groet($naam) {
+    say "Good morning $naam";
+}
+multi groet($naam, $titel) {
+    say "Good morning $titel $naam";
+}
+
+groet "Jan";
+groet "Laura","Mevr.";
+----
+
+=== Default en Optionele Parameters
+Als een subroutine is gedefinieerd om een argument te accepteren en we roepen het aan zonder dat benodigde argument, dan zal er een fout optreden.
+
+Als alternatief biedt Perl 6 de mogelijk om subroutines te definiëren met:
+
+* Optionele Parameters
+* Parameters met een default waarde
+
+Je kunt een optionele parameter aangeven door een `?` achter de naam te plaatsen.
+
+[source,perl6]
+----
+sub zeg-hallo($naam?) {
+    with $naam { say "Hallo " ~ $naam }
+    else { say "Hallo Mens" }
+}
+zeg-hallo;
+zeg-hallo("Laura");
+----
+
+Als de gebruiker een bepaald argument niet meegeeft, dan wordt de eventuele default waarde van de parameter gebruikt. +
+Dit wordt aangegeven door een waarde toe te wijzen aan de parameter in de definitie van de subroutine.
+
+[source,perl6]
+----
+sub zeg-hallo($naam="Mens") {
+    say "Hallo " ~ $naam;
+}
+zeg-hallo;
+zeg-hallo("Laura");
+----
+
+=== Teruggeven van waarden
+Alle subroutines die we tot nu toe hebben gezien *doen iets* en laten dan het resultaat op het scherm zien.
+
+Ook al is dit heel normaal, soms willen we dat een subroutine een waarde *teruggeeft* dat we later in het programma kunnen gebruiken.
+
+Onder normal omstandigheden is de waarde van de laatste regel van een subroutine de waarde die door de subroutine terug wordt gegeven.
+[source,perl6]
+.Impliciet teruggeven
+----
+sub kwadrateer ($x) {
+    $x ** 2;
+}
+say "7 gekwadrateerd is gelijk aan " ~ kwadrateer(7);
+----
+
+Zodra je programma groter wordt, is het wellicht een goed idee om _expliciet_ aan te geven wat we terug willen geven.
+Dit kunnen we doen met het `return` sleutelwoord.
+[source,perl6]
+.Expliciete teruggave
+----
+sub kwadrateer ($x) {
+    return $x ** 2;
+}
+say "7 gekwadrateerd is gelijk aan " ~ kwadrateer(7);
+----
+==== Beperken van mogelijke teruggegeven waarden
+In een van de vorige voorbeelden hebben we gezien dat we parameters kunnen beperken tot een bepaald type.
+Hetzelfde kan worden gedaan met waarden die we teruggeven.
+
+Om de teruggeven waarde te beperken tot een bepaald type kunnen we of de `returns` eigenschap gebruiken, of de pijlnotatie `-\->` in de signatuur gebruiken.
+
+[source,perl6]
+.Gebruik van de returns eigenschap
+----
+sub kwadrateer ($x) returns Int {
+    return $x ** 2;
+}
+say "1.2 gekwadrateerd is gelijk aan " ~ kwadrateer(1.2);
+----
+
+[source,perl6]
+.Gebruik van de pijlnotatie
+----
+sub kwadrateer ($x --> Int) {
+    return $x ** 2;
+}
+say "1.2 gekwadrateerd is gelijk aan " ~ kwadrateer(1.2);
+----
+Als we niet een waarde voor teruggave van het juiste type aangeven, zal er een foutmelding worden geproduceerd.
+
+----
+Type check failed for return value; expected Int but got Rat (1.44)
+----
+
+[TIP]
+====
+We kunnen niet alleen de typebeperking van de teruggeven waarde controleren; we kunnen ook laten controleren of het gedefinieerd is.
+
+In het vorige voorbeeld gaven we aan dat de teruggegeven waarde een `Int` most zijn, zonder iets te zeggen over het wel of niet gedefinieerd zijn.
+We zouden ook hebben kunnen aangeven dat de teruggegeven `Int` wel of niet gedefinieerd moet zijn, met de volgende signaturen: +
+`--> Int:D` en `--> Int:U`
+
+Het is een goede gewoonte om dit soort typebeperkingen te gebruiken. +
+Hieronder is een aangepaste versie van het vorige voorbeeld die `:D` gebruikt om aan te geven dat de teruggegeven `Int` gedefinieerd moet zijn.
+
+[source,perl6]
+----
+sub kwadrateer ($x --> Int:D) {
+    return $x ** 2;
+}
+say "1.2 gekwadrateerd is gelijk aan " ~ kwadrateer(1.2);
+----
+====
+
+NOTE: Zie https://docs.perl6.org/language/functions voor meer informatie over subroutines en functies.
+
+== Functioneel Programmeren
+In dit hoofdstuk gaan we kijken naar een aantal functionaliteiten die men kan gebruiken voor Functioneel Programmeren.
+
+=== Functies zijn ook objecten.
+Functies en subroutines zijn ook objecten, net als alle andere:
+
+* Ze kunnen worden doorgegeven als argument aan een subroutine
+
+* Ze kunnen worden teruggegeven als waarde door een subroutine
+
+* Ze kunnen worden toegekend aan een variabele
+
+Een prachtig voorbeeld om dit concept te demonstreren is de `map` functie. +
+`map` is een zogenaamde *hogere orde functie*, want het accepteert een andere functie als argument.
+
+[source,perl6]
+.Script
+----
+my @array = <1 2 3 4 5>;
+sub kwadrateer($x) {
+    $x ** 2
+}
+say map(&kwadrateer,@array);
+----
+
+.Uitvoer
+----
+(1 4 9 16 25)
+----
+
+.Uitleg
+We hebben een subroutine `kwadrateer` gedefinieerd die het argument tot de tweede macht verheft. +
+Vervolgens hebben we `map` aangeroepen met twee argumenten: een subroutine en een array. +
+Het resultaat is dat alle elementen van het array zijn gekwadrateerd.
+
+Merk op dat als we een subroutine als argument willen doorgeven, we een `&` voor de naam moeten zetten.
+
+=== Closure
+Alle code objecten in Perl 6 zijn zogenaamde `closures`, hetgeen betekent dat ze kunnen refereren aan lokale variabelen die zichtbaar zijn buiten het directe eigen bereik.
+
+=== Anonieme Functies
+Een *anonieme functie* wordt ook wel een *lambda* genoemd. +
+Een anonieme functie is niet bekend onder een naam (want die heeft het niet).
+
+Laten we het `map` voorbeeld herschrijven met een anonieme functie
+[source,perl6]
+----
+my @array = <1 2 3 4 5>;
+say map(-> $x {$x ** 2},@array);
+----
+Merk op dat in plaats van een subroutine te declareren en het door middel van de naam als argument aan `map` door te geven, we het direct in de aanroep definiëren. +
+De anonieme subroutine `\-> $x { $x ** 2 }` kan niet als zodanig worden aangeroepen want het heeft geen naam.
+
+In Perl 6 noemen we deze notatie een *pointy block*.
+
+[source,perl6]
+.Een pointy block kan ook aan een variabele worden toegekend:
+----
+my $kwadrateer = -> $x {
+    $x ** 2
+}
+say $kwadrateer(9);
+----
+
+=== Aankoppelen
+In Perl 6 kun je methoden aan elkaar koppelen, zodat je niet langer het resultaat van de aanroep van de ene subroutine als een argument aan een andere hoeft te geven.
+
+Laten we het geval bekijken waarbij we een array met waarden kregen.
+Je wordt gevraagd om alle unieke (maar een keer voorkomende) waarden uit het array te halen en te sorteren van hoog naar laag.
+
+Je zou dit probleem kunnen oplossen door iets te schrijven als:
+[source,perl6]
+----
+my @array = <7 8 9 0 1 2 4 3 5 6 7 8 9>;
+my @resultaat = reverse(sort(unique(@array)));
+say @resultaat;
+----
+Eerst roepen we de `unique` functie aan op `@array`.  Het resultaat daarvan geven we als argument aan `sort` en dan geven we het resultaat daarvan door aan `reverse`.
+
+In tegenstelling tot bovenstaand voorbeeld mag je methodes aan elkaar koppelen in Perl 6. +
+Bovenstaand voorbeeld kan dus als volgt worden geschreven, waarbij we gebruik maken van het *aankoppelen van methoden* (method chaining):
+
+[source,perl6]
+----
+my @array = <7 8 9 0 1 2 4 3 5 6 7 8 9>;
+my @resultaat = @array.unique.sort.reverse;
+say @resultaat;
+----
+
+Je kunt zien dat het aankoppelen van methoden _veel beter leest_.
+
+=== Aanvoer Operator
+De *aanvoer operator*, ook wel _pipe_ genoemd in sommige functioneel programmeertalen, geeft een nog beter visualisatie van het aankoppelen van methoden.
+[source,perl6]
+.Voorwaardse Aanvoer
+----
+my @array = <7 8 9 0 1 2 4 3 5 6 7 8 9>;
+@array ==> unique()
+       ==> sort()
+       ==> reverse()
+       ==> my @resultaat;
+say @resultaat;
+----
+
+.Uitleg
+----
+Start met `array` en geef een lijst van unieke elementen
+                  en sorteer dat
+                  en keer de volgorde om
+                  en sla het resultaat daarvan op in @resultaat
+----
+Zoals je kunt zien is de volgorde van de aanroepen van de methoden van voor naar achter.
+
+
+[source,perl6]
+.Achterwaardse Aanvoer
+----
+my @array = <7 8 9 0 1 2 4 3 5 6 7 8 9>;
+my @resultaat <== reverse()
+              <== sort()
+              <== unique()
+              <== @array;
+say @resultaat;
+----
+
+.Uitleg
+De achterwaardse aanvoer is net als de voorwaardse aanvoer, maar dan andersom. +
+De volgorde van de aanroepen van de methoden is van achteren naar voren.
+
+=== Hyper Operator
+De *hyper operator* `>>.` roept de methode aan op elke element van een lijst en geeft een lijst terug met het resultaat van die aanroepen.
+[source,perl6]
+----
+my @array = <0 1 2 3 4 5 6 7 8 9 10>;
+sub is-even($var) { $var %% 2 };
+
+say @array>>.is-prime;
+say @array>>.&is-even;
+----
+
+Met de hyper operator kunnen we methoden aanroepen die standaard al in Perl 6 zijn gedefinieerd, zoals `is-prime` dat ons vertelt of een getal een priemgetal is of niet. +
+Daarnaast kun je nieuwe subroutines definiëren en ze aanroepen met de hyper operator.  In dat geval moeten we een `&` voor de naam plaatsen, bijvoorbeeld `is-even`
+
+Dit is erg practisch want daardoor hoeven we geen `for` lus te schrijven om over elk element te itereren.
+
+WARNING: Perl 6 garandeert dat de volgorde van de resultaten hetzelfde is als de volgorde van de originele waarden. +
+Maar er is *geen garantie* dat Perl 6 de methoden in de zelfde volgorde of in dezelfde thread zal uitvoeren. +
+Men moet dus voorzichtig zijn bij het aanroepen van methoden met neveneffecten, zoals `say` (waarbij het neveneffect het tonen van de waarden is).
+
+=== Juncties
+Een *junctie* is een logische superpositie van waarden.
+
+In onderstaand voorbeeld is `1|2|3` een junctie.
+[source,perl6]
+----
+my $var = 2;
+if $var == 1|2|3 {
+    say "De variabele is 1 of 2 of 3"
+}
+----
+Het gebruik van juncties zorgt meestal voor zogenaamde *autothreading*;
+een opdracht wordt voor elk element van de junctie uitgevoerd en de resultaten daarvan worden in een nieuwe junctie opgeslagen en teruggegeven.
+
+=== Luie Lijsten
+Een *luie lijst* is een lijst die lamlendig wordt geëvalueerd. +
+Lamlendig evalueren stelt de evaluatie van een expressie uit totdat deze echt nodig is en probeert herhaalde evaluaties te voorkomen door resultaten op te slaan.
+
+De voordelen zijn:
+
+* Verbeterde prestaties doordat onnodige berekeningen worden vermeden
+
+* De mogelijkheid om potentieel oneindige datastructuren aan te maken
+
+* De mogelijkheid om de besturingsstroom te definiëren
+
+Om een luie lijst te maken gebruiken we de `...` infix operator. +
+Een luie lijst heeft een of meer *startelementen*, een *generator* en een *eindpunt*.
+
+[source,perl6]
+.Simpele luie lijst
+----
+my $luielijst = (1 ... 10);
+say $luielijst;
+----
+Het start element is 1 en het eindpunt is 10.  Er is geen generator aangegeven, dus de default generator wordt gebruikt (+1). +
+In andere woorden, deze luie lijst zal de volgende waarden teruggeven (als daarom wordt gevraagd): (1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+
+[source,perl6]
+.Oneindige luie lijst
+----
+my $luielijst = (1 ... Inf);
+say $luielijst;
+----
+Deze luie lijst kan een getal tussen 1 en oneindig geven, in andere woorden alle natuurlijke getallen.
+
+[source,perl6]
+.Luie lijst met een afgeleide generator
+----
+my $luielijst = (0,2 ... 10);
+say $luielijst;
+----
+De startelementen zijn 0 en 2 en het eindpunt is 10.
+Er is geen generator aangegeven, maar door de aangegeven startelementen kan Perl 6 deduceren dat de generator (+2) is +
+Deze luie lijst zal de volgende waarden teruggeven (als daarom wordt gevraagd): (0, 2, 4, 6, 8, 10)
+
+[source,perl6]
+.Luie lijst met een specifieke generator
+----
+my $luielijst = (0, { $_ + 3 } ... 12);
+say $luielijst;
+----
+In dit voorbeeld specificeren we expliciet een generator tussen `{ }` +
+Deze luie lijst zal de volgende waarden teruggeven (als daarom wordt gevraagd): (0, 3, 6, 9, 12)
+
+[WARNING]
+====
+Als men een expliciete generator specificeert moet het eindpunt één van de waarden zijn die door de generator terug kan worden gegeven. +
+Als we in bovenstaand voorbeeld het eindpunt vervangen door 10 in plaats van 12, dan zal de generator nooit stoppen.
+De generator springt dan _over_ het eindpunt.
+
+In plaats van `0 ...^ * > 10` kun je ook `0 ... 10` schrijven +
+Je kunt dat lezen als: vanaf 0 tot de eerste waarde die groter is dan 10 (maar sluit die dan uit)
+[source,perl6]
+.Deze generator zal nooit stoppen
+----
+my $luielijst = (0, { $_ + 3 } ... 10);
+say $luielijst;
+----
+
+[source,perl6]
+.Deze generator zal wel stoppen
+----
+my $luielijst = (0, { $_ + 3 } ...^ * > 10);
+say $luielijst;
+----
+====
+
+== Klassen en Objecten
+In het vorige hoofdstuk hebben we geleerd hoe Perl 6 het gemakkelijker maakt om Functioneel te Programmeren. +
+In dit hoofdstuk gaan we kijken naar het object georiënteerd programmeren in Perl 6.
+
+=== Inleiding
+
+_Object Georiënteerd_ Programmeren is een van de programmeerstijl paradigma's die tegenwoordig veel wordt gebruikt. +
+Een *object* is een verzameling van variabelen en subroutines die bij elkaar gevoegd zijn. +
+De variabelen noemen we *attributen* en de subroutines noemen we *methoden*. +
+Attributen bepalen de *staat* van een object, methoden bepalen het *gedrag* van het object.
+
+Een *klasse* definieert de structuur van een verzameling *objecten*. +
+
+Bijkijk onderstaand voorbeeld om deze relatie beter te begrijpen:
+
+|===
+
+| Er bevinden zich 4 personen in een kamer | *objecten* => 4 personen
+
+| Deze 4 personen zijn menselijk | *klasse* => Mens
+
+| Ze hebben een allen een naam, leeftijd, geslacht en nationaliteit | *attributen* => naam, leeftijd, geslacht en nationaliteit
+
+|===
+
+In het taalgebruik van _object georiënteerd_ programmeren zeggen we dat de objecten *instanties* zijn van een klasse.
+
+Bekijk het onderstaande script:
+[source,perl6]
+----
+class Mens {
+    has $.naam;
+    has $.leeftijd;
+    has $.geslacht;
+    has $.nationaliteit;
+}
+
+my $jan = Mens.new(naam => 'Jan', leeftijd => 23, geslacht => 'M', nationaliteit => 'Nederlands');
+say $jan;
+----
+Met het `class` sleutelwoord definieert men een klasse. +
+Met het `has` sleutelwoord definieert men een attribuut van een klasse. +
+De `.new()` methode wordt een *constructeur* genoemd.  Het maakt een object als een instantie van de klasse waarop het wordt aangeroepen.
+
+In het bovenstaande script, bevat de variabele `$jan` de nieuwe instantie van "Mens" aangemaakt met `Mens.new()`. +
+De argumenten op naam die we aan de `.new()` methode meegeven, worden gebruikt om de attributen van het nieuwe object te initialiseren.
+
+We kunnen een klasse ook een _lexicaal gebied_ geven door middel van `my`:
+[source,perl6]
+----
+my class Mens {
+
+}
+----
+
+=== Inkapseling
+Inkapseling is een concept uit het object georiënteerd programmeren waarmee we de bundeling van data en methoden aangeven. +
+De gegevens (attributen) binnen een object zouden *privé* moeten zijn.  In andere woorden, alleen maar toegankelijk vanaf binnen in het object. +
+Om toegang te verlenen aan de attributen vanaf buiten het object, gebruiken we methoden die we *accessors* noemen.
+
+Onderstaande scripts geven hetzelfde resultaat.
+
+.Directe toegang tot een variabele
+[source,perl6]
+----
+my $var = 7;
+say $var;
+----
+
+.Inkapseling
+[source,perl6]
+----
+my $var = 7;
+sub geef-var {
+    $var;
+}
+say geef-var;
+----
+De subroutine `geef-var` kan men als een accessor beschouwen.  Het maakt het mogelijk om aan de waarde van de variabele te komen zonder er direct toegang daarvoor nodig te hebben.
+
+Inkapseling wordt in Perl 6 mogelijk gemaakt door middel van zogenaamde *twigils*. +
+Twigils zijn secondaire _sigils_.  Ze worden tussen de sigil en de naam van het attribuut geplaatst. +
+Bij klassen kunnen twee sigils worden gebruikt:
+
+* `!` om aan te geven dat een attribuut privé is.
+* `.` om aan te geven dat een accessor voor de attribuut aangemaakt moet worden.
+
+Als men geen twigil meegeeft, is een attribuut privé.  Voor de leesbaarheid is het een goede gewoonte om in zo'n geval altijd de `!` twigil te gebruiken.
+
+Met wat we zojuist gezien hebben, zouden we bovenstaande klasse moeten herschrijven als:
+[source,perl6]
+----
+class Mens {
+    has $!naam;
+    has $!leeftijd;
+    has $!geslacht;
+    has $!nationaliteit;
+}
+
+my $jan = Mens.new(naam => 'Jan', leeftijd => 23, geslacht => 'M', nationaliteit => 'Nederlands');
+say $jan;
+----
+Voeg het volgende commando to: `say $jan.leeftijd` +
+Het zal de volgende fout geven: `Method 'leeftijd' not found for invocant of class 'Mens'` +
+De reden hiervoor is dat `$!leeftijd` privé is en daardoor alleen maar binnen het object gebruikt kan worden.
+Pogingen om aan het attribuut te komen van buiten het object zal je een foutmelding geven.
+
+Vervang nu `has $!leeftijd` with `has $.leeftijd` en bekijk dan het resultaat van `say $jan.leeftijd;`
+
+=== Argumenten op naam vs. argumenten op positie
+Alle klassen hebben beschikking over een `.new()` constructeur door overerving. +
+Het kan worden gebruikt om objecten aan te maken door het argumenten te geven. +
+De default constructeur accepteert alleen *argumenten op naam*. +
+Als je bovenstaande voorbeelden bekijkt, dan zul je zien dat alle argumenten die we aan `.new()` hebben gegeven, op naam zijn:
+
+* naam => 'Jan'
+
+* leeftijd => 23
+
+Wat als ik niet telkens de naam van elk attribuut wil meegeven als ik een nieuw object wil maken? +
+In dat geval moeten we een andere constructeur maken die *argumenten op positie* accepteert.
+
+[source,perl6]
+----
+class Mens {
+    has $.naam;
+    has $.leeftijd;
+    has $.geslacht;
+    has $.nationaliteit;
+    #nieuwe constructeur die de default constructeur vervangt voor deze klasse
+    method new ($naam,$leeftijd,$geslacht,$nationaliteit) {
+        self.bless(:$naam,:$leeftijd,:$geslacht,:$nationaliteit);
+    }
+}
+
+my $jan = Human.new('Jan',23,'M','Nederlands');
+say $jan;
+----
+
+=== Methoden
+
+==== Inleiding
+Methoden zijn de _subroutines_ van een object. +
+Zij zijn, net als subroutines, een manier om een aantal functies te bundelen, ze accepteren *argumenten*, hebben een *signatuur* en kunnen worden gedefinieerd als *multi*.
+
+Je definieert een methode met het `method` sleutelwoord. +
+Normaal gesproken zijn methoden nodig om bepaalde acties op de attributen van een object uit te voeren.
+Dit bekrachtigt het concept van inkapseling.  De attributen van een object kunnen alleen worden gemanipuleerd vanaf binnen de klasse van het object door gebruik van methoden.
+De buitenwereld kan alleen maar gebruik maken van de methoden van het object en heeft geen toegang tot de attributen van het object.
+
+[source,perl6]
+----
+class Mens {
+    has $.naam;
+    has $.leeftijd;
+    has $.geslacht;
+    has $.nationaliteit;
+    has $.geschiktheid;
+    method bepaal-geschiktheid
+        if self.leeftijd < 21 {
+            $!geschiktheid = 'Nee'
+        } else {
+            $!geschiktheid = 'Ja'
+        }
+    }
+}
+
+my $jan = Mens.new(naam => 'Jan', leeftijd => 23, geslacht => 'M', nationaliteit => 'Nederlands');
+$jan.bepaal-geschiktheid;
+say $jan.geschiktheid;
+----
+
+Door een methode te definiëren in een klasse, kun je deze aanroepen op een object met de _punt notatie_: +
+_object_ *.* _methode_ of als in bovenstaand voorbeeld: `$jan.bepaal-geschiktheid`
+
+Binnen de definitie van een methode kunnen we het sleutelwoord `self` gebruiken om te refereren aan het object zelf om een andere methode aan te roepen. +
+
+Binnen de definitie van een methode kunnen we direct een attribuut gebruiken door de `!` twigil te gebruiken, zelfs als het attribuut is gedefinieerd met de `.` twigil. +
+De reden daarachter is dat wat de `.` twigil doet is een attribuut met `!` te definiëren en automatisch te zorgen voor het aanmaken van een accessor.
+
+In bovenstaand voorbeeld hebben `if self.leeftijd < 21` en `if $!leeftijd < 21` hetzelfde effect, maar technisch gezien zijn ze verschillend:
+
+* `self.leeftijd` roept de `.leeftijd` methode (accessor) aan +
+Hetgeen overigens ook geschreven can worden als `$.leeftijd`
+* `$!leeftijd` is een directe toegang tot de variabele
+
+==== Privé methoden
+Normale methoden kunnen op objecten buiten de klasse zelf worden aangeroepen.
+
+*Privé methoden* zijn methoden die alleen maar kunnen worden aangeroepen binnen een klasse. +
+Dit kan bijvoorbeeld gebruikt worden als een methode een andere methode moet aanroepen voor een specifieke actie.
+De methode die gebruikt kan worden vanaf de buitenwereld is publiek, terwijl de andere methode onzichtbaar moet blijven.
+Aangezien we niet willen dat gebruikers die methode direct kunnen aanroepen, definiëren we het als een privé methode.
+
+Door een `!` voor de naam van een methode te plaatsen, geven we aan dat het om een privé methode gaat.
+Privé methoden moeten worden aangeroepen met een `!` in plaats van met `.`
+
+[source,perl6]
+----
+method !ikbenprivé {
+    #code waar het over gaat
+}
+
+method ikbenprivé {
+  self!ikbenprivé;
+  #doe extra dingen
+}
+----
+
+=== Klasse Attributen
+
+*Klasse Attributen* zijn attributen die bij de klasse zelf horen en niet bij de objecten van die klasse. +
+Zij kunnen worden geïnitialiseerd bij de definitie. +
+Klasse attributen worden gedefinieerd met `my` in plaats van met `has`. +
+Zij worden aangeroepen op de klasse zelf in plaats van op haar objecten.
+
+[source,perl6]
+----
+class Mens {
+    has $.naam;
+    my $.aantal = 0;
+    method new($naam) {
+        Mens.aantal++;
+        self.bless(:$naam);
+    }
+}
+my $a = Mens.new('a');
+my $b = Mens.new('b');
+
+say Mens.aantal;
+----
+
+=== Toegangssoorten
+In alle voorbeelden die we tot nu toe hebben gezien, hebben we accessors alleen maar gebruikt om informatie uit een object te halen.
+
+Maar wat nu als we de waarde van een attribuut willen veranderen? +
+In dat geval moeten we die attribuut als _lees/schrijf_ markeren met de sleutelwoorden `is rw` (read/write)
+[source,perl6]
+----
+class Mens {
+    has $.naam;
+    has $.leeftijd is rw;
+}
+my $jan = Mens.new(naam => 'Jan', leeftijd => 21);
+say $jan.leeftijd;
+
+$jan.leeftijd = 23;
+say $jan.leeftijd;
+----
+Als je bij de definitie niets aangeeft, wordt een attribuut als _alleen lezen_ gedefinieerd, maar je kunt ook expliciet `is readonly` aangeven
+
+=== Overerving
+==== Inleiding
+*Overerving* is een ander concept van object georiënteerd programmeren.
+
+Wanneer men klassen aan het definiëren is, komt men er snel genoeg achter dat sommige attributen/methoden in vele klassen voorkomen. +
+Moeten we dus maar code gaan dupliceren? +
+NEE! We moeten gebruik maken van *overerving*.
+
+Laten we aannemen dat we twee klassen willen definiëren, een klasse voor Mensen en een klasse voor Werknemers. +
+Mensen hebben twee attributen: naam en leeftijd. +
+Werknemers hebben 4 attributen: naam, leeftijd, bedrijf en salaris
+
+Men zou geneigd kunnen zijn om de klassen als volgt te definiëren:
+[source,perl6]
+----
+class Mens {
+    has $.naam;
+    has $.leeftijd;
+}
+
+class Werknemer {
+    has $.naam;
+    has $.leeftijd;
+    has $.bedrijf;
+    has $.salaris;
+}
+----
+Hoewel bovenstaande code technisch gezien correct is, is het qua concept van lage kwaliteit.
+
+Een beter manier om zoiets te schrijven is als volgt:
+[source,perl6]
+----
+class Mens {
+    has $.naam;
+    has $.leeftijd;
+}
+
+class Werknemer is Mens {
+    has $.bedrijf;
+    has $.salaris;
+}
+----
+Het `is` sleutelwoord definieert de overerving. +
+In het taalgebruik van object georiënteerd programmeren, zeggen we dat Werknemer een *kind* is van Mens, en dat Mens de *ouder* is van Werknemer.
+
+Alle kinderklassen erven de attributen en methoden van de ouderklasse, zodat het niet nodig is om deze overnieuw te definiëren.
+
+==== Overnemen
+Klassen erven alle attributen en methoden van hun ouderklas. +
+Er zijn gevallen waarin we willen det de methode in een kinderklasse zich anders gedraagt als methode die geërfd is van de ouderklasse. +
+Om dit te bereiken, definiëren we die methode ook in de kinderklasse. +
+We noemen dit concept *overnemen* (overriding).
+
+In het onderstaande voorbeeld wordt de method `stel-jezelf-voor` geërfd door de Werknemer klasse.
+
+[source,perl6]
+----
+class Mens {
+    has $.naam;
+    has $.leeftijd;
+    method stel-jezelf-voor {
+        say 'Hoi, ik ben een mens en mijn naam is ' ~ self.name;
+    }
+}
+
+class Werknemer is Mens {
+    has $.bedrijf;
+    has $.salaris;
+}
+
+my $jan = Mens.new(naam =>'Jan', leeftijd => 23,);
+my $jessica = Werknemer.new(naam =>'Jessica', leeftijd => 25, bedrijf => 'Bureco', salaris => 4000);
+
+$jan.stel-jezelf-voor;
+$jessica.stel-jezelf-voor;
+----
+Het overnemen werkt als volgt:
+
+[source,perl6]
+----
+class Mens {
+    has $.naam;
+    has $.leeftijd;
+    method stel-jezelf-voor {
+        say 'Hoi, ik ben een mens en mijn naam is ' ~ self.name;
+    }
+}
+
+class Werknemer is Mens {
+    has $.bedrijf;
+    has $.salaris;
+    method stel-jezelf-voor {
+        say 'Hoi, ik ben een werknemer, mijn naam is ' ~ self.name ~ ' en ik werk bij: ' ~ self.bedrijf;
+    }
+}
+
+my $jan = Mens.new(naam =>'Jan', leeftijd => 23,);
+my $jessica = Werknemer.new(naam =>'Jessica', leeftijd => 25, bedrijf => 'Bureco', salaris => 4000);
+
+$jan.stel-jezelf-voor;
+$jessica.stel-jezelf-voor;
+----
+
+Afhankelijk van de klasse van het object, zal de juiste methode worden aangeroepen.
+
+==== Submethoden
+*Submethoden* zijn een soort methoden die niet worden geërfd door kinderklassen. +
+Ze zijn alleen toegankelijk in de klasse waarin ze worden gedefinieerd. +
+Ze worden gedefinieerd met het `submethod` sleutelwoord.
+
+=== Meervoudige Overerving
+Meervoudige overerving is toegestaan in Perl 6.  Een klasse kan van meer dan één andere klasse erven.
+
+[source,perl6]
+----
+class staafdiagram {
+    has Int @.staaf-waarden;
+    method plot {
+        say @.staaf-waarden;
+    }
+}
+
+class lijndiagram{
+    has Int @.lijn-waarden
+    method plot {
+        say @.lijn-waarden
+    }
+}
+
+class combo-diagram is staafdiagram is lijndiagram {
+}
+
+my $verkocht  = staafdigram.new(staaf-waarden => [10,9,11,8,7,10]);
+my $voorspeld = lijndiagram.new(lijn-waarden  => [9,8,10,7,6,9]);
+
+my $verkocht-vs-voorspeld =
+  combo-diagram.new(staaf-waarden => [10,9,11,8,7,10],
+                    lijn-waarden  => [9,8,10,7,6,9]);
+say "Verkocht:";
+$verkocht.plot;
+say "Voorspeld:";
+$voorspeld.plot;
+say "Verkocht vs Voorspeld:";
+$verkocht-vs-voorspeld.plot;
+----
+
+.`Uitvoer`
+----
+Verkocht:
+[10 9 11 8 7 10]
+Voorspeld:
+[9 8 10 7 6 9]
+Verkocht vs Voorspeld:
+[10 9 11 8 7 10]
+----
+
+.Uitleg
+De `combo-diagram` klasse zou in staat moeten zijn om de twee reeksen van waarden, een van "verkocht" in een staafdiagram en een van "voorspeld" in het lijndiagram, te tonen. +
+Dat is de reden waarom we het hebben gedefinieerd als een kinderklasse van `lijndiagram` en `staafdiagram`. +
+Je hebt waarschijnlijk gemerkt dat het aanroepen van de methode `plot` op het `combo-diagram` niet het gewenste resultaat gaf.
+Slechts één reeks van waarden werd getoond. +
+Waarom gebeurde dit? +
+`combo-diagram` erft van `lijndiagram` en `staafdiagram` en beide hebben ze een methode die `plot` heet.
+Als we die methode op `combo-diagram` aanroepen zal Perl 6 dit conflict proberen op te lossen door één van de geërfde methoden aan te roepen.
+
+.Correctie
+Om ervoor te zorgen dat dit correct functioneert, hadden we een methode `plot` in de `combo-diagram` klasse moeten definiëren.
+
+[source,perl6]
+----
+class staafdiagram {
+    has Int @.staaf-waarden;
+    method plot {
+        say @.staaf-waarden;
+    }
+}
+
+class lijndiagram{
+    has Int @.lijn-waarden
+    method plot {
+        say @.lijn-waarden
+    }
+}
+
+class combo-diagram is staafdiagram is lijndiagram {
+    method plot {
+        say @.staaf-waarden;
+        say @.lijn-waarden;
+    }
+}
+
+my $verkocht  = staafdigram.new(staaf-waarden => [10,9,11,8,7,10]);
+my $voorspeld = lijndiagram.new(lijn-waarden  => [9,8,10,7,6,9]);
+
+my $verkocht-vs-voorspeld =
+  combo-diagram.new(staaf-waarden => [10,9,11,8,7,10],
+                    lijn-waarden  => [9,8,10,7,6,9]);
+say "Verkocht:";
+$verkocht.plot;
+say "Voorspeld:";
+$voorspeld.plot;
+say "Verkocht vs Voorspeld:";
+$verkocht-vs-voorspeld.plot;
+----
+
+.`Uitvoer`
+----
+Verkocht:
+[10 9 11 8 7 10]
+Voorspeld:
+[9 8 10 7 6 9]
+Verkocht vs Voorspeld:
+[10 9 11 8 7 10]
+[9 8 10 7 6 9]
+----
+
+=== Rollen
+*Rollen* zijn net als klassen in de zin van dat zij een verzameling van attributen en methoden zijn.
+
+Rollen kunnen worden gedefinieerd met het sleutelwoord `role` en klassen die een rol willen "spelen" kunnen dat aangeven met het `does` sleutelwoord.
+
+.Laten we het voorbeeld van meervoudige overerving herschrijven met rollen:
+[source,perl6]
+----
+role staafdiagram {
+    has Int @.staaf-waarden;
+    method plot {
+        say @.staaf-waarden;
+    }
+}
+
+role lijndiagram{
+    has Int @.lijn-waarden
+    method plot {
+        say @.lijn-waarden
+    }
+}
+
+class combo-diagram does staafdiagram does lijndiagram {
+    method plot {
+        say @.staaf-waarden;
+        say @.lijn-waarden;
+    }
+}
+
+my $verkocht  = staafdigram.new(staaf-waarden => [10,9,11,8,7,10]);
+my $voorspeld = lijndiagram.new(lijn-waarden  => [9,8,10,7,6,9]);
+
+my $verkocht-vs-voorspeld =
+  combo-diagram.new(staaf-waarden => [10,9,11,8,7,10],
+                    lijn-waarden  => [9,8,10,7,6,9]);
+say "Verkocht:";
+$verkocht.plot;
+say "Voorspeld:";
+$voorspeld.plot;
+say "Verkocht vs Voorspeld:";
+$verkocht-vs-voorspeld.plot;
+----
+
+Voer het bovenstaande script uit en je zult zien dat de resultaten hetzelfde zijn.
+
+Nu zul je jezelf afvragen: als rollen net als klassen werken, wat is dan hun nut? +
+Om deze vraag te beantwoorden passen we het eerste script dat we gebruikten om meervodige overerving te laten zien,
+degene waarin we hadden _vergeten_ om de `plot` methode te definiëren.
+
+[source,perl6]
+----
+role staafdiagram {
+    has Int @.staaf-waarden;
+    method plot {
+        say @.staaf-waarden;
+    }
+}
+
+role lijndiagram{
+    has Int @.lijn-waarden
+    method plot {
+        say @.lijn-waarden
+    }
+}
+
+class combo-diagram does staafdiagram does lijndiagram {
+}
+
+my $verkocht  = staafdigram.new(staaf-waarden => [10,9,11,8,7,10]);
+my $voorspeld = lijndiagram.new(lijn-waarden  => [9,8,10,7,6,9]);
+
+my $verkocht-vs-voorspeld =
+  combo-diagram.new(staaf-waarden => [10,9,11,8,7,10],
+                    lijn-waarden  => [9,8,10,7,6,9]);
+say "Verkocht:";
+$verkocht.plot;
+say "Voorspeld:";
+$voorspeld.plot;
+say "Verkocht vs Voorspeld:";
+$verkocht-vs-voorspeld.plot;
+----
+
+.`Uitvoer`
+----
+===SORRY!===
+Method 'plot' must be resolved by class combo-diagram because it exists in multiple roles (lijndiagram, staafdiagram)
+----
+
+.Uitleg
+Als een klasse meer dan één rol doet en er daarbij een conflict optreedt, dan zal de compiler een foutmelding geven. +
+Dit is een veel veiligere aanpak dan meervoudige overerving waarbij conflicten niet als een probleem worden gezien en er bij de uitvoering zo maar iets gedaan wordt.
+
+Rollen waarschuwen je wanneer er een conflict is.
+
+=== Introspectie
+*Introspectie* is het verkrijgen van informatie over de eigenschappen van een object, zoals het type, haar attributen of haar methoden.
+
+
+[source,perl6]
+----
+class Mens {
+    has $.naam;
+    has $.leeftijd;
+    method stel-jezelf-voor {
+        say 'Hoi, ik ben een mens en mijn naam is ' ~ self.name;
+    }
+}
+
+class Werknemer is Mens {
+    has $.bedrijf;
+    has $.salaris;
+    method stel-jezelf-voor {
+        say 'Hoi, ik ben een werknemer, mijn naam is ' ~ self.name ~ ' en ik werk bij: ' ~ self.bedrijf;
+    }
+}
+
+my $jan = Mens.new(naam =>'Jan', leeftijd => 23,);
+my $jessica = Werknemer.new(naam =>'Jessica', leeftijd => 25, bedrijf => 'Bureco', salaris => 4000);
+
+say $jan.WHAT;
+say $jessica.WHAT;
+say $jan.^attributes;
+say $jessica.^attributes;
+say $jan.^methods;
+say $jessica.^methods;
+say $jessica.^parents;
+if $jessica ~~ Mens { say 'Jessica is een Mens'};
+----
+Introspectie is mogelijk door:
+
+* `.WHAT` geeft de klasse van het object.
+
+* `.^attributes` geeft een lijst met attributen van het object.
+
+* `.^methods` geeft een lijst van alle methoden die op het object kunnen worden uitgevoerd.
+
+* `.^parents` geeft een lijst met alle ouderklassen van het object.
+
+* `~~` wordt de smart-match operator genoemd.
+Het geeft de waarde _True_ als het object is aangemaakt met de gegeven klasse, of met een van de ouderklassen van de gegeven klasse.
+
+[NOTE]
+--
+Voor meer informatie over Object Georiënteerd Programmeren in Perl 6, bekijk dan:
+
+* https://docs.perl6.org/language/classtut
+* https://docs.perl6.org/language/objects
+--
+== Exception Handling
+
+=== Opvangen van Exceptions
+*Exceptions* zijn de uitzonderingsgevallen die optreden bij het uitvoeren van een programma op het moment dat er iets fout gaat. +
+We zeggen dat exceptions worden _geworpen_ (thrown).
+
+Bekijk onderstaand script dat correct kan worden uitgevoerd:
+
+[source,perl6]
+----
+my Str $naam;
+$naam = "Joanna";
+say "Hallo " ~ $naam;
+say "Hoe gaat het?"
+----
+
+.`Uitvoer`
+----
+Hallo Joanna
+Hoe gaat het?
+----
+
+Bekijk nu onderstaand script dat een exception werpt:
+
+[source,perl6]
+----
+my Str $naam;
+$naam = 123;
+say "Hallo " ~ $naam;
+say "Hoe gaat het?"
+----
+
+.`Uitvoer`
+----
+Type check failed in assignment to $naam; expected Str but got Int
+   in block <unit> at bestandsnaam.pl6:2
+----
+
+Je zou hebben moeten zien dat zodra er een fout optreedt (in dit geval het toewijzen van een getal aan een string variabele) het programma stopt en de regels code na de fout niet worden uitgevoerd, zelfs als deze wel juist zijn.
+
+*Exception handling* is het proces van het _opvangen_ van de exceptions die worden _geworpen_ om ervoor te zorgen dat het script blijft werken.
+
+[source,perl6]
+----
+my Str $naam;
+try {
+    $naam = 123;
+    say "Hallo " ~ $naam;
+    CATCH {
+        default {
+            say "Kun je ons je naam nog eens vertellen?  We konden hem niet vinden.";
+        }
+    }
+}
+say "Hoe gaat het?"
+----
+
+.`Output`
+----
+Kun je ons je naam nog eens vertellen?  We konden hem niet vinden.
+Hoe gaat het?
+----
+
+Exception handling wordt gedaan door middel van een `try-catch` block.
+
+[source,perl6]
+----
+try {
+    #voer hier de code in
+    #als er iets fout gaat, zal de code in het CATCH block uitgevoerd worden
+    #als alles goed gaat, wordt de code in het CATCH block genegeerd
+    CATCH {
+        default {
+            #deze code zal alleen uitgevoerd worden als een exception is geworpen
+        }
+    }
+}
+----
+
+Het `CATCH` block kan worden gedefinieerd op dezelfde manier als een `given` block.
+Dat betekent dat we verschillende soorten van exceptions kunnen _opvangen_ en afhandelen.
+
+[source,perl6]
+----
+try {
+    #voer hier de code in
+    #als er iets fout gaat, zal de code in het CATCH block uitgevoerd worden
+    #als alles goed gaat, wordt de code in het CATCH block genegeerd
+    CATCH {
+        when X::AdHoc { #doe iets als een exception van het type X::AdHoc is geworpen }
+        when X::IO { #doe iets als een exception van het type X::IO is geworpen }
+        when X::OS { #doe iets als een exception van het type X::OS is geworpen }
+        default { #doe iets als een ander soort exception is geworpen }
+    }
+}
+----
+
+=== Het Werpen Van Exceptions
+Naast het vangen van exceptions, laat Perl 6 het ook toe om een exception expliciet te werpen. +
+Man kan twee soorten van exceptions werpen:
+
+* ad-hoc exceptions
+
+* getypeerde exceptions
+
+[source,perl6]
+.ad-hoc
+----
+my Int $leeftijd = 21;
+die "Fout !";
+----
+
+[source,perl6]
+.getypeerd
+----
+my Int $age = 21;
+X::AdHoc.new(payload => 'Fout !').throw;
+----
+
+Ad-hoc exceptions worden geworpen door de `die` subroutine gevolgd door het bericht van de exception.
+
+Getypeerde exceptions zijn objecten, daarom moeten we de `.new()` constructeur gebruiken in bovenstaand voorbeeld. +
+Alle getypeerde exceptions erven van de klasse `X` , hieronder zie je een paar voorbeelden: +
+`X::AdHoc` is het simpelste exception type +
+`X::IO` is gerelateerd aan IO fouten +
+`X::OS` is gerelateerd aan OS fouten +
+`X::Str::Numeric` wordt geworpen bij een fout in het veranderen van een string naar een getal.
+
+NOTE: Zie https://docs.perl6.org/type-exceptions.html voor een complete lijst van exception types en de daarbij behorende methoden.
+
+
+== Reguliere Expressies
+Een reguliere expressie, of _regex_, is een reeks van karakters die worden gebruikt voor patroonherkenning. +
+De gemakkelijkste manier om dit te begrijpen, is om het te beschouwen als een patroon.
+
+[source,perl6]
+----
+if 'verlichting' ~~ m/ licht / {
+    say "verlichting bevat het woord licht';
+}
+----
+
+In dit voorbeeld werd de smart match operator `~~` gebruikt om te kijken of een string (verlichting) het woord (licht) bevat. +
+"Verlichting" wordt vergeleken met de regex `m/ light /`
+
+=== Definiëren van een Regex
+
+Een reguliere expressie kan als volgt worden gedefinieerd:
+
+* `/licht/`
+
+* `m/licht/`
+
+* `rx/licht/`
+
+Tenzij het specifiek wordt aangeduid, is witruimte zonder betekenis, dus `m/licht/` en `m/ licht /` zijn hetzelfde.
+
+=== Vergelijken van Karakters
+Alphanumerieke karakters en het liggend streepje `_` mogen als zichzelf worden geschreven. +
+Alle andere karakters moeten speciaal worden behandeld door er een backslash `\\` voor te plaatsen of door ze te omgeven door aanhalingstekens.
+
+[source,perl6]
+.Backslash
+----
+if 'Temperatuur: 13' ~~ m/ \: / {
+    say "De string bevat een dubbele punt :";
+}
+----
+
+[source,perl6]
+.Enkele Aanhalingstekens
+----
+if 'Leeftijd = 13' ~~ m/ '=' / {
+    say "De string bevat een is-gelijk teken =";
+}
+----
+
+[source,perl6]
+.Dubbele Aanhalingstekens
+----
+if 'naam@bedrijf.nl' ~~ m/ "@" / {
+    say "Dit is een juist emailadres want het bevat een @ karakter";
+}
+----
+
+=== Vergelijken van Categorieën van Karakters
+Karakters kunnen worden geclassificeerd in categorieën en ook daarmee kunnen we vergelijken. +
+We kunnen ook vergelijken met de inverse van een categorie (alle karakters behalve degene in die categorie).
+
+|===
+
+| *Categorie* | *Regex* | *Inverse* | *Regex*
+
+| Woord karakter (letter, cijfer or liggend streepje) | \w | Alle karakters behalve een woord karakter | \W
+
+| Cijfer | \d | Elk karakter die geen cijfer zijn | \D
+
+| Witruimte | \s | Elk karakter dat geen witruimte is | \S
+
+| Horizontale witruimte | \h | Elk karakter dat geen horizontale witruimte is | \H
+
+| Verticale witruimte | \v | Elk karakter dat geen verticale witruimte is | \V
+
+| Tab | \t | Elk karakter behalve de Tab | \T
+
+| Nieuwe regel | \n | Elk karakter dat geen nieuwe regel aangeeft | \N
+
+|===
+
+[source,perl6]
+----
+if "Jan123" ~~ / \d / {
+    say "Deze naam is niet toegestaan want het bevat cijfers";
+} else {
+    say "Deze naam is toegestaan"
+}
+if "Jan-Met" ~~ / \s / {
+    say "Deze string bevat witruimte";
+} else {
+    say "Deze string bevat geen witruimte"
+}
+----
+
+=== Unicode eigenschappen
+Het vergelijken van categorieën van karakters zoals we in de vorige sectie zagen, is erg gemakkelijk. +
+Maar wellicht is het gebruik van Unicode eigenschappen een meer systematische aanpak. +
+Unicode eigenschappen worden omgeven door `<: >`
+
+[source,perl6]
+----
+if "Jan123" ~~ / <:N> / {
+    say "Bevat een cijfer";
+} else {
+    say "Bevat geen enkel cijfer"
+}
+if "Jan-Met" ~~ / <:Lu> / {
+    say "Bevat een hoofdletter";
+} else {
+    say "Bevat geen enkele hoofdletter"
+}
+if "Jan-Met" ~~ / <:Pd> / {
+    say "Bevat een streepje";
+} else {
+    say "Bevat geen enkel streepje"
+}
+----
+
+=== Jokers
+Jokers (wildcards) kunnen ook in een regex worden gebruikt.
+
+De punt `.` betekent elk enkel karakter.
+
+[source,perl6]
+----
+if 'abc' ~~ m/ a.c / {
+    say "Komt overeen";
+}
+if 'a2c' ~~ m/ a.c / {
+    say "Komt overeen";
+}
+if 'ac' ~~ m/ a.c / {
+    say "Komt overeen";
+} else {
+    say "Komt niet overeen";
+}
+----
+
+=== Factoren
+Factoren (quantifiers) komen na een karakter en worden gebruikt om aan te geven hoe vaak we dat karakter verwachten.
+
+Het vraagteken `?` betekent nul of één keer.
+
+[source,perl6]
+----
+if 'ac' ~~ m/ a?c / {
+    say "Komt overeen";
+} else {
+    say "Komt niet overeen";
+}
+if 'c' ~~ m/ a?c / {
+    say "Komt overeen";
+} else {
+    say "Komt niet overeen";
+}
+----
+
+De asterisk `*` betekent nul of meer keer.
+
+[source,perl6]
+----
+if 'az' ~~ m/ a*z / {
+    say "Komt overeen";
+} else {
+    say "Komt niet overeen";
+}
+if 'aaz' ~~ m/ a*z / {
+    say "Komt overeen";
+} else {
+    say "Komt niet overeen";
+}
+if 'aaaaaaaaaaz' ~~ m/ a*z / {
+    say "Komt overeen";
+} else {
+    say "Komt niet overeen";
+}
+if 'z' ~~ m/ a*z / {
+    say "Komt overeen";
+} else {
+    say "Komt niet overeen";
+}
+----
+
+Het plusteken `+` betekent tenminste één keer.
+
+[source,perl6]
+----
+if 'az' ~~ m/ a+z / {
+    say "Komt overeen";
+} else {
+    say "Komt niet overeen";
+}
+if 'aaz' ~~ m/ a+z / {
+    say "Komt overeen";
+} else {
+    say "Komt niet overeen";
+}
+if 'aaaaaaaaaaz' ~~ m/ a+z / {
+    say "Komt overeen";
+} else {
+    say "Komt niet overeen";
+}
+if 'z' ~~ m/ a+z / {
+    say "Komt overeen";
+} else {
+    say "Komt niet overeen";
+}
+----
+
+=== Resultaten van een Vergelijking
+Elke keer wanneer het vergelijken van een string met een regex succesvol is, wordt het resultaat in een speciale variable `$/` geplaatst.
+
+[source,perl6]
+.Script
+----
+if 'Rakudo is een Perl 6 compiler' ~~ m/:s Perl 6/ {
+    say "Het resultaat is: " ~ $/;
+    say "De string vóór de gevonden string is: " ~ $/.prematch;
+    say "De string achter de gevonden string is: " ~ $/.postmatch;
+    say "De gevonden string begint op positie: " ~ $/.from;
+    say "De gevonden string eindigt op positie: " ~ $/.to;
+}
+----
+
+.Uitvoer
+----
+Het resultaat is: ｢Perl 6｣
+De string vóór de gevonden string is: Rakudo is een
+De string achter de gevonden string is: compiler
+De gevonden string begint op positie: 14
+De gevonden string eindigt op positie: 20
+----
+
+.Uitleg
+`$/` geeft een _Match Object_ terug (de string die gevonden is door de regex) +
+Deze methoden kunnen worden aangeroepen op een _Match Object_: +
+`.prematch` geeft de string vóór de gevonden string terug. +
+`.postmatch` geeft de string na de gevonden string terug. +
+`.from` geeft de positie van het eerste karakter van de gevonden string terug. +
+`.to` geeft de positie van het laatste karakter van de gevonden string terug. +
+
+TIP: Witruimte heeft per default geen betekening in een regex. +
+Als we willen vergelijken met een regex die witruimte bevat, dan moeten we dat expliciet aangeven. +
+De `:s` in de regex `m/:s Perl 6/` geeft aan dat witruimte niet moet worden genegeerd. +
+We zouden de regex ook kunnen hebben schrijven als `m/ Perl \s 6 /` waarbij we `\s` als een teken voor witruimte hebben gebruikt, zoals we eerder hebben gezien. +
+Als een regex meer dan één witruimte bevat, dan is het gebruik van `:s` gemakkelijker in plaats van `\s` te specificeren voor elke witruimte.
+
+=== Voorbeeld
+Laten we eens kijken of een emailadres goed is of niet. +
+Voor dit voorbeeld zullen we aannemen dat een werkend emailadres wordt gevormd door: +
+voornaam [punt] achternaam [bij] bedrijfsnaam [punt] top-niveau (e.g. nl)
+
+WARNING: De regex die in dit voorbeeld wordt gebruikt voor het valideren van een emailadres is niet erg accuraat. +
+Het is alleen bedoeld om de functionaliteit van een regex in Perl 6 te tonen. +
+Gebruik deze regex niet in deze vorm in productie.
+
+[source,perl6]
+.Script
+----
+my $email = 'jan.met@perl6.org';
+my $regex = / <:L>+ \. <:L>+ \@<:L+:N>+ \. <:L>+ /;
+
+if $email ~~ $regex {
+    say $/ ~ " is een gevalideerd emailadres";
+} else {
+    say "Dit emailadres kon niet gevalideerd worden";
+}
+----
+
+.Uitvoer
+`jan.met@perl6.org is een gevalideerd emailadres`
+
+.Uitleg
+`<:L>` accepteert een enkele letter +
+`<:L>+` accepteert één of meer letters +
+`\.` accepteert een enkele [punt] +
+`\@` accepteert een enkel @-karakter +
+`<:L+:N>` accepteert één of meer letters gevolgd door een cijfer +
+`<:L+:N>+` accepteert één of meer letters + cijfer één of meer keer +
+
+De regex kan als volgt uit elkaar worden gehaald:
+
+* *voornaam* `<:L>+`
+
+* *[punt]* `\.`
+
+* *achternaam* `<:L>+`
+
+* *[bij]* `\@`
+
+* *bedrijfsnaam* `<:L+:N>+`
+
+* *[punt]* `\.`
+
+* *top-niveau* `<:L>+`
+
+[source,perl6]
+.We kunnen een regex ook in aparte regexen op naam opdelen
+----
+my $email = 'jan.met@perl6.org';
+my regex veel-letters { <:L>+ };
+my regex punt { \. };
+my regex bij { \@ };
+my regex veel-letters-cijfers { <:L+:N>+ };
+
+if $email ~~ / <veel-letters> <punt> <veel-letters> <bij> <veel-letters-nummers> <dot> <veel-letters> / {
+    say $/ ~ " is een gevalideerd emailadres";
+} else {
+    say "Dit emailadres kon niet gevalideerd worden";
+}
+----
+
+Een regex op naam wordt als volgt gedefinieerd: `my regex regex-naam { regex definitie }` +
+Een regex op naam kan als volgt worden aangeroepen: `<regex-naam>`
+
+NOTE: Zie https://docs.perl6.org/language/regexes voor meer informatie over regexen.
+
+== Perl 6 Modules
+Perl 6 is een algemeen toepasbare programmeertaal.  Het kan worden gebruikt om vele taken uit te voeren, zoals:
+manipulatie van tekst, plaatjes, web, databases, netwerkprotocollen, etc.
+
+Herbruikbaarheid is een erg belangrijke eigenschap waardoor programmeurs niet telkens het wiel opnieuw hoeven uit te vinden als ze aan een nieuwe taak beginnen.
+
+Perl 6 maakt het mogelijk om *modules* aan te maken en die te distribueren.  Elke module is een bundel van functionaliteit die kan worden gebruikt zodra deze is geïnstalleerd.
+
+_Panda_ is een programma om modules te beheren dat deel is van Rakudo Star.
+
+Om een specifieke module te installeren moet men onderstaand commando in een terminalvenster intypen:
+
+`panda install "module name"`
+
+NOTE: Een overzicht van beschikbare Perl 6 modules is te vinden op: https://modules.perl6.org/
+
+=== Gebruiken van Modules
+MD5 is een cryptografische functie die een unieke 128bit waarde (hash) produceert. +
+MD5 heeft een grote variëteit van applicaties waarvan het opslaan van wachtwoorden in een database er een is.
+Zodra een nieuwe gebruiker zich registreerd worden de inloggegevens niet als platte tekst opgeslagen, maar als een _hash_.
+Het idee daarachter is dat in het geval dat een database wordt gestolen, de dief dan niet zal kunnen weten wat de wachtwoorden zijn.
+
+Laat ons een script schrijven dat een MD5 hash van een wachtwoord maakt voordat het in een database wordt opgeslagen.
+
+Gelukkig is er al een Perl 6 module geimplementeerd voor het MD5 algoritme.  Laten we het eerst installeren: +
+`panda install Digest::MD5`
+
+Voer daarna onderstaand script uit:
+[source,perl6]
+----
+use Digest::MD5;
+my $wachtwoord = "wachtwoord123";
+my $gehashed = Digest::MD5.new.md5_hex($wachtwoord);
+
+say $gehashed;
+----
+Om de `md5_hex()` functie, die de hashes aanmaakt, aan te kunnen roepen moeten we eerst de benodigde module laden. +
+Het `use` sleutelwoord laadt een module voor gebruik in het script.
+
+WARNING: In de praktijk is MD5 hashing alleen niet voldoende, omdat het vatbaar is voor zg. "dictionary attacks". +
+Het zou altijd gecombineerd moeten worden met een "salt", zie daarvoor link:https://en.wikipedia.org/wiki/Salt_(cryptography)[https://en.wikipedia.org/wiki/Salt_(cryptography)].
+
+== Unicode
+
+Unicode is een standaard voor het coderen en representeren van tekst die de meeste schriften van de wereld ondersteund. +
+UTF-8 is een manier van het coderen in Unicode van alle mogelijke karakters (ook wel "codepoints" genoemd).
+
+Karakters zijn gedefinieerd door een: +
+*Grafeem*: Visuele voorstelling. +
+*Codepoint*: Een nummer toegewezen aan dat karakter.
+
+=== Het gebruik van Unicode
+
+.Laten we eens zien hoe we met Unicode karakters kunnen laten zien
+[source,perl6]
+----
+say "a";
+say "\x0061";
+say "\c[LATIN SMALL LETTER A]";
+----
+Bovenstaande 3 regels laten verschillende manieren zien om een karakter op te bouwen:
+
+. Door het karakter (grafeem) direct te schrijven
+
+. Door `\x` te gebruiken en het codepoint in hexadecimaal aan te geven
+
+. Door `\c` te gebruiken en de naam van het codepoint aan te geven.
+
+.Laten we eens proberen om een smiley te tonen:
+[source,perl6]
+----
+say "☺";
+say "\x263a";
+say "\c[WHITE SMILING FACE]";
+----
+
+.Voorbeeld van het gebruik van twee codepoints
+[source,perl6]
+----
+say "á";
+say "\x00e1";
+say "\x0061\x0301";
+say "\c[LATIN SMALL LETTER A WITH ACUTE]";
+----
+
+De letter `á` kan  worden geschreven als:
+
+* door het unieke codepoint `\x00e1` te gebruiken
+
+* door combinatie van codepoints voor `a` en acute `\x0061\x0301`
+
+.Sommige van de methoden die kunnen worden gebruikt:
+[source,perl6]
+----
+say "á".NFC;
+say "á".NFD;
+say "á".uniname;
+----
+
+.`Output`
+----
+NFC:0x<00e1>
+NFD:0x<0061 0301>
+LATIN SMALL LETTER A WITH ACUTE
+----
+
+`NFC` geeft het unieke codepoint. +
+`NFD` haalt het karakter uit elkaar en geeft de codepoints van elk onderdeel. +
+`uniname` geeft de naam van de codepoint.
+
+.Unicode letters kunnen ook gebruikt worden in namen:
+[source,perl6]
+----
+my $Δ = 1;
+$Δ++;
+say $Δ;
+----
+
+.Unicode kan ook worden gebruikt in berekeningen
+[source,perl6]
+----
+my $var = 2 + ⅒;
+say $var;
+----
+
+== Parallelisme, Gelijktijdigheid en Asynchroniciteit
+
+=== Parallelisme
+Onder normale omstandigheden worden alle taken in een programma achter elkaar uitgevoerd. +
+Dit hoeft niet noodzakelijkerwijs een probleem te zijn tenzij wat je probeert te doen een hoop tijd vergt.
+
+Natuurlijk heeft Perl 6 een aantal mogelijkheden die het mogelijk maken om delen van een programma parallel uit te laten voeren. +
+Op dit moment is het belangrijk om op te merken dat parallelisme twee dingen kan betekenen:
+
+* *Taak Parallelisme*: Twee (of meer) onafhankelijke expressies die parallel worden uitgevoerd..
+
+* *Data Parallelisme*: Een enkele expressie die over een lijst van elementen parallel wordt uitgevoerd.
+
+Laten we beginnen met de laatste.
+
+==== Data Parallelisme
+[source,perl6]
+----
+my @array = (0..50000);                      #vullen van het Array
+my @resultaat = @array.map({ is-prime $_ }); #roep is-prime aan op elk element van het Array
+say now - INIT now;                          #laat de tijd zien die het script nodig had om te voltooien
+----
+
+.Laten we naar bovenstaand voorbeeld kijken:
+We doen maar een enkele opdracht: `@array.map({ is-prime $_ })` +
+De `is-prime` subroutine wordt voor elk element van het array achter elkaar aangeroepen: +
+`is-prime @array[0]` en dan `is-prime @array[1]` en dan `is-prime @array[2]` etc.
+
+.Gelukkig kunnen we `is-prime` tegelijkertijd op meer dan één array element aanroepen:
+[source,perl6]
+----
+my @array = (0..50000);                           #vullen van het Array
+my @resultaat = @array.race.map({ is-prime $_ }); #roep is-prime aan op elk element van het Array
+say now - INIT now;                               #laat de tijd zien die het script nodig had om te voltooien
+----
+
+Merk op dat we `race` in deze expressie hebben gebruikt.
+Deze methode maakt het mogelijk om in parallel over de array elementen te gaan.
+
+Nadat je beide voorbeelden (met en zonder `race`) hebt uitgevoerd, vergelijk dan de tijd die nodig was om de scripts te laten voltooien.
+
+[TIP]
+====
+`race` behoudt de volgorde van de elementen niet.  Als je de volgorde wilt behouden, dan moet je `hyper` gebruiken.
+
+[source,perl6]
+.race
+----
+my @array = (1..1000);
+my @resultaat = @array.race.map( {$_ + 1} );
+.say for @resultaat;
+----
+
+[source,perl6]
+.hyper
+----
+my @array = (1..1000);
+my @resultaat = @array.hyper.map( {$_ + 1} );
+.say for @resultaat;
+----
+
+Als je beide voorbeelden uitvoert, zul je zien dat de ene wel gesorteerd is en de andere niet.
+
+====
+
+==== Taak Parallelisme
+
+[source,perl6]
+----
+my @array1 = (0..49999);
+my @array2 = (2..50001);
+
+my @resultaat1 = @array1.map( {is-prime($_ + 1)} );
+my @resultaat2 = @array2.map( {is-prime($_ - 1)} );
+
+say @resultaat1 eqv @resultaat2;
+
+say now - INIT now;
+----
+
+.Bekijk bovenstaand voorbeeld:
+
+. We definiëren 2 arrays
+
+. we voeren dezelfde operatie uit op beide arrays en slaan het resultaat op
+
+. en kijken of beide resultaten hetzelfde zijn.
+
+Het script wacht totdat `@array1.map( {is-prime($_ + 1)} )` klaar is +
+en gaat dan `@array2.map( {is-prime($_ - 1)} )` uitvoeren.
+
+De operaties die we op elk array uitvoeren zijn niet afhankelijk van elkaar.
+
+.Dus waarom niet in parallel?
+[source,perl6]
+----
+my @array1 = (0..49999);
+my @array2 = (2..50001);
+
+my $belofte1 = start @array1.map( {is-prime($_ + 1)} );
+my $belofte2 = start @array2.map( {is-prime($_ - 1)} );
+
+my @resultaat1 = await $belofte1;
+my @resultaat2 = await $belofte2;
+
+say @resultaat1 eqv @resultaat2;
+
+say now - INIT now;
+----
+
+.Uitleg
+De `start` subroutine gaat de gegeven code in parallel uitvoeren maar geeft eerst *een Promise (belofte) object* terug, of kortweg een *belofte*. +
+Als de code kan worden uitgevoerd zonder problemen, dan wordt de _belofte_ *gehouden* (kept). +
+Als de code een exception werpt, dan zal de _belofte_ worden *gebroken* (broken).
+
+De `await` subroutine wacht op een *belofte*. +
+Als de belofte *gehouden* wordt, dan geeft het de geproduceerde waarden terug. +
+Als de belofte is *gebroken* dan zal het de exception (opnieuw) werpen.
+
+Controleer de tijd die nodig was om elk script uit te voeren.
+
+WARNING: Parallelisme voegt altijd extra overhead toe.  Als die overhead relatief groot is, zal een script trager zijn dan de niet parallele versie. +
+Dat is de reden waarom het gebruik van `race`, `hyper` en `start` in tamelijk simpele scripts een reden van vertraging kan zijn.
+
+=== Gelijktijdigheid en Asynchroniciteit
+NOTE: Zie https://docs.perl6.org/language/concurrency voor meer informatie over asynchroon programmeren in Perl 6
+
+== De Community
+
+* link:irc://irc.freenode.net/#perl6[#perl6] IRC kanaal. Veel discussies vinden plaats op IRC. Mocht je vragen hebben die relatief snel een antwoord nodig hebben, dan kun je het beste naar  https://perl6.org/community/irc gaan
+
+* link:https://p6weekly.wordpress.com[p6weekly] een wekelijks overzicht van veranderingen in en rond Perl 6
+
+* link:http://pl6anet.org[pl6anet] is een blog aggregator. Hier kun je blog posts over Perl 6 lezen
+
+* link:https://www.reddit.com/r/perl6/[/r/perl6] ook op reddit kun je over Perl 6 lezen
