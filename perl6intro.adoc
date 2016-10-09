@@ -75,6 +75,11 @@ Implementations that pass the specification test suite are considered Perl 6.
 
 . Install Panda: Type the following command in the terminal `rakudobrew build panda`
 
+. Finally, install Task::Star. This will install all the modules that are
+shipped with the Rakudo Star Perl 6 distribution `panda install Task::Star`
+
+For other options, go to http://rakudo.org/how-to-get-rakudo/#Installing-Rakudo-Star-Linux
+
 .OSX
 Four options are available:
 
