@@ -64,6 +64,10 @@ Een implementatie van Perl 6 die al deze tests succesvol kan uitvoeren, mag zich
 
 . Installeer Panda: Typ het volgende commando in een terminalvenster `rakudobrew build panda`
 
+. Ten slotte, installeer Task::Star.  Dit zal alle modules installeren die gebundeld zijn met de Rakudo Star Perl 6 distributie: `panda install Task::Star`
+
+Zie http://rakudo.org/how-to-get-rakudo/#Installing-Rakud-Star-Linux voor meer opties.
+
 .OS X
 OS X kent vier mogelijkheden:
 
