@@ -1028,7 +1028,7 @@ Merk op dat we een lusvariabele `$array-item` aanmaken om de operatie `*100` op 
 
 === given
 
-`given` is het Perl 6 equivalent van het `switch` commando in andere programmeertalen.
+`given` is het Perl 6 equivalent van het `switch` commando in andere programmeertalen, maar het is veel krachtiger.
 
 [source,perl6]
 ----
