@@ -12,6 +12,7 @@ For online reading navigate to:
 * Spanish: http://es.perl6intro.com
 * Portuguese: http://pt.perl6intro.com
 * Dutch: http://nl.perl6intro.com
+* Bulgarian: http://bg.perl6intro.com
 
 
 ### Building the document
@@ -52,12 +53,13 @@ All feedback is welcomed:
 * Translations
 
 ### Authors
-* Original English version: Naoum Hankache
-* French Translation: Romuald Nuguet
+* Original English version: [Naoum Hankache](https://github.com/hankache)
+* French Translation: [Romuald Nuguet](https://github.com/kolikov)
 * German Translation: Sören Laird Sörries
-* Japanese Translation: Itsuki Toyota
-* Spanish Translation: Ramiro Encinas
-* Portuguese Translation: Breno G. de Oliveira
-* Dutch Translation: Elizabeth Mattijsen
+* Japanese Translation: [Itsuki Toyota](https://github.com/titsuki)
+* Spanish Translation: [Ramiro Encinas](https://github.com/ramiroencinas)
+* Portuguese Translation: [Breno G. de Oliveira](https://github.com/garu)
+* Dutch Translation: [Elizabeth Mattijsen](https://github.com/lizmat)
+* Bulgarian Translation: [Красимир Беров](https://github.com/kberov)
 
 For the full list of contributors: https://github.com/hankache/perl6intro/graphs/contributors
