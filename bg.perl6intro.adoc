@@ -1,6 +1,6 @@
 = Увод в Perl 6
+Naoum Hankache <naoum@hankache.com>; Красимир Беров <berov@cpan.org>
 :description: Общо въведение в Perl 6
-:Author: Naoum Hankache <naoum@hankache.com>; Красимир Беров <berov@cpan.org>
 :keywords: perl6, perl 6, въведение, perl6intro, въведение в perl 6, урок по пърл 6, увод в perl 6
 :Revision: 1.0
 :icons: font
