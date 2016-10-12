@@ -1290,3 +1290,163 @@ WARNING: Потребителите на Windows могат да използу�
 
 NOTE: За повече информация, свързана с входно-изходните операции, вижте https://docs.perl6.org/type/IO
 
+== Subroutines
+=== Definition
+*Subroutines* (also called *subs* or *functions*) are a means of packaging a set of functionality. +
+
+A subroutine definition begins with the keyword `sub`. After their definition, they can be called by their handle. +
+Check out the below example:
+
+[source,perl6]
+----
+sub alien-greeting {
+  say "Hello earthlings";
+}
+
+alien-greeting;
+----
+
+The previous example showcased a subroutine that  doesn't require any input.
+
+=== Signature
+Many subroutines would require some input in order to work. That input is provided by *arguments*.
+A subroutine may define zero or more *parameters*.
+The number and type of parameters that a subroutine defines is called its *signature*.
+
+The below subroutine accepts a string argument.
+
+[source,perl6]
+----
+sub say-hello (Str $name) {
+    say "Hello " ~ $name ~ "!!!!"
+}
+say-hello "Paul";
+say-hello "Paula";
+----
+
+=== Multiple dispatch
+It is possible to define multiple subroutines having the same name but different signatures.
+When the subroutine is called, the runtime environment will decide which version to use depending on the number and type of the supplied arguments.
+This type of subroutines is defined the same way as normal subs with the exception of swapping the `sub` keyword with `multi`.
+
+[source,perl6]
+----
+multi greet($name) {
+    say "Good morning $name";
+}
+multi greet($name, $title) {
+    say "Good morning $title $name";
+}
+
+greet "Johnnie";
+greet "Laura","Mrs.";
+----
+
+=== Default and Optional Parameters
+If a subroutine is defined to accept an argument, and we call it without providing it with the required argument, it will fail.
+
+Alternatively Perl 6 provides us the ability to define subroutines with:
+
+* Optional Parameters
+* Default Parameters
+
+Optional parameters are defined by appending `?` to the parameter name.
+
+[source,perl6]
+----
+sub say-hello($name?) {
+  with $name { say "Hello " ~ $name }
+  else { say "Hello Human" }
+}
+say-hello;
+say-hello("Laura");
+----
+
+If the user doesn't supply an argument, it can default to a specific value. +
+This is done by assigning a value to the parameter within the subroutine definition.
+
+[source,perl6]
+----
+sub say-hello($name="Matt") {
+  say "Hello " ~ $name;
+}
+say-hello;
+say-hello("Laura");
+----
+
+=== Returning values
+All the subroutines we saw so far *do something*, they display some text on the terminal.
+
+While this is perfectly normal, sometimes we do want a subroutine to *return* some kind of value that we can reuse later in the flow of our program.
+
+Under normal circumstances, the last line of code of a subroutine is considered to be the return value.
+[source,perl6]
+.Implicit return
+----
+sub squared ($x) {
+  $x ** 2;
+}
+say "7 squared is equal to " ~ squared(7);
+----
+
+Once our code gets bigger, it might be a good idea to _explicitly_ specify what we do want to return.
+This can be done using the `return` keyword.
+[source,perl6]
+.Explicit return
+----
+sub squared ($x) {
+  return $x ** 2;
+}
+say "7 squared is equal to " ~ squared(7);
+----
+==== Restricting return values
+In one of the previous examples, we saw how we can restrict the accepted argument to be of a certain type.
+The same can be done with return values.
+
+To restrict the return value to a certain type, we either use the `returns` trait or the arrow notation `-\->` in the signature.
+
+[source,perl6]
+.Using the returns trait
+----
+sub squared ($x) returns Int {
+  return $x ** 2;
+}
+say "1.2 squared is equal to " ~ squared(1.2);
+----
+
+[source,perl6]
+.Using the arrow
+----
+sub squared ($x --> Int) {
+  return $x ** 2;
+}
+say "1.2 squared is equal to " ~ squared(1.2);
+----
+If we fail to provide a return value that matches the type constraint, an error will be thrown.
+
+----
+Type check failed for return value; expected Int but got Rat (1.44)
+----
+
+[TIP]
+====
+Not only can type constraints control the type of the return value; they can also control its definedness.
+
+In the previous examples, we specified that the return value should be an `Int`, irrespective of its definedness.
+Alternatively we could have specified that the returned `Int` should be strictly defined or undefined using the following signatures: +
+`--> Int:D` and `--> Int:U`
+
+That being said, it is good practice to use those type constraints. +
+Below is the modified version of the previous example that uses `:D` to force the returned  `Int` to be defined.
+
+[source,perl6]
+----
+sub squared ($x --> Int:D) {
+  return $x ** 2;
+}
+say "1.2 squared is equal to " ~ squared(1.2);
+----
+====
+
+NOTE: For more info on subroutines and functions, see https://docs.perl6.org/language/functions
+
