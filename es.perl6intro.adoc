@@ -65,6 +65,8 @@ Las implementaciones que pasan el banco de pruebas de la especificación se cons
 
 . Instalación de Panda: En el terminal, introduce el siguiente comando `rakudobrew build panda`
 
+. Instalación de los módulos incluidos en la distribución Rakudo Star Perl6 `panda install Task::Star`
+
 .OSX
 
 Tienes cuatro opciones:
@@ -1003,7 +1005,7 @@ Observa que en la iteración hemos creado la variable `$array-item` para realiza
 
 === given
 
-En Perl 6 `given` viene a ser `switch` en otros lenguajes.
+En Perl 6 `given` viene a ser `switch` en otros lenguajes, pero mucho más potente.
 
 [source,perl6]
 ----
