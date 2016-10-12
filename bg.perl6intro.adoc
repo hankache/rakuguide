@@ -1290,12 +1290,14 @@ WARNING: Потребителите на Windows могат да използу�
 
 NOTE: За повече информация, свързана с входно-изходните операции, вижте https://docs.perl6.org/type/IO
 
-== Subroutines
-=== Definition
-*Subroutines* (also called *subs* or *functions*) are a means of packaging a set of functionality. +
+== Подпрограми
+=== Създаване
+*Подпрограмите* (наричани също *функци*) представляват средство за събиране на едно място на набор от действия (функционалност). +
 
-A subroutine definition begins with the keyword `sub`. After their definition, they can be called by their handle. +
-Check out the below example:
+За да създадете подпрограма, напишете ключовата дума `sub`, последвана от името
+на подпрограмата. След това подпрограмата може да бъде извиквана чрез изписване
+на името ѝ. +
+Разгледайте примера:
 
 [source,perl6]
 ----
@@ -1306,14 +1308,15 @@ sub alien-greeting {
 alien-greeting;
 ----
 
-The previous example showcased a subroutine that  doesn't require any input.
+В този пример е показана подпрограма, която не изисква никакви входни данни.
 
-=== Signature
-Many subroutines would require some input in order to work. That input is provided by *arguments*.
-A subroutine may define zero or more *parameters*.
-The number and type of parameters that a subroutine defines is called its *signature*.
+=== Списък с параметри
+Много подпрограми изискват някакви входни данни, за да работят. Тези данни се
+предоставят чрез подаване на *параметри*. Една подпрограма може да няма
+никакви или да има няколко *параметри*. Броят и типът на параметрите на една
+подпрограма се наричат *сигнатура*.
 
-The below subroutine accepts a string argument.
+ Следващата подпрограма приема низ като параметър.
 
 [source,perl6]
 ----
@@ -1324,7 +1327,7 @@ say-hello "Paul";
 say-hello "Paula";
 ----
 
-=== Multiple dispatch
+=== Множествено разпределение
 It is possible to define multiple subroutines having the same name but different signatures.
 When the subroutine is called, the runtime environment will decide which version to use depending on the number and type of the supplied arguments.
 This type of subroutines is defined the same way as normal subs with the exception of swapping the `sub` keyword with `multi`.
