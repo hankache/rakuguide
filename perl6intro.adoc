@@ -42,6 +42,7 @@ If you liked this work, _Star_ the repository on
 link:https://github.com/hankache/perl6intro[Github].
 
 .Translations
+* Bulgarian: http://bg.perl6intro.com
 * Dutch: http://nl.perl6intro.com
 * French: http://fr.perl6intro.com
 * German: http://de.perl6intro.com
