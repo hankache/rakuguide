@@ -1435,9 +1435,6 @@ The result is a list of all squared elements of the array.
 
 Notice that when passing a subroutine as an argument, we need to prepend `&` to its name.
 
-=== Closures
-All code objects in Perl 6 are closures, which means they can reference lexical variables from an outer scope.
-
 === Anonymous functions
 An *anonymous function* is also called a *lambda*. +
 An anonymous function is not bound to an identifier (it has no name).
@@ -1634,6 +1631,59 @@ my $lazylist = (0, { $_ + 3 } ...^ * > 10);
 say $lazylist;
 ----
 ====
+
+=== Closures
+All code objects in Perl 6 are closures, which means they can reference lexical variables from an outer scope.
+
+[source,perl6]
+----
+sub generate-greeting {
+    my $name = "John Doe";
+    sub greeting {
+      say "Good Morning $name";
+    };
+    return &greeting;
+}
+my $generated = generate-greeting;
+$generated();
+----
+
+If you run the above code, it will display `Good Morning John Doe` on the terminal. +
+While the result is fairly simple, what is interesting about this example, is that the `greeting` inner subroutine was returned from the outer subroutine before being executed.
+
+`$generated` has become a *closure*.
+
+A *closure* is a special kind of object that combines two things:
+
+* A Subroutine
+
+* The Environment in which that subroutine was created.
+
+The environment consists of any local variable that was in-scope at the time that the closure was created.
+In this case, `$generated` is a closure that incorporates both the `greeting` subroutine and the `John Doe` string that existed when the closure was created.
+
+Let's take a look at a more interesting example.
+[source,perl6]
+----
+sub greeting-generator($period) {
+  return sub ($name) {
+    return "Good $period $name"
+  }
+}
+my $morning = greeting-generator("Morning");
+my $evening = greeting-generator("Evening");
+
+say $morning("John");
+say $evening("Jane");
+----
+In this example, we have defined a subroutine `greeting-generator($period)` that accepts a single argument `$period`
+and returns a new subroutine. The subroutine it returns accepts a single argument `$name` and returns the constructed greeting.
+
+Basically, `greeting-generator` is a subroutine factory. In this example, we used `greeting-generator` to create two new subroutines,
+one that says `Good Morning` and one that says `Good Evening`.
+
+`$morning` and `$evening` are both closures. They share the same subroutine body definition, but store different environments. +
+In `$morning` 's environment `$period` is `Morning`. In `$evening` 's environment `$period` is `Evening`.
 
 == Classes & Objects
 In the previous chapter, we learned how Perl 6 facilitates Functional Programming. +
