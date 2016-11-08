@@ -1432,9 +1432,6 @@ say map(&squared,@array);
 
 引数としてサブルーチンを用いるときはその名前の前に `&` をつけなければならないことに注意してください。
 
-=== クロージャ
-Perl6のすべてのCode型のオブジェクトはクロージャです。これは外のスコープのレキシカル変数を参照できるということを意味しています。
-
 === 無名関数
 *無名関数* は *ラムダ* とも呼ばれています。 +
 
@@ -1635,6 +1632,59 @@ my $lazylist = (0, { $_ + 3 } ...^ * > 10);
 say $lazylist;
 ----
 ====
+
+=== クロージャ
+Perl6のすべてのCode型のオブジェクトはクロージャです。これは外のスコープのレキシカル変数を参照できるということを意味しています。
+
+[source,perl6]
+----
+sub generate-greeting {
+    my $name = "John Doe";
+    sub greeting {
+      say "Good Morning $name";
+    };
+    return &greeting;
+}
+my $generated = generate-greeting;
+$generated();
+----
+
+もし上記のコードを動かしたのなら、 `Good Morning John Doe` とターミナルに表示されたはずです。
+非常に単純な結果でしたが、この例で面白いところは、中の `greeting` というサブルーチンが、それが実行される前に外のサブルーチンから返されているということです。
+
+`$generated` は *クロージャ* になったのです。
+
+*クロージャ* は二つのものを結びつけた特別な種類のオブジェクトです:
+
+* サブルーチン
+
+* サブルーチンの生成された環境
+
+環境は、そのクロージャが生成されたときにスコープ内にあったすべてのローカル変数で構成されています。
+この場合、 `$generated` はサブルーチン `greeting` と文字列 `John Doe` の両方を結びつけたクロージャといえます。
+
+では、もっと面白い例を見てみましょう。
+[source,perl6]
+----
+sub greeting-generator($period) {
+  return sub ($name) {
+    return "Good $period $name"
+  }
+}
+my $morning = greeting-generator("Morning");
+my $evening = greeting-generator("Evening");
+
+say $morning("John");
+say $evening("Jane");
+----
+この例では、`$period` というひとつの引数を受け取って新しいサブルーチンを返すような、サブルーチン `greeting-generator($period)` を定義しました。このサブルーチンが返す新しいサブルーチンは`$name`という引数を受け取り、そして作成されたあいさつを返します。
+
+基本的に、`greeting-generator` はサブルーチンのファクトリです。この例では、我々は `greeting-generator` を二つの新しいサブルーチンを生成するために用いました。
+ひとつは `Good Morning` とあいさつし、もうひとつは `Good Evening` とあいさつします。
+
+`$morning` と `$evening` は両方ともクロージャです。同じサブルーチン本体の定義を共有していますが、違う環境を保存しています。 +
+`$morning` の環境では `$period` は `Morning` です。
+`$evening` の環境では `$period` は `Morning` です。
 
 == クラスとオブジェクト
 前章では、どうやってPerl6が関数型プログラミングを楽にしてくれるかについて学びました。 +
