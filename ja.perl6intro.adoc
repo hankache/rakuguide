@@ -1033,6 +1033,7 @@ for @array -> $array-item {
 === given
 
 `given` は他の言語においてswitch命令と呼ばれているものと等価なPerl6の命令です。
+しかし、他の言語よりも強力です。
 
 [source,perl6]
 ----
