@@ -1662,10 +1662,10 @@ _オブジェクト指向_ の用語では、これらのオブジェクトは�
 [source,perl6]
 ----
 class Human {
-  has $name;
-  has $age;
-  has $sex;
-  has $nationality;
+  has $.name;
+  has $.age;
+  has $.sex;
+  has $.nationality;
 }
 
 my $john = Human.new(name => 'John', age => 23, sex => 'M', nationality => 'American');
