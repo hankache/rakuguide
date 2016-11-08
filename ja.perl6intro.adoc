@@ -70,7 +70,7 @@ Perl6はマルチパラダイム言語です。手続き型、オブジェクト
 
 . Pandaのインストール: 次のコマンドをターミナルで打ってください `rakudobrew build panda`
 
-. 最後に、Task::Star をインストールしてください。これはRakudo Star Perl6に付属するすべてのモジュールをインストールします。 `panda install Task::Star`
+. Rakudo Starに含まれるモジュールのためのメタパッケージであるTask::Starのインストール: 次のコマンドをターミナルで打ってください `panda install Task::Star`
 
 他のインストール方法を知りたければ次のリンクを参照してください。 http://rakudo.org/how-to-get-rakudo/#Installing-Rakudo-Star-Linux
 
