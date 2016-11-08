@@ -2517,12 +2517,12 @@ if 'ac' ~~ m/ a.c / {
 ----
 if 'ac' ~~ m/ a?c / {
     say "Match";
-  } else {
+} else {
     say "No Match";
 }
 if 'c' ~~ m/ a?c / {
     say "Match";
-  } else {
+} else {
     say "No Match";
 }
 ----
@@ -2533,22 +2533,22 @@ if 'c' ~~ m/ a?c / {
 ----
 if 'az' ~~ m/ a*z / {
     say "Match";
-  } else {
+} else {
     say "No Match";
 }
 if 'aaz' ~~ m/ a*z / {
     say "Match";
-  } else {
+} else {
     say "No Match";
 }
 if 'aaaaaaaaaaz' ~~ m/ a*z / {
     say "Match";
-  } else {
+} else {
     say "No Match";
 }
 if 'z' ~~ m/ a*z / {
     say "Match";
-  } else {
+} else {
     say "No Match";
 }
 ----
@@ -2559,22 +2559,22 @@ if 'z' ~~ m/ a*z / {
 ----
 if 'az' ~~ m/ a+z / {
     say "Match";
-  } else {
+} else {
     say "No Match";
 }
 if 'aaz' ~~ m/ a+z / {
     say "Match";
-  } else {
+} else {
     say "No Match";
 }
 if 'aaaaaaaaaaz' ~~ m/ a+z / {
     say "Match";
-  } else {
+} else {
     say "No Match";
 }
 if 'z' ~~ m/ a+z / {
     say "Match";
-  } else {
+} else {
     say "No Match";
 }
 ----
