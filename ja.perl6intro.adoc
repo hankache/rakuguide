@@ -1677,7 +1677,7 @@ my $evening = greeting-generator("Evening");
 say $morning("John");
 say $evening("Jane");
 ----
-この例では、`$period` というひとつの引数を受け取って新しいサブルーチンを返すような、サブルーチン `greeting-generator($period)` を定義しました。このサブルーチンが返す新しいサブルーチンは`$name`という引数を受け取り、そして作成されたあいさつを返します。
+この例では、`$period` というひとつの引数を受け取って新しいサブルーチンを返すような、サブルーチン `greeting-generator($period)` を定義しました。このサブルーチンが返す新しいサブルーチンは `$name` という引数を受け取り、そして作成されたあいさつを返します。
 
 基本的に、`greeting-generator` はサブルーチンのファクトリです。この例では、我々は `greeting-generator` を二つの新しいサブルーチンを生成するために用いました。
 ひとつは `Good Morning` とあいさつし、もうひとつは `Good Evening` とあいさつします。
