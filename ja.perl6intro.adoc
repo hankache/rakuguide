@@ -2998,7 +2998,7 @@ NOTE: 並行/非同期プログラミングについてもっと情報を知り�
 
 * link:irc://irc.freenode.net/#perl6[#perl6] IRCチャンネルです。活発な議論が行われています。何でも気軽に質問してください: https://perl6.org/community/irc
 
-* link:https://p6weekly.wordpress.com Perl6とその周辺の出来事について今週のダイジェストをお伝えします。
+* link:https://p6weekly.wordpress.com[p6weekly] Perl6とその周辺の出来事について今週のダイジェストをお伝えします。
 
 * link:http://pl6anet.org[pl6anet] Perl6のブログを集約しています。Perl6にフォーカスしたブログ記事にこうご期待ください。
 
