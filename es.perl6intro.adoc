@@ -1408,6 +1408,49 @@ Ten en cuenta que cuando pasamos una subrutina como argumento, es necesario util
 === Clausuras
 Todos los objetos de código en Perl 6 son clausuras, lo que significa que se pueden referenciar variables léxicamente definidas desde un ámbito externo.
 
+[source,perl6]
+----
+sub crear-saludo {
+    my $nombre = "Juan Dios";
+    sub saludo {
+      say "Buenos días $nombre";
+    };
+    return &saludo;
+}
+my $saludo-creado = crear-saludo;
+$saludo-creado();
+----
+
+Si ejecutas el código anterior verás en el terminal `Buenos días Juan Dios. +
+El resultado es simple, pero lo interesante es que se devuelve la subrutina interna `saludo` desde una subrutina externa antes de ser ejecutada.
+
+`$saludo-creado es una *clausura*.
+
+Una *clausura* es una especie de objeto especial que combina dos cosas:
+
+* Una Subrutina
+
+* El Entorno donde se creó esa subrutina.
+
+El entorno es cualquier variable local que estaba dentro del alcance en el momento que se creó la clausura.
+En este caso, `$saludo-creado` es una clausura que incluye a la subrutina `saludo` y el texto `Juan Dios` que existía cuando se creó la clausura.
+
+Veamos un ejemplo más interesante.
+[source,perl6]
+----
+sub crear-saludo($momento) {
+  return sub ($nombre) {
+    return "Buenas $momento $nombre"
+  }
+}
+my $tardes = crear-saludo("Tardes");
+my $noches = crear-saludo("Noches");
+
+say $tardes("Juan");
+say $noches("Juana");
+----
+
+
 === Funciones anónimas
 Una *función anónima* también se denomina *lambda*. +
 Una función anónima no está vinculada a un identificador (no tiene nombre).
