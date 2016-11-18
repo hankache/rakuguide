@@ -1405,52 +1405,6 @@ El resultado es una lista de todos los cuadrados de los elementos del array.
 
 Ten en cuenta que cuando pasamos una subrutina como argumento, es necesario utilizar el prefijo `&` en el nombre.
 
-=== Clausuras
-Todos los objetos de código en Perl 6 son clausuras, lo que significa que se pueden referenciar variables léxicamente definidas desde un ámbito externo.
-
-[source,perl6]
-----
-sub crear-saludo {
-    my $nombre = "Juan Dios";
-    sub saludo {
-      say "Buenos días $nombre";
-    };
-    return &saludo;
-}
-my $saludo-creado = crear-saludo;
-$saludo-creado();
-----
-
-Si ejecutas el código anterior verás en el terminal `Buenos días Juan Dios. +
-El resultado es simple, pero lo interesante es que se devuelve la subrutina interna `saludo` desde una subrutina externa antes de ser ejecutada.
-
-`$saludo-creado es una *clausura*.
-
-Una *clausura* es una especie de objeto especial que combina dos cosas:
-
-* Una Subrutina
-
-* El Entorno donde se creó esa subrutina.
-
-El entorno es cualquier variable local que estaba dentro del alcance en el momento que se creó la clausura.
-En este caso, `$saludo-creado` es una clausura que incluye a la subrutina `saludo` y el texto `Juan Dios` que existía cuando se creó la clausura.
-
-Veamos un ejemplo más interesante.
-[source,perl6]
-----
-sub crear-saludo($momento) {
-  return sub ($nombre) {
-    return "Buenas $momento $nombre"
-  }
-}
-my $tardes = crear-saludo("Tardes");
-my $noches = crear-saludo("Noches");
-
-say $tardes("Juan");
-say $noches("Juana");
-----
-
-
 === Funciones anónimas
 Una *función anónima* también se denomina *lambda*. +
 Una función anónima no está vinculada a un identificador (no tiene nombre).
@@ -1642,6 +1596,57 @@ my $listaperezosa = (0, { $_ + 3 } ...^ * > 10);
 say $listaperezosa;
 ----
 ====
+
+=== Clausuras
+Todos los objetos de código en Perl 6 son clausuras, lo que significa que se pueden referenciar variables léxicamente definidas desde un ámbito externo.
+
+[source,perl6]
+----
+sub crear-saludo {
+    my $nombre = "Juan Dios";
+    sub saludo {
+      say "Buenos días $nombre";
+    };
+    return &saludo;
+}
+my $saludo-creado = crear-saludo;
+$saludo-creado();
+----
+
+Si ejecutas el código anterior verás en el terminal `Buenos días Juan Dios`. +
+El resultado es simple, pero lo interesante es que se devuelve la subrutina interna `saludo` desde una subrutina externa antes de ser ejecutada.
+
+`$saludo-creado` es una *clausura*.
+
+Una *clausura* es una especie de objeto especial que combina dos cosas:
+
+* Una Subrutina
+
+* El Entorno donde se creó esa subrutina.
+
+El entorno es cualquier variable local que estaba dentro del alcance en el momento que se creó la clausura.
+En este caso, `$saludo-creado` es una clausura que incluye a la subrutina `saludo` y el texto `Juan Dios` que existía cuando se creó la clausura.
+
+Veamos un ejemplo más interesante.
+[source,perl6]
+----
+sub crear-saludo($momento) {
+  return sub ($nombre) {
+    return "Buenas $momento $nombre"
+  }
+}
+my $tardes = crear-saludo("Tardes");
+my $noches = crear-saludo("Noches");
+
+say $tardes("Juan");
+say $noches("Juana");
+----
+En este ejemplo hemos definido la subrutina `crear-saludo($momento)` aceptando el argumento `$momento` y devuelve una subrutina nueva. La subrutina devuelta acepta el argumento `$nombre` y devuelve el saludo.
+
+`crear-saludo` es una fábrica de subrutinas, y en este ejemplo hemos creado dos subrutinas nuevas, una para decir `Buenas Tardes` y otra para decir `Buenas Noches`.
+
+`$tardes` y `$noches` también son clausuras. Ambas comparten la misma definición del cuerpo de la subrutina pero alojan entornos distintos. +
+En el entorno de `$tardes` el `$momento` es `Tardes` y en el entorno de `$noches` el `$momento` es `Tardes`.
 
 == Clases y Objetos
 En el apartado anterior hemos visto cómo utilizar la Programación Funcional en Perl 6 y en el siguiente apartado veremos cómo utilizar Perl 6 en la Programación Orientada a Objetos.
