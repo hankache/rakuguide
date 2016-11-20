@@ -1321,7 +1321,7 @@ say-hello("Laura");
 
 在一般的情景下，子例程代码的最后一行被默认为返回值。
 [source,perl6]
-.Implicit return
+.隐式返回
 ----
 sub squared ($x) {
   $x ** 2;
@@ -1332,7 +1332,7 @@ say "7 squared is equal to " ~ squared(7);
 一旦我们的代码变多，_清楚地指明我们需要返回的变量是很有用的。
 可以使用 `return` 关键字来指明返回变量。
 [source,perl6]
-.Explicit return
+.显式返回
 ----
 sub squared ($x) {
   return $x ** 2;
@@ -1416,13 +1416,13 @@ sub squared($x) {
 say map(&squared, @array);
 ----
 
-.Output
+.输出
 
 ----
 (1 4 9 16 25)
 ----
 
-.Explanation
+.解释
 
 我们定义了一个叫做 `squared` 的子例程, 它接收一个数字并返回该数字的二次幂。 +
 下一步, 我们使用 `map` 这个高阶函数并传递给它两个参数, 一个子例程和一个数组。 +
@@ -1503,7 +1503,7 @@ my @array = <7 8 9 0 1 2 4 3 5 6>;
 say @final-array;
 ----
 
-.Explanation
+.解释
 ----
 从 `@array` 开始 然后 返回一个唯一元素的列表
                  然后 排序它
@@ -1523,7 +1523,7 @@ my @final-array-v2 <== reverse()
 say @final-array-v2;
 ----
 
-.Explanation
+.解释
 
 向后流就像向前流一样, 但是是以反转的顺序写的。 +
 
@@ -2050,7 +2050,7 @@ $actual-vs-forecast.plot;
 [10 9 11 8 7 10]
 ----
 
-.Explanation
+.解释
 
 `combo-chart` 类应该能持有两个序列, 一个是绘制条形图的实际值, 另一个是绘制折线图的预测值。 +
 这就是我们为什么把它定义为 `line-chart` 和 `bar-chart` 的孩子的原因。 +
@@ -2197,7 +2197,7 @@ $actual-vs-forecast.plot;
 Method 'plot' must be resolved by class combo-chart because it exists in multiple roles (line-chart, bar-chart)
 ----
 
-.Explanation
+.解释
 
 如果多个 roles 被应用到同一个类中, 会出现冲突并抛出一个编译时错误。 +
 这是比多重继承更安全的方法, 其中冲突不被认为是错误并且简单地在运行时解决。
@@ -2484,19 +2484,19 @@ if 'name@company.com' ~~ m/ "@" / {
 
 | *Category* | *Regex* | *Inverse* | *Regex*
 
-| Word character (letter, digit or underscore) | \w | Any character except a word character | \W
+| 单词字符 (字母, 数字 或 下划线) | \w | 除了单词字符之外的任意字符 | \W
 
-| Digit | \d | Any character except a digit | \D
+| 数字 | \d | 除了数字之外的任意字符 | \D
 
-| Whitespace | \s | Any character except a whitespace | \S
+| 空白 | \s | 除了空白之外的任意字符 | \S
 
-| Horizontal whitespace | \h | Any character except a horizontal whitespace | \H
+| 水平空白 | \h | 除了水平空白之外的任意字符 | \H
 
-| Vertical whitespace | \v | Any character except a vertical whitespace | \V
+| 垂直空白 | \v | 除了垂直空白之外的任意字符 | \V
 
-| Tab | \t | Any character except a Tab | \T
+| Tab | \t | 除了 Tab 之外的任意字符 | \T
 
-| New line | \n | Any character except a new line | \N
+| 换行 | \n | 除了换行之外的任意字符 | \N
 
 |===
 
@@ -2660,7 +2660,7 @@ if 'Rakudo is a Perl 6 compiler' ~~ m/:s Perl 6/ {
 }
 ----
 
-.Output
+.输出
 ----
 The match is: Perl 6
 The string before the match is: Rakudo is a
@@ -2669,7 +2669,7 @@ The matching string starts at position: 12
 The matching string ends at position: 18
 ----
 
-.Explanation
+.解释
 
 `$/` 返回一个 _Match Object_(匹配 regex 的字符串)。 +
 下面的方法可以在 _Match Object_ 身上调用: +
@@ -2710,11 +2710,11 @@ if $email ~~ $regex {
 }
 ----
 
-.Output
+.输出
 
 `john.doe@perl6.org is a valid email`
 
-.Explanation
+.解释
 
 `<:L>`  匹配单个字符 +
 `<:L>+` 匹配单个字符或更多字符 +
@@ -2906,7 +2906,6 @@ say $var;
 让我们从后者开始。
 
 ==== 数据并行化
-
 [source,perl6]　
 ----
 my @array = (0..50000);                     # Array population
@@ -2957,7 +2956,6 @@ my @result = @array.hyper.map( {$_ + 1} );
 ==== 
 
 ==== 任务并行化
-
 [source,perl6]　
 ----
 my @array1 = (0..49999);
@@ -3001,7 +2999,7 @@ say @result1 == @result2;
 say now - INIT now;
 ----
 
-.Explanation
+.解释
 
 `start` 方法计算它后面的代码并返回 *promise 类型的对象* 或 *promise*。 +
 如果代码被正确地求值, 那么 _promise_ 会被 *保留*(kept)。 +
