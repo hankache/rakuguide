@@ -131,7 +131,7 @@ Rakudo Star 搭载了一个行编辑器来帮你最大程度地利用 REPL。
 https://atom.io/packages/language-perl6fe[Perl6-fe] 是相对于 Atom 默认 Perl 6 语法高亮插件的另一种选择，也可以高亮 Perl 6 的语法，该软件来源于原始的包，
 但存在很多 bug 需要修补和编辑。
 
-社区里的其他同伴也有使用 http://www.vim.org/[Vim] ，https://www.gnu.org/software/emacs/[Emacs] 和 http://padre.perlide.org/[Padre] 的。
+社区里的其他同伴也有使用 http://www.vim.org/[Vim] ， https://www.gnu.org/software/emacs/[Emacs] 和 http://padre.perlide.org/[Padre] 的。
 
 最新版本的 Vim 自带 Perl 6 语法高亮的功能，Emacs 和 Padre 则需要另行安装额外的包。
 
@@ -420,7 +420,7 @@ NOTE: 可以到 https://docs.perl6.org/language/operators 查看完整的运算�
 == 变量
 Perl 6 中的变量分为 3 类：标量、数组和哈希。
 
-变量名以*魔符*（sigil）开头以区分不同类型。
+变量名以 *魔符*（sigil）开头以区分不同类型。
 
 * `$` 用于标量(scalars)
 * `@` 用于数组(arrays)
@@ -693,7 +693,7 @@ say $var.WHAT;
 
 这种编程风格被称为静态类型编程。静态在这里是指变量类型在赋值前定义并且不能在更改。
 
-Perl 6 属于 *渐进类型* ；它同时支持*静态*和*动态*类型。
+Perl 6 属于 *渐进类型* ；它同时支持 *静态*和 *动态*类型。
 
 .数组和哈希同样可以为静态类型:
 [source,perl6]
