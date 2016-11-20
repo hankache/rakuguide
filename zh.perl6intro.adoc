@@ -48,7 +48,7 @@ link:https://github.com/hankache/perl6intro[Github] 给这个仓库点赞。
 * Japanese: http://ja.perl6intro.com
 * Portuguese: http://pt.perl6intro.com
 * Spanish: http://es.perl6intro.com
-* Chinese：http://zh.perl6intro.com
+* Chinese: http://zh.perl6intro.com
 
 :sectnums:
 == 序言
@@ -276,55 +276,55 @@ say "Hello $name";   # Hello John Doe
 
 | 运算符 | 类型 | 描述 | 例子 | 结果
 
-| + | 中缀(Infix) | 加 | 1 + 2 | 3
+| + | 中缀 | 加 | 1 + 2 | 3
 
-| - | 中缀(Infix) | 减 | 3 - 1 | 2
+| - | 中缀 | 减 | 3 - 1 | 2
 
-| * | 中缀(Infix) | 乘 | 3 * 2 | 6
+| * | 中缀 | 乘 | 3 * 2 | 6
 
-| ** | 中缀(Infix) | 指数 | 3 ** 2 | 9
+| ** | 中缀 | 指数 | 3 ** 2 | 9
 
-| / | 中缀(Infix) | 除 | 3 / 2 | 1.5
+| / | 中缀 | 除 | 3 / 2 | 1.5
 
-| div | 中缀(Infix) |  整除(rounds down) | 3 div 2 | 1
+| div | 中缀 |  整除(rounds down) | 3 div 2 | 1
 
-| % | 中缀(Infix) | 取模 | 7 % 4 | 3
+| % | 中缀 | 取模 | 7 % 4 | 3
 
-.2+| %% .2+| 中缀(Infix) .2+| 是否能整除 | 6 %% 4 | False
+.2+| %% .2+| 中缀 .2+| 是否能整除 | 6 %% 4 | False
 
 <| 6 %% 3 <| True
 
-| gcd | 中缀(Infix) | 最大公约数 | 6 gcd 9 | 3
+| gcd | 中缀 | 最大公约数 | 6 gcd 9 | 3
 
-| lcm | 中缀(Infix) | 最小公倍数 | 6 lcm 9 | 18
+| lcm | 中缀 | 最小公倍数 | 6 lcm 9 | 18
 
-| == | 中缀(Infix) | 数值相等 | 9 == 7  | False
+| == | 中缀 | 数值相等 | 9 == 7  | False
 
-| != | 中缀(Infix) | 数值不等 | 9 != 7  | True
+| != | 中缀 | 数值不等 | 9 != 7  | True
 
-| < | 中缀(Infix) | 小于 | 9 < 7  | False
+| < | 中缀 | 小于 | 9 < 7  | False
 
-| > | 中缀(Infix) | 大于 | 9 > 7  | True
+| > | 中缀 | 大于 | 9 > 7  | True
 
-| \<= | 中缀(Infix) | 小于等于 | 7 \<= 7  | True
+| \<= | 中缀 | 小于等于 | 7 \<= 7  | True
 
-| >= | 中缀(Infix) | 大于等于 | 9 >= 7  | True
+| >= | 中缀 | 大于等于 | 9 >= 7  | True
 
-| eq | 中缀(Infix) | 字符串相等 | "John" eq "John"  | True
+| eq | 中缀 | 字符串相等 | "John" eq "John"  | True
 
-| ne | 中缀(Infix) | 字符串不等 | "John" ne "Jane"  | True
+| ne | 中缀 | 字符串不等 | "John" ne "Jane"  | True
 
-| = | 中缀(Infix) | 赋值 | my $var = 7  | `$var` 将`7`赋值给变量`$var`
+| = | 中缀 | 赋值 | my $var = 7  | `$var` 将`7`赋值给变量`$var`
 
-.2+| ~ .2+| 中缀(Infix) .2+| 字符串连接 | 9 ~ 7 | 97
+.2+| ~ .2+| 中缀 .2+| 字符串连接 | 9 ~ 7 | 97
 
 <m| "Hi " ~ "there"  <| Hi there
 
-.2+| x .2+| 中缀(Infix) .2+| 字符串重复 | 13 x 3  | 131313
+.2+| x .2+| 中缀 .2+| 字符串重复 | 13 x 3  | 131313
 
 <| "Hello " x 3  <| Hello Hello Hello
 
-.5+| ~~ .5+| 中缀(Infix) .5+| 智能匹配 | 2 ~~ 2  | True
+.5+| ~~ .5+| 中缀 .5+| 智能匹配 | 2 ~~ 2  | True
 
 <| 2 ~~ Int <| True
 
@@ -334,13 +334,13 @@ say "Hello $name";   # Hello John Doe
 
 <| "enlightenment" ~~ /light/ <| ｢light｣
 
-.2+| ++ | 前缀(Prefix) | 递增 | my $var = 2; ++$var;  | 变量加1并返回结果 `3`
+.2+| ++ | 前缀 | 递增 | my $var = 2; ++$var;  | 变量加1并返回结果 `3`
 
-<m| 后缀(Postfix) <d| 递增 <m| my $var = 2; $var++;  <| 返回变量值 `2` 然后递增变量
+<m| 后缀 <d| 递增 <m| my $var = 2; $var++;  <| 返回变量值 `2` 然后递增变量
 
-.2+|\--| 前缀(Prefix) | 递减 | my $var = 2; --$var;  | 递减变量然后返回变量值 `1`
+.2+|\--| 前缀 | 递减 | my $var = 2; --$var;  | 递减变量然后返回变量值 `1`
 
-<m| 后缀(Postfix) <d| 递减 <m| my $var = 2; $var--;  <| 返回变量值 `2` 然后递减变量
+<m| 后缀 <d| 递减 <m| my $var = 2; $var--;  <| 返回变量值 `2` 然后递减变量
 
 .3+| + .3+| 前缀(Prefix) .3+| 强制转变为数值 | +"3"  | 3
 
@@ -348,13 +348,13 @@ say "Hello $name";   # Hello John Doe
 
 <| +False <| 0
 
-.3+| - .3+| 前缀(Prefix) .3+| 强制转换为数值并返回相反数  | -"3"  | -3
+.3+| - .3+| 前缀 .3+| 强制转换为数值并返回相反数  | -"3"  | -3
 
 <| -True <| -1
 
 <| -False <| 0
 
-.6+| ? .6+| 前缀(Prefix) .6+| 强制转换为布尔值 | ?0 | False
+.6+| ? .6+| 前缀 .6+| 强制转换为布尔值 | ?0 | False
 
 <| ?9.8 <| True
 
@@ -366,21 +366,21 @@ say "Hello $name";   # Hello John Doe
 
 <| my $var = 7; ?$var; <| True
 
-| ! | 前缀(Prefix) | 将运算对象转换成布尔值并返回否运算后的结果 | !4 | False
+| ! | 前缀 | 将运算对象转换成布尔值并返回否运算后的结果 | !4 | False
 
-| .. | 中缀(Infix) | Range 构造函数 |  0..5  | 创建 0 到 5 的整数列
+| .. | 中缀 | Range 构造函数 |  0..5  | 创建 0 到 5 的整数列
 
-| ..^ | 中缀(Infix) | Range 构造函数 |  0..^5  | 创建 0 到 4 的整数列
+| ..^ | 中缀 | Range 构造函数 |  0..^5  | 创建 0 到 4 的整数列
 
-| ^.. | 中缀(Infix) | Range 构造函数 |  0^..5  | 创建 1 到 5 的整数列
+| ^.. | 中缀 | Range 构造函数 |  0^..5  | 创建 1 到 5 的整数列
 
-| \^..^ | 中缀(Infix) | Range 构造函数 |  0\^..^5  | 创建 1 到 4 的整数列
+| \^..^ | 中缀 | Range 构造函数 |  0\^..^5  | 创建 1 到 4 的整数列
 
-| ^ | 前缀(Prefix) | Range 构造函数 |  ^5  | 和0..^5相同，创建 0 到 4 的整数列
+| ^ | 前缀 | Range 构造函数 |  ^5  | 和0..^5相同，创建 0 到 4 的整数列
 
-| ... | 中缀(Infix) | 惰性列表构造函数 |  0...9999  |  只有接到请求时才返回元素
+| ... | 中缀 | 惰性列表构造函数 |  0...9999  |  只有接到请求时才返回元素
 
-.2+| {vbar} .2+| 前缀(Prefix) .2+| 扁平化 | {vbar}(0..5)  | (0 1 2 3 4 5) 
+.2+| {vbar} .2+| 前缀 .2+| 扁平化 | {vbar}(0..5)  | (0 1 2 3 4 5) 
 
 <| {vbar}(0\^..^5)  <| (1 2 3 4)
 
