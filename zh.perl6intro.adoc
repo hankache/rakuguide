@@ -2906,7 +2906,7 @@ say $var;
 让我们从后者开始。
 
 ==== 数据并行化
-[source,perl6]　
+[source,perl6]
 ----
 my @array = (0..50000);                     # Array population
 my @result = @array.map({ is-prime $_ });   # call is-prime for each array element
@@ -2956,7 +2956,7 @@ my @result = @array.hyper.map( {$_ + 1} );
 ==== 
 
 ==== 任务并行化
-[source,perl6]　
+[source,perl6]
 ----
 my @array1 = (0..49999);
 my @array2 = (2..50001);
