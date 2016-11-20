@@ -2047,7 +2047,7 @@ say "实际 vs 预测:";
 $actual-vs-forecast.plot;
 ----
 
-.`Output`
+.`输出`
 
 ----
 实际的销售:
@@ -2812,7 +2812,7 @@ say $hashed-password;
 WARNING: 实际上，MD5 哈希是不够的，因为它容易进行字典攻击。 +
 它应该加盐。link:https://en.wikipedia.org/wiki/Salt_(cryptography)[https://en.wikipedia.org/wiki/Salt_(cryptography)].
 
-=== Unicode
+== Unicode
 
 Unicode 是编码并表现文本的标准, 它满足了世界上的大部分系统。 +
 UTF-8 是能够以Unicode编码所有可能的字符或代码点的字符编码。
@@ -2871,7 +2871,7 @@ say "á".NFD;
 say "á".uniname;
 ----
 
-.`Output`
+.`输出`
 ----
 NFC:0x<00e1>
 NFD:0x<0061 0301>
@@ -2896,7 +2896,6 @@ say $Δ;
 my $var = 2 + ⅒;
 say $var;
 ----
-
 
 == 并行、并发和异步
 
