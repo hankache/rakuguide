@@ -336,11 +336,11 @@ say "Hello $name";   # Hello John Doe
 
 .2+| ++ | 前缀(Prefix) | 递增 | my $var = 2; ++$var;  | 变量加1并返回结果 `3`
 
-<m| 后缀(Postfix) | 递增 <m| my $var = 2; $var++;  <| 返回变量值 `2` 然后递增变量
+<| 后缀(Postfix) | 递增 <| my $var = 2; $var++;  <| 返回变量值 `2` 然后递增变量
 
 .2+|\--| 前缀(Prefix) | 递减 | my $var = 2; --$var;  | 递减变量然后返回变量值 `1`
 
-<m| 后缀(Postfix) | 递减 <m| my $var = 2; $var--;  <| 返回变量值 `2` 然后递减变量
+<| 后缀(Postfix) | 递减 <| my $var = 2; $var--;  <| 返回变量值 `2` 然后递减变量
 
 .3+| + .3+| 前缀(Prefix) .3+| 强制转变为数值 | +"3"  | 3
 
