@@ -1,0 +1,3091 @@
+= Perl 6 入门
+:description: Perl 6 入门
+:Author: Naoum Hankache; ohmycloud <http://ohmycloud.github.io>; wenjie1991 <https://github.com/wenjie1991>
+:keywords: perl6, perl 6, 入门, perl6intro, perl 6 入门, perl 6 指南, perl 6 intro
+:Email: ohmycloudy@gmail.com
+:Revision: 1.0
+:icons: font
+:source-highlighter: pygments
+//:pygments-style: manni
+:source-language: perl6
+:pygments-linenums-mode: table
+:toc: left
+:doctype: book
+:lang: zh
+
+本文档旨在为您提供 Perl 6 编程语言的快速概述。
+它可以让 Perl 6 初学者快速上手。
+
+本文档的一部分章节涉及 http://docs.perl6.org[Perl 6文档] 的其他（更完整和准确）部分。
+如果您需要有关特定主题的更多信息，您应该阅读它们。
+
+在本文档中，您会找到大部分所讨论主题的示例。
+为了更好地理解它们，请花时间再现所有的例子。
+
+.License 
+本工作根据知识共享署名 - 授权4.0国际许可协议进行许可。
+要查看此许可证的副本，请访问
+
+* https://creativecommons.org/licenses/by-sa/4.0/.
+
+.Contribution
+如果您想对此文档做贡献，请访问：
+
+* https://github.com/hankache/perl6intro
+
+.Feedback
+欢迎所有的反馈：
+naoum@hankache.com
+
+如果你喜欢这个工作， 欢迎在
+link:https://github.com/hankache/perl6intro[Github] 给这个仓库点赞。
+
+.Translations
+* Bulgarian: http://bg.perl6intro.com
+* Dutch: http://nl.perl6intro.com
+* French: http://fr.perl6intro.com
+* German: http://de.perl6intro.com
+* Japanese: http://ja.perl6intro.com
+* Portuguese: http://pt.perl6intro.com
+* Spanish: http://es.perl6intro.com
+* Chinese: http://zh.perl6intro.com
+
+:sectnums:
+== 序言
+=== 什么是 Perl 6
+Perl 6 是一种高级的，通用的，渐进类型的语言。
+Perl 6 是多范式的。它支持过程式编程，面向对象编程和函数式编程。
+
+.Perl 6 motto:
+* TMTOWTDI (发音是 Tim Toady): 每个问题都有许多解决方式。
+* 简单的事情应该保持简单，困难的事情应该变得简单，不可能的事情应该成为可能。
+
+=== 术语 
+* *Perl 6*: 带有测试套件的语言规范。
+Perl 6 是通过该规范测试套件的实现。
+* *Rakudo*: Perl 6 的编译器。
+* *Rakudobrew*: Rakudo 的安装管理器。
+* *Panda*: Perl 6 的模块安装程序。
+* *Rakudo Star*: 是一个包含 Rakudo, Panda, 和经遴选的 Perl 6 模块与文档的分发包。
+
+=== 安装 Perl 6
+.Linux
+. 安装 Rakudobrew: https://github.com/tadzik/rakudobrew
+
+. 安装 Rakudo: 在终端中键入如下命令 `rakudobrew build moar`
+
+. 安装 Panda: 在终端中键入如下命令 `rakudobrew build panda`
+
+. 安装 Task::Star Rakudo Star 中包含的模块元包: 在终端中键入如下命令 `panda install Task::Star`
+
+对于其它选项, 请参阅 http://rakudo.org/how-to-get-rakudo/#Installing-Rakudo-Star-Linux
+
+.OSX
+可用的选择有四种:
+
+* 按照在 Linux 上安装步骤进行同样的操作
+* 使用 homebrew 安装: `brew install rakudo-star`
+* 使用 MacPorts 安装: `sudo port install rakudo`
+* 从 http://rakudo.org/downloads/star/ 下载最新的安装器(.dmg 后缀的文件) 
+
+.Windows
+. 从 http://rakudo.org/downloads/star/ 下载最新的安装器(.msi 后缀的文件) +
+如果你的系统架构是 32-bit, 则下载 x86 文件; 如果是 64-bit, 下载 x86_64 文件。
+. 安装完成后确保 `C:\rakudo\bin` 在 PATH 中。
+
+.Docker
+. 获取官方的 Docker 镜像 `docker pull rakudo-star`
+. 然后运行一个带有该镜像的容器 `docker run -it rakudo-star`
+
+=== 运行 Perl 6 代码
+
+运行 Perl 6 代码可以通过使用 REPL（Read-Eval-Print 循环)来实现。
+实现方法是，打开命令行终端，输入 `perl6` 后回车。这会导致命令提示符 `>` 的出现。接着, 输入一行代码后回车。
+REPL 将会打印出该行的返回值。然后你可以输入另外的行, 或输入 `exit` 并回车以离开 REPL。
+
+或者，你可以在文件中编写你的代码，保存后再运行。建议 Perl 6 脚本文件的扩展名设定为 `.pl6`。
+运行该文件的代码时只需将 `perl6 filename.pl6` 输入到命令行终端后回车即可。
+但不像 REPL, 这不会自动打印出每一行的结果：这里要求文件中的代码必须包含 `say` 那样的语句以打印输出。
+
+REPL 大多用于测试特殊代码片段，通常只有有一行。对于超过一行的程序，建议先把它们保存到文件中而后再运行。
+
+单行代码也通过在命令行中键入  `perl6 -e 'your code here'` 并回车来以非交互的方式来测试。
+
+[TIP]
+--
+Rakudo Star 搭载了一个行编辑器来帮你最大程度地利用 REPL。
+
+如果你安装了普通的 Rakudo 而不是 Rakudo Star，那么你的行编辑功能可能没有开启（利用上下方向键查询历史;左右方向键以编辑输入;TAB 键以完成当前行输入）功能。
+此时可以考虑运行以下命令来设置好上述功能：
+
+* `panda install Linenoise` 能在 Windows, Linux 和 OSX 上工作
+
+* `panda install Readline` 如果你使用 Linux 并且偏好 _Readline_ 库
+--
+
+=== 编辑器
+因为大多数情况下我们会在文件中编写并存储 Perl 6 程序，因此我们需要一个优雅的而且能识别 Perl 6 语法的文本编辑器。
+
+从个人角度来说，我推荐正在使用的 https://atom.io/[Atom]。
+这是一个时尚的文本编辑器，带有开箱即用的 Perl 6 语法高亮功能。
+https://atom.io/packages/language-perl6fe[Perl6-fe] 是相对于 Atom 默认 Perl 6 语法高亮插件的另一种选择，也可以高亮 Perl 6 的语法，该软件来源于原始的包，
+但存在很多 bug 需要修补和编辑。
+
+社区里的其他同伴也有使用 http://www.vim.org/[Vim] ， https://www.gnu.org/software/emacs/[Emacs] 和 http://padre.perlide.org/[Padre] 的。
+
+最新版本的 Vim 自带 Perl 6 语法高亮的功能，Emacs 和 Padre 则需要另行安装额外的包。
+
+
+=== Hello World!
+我们会从 `hello world` 惯例程序开始。
+
+[source,perl6]
+say 'hello world';
+
+它也可以被写为:
+
+[source,perl6]
+'hello world'.say;
+
+=== 语法概要
+Perl 6 是 *形式自由的*: 你可以使用(大多数时候)任何数量的空格。
+
+*语句* 通常是一个逻辑代码行, 它们需要以一个分号结尾:
+`say "Hello" if True;`
+
+*表达式* 是一种能够返回值的特殊类型的语句:
+`1+2` 会返回 `3`
+
+表达式由 *项* 和 *运算符* 组成。
+
+*项* 是:
+
+* *变量*: 一个可以被操作和改变的值。
+
+* *字面值*: 一个像数字或字符串那样的常量值。
+
+*运算符* 的分类:
+
+|===
+
+| *类型* | *解释* | *示例*
+
+| 前缀 | Before the term. | `++1`
+
+| 中缀 | Between terms | `1+2`
+
+| 后缀 | After the term | `1++`
+
+| 环缀 | Around the term | `(1)`
+
+| 后环缀 | After one term, around another  | `Array[1]`
+
+|===
+
+==== 标识符
+标识符是你定义项时给它们起的名字。
+
+.Rules:
+* 它们必须以字母字符或下划线开头。
+
+* 它们可以包含数字 (除了第一个字符)。
+
+* 它们可以包含破折号或撇号(除了第一个和最后一个字符), 前提是每个短划线或撇号的右侧有一个字母字符。
+
+|===
+
+| *Valid* | *Invalid*
+
+| `var1` | `1var`
+
+| `var-one` | `var-1`
+
+| `var'one` | `var'1`
+
+| `var1_` | `var1'`
+
+| `_var` | `-var`
+
+|===
+
+.命名约定:
+* 驼峰式: `variableNo1`
+
+* 串联式: `variable-no1`
+
+* Snake case: `variable_no1`
+
+您可以随意命名您的标识符，但是最好采用一个命名约定。
+
+使用有意义的名称将减轻你（和其他人）的编程工作负担。
+
+* `var1 = var2 * var3` 在语法上是正确的，但它的目的不明显。
+* `monthly-salary = daily-rate * working-days` 会是更好的命名变量的方法。
+
+==== 注释
+注释是被编译器忽略的文本片段并用作注解。
+
+注释被分为 3 种类型:
+
+* 单行注释: 
++
+[source,perl6]
+# This is a single line comment
+
+* 嵌套的注释: 
++
+[source,perl6]
+say #`(This is an embedded comment) "Hello World."
+
+* 多行注释: 
++
+[source,perl6]
+-----------------------------
+=begin comment
+This is a multi line comment.
+Comment 1
+Comment 2
+=end comment
+-----------------------------
+
+==== 引号
+字符串要么被双引号包围要么被单引号包围。
+
+总是使用双引号:
+
+* 如果你的字符串包含单引号。
+
+* 如果你的字符串包含需要被替换的变量。
+
+[source,perl6]
+-----------------------------------
+say 'Hello World';   # Hello World
+say "Hello World";   # Hello World
+say "Don't";         # Don't
+my $name = 'John Doe';
+say 'Hello $name';   # Hello $name
+say "Hello $name";   # Hello John Doe
+-----------------------------------
+
+== 运算符
+
+=== 一般运算符
+下表列出了最常用的运算符。
+[cols="^.^5m,^.^5m,.^20,.^20m,.^20m", options="header"]
+|===
+
+| 运算符 | 类型 | 描述 | 例子 | 结果
+
+| + | 中缀 | 加 | 1 + 2 | 3
+
+| - | 中缀 | 减 | 3 - 1 | 2
+
+| * | 中缀 | 乘 | 3 * 2 | 6
+
+| ** | 中缀 | 指数 | 3 ** 2 | 9
+
+| / | 中缀 | 除 | 3 / 2 | 1.5
+
+| div | 中缀 |  整除(rounds down) | 3 div 2 | 1
+
+| % | 中缀 | 取模 | 7 % 4 | 3
+
+.2+| %% .2+| 中缀 .2+| 是否能整除 | 6 %% 4 | False
+
+<| 6 %% 3 <| True
+
+| gcd | 中缀 | 最大公约数 | 6 gcd 9 | 3
+
+| lcm | 中缀 | 最小公倍数 | 6 lcm 9 | 18
+
+| == | 中缀 | 数值相等 | 9 == 7  | False
+
+| != | 中缀 | 数值不等 | 9 != 7  | True
+
+| < | 中缀 | 小于 | 9 < 7  | False
+
+| > | 中缀 | 大于 | 9 > 7  | True
+
+| \<= | 中缀 | 小于等于 | 7 \<= 7  | True
+
+| >= | 中缀 | 大于等于 | 9 >= 7  | True
+
+| eq | 中缀 | 字符串相等 | "John" eq "John"  | True
+
+| ne | 中缀 | 字符串不等 | "John" ne "Jane"  | True
+
+| = | 中缀 | 赋值 | my $var = 7  | `$var` 将`7`赋值给变量`$var`
+
+.2+| ~ .2+| 中缀 .2+| 字符串连接 | 9 ~ 7 | 97
+
+<m| "Hi " ~ "there"  <| Hi there
+
+.2+| x .2+| 中缀 .2+| 字符串重复 | 13 x 3  | 131313
+
+<| "Hello " x 3  <| Hello Hello Hello
+
+.5+| ~~ .5+| 中缀 .5+| 智能匹配 | 2 ~~ 2  | True
+
+<| 2 ~~ Int <| True
+
+<| "Perl 6" ~~ "Perl 6" <| True
+
+<| "Perl 6" ~~ Str <| True
+
+<| "enlightenment" ~~ /light/ <| ｢light｣
+
+.2+| ++ | 前缀 | 递增 | my $var = 2; ++$var;  | 变量加1并返回结果 `3`
+
+<m| 后缀 <d| 递增 <m| my $var = 2; $var++;  <| 返回变量值 `2` 然后递增变量
+
+.2+|\--| 前缀 | 递减 | my $var = 2; --$var;  | 递减变量然后返回变量值 `1`
+
+<m| 后缀 <d| 递减 <m| my $var = 2; $var--;  <| 返回变量值 `2` 然后递减变量
+
+.3+| + .3+| 前缀(Prefix) .3+| 强制转变为数值 | +"3"  | 3
+
+<| +True <| 1
+
+<| +False <| 0
+
+.3+| - .3+| 前缀 .3+| 强制转换为数值并返回相反数  | -"3"  | -3
+
+<| -True <| -1
+
+<| -False <| 0
+
+.6+| ? .6+| 前缀 .6+| 强制转换为布尔值 | ?0 | False
+
+<| ?9.8 <| True
+
+<| ?"Hello" <| True
+
+<| ?"" <| False
+
+<| my $var; ?$var; <| False
+
+<| my $var = 7; ?$var; <| True
+
+| ! | 前缀 | 将运算对象转换成布尔值并返回否运算后的结果 | !4 | False
+
+| .. | 中缀 | Range 构造函数 |  0..5  | 创建 0 到 5 的整数列
+
+| ..^ | 中缀 | Range 构造函数 |  0..^5  | 创建 0 到 4 的整数列
+
+| ^.. | 中缀 | Range 构造函数 |  0^..5  | 创建 1 到 5 的整数列
+
+| \^..^ | 中缀 | Range 构造函数 |  0\^..^5  | 创建 1 到 4 的整数列
+
+| ^ | 前缀 | Range 构造函数 |  ^5  | 和0..^5相同，创建 0 到 4 的整数列
+
+| ... | 中缀 | 惰性列表构造函数 |  0...9999  |  只有接到请求时才返回元素
+
+.2+| {vbar} .2+| 前缀 .2+| 扁平化 | {vbar}(0..5)  | (0 1 2 3 4 5) 
+
+<| {vbar}(0\^..^5)  <| (1 2 3 4)
+
+|===
+
+=== 反转运算符
+
+在任何运算符前加 `R` 就可以得到调换运算符两边的参数后运算的结果。
+
+[cols=".^m,.^m,.^m,.^m", options="header"]
+|===
+| 正常运算符 | 结果 | 反转运算符 | 结果
+
+| 2 / 3 | 0.666667 | 2 R/ 3 | 1.5
+
+| 2 - 1 | 1 | 2 R- 1 | -1
+
+|===
+
+=== 化简运算符
+
+化简运算符应用于一个值的列表。
+化简运算符由包裹有方括号 `[]` 的运算符来表示。
+
+[cols=".^m,.^m,.^m,.^m", options="header"]
+|===
+| 正常运算符 | 结果 | 化简运算符 | 结果
+
+| 1 + 2 + 3 + 4 + 5 | 15 | [+] 1,2,3,4,5 | 15
+
+| 1 * 2 * 3 * 4 * 5 | 120 | [*] 1,2,3,4,5 | 120
+
+|===
+
+NOTE: 可以到 https://docs.perl6.org/language/operators 查看完整的运算符列表和它们的优先级。
+
+== 变量
+Perl 6 中的变量分为 3 类：标量、数组和哈希。
+
+变量名以 *魔符*（sigil）开头以区分不同类型。
+
+* `$` 用于标量(scalars)
+* `@` 用于数组(arrays)
+* `%` 用于哈希(hashes)
+
+=== 标量
+标量用于存储一项数据或引用。
+
+[source,perl6]
+----
+#字符串
+my $name = 'John Doe';
+say $name;
+
+#整数
+my $age = 99;
+say $age;
+----
+
+根据标量中存储的数据类型，一类特殊的操作符可以用于标量。
+
+[source,perl6]
+.字符串
+----
+my $name = 'John Doe';
+say $name.uc;
+say $name.chars;
+say $name.flip;
+----
+
+----
+JOHN DOE
+8
+eoD nhoJ
+----
+
+NOTE: 所有可应用于字符串的方法列表，请参照 https://docs.perl6.org/type/Str
+
+[source,perl6]
+.整数
+----
+my $age = 17;
+say $age.is-prime;
+----
+
+----
+True
+----
+
+NOTE: 所有可应用于整数的方法列表，请参照 https://docs.perl6.org/type/Int
+
+[source,perl6]
+.有理数
+----
+my $age = 2.3;
+say $age.numerator;
+say $age.denominator;
+say $age.nude;
+----
+
+----
+23
+10
+(23 10)
+----
+
+NOTE: 所有可应用于有理数的方法列表，请参照 https://docs.perl6.org/type/Rat
+
+=== Arrays 数组
+数组是储存有多个值的列表。
+
+[source,perl6]
+----
+my @animals = 'camel','llama','owl';
+say @animals;
+----
+
+下面例子中的操作符可以应用于列表：
+
+TIP: 波浪符 `~` 可用于列表中字符串的连接。
+
+[source,perl6]
+.`脚本` 
+----
+my @animals = 'camel','vicuña','llama';
+say "The zoo contains " ~ @animals.elems ~ " animals";
+say "The animals are: " ~ @animals;
+say "I will adopt an owl for the zoo";
+@animals.push("owl");
+say "Now my zoo has: " ~ @animals;
+say "The first animal we adopted was the " ~ @animals[0];
+@animals.pop;
+say "Unfortunately the owl got away and we're left with: " ~ @animals;
+say "We're closing the zoo and keeping one animal only";
+say "We're going to let go: " ~ @animals.splice(1,2) ~ " and keep the " ~ @animals;
+----
+
+.`输出` 
+----
+The zoo contains 3 animals
+The animals are: camel vicuña llama
+I will adopt an owl for the zoo
+Now my zoo has: camel vicuña llama owl
+The first animal we adopted was the camel
+Unfortunately the owl got away and we're left with: camel vicuña llama
+We're closing the zoo and keeping one animal only
+We're going to let go: vicuña llama and keep the camel
+----
+
+.说明
+`.elems` 返回列表中的元素个数。 +
+`.push()`  向数组追加一个或多个元素。 +
+我们可以通过提供元素在数组中的位置来访问数组中特定元素 `@animals[0]`。 +
+`.pop` 删除并返回数组中最后一个元素。 +
+`.splice(a,b)` 会删除从位置 `a` 开始的 `b` 个元素。
+
+==== 定长数组
+一般数组通过以下方式声明: 
+[source,perl6]
+my @array;
+
+一般的数组的长度可以无限，因此被叫做自动扩展。 +
+它可以接受任意个数的元素而不受限制。
+
+对应地，我们可以创建一个定长数组。 +
+在这种数组中不能访问下标超过定义大小的元素。
+
+可以通过在变量名后的方括号中指定最大元素个数来定义定长数组的长度: 
+[source,perl6]
+my @array[3];
+
+这个数组最多可以储存 3 个变量，索引从 0 开始到 2 结束。
+
+[source,perl6]
+----
+my @array[3];
+@array[0] = "first value";
+@array[1] = "second value";
+@array[2] = "third value";
+----
+
+我们不能在这个数组中添加第四个元素：
+[source,perl6]
+----
+my @array[3];
+@array[0] = "first value";
+@array[1] = "second value";
+@array[2] = "third value";
+@array[3] = "fourth value";
+----
+
+----
+第一维的索引值 3 超出了范围（必须是0..2)
+----
+
+==== 多维数组
+到现在为止我们看到的数组还都是一维的。 +
+幸运的是，我们在 Perl 6 中能定义多维数组。
+
+[source,perl6]
+my @tbl[3;2];
+
+这是一个二维数组。
+它的第一个维度最多可以有 3 个水平，第二个维度最多可以有 2 个水平。
+
+可以把它看成 3x2 的矩阵。
+
+[source,perl6]
+----
+my @tbl[3;2];
+@tbl[0;0] = 1;
+@tbl[0;1] = "x";
+@tbl[1;0] = 2;
+@tbl[1;1] = "y";
+@tbl[2;0] = 3;
+@tbl[2;1] = "z";
+say @tbl
+----
+
+----
+[[1 x] [2 y] [3 z]]
+----
+
+.数组的可视化表示:
+----
+[1 x]
+[2 y]
+[3 z]
+----
+
+NOTE: 对于完整的数组参考资料，请参见https://docs.perl6.org/type/Array
+ 
+=== Hashes 哈希
+[source,perl6]
+.哈希是一组键值对。
+----
+my %capitals = ('UK','London','Germany','Berlin');
+say %capitals;
+----
+
+[source,perl6]
+.另一种填充哈希的方法:
+----
+my %capitals = (UK => 'London', Germany => 'Berlin');
+say %capitals;
+----
+
+一些能应用于哈希的方法:
+[source,perl6]
+.`脚本`
+----
+my %capitals = (UK => 'London', Germany => 'Berlin');
+%capitals.push: (France => 'Paris');
+say %capitals.kv;
+say %capitals.keys;
+say %capitals.values;
+say "The capital of France is: " ~ %capitals<France>;
+----
+
+.`输出`
+----
+(France Paris Germany Berlin UK London)
+(France Germany UK)
+(Paris Berlin London)
+The capital of France is: Paris
+----
+
+.说明
+`.push:(key => "value")` 添加一个新键值对。 +
+`.kv` 返回一个包含所有键值对的列表。 +
+`.keys` 返回一个包含所有键的列表。 +
+`.values` 返回一个包含所有值的列表。 +
+我们可以通过哈希中特定值所对应的键来访问这个值。 `%hash<key>`
+
+NOTE: 完整的哈希参考资料，请见 https://docs.perl6.org/type/Hash
+
+=== 类型
+前面的例子中，我们并没有指定变量中值的类型。
+
+TIP: `.WHAT` 会返回变量中值的类型。
+
+[source,perl6]
+----
+my $var = 'Text';
+say $var;
+say $var.WHAT;
+
+$var = 123;
+say $var;
+say $var.WHAT;
+----
+
+在上面的例子中，你能看到变量 `$var` 中的值先是(Str)后是(Int)。
+
+这种编程风格被称作动态类型。动态在这里是指变量可以储存任何类型的值。
+
+接下来试着运行下面的例子: +
+Notice `Int` 注意在变量名前的 `Int`。
+
+[source,perl6]
+----
+my Int $var = 'Text';
+say $var;
+say $var.WHAT;
+----
+
+运行会失败并返回报错信息: `Type check failed in assignment to $var; expected Int but got Str`
+
+这是因为我们预先指定变量类型为(Int),当将(Str)赋值给它的时候就导致了运行失败。
+
+这种编程风格被称为静态类型编程。静态在这里是指变量类型在赋值前定义并且不能在更改。
+
+Perl 6 属于 *渐进类型* ;它同时支持 *静态* 和 *动态* 类型。
+
+.数组和哈希同样可以为静态类型:
+[source,perl6]
+----
+my Int @array = 1,2,3;
+say @array;
+say @array.WHAT;
+
+my Str @multilingual = "Hello","Salut","Hallo","您好","안녕하세요","こんにちは";
+say @multilingual;
+say @multilingual.WHAT;
+
+my Str %capitals = (UK => 'London', Germany => 'Berlin');
+say %capitals;
+say %capitals.WHAT;
+
+my Int %country-codes = (UK => 44, Germany => 49);
+say %country-codes;
+say %country-codes.WHAT;
+----
+
+.下面是最常用的类型:
+你可能永远不会用到前两种类型，他们被列出来只是为了让你知道。
+
+[cols="^.^1m,.^3m,.^2m,.^1m, options="header"]
+|===
+
+| *类型*  | *描述* | *例子* | *结果*
+
+| Mu | Perl 6 的基础类型 | |
+
+| Any | 新类的默认类型，同时也是大部分内部类的类型 | |
+
+| Cool | 既可以被当做数值也可以作为字符串 | my Cool $var = 31; say $var.flip; say $var * 2; | 13 62
+
+| Str | 字符串 | my Str $var = "NEON"; say $var.flip; | NOEN
+
+| Int | 整数（任意精度） | 7 + 7 | 14
+
+| Rat | 有理数（有限精度）| 0.1 + 0.2 | 0.3
+
+| Bool | 布尔类型 | !True | False
+
+|===
+
+=== 自省
+
+自省是获取对象属性信息的过程，比如获取对象的类型。 +
+在前面的一个例子中我们使用 `.WHAT` 来获取变量的类型。
+
+[source,perl6]
+----
+my Int $var;
+say $var.WHAT;    # (Int)
+my $var2;
+say $var2.WHAT;   # (Any)
+$var2 = 1;
+say $var2.WHAT;   # (Int)
+$var2 = "Hello";
+say $var2.WHAT;   # (Str)
+$var2 = True;
+say $var2.WHAT;   # (Bool)
+$var2 = Nil;
+say $var2.WHAT;   # (Any)
+----
+
+变量的类型和它储存的值有关。 +
+使用强声明定义的空变量，它的类型就是声明的类型 +
+一个不是强声明定义的空变量，它的类型是 `(Any)` +
+可以通过赋 `Nil` 给变量，来清除变量的值。
+
+=== 作用域
+在第一次使用变量之前，变量需要被声明。
+
+在 Perl 6 中可以使用使用多种声明方式。其中 `my` 已经在上述例子中使用到。
+
+[source,perl6]
+my $var=1;
+
+`my` 声明指定了变量上下文作用域。
+换句话说，这个变量只能在它被定义的块中被访问。
+
+Perl 6 中块有 `{}` 界定。
+如果没有块存在，那么变量就在整个 Perl 6 脚本中可用。
+
+[source,perl6]
+----
+{
+  my Str $var = 'Text';
+  say $var; #is accessible
+}
+say $var; #is not accessible, returns an error
+----
+
+因为一个变量只有在定义它的块中有效，所以同样的变量名可以在另一个块中使用。
+
+[source,perl6]
+----
+{
+  my Str $var = 'Text';
+  say $var;
+}
+my Int $var = 123;
+say $var;
+----
+
+=== 赋值 vs. 绑定
+我们已经在前面的例子中看到如何将 *值赋* 给变量。 +
+*赋值* 通过 `=` 操作符完成。
+[source,perl6]
+----
+my Int $var = 123;
+say $var;
+----
+
+我们可以改变赋给变量的值:
+
+[source,perl6]
+.赋值
+----
+my Int $var = 123;
+say $var;
+$var = 999;
+say $var;
+----
+
+.`输出`
+----
+123
+999
+----
+
+我们不能改变 *绑定* 到变量上的值 +
+*绑定* 通过 `：=` 操作符实现。
+
+[source,perl6]
+.绑定
+----
+my Int $var := 123;
+say $var;
+$var = 999;
+say $var;
+----
+
+.`输出`
+----
+123
+Cannot assign to an immutable value
+----
+
+[source,perl6]
+.变量也可以绑定到其他变量: 
+----
+my $a;
+my $b;
+$b := $a;
+$a = 7;
+say $b;
+$b = 8;
+say $a;
+----
+
+.`输出`
+----
+7
+8
+----
+
+就像你已经注意到的那样，绑定变量是双向的。 +
+`$a := $b` 和 `$b := $a` 拥有同样的效果.
+
+NOTE: 关于变量的更多信息，请见： https://docs.perl6.org/language/variables
+
+== 函数和修改器
+
+把函数和修改器区分开来很重要。 +
+函数在调用的时候不改变对象的初始状态。 +
+修改器改变对象的状态。
+
+[source,perl6,linenums]
+.`脚本`
+----
+my @numbers = [7,2,4,9,11,3];
+
+@numbers.push(99);
+say @numbers;      #1
+
+say @numbers.sort; #2
+say @numbers;      #3
+
+@numbers.=sort;
+say @numbers;      #4
+----
+
+.`输出`
+----
+[7 2 4 9 11 3 99] #1
+(2 3 4 7 9 11 99) #2
+[7 2 4 9 11 3 99] #3
+[2 3 4 7 9 11 99] #4
+----
+
+.说明
+`.push` 是一个修改器，它会改变数组的状态。(#1)
+
+`.sort` 是一个函数，它返回排序后的数组，但是不改变原始数组。
+
+* (#2) 展示了它返回排序后的数组。
+
+* (#3) 展示了原始数组没有被修改。
+
+为了强制一个函数作为修改器那样对原始数据进行修改，而我们可以使用 `.=` 来代替 `.` (#4) (脚本的第9行)
+
+== 循环和条件语句
+Perl 6 有多种条件和循环结构。
+
+=== if
+仅在条件满足时运行代码，即表达式结果为 `True`。
+
+[source,perl6]
+----
+my $age = 19;
+
+if $age > 18 {
+  say 'Welcome'
+}
+----
+
+在 Perl 6 中我们能待运行的代码和条件语句倒装。 +
+将待运行的代码和条件语句倒装后，条件语句总是优先被执行。
+
+[source,perl6]
+----
+my $age = 19;
+
+say 'Welcome' if $age > 18;
+----
+
+如果条件不满足，我们可以指定执行另一个代码块：
+
+* `else`
+* `elsif`
+
+[source,perl6]
+----
+# run the same code for different values of the variable
+my $number-of-seats = 9;
+
+if $number-of-seats <= 5 {
+  say 'I am a sedan'
+} elsif $number-of-seats <= 7 {
+  say 'I am 7 seater'
+} else {
+  say 'I am a van'
+}
+----
+
+=== unless
+`unless` 是否定形式的 if。
+
+下面这些代码：
+
+[source,perl6]
+----
+my $clean-shoes = False;
+
+if not $clean-shoes {
+  say 'Clean your shoes'
+}
+----
+可以改写成：
+
+[source,perl6]
+----
+my $clean-shoes = False;
+
+unless $clean-shoes {
+  say 'Clean your shoes'
+}
+----
+
+`否` 运算在 Perl 6 中用 `！` 或 `not` 来实现。
+
+`unless (条件)` 可以用来代替 `if not (条件)`。
+
+需要注意 `unless` 不能配合使用 `else`。
+
+=== with
+
+`with` 的用法 `if` 相同, 不过 `with` 会检查变量是否定义。 +
+如果变量没有定义，那么就不会执行块中的代码。
+
+[source,perl6]
+----
+my Int $var=1;
+
+with $var {
+  say 'Hello'
+}
+----
+
+如果以下代码中你没有给 `$var` 赋值，那么代码块就不会被执行。
+[source,perl6]
+----
+my Int $var;
+
+with $var {
+  say 'Hello'
+}
+----
+
+`without` 是否定版的 `with`。你可以拿 `if` 和 `unless` 的关系做类比。
+
+如果第一个 `with` 条件不能满足，替代执行的代码块可以使用 `orwith` 来指定。 +
+`with` 和 `orwith` 的关系可以同 `if` 与 `elsif` 的关系相比较。
+
+=== for
+
+`for` 循环可以迭代多个值。
+
+[source,perl6]
+----
+my @array = [1,2,3];
+
+for @array -> $array-item {
+  say $array-item * 100
+}
+----
+
+需要注意到我们创建了一个循环变量 `$array-item` 用来对每个数组元素进行 `*100` 的操作。
+
+=== given
+
+在 Perl 6 中的 `given`  类似其他语言中的 switch。
+但是要更加地强大。
+
+[source,perl6]
+----
+my $var = 42;
+
+given $var {
+    when 0..50 { say 'Less than or equal to 50'}
+    when Int { say "is an Int" }
+    when 42  { say 42 }
+    default  { say "huh?" }
+}
+----
+
+在成功匹配后，匹配就会停止。
+
+如果在匹配成功后运行的代码块中加了 `proceed`，那么就要在下一个成功匹配后才停止匹配。
+
+[source,perl6]
+----
+my $var = 42;
+
+given $var {
+    when 0..50 { say 'Less than or equal to 50';proceed}
+    when Int { say "is an Int";proceed}
+    when 42  { say 42 }
+    default  { say "huh?" }
+}
+----
+
+=== loop
+
+`loop` 是进行 `for` 循环的另一种方式。
+Perl 6 中 C 语言家族的 `for` 循环使用 `loop` 来表示。
+Perl 6 是 C 语言家族中的一员。
+
+[source,perl6]
+----
+loop (my $i = 0; $i < 5; $i++) {
+  say "The current number is $i"
+}
+----
+
+NOTE: 更多关于循环和条件语句的信息，参见 https://docs.perl6.org/language/control
+
+
+== I/O
+在 Perl 6 中，两个最常用的输入/输出的端口是终端和文件。
+
+=== 在终端中基本的 I/O 操作
+
+==== say
+`say` 能输出到标准输出，而且它还会在输出的最后添加一个换行符，请见下面的示例代码：
+
+[source,perl6]
+----
+say 'Hello Mam.';
+say 'Hello Sir.';
+----
+会在两行中分别打印出来。
+
+==== print
+`print` 的功能和 `say` 相似，但是它不会在输出内容后添加换行符。
+
+试试将 `say` 换成 `print` 比较一下它们两者的特点。
+
+==== get
+`get` 用来获取终端中的输入。
+
+[source,perl6]
+----
+my $name;
+
+say "Hi, what's your name?";
+$name = get;
+
+say "Dear $name welcome to Perl 6";
+----
+
+当上面的代码运行时，终端会等你输入名字和回车键。
+然后就会向你打招呼。
+
+==== prompt
+`prompt` 整合了 `print` 和 `get` 的功能。
+
+以上的例子可以改写成以下方式：
+
+[source,perl6]
+----
+my $name = prompt "Hi, what's your name? ";
+
+say "Dear $name welcome to Perl 6";
+----
+
+=== 运行 Shell 命令
+有两种子例程可以用来运行 shell 命令：
+
+* `run` 不通过 shell 运行外部命令。
+
+* `shell` 通过系统 shell 来运行命令。它依赖系统平台和它的 shell。
+所有的保留字(meta chracters) 会被 shell 解释，包括管道(pipes)、重定向、环境变量替换等等。
+
+[source,perl6]
+.如果你用的是 Linux 或 OSX 请运行以下代码：
+----
+my $name = 'Neo';
+run 'echo', "hello $name";
+shell "ls";
+----
+
+[source,perl6]
+.如果你用的是 Windows 请运行下面这段代码：
+----
+shell "dir";
+----
+`echo` 和 `ls` 是常用的 Linux shell 命令 +
+`echo` 打印文本到终端（和 Perl 6 中的 `print` 相同 +
+`ls` 列出当前目录下所有的文件和文件夹。
+
+`dir` 在 Windows 中和 `ls` 的功能相同。
+
+
+=== File I/O
+==== slurp
+`slurp` 用来从文件中读入数据。
+
+建立一个文本文件包含一下内容：
+
+.datafile.txt
+----
+John 9
+Johnnie 7
+Jane 8
+Joanna 7
+----
+[source,perl6]
+----
+my $data = slurp "datafile.txt";
+say $data;
+----
+
+==== spurt
+`spurt` 用来向文件写入数据。
+
+[source,perl6]
+----
+my $newdata = "New scores:
+Paul 10
+Paulie 9
+Paulo 11";
+
+spurt "newdatafile.txt", $newdata;
+----
+
+在运行上述代码后，一个存储有 New score 的文件 _newdatafile.txt_ 会被创建。
+
+=== 文件和文件目录操作
+在先前的例子中，Perl 6 能不使用 shell 命令的情况下列出一个目录下所有的内容。
+
+[source,perl6]
+----
+say dir;              # 列出当前目录下的文件和文件夹
+say dir "/Documents"; # 列出特定目录下的文件和文件夹
+----
+
+另外你还能创建和删除目录。
+
+[source,perl6]
+----
+mkdir "newfolder";
+rmdir "newfolder";
+----
+
+`mkdir` 创建一个新的目录。 +
+`rmdir` 删除一个空目录，如果目录不为空则返回 error。
+
+你还可以检查特定的路径是否存在：
+
+在你要运行以下脚本的目录中，建立一个叫 `folder123` 的空文件夹和一个文件 `script123.pl6`
+
+[source,perl6]
+----
+say "script123.pl6".IO.e;
+say "folder123".IO.e;
+
+say "script123.pl6".IO.d;
+say "folder123".IO.d;
+
+say "script123.pl6".IO.f;
+say "folder123".IO.f;
+----
+
+`IO.e` 检查文件夹或文件是否存在。 +
+`IO.f` 检查路径所指的是否为文件。 +
+`IO.d` 检查路径所指的是否为文件夹。
+
+WARNING: Windows 下使用 `/` 或 `\\` 来定义目录 +
+`C:\\rakudo\\bin` +
+`C:/rakudo/bin` +
+
+NOTE: 更多关于 I/O，详见 https://docs.perl6.org/type/IO
+
+== 子例程
+=== 定义
+*子例程* (也叫 *subs* 或 *functions* ) 是一种功能集的打包。 +
+
+定义子例程时以关键字 `sub` 起始。在定义之后你能通过子例程名来进行调用。 +
+让我们来看下面的例子：
+
+[source,perl6]
+----
+sub alien-greeting {
+  say "Hello earthlings";
+}
+
+alien-greeting;
+----
+
+上面的例子给我们展示了一个不需要输入参数的子例程。
+
+=== Signature 函数签名
+很多子例程需要多个输入才能运行。这些输入由 *参数* 提供。
+一个子例程可以不定义或定义多个 *参数*。
+子例程所定义的参数之个数与类型称为它的 *函数签名*。
+
+下面的子例程接收一个字符串参数。
+
+[source,perl6]
+----
+sub say-hello (Str $name) {
+    say "Hello " ~ $name ~ "!!!!"
+}
+say-hello "Paul";
+say-hello "Paula";
+----
+
+=== 多重分派
+我们可以定义多个有相同命名但有不同函数签名的的子例程。
+当这样的子例程被调用的时候，运行环境会根据提供的参数之数量和类型判断那个版本的同名子例程来运行。
+这种子例程和普通的子例程的定义方法是一样的，不过我们需要使用 `multi` 来代替原先的 `sub`。
+
+[source,perl6]
+----
+multi greet($name) {
+    say "Good morning $name";
+}
+multi greet($name, $title) {
+    say "Good morning $title $name";
+}
+
+greet "Johnnie";
+greet "Laura","Mrs.";
+----
+
+=== 默认参数和可选参数
+如果一个子例程被定义需要一个参数，但是我们调用它的时候没有提供所需的参数，那么这个子例程就不能运行。
+
+不过 Perl 6 提供了：
+
+* 可选参数
+* 默认参数
+
+可选参数在定义的时候需要在参数名后加 `?`。
+
+[source,perl6]
+----
+sub say-hello($name?) {
+  with $name { say "Hello " ~ $name }
+  else { say "Hello Human" }
+}
+say-hello;
+say-hello("Laura");
+----
+
+如果使用者没有提供参数，那么它就默认使用预先给定的值。 +
+上面是通过在子例程中给参数赋值的方式实现的。
+
+[source,perl6]
+----
+sub say-hello($name="Matt") {
+  say "Hello " ~ $name;
+}
+say-hello;
+say-hello("Laura");
+----
+
+=== 返回值
+我们现在为止看到的子例程都在终端中打印一些文字。
+
+一些时候我们需要让子例程 *返回* 值让我们能在我们的程序中能重复使用。
+
+在一般的情景下，子例程代码的最后一行被默认为返回值。
+[source,perl6]
+.隐式返回
+----
+sub squared ($x) {
+  $x ** 2;
+}
+say "7 squared is equal to " ~ squared(7);
+----
+
+一旦我们的代码变多，_清楚地指明我们需要返回的变量是很有用的。
+可以使用 `return` 关键字来指明返回变量。
+[source,perl6]
+.显式返回
+----
+sub squared ($x) {
+  return $x ** 2;
+}
+say "7 squared is equal to " ~ squared(7);
+----
+==== 限制返回值
+在之前的例子中，我们对将子例程的参数限定为特定类型。
+我们可以同样地限定返回值的类型。
+
+为了将返回值限定为特定类型，我们可以使用 `returns` 特征 (trait) 或在函数签名中使用箭标。
+
+[source,perl6]
+.使用 rerurns 特征
+----
+sub squared ($x) returns Int {
+  return $x ** 2;
+}
+say "1.2 squared is equal to " ~ squared(1.2);
+----
+
+[source,perl6]
+.使用箭头
+----
+sub squared ($x --> Int) {
+  return $x ** 2;
+}
+say "1.2 squared is equal to " ~ squared(1.2);
+----
+如果子例程不能提供符合类型要求的返回值，程序就会报错。
+
+----
+Type check failed for return value; expected Int but got Rat (1.44)
+----
+
+[TIP]
+====
+类型限制不仅控制返回值的类型，它也可以控制返回值是否定义。
+(Not only can type constraints control the type of the return value; they can also control its definedness.)
+
+之前的例子中，我们指定了返回值必须为 `Int`，这与返回值的定义无关。
+我们可以指定返回值 `Int` 需要被严格定义或者不用定义： +
+`--> Int:D` 和 `--> Int:U`
+
+使用类型限制是一个好的习惯。 +
+以下是将前面的例子修改后的结果，其中使用 `:D` 强制返回有定义的 `Int`。
+
+[source,perl6]
+----
+sub squared ($x --> Int:D) {
+  return $x ** 2;
+}
+say "1.2 squared is equal to " ~ squared(1.2);
+----
+====
+
+NOTE: 关于更多子例程和函数的资料，详见 https://docs.perl6.org/language/functions
+
+
+== 函数式编程
+
+在本章中，我们将看看一些有利于函数式编程的功能。
+
+=== 函数是一等公民
+
+函数/子例程是一等公民:
+
+- 它们能作为参数传递
+- 它们能从另外一个函数中返回
+- 它们能被赋值给变量
+
+`map` 函数是用来说明这个概念的极好例子。 +
+`map` 是 *高阶函数*, 它接收另外一个函数作为参数。
+
+[source,perl6]
+.脚本
+----
+my @array = <1 2 3 4 5>;
+sub squared($x) {
+    $x ** 2
+}
+say map(&squared, @array);
+----
+
+.输出
+
+----
+(1 4 9 16 25)
+----
+
+.解释
+
+我们定义了一个叫做 `squared` 的子例程, 它接收一个数字并返回该数字的二次幂。 +
+下一步, 我们使用 `map` 这个高阶函数并传递给它两个参数, 一个子例程和一个数组。 +
+结果是所有数组元素的平方组成的列表。
+
+注意当传递子例程作为参数时, 我们需要在子例程的名字前添加一个 `&` 符号。
+
+=== 匿名函数
+*匿名函数* 也叫做 *拉姆达*(lambda)。 +
+匿名函数没有绑定到标识符(匿名函数没有名字)。
+
+让我们使用匿名函数重写 `map` 那个例子。
+[source,perl6]
+----
+my @array = <1 2 3 4 5>;
+say map(-> $x {$x ** 2}, @array);
+----
+注意我们没有声明子例程并把它作为参数传递给 `map`, 而是在里面直接定义了匿名函数。 +
+匿名函数 `\-> $x {$x ** 2}` 没有句柄并且不能被调用。
+
+按照 Perl 6 的说法我们把这个标记叫做 *pointy block*。
+
+[source,perl6]
+.pointy block 也能用于把函数赋值给变量:
+----
+my $squared = -> $x {
+    $x ** 2
+}
+say $squared(9);
+----
+
+=== 链式调用
+
+在 Perl 6中, 方法可以链接起来, 你不再需要把一个方法的结果作为参数传递给另外一个方法了。
+
+我们假设你有一个数组。你被要求返回该数组的唯一值, 并且按从大到小的顺序排序。
+
+你可能会通过写出近似于这样的代码来解决那个问题:
+[source,perl6]
+----
+my @array       = <7 8 9 0 1 2 4 3 5 6 7 8 9 >;
+my @final-array = reverse(sort(unique(@array)));
+say @final-array;
+----
+首先我们在 `@array` 身上调用 `unique` 函数, 然后我们把它的结果作为参数传递给 `sort` 函数, 再然后我们把结果传递给 `reverse` 函数。
+
+和上面的例子相比, Perl  6 允许链式方法。 +
+上面的例子可以像下面这样写, 利用 *方法链* 的优点:
+
+[source,perl6]
+----
+my @array       = <7 8 9 0 1 2 4 3 5 6 7 8 9 >;
+my @final-array = @array.unique.sort.reverse;
+say @final-array;
+----
+
+你已经看到链式方法看起来有多 _清爽_ 啦。
+
+=== Feed 操作符
+*feed 操作符*, 在有些函数式编程语言中也叫 _管道_, 然而它是链式方法的一个更好的可视化产出。
+[source,perl6]
+.Forward Feed
+----
+my @array = <7 8 9 0 1 2 4 3 5 6>;
+@array ==> unique()
+       ==> sort()
+       ==> reverse()
+       ==> my @final-array;
+say @final-array;
+----
+
+.解释
+----
+从 `@array` 开始 然后 返回一个唯一元素的列表
+                 然后 排序它
+                 然后 反转它
+                 然后 把结果保存到 @final-array 中
+----
+就像你看到的那样, 方法的流向是自上而下的。
+
+
+[source,perl6]
+.Backward Feed
+----
+my @array = <7 8 9 0 1 2 4 3 5 6>;
+my @final-array-v2 <== reverse()
+                   <== sort()
+                   <== unique()
+                   <== @array;
+say @final-array-v2;
+----
+
+.解释
+
+向后流就像向前流一样, 但是是以反转的顺序写的。 +
+
+方法的流动方向是自下而上。
+
+===  Hyper 操作符
+*hyper 操作符* `>>.` 会在列表的所有元素身上调用一个方法并返回所有结果的一个列表。
+[source,perl6]
+----
+my @array = <0 1 2 3 4 5 6 7 8 9 10>;
+sub is-even($var) { $var %% 2 };
+
+say @array».is-prime;
+say @array».&is-even;
+----
+
+使用 hyper 操作符我们能调用 Perl 6 中已经定义过的方法, 例如 `is-prime` 告诉我们一个数字是否是质数。 +
+
+此外我们能定义新的子例程并使用 hyper 操作符调用它们。但是这时我们必须在方法的名字前面加上 `&` 符号。例如 `&is-even`。
+
+这很实用因为它使我们不必写 `for` 循环就可以迭代每个值。
+
+WARNING: Perl 6 会保证结果的顺序与原始值的顺序相同。 +
+但是 *不能保证* Perl 6 会真正地在同一个顺序或在同一个线程中调用该方法。 +
+因此，请注意具有副作用的方法，例如 `say'（副作用显示值）。
+
+===  Junctions
+*junction* 是值的逻辑叠加。
+
+在下面的例子中 `1|2|3` 是一个 junction。
+[source,perl6]
+----
+my $var = 2;
+if $var == 1|2|3 {
+    say "The variable is 1 or 2 or 3"
+}
+----
+junctions 的使用常常触发 **自动线程化**; 每个 junction 元素都执行该操作, 并且所有的结果被组合到一个新的 junction 中并返回。
+
+===  Lazy Lists
+*惰性列表* 是被惰性求值的列表。 +
+惰性求值延迟表达式的计算直到需要时, 并把结果存储到查询表中以避免重复计算。
+
+惰性列表的优点包括:
+
+* 通过避免不必要的计算带来的性能提升
+
+* 构建潜在的无限数据结构的能力
+
+* 定义控制流的能力
+
+我们使用中缀操作符 `...` 来创建惰性列表。 +
+惰性列表拥有一个 *初始元素(s)*, 一个 *发生器* 和一个 *结束点*。
+
+[source,perl6]
+.Simple lazy list
+----
+my  $lazylist = (1 ... 10);
+say $lazylist;
+----
+
+初始元素为 1 而结束点为 10。因为没有定义发生器所以默认的发生器为 successor(+1)。 +
+换句话说, 这个惰性列表可能返回(如果需要的话)下面的元素 (1, 2, 3, 4, 5, 6, 7, 8, 9, 10)。
+
+[source,perl6]
+.Infinite lazy list
+----
+my  $lazylist = (1 ... Inf);
+say $lazylist;
+----
+
+该列表可能返回(如果需要的话) 1 到无穷大之间的任何整数, 换句话说, 可以返回任何整数。
+
+[source,perl6]
+.使用推断发生器创建惰性列表
+----
+my  $lazylist = (0,2 ... 10);
+say $lazylist;
+----
+
+初始的元素是 0 和 2 而结束点是 10。虽然没有定义发生器, 但是使用了初始元素, Perl 6 会把生成器推断为 (+2)。 +
+
+这个惰性列表可能返回(如果需要的话)下面的元素 (0, 2, 4, 6, 8, 10)。
+[source,perl6]
+.使用定义的发生器创建惰性列表
+----
+my  $lazylist = (0, { $_ + 3 } ... 12);
+say $lazylist;
+----
+
+在这个例子中, 我们在闭合 `{ }` 中显式地定义了一个发生器。 +
+
+这个惰性列表可能返回(如果需要的话)下面的元素 (0, 3, 6, 9, 12)。
+
+[WARNING]
+====
+当使用显式的发生器时, 结束点必须是发生器能返回的一个值。 +
+
+如果在上面的例子中我们使用的结束点是 10 而非 12, 那么发生器就不会停止。发生器会 _跳过_ 那个结束点。
+
+二选一, 你可以使用 `0 ...^ * > 10` 代替 `0 ... 10`。 +
+你可以把它读作: 从 0 直到第一个大于 10(不包括它)的值。
+[source,perl6]
+.这不会使发生器停止
+----
+my  $lazylist = (0, { $_ + 3 } ... 10);
+say $lazylist;
+----
+
+[source,perl6]
+.这会使发生器停止
+----
+my  $lazylist = (0, { $_ + 3 } ...^ * > 10);
+say $lazylist;
+----
+====
+
+=== 闭包
+
+在 Perl 6 中所有的代码对象都是闭包, 这意味着它们能从外部作用域(outer scope)引用词法变量(lexical variables)。
+
+[source,perl6]
+----
+sub generate-greeting {
+    my $name = "John Doe";
+    sub greeting {
+      say "Good Morning $name";
+    };
+    return &greeting;
+}
+my $generated = generate-greeting;
+$generated();
+----
+
+如果你运行上面的代码，它将在终端上显示 `Good Morning John Doe`。 +
+虽然结果相当简单，但这个例子有趣的是，`greeting` 内部子程序在执行之前是从外部子例程中返回的。
+
+`$generated` 已经变成了 *闭包*。
+
+*闭包*是一种特殊类型的对象，它结合了两个东西：
+
+* 子例程
+
+*创建该子例程的环境。
+
+该环境由创建闭包时在作用域内的任何局部变量组成。
+在这种情况下，`$generated` 是一个闭包，它包含在创建闭包时存在的 `greeting` 子例程和 `John Doe` 字符串。
+
+让我们来看一个更有趣的例子。
+[source,perl6]
+----
+sub greeting-generator($period) {
+  return sub ($name) {
+    return "Good $period $name"
+  }
+}
+my $morning = greeting-generator("Morning");
+my $evening = greeting-generator("Evening");
+
+say $morning("John");
+say $evening("Jane");
+----
+在这个例子中，我们定义了一个子例程  `greeting-generator($period)`，它接受单个参数 `$period` 并返回一个新的子例程。它返回的子例程接受单个参数 `$name` 并返回构造好的问候语。
+
+基本上，`greeting-generator` 是一个子例程工厂。在这个例子中，我们使用了 `greeting-generator` 来创建两个新的子例程，一个说 `Good Morning` ，一个说 `Good Evening`。
+
+`$morning` 和 `$evening` 都是闭包。它们共享相同的子例程主体定义，但存储不同的环境。 +
+在 `$morning` 的环境中 `$period` 是 `Morning`。在 `$evening` 的环境中 `$period` 是 `Evening`。
+
+== 类和对象
+
+在上一章中我们学习了 Perl 6 中函数式编程的便利性。 +
+在这一章中我们将看看 Perl 6 中的面向对象编程。
+
+===  介绍
+_面向对象_ 编程是当今广泛使用的范式之一。 +
+*对象* 是一组绑定在一起的变量和子例程。 +
+
+其中的变量叫做 *属性*, 而子例程被叫做 *方法*。 +
+属性定义对象的 *状态*, 而方法定义对象的 *行为*。
+
+*类* 定义一组 *对象* 结构。
+
+为了理解它们之间的关系, 考虑下面的例子:
+
+|===
+
+| 房间里有 4 个 people   | *objects* => 4 people                  
+| 这 4 个人是 humans    | *class* => Human                       
+| 它们有不同的名字,年纪,性别和国籍 | *attribute* => name,age,sex,nationality
+
+|===
+
+按 _面向对象_ 的说法, 对象是类的 *实例*。
+
+考虑下面的脚本:
+[source,perl6]
+----
+class Human {
+    has $name;
+    has $age;
+    has $sex;
+    has $nationality;
+}
+
+my $john = Human.new(name => 'John',
+                     age  => 23,
+                     sex  => 'M'
+                     nationality => 'American')
+say $john;
+----
+
+`class` 关键字用于定义类。 +
+`has` 关键字用于定义类的属性。 +
+`.new` 方法被称之为 *构造函数*。它创建了对象作为类的实例。
+
+在上面的例子中, 新的变量 `$john` 保存了由 `Human.new()` 所定义的新 "Human" 实例。 +
+传递给 `.new()` 方法的参数用于设置底层对象的属性。
+类可以使用 `my` 来声明一个 _本地作用域_:
+[source,perl6]
+----
+my class Human {
+
+}
+----
+
+=== 封装
+封装是一个面向对象的概念, 它把一组数据和方法捆绑在一块。 +
+对象中的数据(属性)应该是 *私有的*, 换句话说, 只能从对象内部访问它。 +
+为了从对象外部访问对象的属性, 我们使用叫做 *存取器* 的方法。
+
+下面两个脚本拥有同样的结果。
+
+.直接访问变量:
+[source,perl6]
+----
+my  $var = 7;
+say $var;
+----
+
+.封装:
+[source,perl6]
+----
+my $var = 7;
+sub sayvar {
+    $var;
+}
+say sayvar;
+----
+
+`sayvar` 是一个存取器。它让我们通过不直接访问这个变量来访问这个变量。
+在 Perl 6 中使用  *twigils* 使得封装很便利。 +
+Twigils 是第二 _符号_。它们存在于符号和属性名之间。 +
+有两个 twigils 用在类中:
+
+* `!` 用于显式地声明属性是私有的
+* `.` 用于为属性自动生成存取器
+
+默认地, 所有的属性都是私有的, 但是总是用 `!` twigil 是一个好习惯。
+
+为了和我说的相一致, 我们应该把上面的类重写成下面这样:
+[source,perl6]
+----
+class Human {
+    has $!name;
+    has $!age;
+    has $!sex;
+    has $!nationality;
+}
+
+my $john = Human.new(name => 'John', age => 23, sex => 'M', nationality => 'American');
+say $john;
+----
+给脚本追加这样的的语句: `say $john.age`; +
+它会返回这样的错误: `Method 'age' not found for invocant of class 'Human'`。 +
+原因是 `$!age` 是私有的并且只能用于对象内部。 尝试在对象外部访问它会返回一个错误。
+
+现在用 `has $.age` 代替 `$!age` 并看看 `say $john.age;` 的结果是什么。
+
+
+===  具名参数 vs. 位置参数
+在 Perl 6 中, 所有的类继承了一个默认的 `.new` 构造函数。 +
+通过为他提供参数, 它能用于创建对象。 +
+只能提供 *具名参数* 给默认的构造函数。 +
+
+如果你考虑上面的例子, 你会看到所有提供给 `.new` 方法的参数都是按名字定义的:
+
+* name => 'John'
+
+* age     => 23
+
+假如我不想在每次创建新对象的时候为每个属性提供一个名字呢? +
+那么我需要创建另外一个接收 *位置参数* 的构造函数。
+
+[source,perl6]
+----
+class Human {
+    has $.name;
+    has $.age;
+    has $.sex;
+    has $.nationality;
+
+    # 重写默认构造函数的新构造函数
+    method new ($name, $age, $sex, $nationality) {
+        self.bless(:$name, :$age, :$sex, :$nationality);
+    }
+}
+
+my $john = Human.new('John', 23, 'M', 'American');
+say $john;
+----
+
+=== 方法
+
+==== 介绍
+
+方法是对象的 _子例程_。 +
+像子例程一样, 方法是一种打包一组功能的手段, 它们接收 *参数*, 拥有 *签名* 并可以被定义为 *multi*。
+
+方法是使用关键字 `method` 来定义的。 +
+正常情况下, 方法被要求在对象的属性身上执行一些动作。这强制了封装的概念。对象的属性只能在对象里面使用方法来操作。在对象外面, 只能和对象的方法交互, 并且不能访问它的属性。
+
+[source,perl6]
+----
+class Human {
+  has $.name;
+  has $.age;
+  has $.sex;
+  has $.nationality;
+  has $.eligible;
+  method assess-eligibility {
+      if self.age < 21 {
+          $!eligible = 'No'
+      } else {
+          $!eligible = 'Yes'
+      }
+  }
+}
+
+my $john = Human.new(name => 'John', age => 23, sex => 'M', nationality => 'American');
+$john.assess-eligibility;
+say $john.eligible;
+----
+
+一旦方法定义在类中, 它们就能在对象身上使用 _点记号_ 来调用: +
+_object_ *.* _method_  或像上面的例子那样: `$john.assess-eligibility`。
+
+在方法的定义中, 如果我们需要引用对象本身以调用另一个方法, 则使用 `self` 关键字。 +
+
+在方法的定义中, 如果我们需要引用属性, 则使用 `!` , 即使属性是使用 `.` 定义的。 +
+理由是 `.` twigil 做的就是使用 `!` 声明一个属性并自动创建存取器。
+
+在上面的例子中, `if self.age < 21` 和  `if $!age < 21` 会有同样的效果, 尽管它们从技术上来讲是不同的:
+
+* `self.age` 调用了 `.age` 方法(存取器) +
+二选一, 还能写成 `$.age`
+* `$!age` 是直接调用那个变量
+
+==== 私有方法
+
+正常的方法能从类的外面在对象身上调用。
+
+*私有方法* 是只能从类的内部调用的方法。 +
+一个可能的使用情况是一个方法调用另外一个执行特定动作的方法。
+连接外部世界的方法是公共的而被引用的那个方法应该保持私有。我们不想让用户直接调用它, 所以我们把它声明为私有的。
+
+私有方法的声明需要在方法的名字前使用 `!` twigil。 +
+私有方法是使用 `!` 而非 `.` 调用的。
+
+[source,perl6]
+----
+method !iamprivate {
+    # code goes in here
+}
+
+method iampublic {
+    self!iamprivate;
+    # do additional things
+}
+----
+
+===  类属性
+
+*类属性* 是属于类自身而非类的对象的属性。 +
+它们能在定义期间初始化。 +
+类属性是使用 `my` 关键字而非 `has` 关键字声明的。 +
+它们是在类自己身上而非它的对象身上调用的。
+
+[source,perl6]
+----
+class Human {
+    has $.name;
+    my  $.counter = 0;
+    method new($name) {
+      Human.counter++;
+      self.bless(:$name);
+    }
+}
+my $a = Human.new('a');
+my $b = Human.new('b');
+
+say Human.counter;
+----
+
+===  访问类型
+
+到现在为止我们看到的所以例子都使用存取器来从对象属性中获取信息。
+
+假如我们需要修改属性的值呢?  +
+
+我们需要使用下面的 `is rw` 关键字把它标记为 _read/write_。
+[source,perl6]
+----
+class Human {
+    has $.name;
+    has $.age is rw;
+}
+my $john = Human.new(name => 'John', age => 21);
+say $john.age;
+
+$john.age = 23;
+say $john.age;
+----
+
+默认地, 所有属性都声明为 _只读_, 但是你可以显式地使用 `is readonly` 来声明。
+
+=== 继承
+==== 介绍
+
+*继承* 是面向对象编程的另一个概念。
+
+当定义类的时候, 很快我们会意思到很多属性/方法在很多类中是共有的。 +
+我们应该重复代码吗? +
+不! 我们应该使用 *继承*。
+
+假设我们想定义两个类, 一个类是 Human, 一个类是 Employees。 +
+Human 拥有两个属性: name 和 age。 +
+Employees 拥有 4  个属性: name, age, company 和 salary。
+
+尝试按照下面的方式定义类:
+[source,perl6]
+----
+class Human {
+    has $.name;
+    has $.age;
+}
+
+class Employee {
+    has $.name;
+    has $.age;
+    has $.company;
+    has $.salary;
+}
+----
+
+虽然上面的代码技术上是正确的, 但是概念上差。
+
+更好的写法是下面这样:
+[source,perl6]
+----
+class Human {
+    has $.name;
+    has $.age;
+}
+class Employee is Human {
+    has $.company;
+    has $.salary;
+}
+----
+
+`is` 关键字定义了继承。 +
+按面向对象的说法, Employee 是 Human 的 *孩子*, 而 Human 是 Employee 的 *父亲*。
+
+所有的子类继承了父类的属性和方法, 所以没有必要重新它们。
+
+==== 重写
+
+类从它们的父类中继承所有的属性和方法。 +
+有些情况下, 我们需要让子类中的方法表现得和继承的方法不一样。 +
+为了做到这, 我们在子类中重新定义方法。 +
+这个概念就叫做 *重写*。
+
+在下面的例子中, `introduce-yourself` 方法被 Employee 类继承。
+
+[source,perl6]
+----
+class Human {
+    has $.name;
+    has $.age;
+    method introduce-yourself {
+      say 'Hi 我是人类, 我的名字是 ' ~ self.name;
+    }
+}
+
+class Employee is Human {
+    has $.company;
+    has $.salary;
+}
+
+my $john = Human.new(name => 'John', age => 23,);
+my $jane = Employee.new(name => 'Jane', age => 25, company => 'Acme', salary => 4000);
+
+$john.introduce-yourself;
+$jane.introduce-yourself;
+----
+
+重写工作如下:
+
+[source,perl6]
+----
+class Human {
+    has $.name;
+    has $.age;
+    method introduce-yourself {
+      say 'Hi 我是人类, 我的名字是 ' ~ self.name;
+    }
+}
+
+class Employee is Human {
+    has $.company;
+    has $.salary;
+    method introduce-yourself {
+      say 'Hi 我是一名员工, 我的名字是 ' ~ self.name ~ ' 我工作在: ' ~ self.comapny;
+    }
+}
+
+my $john = Human.new(name =>'John',age => 23,);
+my $jane = Employee.new(name =>'Jane',age => 25,company => 'Acme',salary => 4000);
+
+$john.introduce-yourself;
+$jane.introduce-yourself;
+----
+
+根据对象所属的类, 会调用正确的方法。
+
+==== Submethods
+
+*Submethods* 是一种子类继承不到的方法。 +
+它们只能从所声明的类中访问。 +
+它们使用 `submethod` 关键字定义。
+
+=== 多重继承
+
+在 Perl 6 中允许多重继承。一个类可以继承自多个其它的类。
+
+[source,perl6]
+----
+class bar-chart {
+  has Int @.bar-values;
+  method plot {
+    say @.bar-values;
+  }
+}
+
+class line-chart {
+  has Int @.line-values;
+  method plot {
+    say @.line-values;
+  }
+}
+
+class combo-chart is bar-chart is line-chart {
+}
+
+my $actual-sales   = bar-chart.new(bar-values => [10,9,11,8,7,10]);
+my $forecast-sales = line-chart.new(line-values => [9,8,10,7,6,9]);
+
+my $actual-vs-forecast = combo-chart.new(bar-values => [10,9,11,8,7,10],
+                                         line-values => [9,8,10,7,6,9]);
+say "实际的销售: ";
+$actual-sales.plot;
+say "预测的销售: ";
+$forecast-sales.plot;
+say "实际 vs 预测:";
+$actual-vs-forecast.plot;
+----
+
+.`输出`
+
+----
+实际的销售:
+[10 9 11 8 7 10]
+预测的销售:
+[9 8 10 7 6 9]
+实际 vs 预测:
+[10 9 11 8 7 10]
+----
+
+.解释
+
+`combo-chart` 类应该能持有两个序列, 一个是绘制条形图的实际值, 另一个是绘制折线图的预测值。 +
+这就是我们为什么把它定义为 `line-chart` 和 `bar-chart` 的孩子的原因。 +
+你应该注意到了, 在 `combo-chart` 身上调用 `plot` 方法并没有产生所要求的结果。它只绘制了一个序列。 +
+发生了什么事? +
+
+`combo-chart` 继承自 `line-chart` 和 `bar-chart`, 它们都有一个叫做 `plot` 的方法。当我们在 `combo-chart` 身上调用那个方法时, Perl 6 内部会尝试通过调用其所继承的方法之一来解决冲突。
+
+.纠正
+
+为了表现得正确, 我们应该在 `combo-chart` 中重写 `plot` 方法。
+
+[source,perl6]
+----
+class bar-chart {
+  has Int @.bar-values;
+  method plot {
+    say @.bar-values;
+  }
+}
+
+class line-chart {
+  has Int @.line-values;
+  method plot {
+    say @.line-values;
+  }
+}
+
+class combo-chart is bar-chart is line-chart {
+  method plot {
+    say @.bar-values;
+    say @.line-values;
+  }
+}
+
+my $actual-sales = bar-chart.new(bar-values => [10,9,11,8,7,10]);
+my $forecast-sales = line-chart.new(line-values => [9,8,10,7,6,9]);
+
+my $actual-vs-forecast = combo-chart.new(bar-values => [10,9,11,8,7,10],
+                                         line-values => [9,8,10,7,6,9]);
+say "实际的销售: ";
+$actual-sales.plot;
+say "预测的销售: ";
+$forecast-sales.plot;
+say "实际 vs 预测:";
+$actual-vs-forecast.plot;
+----
+
+.`输出`
+
+----
+实际的销售:
+[10 9 11 8 7 10]
+预测的销售:
+[9 8 10 7 6 9]
+实际 vs 预测:
+[10 9 11 8 7 10]
+[9 8 10 7 6 9]
+----
+
+===  Roles
+
+*Roles* 在它们是属性和方法的集合这个意义上和类有点类似。
+Roles 使用关键字 `role` 声明, 而想实现该 role 的类可以使用 `does` 关键字。
+
+.使用 roles 重写多重继承的例子
+[source,perl6]
+----
+role bar-chart {
+  has Int @.bar-values;
+  method plot {
+    say @.bar-values;
+  }
+}
+
+role line-chart {
+  has Int @.line-values;
+  method plot {
+    say @.line-values;
+  }
+}
+
+class combo-chart does bar-chart does line-chart {
+  method plot {
+    say @.bar-values;
+    say @.line-values;
+  }
+}
+
+my $actual-sales = bar-chart.new(bar-values => [10,9,11,8,7,10]);
+my $forecast-sales = line-chart.new(line-values => [9,8,10,7,6,9]);
+
+my $actual-vs-forecast = combo-chart.new(bar-values => [10,9,11,8,7,10],
+                                         line-values => [9,8,10,7,6,9]);
+say "实际的销售: ";
+$actual-sales.plot;
+say "预测的销售: ";
+$forecast-sales.plot;
+say "实际 vs 预测:";
+$actual-vs-forecast.plot;
+----
+
+运行上面的脚本你会看到结果是一样的。
+
+现在你问问自己, 如果 roles 表现得像类的话那么它们的用途是什么呢? +
+
+要回答你的问题, 修改第一个用于展示多重继承的脚本,  这个脚本中我们 _忘记_ 重写 `plot` 方法了。
+
+[source,perl6]
+----
+role bar-chart {
+  has Int @.bar-values;
+  method plot {
+    say @.bar-values;
+  }
+}
+
+role line-chart {
+  has Int @.line-values;
+  method plot {
+    say @.line-values;
+  }
+}
+
+class combo-chart does bar-chart does line-chart {
+}
+
+my $actual-sales = bar-chart.new(bar-values => [10,9,11,8,7,10]);
+my $forecast-sales = line-chart.new(line-values => [9,8,10,7,6,9]);
+
+my $actual-vs-forecast = combo-chart.new(bar-values => [10,9,11,8,7,10],
+                                         line-values => [9,8,10,7,6,9]);
+say "Actual sales:";
+$actual-sales.plot;
+say "Forecast sales:";
+$forecast-sales.plot;
+say "Actual vs Forecast:";
+$actual-vs-forecast.plot;
+----
+
+.`输出`
+
+----
+===SORRY!===
+Method 'plot' must be resolved by class combo-chart because it exists in multiple roles (line-chart, bar-chart)
+----
+
+.解释
+
+如果多个 roles 被应用到同一个类中, 会出现冲突并抛出一个编译时错误。 +
+这是比多重继承更安全的方法, 其中冲突不被认为是错误并且简单地在运行时解决。
+
+Roles 会提醒你有冲突。
+
+[source,perl6]
+----
+class Human {
+  has Str $.name;
+  has Int $.age;
+  method introduce-yourself {
+    say 'Hi I am a human being, my name is ' ~ self.name;
+  }
+}
+
+class Employee is Human {
+  has Str $.company;
+  has Int $.salary;
+  method introduce-yourself {
+    say 'Hi I am a employee, my name is ' ~ self.name ~ ' and I work at: ' ~ self.company;
+  }
+}
+
+my $john = Human.new(name =>'John',age => 23,);
+my $jane = Employee.new(name =>'Jane',age => 25,company => 'Acme',salary => 4000);
+
+say $john.WHAT;
+say $jane.WHAT;
+say $john.^attributes;
+say $jane.^attributes;
+say $john.^methods;
+say $jane.^methods;
+say $jane.^parents;
+if $jane ~~ Human {say 'Jane is a Human'};
+----
+
+=== 内省
+
+*内省* 是获取诸如对象的类型、属性或方法等对象属性的信息的过程。
+
+[source,perl6]
+----
+class Human {
+  has Str $.name;
+  has Int $.age;
+  method introduce-yourself {
+    say 'Hi i am a human being, my name is ' ~ self.name;
+  }
+}
+
+class Employee is Human {
+  has Str $.company;
+  has Int $.salary;
+  method introduce-yourself {
+    say 'Hi i am a employee, my name is ' ~ self.name ~ ' and I work at: ' ~ self.company;
+  }
+}
+
+my $john = Human.new(name =>'John',age => 23,);
+my $jane = Employee.new(name =>'Jane',age => 25,company => 'Acme',salary => 4000);
+
+say $john.WHAT;
+say $jane.WHAT;
+say $john.^attributes;
+say $jane.^attributes;
+say $john.^methods;
+say $jane.^methods;
+say $jane.^parents;
+if $jane ~~ Human {say 'Jane is a Human'};
+----
+
+内省使用了:
+
+* `.WHAT`  返回已经创建的对象所属的类。
+
+* `.^attributes` 返回一个包含该对象所有属性的列表。
+
+* `.^mtethods` 返回能在该对象身上调用的所有方法。
+
+* `.^parents` 返回该对象所属类的所有父类。
+
+* `~~` 叫做智能匹配操作符。
+如果对象是从它所进行比较的类或任何它继承的类创建的, 则计算为 True。
+
+[NOTE]
+--
+有关 Perl 6 中面向对象编程的更多信息，请参阅：
+
+* https://docs.perl6.org/language/classtut
+* https://docs.perl6.org/language/objects
+--
+
+== 异常处理
+
+=== 捕获异常
+
+*异常* 是当某些东西出错时发生在运行时的特殊行为。 +
+我们说异常被 _抛出_。
+
+考虑下面这个运行正确的脚本:
+
+[source,perl6]
+----
+my Str $name;
+$name = "Joanna";
+say "Hello " ~ $name;
+say "How are you doing today?"
+----
+
+.`输出`
+
+----
+Hello Joanna
+How are you doing today?
+----
+
+现在考虑这个抛出异常的脚本:
+
+[source,perl6]
+----
+my Str $name;
+$name = 123;
+say "Hello " ~ $name;
+say "How are you doing today?"
+----
+
+.`输出`
+
+----
+Type check failed in assignment to $name; expected Str but got Int
+   in block <unit> at exceptions.pl6:2
+----
+
+你应该看到当错误出现时(在这个例子中把数组赋值给字符串变量)程序会停止并且其它行的代码不会被执行, 即使它们是正确的。
+
+*异常处理* 是捕获已经抛出的异常的过程以使脚本能继续工作。
+
+[source,perl6]
+----
+my Str $name;
+try {
+  $name = 123;
+  say "Hello " ~ $name;
+  CATCH {
+    default {
+      say "Can you tell us your name again, we couldn't find it in the register.";
+    }
+  }
+}
+say "How are you doing today?";
+----
+
+.`输出`
+
+----
+Can you tell us your name again, we couldn't find it in the register.
+How are you doing today?
+----
+
+异常处理是使用 `try-catch` block 完成的。
+
+[source,perl6]
+----
+try {
+  # code goes in here
+  # 如果有东西出错, 脚本会进入到下面的 CATCH block 中
+  # 如果什么错误也没有, 那么 CATCH block 会被忽略
+  CATCH {
+    default {
+      # 只有抛出异常时, 这儿的代码才会被求值
+    }
+  }
+}
+----
+
+`CATCH` block 能像定义 `given` block 那样定义。
+这意味着我们能捕获并处理各种不同类型的异常。
+
+[source,perl6]
+----
+try {
+  #code goes in here
+  #if anything goes wrong, the script will enter the below CATCH block
+  #if nothing goes wrong the CATCH block will be ignored
+  CATCH {
+    when X::AdHoc { #do something if an exception of type X::AdHoc is thrown }
+    when X::IO { #do something if an exception of type X::IO is thrown }
+    when X::OS { #do something if an exception of type X::OS is thrown }
+    default { #do something if an exception is thrown and doesn't belong to the above types }
+  }
+}
+----
+
+===  抛出异常
+
+和捕获异常相比, Perl  6 也允许你显式地抛出异常。 +
+有两种类型的异常可以抛出:
+
+* ad-hoc 异常
+
+* 类型异常
+
+[source,perl6]
+.ad-hoc
+----
+my Int $age = 21;
+die "Error !";
+----
+
+[source,perl6]
+.typed
+----
+my Int $age = 21;
+X::AdHoc.new(payload => 'Error !').throw;
+----
+
+使用 `die` 子例程后面跟着异常消息来抛出 Ad-hoc 异常。
+
+Typed 异常是对象, 因此上面的例子中使用了 `.new()` 构造函数。 +
+所有类型化的异常都是从类 `X` 开始, 下面是一些例子: +
+`X::AdHoc` 是最简单的异常类型 +
+`X::IO` 跟 IO 错误有关。 +
+`X::OS` 跟 OS 错误有关。 +
+`X::Str::Numeric` 跟把字符串强制转换为数字有关。
+
+NOTE: 查看异常类型和相关方法的完整列表请到  [http://doc.perl6.org/type.html](http://doc.perl6.org/type.html) 
+
+
+
+== 正则表达式
+
+正则表达式, 或 _regex_ 是一个用于模式匹配的字符序列。
+
+理解它最简单的一种方式是把它看作模式。
+[source,perl6]
+----
+if 'enlightenment' ~~ m/ light / {
+    say "enlightenment contains the word light";
+}
+----
+
+在这个例子中, 智能匹配操作符 `~~` 用于检查一个字符串(enlightenment)是否包含一个单词(light)。 +
+
+"Enlightenment"  与正则表达式 `m/ light /` 匹配。
+
+=== Regex 定义
+
+正则表达式可以按如下方式定义:
+
+* /light/
+
+* m/light/
+
+* rx/light/
+
+除非显式地指定, 否则空白是无关紧要的, `m/light/` 和 `m/ light /` 是相同的。
+
+=== 匹配字符
+字母数字字符和下划线 `_` 在正则表达式中是按原样写出的。 +
+所有其它字符必须使用反斜线或用引号围起来以转义。
+
+[source,perl6]
+.反斜线
+----
+if 'Temperature: 13' ~~ m/ \: / {
+    say "The string provided contains a colon :";
+}
+----
+
+[source,perl6]
+.单引号
+----
+if 'Age = 13' ~~ m/ '=' / {
+    say "The string provided contains an equal character = ";
+}
+----
+
+[source,perl6]
+.双引号
+----
+if 'name@company.com' ~~ m/ "@" / {
+    say "This is a valid email address because it contains an @ character";
+}
+----
+
+=== 匹配字符类
+字符可以分类，我们可以匹配他们。 +
+我们也可以匹配该类别的反面（除了它的所有东西）:
+
+|===
+
+| *Category* | *Regex* | *Inverse* | *Regex*
+
+| 单词字符 (字母, 数字 或 下划线) | \w | 除了单词字符之外的任意字符 | \W
+
+| 数字 | \d | 除了数字之外的任意字符 | \D
+
+| 空白 | \s | 除了空白之外的任意字符 | \S
+
+| 水平空白 | \h | 除了水平空白之外的任意字符 | \H
+
+| 垂直空白 | \v | 除了垂直空白之外的任意字符 | \V
+
+| Tab | \t | 除了 Tab 之外的任意字符 | \T
+
+| 换行 | \n | 除了换行之外的任意字符 | \N
+
+|===
+
+[source,perl6]
+----
+if "John123" ~~ / \d / {
+  say "This is not a valid name, numbers are not allowed";
+} else {
+  say "This is a valid name"
+}
+if "John-Doe" ~~ / \s / {
+  say "This string contains whitespace";
+} else {
+  say "This string doesn't contain whitespace"
+}
+----
+
+=== Unicode 属性
+就像之前章节看到的, 匹配字符类很方便。 +
+话虽这么说，更系统的方法是使用 Unicode 属性。 +
+Unicode 属性闭合在 `<: >` 中。
+
+[source,perl6]
+----
+if "John123" ~~ / <:N> / {
+  say "Contains a number";
+} else {
+  say "Doesn't contain a number"
+}
+
+if "John-Doe" ~~ / <:Lu> / {
+  say "Contains an uppercase letter";
+} else {
+  say "Doesn't contain an upper case letter"
+}
+
+if "John-Doe" ~~ / <:Pd> / {
+  say "Contains a dash";
+} else {
+  say "Doesn't contain a dash"
+}
+----
+
+=== 通配符
+通配符也可以用在正则表达式中。
+
+点 `.` 意味着任何单个字符。
+
+[source,perl6]
+----
+if 'abc' ~~ m/ a.c / {
+    say "Match";
+}
+
+if 'a2c' ~~ m/ a.c / {
+    say "Match";
+}
+
+if 'ac' ~~ m/ a.c / {
+    say "Match";
+  } else {
+    say "No Match";
+}
+----
+
+=== 量词
+
+量词在字符后面用于指定我们期望匹配它前面的东西的次数。
+
+问号 `?` 意思是 0 或 1 次。
+
+[source,perl6]
+----
+if 'ac' ~~ m/ a?c / {
+    say "Match";
+  } else {
+    say "No Match";
+}
+
+if 'c' ~~ m/ a?c / {
+    say "Match";
+  } else {
+    say "No Match";
+}
+----
+
+星号 `*` 意思是 0 或多次。
+
+[source,perl6]
+----
+if 'az' ~~ m/ a*z / {
+    say "Match";
+  } else {
+    say "No Match";
+}
+
+if 'aaz' ~~ m/ a*z / {
+    say "Match";
+  } else {
+    say "No Match";
+}
+
+if 'aaaaaaaaaaz' ~~ m/ a*z / {
+    say "Match";
+  } else {
+    say "No Match";
+}
+
+if 'z' ~~ m/ a*z / {
+    say "Match";
+  } else {
+    say "No Match";
+}
+----
+
+`+` 意思是至少匹配 1 次。
+
+[source,perl6]
+----
+if 'az' ~~ m/ a+z / {
+    say "Match";
+  } else {
+    say "No Match";
+}
+
+if 'aaz' ~~ m/ a+z / {
+    say "Match";
+  } else {
+    say "No Match";
+}
+
+if 'aaaaaaaaaaz' ~~ m/ a+z / {
+    say "Match";
+  } else {
+    say "No Match";
+}
+
+if 'z' ~~ m/ a+z / {
+    say "Match";
+  } else {
+    say "No Match";
+}
+----
+
+=== 匹配结果
+
+当匹配字符串的正则表达式成功时, 
+匹配结果被存储在一个特殊的变量 `$/` 中。
+
+[source,perl6]
+.脚本
+----
+if 'Rakudo is a Perl 6 compiler' ~~ m/:s Perl 6/ {
+    say "The match is: " ~ $/;
+    say "The string before the match is: " ~ $/.prematch;
+    say "The string after the match is: " ~ $/.postmatch;
+    say "The matching string starts at position: " ~ $/.from;
+    say "The matching string ends at position: " ~ $/.to;
+}
+----
+
+.输出
+----
+The match is: Perl 6
+The string before the match is: Rakudo is a
+The string after the match is:  compiler
+The matching string starts at position: 12
+The matching string ends at position: 18
+----
+
+.解释
+
+`$/` 返回一个 _Match Object_ (匹配 regex 的字符串)。 +
+下面的方法可以在 _Match Object_ 身上调用: +
+
+`.prematch` 返回匹配前面的字符串 +
+`.postmatch` 返回匹配后面的字符串 +
+`.from` 返回匹配的开始位置 +
+`.to` 返回匹配的结束位置 +
+
+TIP: 默认地空白在 regex 中是无关紧要的。 +
+如果我们想在 regex 中包含空白, 我们必须显式地这样做。 +
+regex `m/:s Perl 6/` 中的 `:s` 强制考虑空白并且不会被删除。
+二选一, 我们能把 regex 写为 `m/Perl\s6/` 并使用 `\s` 占位符。
+如果 regex 中包含的空白不止一个, 使用 `:s` 比使用 `\s` 更高效。
+
+
+
+=== 例子
+
+让我们检查一个邮件是否合法。 +
+我们假设一个合法的电子邮件地址的形式如下: +
+first name [dot] last name [at] company [dot] (com/org/net)
+
+WARNING:  这个例子中用于电子邮件检测的 regex 不是很准确。 +
+它的核心意图是用来解释 Perl 6 中的 regex 的功能的。 +
+不要在生产中原样使用它。
+
+[source,perl6]
+.Script
+----
+my $email = 'john.doe@perl6.org';
+my $regex = / <:L>+\.<:L>+\@<:L+:N>+\.<:L>+ /;
+
+if $email ~~ $regex {
+  say $/ ~ " is a valid email";
+} else {
+  say "This is not a valid email";
+}
+----
+
+.输出
+
+`john.doe@perl6.org is a valid email`
+
+.解释
+
+`<:L>`  匹配单个字符 +
+`<:L>+` 匹配单个字符或更多字符 +
+`\.`  匹配单个点号字符 +
+`\@`  匹配单个  [at] 符号 +
+`<:L+:N>` 匹配一个字母和数字 +
+`<:L+:N>+` 匹配一个或多个字母和数字 +
+
+其中的 regex 可以分解成如下:
+
+* *first name* `<:L>+`
+
+* *[dot]* `\.`
+
+* *last name* `<:L>+`
+
+* *[at]* `\@`
+
+* *company name* `<:L+:N>+`
+
+* *[dot]* `\.`
+
+* *com/org/net* `<:L>+`
+
+[source,perl6]
+.可选地, 一个 regex 可以被分解成多个具名 regexes。
+----
+my $email = 'john.doe@perl6.org';
+my regex many-letters { <:L>+ };
+my regex dot { \. };
+my regex at { \@ };
+my regex many-letters-numbers { <:L+:N>+ };
+
+if $email ~~ / <many-letters> <dot> <many-letters> <at> <many-letters-numbers> <dot> <many-letters> / {
+  say $/ ~ " is a valid email";
+} else {
+  say "This is not a valid email";
+}
+----
+
+具名 regex 是使用 `my regex regex-name { regex definition }` 定义的。 +
+具名 regex 可以使用 `<regex-name>` 来调用。
+
+NOTE: 更多关于 regexes 的东西, 查看 http://doc.perl6.org/language/regexes
+
+== Perl 6 模块
+Perl 6是通用编程语言。 它可以用于处理众多任务，包括：
+文本处理，图形，网络，数据库，网络协议等。
+
+可重用性是一个非常重要的概念，程序员不必在每次他们想要执行新任务时重新发明轮子。
+
+Perl 6 允许创建和重新分发 *modules*。 每个模块是一组封装的功能，可以在安装后重复使用。
+
+_Panda_ 是 Rakudo Star 中自带的模块管理工具。
+
+要安装指定的模块, 在终端中键入如下命令:
+
+`panda install "module name"`
+
+NOTE: Perl 6 的模块目录可以在 https://modules.perl6.org/ 中找到。
+
+=== 使用模块
+
+MD5 是一个关于密码的散列函数，它产生一个128位的散列值。 +
+MD5 有多种加密存储在数据库中的口令的应用程序。
+当新用户注册时，其证书并不存储为纯文本，而是 _哈希_。
+这样做的理由是，如果该数据库被破解，攻击者将不能够知道口令是什么。
+
+比方说，你需要一个生成密码的MD5哈希以存储在数据库中备用的脚本。
+
+幸运的是， Perl 6 已经有一个能实现 MD5 算法的模块。我们来安装它: +
+`panda install Digest::MD5`
+
+现在运行下面的脚本:
+[source,perl6]
+----
+use Digest::MD5;
+my $password = "password123";
+my $hashed-password = Digest::MD5.new.md5_hex($password);
+
+say $hashed-password;
+----
+
+为了运行创建哈希的 `md5_hex()` 函数, 我们需要加载需要的模块。 +
+`use` 关键字用于在脚本中加载模块。
+
+WARNING: 实际上，MD5 哈希是不够的，因为它容易进行字典攻击。 +
+它应该加盐。link:https://en.wikipedia.org/wiki/Salt_(cryptography)[https://en.wikipedia.org/wiki/Salt_(cryptography)].
+
+== Unicode
+
+Unicode 是编码并表现文本的标准, 它满足了世界上的大部分系统。 +
+UTF-8 是能够以Unicode编码所有可能的字符或代码点的字符编码。
+
+字符的定义是通过: +
+
+*字素*: 可见的表示 +
+*代码点*: 赋值给字符的数字
+
+=== 使用 Unicode
+
+.让我们看一下使用 Unicode 能输出什么
+[source,perl6]
+----
+say "a";
+say "\x0061";
+say "\c[LATIN SMALL LETTER A]";
+----
+
+上面 3 行展示了构建字符的不同方法:
+
+. 直接写出字符(字素)
+
+. 使用 `\x` 和代码点
+
+. 使用 `\c` 和代码点名字
+
+.现在我们来输出笑脸
+[source,perl6]
+----
+say "☺";
+say "\x263a";
+say "\c[WHITE SMILING FACE]";
+----
+
+.组合两个代码点的另外一个例子
+[source,perl6]
+----
+say "á";
+say "\x00e1";
+say "\x0061\x0301";
+say "\c[LATIN SMALL LETTER A WITH ACUTE]";
+----
+
+字母 `á` 可以被写为:
+
+* 使用它的唯一代码点 `\x00e1`
+
+* 或作为 `a` 和 重音符号 `\x0061\x0301` 代码点的组合
+
+.有些方法可以使用
+[source,perl6]
+----
+say "á".NFC;
+say "á".NFD;
+say "á".uniname;
+----
+
+.`输出`
+----
+NFC:0x<00e1>
+NFD:0x<0061 0301>
+LATIN SMALL LETTER A WITH ACUTE
+----
+
+`NFC` 返回唯一的代码点。 +
+`NFD` 分解(decompose)那个字符并返回每部分的代码点。 +
+`uniname` 返回代码点的名字。
+
+.Unicode 字符可以用作标识符:
+[source,perl6]
+----
+my $Δ = 1;
+$Δ++;
+say $Δ;
+----
+
+.Unicode 可以用作做算术:
+[source,perl6]
+----
+my $var = 2 + ⅒;
+say $var;
+----
+
+== 并行、并发和异步
+
+=== 并行
+
+在正常情况下, 程序中的所有任务都是相继地运行的。 +
+这可能不是个事儿除非你正尝试去做的东西需要耗费很多时间。
+
+很自然地说, Perl 6 拥有能让你并行地运行东西的功能。 +
+在这个阶段, 注意并行可以是下面两个东西之一是很重要的:
+
+* *任务并行化*: 两个(或更多)独立的表达式并行地运行。
+
+* *数据并行化*: 单个表达式并行地迭代列表中的元素。
+
+让我们从后者开始。
+
+==== 数据并行化
+[source,perl6]
+----
+my @array = (0..50000);                     # Array population
+my @result = @array.map({ is-prime $_ });   # call is-prime for each array element
+say now - INIT now;                         # Output the time it took for the script to complete
+----
+
+.考虑上面的例子:
+
+我们只做一个操作 `@array.map({is-prime $_})`。 +
+`is-prime` 子例程相继被每个数组元素所调用: +
+`is-prime @array[0]` 然后是 `is-prime @array[1]` 然后是 `is-prime @array[2]` 等等。
+
+.幸运的是, 我们能同时在多个数组元素身上调用 `is-prime` 函数:
+[source,perl6]
+----
+my @array = (0..50000);                         # Array population
+my @result = @array.race.map({ is-prime $_ });  # call is-prime for each array element
+say now - INIT now;                             # Output the time it took to complete
+----
+
+注意表达式中使用的 `race`。这个方法会使数组元素能够并行地迭代。
+
+运行两个例子(使用和不使用 `race`)运行之后, 比较两个脚本运行结束所花费的时间。
+
+[TIP]
+====
+`race` 不会保存元素的顺序。如果你想那样做, 使用 `hyper` 代替。
+
+[source,perl6]
+.race
+----
+my @array = (1..1000);
+my @result = @array.race.map( {$_ + 1} );
+@result».say;
+----
+
+[source,perl6]
+.hyper
+----
+my @array = (1..1000);
+my @result = @array.hyper.map( {$_ + 1} );
+@result».say;
+----
+
+如果你俩个脚本都运行了, 你应该注意到一个排序了, 一个没有排序。
+
+==== 
+
+==== 任务并行化
+[source,perl6]
+----
+my @array1 = (0..49999);
+my @array2 = (2..50001);
+
+my @result1 = @array1.map( {is-prime($_ + 1)} );
+my @result2 = @array2.map( {is-prime($_ - 1)} );
+
+say @result1 == @result2;
+
+say now - INIT now;
+----
+
+.考虑上面的例子:
+
+. 我们定义了 2 个数组
+
+. 对每个数组应用不同的操作并保存结果
+
+. 并检查两个结果是否相同
+
+该脚本等到 `@array1.map( {is-prime($_ +1)} )` 完成 +
+然后计算 `@array1.map( {is-prime($_ +1)} )`。
+
+应用到每个数组的俩个操作彼此间没有依赖。
+
+.为什么不并行地执行呢?
+[source,perl6]
+----
+my @array1 = (0..49999);
+my @array2 = (2..50001);
+
+my $promise1 = start @array1.map( {$_ + 1} );
+my $promise2 = start @array2.map( {$_ - 1} );
+
+my @result1 = await $promise1;
+my @result2 = await $promise2;
+
+say @result1 == @result2;
+
+say now - INIT now;
+----
+
+.解释
+
+`start` 方法计算它后面的代码并返回 *promise 类型的对象* 或 *promise*。 +
+如果代码被正确地求值, 那么 _promise_ 会被 *保留*(kept)。 +
+如果代码抛出异常, 那么 _promise_ 会被 *破坏*(broken)。
+
+`await` 子例程等待一个 *promise*。 +
+如果那个 promise 是被 *保留* 的, await 会获取到返回值。 +
+如果那个 promise 是被 *破坏* 的, await 会获取到抛出异常。
+
+检查每个脚本完成所花费的时间。
+
+WARNING: 并行总是添加线程开销。如果开销抵消不了运算速度的增长，那么该脚本会显得较慢。 +
+这就是为什么，在很简单的脚本中使用 `race`，`hyper`，`start` 和 `await` 实际上可以使它们慢下来。
+
+=== 并发和异步
+
+NOTE: 关于并发和异步编程的更多信息, 请查看  http://doc.perl6.org/language/concurrency
+
+== 社区
+
+* link:irc://irc.freenode.net/#perl6[#perl6] IRC 频道. 很多讨论发生在频道中。你可以到 http://perl6.org/community/irc 进行任何询问。
+
+* link:https://p6weekly.wordpress.com[p6weekly] Perl 6 周边的变化和每周概述。
+
+* link:http://pl6anet.org[pl6anet] 博客聚合器. 敬请阅读专注于 Perl 6 的博客文章。
+
+* link:https://www.reddit.com/r/perl6/[/r/perl6] 订阅 Perl 6 子版本。
