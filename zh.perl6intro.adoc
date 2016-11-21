@@ -1,8 +1,7 @@
 = Perl 6 入门
+Naoum Hankache <naoum@hankache.com>; ohmycloud <http://ohmycloud.github.io>; wenjie1991 <https://github.com/wenjie1991>
 :description: Perl 6 入门
-:Author: Naoum Hankache; ohmycloud <http://ohmycloud.github.io>; wenjie1991 <https://github.com/wenjie1991>
 :keywords: perl6, perl 6, 入门, perl6intro, perl 6 入门, perl 6 指南, perl 6 intro
-:Email: ohmycloudy@gmail.com
 :Revision: 1.0
 :icons: font
 :source-highlighter: pygments
