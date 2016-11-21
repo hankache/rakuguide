@@ -43,6 +43,7 @@ link:https://github.com/hankache/perl6intro[Github].
 
 .Translations
 * Bulgarian: http://bg.perl6intro.com
+* Chinese: http://zh.perl6intro.com
 * Dutch: http://nl.perl6intro.com
 * French: http://fr.perl6intro.com
 * German: http://de.perl6intro.com
