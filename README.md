@@ -61,6 +61,6 @@ All feedback is welcomed:
 * Portuguese Translation: [Breno G. de Oliveira](https://github.com/garu)
 * Dutch Translation: [Elizabeth Mattijsen](https://github.com/lizmat)
 * Bulgarian Translation: [Красимир Беров](https://github.com/kberov)
-* Chinese Translation: [wenjie1991&ohmycloud](https://ohmycloud.github.io)
+* Chinese Translation: [wenjie1991](https://github.com/wenjie1991) and [ohmycloud](https://ohmycloud.github.io)
 
 For the full list of contributors: https://github.com/hankache/perl6intro/graphs/contributors
