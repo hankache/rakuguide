@@ -303,7 +303,7 @@ The below table lists the most commonly used operators.
 
 <| 6 %% 3 <| True
 
-| gcd | Infix | Greatest common denominator | 6 gcd 9 | 3
+| gcd | Infix | Greatest common divisor | 6 gcd 9 | 3
 
 | lcm | Infix | Least common multiple | 6 lcm 9 | 18
 
