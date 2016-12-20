@@ -66,8 +66,8 @@ Perl 6 is multi-paradigmatic. It supports Procedural, Object Oriented, and Funct
 Implementations that pass the specification test suite are considered Perl 6.
 * *Rakudo*: Is a compiler for Perl 6.
 * *Rakudobrew*: Is an installation manager for Rakudo.
-* *Panda*: Is a Perl 6 module installer.
-* *Rakudo Star*: Is a bundle that includes Rakudo, Panda, a collection of Perl 6 modules, and documentation.
+* *Zef*: Is a Perl 6 module installer.
+* *Rakudo Star*: Is a bundle that includes Rakudo, Zef, a collection of Perl 6 modules, and documentation.
 
 === Installing Perl 6
 .Linux
@@ -75,9 +75,9 @@ Implementations that pass the specification test suite are considered Perl 6.
 
 . Install Rakudo: Type the following command in the terminal `rakudobrew build moar`
 
-. Install Panda: Type the following command in the terminal `rakudobrew build panda`
+. Install Zef: Type the following command in the terminal `rakudobrew build zef`
 
-. Install Task::Star a meta-package for modules included in Rakudo Star: Type the following command in the terminal `panda install Task::Star`
+. Install Task::Star a meta-package for modules included in Rakudo Star: Type the following command in the terminal `zef install Task::Star`
 
 For other options, go to http://rakudo.org/how-to-get-rakudo/#Installing-Rakudo-Star-Linux
 
@@ -128,9 +128,9 @@ Rakudo Star bundles a line editor that helps you get the most out of the REPL.
 If you installed plain Rakudo instead of Rakudo Star then you probably don't have line editing features enabled (using the up and down arrows for history, left and right to edit input, TAB completion).
 Consider running the following command and you shall be all set:
 
-* `panda install Linenoise` would work on Windows, Linux and OSX
+* `zef install Linenoise` would work on Windows, Linux and OSX
 
-* `panda install Readline` if you are on Linux and prefer the _Readline_ library
+* `zef install Readline` if you are on Linux and prefer the _Readline_ library
 --
 
 === Editors
@@ -2755,11 +2755,11 @@ Reusability is a very important concept whereby programmers don't have to reinve
 
 Perl 6 allows the creation and redistribution of *modules*. Each module is a packaged set of functionality that can be reused once installed.
 
-_Panda_ is a module management tool that comes with Rakudo Star.
+_Zef_ is a module management tool that comes with Rakudo Star.
 
 To install a specific module, type the below command in your terminal:
 
-`panda install "module name"`
+`zef install "module name"`
 
 NOTE: The Perl 6 modules directory can be found on: https://modules.perl6.org/
 
@@ -2772,7 +2772,7 @@ The rationale behind this is that if the DB gets compromised, the attacker will 
 Let's say you need a script that generates the MD5 hash of a password in preparation for storing it in the DB.
 
 Luckily there's a Perl 6 module that already implemented the MD5 algorithm. Let's install it: +
-`panda install Digest::MD5`
+`zef install Digest::MD5`
 
 Now run the below script:
 [source,perl6]
