@@ -36,21 +36,17 @@ To produce **perl6intro.html**, run:
 
     $ asciidoctor perl6intro.adoc
 
-### Translations
-If you wish to translate this document, always use the english version as your starting point.
-If you are starting a new translation create a new file. For example, the French translation will be in fr.perl6intro.adoc, the Deutsch translation in de.perl6intro.adoc  
-If you want to modify a translated version, consider modifying the english version first. It is important that all translations be kept in sync.
-
-### License
-Creative Commons Attribution-ShareAlike 4.0 International License.  
-To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.
-
 ### Feedback
 All feedback is welcomed:
 * Corrections
 * Suggestions
 * Additions
 * Translations
+
+### Translations
+If you wish to translate this document, always use the english version as your starting point.
+If you are starting a new translation create a new file. For example, the French translation will be in fr.perl6intro.adoc, the Deutsch translation in de.perl6intro.adoc  
+If you want to modify a translated version, consider modifying the english version first. It is important that all translations be kept in sync.
 
 ### Contributing
 Kindly prefix your commit title with the language it is targeting. For example, all commits targeting the English version would have a title that starts with [EN]. All commits targeting the Spanish translation have a title that starts with [ES].
@@ -67,3 +63,7 @@ Kindly prefix your commit title with the language it is targeting. For example, 
 * Chinese Translation: [wenjie1991](https://github.com/wenjie1991) and [ohmycloud](https://ohmycloud.github.io)
 
 For the full list of contributors: https://github.com/hankache/perl6intro/graphs/contributors
+
+### License
+Creative Commons Attribution-ShareAlike 4.0 International License.  
+To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.
