@@ -52,6 +52,9 @@ All feedback is welcomed:
 * Additions
 * Translations
 
+### Contributing
+Kindly prefix your commit title with the language it is targeting. For example, all commits targeting the English version would have a title that starts with [EN]. All commits targeting the Spanish translation have a title that starts with [ES].
+
 ### Authors
 * Original English version: [Naoum Hankache](https://github.com/hankache)
 * French Translation: [Romuald Nuguet](https://github.com/kolikov)
