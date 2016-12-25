@@ -59,8 +59,8 @@ Perl6はマルチパラダイム言語です。手続き型、オブジェクト
 仕様に基づいたテストスイートを通るような実装はPerl6と考えられます。
 * *Rakudo* : はPerl6のためのコンパイラです。
 * *Rakudobrew* : はRakudoのためのインストール管理ツールです。
-* *Panda* : はPerl6のモジュールのインストーラーです。
-* *Rakudo Star*: はRakudo, Panda, Perl6のモジュールのコレクション, 文書を含んだバンドルソフトです。
+* *Zef* : はPerl6のモジュールのインストーラーです。
+* *Rakudo Star*: はRakudo, Zef, Perl6のモジュールのコレクション, 文書を含んだバンドルソフトです。
 
 === Perl6のインストール
 .Linux
@@ -68,9 +68,9 @@ Perl6はマルチパラダイム言語です。手続き型、オブジェクト
 
 . Rakudoのインストール: 次のコマンドをターミナルで打ってください `rakudobrew build moar`
 
-. Pandaのインストール: 次のコマンドをターミナルで打ってください `rakudobrew build panda`
+. Zefのインストール: 次のコマンドをターミナルで打ってください `rakudobrew build zef`
 
-. Rakudo Starに含まれるモジュールのためのメタパッケージであるTask::Starのインストール: 次のコマンドをターミナルで打ってください `panda install Task::Star`
+. Rakudo Starに含まれるモジュールのためのメタパッケージであるTask::Starのインストール: 次のコマンドをターミナルで打ってください `zef install Task::Star`
 
 他のインストール方法を知りたければ次のリンクを参照してください。 http://rakudo.org/how-to-get-rakudo/#Installing-Rakudo-Star-Linux
 
@@ -118,9 +118,9 @@ Rakudo StarはREPLを使い倒すためのラインエディタをバンドル�
 もしRakudo Starではなく無印のRakudoをインストールしたのなら、行編集機能を有効化(履歴閲覧のための上矢印キーと下矢印キーの使用、入力編集のための左矢印キーと右矢印キーの使用、タブによる補完機能)していないはずです。
 次のコマンドを実行してこれらの機能を有効化することを考えてみてください。:
 
-* `panda install Linenoise` Windows/Linux/OSXで動きます
+* `zef install Linenoise` Windows/Linux/OSXで動きます
 
-* `panda install Readline` もしLinux環境で _Readline_ ライブラリを使いたいのであれば
+* `zef install Readline` もしLinux環境で _Readline_ ライブラリを使いたいのであれば
 --
 
 === エディタ
@@ -2751,11 +2751,11 @@ Perl6は汎用プログラミング言語です。下記を含む多数のタス
 
 Perl6はでは *モジュール* の作成と再配布ができます。それぞれのモジュールはインストールされれば再利用できる機能のパッケージです。
 
-_Panda_ はRakudo Starに付属しているモジュール管理ツールです。
+_Zef_ はRakudo Starに付属しているモジュール管理ツールです。
 
 特定のモジュールをインストールするには、次のコマンドをターミナルで打ってください:
 
-`panda install "モジュールの名前"`
+`zef install "モジュールの名前"`
 
 NOTE: Perl6のモジュールの一覧を見るには次のURLを参照してください: https://modules.perl6.org/
 
@@ -2768,7 +2768,7 @@ MD5による、データベースに格納されているパスワードの暗�
 DBにパスワードを格納するのに備えて、そのパスワードのMD5ハッシュを生成するスクリプトが必要だとしましょう。
 
 幸運なことに、MD5アルゴリズムを実装したPerl6モジュールがすでにあります。インストールしましょう: +
-`panda install Digest::MD5`
+`zef install Digest::MD5`
 
 では、次のスクリプトを実行してください:
 [source,perl6]
