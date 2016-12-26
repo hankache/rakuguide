@@ -449,7 +449,7 @@ my $age = 99;
 say $age;
 ----
 
-Depending on the type, different operations can be performed.
+A specific set of operations can be performed on a scalar, depending on the value it holds.
 
 [source,perl6]
 .String
@@ -466,7 +466,7 @@ JOHN DOE
 eoD nhoJ
 ----
 
-NOTE: For the complete list of available String methods, see https://docs.perl6.org/type/Str
+NOTE: For the complete list of methods applicable to Strings, see https://docs.perl6.org/type/Str
 
 [source,perl6]
 .Integer
@@ -479,7 +479,7 @@ say $age.is-prime;
 True
 ----
 
-NOTE: For the complete list of available Integer methods, see https://docs.perl6.org/type/Int
+NOTE: For the complete list of methods applicable to Integers, see https://docs.perl6.org/type/Int
 
 [source,perl6]
 .Rational Number
@@ -496,7 +496,7 @@ say $age.nude;
 (23 10)
 ----
 
-NOTE: For the complete list of available Rational Number methods, see https://docs.perl6.org/type/Rat
+NOTE: For the complete list of methods applicable to Rational Numbers, see https://docs.perl6.org/type/Rat
 
 === Arrays
 Arrays are lists containing multiple values.
@@ -507,7 +507,7 @@ my @animals = 'camel','llama','owl';
 say @animals;
 ----
 
-Many operations can be performed with arrays:
+Many operations can be performed on arrays as shown in the below example:
 
 TIP: The tilde `~` is used for string concatenation.
 
@@ -725,7 +725,7 @@ say %country-codes;
 say %country-codes.WHAT;
 ----
 
-Below is a list of the most commonly used types:
+.Below is a list of the most commonly used types:
 You will most probably never use the first two but they are listed for informational purpose.
 
 [cols="^.^1m,.^3m,.^2m,.^1m, options="header"]
@@ -1053,7 +1053,7 @@ given $var {
 
 After a successful match, the matching process will stop.
 
-`proceed` will instruct Perl 6 to continue matching even after a successful match.
+Alternatively `proceed` will instruct Perl 6 to continue matching even after a successful match.
 [source,perl6]
 ----
 my $var = 42;
@@ -1413,7 +1413,7 @@ Functions/subroutines are first-class citizens:
 * They can be assigned to variables
 
 A great example is the `map` function. +
-`map` is a *higher order function*, it cam accept another function as an argument.
+`map` is a _higher order function_, it can accept another function as an argument.
 
 [source,perl6]
 .Script
@@ -1525,7 +1525,7 @@ say @final-array-v2;
 
 .Explanation
 The backward feed is like the forward feed, but in reverse. +
-The flow of the method calls is bottom-up -- final step, preceded by previous steps, in order.
+The flow of the method calls is bottom-up -- from final to first step.
 
 === Hyper operator
 The *hyper operator* `>>.` will call a method on all elements of a list and return a list of the results.
@@ -1699,7 +1699,7 @@ An *object* is a set of variables and subroutines bundled together. +
 The variables are called *attributes* and the subroutines are called *methods*. +
 Attributes define the *state* and methods define the *behavior* of an object.
 
-A *class* is the template for creating *objects*. +
+A *class* is a template for creating *objects*. +
 
 In order to understand the relationship consider the below example:
 
@@ -1791,7 +1791,7 @@ my $john = Human.new(name => 'John', age => 23, sex => 'M', nationality => 'Amer
 say $john;
 ----
 Append to the script the following statement: `say $john.age;` +
-It will return this error: `Method 'age' not found for invocant of class 'Human'` +
+It will return this error: `Method 'age' not found for invocant of class 'Human'`
 because `$!age` is private and can only be used within the object.
 Trying to access it outside the object will return an error.
 
@@ -1868,7 +1868,7 @@ _object_ *.* _method_ or as in the above example: `$john.assess-eligibility`
 Within the definition of a method, if we need to reference the object itself to call another method we use the `self` keyword. +
 
 Within the definition of a method, if we need to reference an attribute we use `!` even if it was defined with `.` +
-What the `.` twigil does is declare an attribute with `!` and automate the creation of an accessor.
+The rationale being that what the `.` twigil does is declare an attribute with `!` and automate the creation of an accessor.
 
 In the above example, `if self.age < 21` and `if $!age < 21` would have the same effect, although they are technically different:
 
@@ -2286,7 +2286,7 @@ Introspection is facilitated by:
 
 * `.WHAT` -- returns the class from which the object was created
 
-* `.^attributes` -- returns all the attributes for the object
+* `.^attributes` -- returns all the attributes of the object
 
 * `.^methods` -- returns all the methods that can be called on the object
 
