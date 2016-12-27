@@ -54,8 +54,8 @@ Perl 6 es multiparadigma y soporta programación Procedimental, Orientada a Obje
 Las implementaciones que pasan el banco de pruebas de la especificación se consideran Perl 6.
 * *Rakudo*: Es un compilador para Perl 6.
 * *Rakudobrew*: Es un script de Perl5 para instalar Rakudo desde su código fuente.
-* *Panda*: Es una herramienta para instalar módulos de Perl 6.
-* *Rakudo Star*: Es un paquete que incluye Rakudo, Panda, una colección de módulos de Perl 6 y documentación.
+* *Zef*: Es un instalador de módulos de Perl 6.
+* *Rakudo Star*: Es un paquete que incluye Rakudo, Zef, una colección de módulos de Perl 6 y documentación.
 
 === Instalación de Perl 6
 .Linux
@@ -63,9 +63,9 @@ Las implementaciones que pasan el banco de pruebas de la especificación se cons
 
 . Instalación de Rakudo: En el terminal, introduce el siguiente comando `rakudobrew build moar`
 
-. Instalación de Panda: En el terminal, introduce el siguiente comando `rakudobrew build panda`
+. Instalación de Zef: En el terminal, introduce el siguiente comando `rakudobrew build zef`
 
-. Instalación de los módulos incluidos en la distribución Rakudo Star Perl6 `panda install Task::Star`
+. Instalación de los módulos incluidos en la distribución Rakudo Star Perl6 `zef install Task::Star`
 
 .OSX
 
@@ -101,16 +101,16 @@ Rakudo Star incorpora un editor de líneas con más funcionalidades para REPL.
 
 Si instalaste Rakudo en lugar de Rakudo Star es probable que no tengas estas funcionalidades (historial con flechas verticales, edición de la línea con flechas horizontales, autocompletar con TAB, etc.). Para instalar estas funcionalidades utiliza estos comandos:
 
-* `panda install Linenoise` debe funcionar en Windows, Linux y OSX
+* `zef install Linenoise` debe funcionar en Windows, Linux y OSX
 
-* `panda install Readline` si tienes Linux y prefieres la librería _Readline_
+* `zef install Readline` si tienes Linux y prefieres la librería _Readline_
 --
 
 === Editores
 Como casi siempre vamos a guardar nuestros programas de Perl 6 en archivos, necesitamos un editor de textos decente que reconozca la sintaxis de Perl 6.
 
 Yo recomiendo y utilizo https://atom.io/[Atom]. Es un editor de textos moderno que reconoce y visualiza bien la sintaxis de Perl 6.
-https://atom.io/packages/language-perl6fe[Perl6-fe] es un paquete de Atom con una visualización alternativa de la sintaxis de Perl 6. Deriva del paquete original, tiene muchas correcciones y más funcionalidades.
+https://atom.io/packages/language-perl6[Perl 6 FE] es un paquete de Atom con una visualización alternativa de la sintaxis de Perl 6. Deriva del paquete original, tiene muchas correcciones y más funcionalidades.
 
 En la comunidad también se utiliza http://www.vim.org/[Vim], https://www.gnu.org/software/emacs/[Emacs] o http://padre.perlide.org/[Padre].
 
@@ -275,7 +275,7 @@ La siguiente tabla muestra los operadores más utilizados.
 
 <| 6 %% 3 <| Verdadero
 
-| gcd | Infijo | Máximo común denominador | 6 gcd 9 | 3
+| gcd | Infijo | Máximo común divisor | 6 gcd 9 | 3
 
 | lcm | Infijo | Mínimo común múltiplo | 6 lcm 9 | 18
 
@@ -411,16 +411,16 @@ Un escalar contiene un valor o referencia.
 
 [source,perl6]
 ----
-#Texto
+# Texto
 my $nombre = 'Juan De Dios';
 say $nombre;
 
-#Entero
+# Entero
 my $edad = 99;
 say $edad;
 ----
 
-Dependiendo del valor contenido, un escalar puede realizar una serie de operaciones concretas.
+Dependiendo del tipo se pueden realizar una serie de operaciones concretas.
 
 [source,perl6]
 .Texto
@@ -437,7 +437,7 @@ JUAN DE DIOS
 soiD eD nauJ
 ----
 
-NOTE: Consulta https://docs.perl6.org/type/Str para ver una lista completa de métodos de texto.
+NOTE: Consulta https://docs.perl6.org/type/Str para ver la lista completa de métodos disponibles de texto.
 
 [source,perl6]
 .Enteros
@@ -450,7 +450,7 @@ say $edad.is-prime;
 True
 ----
 
-NOTE: Consulta https://docs.perl6.org/type/Int para ver una lista completa de los métodos disponibles para enteros.
+NOTE: Consulta https://docs.perl6.org/type/Int para ver la lista completa de métodos disponibles de enteros.
 
 [source,perl6]
 .Números Racionales
@@ -467,7 +467,7 @@ say $edad.nude;
 (23 10)
 ----
 
-NOTE: Consulta https://docs.perl6.org/type/Rat para ver una lista completa de los métodos disponibles para números racionales.
+NOTE: Consulta https://docs.perl6.org/type/Rat para ver la lista completa de métodos disponibles de números racionales.
 
 === Arrays
 Los Arrays son listas que contienen varios valores.
@@ -478,7 +478,7 @@ my @animales = 'camello','llama','búho';
 say @animales;
 ----
 
-Los arrays permiten muchas operaciones, como las siguientes:
+Se pueden realizar muchas operaciones con arrays:
 
 TIP: La tilde `~` se utiliza para concatenar texto.
 
@@ -694,7 +694,7 @@ say %código-país;
 say %código-país.WHAT;
 ----
 
-.A continuación tienes una lista con los tipos más comunes:
+A continuación tienes una lista con los tipos más comunes:
 Es posible que nunca utilices los dos primeros, pero aparecen en la siguiente lista para que sepas que existen.
 
 [cols="^.^1m,.^3m,.^2m,.^1m, options="header"]
@@ -747,7 +747,7 @@ Asigna `Nil` a una variable para eliminar su valor.
 === Alcance
 Es necesario declarar una variable antes de utilizarla.
 
-Perl 6 dispone de varias formas de declaración, y en los siguientes ejemplos utilizaremos `my`.
+Perl 6 dispone de varias formas de declaración, y de momento estamos utilizando `my`.
 
 [source,perl6]
 my $var=1;
@@ -763,9 +763,9 @@ En caso de no existir bloque, la variable estará disponible en el script entero
 ----
 {
   my Str $var = 'Texto';
-  say $var; #accesible
+  say $var; # accesible
 }
-say $var; #no accesible, da un error
+say $var; # no accesible, devuelve un error
 ----
 
 Como la variable solo es accesible dentro del bloque donde está definida, el mismo nombre de variable puede utilizarse en cualquier otro bloque.
@@ -852,7 +852,7 @@ NOTE: En https://docs.perl6.org/language/variables tienes más información sobr
 
 Es importante diferenciar entre funciones y mutadores. +
 
-Las funciones no cambian el estado inicial del objeto donde se aplica. +
+Las funciones no cambian el estado del objeto donde se aplica. +
 
 Los mutadores modifican el estado del objeto.
 
@@ -891,10 +891,10 @@ say @números;      #4
 Puedes hacer que una función se comporte como un mutador utilizando `.=` en lugar de `.` (#4) (línea 9 del script)
 
 == Bucles y condiciones
-Perl 6 tiene multitud de constructores de bucles y condiciones.
+Perl 6 tiene muchos constructores de bucles y condiciones.
 
 === if
-El código se ejecuta solo si se cumple la condición, o en otras palabras cuando la expresión se evalúa como `True`.
+El código se ejecuta solo si se cumple una condición, por ej., una expresión se evalúa como `True`.
 
 [source,perl6]
 ----
@@ -913,14 +913,14 @@ my $edad = 19;
 say 'Bienvenido' if $edad > 18;
 ----
 
-Si la condición no se cumple, podemos dar alternativas mediante bloques de ejecución utilizando:
+Si la condición no se cumple, podemos especificar bloques alternativos de ejecución utilizando:
 
 * `else`
 * `elsif`
 
 [source,perl6]
 ----
-#ejecuta el mismo código para distintos valores de la variable
+# ejecuta el mismo código para distintos valores de la variable
 my $número-de-asientos = 9;
 
 if $número-de-asientos <= 5 {
@@ -1001,7 +1001,7 @@ for @array -> $array-item {
 }
 ----
 
-Observa que en la iteración hemos creado la variable `$array-item` para realizar la operación `*100` en cada elemento del array.
+Observa que en la iteración hemos creado la variable `$array-item` para realizar después la operación `*100` en cada elemento del array.
 
 === given
 
@@ -1021,7 +1021,7 @@ given $var {
 
 Cuando se produce la coincidencia no se evalúan las demás.
 
-Si utilizamos `proceed` continúa la evaluación aunque se produzca la coincidencia.
+`proceed` continúa la evaluación aunque se produzca la coincidencia.
 
 [source,perl6]
 ----
@@ -1070,7 +1070,7 @@ escribirá dos líneas separadas.
 ==== print
 Por otro lado `print` es como `say` pero no agrega la línea nueva.
 
-Prueba a utilizar `say` en lugar de `print` y compara los resultados.
+Prueba a utilizar `say` en lugar de `print` y compara ambos resultados.
 
 ==== get
 Para capturar la entrada desde el terminal utiliza `get`.
@@ -1085,7 +1085,8 @@ $nombre = get;
 say "¿Que tal $nombre?, bienvenido a Perl 6";
 ----
 
-Este código hace que el terminal espere la introducción de tu nombre y pulses [Enter] para después darte la bienvenida.
+Este código hace que el terminal espere la introducción de tu nombre. Hazlo y después pulsa [Enter].
+Como resultado te dará la bienvenida.
 
 ==== prompt
 `prompt` es una combinación entre `print` y `get`.
@@ -1163,15 +1164,15 @@ El código anterior crea un nuevo archivo llamado _datos-nuevos.txt_ conteniendo
 
 === Manipulando archivos y carpetas
 
-En un ejemplo anterior ya hemos visto que Perl 6 puede mostrar el contenido de una carpeta (mediante `ls`) sin utilizar la shell.
+Perl 6 puede mostrar el contenido de una carpeta sin recurrir a los comandos de la shell (utilizando `ls` por ejemplo).
 
 [source,perl6]
 ----
-say dir;               #Muestra archivos y carpetas de la carpeta actual
-say dir "/Documentos"; #Muestra archivos y carpetas de la carpeta indicada
+say dir;               # Muestra archivos y carpetas de la carpeta actual
+say dir "/Documentos"; # Muestra archivos y carpetas de la carpeta indicada
 ----
 
-Además, puedes crear carpetas nuevas y eliminarlas.
+Además, puedes crear y eliminar carpetas.
 
 [source,perl6]
 ----
@@ -2696,11 +2697,11 @@ La reutilización es un concepto muy importante para que los programadores no te
 
 Perl 6 permite la creación y redistribución de *módulos*. Cada módulo es un paquete de funcionalidades que, una vez instalado, se puede reutilizar.
 
-_Panda_ es el gestor de módulos que incorpora Rakudo.
+_Zef_ es el gestor de módulos que incorpora Rakudo.
 
 Para instalar un módulo concreto, utiliza el siguiente comando en el terminal:
 
-`panda install "nombre del módulo"`
+`zef install "nombre del módulo"`
 
 NOTE: Puedes encontrar el directorio de módulos de Perl 6 en: https://modules.perl6.org/
 
@@ -2711,7 +2712,7 @@ Cuando se registra un nuevo usuario sus credenciales no se guardan en texto plan
 Supongamos que necesitas un script que genere el hash MD5 de una contraseña para después guardarlo en la base de datos.
 
 Por suerte existe un módulo en Perl 6 que ya implementa el algoritmo MD5. Vamos a instalarlo: +
-`panda install Digest::MD5`
+`zef install Digest::MD5`
 
 Ahora ejecutemos el siguiente script:
 [source,perl6]
