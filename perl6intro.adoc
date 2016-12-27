@@ -15,7 +15,7 @@
 
 
 This document is intended to give you a quick overview of the Perl 6 programming language.
-For those who are new to Perl 6 it should get you up and running.
+For those new to Perl 6, it should get you up and running.
 
 Some sections of this document refer to other (more complete and accurate) parts of the http://docs.perl6.org[Perl 6 documentation].
 You should read them if you need more information on a specific subject.
@@ -30,7 +30,7 @@ To view a copy of this license, visit
 * https://creativecommons.org/licenses/by-sa/4.0/.
 
 .Contribution
-If you would like to contribute to this document head over to:
+If you would like to contribute to this document, head over to:
 
 * https://github.com/hankache/perl6intro
 
@@ -92,7 +92,7 @@ Four options are available:
 .Windows
 . Download the latest installer (file with .msi extension) from http://rakudo.org/downloads/star/ +
 If your system architecture is 32-bit, download the x86 file; if it's 64-bit, download the x86_64 file.
-. After installation make sure `C:\rakudo\bin` is in the PATH
+. After installation, make sure `C:\rakudo\bin` is in the PATH
 
 .Docker
 . Get the official Docker image `docker pull rakudo-star`
@@ -226,13 +226,13 @@ Identifiers are the names given to terms when you define them.
 
 You are free to name your identifiers as you like, but it is good practice to adopt one naming convention consistently.
 
-Using meaningful names will ease your (and others) programming life.
+Using meaningful names will ease your (and other's) programming life.
 
 * `var1 = var2 * var3` is syntactically correct but its purpose is not evident.
 * `monthly-salary = daily-rate * working-days` would be a better way to name your variables.
 
 ==== Comments
-A comment is a piece of text ignored by the compiler and used as a note.
+A comment is text ignored by the compiler and used as a note.
 
 Comments are divided into 3 types:
 
@@ -440,16 +440,16 @@ A scalar holds one value or reference.
 
 [source,perl6]
 ----
-#String
+# String
 my $name = 'John Doe';
 say $name;
 
-#Integer
+# Integer
 my $age = 99;
 say $age;
 ----
 
-A specific set of operations can be done on a scalar, depending on the value it holds.
+A specific set of operations can be performed on a scalar, depending on the value it holds.
 
 [source,perl6]
 .String
@@ -507,7 +507,7 @@ my @animals = 'camel','llama','owl';
 say @animals;
 ----
 
-Many operations can be done on arrays as shown in the below example:
+Many operations can be performed on arrays as shown in the below example:
 
 TIP: The tilde `~` is used for string concatenation.
 
@@ -555,7 +555,7 @@ The basic array can have indefinite length and thus is called auto-extending. +
 The array will accept any number of values with no restriction.
 
 In contrast, we can also create fixed-size arrays. +
-These arrays can not be accessed beyond their defined size.
+These arrays cannot be accessed beyond their defined size.
 
 To declare an array of fixed size, specify its maximum number of elements in square brackets immediately after its name:
 [source,perl6]
@@ -778,7 +778,7 @@ To clear the value of a variable, assign `Nil` to it.
 === Scoping
 Before using a variable for the first time, it needs to be declared.
 
-Several declarators are used in Perl 6, `my` is what we have been using so far in the examples above.
+Several declarators are used in Perl 6. We've been using `my`, so far.
 
 [source,perl6]
 my $var=1;
@@ -793,9 +793,9 @@ If no block is found, the variable will be available in the whole Perl 6 script.
 ----
 {
   my Str $var = 'Text';
-  say $var; #is accessible
+  say $var;   # is accessible
 }
-say $var; #is not accessible, returns an error
+say $var;   # is not accessible, returns an error
 ----
 
 Since a variable is only accessible in the block where it is defined, the same variable name can be used in another block.
@@ -872,7 +872,7 @@ say $a;
 8
 ----
 
-Binding variables, as you already remarked, is bi-directional. +
+Binding variables is bi-directional. +
 `$a := $b` and `$b := $a` have the same effect.
 
 NOTE: For more info on variables, see https://docs.perl6.org/language/variables
@@ -880,7 +880,7 @@ NOTE: For more info on variables, see https://docs.perl6.org/language/variables
 == Functions and mutators
 
 It is important to differentiate between functions and mutators. +
-Functions do not change the initial state of the object they were called on. +
+Functions do not change the state of the object they were called on. +
 Mutators modify the state of the object.
 
 [source,perl6,linenums]
@@ -907,9 +907,9 @@ say @numbers;      #4
 ----
 
 .Explanation
-`.push` is a mutator, it changes the state of the array (#1)
+`.push` is a mutator; it changes the state of the array (#1)
 
-`.sort` is a function, it returns a sorted array but doesn't modify the state of the initial array:
+`.sort` is a function; it returns a sorted array but doesn't modify the state of the initial array:
 
 * (#2) shows that it returned a sorted array.
 
@@ -918,10 +918,10 @@ say @numbers;      #4
 In order to enforce a function to act as a mutator, we use `.=` instead of `.` (#4) (Line 9 of the script)
 
 == Loops and conditions
-Perl 6 has a multitude of conditionals and looping constructs.
+Perl 6 has many conditional and looping constructs.
 
 === if
-The code runs only if the condition has been met, or in other words the expression evaluates to `True`.
+The code runs only if a condition has been met; i.e., an expression evaluates to `True`.
 
 [source,perl6]
 ----
@@ -932,7 +932,7 @@ if $age > 18 {
 }
 ----
 
-In Perl 6 we can invert the code and the condition. +
+In Perl 6, we can invert the code and the condition. +
 Even if the code and the condition have been inverted, the condition is always evaluated first.
 
 [source,perl6]
@@ -942,14 +942,14 @@ my $age = 19;
 say 'Welcome' if $age > 18;
 ----
 
-If the condition is not met, we can still specify alternative blocks for execution using:
+If the condition is not met, we can specify alternate blocks for execution by using:
 
 * `else`
 * `elsif`
 
 [source,perl6]
 ----
-#run the same code for different values of the variable
+# run the same code for different values of the variable
 my $number-of-seats = 9;
 
 if $number-of-seats <= 5 {
@@ -1004,7 +1004,7 @@ with $var {
 }
 ----
 
-If you run the code without assigning a value to the variable nothing should happen.
+If you run the code without assigning a value to the variable, nothing should happen.
 [source,perl6]
 ----
 my Int $var;
@@ -1032,7 +1032,7 @@ for @array -> $array-item {
 }
 ----
 
-Notice that we created an iteration variable `$array-item` in order to perform the operation `*100` on each array item.
+Notice that we created an iteration variable `$array-item` and then performed the operation `*100` on each array item.
 
 === given
 
@@ -1070,7 +1070,7 @@ given $var {
 
 `loop` is another way of writing a `for` loop.
 
-Actually `loop` is how `for` loops are  written in C-family programming languages.
+Actually, `loop` is how `for` loops are  written in C-family programming languages.
 
 Perl 6 belongs to the C-family languages.
 
@@ -1101,7 +1101,7 @@ will be written on 2 separate lines.
 ==== print
 `print` on the other hand behaves like `say` but doesn't add a new line.
 
-Try replacing `say` with `print` and compare both results.
+Try replacing `say` with `print` and compare the results.
 
 ==== get
 `get` is used to capture input from the terminal.
@@ -1116,7 +1116,7 @@ $name = get;
 say "Dear $name welcome to Perl 6";
 ----
 
-When the above code runs, the terminal will be waiting for you to input your name and hit [Enter].
+When the above code runs, the terminal will be waiting for you to input your name. Enter it and then hit [Enter].
 Subsequently, it will greet you.
 
 ==== prompt
@@ -1194,15 +1194,15 @@ spurt "newdatafile.txt", $newdata;
 After running the above code, a new file named _newdatafile.txt_ will be created. It will contain the new scores.
 
 === Working with files and directories
-Perl 6 can list the contents of a directory without running shell commands (using `ls`) as seen in a previous example.
+Perl 6 can list the contents of a directory without resorting to shell commands (by using `ls`, for example).
 
 [source,perl6]
 ----
-say dir;              #List files and folders in the current directory
-say dir "/Documents"; #List files and folders in the specified directory
+say dir;                # List files and folders in the current directory
+say dir "/Documents";   # List files and folders in the specified directory
 ----
 
-In addition to that you can create new directories and delete them.
+In addition, you can create and delete directories.
 
 [source,perl6]
 ----
@@ -1211,9 +1211,9 @@ rmdir "newfolder";
 ----
 
 `mkdir` creates a new directory. +
-`rmdir` delete an empty directory. Returns an error if not empty.
+`rmdir` deletes an empty directory and returns an error if not empty.
 
-You can also check if the specified path exists, if it is a file or a directory:
+You can also check if a path exists; if it is a file; or a directory:
 
 In the directory where you will be running the below script, create an empty folder `folder123` and an empty pl6 file `script123.pl6`
 
@@ -1241,7 +1241,7 @@ NOTE: For more info on I/O, see https://docs.perl6.org/type/IO
 
 == Subroutines
 === Definition
-*Subroutines* (also called *subs* or *functions*) are a means of packaging a set of functionality. +
+*Subroutines* (also called *subs* or *functions*) are a means of packaging and reusing functionality. +
 
 A subroutine definition begins with the keyword `sub`. After their definition, they can be called by their handle. +
 Check out the below example:
@@ -1255,10 +1255,10 @@ sub alien-greeting {
 alien-greeting;
 ----
 
-The previous example showcased a subroutine that  doesn't require any input.
+The previous example showcased a subroutine that doesn't require any input.
 
 === Signature
-Many subroutines would require some input in order to work. That input is provided by *arguments*.
+Subroutines can require input. That input is provided by *arguments*.
 A subroutine may define zero or more *parameters*.
 The number and type of parameters that a subroutine defines is called its *signature*.
 
@@ -1274,9 +1274,8 @@ say-hello "Paula";
 ----
 
 === Multiple dispatch
-It is possible to define multiple subroutines having the same name but different signatures.
-When the subroutine is called, the runtime environment will decide which version to use depending on the number and type of the supplied arguments.
-This type of subroutines is defined the same way as normal subs with the exception of swapping the `sub` keyword with `multi`.
+It is possible to define multiple subroutines that have the same name but different signatures.
+When the subroutine is called, the runtime environment will decide which version to use based on the number and type of supplied arguments. This type of subroutine is defined the same way as normal subs except that we use the `multi` keyword instead of `sub`.
 
 [source,perl6]
 ----
@@ -1294,7 +1293,7 @@ greet "Laura","Mrs.";
 === Default and Optional Parameters
 If a subroutine is defined to accept an argument, and we call it without providing it with the required argument, it will fail.
 
-Alternatively Perl 6 provides us the ability to define subroutines with:
+Perl 6 provides us the ability to define subroutines with:
 
 * Optional Parameters
 * Default Parameters
@@ -1311,7 +1310,7 @@ say-hello;
 say-hello("Laura");
 ----
 
-If the user doesn't supply an argument, it can default to a specific value. +
+If the user doesn't need to supply an argument, a default value can be defined. +
 This is done by assigning a value to the parameter within the subroutine definition.
 
 [source,perl6]
@@ -1324,11 +1323,12 @@ say-hello("Laura");
 ----
 
 === Returning values
-All the subroutines we saw so far *do something*, they display some text on the terminal.
+All the subroutines we've seen so far *do something* -- they display some text on the terminal.
 
-While this is perfectly normal, sometimes we do want a subroutine to *return* some kind of value that we can reuse later in the flow of our program.
+Sometimes, though, we execute a subroutine for its *return* value so we can use it later in the flow of our program.
 
-Under normal circumstances, the last line of code of a subroutine is considered to be the return value.
+If a function is allowed to run through it's block to the end, the last statement or expression will determine the return value.
+
 [source,perl6]
 .Implicit return
 ----
@@ -1338,7 +1338,7 @@ sub squared ($x) {
 say "7 squared is equal to " ~ squared(7);
 ----
 
-Once our code gets bigger, it might be a good idea to _explicitly_ specify what we do want to return.
+For the sake of clarity, it might be a good idea to _explicitly_ specify what we want returned.
 This can be done using the `return` keyword.
 [source,perl6]
 .Explicit return
@@ -1381,12 +1381,13 @@ Type check failed for return value; expected Int but got Rat (1.44)
 ====
 Not only can type constraints control the type of the return value; they can also control its definedness.
 
-In the previous examples, we specified that the return value should be an `Int`, irrespective of its definedness.
-Alternatively we could have specified that the returned `Int` should be strictly defined or undefined using the following signatures: +
+In the previous examples, we specified that the return value should be an `Int`.
+
+We could also have specified that the returned `Int` should be strictly defined or undefined using the following signatures: +
 `--> Int:D` and `--> Int:U`
 
 That being said, it is good practice to use those type constraints. +
-Below is the modified version of the previous example that uses `:D` to force the returned  `Int` to be defined.
+Below is the modified version of the previous example that uses `:D` to force the returned `Int` to be defined.
 
 [source,perl6]
 ----
@@ -1400,19 +1401,19 @@ say "1.2 squared is equal to " ~ squared(1.2);
 NOTE: For more info on subroutines and functions, see https://docs.perl6.org/language/functions
 
 == Functional Programming
-In this chapter we will take a look at some of the functionality that facilitates Functional Programming.
+In this chapter we will take a look at some of the features that facilitate Functional Programming.
 
 === Functions are first-class citizens
 Functions/subroutines are first-class citizens:
 
-* They can be passed as an argument
+* They can be passed as arguments
 
-* They can be returned from another function
+* They can be returned from other functions
 
-* They can be assigned to a variable
+* They can be assigned to variables
 
-A great example to demonstrate this concept is the `map` function. +
-`map` is a *higher order function*, it accepts another function as an argument.
+A great example is the `map` function. +
+`map` is a _higher order function_, it can accept another function as an argument.
 
 [source,perl6]
 .Script
@@ -1430,9 +1431,9 @@ say map(&squared,@array);
 ----
 
 .Explanation
-We defined a subroutine called `squared`, it will take to the power of two any number provided as argument. +
-Next, we used `map`, a higher order function and gave it two arguments, a subroutine and an array. +
-The result is a list of all squared elements of the array.
+We defined a subroutine called `squared` that takes an argument and multiplies that argument by itself. +
+Next, we used `map`, a higher order function, and gave it two arguments, the `squared` subroutine and an array. +
+The result is a list of the squared elements of the array.
 
 Notice that when passing a subroutine as an argument, we need to prepend `&` to its name.
 
@@ -1440,16 +1441,16 @@ Notice that when passing a subroutine as an argument, we need to prepend `&` to 
 An *anonymous function* is also called a *lambda*. +
 An anonymous function is not bound to an identifier (it has no name).
 
-Let's rewrite the `map` example using an anonymous function
+Let's rewrite the `map` example and have it use an anonymous function
 [source,perl6]
 ----
 my @array = <1 2 3 4 5>;
 say map(-> $x {$x ** 2},@array);
 ----
-Notice that instead of declaring the subroutine and passing it as an argument to `map`, we defined it directly within. +
-The anonymous subroutine `\-> $x {$x ** 2}` has no handle and cannot be called.
+Notice that instead of declaring the squared subroutine and passing it as an argument to `map`, we defined
+it within the anonymous subroutine as `\-> $x {$x ** 2}`.
 
-In Perl 6 parlance we call this notation  a *pointy block*
+In Perl 6 parlance, we call this notation a *pointy block*
 
 [source,perl6]
 .A pointy block may also be used to assign functions to variables:
@@ -1461,22 +1462,21 @@ say $squared(9);
 ----
 
 === Chaining
-In Perl 6, methods can be chained, you no longer have to pass the result of a method to another one as an argument.
+In Perl 6, methods can be chained, so you're not required to pass the result of one method to another as an argument.
 
-Let's consider that you are provided with an array of values.
-You are asked to return the unique values of this array, sorted from biggest to smallest.
+To illustrate: Given an array, you may need to return the unique values of the array, sorted from biggest to smallest.
 
-You might try to solve the problem by writing something close to this:
+Here's a non-chained solution:
+
 [source,perl6]
 ----
 my @array = <7 8 9 0 1 2 4 3 5 6 7 8 9>;
 my @final-array = reverse(sort(unique(@array)));
 say @final-array;
 ----
-First we call the `unique` function on `@array` then we pass the result as an argument to `sort` and then we pass the result of sorting to `reverse`.
+Here, we call `unique` on `@array`, pass the result as an argument to `sort`, and then pass that result to `reverse`.
 
-In contrast with the above example, chaining methods is allowed in Perl 6. +
-The above example can be written as following, taking advantage of *method chaining*:
+In contrast, with chained methods, the above example can be rewritten as:
 
 [source,perl6]
 ----
@@ -1488,7 +1488,9 @@ say @final-array;
 You can already see that chaining methods is _easier on the eye_.
 
 === Feed Operator
-The *feed operator*, called _pipe_ in some functional programming languages, yields yet a better visualization of method chaining.
+The *feed operator*, called _pipe_ in some functional programming languages, further illustrates
+method chaining.
+
 [source,perl6]
 .Forward Feed
 ----
@@ -1507,7 +1509,7 @@ Start with `@array` then return a list of unique elements
                     then reverse it
                     then store the result in @final-array
 ----
-As you can see the flow of the method calls is top-down.
+Note that the flow of the method calls is top-down -- from first to final step.
 
 
 [source,perl6]
@@ -1522,11 +1524,11 @@ say @final-array-v2;
 ----
 
 .Explanation
-The backward feed is like the forward feed, but written in reverse. +
-The flow of the method calls is bottom-up.
+The backward feed is like the forward feed, but in reverse. +
+The flow of the method calls is bottom-up -- from final to first step.
 
 === Hyper operator
-The *hyper operator* `>>.` will call a method on all elements of a list and return a list of all results.
+The *hyper operator* `>>.` will call a method on all elements of a list and return a list of the results.
 [source,perl6]
 ----
 my @array = <0 1 2 3 4 5 6 7 8 9 10>;
@@ -1537,13 +1539,12 @@ say @array>>.&is-even;
 ----
 
 Using the hyper operator we can call methods already defined in Perl 6, e.g. `is-prime` that tells us if a number is prime or not. +
-In addition we can define new subroutines and call them using the hyper operator. In this case we have to prepend `&` to the name of the method. E.g. `&is-even`
+In addition we can define new subroutines and call them using the hyper operator. In this case we have to prepend `&` to the name of the method; e.g., `&is-even`.
 
 This is very practical as it relieves us from writing a `for` loop to iterate over each value.
 
-WARNING: Perl 6 will guarantee that the order of the results is the same as the order of the original values. +
-But there is *no guarantee* that Perl 6 will actually call the methods in the same order or in the same thread. +
-So be careful with methods that have side-effects, such as `say` (where the side-effect is displaying the values).
+WARNING: Perl 6 guarantees that the order of the results is the same as that of the original list.
+However, there is *no guarantee* that Perl 6 will actually call the methods in list order or in the same thread. So, be careful with methods that have side-effects, such as `say` or `print`.
 
 === Junctions
 A *junction* is a logical superposition of values.
@@ -1618,6 +1619,7 @@ The generator _jumps over_ the endpoint.
 
 Alternatively you can replace `0 ... 10` with `0 ...^ * > 10` +
 You can read it as: From 0 until the first value greater than 10 (excluding it)
+
 [source,perl6]
 .This will not stop the generator
 ----
@@ -1697,7 +1699,7 @@ An *object* is a set of variables and subroutines bundled together. +
 The variables are called *attributes* and the subroutines are called *methods*. +
 Attributes define the *state* and methods define the *behavior* of an object.
 
-A *class* defines the structure of a set of *objects*. +
+A *class* is a template for creating *objects*. +
 
 In order to understand the relationship consider the below example:
 
@@ -1744,7 +1746,7 @@ my class Human {
 === Encapsulation
 Encapsulation  is an object oriented concept that bundles a set of data and methods together. +
 The data (attributes) within an object should be *private*, in other words, accessible only from within the object. +
-In order to access the attributes from outside the object we use methods that we call *accessors*.
+In order to access the attributes from outside the object, we use methods called *accessors*.
 
 The below two scripts have the same result.
 
@@ -1764,7 +1766,7 @@ sub sayvar {
 }
 say sayvar;
 ----
-The method `sayvar` is an accessor. It let us access the value of the variable without getting direct access to it.
+The method `sayvar` is an accessor. It lets us access the value of the variable without getting direct access to it.
 
 Encapsulation is facilitated in Perl 6 with the use of *twigils*. +
 Twigils are secondary _sigils_. They come between the sigil and the attribute name. +
@@ -1775,7 +1777,7 @@ Two twigils are used in classes:
 
 By default, all attributes are private but it is a good habit to always use the `!` twigil.
 
-In line with what we said we should rewrite the above class as following:
+Therefore, we should rewrite the above class as:
 [source,perl6]
 ----
 class Human {
@@ -1789,24 +1791,24 @@ my $john = Human.new(name => 'John', age => 23, sex => 'M', nationality => 'Amer
 say $john;
 ----
 Append to the script the following statement: `say $john.age;` +
-It will return the following error: `Method 'age' not found for invocant of class 'Human'` +
-The reason being that `$!age` is private and can only be used within the object.
+It will return this error: `Method 'age' not found for invocant of class 'Human'`
+because `$!age` is private and can only be used within the object.
 Trying to access it outside the object will return an error.
 
-Now replace `has $!age` with `has $.age` and see what will be the result of `say $john.age;`
+Now replace `has $!age` with `has $.age` and observe the result of `say $john.age;`
 
 === Named vs. Positional Parameters
 In Perl 6, all classes inherit a default `.new()` constructor. +
 It can be used to create objects by providing it with arguments. +
 The default constructor can only be provided with *named arguments*. +
-If you consider the above example, you'll remark that all the arguments supplied to `.new()` are defined by name:
+In our example above, notice that the arguments supplied to `.new()` are defined by name:
 
 * name => 'John'
 
 * age => 23
 
 
-What if I do not want to supply the name of each attribute each time I want to create a new object? +
+What if I do not want to supply the name of each attribute each time I want to create an object? +
 Then I need to create another constructor that accepts *positional arguments*.
 
 [source,perl6]
@@ -1816,7 +1818,7 @@ class Human {
   has $.age;
   has $.sex;
   has $.nationality;
-  #new constructor that overrides the default one.
+  # new constructor that overrides the default one.
   method new ($name,$age,$sex,$nationality) {
     self.bless(:$name,:$age,:$sex,:$nationality);
   }
@@ -1835,7 +1837,7 @@ Like subroutines, they are a means of packaging a set of functionality, they acc
 Methods are defined using the `method` keyword. +
 In normal circumstances, methods are required to perform some sort of action on the objects' attributes.
 This enforces the concept of encapsulation. Object attributes can only be manipulated from within the object using methods.
-The outside world, can only interact with the object methods, and has no access to its attributes.
+The outside world can only interact with the object methods, and has no direct access to its attributes.
 
 [source,perl6]
 ----
@@ -1868,7 +1870,7 @@ Within the definition of a method, if we need to reference the object itself to 
 Within the definition of a method, if we need to reference an attribute we use `!` even if it was defined with `.` +
 The rationale being that what the `.` twigil does is declare an attribute with `!` and automate the creation of an accessor.
 
-In the above example `if self.age < 21` and `if $!age < 21` would have the same effect, although they are technically different:
+In the above example, `if self.age < 21` and `if $!age < 21` would have the same effect, although they are technically different:
 
 * `self.age` calls the `.age` method (accessor) +
 Can be written alternatively as `$.age`
@@ -1888,12 +1890,12 @@ Private methods are called with `!` instead of `.`
 [source,perl6]
 ----
 method !iamprivate {
-  #code goes in here
+  # code goes in here
 }
 
 method iampublic {
   self!iamprivate;
-  #do additional things
+  # do additional things
 }
 ----
 
@@ -1921,10 +1923,10 @@ say Human.counter;
 ----
 
 === Access Type
-Until now all the examples that we've seen, used accessors to get information from the objects' attributes.
+Until now, all the examples that we've seen have used accessors to *get* information from the objects' attributes.
 
 What if we need to modify the value of an attribute? +
-We need to label it as _read/write_ using the following keywords `is rw`
+We need to label it as _read/write_ using the keywords `is rw`
 [source,perl6]
 ----
 class Human {
@@ -1951,7 +1953,7 @@ Let's consider we want to define two classes, a class for Human beings and a cla
 Human beings have 2 attributes: name and age. +
 Employees have 4 attributes: name, age, company and salary
 
-One would be tempted to define the classes as follow:
+One would be tempted to define the classes as:
 [source,perl6]
 ----
 class Human {
@@ -1966,9 +1968,9 @@ class Employee {
   has $.salary;
 }
 ----
-While technically correct the above piece of code is considered conceptually poor.
+While technically correct, the above piece of code is considered conceptually poor.
 
-A better way to write it would be as follow:
+A better way to write this would be:
 [source,perl6]
 ----
 class Human {
@@ -1982,7 +1984,7 @@ class Employee is Human {
 }
 ----
 The `is` keyword defines inheritance. +
-In object oriented parlance we say Employee is a *child* of Human, and Human is a *parent* of Employee.
+In object oriented parlance, we say Employee is a *child* of Human and that Human is a *parent* of Employee.
 
 All child classes inherit the attributes and methods of the parent class, so there is no need to redefine them.
 
@@ -2015,7 +2017,7 @@ my $jane = Employee.new(name =>'Jane', age => 25, company => 'Acme', salary => 4
 $john.introduce-yourself;
 $jane.introduce-yourself;
 ----
-Overriding works as follow:
+Overriding works like this:
 
 [source,perl6]
 ----
@@ -2156,9 +2158,9 @@ Actual vs Forecast:
 ----
 
 === Roles
-*Roles* are somehow similar to classes in the sense that they are a collection of attributes and methods.
+*Roles* are similar to classes in that they are a collection of attributes and methods.
 
-Roles are declared with the keyword `role` and classes that wish to implement the role can do so using the `does` keyword.
+Roles are declared with the keyword `role`. Classes that wish to implement a role, do so using the `does` keyword.
 
 .Let's rewrite the multiple inheritance example using roles:
 [source,perl6]
@@ -2199,8 +2201,8 @@ $actual-vs-forecast.plot;
 
 Run the above script and you will see that results are the same.
 
-By now you're asking yourself; if roles behave like classes what's their use? +
-To answer your question modify the first script used to showcase multiple inheritance,
+By now you're asking yourself: If roles behave like classes, what's their use? +
+To answer your question, modify the first script used to showcase multiple inheritance,
 the one where we _forgot_ to override the `plot` method.
 
 [source,perl6]
@@ -2242,13 +2244,13 @@ Method 'plot' must be resolved by class combo-chart because it exists in multipl
 ----
 
 .Explanation
-If multiple roles are applied to the same class, and a conflict arises, a compile-time error will be thrown. +
-This is a much safer approach than multiple inheritance where conflicts are not considered errors and are simply resolved at runtime.
+If multiple roles are applied to the same class and a conflict exists, a compile-time error will be thrown. +
+This is a much safer approach than multiple inheritance, where conflicts are not considered errors and are simply resolved at runtime.
 
 Roles will warn you that there's a conflict.
 
 === Introspection
-*Introspection* is the process of getting information about an object properties like its type, or its attributes or its methods.
+*Introspection* is the process of getting information about an object, like its type, attributes or methods.
 
 [source,perl6]
 ----
@@ -2282,13 +2284,13 @@ if $jane ~~ Human {say 'Jane is a Human'};
 ----
 Introspection is facilitated by:
 
-* `.WHAT` returns the class from which the object has been created.
+* `.WHAT` -- returns the class from which the object was created
 
-* `.^attributes` returns a list containing all attributes of the objects.
+* `.^attributes` -- returns all the attributes of the object
 
-* `.^methods` returns all methods that can be called on the object.
+* `.^methods` -- returns all the methods that can be called on the object
 
-* `.^parents` returns all parent classes of the class the object belongs.
+* `.^parents` -- returns the parent classes of the object
 
 * `~~` is called the smart-match operator.
 It evaluates to _True_ if the object is created from the class it is being compared against or any of its inheritances.
@@ -2338,7 +2340,7 @@ Type check failed in assignment to $name; expected Str but got Int
    in block <unit> at exceptions.pl6:2
 ----
 
-You should have remarked that whenever an error occurs (in this case assigning a number to a string variable) the program will stop and other lines of code will not be evaluated, even if correct.
+Notice that whenever an error occurs (in this case, assigning a number to a string variable) the program will stop and other lines of code will not be evaluated.
 
 *Exception handling* is the process of _catching_ an exception that has been _thrown_ in order for the script to continue working.
 
@@ -2368,12 +2370,12 @@ Exception handling is done by using a `try-catch` block.
 [source,perl6]
 ----
 try {
-  #code goes in here
-  #if anything goes wrong, the script will enter the below CATCH block
-  #if nothing goes wrong the CATCH block will be ignored
+  # code goes in here
+  # if anything goes wrong, the script will enter the below CATCH block
+  # if nothing goes wrong, the CATCH block will be ignored
   CATCH {
     default {
-      #the code in here will be evaluated only if an exception has been thrown
+      # the code in here will be evaluated only if an exception has been thrown
     }
   }
 }
@@ -2385,20 +2387,20 @@ This means we can _catch_ and handle differently many types of exceptions.
 [source,perl6]
 ----
 try {
-  #code goes in here
-  #if anything goes wrong, the script will enter the below CATCH block
-  #if nothing goes wrong the CATCH block will be ignored
+  # code goes in here
+  # if anything goes wrong, the script will enter the below CATCH block
+  # if nothing goes wrong, the CATCH block will be ignored
   CATCH {
-    when X::AdHoc { #do something if an exception of type X::AdHoc is thrown }
-    when X::IO { #do something if an exception of type X::IO is thrown }
-    when X::OS { #do something if an exception of type X::OS is thrown }
-    default { #do something if an exception is thrown and doesn't belong to the above types }
+    when X::AdHoc   { # do something if exception of type X::AdHoc is thrown }
+    when X::IO      { # do something if exception of type X::IO is thrown }
+    when X::OS      { # do something if exception of type X::OS is thrown }
+    default         { # do something if exception is thrown and doesn't belong to the above types }
   }
 }
 ----
 
 === Throwing Exceptions
-In contrast to catching exceptions, Perl 6 also allows you to explicitly throw exceptions. +
+Perl 6 also allows you to explicitly throw exceptions. +
 Two types of exceptions can be thrown:
 
 * ad-hoc exceptions
@@ -2419,7 +2421,7 @@ my Int $age = 21;
 X::AdHoc.new(payload => 'Error !').throw;
 ----
 
-Ad-hoc exceptions are thrown using the `die` subroutine followed by the exception message.
+Ad-hoc exceptions are thrown using the `die` subroutine, followed by the exception message.
 
 Typed exceptions are objects, hence the use of the `.new()` constructor in the above example. +
 All typed exceptions descend from class `X` , below are a few examples: +
@@ -2428,12 +2430,12 @@ All typed exceptions descend from class `X` , below are a few examples: +
 `X::OS` is related to OS errors +
 `X::Str::Numeric` related to trying to coerce a string to a number
 
-NOTE: For a complete list of exception types and their associated methods go to https://docs.perl6.org/type-exceptions.html
+NOTE: For a complete list of exception types and their associated methods, go to https://docs.perl6.org/type-exceptions.html
 
 
 == Regular Expressions
-A regular expression, or _regex_ is a sequence of characters that is used for pattern matching. +
-The easiest way to understand it is to think of it as a pattern.
+A regular expression, or _regex_, is a sequence of characters that is used for pattern matching. +
+Think of it as a pattern.
 
 [source,perl6]
 ----
@@ -2443,11 +2445,11 @@ if 'enlightenment' ~~ m/ light / {
 ----
 
 In this example, the smart match operator `~~` is used to check if a string (enlightenment) contains the word (light). +
-"Enlightenment" is matched against a regex `m/ light /`
+"Enlightenment" is matched against the regex `m/ light /`
 
 === Regex definition
 
-A regular expression can be defined as follows:
+A regular expression can be defined like this:
 
 * `/light/`
 
@@ -2455,7 +2457,7 @@ A regular expression can be defined as follows:
 
 * `rx/light/`
 
-Unless specified explicitly, white space is irrelevant, `m/light/` and `m/ light /` are the same.
+Unless specified explicitly, white space is ignored; `m/light/` and `m/ light /` are the same.
 
 === Matching characters
 Alphanumeric characters and the underscore `_` are written as is. +
@@ -2524,8 +2526,8 @@ if "John-Doe" ~~ / \s / {
 ----
 
 === Unicode properties
-Matching against categories of characters as seen in the preceding section is convenient. +
-That being said, a more systematic approach would be to use of Unicode properties. +
+Matching against categories of characters, as seen in the preceding section, is convenient. +
+That being said, a more systematic approach would be to use Unicode properties. +
 Unicode properties are enclosed in `<: >`
 
 [source,perl6]
@@ -2658,7 +2660,7 @@ if 'Rakudo is a Perl 6 compiler' ~~ m/:s Perl 6/ {
 ----
 The match is: Perl 6
 The string before the match is: Rakudo is a
-The string after the match is:  compiler
+The string after the match is: compiler
 The matching string starts at position: 12
 The matching string ends at position: 18
 ----
@@ -2671,15 +2673,15 @@ The following methods can be called on the _Match Object_: +
 `.from` returns the starting position of the match. +
 `.to` returns the ending position of the match. +
 
-TIP: By default whitespace in a regex definition is irrelevant. +
-If we want to match against a regex containing whitespace we have to do so explicitly. +
-The `:s` in the regex `m/:s Perl 6/` forces whitespace to be considered and not discarded. +
-Alternatively we could have written the regex as `m/ Perl\s6 /` and used `\s` which as we saw earlier is a placeholder for whitespace. +
-If a regex contains more than a single whitespace, using `:s` becomes more effective in contrast with using `\s` for each and every whitespace.
+TIP: By default, whitespace in a regex definition is ignored. +
+If we want to match against a regex containing whitespace, we have to do so explicitly. +
+The `:s` in the regex `m/:s Perl 6/` forces whitespace to be considered. +
+Alternatively, we could have written the regex as `m/ Perl\s6 /` and used `\s` which represents a whitespace. +
+If a regex contains more than a single whitespace, using `:s` is a better option than using `\s` for each and every whitespace.
 
 === Example
 Let's check if an email is valid or not. +
-For the sake of this example we will assume that a valid email address is formed as following: +
+For the sake of this example we will assume that a valid email address has this format: +
 first name [dot] last name [at] company [dot] (com/org/net)
 
 WARNING: The regex used in this example for email validation is not very accurate. +
@@ -2704,10 +2706,10 @@ if $email ~~ $regex {
 
 .Explanation
 `<:L>` matches a single letter +
-`<:L>+` matches a single letter or more +
+`<:L>+` matches one of more letters +
 `\.` matches a single [dot] character +
 `\@` matches a single [at] character +
-`<:L+:N>` matches a letter and a number +
+`<:L+:N>` matches a single letter and a single number +
 `<:L+:N>+` matches one or more (letters and numbers) +
 
 The regex can be decomposed as following:
@@ -2727,7 +2729,7 @@ The regex can be decomposed as following:
 * *com/org/net* `<:L>+`
 
 [source,perl6]
-.Alternatively a regex can be broken down into multiple named regexes
+.Alternatively, a regex can be broken down into multiple named regexes
 ----
 my $email = 'john.doe@perl6.org';
 my regex many-letters { <:L>+ };
@@ -2765,16 +2767,16 @@ NOTE: The Perl 6 modules directory can be found on: https://modules.perl6.org/
 
 === Using Modules
 MD5 is a cryptographic hash function that produces a 128-bit hash value. +
-MD5 has a variety of applications of which encryption of passwords stored in a database.
+MD5 has a variety of applications, including the encryption of stored passwords in a database.
 When a new user registers, their credentials are not stored as plain text but rather _hashed_.
 The rationale behind this is that if the DB gets compromised, the attacker will not be able to know what the passwords are.
 
-Let's say you need a script that generates the MD5 hash of a password in preparation for storing it in the DB.
+Luckily, you don't need to implement the MD5 algorithm yourself; there's a Perl 6 module already implemented.
 
-Luckily there's a Perl 6 module that already implemented the MD5 algorithm. Let's install it: +
+Let's install it: +
 `zef install Digest::MD5`
 
-Now run the below script:
+Now, run the below script:
 [source,perl6]
 ----
 use Digest::MD5;
@@ -2791,7 +2793,7 @@ It should be combined with a salt link:https://en.wikipedia.org/wiki/Salt_(crypt
 
 == Unicode
 
-Unicode is a standard for encoding and representing text, that caters for most writing systems in the world. +
+Unicode is a standard for encoding and representing text for most writing systems in the world. +
 UTF-8 is a character encoding capable of encoding all possible characters, or code points, in Unicode.
 
 Characters are defined by a: +
@@ -2876,9 +2878,9 @@ say $var;
 
 === Parallelism
 Under normal circumstances, all tasks in a program run sequentially. +
-This might not be a problem unless what you're trying to do is consuming a lot of time.
+This might not be a problem, unless what you're trying to do takes a lot of time.
 
-Naturally speaking Perl 6 has features that will enable you to run things in parallel. +
+Thankfully, Perl 6 has features that will enable you to run things in parallel. +
 At this stage, it is important to note that parallelism can mean one of two things:
 
 * *Task Parallelism*: Two (or more) independent expressions running in parallel.
@@ -2890,9 +2892,9 @@ Let's begin with the latter.
 ==== Data Parallelism
 [source,perl6]
 ----
-my @array = (0..50000);                     #Array population
-my @result = @array.map({ is-prime $_ });   #call is-prime for each array element
-say now - INIT now;                         #Output the time it took for the script to complete
+my @array = (0..50000);                     # Array population
+my @result = @array.map({ is-prime $_ });   # call is-prime for each array element
+say now - INIT now;                         # Output the time it took for the script to complete
 ----
 
 .Considering the above example:
@@ -2903,9 +2905,9 @@ The `is-prime` subroutine is being called for each array element sequentially: +
 .Fortunately we can call `is-prime` on multiple array elements at the same time:
 [source,perl6]
 ----
-my @array = (0..50000);                         #Array population
-my @result = @array.race.map({ is-prime $_ });  #call is-prime for each array element
-say now - INIT now;                             #Output the time it took to complete
+my @array = (0..50000);                         # Array population
+my @result = @array.race.map({ is-prime $_ });  # call is-prime for each array element
+say now - INIT now;                             # Output the time it took to complete
 ----
 
 Notice the use of `race` in the expression.
