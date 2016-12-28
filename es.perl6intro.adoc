@@ -1181,9 +1181,9 @@ rmdir "carpeta-nueva";
 ----
 
 `mkdir` crea una carpeta nueva. +
-`rmdir` elimina una carpeta vacía. Si la carpeta no existe devuelve un error.
+`rmdir` elimina una carpeta vacía y devuelve un error sino está vacía.
 
-También puedes comprobar si la ruta indicada existe y si se trata de un archivo o una carpeta:
+También puedes comprobar si una ruta existe y si es un archivo o una carpeta:
 
 Crea una carpeta vacía llamada `carpeta123`, un archivo vacío llamado `script123.pl6` y el siguiente script:
 
@@ -1213,7 +1213,7 @@ NOTE: En https://docs.perl6.org/type/IO tienes más información sobre E/S.
 
 == Subrutinas
 === Definición
-Las *Subrutinas* (también denominadas *subs* o *funciones*) son una forma de empaquetar un conjunto de funcionalidades. +
+Las *Subrutinas* (también denominadas *subs* o *funciones*) son una forma de empaquetar y reutilizar funcionalidades. +
 
 La definición de una subrutina comienza con la palabra clave `sub`. Una vez definida puede invocarse mediante su nombre. +
 
@@ -1230,7 +1230,7 @@ saludo-alien;
 El ejemplo anterior es una subrutina sin entrada de datos.
 
 === Signatura
-Muchas subrutinas utilizan *argumentos* de entrada para trabajar con ellos.
+Las subrutinas pueden requerir una entrada, y ésta se proporciona mediante *argumentos*.
 Una subrutina puede definir ninguno o varios *parámetros*.
 La signatura de una subrutina es el número y el tipo de los parámetros que puede definir.
 
@@ -1246,9 +1246,9 @@ di-hola "Paula";
 ----
 
 === Sobrecarga
-Es posible definir varias subrutinas con el mismo nombre pero con distintas listas de parámetros o signaturas.
-Cuando se llama a la subrutina, se decidirá en tiempo de ejecución la versión de subrutina a utilizar dependiendo del número y tipo de argumentos proporcionados.
-Este tipo de subrutinas se definen con la palabra clave `multi` en lugar de `sub`.
+Es posible definir varias subrutinas con el mismo nombre pero con signaturas diferentes.
+Cuando se llama a la subrutina, se decidirá qué versión utilizar en tiempo de ejecución dependiendo del número y tipo de argumentos proporcionados.
+Este tipo de subrutinas se definen de la misma forma que una subrutina normal pero utilizando la palabra clave `multi` en lugar de `sub`.
 
 [source,perl6]
 ----
@@ -1282,7 +1282,7 @@ sub di-hola($nombre?) {
 di-hola;
 di-hola("Laura");
 ----
-Si no se proporciona un argumento, puede definirse uno por defecto asignándole un valor al parámetro en la definición de la subrutina.
+Si no es necesario proporcionar un argumento, puede definirse uno por defecto asignándole un valor al parámetro en la definición de la subrutina.
 
 [source,perl6]
 ----
@@ -1297,9 +1297,10 @@ di-hola("Laura");
 
 Hemos visto que todas las subrutinas hasta ahora siempre *hacen algo*: mostrar resultados en la pantalla del terminal.
 
-Esto es lo normal, pero a veces nos interesa que la subrutina *devuelva* algún tipo de valor que podamos utilizar después en el flujo del programa.
+Sin embargo y a veces, utilizamos una subrutina para que nos *devuelva* algún valor que podamos utilizar después en el flujo del programa.
 
-En condiciones normales la última línea de la subrutina se considera como el valor de retorno.
+Si una función se ejecuta hasta el final de su bloque, el valor de retorno vendrá determinado por la última declaración o expresión.
+
 [source,perl6]
 .Retorno implícito
 ----
@@ -1309,7 +1310,7 @@ sub cuadrado ($x) {
 say "7 al cuadrado es igual a " ~ cuadrado(7);
 ----
 
-Cuando hay mucho código, es mejor indicar de forma _explícita_ qué es lo que queremos devolver.
+Para conseguir una claridad adecuada, puede ser una buena idea especificar de forma _explícita_ qué es lo que queremos devolver.
 Esto se realiza mediante la palabra clave `return`.
 [source,perl6]
 ----
@@ -1351,8 +1352,9 @@ Type check failed for return value; expected Int but got Rat (1.44)
 ====
 La restricción del tipo del valor de retorno tambień puede controlar si este valor está definido o no.
 
-En los ejemplos anteriores restringimos el valor de retorno a `Int`, esté definido o no.
-Además, podemos indicar que el valor de retorno esté obligatoriamente definido o no utilizando, de forma correspondiente, las siguientes signaturas: +
+En los ejemplos anteriores especificamos que el valor de retorno debería ser de tipo `Int`.
+
+Además, podemos indicar que el valor de retorno esté obligatoriamente definido o no utilizando las siguientes signaturas: +
 `--> Int:D` y `--> Int:U`
 
 Como hemos visto es una buena costumbre utilizar estas restricciones. +
@@ -1370,19 +1372,19 @@ say "1.2 al cuadrado es igual a " ~ cuadrado(1.2);
 NOTE: En https://docs.perl6.org/language/functions encontrarás más información sobre subrutinas y funciones.
 
 == Programación Funcional
-En este apartado veremos algunas funcionalidades relacionadas con la Programación Funcional.
+En este apartado veremos algunas características que facilitan la Programación Funcional.
 
 === Las Funciones son de primera clase
 Las funciones/subrutinas son de primera clase:
 
-* Pueden utilizarse como un argumento
+* Pueden pasarse como argumentos
 
-* Pueden ser devueltas desde otra función
+* Pueden ser devueltas desde otras funciones
 
-* Pueden asignarse a una variable
+* Pueden asignarse a variables
 
-Un buen ejemplo para demostrar este concepto es la función `map`. +
-`map` es una *función de orden superior* que acepta otra función como argumento.
+Un gran ejemplo es la función `map`. +
+`map` es una *función de orden superior* que puede aceptar otra función como argumento.
 
 [source,perl6]
 .Script
@@ -1400,9 +1402,9 @@ say map(&cuadrado,@array);
 ----
 
 .Explicación
-Hemos definido la subrutina `cuadrado` que calcula la potencia de dos de cualquier número proporcionado como argumento. +
-Después utilizamos `map`, una función de orden superior que toma dos argumentos: una subrutina y un array. +
-El resultado es una lista de todos los cuadrados de los elementos del array.
+Hemos definido la subrutina `cuadrado` que toma un argumento y lo multiplica por sí mismo. +
+Después utilizamos `map`, una función de orden superior, que toma dos argumentos: la subrutina `cuadrado` y un array. +
+El resultado es una lista de los cuadrados de cada elemento del array.
 
 Ten en cuenta que cuando pasamos una subrutina como argumento, es necesario utilizar el prefijo `&` en el nombre.
 
@@ -1410,16 +1412,15 @@ Ten en cuenta que cuando pasamos una subrutina como argumento, es necesario util
 Una *función anónima* también se denomina *lambda*. +
 Una función anónima no está vinculada a un identificador (no tiene nombre).
 
-Escribamos de nuevo el ejemplo de `map` utilizando una función anónima
+Escribamos de nuevo el ejemplo de `map` pero utilizando una función anónima
 [source,perl6]
 ----
 my @array = <1 2 3 4 5>;
 say map(-> $x {$x ** 2},@array);
 ----
-Observa que en lugar de declarar la función y pasarla a `map` como argumento, directamente la definimos dentro. +
-La función anónima `\-> $x {$x ** 2}` no puede ser llamada.
+Observa que en lugar de declarar la subrutina `cuadrado` y pasarla a `map` como argumento, la definimos dentro de la función anónima como `\-> $x {$x ** 2}`.
 
-En la jerga de Perl 6 a esta notación la llamamos *punto de entrada al bloque*
+En la jerga de Perl 6 nos referimos a esta notación como *punto de entrada al bloque*
 
 [source,perl6]
 .Un punto de entrada al bloque también puede utilizarse para asignar funciones a variables:
@@ -1431,21 +1432,20 @@ say $cuadrado(9);
 ----
 
 === Encadenamiento
-En Perl 6 los métodos pueden encadenarse. Esto quiere decir que no es necesario pasar el resultado de un método como argumento de otro método.
+En Perl 6 los métodos pueden encadenarse de forma que no es requisito pasar el resultado de un método como argumento de otro método.
 
-¿Cómo obtendríamos los valores únicos de un array ordenados de mayor a menor?
+Un ejemplo: dado un array, necesitamos los valores únicos de ese array ordenados de mayor a menor.
 
-Puedes resolver este problema escribiendo algo así:
+A continuación una solución sin encadenamiento:
 [source,perl6]
 ----
 my @array = <7 8 9 0 1 2 4 3 5 6 7 8 9>;
 my @final-array = reverse(sort(unique(@array)));
 say @final-array;
 ----
-Primero utilizamos la función `unique` sobre `@array`, después pasamos el resultado como argumento a `sort` y por último pasamos el resultado de la ordenación a `reverse`.
+Aquí llamamos `unique` sobre `@array`, pasamos el resultado como argumento a `sort` y pasamos el resultado a `reverse`.
 
-En contraste con el ejemplo anterior, Perl 6 permite la encadenación de métodos. +
-El ejemplo anterior puede escribirse de la siguiente forma utilizando el *encadenamiento de métodos*:
+En contraste, con métodos encadenados, el ejemplo anterior puede escribirse así:
 
 [source,perl6]
 ----
@@ -1457,7 +1457,7 @@ say @final-array;
 Como ves, el encadenamiento de métodos es _más visual_.
 
 === Operador de Alimentación
-El *operador de alimentación*, llamado _tubería_ en algunos lenguajes de programación funcional hace aún más visual el encadenamiento de métodos.
+El *operador de alimentación*, llamado _tubería_ en algunos lenguajes de programación funcional, ejemplifica el encadenamiento de métodos.
 
 [source,perl6]
 .Alimentación hacia adelante
@@ -1477,7 +1477,7 @@ Comienza con `@array` y devuelve una lista de elementos únicos
                     después invierte el orden
                     después guarda el resultado en @final-array
 ----
-Como ves, el flujo de las llamadas a los métodos es de arriba hacia abajo.
+Fíjate en el flujo de las llamadas a los métodos: se produce de arriba hacia abajo, esto es, desde el primero hasta el último paso.
 
 
 [source,perl6]
@@ -1492,11 +1492,11 @@ say @final-array-v2;
 ----
 
 .Explicación
-La alimentación hacia atrás es parecida a la anterior pero se escribe en orden inverso. +
-El flujo de las llamadas a los métodos es de abajo hacia arriba.
+La alimentación hacia atrás es parecida a la anterior pero al revés. +
+El flujo de las llamadas a los métodos es de abajo hacia arriba, esto es, el último paso precedido por los pasos anteriores y en orden.
 
 === Hiperoperador
-El *hiperoperador* `>>.` puede aplicar un método a todos los elementos de una lista y devolver una lista con todos los resultados.
+El *hiperoperador* `>>.` puede aplicar un método a todos los elementos de una lista y devolver una lista con los resultados.
 [source,perl6]
 ----
 my @array = <0 1 2 3 4 5 6 7 8 9 10>;
@@ -1509,6 +1509,9 @@ Mediante el hiperoperador podemos utilizar todos los métodos ya definidos en Pe
 Además, podemos definir funciones nuevas y utilizarlas mediante el hiperoperador agregando el prefijo `&` en el nombre del método, por ej. `&es-par`.
 
 El uso del hiperoperador es muy práctico pues evita escribir un bucle `for` para iterar sobre cada valor.
+
+WARNING: Perl 6 garantiza que el orden de los resultados sea el mismo que el de la lista original.
+Sin embargo, Perl 6 *no garantiza* la llamada a los métodos en el orden de la lista o en el mismo hilo. Por tanto, ten cuidado con los métodos que tengan efectos secundarios, como `say` o `print`.
 
 === Ensamblajes
 Un *ensamblaje* es una superposición lógica de valores.
