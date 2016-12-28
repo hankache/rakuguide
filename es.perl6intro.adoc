@@ -420,7 +420,7 @@ my $edad = 99;
 say $edad;
 ----
 
-Dependiendo del tipo se pueden realizar una serie de operaciones concretas.
+Dependiendo del valor que aloje, se pueden realizar un conjunto específico de operaciones en un escalar.
 
 [source,perl6]
 .Texto
@@ -437,7 +437,7 @@ JUAN DE DIOS
 soiD eD nauJ
 ----
 
-NOTE: Consulta https://docs.perl6.org/type/Str para ver la lista completa de métodos disponibles de texto.
+NOTE: Consulta https://docs.perl6.org/type/Str para ver la lista completa de métodos de texto.
 
 [source,perl6]
 .Enteros
@@ -450,7 +450,7 @@ say $edad.is-prime;
 True
 ----
 
-NOTE: Consulta https://docs.perl6.org/type/Int para ver la lista completa de métodos disponibles de enteros.
+NOTE: Consulta https://docs.perl6.org/type/Int para ver la lista completa de métodos de enteros.
 
 [source,perl6]
 .Números Racionales
@@ -467,7 +467,7 @@ say $edad.nude;
 (23 10)
 ----
 
-NOTE: Consulta https://docs.perl6.org/type/Rat para ver la lista completa de métodos disponibles de números racionales.
+NOTE: Consulta https://docs.perl6.org/type/Rat para ver la lista completa de métodos de números racionales.
 
 === Arrays
 Los Arrays son listas que contienen varios valores.
@@ -478,7 +478,7 @@ my @animales = 'camello','llama','búho';
 say @animales;
 ----
 
-Se pueden realizar muchas operaciones con arrays:
+Se pueden realizar muchas operaciones con arrays, como las de este ejemplo:
 
 TIP: La tilde `~` se utiliza para concatenar texto.
 
@@ -694,7 +694,7 @@ say %código-país;
 say %código-país.WHAT;
 ----
 
-A continuación tienes una lista con los tipos más comunes:
+.A continuación tienes una lista con los tipos más comunes:
 Es posible que nunca utilices los dos primeros, pero aparecen en la siguiente lista para que sepas que existen.
 
 [cols="^.^1m,.^3m,.^2m,.^1m, options="header"]
@@ -1021,7 +1021,7 @@ given $var {
 
 Cuando se produce la coincidencia no se evalúan las demás.
 
-`proceed` continúa la evaluación aunque se produzca la coincidencia.
+Como opción, `proceed` continúa la evaluación aunque se produzca la coincidencia.
 
 [source,perl6]
 ----
@@ -1384,7 +1384,7 @@ Las funciones/subrutinas son de primera clase:
 * Pueden asignarse a variables
 
 Un gran ejemplo es la función `map`. +
-`map` es una *función de orden superior* que puede aceptar otra función como argumento.
+`map` es una _función de orden superior_ que puede aceptar otra función como argumento.
 
 [source,perl6]
 .Script
@@ -1493,7 +1493,7 @@ say @final-array-v2;
 
 .Explicación
 La alimentación hacia atrás es parecida a la anterior pero al revés. +
-El flujo de las llamadas a los métodos es de abajo hacia arriba, esto es, el último paso precedido por los pasos anteriores y en orden.
+El flujo de las llamadas a los métodos es de abajo hacia arriba, esto es, desde el paso final hacia el primero.
 
 === Hiperoperador
 El *hiperoperador* `>>.` puede aplicar un método a todos los elementos de una lista y devolver una lista con los resultados.
@@ -1754,9 +1754,9 @@ class Humano {
 my $juan = Humano.new(nombre => 'Juan', edad => 23, sexo => 'M', nacionalidad => 'Español');
 say $juan;
 ----
-Si añades al script la siguiente sentencia: `say $juan.edad;` +
-devolverá el siguiente error: `Method 'edad' not found for invocant of class 'Humano'` +
-Esto es debido a que `$!edad` es un atributo privado y solo puede utilizarse desde dentro del objeto. Como hemos visto, tendremos un error al intentar acceder a este atributo desde fuera del objeto.
+Si añades al script la siguiente sentencia: `say $juan.edad;`
+devolverá el siguiente error: `Method 'edad' not found for invocant of class 'Humano'` 
+debido a que `$!edad` es un atributo privado y solo puede utilizarse desde dentro del objeto. Como hemos visto, tendremos un error al intentar acceder a este atributo desde fuera del objeto.
 
 Sustituye `has $!edad` por `has $.edad` y comprueba el resultado de `say $juan.edad;`
 
@@ -1824,7 +1824,7 @@ _objeto_ *.* _método_, como en el ejemplo que hemos visto antes: `$juan.evalúa
 
 Si en la definición del método necesitamos hacer referencia al objeto en sí para invocar a otro método utilizaremos la palabra clave `self`. +
 Si en la definición del método necesitamos hacer referencia a un atributo utilizaremos `!` aunque el atributo esté definido con `.` +
-Lo que hace el twigil `.` es declarar un atributo con `!` y crear automáticamente el método de acceso.
+La razón de esto es que el twigil `.` declara un atributo con `!` y crea automáticamente el método de acceso.
 En el ejemplo anterior, `if self.edad < 18` y `if $!edad < 18` tendrán el mismo efecto, aunque técnicamente son distintos:
 
 * `self.edad` es una llamada al método (de acceso) `.edad` +
