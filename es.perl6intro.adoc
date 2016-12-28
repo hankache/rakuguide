@@ -1661,7 +1661,7 @@ Un *objeto* es un conjunto de variables y subrutinas. +
 Las variables se llaman *atributos* y las subrutinas se llaman *métodos*. +
 Los atributos definen un *estado* y los métodos definen el *comportamiento* de un objeto.
 
-Una *clase* define la estructura de un conjunto de *objetos*. +
+Una *clase* es una plantilla para crear *objetos*. +
 
 Para entender esta relación veamos el siguiente ejemplo:
 
@@ -1741,7 +1741,7 @@ En las clases se utilizan dos twigils:
 
 Por defecto todos los atributos son privados pero es muy recomendable utilizar siempre el twigil `!`.
 
-Teniendo en cuenta lo dicho, podemos escribir de nuevo la clase anterior de la siguiente forma:
+Por lo tanto, podemos reescribir la clase anterior como:
 [source,perl6]
 ----
 class Humano {
@@ -1778,7 +1778,7 @@ class Humano {
   has $.edad;
   has $.sexo;
   has $.nacionalidad;
-  #nuevo constructor que sustituye el de por defecto.
+  # nuevo constructor que sustituye el de por defecto.
   method new ($nombre,$edad,$sexo,$nacionalidad) {
     self.bless(:$nombre,:$edad,:$sexo,:$nacionalidad);
   }
@@ -1795,7 +1795,7 @@ Los métodos son las _subrutinas_ de un objeto. +
 Al igual que las subrutinas, los métodos pueden empaquetar un conjunto de funcionalidades, aceptar *argumentos*, tener una *signatura* y estar sobrecargadas con *multi*.
 
 Los métodos se definen con la palabra clave `method` y normalmente se utilizan para realizar alguna acción sobre los atributos de los objetos, reforzando así el concepto de encapsulación donde los atributos del objeto solo pueden manipularse dentro del objeto mediante sus métodos.
-Desde fuera solo podemos acceder a los métodos de los objetos y no a sus atributos.
+Desde fuera solo podemos acceder a los métodos de los objetos y no hay acceso directo a sus atributos.
 
 [source,perl6]
 ----
@@ -1824,8 +1824,8 @@ _objeto_ *.* _método_, como en el ejemplo que hemos visto antes: `$juan.evalúa
 
 Si en la definición del método necesitamos hacer referencia al objeto en sí para invocar a otro método utilizaremos la palabra clave `self`. +
 Si en la definición del método necesitamos hacer referencia a un atributo utilizaremos `!` aunque el atributo esté definido con `.` +
-Mientras el twigil `.` declara el atributo, con `!` se realiza el método de acceso.
-En el ejemplo anterior `if self.edad < 18` y `if $!edad < 18` tendrán el mismo efecto, aunque técnicamente son distintos:
+Lo que hace el twigil `.` es declarar un atributo con `!` y crear automáticamente el método de acceso.
+En el ejemplo anterior, `if self.edad < 18` y `if $!edad < 18` tendrán el mismo efecto, aunque técnicamente son distintos:
 
 * `self.edad` es una llamada al método (de acceso) `.edad` +
 También puede escribirse como `$.edad`
@@ -1843,12 +1843,12 @@ Estos métodos privados se llaman mediante `!` en lugar de `.`
 [source,perl6]
 ----
 method !soyprivado {
-  #código
+  # código
 }
 
 method soypúblico {
   self!soyprivado;
-  #más código
+  # más código
 }
 ----
 
@@ -1876,10 +1876,10 @@ say Humano.contador;
 ----
 
 === Tipo de Acceso
-Todos los ejemplos que hemos visto hasta ahora utilizan métodos de acceso para acceder a la información de los atributos de los objetos.
+Todos los ejemplos que hemos visto hasta ahora utilizan métodos de acceso para *conseguir* la información de los atributos de los objetos.
 
 ¿Y si necesitamos modificar el valor de un atributo? +
-Para ello necesitamos etiquetar ese atributo como _lectura/escritura_ mediante la palabra clave `is rw`
+Para ello necesitamos etiquetar ese atributo como _lectura/escritura_ utilizando las palabras clave `is rw`
 [source,perl6]
 ----
 class Humano {
@@ -1906,7 +1906,7 @@ Pensemos en definir dos clases, una clase para seres humanos y otra clase para e
 Los seres humanos tienen 2 atributos: nombre y edad. +
 Los empleados tienen 4 atributos: nombre, edad, compañía y salario.
 
-Con prisas, uno definiría las clases de la siguiente forma:
+Con prisas, uno definiría las clases así:
 [source,perl6]
 ----
 class Humano {
@@ -1937,7 +1937,7 @@ class Empleado is Humano {
 }
 ----
 La herencia se define mediante la palabra clave `is`. +
-En orientación a objetos decimos que Empleado es *hijo* de Humano, y Humano es *padre* de Empleado.
+En orientación a objetos, decimos que Empleado es *hijo* de Humano, y que Humano es *padre* de Empleado.
 
 Todas las clases hijas heredan los atributos y métodos de su clase padre, y así ahorramos duplicar su definición.
 
@@ -2109,9 +2109,9 @@ Actual vs Previsión:
 ----
 
 === Roles
-Los *Roles* se parecen a las clases en cuanto a que son una colección de atributos y métodos.
+Los *Roles* son similares a las clases en cuanto a que son una colección de atributos y métodos.
 
-Los roles se declaran con la palabra clave `role` y las clases que quieran implementar el rol pueden hacerlo mediante la palabra clave `does`.
+Los roles se declaran con la palabra clave `role`. Las clases que quieran implementar un rol, pueden hacerlo utilizando la palabra clave `does`.
 
 .Vamos a escribir de nuevo el ejemplo de la herencia múltiple pero mediante roles:
 
@@ -2152,8 +2152,8 @@ $actual-vs-previsión.dibujar;
 ----
 Verás que el resultado es el mismo que antes sin utilizar roles.
 
-Y ahora te preguntarás; si un rol es como una clase ¿cual es la función del rol? +
-Para responder la pregunta, modifica el primer script que hemos utilizado para mostrar el caso de la herencia múltiple, en el que _olvidamos_ anular la herencia del método `dibujar`, pero utilizando roles nuevamente.
+Y ahora te preguntarás: si un rol es como una clase ¿para qué se utilizan? +
+Para responder la pregunta, modifica el primer script que hemos utilizado para mostrar el caso de la herencia múltiple, en el que _olvidamos_ anular la herencia del método `dibujar`.
 
 [source,perl6]
 ----
@@ -2194,13 +2194,13 @@ Method 'dibujar' must be resolved by class multi-gráfica because it exists in m
 ----
 
 .Explicación
-Tendremos un error en tiempo de compilación si aplicamos varios roles a la misma clase mientras exista un conflicto. +
-Este enfoque es mucho más seguro que la herencia múltiple donde los conflictos no se consideran errores y se resuelven simplemente en tiempo de ejecución.
+Tendremos un error en tiempo de compilación si aplicamos varios roles a la misma clase si existe un conflicto. +
+Este enfoque es mucho más seguro que la herencia múltiple, donde los conflictos no se consideran errores y se resuelven simplemente en tiempo de ejecución.
 
 Los roles te avisarán si existe un conflicto.
 
 === Introspección
-La *Introspección* es la forma de ver las propiedades de un objeto; como el tipo, atributos o métodos.
+La *Introspección* es la forma de conseguir información de un objeto; como su tipo, atributos o métodos.
 
 [source,perl6]
 ----
@@ -2236,7 +2236,7 @@ La introspeción proporciona la siguiente información:
 
 * `.WHAT` devuelve la clase a la que pertenece el objeto.
 
-* `.^attributes` devuelve una lista con todos los atributos del objeto.
+* `.^attributes` devuelve todos los atributos del objeto.
 
 * `.^methods` devuelve todos los métodos accesibles del objeto.
 
@@ -2290,7 +2290,7 @@ say "¿Qué haces hoy?"
 Type check failed in assignment to $nombre; expected Str but got Int
   in block <unit> at exceptions.pl6 line 2
 ----
-Debes tener en cuenta que cuando se produce un error (en este caso debido a la asignación de un número a una variable de texto) el programa se interrumpirá y no ejecutará las siguientes líneas de código aunque éstas sean correctas.
+Debes tener en cuenta que cuando se produce un error (en este caso, debido a la asignación de un número a una variable de texto) el programa se interrumpirá y no evaluará cualquier otra línea de código.
 
 El *Control de excepciones* se produce cuando se _lanza_ una excepción y es _capturada_ de forma que el script continúa su ejecución.
 
@@ -2320,12 +2320,12 @@ El Control de excepciones se realiza utilizando un bloque `try-catch`.
 [source,perl6]
 ----
 try {
-  #código
-  #si algo va mal, el script saltará al bloque CATCH
-  #si todo es correcto, el script ignorará el bloque CATCH
+  # código
+  # si algo va mal, el script saltará al bloque CATCH
+  # si todo es correcto, el script ignorará el bloque CATCH
   CATCH {
     default {
-      #aquí se ejecuta código si se lanza una excepción
+      # aquí se ejecuta código si se lanza una excepción
     }
   }
 }
@@ -2336,20 +2336,20 @@ Esto significa que podemos _capturar_ y controlar distintos tipos de excepciones
 [source,perl6]
 ----
 try {
-  #código
-  #si algo va mal, el script saltará al bloque CATCH
-  #si todo es correcto, el script ignorará el bloque CATCH
+  # código
+  # si algo va mal, el script saltará al bloque CATCH
+  # si todo es correcto, el script ignorará el bloque CATCH
   CATCH {
-    when X::AdHoc { #hace algo si se lanza una excepción de tipo X::AdHoc }
-    when X::IO { #hace algo si se lanza una excepción de tipo X::IO }
-    when X::OS { #hace algo si se lanza una excepción de tipo X::OS }
-    default { #hace algo si se lanza una excepción y no está contemplada en los tipos anteriores }
+    when X::AdHoc { # hace algo si se lanza una excepción de tipo X::AdHoc }
+    when X::IO    { # hace algo si se lanza una excepción de tipo X::IO }
+    when X::OS    { # hace algo si se lanza una excepción de tipo X::OS }
+    default       { # hace algo si se lanza una excepción y no está contemplada en los tipos anteriores }
   }
 }
 ----
 
 === Lanzando Excepciones
-Además de capturar excepciones, Perl 6 te permite lanzar excepciones de forma explícita. +
+Perl 6 también te permite lanzar excepciones de forma explícita. +
 Se pueden lanzar dos tipos de excepciones:
 
 * Excepciones ad-hoc
@@ -2369,7 +2369,7 @@ die "¡Error!";
 my Int $edad = 21;
 X::AdHoc.new(payload => '¡Error!').throw;
 ----
-Las excepciones ad-hoc se lanzan utilizando la subrutina `die` seguida del mensaje describiendo la excepción.
+Las excepciones ad-hoc se lanzan utilizando la subrutina `die`, seguida del mensaje describiendo la excepción.
 
 Las excepciones por tipo son objetos, y como vemos en el ejemplo anterior utilizan el constructor `.new()`. +
 Todas las excepciones por tipo pertenecen a la clase `X`. Estos son algunos ejemplos: +
@@ -2382,8 +2382,8 @@ NOTE: Tienes una lista completa de tipos de excepciones y sus métodos asociados
 
 
 == Expresiones Regulares
-Una expresión regular, o _regex_ es una secuencia de caracteres que sirve para encontrar un patrón. +
-Para entenderlo mejor piensa en ello como un patrón.
+Una expresión regular, o _regex_ es una secuencia de caracteres que se utiliza para encontrar un patrón. +
+Piensa en ello como un patrón.
 
 [source,perl6]
 ----
@@ -2396,7 +2396,7 @@ En este ejemplo, el operador inteligente de coincidencia `~~` sirve para comprob
 "Iluminación" se compara con la regex `m/ ilumina /`
 
 === Definición de Regex
-Una expresión regular puede definirse de las siguientes formas:
+Una expresión regular puede definirse así:
 
 * `/ilumina/`
 
@@ -2618,15 +2618,15 @@ El _Objeto de Coincidencia_ tiene los siguientes métodos: +
 `.from` devuelve la posición inicial del resultado. +
 `.to` devuelve la posición final del resultado. +
 
-TIP: Por defecto el espacio en blanco en una regex es irrelevante. +
-Si queremos tener en cuenta los espacios en blanco en una regex tenemos que hacerlo de forma explícita. +
+TIP: Por defecto, el espacio en blanco en una regex se ignora. +
+Si queremos tener en cuenta los espacios en blanco en una regex, tenemos que hacerlo de forma explícita. +
 El parámetro `:s` en la regex `m/:s Perl 6/` hace que la regex tenga en cuenta los espacios en blanco. +
-Otra forma de hacerlo sería así `m/ Perl\s6 /` donde `\s`, como hemos visto antes, es la regex para encontrar el espacio en blanco. +
-Si la regex contiene más de un espacio en blanco, es más efectivo utilizar `:s` que utilizar `\s` para cada espacio en blanco.
+Otra forma de hacerlo sería así: `m/ Perl\s6 /` donde `\s` representa el espacio en blanco. +
+Si la regex contiene más de un espacio en blanco, es mejor utilizar `:s` que utilizar `\s` para cada espacio en blanco.
 
 === Ejemplo
 Vamos a comprobar si una dirección de email es correcta o no. +
-Para este ejemplo asumiremos que una dirección de email correcta está formada así: +
+Para este ejemplo asumiremos que una dirección de email correcta tiene este formato: +
 nombre [punto] apellido [arroba] compañía [punto] (com/org/net)
 
 WARNING: La regex que utilizaremos en este ejemplo para validar una dirección de email no es muy precisa, y como su propósito es demostrar el funcionamiento de las regex en Perl 6, conviene no utilizarla en producción.
@@ -2649,7 +2649,7 @@ if $email ~~ $regex {
 
 .Explicación
 `<:L>` coincide con una letra +
-`<:L>+` coincide con una letra o más de una +
+`<:L>+` coincide con una letra o más +
 `\.` coincide con un caracter de [punto] +
 `\@` coincide con un caracter de [arroba] +
 `<:L+:N>` coincide con una letra o más de una y un número +
@@ -2710,14 +2710,14 @@ NOTE: Puedes encontrar el directorio de módulos de Perl 6 en: https://modules.p
 
 === Utilizando Módulos
 MD5 es una función de cifrado de tipo hash que produce un valor hash de 128-bit. +
-MD5 tiene muchas aplicaciones, como el cifrado de contraseñas que se pueden alojar en una base de datos.
+MD5 tiene muchas aplicaciones, incluyendo el cifrado de contraseñas guardadas en una base de datos.
 Cuando se registra un nuevo usuario sus credenciales no se guardan en texto plano, se guardan _cifradas_, de forma que si un atacante compromete la base de datos, este atacante no podría conocer las contraseñas.
-Supongamos que necesitas un script que genere el hash MD5 de una contraseña para después guardarlo en la base de datos.
+Por suerte, no necesitas implementar el algoritmo MD5, pues ya lo implementa un módulo de Perl 6.
 
-Por suerte existe un módulo en Perl 6 que ya implementa el algoritmo MD5. Vamos a instalarlo: +
+Vamos a instalarlo: +
 `zef install Digest::MD5`
 
-Ahora ejecutemos el siguiente script:
+Ahora, ejecutemos el siguiente script:
 [source,perl6]
 ----
 use Digest::MD5;
@@ -2734,7 +2734,7 @@ Debería combinarse con sal link:https://es.wikipedia.org/wiki/Sal_(criptografí
 
 == Unicode
 
-Unicode es un estándar para codificar y representar texto que incluye la mayoría de los sistemas de escritura del mundo. +
+Unicode es un estándar para codificar y representar texto en la mayoría de los sistemas de escritura del mundo. +
 UTF-8 es una codificación de caracteres que puede codificar todos los caracteres o números de código en Unicode.
 
 Los caracteres se definen con un: +
@@ -2819,7 +2819,7 @@ say $var;
 
 === Paralelismo
 En condiciones normales todas las tareas de un programa se ejecutan de forma secuencial. +
-Esto no suele ser un problema a menos que exista un retardo significativo.
+Esto no suele ser un problema, a menos que tarde demasiado tiempo.
 
 Perl 6 te permite hacer cosas en paralelo. +
 Llegados aquí, es importante saber que el paralelismo puede tener dos significados:
@@ -2833,9 +2833,9 @@ Comencemos con la última.
 ==== Paralelismo de Datos
 [source,perl6]
 ----
-my @array = (0..50000);                      #Creación del array
-my @resultado = @array.map({ is-prime $_ }); #Llama a is-prime por cada elemento del array
-say now - INIT now;                          #Visualiza el tiempo que toma el script hasta finalizar
+my @array = (0..50000);                      # Creación del array
+my @resultado = @array.map({ is-prime $_ }); # Llama a is-prime por cada elemento del array
+say now - INIT now;                          # Visualiza el tiempo que toma el script hasta finalizar
 ----
 
 .Consideremos el ejemplo anterior:
@@ -2846,9 +2846,9 @@ La subrutina `is-prime` es llamada por cada elemento del array de forma secuenci
 .Afortunadamente podemos llamar a `is-prime` en múltiples elementos del array al mismo tiempo:
 [source,perl6]
 ----
-my @array = (0..50000);                           #Creación del array
-my @resultado = @array.race.map({ is-prime $_ }); #Llama a is-prime por cada elemento del array
-say now - INIT now;                               #Visualiza el tiempo que toma el script hasta finalizar
+my @array = (0..50000);                           # Creación del array
+my @resultado = @array.race.map({ is-prime $_ }); # Llama a is-prime por cada elemento del array
+say now - INIT now;                               # Visualiza el tiempo que toma el script hasta finalizar
 ----
 
 Fíjate que la expresión utiliza `race`.
