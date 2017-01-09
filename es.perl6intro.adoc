@@ -116,7 +116,6 @@ En la comunidad también se utiliza http://www.vim.org/[Vim], https://www.gnu.or
 
 Las últimas versiones de Vim incorporan la visualización de la sintaxis de Perl 6, mientras que Emacs y Padre necesitan instalar paquetes adicionales.
 
-
 === ¡Hola Mundo!
 Comenzamos con El ritual `hola mundo`.
 
@@ -271,29 +270,29 @@ La siguiente tabla muestra los operadores más utilizados.
 
 | % | Infijo | Resto | 7 % 4 | 3
 
-.2+| %% .2+| Infijo .2+| Divisible | 6 %% 4 | Falso
+.2+| %% .2+| Infijo .2+| Divisible | 6 %% 4 | False
 
-<| 6 %% 3 <| Verdadero
+<| 6 %% 3 <| True
 
 | gcd | Infijo | Máximo común divisor | 6 gcd 9 | 3
 
 | lcm | Infijo | Mínimo común múltiplo | 6 lcm 9 | 18
 
-| == | Infijo | Igual numérico | 9 == 7  | Falso
+| == | Infijo | Igual numérico | 9 == 7  | False
 
-| != | Infijo | No igual numérico | 9 != 7  | Verdadero
+| != | Infijo | No igual numérico | 9 != 7  | True
 
-| < | Infijo | Menor que | 9 < 7  | Falso
+| < | Infijo | Menor que | 9 < 7  | False
 
-| > | Infijo | Mayor que | 9 > 7  | Verdadero
+| > | Infijo | Mayor que | 9 > 7  | True
 
-| \<= | Infijo | Menor o igual | 7 \<= 7  | Verdadero
+| \<= | Infijo | Menor o igual | 7 \<= 7  | True
 
-| >= | Infijo | Mayor o igual | 9 >= 7  | Verdadero
+| >= | Infijo | Mayor o igual | 9 >= 7  | True
 
-| eq | Infijo | Texto igual | "Juan" eq "Juan"  | Verdadero
+| eq | Infijo | Texto igual | "Juan" eq "Juan"  | True
 
-| ne | Infijo | Texto no igual | "Juan" ne "Juana"  | Verdadero
+| ne | Infijo | Texto no igual | "Juan" ne "Juana"  | True
 
 | = | Infijo | Asignación | my $var = 7  | Asigna el valor `7` a la variable `$var`
 
@@ -305,13 +304,13 @@ La siguiente tabla muestra los operadores más utilizados.
 
 <| "Hola " x 3  <| Hola Hola Hola
 
-.5+| ~~ .5+| Infijo .5+| Expresión regular | 2 ~~ 2  | Verdadero
+.5+| ~~ .5+| Infijo .5+| Expresión regular | 2 ~~ 2  | True
 
-<| 2 ~~ Int <| Verdadero
+<| 2 ~~ Int <| True
 
-<| "Perl 6" ~~ "Perl 6" <| Verdadero
+<| "Perl 6" ~~ "Perl 6" <| True
 
-<| "Perl 6" ~~ Str <| Verdadero
+<| "Perl 6" ~~ Str <| True
 
 <| "iluminación" ~~ /ilumina/ <| ｢ilumina｣
 
@@ -325,29 +324,29 @@ La siguiente tabla muestra los operadores más utilizados.
 
 .3+| + .3+| Prefijo .3+| Fuerza el operando a un valor numérico | +"3"  | 3
 
-<| +Verdadero <| 1
+<| +True <| 1
 
-<| +Falso <| 0
+<| +False <| 0
 
 .3+| - .3+| Prefijo .3+| Fuerza el operando a un valor numérico y devuelve la negación | -"3"  | -3
 
-<| -Verdadero <| -1
+<| -True <| -1
 
-<| -Falso <| 0
+<| -False <| 0
 
-.6+| ? .6+| Prefijo .6+| Fuerza el operando a un valor booleano | ?0 | Falso
+.6+| ? .6+| Prefijo .6+| Fuerza el operando a un valor booleano | ?0 | False
 
-<| ?9.8 <| Verdadero
+<| ?9.8 <| True
 
-<| ?"Hola" <| Verdadero
+<| ?"Hola" <| True
 
-<| ?"" <| Falso
+<| ?"" <| False
 
-<| my $var; ?$var; <| Falso
+<| my $var; ?$var; <| False
 
-<| my $var = 7; ?$var; <| Verdadero
+<| my $var = 7; ?$var; <| True
 
-| ! | Prefijo | Fuerza el operador a un valor booleano y devuelve la negación | !4 | Falso
+| ! | Prefijo | Fuerza el operador a un valor booleano y devuelve la negación | !4 | False
 
 | .. | Infijo | Constructor de Series |  0..5  | Crea una serie de 0 a 5
 
