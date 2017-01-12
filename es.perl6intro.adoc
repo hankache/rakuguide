@@ -477,6 +477,14 @@ my @animales = 'camello','llama','búho';
 say @animales;
 ----
 
+O bien:
+
+[source,perl6]
+----
+my @animales = <camello llama búho>;
+say @animales;
+----
+
 Se pueden realizar muchas operaciones con arrays, como las de este ejemplo:
 
 TIP: La tilde `~` se utiliza para concatenar texto.

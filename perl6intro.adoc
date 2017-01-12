@@ -507,6 +507,14 @@ my @animals = 'camel','llama','owl';
 say @animals;
 ----
 
+Or:
+
+[source,perl6]
+----
+my @animals = <camel llama owl>;
+say @animals;
+----
+
 Many operations can be performed on arrays as shown in the below example:
 
 TIP: The tilde `~` is used for string concatenation.
