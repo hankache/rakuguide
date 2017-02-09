@@ -81,7 +81,7 @@ Implementations that pass the specification test suite are considered Perl 6.
 
 For other options, go to http://rakudo.org/how-to-get-rakudo/#Installing-Rakudo-Star-Linux
 
-.OSX
+.macOS
 Four options are available:
 
 * Follow the same steps listed for installing on Linux
@@ -128,7 +128,7 @@ Rakudo Star bundles a line editor that helps you get the most out of the REPL.
 If you installed plain Rakudo instead of Rakudo Star then you probably don't have line editing features enabled (using the up and down arrows for history, left and right to edit input, TAB completion).
 Consider running the following command and you shall be all set:
 
-* `zef install Linenoise` would work on Windows, Linux and OSX
+* `zef install Linenoise` would work on Windows, Linux and macOS
 
 * `zef install Readline` if you are on Linux and prefer the _Readline_ library
 --
@@ -1140,7 +1140,7 @@ Two subroutines can be used to run shell commands:
 All shell meta characters are interpreted by the shell, including pipes, redirects, environment variable substitutions and so on.
 
 [source,perl6]
-.Run this if you're on Linux/OSX
+.Run this if you're on Linux/macOS
 ----
 my $name = 'Neo';
 run 'echo', "hello $name";
