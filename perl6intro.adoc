@@ -71,14 +71,15 @@ Implementations that pass the specification test suite are considered Perl 6.
 
 === Installing Perl 6
 .Linux
-. Install Rakudobrew: https://github.com/tadzik/rakudobrew
 
-. Install Rakudo: Type the following command in the terminal `rakudobrew build moar`
-
-. Install Zef: Type the following command in the terminal `rakudobrew build zef`
-
-. Install Task::Star a meta-package for modules included in Rakudo Star: Type the following command in the terminal `zef install Task::Star`
-
+To install Rakudo Star, run the following commands from your terminal:
+----
+wget http://rakudo.org/downloads/star/rakudo-star-2017.01.tar.gz
+tar xfz rakudo-star-2017.01.tar.gz
+cd rakudo-star-2017.01
+perl Configure.pl --gen-moar --prefix /opt/rakudo-star-2017.01
+make install
+----
 For other options, go to http://rakudo.org/how-to-get-rakudo/#Installing-Rakudo-Star-Linux
 
 .macOS
