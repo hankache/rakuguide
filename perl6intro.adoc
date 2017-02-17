@@ -74,7 +74,7 @@ Implementations that pass the specification test suite are considered Perl 6.
 
 To install Rakudo Star, run the following commands from your terminal:
 ----
-wget http://rakudo.org/downloads/star/rakudo-star-2017.01.tar.gz
+wget https://rakudo.perl6.org/downloads/star/rakudo-star-2017.01.tar.gz
 tar xfz rakudo-star-2017.01.tar.gz
 cd rakudo-star-2017.01
 perl Configure.pl --gen-moar --prefix /opt/rakudo-star-2017.01
