@@ -2707,7 +2707,7 @@ if $email ~~ $regex {
 
 .Explanation
 `<:L>` matches a single letter +
-`<:L>+` matches one of more letters +
+`<:L>+` matches one or more letters +
 `\.` matches a single [dot] character +
 `\@` matches a single [at] character +
 `<:L+:N>` matches a single letter and a single number +
