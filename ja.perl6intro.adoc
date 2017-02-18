@@ -74,7 +74,7 @@ Perl6はマルチパラダイム言語です。手続き型、オブジェクト
 
 他のインストール方法を知りたければ次のリンクを参照してください。 http://rakudo.org/how-to-get-rakudo/#Installing-Rakudo-Star-Linux
 
-.OSX
+.macOS
 四つの選択肢から選んでください:
 
 * Linuxにおけるインストール手順と同じステップを踏む
@@ -118,7 +118,7 @@ Rakudo StarはREPLを使い倒すためのラインエディタをバンドル�
 もしRakudo Starではなく無印のRakudoをインストールしたのなら、行編集機能を有効化(履歴閲覧のための上矢印キーと下矢印キーの使用、入力編集のための左矢印キーと右矢印キーの使用、タブによる補完機能)していないはずです。
 次のコマンドを実行してこれらの機能を有効化することを考えてみてください。:
 
-* `zef install Linenoise` Windows/Linux/OSXで動きます
+* `zef install Linenoise` Windows/Linux/macOSで動きます
 
 * `zef install Readline` もしLinux環境で _Readline_ ライブラリを使いたいのであれば
 --
@@ -1136,7 +1136,7 @@ say "Dear $name welcome to Perl 6";
 すべてのシェルのメタ文字はシェルによって解釈されます。これには、パイプ、リダイレクト、ユーザー環境変数などが含まれます。
 
 [source,perl6]
-.もし Linux/OSX 環境にいるなら、次のコードを実行してください。
+.もし Linux/macOS 環境にいるなら、次のコードを実行してください。
 ----
 my $name = 'Neo';
 run 'echo', "hello $name";
