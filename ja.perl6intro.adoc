@@ -64,13 +64,14 @@ Perl6はマルチパラダイム言語です。手続き型、オブジェクト
 
 === Perl6のインストール
 .Linux
-. Rakudobrewのインストール: https://github.com/tadzik/rakudobrew
-
-. Rakudoのインストール: 次のコマンドをターミナルで打ってください `rakudobrew build moar`
-
-. Zefのインストール: 次のコマンドをターミナルで打ってください `rakudobrew build zef`
-
-. Rakudo Starに含まれるモジュールのためのメタパッケージであるTask::Starのインストール: 次のコマンドをターミナルで打ってください `zef install Task::Star`
+Rakudo Starをインストールするには、次のコマンドをターミナルで実行してください:
+----
+wget http://rakudo.org/downloads/star/rakudo-star-2017.01.tar.gz
+tar xfz rakudo-star-2017.01.tar.gz
+cd rakudo-star-2017.01
+perl Configure.pl --gen-moar --prefix /opt/rakudo-star-2017.01
+make install
+----
 
 他のインストール方法を知りたければ次のリンクを参照してください。 http://rakudo.org/how-to-get-rakudo/#Installing-Rakudo-Star-Linux
 
