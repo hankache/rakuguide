@@ -1385,7 +1385,7 @@ Type check failed for return value; expected Int but got Rat (1.44)
 `--> Int:D` and `--> Int:U`
 
 それはそれとして、これらの型の制限をつかうことはとても実用的です。 +
-下記は以前の例の修正版です。返り値の `Int` が定義されているように強制するために `:D`を使っています。
+下記は以前の例の修正版です。返り値の `Int` が定義されているように強制するために `:D` を使っています。
 
 [source,perl6]
 ----
