@@ -2535,7 +2535,7 @@ Unicode properties are enclosed in `<: >`
 
 [source,perl6]
 ----
-if "Devangari Numbers १२३" ~~ / <:N> / {
+if "Devanagari Numbers १२३" ~~ / <:N> / {
   say "Contains a number";
 } else {
   say "Doesn't contain a number"
