@@ -2528,17 +2528,19 @@ if "John-Doe" ~~ / \s / {
 
 === Unicode properties
 Matching against categories of characters, as seen in the preceding section, is convenient. +
-That being said, a more systematic approach would be to use Unicode properties. +
+That being said, a more systematic approach would be to use Unicode properties. + 
+This allows you to match against categories of characters inside and outside of +
+the ASCII standard. +
 Unicode properties are enclosed in `<: >`
 
 [source,perl6]
 ----
-if "John123" ~~ / <:N> / {
+if "Devanagari Numbers १२३" ~~ / <:N> / {
   say "Contains a number";
 } else {
   say "Doesn't contain a number"
 }
-if "John-Doe" ~~ / <:Lu> / {
+if "Привет, Иван." ~~ / <:Lu> / {
   say "Contains an uppercase letter";
 } else {
   say "Doesn't contain an upper case letter"
@@ -2710,8 +2712,8 @@ if $email ~~ $regex {
 `<:L>+` matches one or more letters +
 `\.` matches a single [dot] character +
 `\@` matches a single [at] character +
-`<:L+:N>` matches a single letter and a single number +
-`<:L+:N>+` matches one or more (letters and numbers) +
+`<:L+:N>` matches at least one letter and a single number +
+`<:L+:N>+` matches one or more (letter(s) and number) +
 
 The regex can be decomposed as following:
 
