@@ -438,7 +438,7 @@ my @tiere = 'Kamel','Lama','Eule';
 say @tiere;
 ----
 
-Viele Operationen sind an Array möglich, wie man in der Tabelle unten erkennen kan:
+Viele Operationen sind an Array möglich, wie man in der Tabelle unten erkennen kann:
 
 TIP: Die Tilde `~` wird verwendet um Strings zu verketten.
 
@@ -488,7 +488,7 @@ Das Array nimmt beliebig viele Variablen an, es gibt keine Einschränkung.
 Im Gegensatz dazu lassen sich auch Arrays mit festgelegter Elementanzahl erstellen. +
 Diese können nicht mehr über die definierte Anzahl der Elemente hinaus erweitert werden.
 
-Um ein solches Array zu deklarieren, wird die maximale Anzahl der Elemente in eckigen Klammern direkt nach seinem Namen angegeben::
+Um ein solches Array zu deklarieren, wird die maximale Anzahl der Elemente in eckigen Klammern direkt nach seinem Namen angegeben:
 [source,perl6]
 my @array[3];
 
@@ -607,7 +607,7 @@ say $var.WHAT;
 
 Im obigen Beispiel zu sehen war der Typ des Wertes der Variable `$var` zuerst (Str) und dann (Int).
 
-Dieser Programmierstil wird dynamisches Typisieren (dynamic typing) genannt. Dynamisch in dem Sinne, daß Variablen beliebiger Typen enthalten können.
+Dieser Programmierstil wird dynamisches Typisieren (dynamic typing) genannt. Dynamisch in dem Sinne, dass Variablen beliebige Typen enthalten können.
 
 Nun probieren wir ein weiteres Beispiel: +
 Wichtig ist das `Int` vor dem Namen der Variable.
@@ -1105,7 +1105,7 @@ spurt "neue-datei.txt", $neue-daten;
 Nach der Ausführung dieses Skripts wurde eine neue Datei namens _neue-datei.txt_ erstellt. Sie enthält die neuen Bestmarken.
 
 === Umgang mit Dateien und Verzeichnissen
-Perl 6 kan den Inhalt eines Verzeichnisses auch ohne Shell Kommandos (etwa `ls`) lesen.
+Perl 6 kann den Inhalt eines Verzeichnisses auch ohne Shell Kommandos (etwa `ls`) lesen.
 
 [source,perl6]
 ----
