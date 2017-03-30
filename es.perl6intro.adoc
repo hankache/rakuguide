@@ -59,25 +59,27 @@ Las implementaciones que pasan el banco de pruebas de la especificación se cons
 
 === Instalación de Perl 6
 .Linux
-. Instalación de Rakudobrew: https://github.com/tadzik/rakudobrew
+Instalación de Rakudo Star desde la línea de comandos:
+----
+wget https://rakudo.perl6.org/downloads/star/rakudo-star-2017.01.tar.gz
+tar xfz rakudo-star-2017.01.tar.gz
+cd rakudo-star-2017.01
+perl Configure.pl --gen-moar --prefix /opt/rakudo-star-2017.01
+make install
+----
+Tienes más información en http://rakudo.org/how-to-get-rakudo/#Installing-Rakudo-Star-Linux
 
-. Instalación de Rakudo: En el terminal, introduce el siguiente comando `rakudobrew build moar`
-
-. Instalación de Zef: En el terminal, introduce el siguiente comando `rakudobrew build zef`
-
-. Instalación de los módulos incluidos en la distribución Rakudo Star Perl6 `zef install Task::Star`
-
-.OSX
+.macOS
 
 Tienes cuatro opciones:
 
 * Sigue los mismos pasos de la instalación para Linux
 * Realizar la instalación con homebrew: `brew install rakudo-star`
 * Realizar la instalación con MacPorts: `sudo port install rakudo`
-* Descargar el último instalador (archivo con extensión .dmg) desde http://rakudo.org/download/star/
+* Descargar el último instalador (archivo con extensión .dmg) desde https://rakudo.perl6.org/downloads/star/
 
 .Windows
-. Descarga el instalador más reciente (.msi) desde http://rakudo.org/downloads/star/ +
+. Descarga el instalador más reciente (.msi) desde https://rakudo.perl6.org/downloads/star/ +
 Descarga la versión de 32-bit o 64-bit dependiendo de tu arquitectura.
 . Finalizada la instalación, comprueba que C:\rakudo\bin figura en el PATH del sistema.
 
@@ -101,7 +103,7 @@ Rakudo Star incorpora un editor de líneas con más funcionalidades para REPL.
 
 Si instalaste Rakudo en lugar de Rakudo Star es probable que no tengas estas funcionalidades (historial con flechas verticales, edición de la línea con flechas horizontales, autocompletar con TAB, etc.). Para instalar estas funcionalidades utiliza estos comandos:
 
-* `zef install Linenoise` debe funcionar en Windows, Linux y OSX
+* `zef install Linenoise` debe funcionar en Windows, Linux y macOS
 
 * `zef install Readline` si tienes Linux y prefieres la librería _Readline_
 --
@@ -1108,7 +1110,7 @@ Podemos utilizar dos subrutinas para ejecutar comandos de la shell:
 Todos los caracteres especiales los interpreta la shell, como pueden ser las tuberías, redirecciones, sustitución de variables de entorno, etc.
 
 [source,perl6]
-.Ejecuta el siguiente script en Linux/OSX
+.Ejecuta el siguiente script en Linux/macOS
 ----
 my $nombre = 'Neo';
 run 'echo', "Hola $nombre";
@@ -2473,17 +2475,17 @@ if "Juan-Dios" ~~ / \s / {
 
 === Propiedades Unicode
 Lo normal es comparar categorías de caracteres como hemos visto. +
-Dicho esto, podemos tener un enfoque más sistemático utilizando propiedades Unicode. +
+Dicho esto, podemos tener un enfoque más sistemático utilizando propiedades Unicode, de forma que puedas realizar coincidencias con categorías de caracteres dentro y fuera del estandar ASCII. +
 Las propiedades Unicode se indican entre `<: >`
 
 [source,perl6]
 ----
-if "Juan123" ~~ / <:N> / {
+if "Números Devanagari १२३" ~~ / <:N> / {
   say "Contiene un número";
 } else {
   say "No contiene un número"
 }
-if "Juan-Dios" ~~ / <:Lu> / {
+if "Привет, Иван." ~~ / <:Lu> / {
   say "Contiene una letra en mayúsculas";
 } else {
   say "No contiene una letra en mayúsculas"
