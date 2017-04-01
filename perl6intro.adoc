@@ -3026,8 +3026,7 @@ void hellofromc () {
 }
 ----
 
-To compile the above C code into a library, and depending on your OS,
-run the following commands.
+Depending on your OS run the following commands to compile the above C code into a library.
 
 .On Linux:
 ----
