@@ -2528,7 +2528,7 @@ if "John-Doe" ~~ / \s / {
 
 === Unicode properties
 Matching against categories of characters, as seen in the preceding section, is convenient. +
-That being said, a more systematic approach would be to use Unicode properties. + 
+That being said, a more systematic approach would be to use Unicode properties. +
 This allows you to match against categories of characters inside and outside of +
 the ASCII standard. +
 Unicode properties are enclosed in `<: >`
@@ -3003,6 +3003,210 @@ This is why, using `race`, `hyper`, `start` and `await` for fairly simple script
 
 === Concurrency and Asynchrony
 NOTE: For more info on Concurrency and Asynchronous Programming, see https://docs.perl6.org/language/concurrency
+
+== Native Calling Interface
+
+Perl 6 gives us the ability to use C libraries, using the Native Calling Interface.
+
+`NativeCall` is a standard module that ships with Perl 6 and offers a set of functionality to ease the job
+of interfacing Perl 6 and C.
+
+=== Calling a function
+
+Consider the below C code that defines a function called `hellofromc`.
+This function prints on the terminal `Hello from C`. It doesn't accept any argument nor return any value.
+
+[source,c]
+.ncitest.c
+----
+#include <stdio.h>
+
+void hellofromc () {
+  printf("Hello from C\n");
+}
+----
+
+To compile the above C code into a library, and depending on your OS,
+run the following commands.
+
+.On Linux:
+----
+gcc -c -fpic ncitest.c
+gcc -shared -o libncitest.so ncitest.o
+----
+
+.On Windows:
+----
+gcc -c ncitest.c
+gcc -shared -o ncitest.dll ncitest.o
+----
+
+Within the same directory where you compiled your C library, create a new Perl 6
+file that contains the below code and run it.
+
+[source,perl6]
+.ncitest.pl6
+----
+use NativeCall;
+
+constant LIBPATH = "$*CWD/ncitest";
+sub hellofromc() is native(LIBPATH) { * }
+
+hellofromc();
+----
+
+.Explanation:
+First of all we declared that we will be using the `NativeCall` module. +
+Then we created a constant `LIBPATH` that holds the path to the C library. +
+Notice that `$*CWD` returns the current working directory. +
+Then we created a new Perl 6 subroutine called `hellofromc()` that should act as a
+wrapper to its counterpart C function having the same name and residing in the C
+library found in `LIBPATH`. +
+All of this was done by using the `is native` trait. +
+Finally we called our Perl 6 subroutine.
+
+In essence, it all boils down to declaring a subroutine with the trait `is native` and the name of the C library.
+
+=== Renaming a function
+
+In the above part, we saw how we can call a very simple C function by wrapping
+it with a Perl 6 subroutine having the same name, using the `is native` trait.
+
+In some cases, we would want to change the name of the Perl 6 subroutine. +
+To do so, we use the `is symbol` trait.
+
+Lets modify the above Perl 6 script and rename the Perl 6 subroutine `hello`
+instead of `hellofromc`
+
+[source,perl6]
+.ncitest.pl6
+----
+use NativeCall;
+
+constant LIBPATH = "$*CWD/ncitest";
+sub hello() is native(LIBPATH) is symbol('hellofromc') { * }
+
+hello();
+----
+
+.Explanation:
+In case the Perl 6 subroutine has a different name than its C counterpart, we
+should use the `is symbol` trait with the name of the original C function.
+
+=== Passing Arguments
+
+Compile the following modified C library and run the Perl 6 script found below again. +
+Notice how we modified both C and Perl 6 code to accept a string (`char*` in C and `Str` in Perl 6)
+
+[source,c]
+.ncitest.c
+----
+#include <stdio.h>
+
+void hellofromc (char* name) {
+  printf("Hello, %s! This is C!\n", name);
+}
+----
+
+[source,perl6]
+.ncitest.pl6
+----
+use NativeCall;
+
+constant LIBPATH = "$*CWD/ncitest";
+sub hello(Str) is native(LIBPATH) is symbol('hellofromc') { * }
+
+hello('Jane');
+----
+
+=== Returning values
+
+Lets repeat the process one more time and create a simple calculator that takes
+2 integers and add them. +
+Compile the C library and run the Perl 6 script.
+
+[source,c]
+.ncitest.c
+----
+int add (int a, int b) {
+  return (a + b);
+}
+----
+
+[source,perl6]
+.ncitest.pl6
+----
+use NativeCall;
+
+constant LIBPATH = "$*CWD/ncitest";
+sub add(int32,int32) returns int32 is native(LIBPATH) { * }
+
+say add(2,3);
+----
+
+Notice how both C and Perl 6 functions accept two integers and return one
+(`int` in C and `int32` in Perl 6)
+
+=== Types
+
+You might have asked yourself why did we use `int32` instead of `Int` in the latest Perl 6 script. +
+Some Perl 6 types like `Int`, `Rat` etc. can't be used as is to pass and receive values from a C function. +
+One must use in Perl 6 the same types as the ones in C.
+
+Luckily Perl 6 provides many types that map to their respective C counterpart.
+
+[cols="^.^,^.^",options="header"]
+|===
+
+| C Type | Perl 6 Type
+
+| `char` .2+| `int8`
+
+| `int8_t`
+
+| `short` .2+| `int16`
+
+| `int16_t`
+
+| `int` .2+| `int32`
+
+| `int32_t`
+
+| `int64_t` | `int64`
+
+| `unsigned char` .2+| `uint8`
+
+| `uint8_t`
+
+| `unsigned short` .2+| `uint16`
+
+| `uint16_t`
+
+| `unsigned int` .2+| `uint32`
+
+| `uint32_t`
+
+| `uint64_t` | `uint64`
+
+| `long` | `long`
+
+| `long long` | `longlong`
+
+| `float` | `num32`
+
+| `double` | `num64`
+
+| `size_t` | `size_t`
+
+| `bool` | `bool`
+
+| `char*` (String) | `Str`
+
+| Arrays: For example `int*` (Array of int) and `double*` (Array of double) | `CArray`: For example `CArray[int32]` and `CArray[num64]`
+
+|===
+
+NOTE: For more info on the Native Calling Interface, see https://docs.perl6.org/language/nativecall
 
 == The Community
 
