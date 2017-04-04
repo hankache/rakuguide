@@ -2712,8 +2712,8 @@ if $email ~~ $regex {
 `<:L>+` matches one or more letters +
 `\.` matches a single [dot] character +
 `\@` matches a single [at] character +
-`<:L+:N>` matches at least one letter and a single number +
-`<:L+:N>+` matches one or more (letter(s) and number) +
+`<:L+:N>` matches a letter or a single number +
+`<:L+:N>+` matches one or more letters or numbers +
 
 The regex can be decomposed as following:
 
