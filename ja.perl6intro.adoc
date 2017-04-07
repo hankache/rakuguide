@@ -3019,13 +3019,13 @@ void hellofromc () {
 
 OSに応じて、次のコマンドを実行し、上記のCのコードをライブラリへとコンパイルしてください。
 
-.On Linux:
+.Linux:
 ----
 gcc -c -fpic ncitest.c
 gcc -shared -o libncitest.so ncitest.o
 ----
 
-.On Windows:
+.Windows:
 ----
 gcc -c ncitest.c
 gcc -shared -o ncitest.dll ncitest.o
