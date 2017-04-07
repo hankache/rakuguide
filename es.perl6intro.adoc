@@ -2943,6 +2943,199 @@ Debido a esto, el uso de `race`, `hyper`, `start` y `await` en scripts muy simpl
 === Concurrencia y Asincronía
 NOTE: En https://docs.perl6.org/language/concurrency tienes más información sobre Concurrencia y Programación Asíncrona.
 
+== Interfaz de Llamadas Nativas
+
+Perl 6 nos permite utilizar librerías de C mediante la Interfaz de Llamadas Nativas (NativeCall).
+
+`NativeCall` es un módulo estandar que viene incluido con Perl 6 y ofrece un conjunto de funcionalidades para facilitar el trabajo con la interfaz entre Perl 6 y C.
+
+=== Llamada a una función
+
+Consideremos un programa en C con una función llamada `holadesdec`.
+Esta función visualiza `Hola desde C` en el terminal. No acepta argumentos ni devuelve ningún valor.
+
+[source,c]
+.ncitest.c
+----
+#include <stdio.h>
+
+void holadesdec () {
+  printf("Hola desde C\n");
+}
+----
+
+Dependiendo de tu sistema operativo, compila el código de C anterior en una librería de C.
+
+.En Linux:
+----
+gcc -c -fpic ncitest.c
+gcc -shared -o libncitest.so ncitest.o
+----
+
+.En Windows:
+----
+gcc -c ncitest.c
+gcc -shared -o ncitest.dll ncitest.o
+----
+
+En la misma carpeta donde has compilado la librería en C, crea un nuevo archivo de Perl 6 que contenga el siguiente código y ejecútalo.
+
+[source,perl6]
+.ncitest.pl6
+----
+use NativeCall;
+
+constant LIBPATH = "$*CWD/ncitest";
+sub holadesdec() is native(LIBPATH) { * }
+
+holadesdec();
+----
+
+.Explicación:
+Lo primero es declarar que vamos a utilizar el módulo `NativeCall`. +
+Después creamos la constante LIBPATH que contiene la ruta de la librería de C. +
+Como puedes ver, `$*CWD` contiene la ruta de la carpeta actual. +
+Después creamos una subrutina de Perl 6 denominada `holadesdec()` que se corresponde y tiene el mismo nombre que la función que reside en la librería de C, la cual se encuentra en `LIBPATH`. +
+Todo esto se hace utilizando `is native`. +
+Por último realizamos la llamada a la subrutina de Perl 6.
+
+En esencia, todo se reduce a declarar una subrutina con `is native` y el nombre de la biblioteca de C.
+
+=== Cambiando el nombre a una función
+
+Hemos visto cómo realizar una llamada a una función simple de C mediante una subrutina de Perl 6 con el mismo nombre y utilizando `is native`.
+
+Es posible que en algunos casos necesitemos que el nombre de la función de Perl 6 sea distinto al de la función en C. +
+Para hacerlo utilizamos `is symbol`.
+
+Vamos a modificar el script de Perl 6 que hemos visto de forma que la función de Perl 6 se llame `hola` en lugar de `holadesdec`.
+
+[source,perl6]
+.ncitest.pl6
+----
+use NativeCall;
+
+constant LIBPATH = "$*CWD/ncitest";
+sub hola() is native(LIBPATH) is symbol('holadesdec') { * }
+
+hola();
+----
+
+.Explicación:
+En caso de que la subrutina de Perl 6 tenga un nombre distinto al de la función de C correspondiente, utilizamos `is symbol` con el nombre de la función de C original.
+
+=== Pasando Argumentos
+
+Vamos a modificar y compilar la librería de C y el script de Perl 6 de forma que acepten, en C un argumento de tipo `char*` y el mismo argumento en Perl 6 pero de tipo `Str`.
+
+[source,c]
+.ncitest.c
+----
+#include <stdio.h>
+
+void holadesdec (char* nombre) {
+  printf("¡Hola, %s! ¡Esto es C!\n", nombre);
+}
+----
+
+[source,perl6]
+.ncitest.pl6
+----
+use NativeCall;
+
+constant LIBPATH = "$*CWD/ncitest";
+sub hola(Str) is native(LIBPATH) is symbol('holadesdec') { * }
+
+hola('Juana');
+----
+
+=== Valores de retorno
+
+Vamos a repetir el proceso una vez más para crear una calculadora simple que toma dos enteros, los suma, devuelve el resultado y lo visualiza. +
+Compilamos la librería de C y ejecutamos el script de Perl 6.
+
+[source,c]
+.ncitest.c
+----
+int suma (int a, int b) {
+  return (a + b);
+}
+----
+
+[source,perl6]
+.ncitest.pl6
+----
+use NativeCall;
+
+constant LIBPATH = "$*CWD/ncitest";
+sub suma(int32,int32) returns int32 is native(LIBPATH) { * }
+
+say suma(2,3);
+----
+
+Como puedes ver, ambas funciones aceptan dos enteros y devuelven uno (`int` en C y `int32` en Perl 6).
+
+=== Tipos
+
+Te preguntarás por qué en el script de Perl 6 utilizamos `int32` en lugar de `int`. +
+En Perl 6 no pueden utilizarse algunos tipos como `Int`, `Rat`, etc. para pasarlos y recibirlos como valores de una función de C. +
+En Perl 6 hay que utilizar los mismos tipos que en C.
+
+Por fortuna, Perl 6 proporciona muchos tipos que se corresponden con los de C.
+
+[cols="^.^,^.^",options="header"]
+|===
+
+| Tipo de C | Tipo de Perl 6
+
+| `char` .2+| `int8`
+
+| `int8_t`
+
+| `short` .2+| `int16`
+
+| `int16_t`
+
+| `int` .2+| `int32`
+
+| `int32_t`
+
+| `int64_t` | `int64`
+
+| `unsigned char` .2+| `uint8`
+
+| `uint8_t`
+
+| `unsigned short` .2+| `uint16`
+
+| `uint16_t`
+
+| `unsigned int` .2+| `uint32`
+
+| `uint32_t`
+
+| `uint64_t` | `uint64`
+
+| `long` | `long`
+
+| `long long` | `longlong`
+
+| `float` | `num32`
+
+| `double` | `num64`
+
+| `size_t` | `size_t`
+
+| `bool` | `bool`
+
+| `char*` (String) | `Str`
+
+| Arrays: Por ejemplo `int*` (Array de int) y `double*` (Array de double) | `CArray`: Por ejemplo `CArray[int32]` y `CArray[num64]`
+
+|===
+
+NOTE: En https://docs.perl6.org/language/nativecall tienes más información sobre la Interfaz de Llamadas Nativas.
+
 == La Comunidad
 * En el canal de IRC link:irc://irc.freenode.net/#perl6[#perl6] encontrarás el lugar principal para hablar de Perl 6. Consulta: https://perl6.org/community/irc si tienes dudas.
 
