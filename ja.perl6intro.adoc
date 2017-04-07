@@ -2995,6 +2995,204 @@ WARNING: 並列処理にはスレッディングのオーバーヘッドがあ�
 === 並行性と非同期性
 NOTE: 並行/非同期プログラミングについてもっと情報を知りたいのなら、次のURLを参照してください: https://docs.perl6.org/language/concurrency
 
+=== ネイティブコールインタフェース
+
+Perl 6ではネイティブコール (Native Call) インタフェースを用いて、Cのライブラリを使うことができます。
+
+`NativeCall` はPerl 6と一緒に提供されている標準モジュールです
+
+=== 関数の呼び出し
+
+`hellofromc` という関数が定義されている下記コードについて考えてみましょう。
+この関数はターミナルに `Hello from C` と表示します。
+この関数は引数を受け付けませんし返り値もありません。
+
+[source,c]
+.ncitest.c
+----
+#include <stdio.h>
+
+void hellofromc () {
+  printf("Hello from C\n");
+}
+----
+
+上記のCのコードをライブラリへとコンパイルするためには、OSに応じて、
+下記のコマンドを実行してください。
+
+.On Linux:
+----
+gcc -c -fpic ncitest.c
+gcc -shared -o libncitest.so ncitest.o
+----
+
+.On Windows:
+----
+gcc -c ncitest.c
+gcc -shared -o ncitest.dll ncitest.o
+----
+
+Cのライブラリをコンパイルしたのと同じディレクトリで、次のコードを含むPerl 6のファイルを作り、実行してください。
+
+[source,perl6]
+.ncitest.pl6
+----
+use NativeCall;
+
+constant LIBPATH = "$*CWD/ncitest";
+sub hellofromc() is native(LIBPATH) { * }
+
+hellofromc();
+----
+
+.説明:
+まずはじめに、 `NativeCall` モジュールを使うということを宣言しました。 +
+次に、Cのライブラリへのパスを保持している定数 `LIBPATH` を作りました。 +
+`$*CWD` はカレントディレクトリを返すということに注意してください。 +
+それから、 `hellofromc()` という新しいPerl 6のサブルーチンを作りました。
+このサブルーチンは、`LIBPATH` 下のCのライブラリの同じ名前を持った対応する関数のラッパーとしてふるまうでしょう。 +
+`is native` トレイトを用いることでこれを実現できます。 +
+さいごにPerl 6のサブルーチンを呼び出しました。 +
+
+突き詰めると、すべては `is native` を使用して、Cのライブラリと同じ名前を持つサブルーチンを宣言することに帰着します。
+
+=== 関数の名前の変更
+
+前節では、`is native` トレイトを使って同じ名前を持ったPerl 6のサブルーチンでラップすることで、どのようにしてCの関数を呼び出せるかを見てきました。
+
+場合によっては、Perl 6のサブルーチンの名前を変えたくなるかもしれません。 +
+そうしたいときは、 `is symbol` トレイトを使います。
+
+上記のPerl 6のスクリプトを変更し、 Perl 6のサブルーチンの名前を `hellofromc` の代わりに `hello` と付けてみましょう。
+
+[source,perl6]
+.ncitest.pl6
+----
+use NativeCall;
+
+constant LIBPATH = "$*CWD/ncitest";
+sub hello() is native(LIBPATH) is symbol('hellofromc') { * }
+
+hello();
+----
+
+.説明:
+この場合Perl 6のサブルーチンはCの対応する関数と異なる名前を持っています。
+元のCの関数の名前を用いて `is symbol` トレイトを使うべきです。
+
+=== 引数渡し
+
+次の改変されたCのライブラリをコンパイルし、その下のPerl 6のスクリプトを実行しましょう。 +
+どのようにしてCとPerl 6のコードの両方を、文字列を受け取るために改変したかについて注目してください。 (Cでは `char*` で、Perl 6では `Str` です)
+
+[source,c]
+.ncitest.c
+----
+#include <stdio.h>
+
+void hellofromc (char* name) {
+  printf("Hello, %s! This is C!\n", name);
+}
+----
+
+[source,perl6]
+.ncitest.pl6
+----
+use NativeCall;
+
+constant LIBPATH = "$*CWD/ncitest";
+sub hello(Str) is native(LIBPATH) is symbol('hellofromc') { * }
+
+hello('Jane');
+----
+
+=== 値の返却
+
+さっきと同じことをもう一度行い、ふたつの整数を受け取って足し合わせる単純な計算機を生成しましょう。 +
+CのライブラリをコンパイルしてPerl 6のスクリプトを実行してください。
+
+[source,c]
+.ncitest.c
+----
+int add (int a, int b) {
+  return (a + b);
+}
+----
+
+[source,perl6]
+.ncitest.pl6
+----
+use NativeCall;
+
+constant LIBPATH = "$*CWD/ncitest";
+sub add(int32,int32) returns int32 is native(LIBPATH) { * }
+
+say add(2,3);
+----
+
+どのようにしてCとPerl 6の関数の両方がふたつの整数を受け取りひとつの整数を返しているかについて注目してください。 ( Cでは `int` でPerl 6では `int32` です)
+
+=== 型
+
+もしかしたら先ほどのPerl 6のスクリプトで `Int` ではなくて `int32` を使ったのはなぜなのか疑問に思ったかもしれません。 +
+`Int`, `Rat` などといったいくつかのPerl 6の型はCの関数からの値を通して受け取るときにそのままでは使うことができません。 +
+Perl 6で使う型はCの型と同じでなければなりません。
+
+幸運なことに、Perl 6はCでその型に相当する型と対応付けられた型を提供しています。
+
+[cols="^.^,^.^",options="header"]
+|===
+
+| Cの型 | Perl 6の型
+
+| `char` .2+| `int8`
+
+| `int8_t`
+
+| `short` .2+| `int16`
+
+| `int16_t`
+
+| `int` .2+| `int32`
+
+| `int32_t`
+
+| `int64_t` | `int64`
+
+| `unsigned char` .2+| `uint8`
+
+| `uint8_t`
+
+| `unsigned short` .2+| `uint16`
+
+| `uint16_t`
+
+| `unsigned int` .2+| `uint32`
+
+| `uint32_t`
+
+| `uint64_t` | `uint64`
+
+| `long` | `long`
+
+| `long long` | `longlong`
+
+| `float` | `num32`
+
+| `double` | `num64`
+
+| `size_t` | `size_t`
+
+| `bool` | `bool`
+
+| `char*` (String) | `Str`
+
+| 配列: 例えば `int*` (intの配列) や `double*` (doubleの配列) | `CArray`: 例えば `CArray[int32]` や `CArray[num64]`
+
+|===
+
+NOTE: ネイティブコール インタフェースについてより詳しく知りたい方は、次のURLを参照してください https://docs.perl6.org/language/nativecall
+
 == コミュニティ
 
 * link:irc://irc.freenode.net/#perl6[#perl6] IRCチャンネルです。活発な議論が行われています。何でも気軽に質問してください: https://perl6.org/community/irc
