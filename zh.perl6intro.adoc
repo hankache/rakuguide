@@ -2783,8 +2783,8 @@ if $email ~~ $regex {
 `<:L>+` 匹配单个字符或更多字符 +
 `\.`  匹配单个点号字符 +
 `\@`  匹配单个  [at] 符号 +
-`<:L+:N>` 匹配一个字母和数字 +
-`<:L+:N>+` 匹配一个或多个字母和数字 +
+`<:L+:N>` 匹配一个字母或数字 +
+`<:L+:N>+` 匹配多个字母或数字 +
 
 其中的 regex 可以分解成如下:
 
@@ -3081,6 +3081,200 @@ WARNING: 并行总是添加线程开销。如果开销抵消不了运算速度�
 
 NOTE: 关于并发和异步编程的更多信息, 请查看  http://doc.perl6.org/language/concurrency
 
+== Native Calling 接口 
+Perl 6 可以让我们通过 Native Calling 接口来使用 C 库。
+
+`NativeCall` 是 Perl 6 自带的标准模块，它提供了一系列功能方便了 Perl 6 和 C 的接口。
+
+=== 调用函数
+
+下面的 C 代码定义了一个名为 `hellofromc` 的函数。
+这个函数的功能是在终端中打印 `Hello from C`。它不接收参数，也不返回值。
+
+[source,c]
+.ncitest.c
+----
+#include <stdio.h>
+
+void hellofromc () {
+  printf("Hello from C\n");
+}
+----
+
+根据你的操作系统将上面的 C 代码编译成库文件。
+
+.在 Linux 中:
+----
+gcc -c -fpic ncitest.c
+gcc -shared -o libncitest.so ncitest.o
+----
+
+.在 Windows 中:
+----
+gcc -c ncitest.c
+gcc -shared -o ncitest.dll ncitest.o
+----
+
+在你编译 C 库的路径下新建一个包含下面代码的 Perl 6 文件，并运行它。
+
+[source,perl6]
+.ncitest.pl6
+----
+use NativeCall;
+
+constant LIBPATH = "$*CWD/ncitest";
+sub hellofromc() is native(LIBPATH) { * }
+
+hellofromc();
+----
+
+.解释
+首先，我们声明使用 `NativeCall` 模块。 +
+接着，我们定义了一个常量 `LIBPATH` 来存储 C 库的路径。 +
+其中 `$*CWD` 返回当前目录。 +
+然后，我们定义一个新的 Perl 6 子例程 `hellofromc` 作为 C 库中名称同为 `hellofromc` 的 C 函数之包装函数。这个 C 库就是 `LIBPATH` 所对应的。 +
+这些是通过使用 `is native` 特征实现的。 +
+最后，调用我们的 Perl6 子例程。
+
+总而言之，整个过程即声明一个带有 `is native` 和 C 库名为特征的子程序。
+
+=== 函数重命名
+
+上面的例子中，我们看到了如何通过 `is native` 特征使用同名 Perl 6 子例程来包装 C 函数从而调用它。
+
+有时我们希望更改 Perl 6 子例程的名称。 +
+为此，我们需要使用 `is symbol` 特征。
+
+下面就来修改上面的 Perl 6 脚本，将 Perl 6 子例程 `hellofromc` 重命名为 `hello`。
+
+[source,perl6]
+.ncitest.pl6
+----
+use NativeCall;
+
+constant LIBPATH = "$*CWD/ncitest";
+sub hello() is native(LIBPATH) is symbol('hellofromc') { * }
+
+hello();
+----
+
+.解释
+由于 Perl 6 子例程与对应的 C 函数不同命，我们在这里需要使用 `is symbol` 来提供原始的 C 函数名。
+
+=== 参数传递
+
+编译下面更改过的的 C 库代码并运行 Perl 6 脚本。 +
+注意我们是如何修改 C 和 Perl 6 代码来接收一个字符串参数（在 C 中是 `chr*`，在 Perl 6 中是 `Str`） 
+
+[source,c]
+.ncitest.c
+----
+#include <stdio.h>
+
+void hellofromc (char* name) {
+  printf("Hello, %s! This is C!\n", name);
+}
+----
+
+[source,perl6]
+.ncitest.pl6
+----
+use NativeCall;
+
+constant LIBPATH = "$*CWD/ncitest";
+sub hello(Str) is native(LIBPATH) is symbol('hellofromc') { * }
+
+hello('Jane');
+----
+
+=== 返回值
+
+让我们再来定义一个简单的计算器，实现接收两个整数输入并返回它们之和。 +
+编译下面的 C 库，并运行 Perl 6 脚本。
+
+[source,c]
+.ncitest.c
+----
+int add (int a, int b) {
+  return (a + b);
+}
+----
+
+[source,perl6]
+.ncitest.pl6
+----
+use NativeCall;
+
+constant LIBPATH = "$*CWD/ncitest";
+sub add(int32,int32) returns int32 is native(LIBPATH) { * }
+
+say add(2,3);
+----
+
+注意其中 C 和 Perl 6 函数如何接收两个整数并返回一个整数。（C 中的 `int` 和 Perl 6 中的 `int32`）
+
+=== 类型
+
+你可能要问，为什么在最后的 Perl 6 脚本中我们要使用 `int32` 来代替 `Int` 。 +
+因为在 Perl 6 中像 `Int`，`Rat` 等类型不能用来传递与接收 C 函数中的值。 +
+所以必须在 Perl 6 中使用同 C 中类型相对应的类型。
+
+幸运的是，Perl 6 提供了许多数据类型来对应 C 中的数据类型。
+
+[cols="^.^,^.^",options="header"]
+|===
+
+| C 类型| Perl 6 类型
+
+| `char` .2+| `int8`
+
+| `int8_t`
+
+| `short` .2+| `int16`
+
+| `int16_t`
+
+| `int` .2+| `int32`
+
+| `int32_t`
+
+| `int64_t` | `int64`
+
+| `unsigned char` .2+| `uint8`
+
+| `uint8_t`
+
+| `unsigned short` .2+| `uint16`
+
+| `uint16_t`
+
+| `unsigned int` .2+| `uint32`
+
+| `uint32_t`
+
+| `uint64_t` | `uint64`
+
+| `long` | `long`
+
+| `long long` | `longlong`
+
+| `float` | `num32`
+
+| `double` | `num64`
+
+| `size_t` | `size_t`
+
+| `bool` | `bool`
+
+| `char*` (String) | `Str`
+
+| Arrays: 比如 `int*` (Array of int) 和 `double*` (Array of double) | `CArray`: 比如 `CArray[int32]` 和 `CArray[num64]`
+
+|===
+
+NOTE: 更多关于 Native Calling 接口, 详见 https://docs.perl6.org/language/nativecall
+
+
 == 社区
 
 * link:irc://irc.freenode.net/#perl6[#perl6] IRC 频道. 很多讨论发生在频道中。你可以到 http://perl6.org/community/irc 进行任何询问。
@@ -3090,3 +3284,4 @@ NOTE: 关于并发和异步编程的更多信息, 请查看  http://doc.perl6.or
 * link:http://pl6anet.org[pl6anet] 博客聚合器. 敬请阅读专注于 Perl 6 的博客文章。
 
 * link:https://www.reddit.com/r/perl6/[/r/perl6] 订阅 Perl 6 子版本。
+
