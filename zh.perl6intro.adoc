@@ -2039,7 +2039,7 @@ class Employee is Human {
     has $.company;
     has $.salary;
     method introduce-yourself {
-      say 'Hi 我是一名员工, 我的名字是 ' ~ self.name ~ ' 我工作在: ' ~ self.comapny;
+      say 'Hi 我是一名员工, 我的名字是 ' ~ self.name ~ ' 我工作在: ' ~ self.company;
     }
 }
 
