@@ -1328,7 +1328,7 @@ sub squared ($x) {
 say "7 squared is equal to " ~ squared(7);
 ----
 
-一旦我们的代码变多，_清楚地指明我们需要返回的变量是很有用的。
+一旦我们的代码变多，清楚地指明我们需要返回的变量是很有用的。
 可以使用 `return` 关键字来指明返回变量。
 [source,perl6]
 .显式返回
@@ -1369,10 +1369,9 @@ Type check failed for return value; expected Int but got Rat (1.44)
 
 [TIP]
 ====
-类型限制不仅控制返回值的类型，它也可以控制返回值是否定义。
-(Not only can type constraints control the type of the return value; they can also control its definedness.)
+类型限制不仅可以控制返回值的类型，还可以控制返回值的定义状态。
 
-之前的例子中，我们指定了返回值必须为 `Int`，这与返回值的定义无关。
+之前的例子中，我们指定了返回值必须为 `Int`。 +
 我们可以指定返回值 `Int` 需要被严格定义或者不用定义： +
 `--> Int:D` 和 `--> Int:U`
 
