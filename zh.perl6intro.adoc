@@ -983,7 +983,7 @@ unless $clean-shoes {
 
 === with
 
-`with` 的用法 `if` 相同, 不过 `with` 会检查变量是否已经定义。 +
+`with` 的用法和 `if` 相同, 不过 `with` 会检查变量是否已经定义。 +
 如果变量没有定义，那么就不会执行块中的代码。
 
 [source,perl6]
