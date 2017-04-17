@@ -911,7 +911,7 @@ say @numbers;      #4
 Perl 6 有多种条件和循环结构。
 
 === if
-仅在条件满足时运行代码，即表达式结果为 `True`。
+仅在条件满足（条件表达式结果为 `True`）时运行代码。
 
 [source,perl6]
 ----
@@ -922,7 +922,7 @@ if $age > 18 {
 }
 ----
 
-在 Perl 6 中我们能待运行的代码和条件语句倒装。 +
+在 Perl 6 中我们能倒装条件语句和待运行的代码。 +
 将待运行的代码和条件语句倒装后，条件语句总是优先被执行。
 
 [source,perl6]
@@ -983,7 +983,7 @@ unless $clean-shoes {
 
 === with
 
-`with` 的用法 `if` 相同, 不过 `with` 会检查变量是否定义。 +
+`with` 的用法 `if` 相同, 不过 `with` 会检查变量是否已经定义。 +
 如果变量没有定义，那么就不会执行块中的代码。
 
 [source,perl6]
@@ -995,7 +995,7 @@ with $var {
 }
 ----
 
-如果以下代码中你没有给 `$var` 赋值，那么代码块就不会被执行。
+以下代码中，如果你没有给 `$var` 赋值，那么代码块就不会被执行。
 [source,perl6]
 ----
 my Int $var;
@@ -1027,8 +1027,7 @@ for @array -> $array-item {
 
 === given
 
-在 Perl 6 中的 `given`  类似其他语言中的 switch。
-但是要更加地强大。
+在 Perl 6 中的 `given`  类似其他语言中的 switch，但是要更加地强大。
 
 [source,perl6]
 ----
@@ -1060,8 +1059,8 @@ given $var {
 
 === loop
 
-`loop` 是进行 `for` 循环的另一种方式。
-Perl 6 中 C 语言家族的 `for` 循环使用 `loop` 来表示。
+`loop` 是进行 `for` 循环的另一种方式。 +
+Perl 6 中 C 语言家族的 `for` 循环使用 `loop` 来表示。 +
 Perl 6 是 C 语言家族中的一员。
 
 [source,perl6]
