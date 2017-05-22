@@ -643,7 +643,7 @@ Some of the methods that can be called on hashes are:
 .`Script`
 ----
 my %capitals = (UK => 'London', Germany => 'Berlin');
-%capitals.push: (France => 'Paris');
+%capitals<France> = 'Paris';
 say %capitals.kv;
 say %capitals.keys;
 say %capitals.values;
@@ -659,7 +659,6 @@ The capital of France is: Paris
 ----
 
 .Explanation
-`.push: (key => 'Value')` adds a new key/value pair. +
 `.kv` returns a list containing all keys and values. +
 `.keys` returns a list that contains all keys. +
 `.values` returns a list that contains all values. +
