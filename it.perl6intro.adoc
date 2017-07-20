@@ -1,6 +1,6 @@
 = Perl 6 Introduzione
 :descrizione: Introduzione generale a Perl 6
-:Author: Naoum Hankache; Marcello Dusini <marcello.dusini@gmail.com>
+:Author: Naoum Hankache; Marcello Dusini
 :keywords: perl6, perl 6, introduzione, perl6intro, perl 6 introduzione, perl 6 tutorial, perl 6 intro
 :Revision: 1.0
 :icons: font
@@ -113,7 +113,7 @@ Alternativamente, scrivi il tuo codice in un file, salvalo e fallo girare.
 Si raccomanda che gli script Perl 6 abbiano l'estension `.pl6`.
 Fai girare il file digitando `perl6 nomefile.pl6` nel terminale e premi [Enter].
 A differenza di REPL, questo non scriverà automaticamente il risultato di
-ogni linea: il codice deve contenere uno statement opportuno (per esempio `say`)
+ogni linea: il codice deve contenere una istruzione opportuna (per esempio `say`)
 per scrivere un output sul monitor.
 
 REPL in generale si usa per fare delle prove su pezzetti specifici di codice,
@@ -132,9 +132,9 @@ abilitate le funzionalità di editing  di linea (che sono frecce alto e basso pe
 sinistra e destra per editare l'input, completamento con il TAB).
 Valuta di far girare i seguenti comandi per avere tutto disponibile:
 
-* `zef install Linenoise` would work on Windows, Linux and macOS
+* `zef install Linenoise` funziona su Windows, Linux e macOS
 
-* `zef install Readline` if you are on Linux and prefer the _Readline_ library
+* `zef install Readline` se sei su Linux e preferisci la libreria _Readline_ library
 --
 
 === Editor
@@ -147,7 +147,7 @@ Si tratta di un moderno editor di testo che fornisce nativamente riconoscimento 
 https://atom.io/packages/language-perl6[Perl 6 FE] è un altro riconoscitore sintattico di Perl 6 per Atom;
 è derivato da un package originale corretto e riveduto.
 
-Altre persone della comunità usano anche http://www.vim.org/[Vim], https://www.gnu.org/software/emacs/[Emacs] or 
+Altre persone della comunità usano anche http://www.vim.org/[Vim], https://www.gnu.org/software/emacs/[Emacs] oppure 
 http://padre.perlide.org/[Padre].
 
 Versioni recenti di Vim forniscono il riconoscimento sintattico nativamente.
@@ -167,53 +167,51 @@ che può anche essere scritto così:
 === Panoramica sulla sintassi
 Perl 6 è *free form*: Sei libero (la maggior parte delle volte) di usare un numero di spazi a piacere.
 
-*Statements* sono tipicamente una linea logica di codice, necessitano di finire con punto e virgola:
+*Istruzioni* sono tipicamente una linea logica di codice, necessitano di finire con punto e virgola:
 `say "Ciao" if True;`
 
-*Espressioni* sono speciali tipi di statement che ritornano un valore:
+*Espressioni* sono speciali tipi di istruzioni che ritornano un valore:
 `1+2` restituirà `3`
 
 Le espressioni sono composte da *Operandi* ed *Operatori*
 
-######################################SONO ARRIVATO QUI##########################################À
+Gli *operandi* possono essere:
 
-*Terms* are:
+* *Variabili*: un valore che può essere manipolato o cambiato.
 
-* *Variables*: A value that can be manipulated and changed.
+* *Costanti*: un valore costante come un numero o una stringa.
 
-* *Literals*: A constant value like a number or a string.
-
-*Operators* are classified into types:
+Gli *operatore* vengono classificati nei seguenti tipi:
 
 |===
 
-| *Type* | *Explanation* | *Example*
+| *Tipo* | *Descrizione* | *Esempio*
 
-| Prefix | Before the term. | `++1`
+| Prefisso | precede l'operando | `++1`
 
-| Infix | Between terms | `1+2`
+| Infisso | tra operandi | `1+2`
 
-| Postfix | After the term | `1++`
+| Postfisso | segue l'operando | `1++`
 
-| Circumfix | Around the term | `(1)`
+| Circumfisso | circonda l'operando | `(1)`
 
-| Postcircumfix | After one term, around another  | `Array[1]`
-
-|===
-
-==== Identifiers
-Identifiers are the names given to terms when you define them.
-
-.Rules:
-* They must start with an alphabetic character or an underscore.
-
-* They can contain digits (except the first character).
-
-* They can contain dashes or apostrophes (except the first and last character), provided there's an alphabetic character to the right side of each dash or apostrophe.
+| Postcircumfisso | segue un operando, abbraccia l'altro  | `Array[1]`
 
 |===
 
-| *Valid* | *Invalid*
+==== Identificatori
+Gli identificatori sono nomi dati agli opernadi quando questi vengono definiti.
+
+.Regole:
+* Debbono iniziare con un carattere alfanumerico oppure con un underscore.
+
+* Possono contenere cifre numeriche (eccetto che al primo posto).
+
+* Possono contenere trattini oppure apostrofi (eccetto che al primo o all'ultimo posto), dato che ci deve essere un carattere alfabetico alla destra di ogni trattino o di ogni apostrofo.
+
+|===
+
+| *Corretto* | *Scorretto*
 
 | `var1` | `1var`
 
@@ -227,123 +225,123 @@ Identifiers are the names given to terms when you define them.
 
 |===
 
-.Naming conventions:
-* Camel case: `variableNo1`
+.Notazini convenzionali:
+* notazione a cammello: `variabileNo1`
 
-* Kebab case: `variable-no1`
+* notazione kebab: `variabile-no1`
 
-* Snake case: `variable_no1`
+* notazione a serpente: `variabile_no1`
 
-You are free to name your identifiers as you like, but it is good practice to adopt one naming convention consistently.
+Sei libero di nominare i tuoi identificatori come preferisci; è buona pratica adottare una certa notazione in modo uniforme.
 
-Using meaningful names will ease your (and other's) programming life.
+Usare nomi significativi facilita la tua vita di programmatore (e quella degli altri!).
 
-* `var1 = var2 * var3` is syntactically correct but its purpose is not evident.
-* `monthly-salary = daily-rate * working-days` would be a better way to name your variables.
+* `var1 = var2 * var3` è una istruzione sintatticamente corretta, ma il suo scopo non è di immediata comprensione.
+* `salario-mensile = paga-giornaliera * giorni-lavorati` sarebbe un modo milgiore di nominare queste variabili.
 
-==== Comments
-A comment is text ignored by the compiler and used as a note.
+==== Commenti
+Un commento è un testo che viene ignorato dal compilatore e viene usato come un appunto.
 
-Comments are divided into 3 types:
+I commenti si dividono in tre tipi:
 
-* Single line:
+* su singola linea:
 +
 [source,perl6]
-# This is a single line comment
+# questo è un commento su singola linea
 
-* Embedded:
+* Annidati:
 +
 [source,perl6]
-say #`(This is an embedded comment) "Hello World."
+say #`(questo è un commento annidato) "Salve Mondo."
 
-* Multi line:
+* Multi-linea:
 +
 [source,perl6]
 -----------------------------
-=begin comment
-This is a multi line comment.
-Comment 1
-Comment 2
-=end comment
+=begin commento
+Questo è un commento multilinea.
+Commento 1
+Commento 2
+=end commento
 -----------------------------
 
-==== Quotes
-Strings need to be delimited by either double quotes or single quotes.
+==== Virgolettato
+Le stringhe hanno bisogno di essere delimitate o da doppie virgolette oppure da virgolette singole.
 
-Always use double quotes:
+Usa sempre le doppie virgolette se:
 
-* if your string contains an apostrophe.
+* la tua stringa contiene un apostrofo.
 
-* if your string contains a variable that needs to be interpolated.
+* la tua stringa contiene una variabile che deve essere interpolata.
 
 [source,perl6]
 -----------------------------------
-say 'Hello World';   # Hello World
-say "Hello World";   # Hello World
-say "Don't";         # Don't
+say 'Salve Mondo';   # Salve Mondo
+say "Salve Mondo";   # Salve Mondo
+say "l'amo";         # l'amo
 my $name = 'John Doe';
-say 'Hello $name';   # Hello $name
-say "Hello $name";   # Hello John Doe
+say 'Salve $name';   # Salve $name
+say "Salve $name";   # Salve John Doe
 -----------------------------------
 
-== Operators
+== Operatori
 
-=== Common Operators
-The below table lists the most commonly used operators.
+=== Operatori comuni
+Nella tabella qui sotto vediamo gli operatori più comunemente usati.
 [cols="^.^5m,^.^5m,.^20,.^20m,.^20m", options="header"]
 |===
 
-| Operator | Type | Description | Example | Result
+| Operatore | Tipo | Descrizione | Esempio | Risultato
 
-| + | Infix | Addition | 1 + 2 | 3
+| + | Infisso | Addizione | 1 + 2 | 3
 
-| - | Infix | Subtraction | 3 - 1 | 2
+| - | Infisso | Sottrazione | 3 - 1 | 2
 
-| * | Infix | Multiplication | 3 * 2 | 6
+| * | Infisso | Moltiplicazione | 3 * 2 | 6
 
-| ** | Infix | Power | 3 ** 2 | 9
+| ** | Infisso | Elevamento a potenza | 3 ** 2 | 9
 
-| / | Infix | Division | 3 / 2 | 1.5
+| / | Infisso | Divisione | 3 / 2 | 1.5
 
-| div | Infix | Integer Division (rounds down) | 3 div 2 | 1
+| div | Infisso | Divisione Intera (arrotondamento per difetto) | 3 div 2 | 1
 
-| % | Infix | Modulo | 7 % 4 | 3
+| % | Infisso | Modulo | 7 % 4 | 3
 
-.2+| %% .2+| Infix .2+| Divisibility | 6 %% 4 | False
+.2+| %% .2+| Infisso .2+| Divisibilità | 6 %% 4 | False
 
 <| 6 %% 3 <| True
 
-| gcd | Infix | Greatest common divisor | 6 gcd 9 | 3
+| gcd | Infisso | Massimo comune divisore | 6 gcd 9 | 3
 
-| lcm | Infix | Least common multiple | 6 lcm 9 | 18
+| lcm | Infisso | Minimo comune multiplo | 6 lcm 9 | 18
 
-| == | Infix | Numeric equal | 9 == 7  | False
+| == | Infisso | Uguaglianza numerica | 9 == 7  | False
 
-| != | Infix | Numeric not equal | 9 != 7  | True
+| != | Infisso | Disuguaglianza numerica | 9 != 7  | True
 
-| < | Infix | Less than | 9 < 7  | False
+| < | Infisso | Minore di | 9 < 7  | False
 
-| > | Infix | Greater than | 9 > 7  | True
+| > | Infisso | Maggiore di | 9 > 7  | True
 
-| \<= | Infix | Less than or equal | 7 \<= 7  | True
+| \<= | Infisso | Minore o uguale | 7 \<= 7  | True
 
-| >= | Infix | Greater than or equal | 9 >= 7  | True
+| >= | Infisso | Maggiore o uguale | 9 >= 7  | True
 
-| eq | Infix | String equal | "John" eq "John"  | True
+| eq | Infisso | Uguaglianza tra stringhe | "Giovanni" eq "Giovanni"  | True
 
-| ne | Infix | String not equal | "John" ne "Jane"  | True
+| ne | Infisso | Disuguaglianza tra stringhe | "Giovanni" ne "Giovanna"  | True
 
-| = | Infix | Assignment | my $var = 7  | Assigns the value of `7` to the variable `$var`
+| = | Infisso | Assegnamento | my $var = 7  | Assegna il valore di `7` alla variabile `$var`
 
-.2+| ~ .2+| Infix .2+| String concatenation | 9 ~ 7 | 97
+.2+| ~ .2+| Infisso .2+| Concatenazione tra stringhe | 9 ~ 7 | 97
 
-<m| "Hi " ~ "there"  <| Hi there
+<m| "Hei " ~ "là"  <| Hei là
 
-.2+| x .2+| Infix .2+| String replication | 13 x 3  | 131313
+.2+| x .2+| Infisso .2+| Replicazione di stringhe | 13 x 3  | 131313
 
-<| "Hello " x 3  <| Hello Hello Hello
+<| "Ciao " x 3  <| Ciao Ciao Ciao
 
-.5+| ~~ .5+| Infix .5+| Smart match | 2 ~~ 2  | True
+.5+| ~~ .5+| Infisso .5+| Corrispondenza intelligente | 2 ~~ 2  | True
 
 <| 2 ~~ Int <| True
 
@@ -351,33 +349,33 @@ The below table lists the most commonly used operators.
 
 <| "Perl 6" ~~ Str <| True
 
-<| "enlightenment" ~~ /light/ <| ｢light｣
+<| "illuminismo" ~~ /lumi/ <| ｢lumi｣
 
-.2+| ++ | Prefix | Increment | my $var = 2; ++$var;  | Increment the variable by 1 and return the result `3`
+.2+| ++ | Prefisso | Incremento | my $var = 2; ++$var;  | PRIMA incrementa di 1 la variabile e ritorna il risultato `3`
 
-<m| Postfix <d| Increment <m| my $var = 2; $var++;  <| Return the variable `2` and then increment it
+<m| Postfisso <d| Incremento <m| my $var = 2; $var++;  <| Ritorna la variabile `2` e POI la incrementa
 
-.2+|\--| Prefix | Decrement | my $var = 2; --$var;  | Decrement the variable by 1 and return the result `1`
+.2+|\--| Prefisso | Decremento | my $var = 2; --$var;  | PRIMA decrementa la variabile di 1 e ritorna il risultato `1`
 
-<m| Postfix <d| Decrement <m| my $var = 2; $var--;  <| Return the variable `2` and then decrement it
+<m| Postfisso <d| Decremento <m| my $var = 2; $var--;  <| Ritorna la variabile `2` e POI la decrementa
 
-.3+| + .3+| Prefix .3+| Coerce the operand to a numeric value | +"3"  | 3
+.3+| + .3+| Prefisso .3+| Forza l'operando ad un valore numerico | +"3"  | 3
 
 <| +True <| 1
 
 <| +False <| 0
 
-.3+| - .3+| Prefix .3+| Coerce the operand to a numeric value and return the negation | -"3"  | -3
+.3+| - .3+| Prefisso .3+| Forza l'opernaod ad un valroe numerico e ne ritorna la negazione | -"3"  | -3
 
 <| -True <| -1
 
 <| -False <| 0
 
-.6+| ? .6+| Prefix .6+| Coerce the operand to a boolean value | ?0 | False
+.6+| ? .6+| Prefisso .6+| Forza l'operando ad un valore booleano | ?0 | False
 
 <| ?9.8 <| True
 
-<| ?"Hello" <| True
+<| ?"Ciao" <| True
 
 <| ?"" <| False
 
@@ -385,33 +383,33 @@ The below table lists the most commonly used operators.
 
 <| my $var = 7; ?$var; <| True
 
-| ! | Prefix | Coerce the operand to a boolean value and return the negation | !4 | False
+| ! | Prefisso | Forza l'operando ad un valore booleano e ne ritorna la negazione | !4 | False
 
-| .. | Infix | Range Constructor |  0..5  | Creates a range from 0 to 5
+| .. | Infisso | Intervallo |  0..5  | Crea un intervallo da 0 a 5
 
-| ..^ | Infix | Range Constructor |  0..^5  | Creates a range from 0 to 4
+| ..^ | Infisso | Intervallo con estremo escluso |  0..^5  | Crea un intervallo da 0 a 4
 
-| ^.. | Infix | Range Constructor |  0^..5  | Creates a range from 1 to 5
+| ^.. | Infisso | Intervallo con estremo escluso |  0^..5  | Crea un intervallo da 1 a 5
 
-| \^..^ | Infix | Range Constructor |  0\^..^5  | Creates a range from 1 to 4
+| \^..^ | Infisso | Intervallo con estremi esclusi |  0\^..^5  | Crea un intervallo da 1 a 4
 
-| ^ | Prefix | Range Constructor |  ^5  | Same as 0..^5 Creates a range from 0 to 4
+| ^ | Prefisso | Intervallo unario |  ^5  | Come fosse 0..^5; crea un intervallo da 0 a 4
 
-| ... | Infix | Lazy List Constructor |  0...9999  |  return the elements only if requested
+| ... | Infisso | Costruttore pigro di liste |  0...9999  |  ritorna gli elementi solo se richiesti
 
-.2+| {vbar} .2+| Prefix .2+| Flattening | {vbar}(0..5)  | (0 1 2 3 4 5)
+.2+| {vbar} .2+| Prefisso .2+| Spalmatore | {vbar}(0..5)  | (0 1 2 3 4 5)
 
 <| {vbar}(0\^..^5)  <| (1 2 3 4)
 
 |===
 
-=== Reversed Operators
+=== Operatori inversi
 
-Adding `R` before any operator will have the effect of reversing its operands.
+Aggiungendo una `R` prima di ogni operatore si rovesceranno i suoi operandi.
 
 [cols=".^m,.^m,.^m,.^m", options="header"]
 |===
-| Normal Operation | Result | Reversed Operator | Result
+| Operazione normale | Risultato | Operazione inversa | Risultato
 
 | 2 / 3 | 0.666667 | 2 R/ 3 | 1.5
 
@@ -419,14 +417,14 @@ Adding `R` before any operator will have the effect of reversing its operands.
 
 |===
 
-=== Reduction Operators
+=== Operatori di riduzione
 
-Reduction operators work on lists of values.
-They are formed by surrounding the operator with brackets `[]`
+Gli operatori di riduzione lavorano su liste di valori.
+Si formano avvolgendo l'operatore tra parentesi quadre `[]`
 
 [cols=".^m,.^m,.^m,.^m", options="header"]
 |===
-| Normal Operation | Result | Reduction Operator | Result
+| Operazione normale | Risultato | Operatore di riduzione | Risultato
 
 | 1 + 2 + 3 + 4 + 5 | 15 | [+] 1,2,3,4,5 | 15
 
@@ -434,35 +432,35 @@ They are formed by surrounding the operator with brackets `[]`
 
 |===
 
-NOTE: For the complete list of operators, including their precedence, go to https://docs.perl6.org/language/operators
+NOTA: Per vedere una lista completa degli operatori, incluse le precedenze tra di loro, vai qui https://docs.perl6.org/language/operators
 
-== Variables
-Perl 6 variables are classified into 3 categories: Scalars, Arrays and Hashes.
+== Variabili
+Le variabili Perl 6 sono classificate in tre categorie: scalari, array e hash.
 
-A *sigil* (Sign in Latin) is a character that is used as a prefix to categorize variables.
+Un *sigillo* è un carattere che viene usato come prefisso per categorizzare le variabili.
 
-* `$` is used for scalars
-* `@` is used for arrays
-* `%` is used for hashes
+* `$` per gli scalars
+* `@` per gli arrays
+* `%` per gli hashes
 
-=== Scalars
-A scalar holds one value or reference.
+=== Scalari
+Gli scalari portano un singolo valore oppure un puntatore.
 
 [source,perl6]
 ----
-# String
+# Stringa
 my $name = 'John Doe';
 say $name;
 
-# Integer
+# Intero
 my $age = 99;
 say $age;
 ----
 
-A specific set of operations can be performed on a scalar, depending on the value it holds.
+Sugli scalari si può applicare un gruppo specifico di operazioni, dipendentemente dal valore che portano.
 
 [source,perl6]
-.String
+.Stringhe
 ----
 my $name = 'John Doe';
 say $name.uc;
@@ -476,7 +474,7 @@ JOHN DOE
 eoD nhoJ
 ----
 
-NOTE: For the complete list of methods applicable to Strings, see https://docs.perl6.org/type/Str
+NOTA: For the complete list of methods applicable to Strings, see https://docs.perl6.org/type/Str
 
 [source,perl6]
 .Integer
@@ -489,7 +487,7 @@ say $age.is-prime;
 True
 ----
 
-NOTE: For the complete list of methods applicable to Integers, see https://docs.perl6.org/type/Int
+NOTA: For the complete list of methods applicable to Integers, see https://docs.perl6.org/type/Int
 
 [source,perl6]
 .Rational Number
@@ -506,7 +504,7 @@ say $age.nude;
 (23 10)
 ----
 
-NOTE: For the complete list of methods applicable to Rational Numbers, see https://docs.perl6.org/type/Rat
+NOTA: For the complete list of methods applicable to Rational Numbers, see https://docs.perl6.org/type/Rat
 
 === Arrays
 Arrays are lists containing multiple values.
@@ -630,7 +628,7 @@ say @tbl
 [3 z]
 ----
 
-NOTE: For the complete Array reference, see https://docs.perl6.org/type/Array
+NOTA: For the complete Array reference, see https://docs.perl6.org/type/Array
 
 === Hashes
 [source,perl6]
@@ -674,7 +672,7 @@ The capital of France is: Paris
 `.values` returns a list that contains all values. +
 We can access a specific value in the hash by specifying its key `%hash<key>`
 
-NOTE: For the complete Hash reference, see https://docs.perl6.org/type/Hash
+NOTA: For the complete Hash reference, see https://docs.perl6.org/type/Hash
 
 === Types
 In the previous examples, we did not specify what type of values the variables should hold.
@@ -885,7 +883,7 @@ say $a;
 Binding variables is bi-directional. +
 `$a := $b` and `$b := $a` have the same effect.
 
-NOTE: For more info on variables, see https://docs.perl6.org/language/variables
+NOTA: For more info on variables, see https://docs.perl6.org/language/variables
 
 == Functions and mutators
 
@@ -1091,7 +1089,7 @@ loop (my $i = 0; $i < 5; $i++) {
 }
 ----
 
-NOTE: For more info on loops and conditions, see https://docs.perl6.org/language/control
+NOTA: For more info on loops and conditions, see https://docs.perl6.org/language/control
 
 == I/O
 In Perl 6, two of the most common _Input/Output_ interfaces are the _Terminal_ and _Files_.
@@ -1247,7 +1245,7 @@ WARNING: Windows users can use `/` or `\\` to define directories +
 `C:\\rakudo\\bin` +
 `C:/rakudo/bin` +
 
-NOTE: For more info on I/O, see https://docs.perl6.org/type/IO
+NOTA: For more info on I/O, see https://docs.perl6.org/type/IO
 
 == Subroutines
 === Definition
@@ -1408,7 +1406,7 @@ say "1.2 squared is equal to " ~ squared(1.2);
 ----
 ====
 
-NOTE: For more info on subroutines and functions, see https://docs.perl6.org/language/functions
+NOTA: For more info on subroutines and functions, see https://docs.perl6.org/language/functions
 
 == Functional Programming
 In this chapter we will take a look at some of the features that facilitate Functional Programming.
@@ -2305,7 +2303,7 @@ Introspection is facilitated by:
 * `~~` is called the smart-match operator.
 It evaluates to _True_ if the object is created from the class it is being compared against or any of its inheritances.
 
-[NOTE]
+[NOTA]
 --
 For more info on Object Oriented Programming in Perl 6, see:
 
@@ -2440,7 +2438,7 @@ All typed exceptions descend from class `X` , below are a few examples: +
 `X::OS` is related to OS errors +
 `X::Str::Numeric` related to trying to coerce a string to a number
 
-NOTE: For a complete list of exception types and their associated methods, go to https://docs.perl6.org/type-exceptions.html
+NOTA: For a complete list of exception types and their associated methods, go to https://docs.perl6.org/type-exceptions.html
 
 
 == Regular Expressions
@@ -2759,7 +2757,7 @@ if $email ~~ / <many-letters> <dot> <many-letters> <at> <many-letters-numbers> <
 A named regex is defined using the following syntax: `my regex regex-name { regex definition }` +
 A named regex can be called using the following syntax: `<regex-name>`
 
-NOTE: For more info on regexes, see https://docs.perl6.org/language/regexes
+NOTA: For more info on regexes, see https://docs.perl6.org/language/regexes
 
 == Perl 6 Modules
 Perl 6 is a general purpose programming language. It can be used to tackle a multitude of tasks including:
@@ -2775,7 +2773,7 @@ To install a specific module, type the below command in your terminal:
 
 `zef install "module name"`
 
-NOTE: The Perl 6 modules directory can be found on: https://modules.perl6.org/
+NOTA: The Perl 6 modules directory can be found on: https://modules.perl6.org/
 
 === Using Modules
 MD5 is a cryptographic hash function that produces a 128-bit hash value. +
@@ -3011,7 +3009,7 @@ WARNING: Parallelism always adds a threading overhead. If that overhead is not o
 This is why, using `race`, `hyper`, `start` and `await` for fairly simple scripts can actually slow them down.
 
 === Concurrency and Asynchrony
-NOTE: For more info on Concurrency and Asynchronous Programming, see https://docs.perl6.org/language/concurrency
+NOTA: For more info on Concurrency and Asynchronous Programming, see https://docs.perl6.org/language/concurrency
 
 == Native Calling Interface
 
@@ -3214,7 +3212,7 @@ Luckily Perl 6 provides many types that map to their respective C counterpart.
 
 |===
 
-NOTE: For more info on the Native Calling Interface, see https://docs.perl6.org/language/nativecall
+NOTA: For more info on the Native Calling Interface, see https://docs.perl6.org/language/nativecall
 
 == The Community
 
