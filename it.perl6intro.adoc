@@ -1,6 +1,6 @@
 = Perl 6 Introduzione
 :descrizione: Introduzione generale a Perl 6
-:Author: Naoum Hankache; Marcello Dusini
+:Author: Naoum Hankache; MarsMarsico
 :keywords: perl6, perl 6, introduzione, perl6intro, perl 6 introduzione, perl 6 tutorial, perl 6 intro
 :Revision: 1.0
 :icons: font
