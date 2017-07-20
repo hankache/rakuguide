@@ -215,9 +215,9 @@ Gli identificatori sono nomi dati agli opernadi quando questi vengono definiti.
 
 | `var1` | `1var`
 
-| `var-one` | `var-1`
+| `var-uno` | `var-1`
 
-| `var'one` | `var'1`
+| `var'uno` | `var'1`
 
 | `var1_` | `var1'`
 
@@ -439,9 +439,9 @@ Le variabili Perl 6 sono classificate in tre categorie: scalari, array e hash.
 
 Un *sigillo* è un carattere che viene usato come prefisso per categorizzare le variabili.
 
-* `$` per gli scalars
-* `@` per gli arrays
-* `%` per gli hashes
+* `$` per gli scalari
+* `@` per gli array
+* `%` per gli hash
 
 === Scalari
 Gli scalari portano un singolo valore oppure un puntatore.
@@ -452,9 +452,9 @@ Gli scalari portano un singolo valore oppure un puntatore.
 my $name = 'John Doe';
 say $name;
 
-# Intero
-my $age = 99;
-say $age;
+# Interi
+my $anni = 99;
+say $anni;
 ----
 
 Sugli scalari si può applicare un gruppo specifico di operazioni, dipendentemente dal valore che portano.
@@ -474,23 +474,23 @@ JOHN DOE
 eoD nhoJ
 ----
 
-NOTA: For the complete list of methods applicable to Strings, see https://docs.perl6.org/type/Str
+NOTA: Per avere una lista completa dei metodi applicabili alle stringhe, vedi qui https://docs.perl6.org/type/Str
 
 [source,perl6]
-.Integer
+.Interi
 ----
-my $age = 17;
-say $age.is-prime;
+my $anni = 17;
+say $anni.is-prime;
 ----
 
 ----
 True
 ----
 
-NOTA: For the complete list of methods applicable to Integers, see https://docs.perl6.org/type/Int
+NOTA: Per avere una lista completa dei metodi applicabili agli interi vei qui https://docs.perl6.org/type/Int
 
 [source,perl6]
-.Rational Number
+.Numeri razionali
 ----
 my $age = 2.3;
 say $age.numerator;
@@ -504,106 +504,108 @@ say $age.nude;
 (23 10)
 ----
 
-NOTA: For the complete list of methods applicable to Rational Numbers, see https://docs.perl6.org/type/Rat
+NOTA: Per una lista completa dei metodi applicabili ai numeri razionali vedi qui https://docs.perl6.org/type/Rat
 
-=== Arrays
-Arrays are lists containing multiple values.
+=== Array
+Gli array (alias vettori, liste etc ndt.) sono liste contenenti valori multipli.
 
 [source,perl6]
 ----
-my @animals = 'camel','llama','owl';
-say @animals;
+my @animali = 'cammello','lama','gufo';
+say @animali;
 ----
 
-Many operations can be performed on arrays as shown in the below example:
+Sugli array si possono fare un sacco di perazioni, come mostrato nell'esempio sottostante:
 
-TIP: The tilde `~` is used for string concatenation.
+Noticina: La tilde `~` si usa per la concatenazione delle stringhe.
 
 [source,perl6]
 .`Script`
 ----
-my @animals = 'camel','vicuña','llama';
-say "The zoo contains " ~ @animals.elems ~ " animals";
-say "The animals are: " ~ @animals;
-say "I will adopt an owl for the zoo";
-@animals.push("owl");
-say "Now my zoo has: " ~ @animals;
-say "The first animal we adopted was the " ~ @animals[0];
-@animals.pop;
-say "Unfortunately the owl got away and we're left with: " ~ @animals;
-say "We're closing the zoo and keeping one animal only";
-say "We're going to let go: " ~ @animals.splice(1,2) ~ " and keep the " ~ @animals;
+my @animali = 'cammello','vigogna','lama';
+say "Nello zoo ci sono " ~ @animali.elems ~ " animali";
+say "Gli animali sono: " ~ @animali;
+say "Adotterò un gufo per lo zoo";
+@animali.push("gufo");
+say "Ora il mio zoo ha: " ~ @animali;
+say "Il primo animale adottato fu " ~ @animali[0];
+@animali.pop;
+say "Sfortunatamente il gufo è volato via e siamo rimasti con: " ~ @animali;
+say "Stiamo chiudendo lo zoo tenendo un solo animale";
+say "Stiamo lasciando andare: " ~ @animali.splice(1,2) ~ " e teniamo il " ~ @animali;
 ----
 
 .`Output`
 ----
-The zoo contains 3 animals
-The animals are: camel vicuña llama
-I will adopt an owl for the zoo
-Now my zoo has: camel vicuña llama owl
-The first animal we adopted was the camel
-Unfortunately the owl got away and we're left with: camel vicuña llama
-We're closing the zoo and keeping one animal only
-We're going to let go: vicuña llama and keep the camel
+Nello zoo ci sono 3 animali
+Gli animali sono: cammello vigogna lama
+Adotterò un gufo per lo zoo
+Ora il mio zoo ha: cammello vigogna lama gufo
+Il primo animale adottato fu il cammello
+Sfortunatamente il gufo è volato via e siamo rimasti con: cammello vigogna lama
+Stiamo chiudendo lo zoo tenendo un solo animale
+Stiamo lasciando andare: vigogna lama e teniamo il cammello 
 ----
 
-.Explanation
-`.elems` returns the number of elements in an array. +
-`.push()` adds one or more elements to the array. +
-We can access a specific element in the array by specifying its position `@animals[0]`. +
-`.pop` removes the last element from the array and returns it. +
-`.splice(a,b)` will remove `b` elements starting at position `a`.
+.Spiegazione
+`.elems` ritorna il numero degli elementi di un array. +
+`.push()` aggiunge uno o più elementi all'array. +
+Possiamo accedere ad uno specifico elemento dell'array specificando la sua posizione `@animali[0]`. +
+`.pop` rimuove l'ultimo elemento dell'array e lo restituisce. +
+`.splice(a,n)` rimuove `n` elmenti iniziando dalla posizione `a`.
 
-==== Fixed-size arrays
-A basic array is declared as following:
+==== array a dimensione fissata
+Un array semplice viene dichiarato così:
 [source,perl6]
 my @array;
 
-The basic array can have indefinite length and thus is called auto-extending. +
-The array will accept any number of values with no restriction.
+L'array semplice può avere una lunghezza qualsiasi e per questo viene chiamato auto-estensibile. +
+L'array accetta qualsiasi numero di valori, senza restrizioni.
 
-In contrast, we can also create fixed-size arrays. +
-These arrays cannot be accessed beyond their defined size.
+Al contrario, possiamo creare array a dimesione fissata. +
+Questi array non possono ricevere accessi oltre la dimensione data.
 
-To declare an array of fixed size, specify its maximum number of elements in square brackets immediately after its name:
+Per dichiarare un array di dimensione fissata devi specificare il massimo numero di elementi tra parentesi quadre subito dopo il suo nome:
 [source,perl6]
 my @array[3];
 
-This array will be able to hold a maximum of 3 values, indexed from 0 to 2.
+Questo array potrà tenere al massimo tre volri, indicizzati da 0 a 2.
 
 [source,perl6]
 ----
 my @array[3];
-@array[0] = "first value";
-@array[1] = "second value";
-@array[2] = "third value";
+@array[0] = "primo valore";
+@array[1] = "secondo valore";
+@array[2] = "terzo valore";
 ----
 
-You will not be able to add a fourth value to this array:
+Non potrai aggiungere un quarto valore:
 [source,perl6]
 ----
 my @array[3];
-@array[0] = "first value";
-@array[1] = "second value";
-@array[2] = "third value";
-@array[3] = "fourth value";
+@array[0] = "primo valore";
+@array[1] = "secondo valore";
+@array[2] = "terzo valore";
+@array[3] = "quarto valore";
 ----
 
+
+Otterresti il seguente messaggio di errore: [l'indice 3 è fuori di uno dall'intervallo consentito (che deve essere 0..2) ndt.]
 ----
-Index 3 for dimension 1 out of range (must be 0..2)
+Index 3 for dimension 1 out of range (must be 0..2) 
 ----
 
-==== Multidimensional arrays
-The arrays we saw until now are one-dimensional. +
-Fortunately, we can define multi-dimensional arrays in Perl 6.
+==== Array multidimensionali
+Gli array che abbiamo visto sono monodimensionali. +
+Fortunatamente possiamo definirne anche di multidimensionali in Perl 6.
 
 [source,perl6]
 my @tbl[3;2];
 
-This array is two-dimensional.
-The first dimension can have a maximum of 3 values and the second dimension a maximum of 2 values.
+Questo array è mulitidimensionale.
+La prima dimensione può avere un massimo di tre valori e la seconda un massimo di due.
 
-Think of it as a 3x2 grid.
+Pensa ad una griglia 3x2.
 
 [source,perl6]
 ----
@@ -621,63 +623,63 @@ say @tbl
 [[1 x] [2 y] [3 z]]
 ----
 
-.Visual representation of the array:
+.Rappresentazione visuale di un array:
 ----
 [1 x]
 [2 y]
 [3 z]
 ----
 
-NOTA: For the complete Array reference, see https://docs.perl6.org/type/Array
+NOTA: Per avere una guida completa sugli array vedi qui https://docs.perl6.org/type/Array
 
-=== Hashes
+=== Hash
 [source,perl6]
-.A Hash is a set of Key/Value pairs.
+.Un hash è un insime di coppie chiave/valore.
 ----
-my %capitals = ('UK','London','Germany','Berlin');
-say %capitals;
+my %capitali = ('Italia','Roma','Germania','Berlino');
+say %capitali;
 ----
 
 [source,perl6]
-.Another succinct way of filling the hash:
+.Un altra forma, più succinta, di popolare un hash:
 ----
-my %capitals = (UK => 'London', Germany => 'Berlin');
-say %capitals;
+my %capitali = (Italia => 'Roma', Germania => 'Berlino');
+say %capitali;
 ----
 
-Some of the methods that can be called on hashes are:
+Alcuni metodi che possono essere applicati agli hash:
 [source,perl6]
 .`Script`
 ----
-my %capitals = (UK => 'London', Germany => 'Berlin');
-%capitals.push: (France => 'Paris');
-say %capitals.kv;
-say %capitals.keys;
-say %capitals.values;
-say "The capital of France is: " ~ %capitals<France>;
+my %capitali = (Italia => 'Roma', Germania => 'Berlino');
+%capitali.push: (Francia => 'Parigi');
+say %capitali.kv;
+say %capitali.keys;
+say %capitali.values;
+say "La capitale della Francia è: " ~ %capitali<Francia>;
 ----
 
 .`Output`
 ----
-(France Paris Germany Berlin UK London)
-(France Germany UK)
-(Paris Berlin London)
-The capital of France is: Paris
+(Francia Parigi Germania Berlino Italia Roma)
+(Francia Germania Italia)
+(Parigi Berlino Roma)
+La capitale della Francia è: Parigi
 ----
 
-.Explanation
-`.push: (key => 'Value')` adds a new key/value pair. +
-`.kv` returns a list containing all keys and values. +
-`.keys` returns a list that contains all keys. +
-`.values` returns a list that contains all values. +
-We can access a specific value in the hash by specifying its key `%hash<key>`
+.Spiegazione
+`.push: (chiave => 'valore')` aggiunge una nuova coppia chiave/valore. +
+`.kv` ritorna una lista contenente tutte le chiavi ed i valori. +
+`.keys` ritorna una lista contenente tutte le chiavi. +
+`.values` ritorna una lista contenente tutti i valori. +
+Possiamo accedere ad uno specifico valore nell'hash specificando la sua chaive, così `%hash<key>`
 
-NOTA: For the complete Hash reference, see https://docs.perl6.org/type/Hash
+NOTA: Per avere una guida completa sugli hash vedi qui https://docs.perl6.org/type/Hash
 
-=== Types
-In the previous examples, we did not specify what type of values the variables should hold.
+=== Tipi
+Nei precedenti esempi non abbiamo specificato che tipo di valori le variabili dovrebbero contenere.
 
-TIP: `.WHAT` will return the type of value held in a variable.
+Noticina: `.WHAT` ritornerà il tipo di valore contentuo in una variabile.
 
 [source,perl6]
 ----
@@ -690,12 +692,12 @@ say $var;
 say $var.WHAT;
 ----
 
-As you can see in the above example, the type of value in `$var` was once (Str) and then (Int).
+Come puoi vedere nell'esempio qui sopra, il tipo di valore in `$var` prima era (Str) e poi è diventato (Int).
 
-This style of programming is called dynamic typing. Dynamic in the sense that variables may contain values of Any type.
+Questo stile di programmazionie viene chiamato tipizzazione dinamica. Dinamica nel senso che le variabili possono contenere valori di ogni tipo (tipo Any ndt).
 
-Now try running the below example: +
-Notice `Int` before the variable name.
+Prova a far girare questo esempio: +
+Nota `Int` prima del nome della variabile.
 
 [source,perl6]
 ----
@@ -704,42 +706,41 @@ say $var;
 say $var.WHAT;
 ----
 
-It will fail and return this error message: `Type check failed in assignment to $var; expected Int but got Str`
+Fallirà con questo messaggio di errore: `Type check failed in assignment to $var; expected Int but got Str` [ossia `controllo sul tipo fallito per $var; mi aspettavo un Int ma ho ricevuto Str`]
 
-What happened is that we specified beforehand that the variable should be of type (Int).
-When we tried to assign an (Str) to it, it failed.
+Ciò che è successo è che abbiamo specificato che la variabile avrebbe dovuto essere di un tipo (Int), ma quando l'abbiamo assegnata ad una stringa è fallita.
 
-This style of programming is called static typing. Static in the sense that variable types are defined before assignment and cannot change.
+Questo stile di programmazione si chiama tipizzazione statica. Statica nel senso che i tipi delle variablili sono definiti prima degli assegnamenti e non possono più cambiare.
 
-Perl 6 is classified as *gradually typed*; it allows both *static* and *dynamic* typing.
+Il Perl 6 è classificato come *gradualmente tipizzato*; esso permette sia la tipizzazione *statica* che quella *dinamica*.
 
-.Arrays and hashes can also be statically typed:
+.Anche array ed hash possono essere tipizzati staticamente:
 [source,perl6]
 ----
 my Int @array = 1,2,3;
 say @array;
 say @array.WHAT;
 
-my Str @multilingual = "Hello","Salut","Hallo","您好","안녕하세요","こんにちは";
+my Str @multilingual = "Ciao","Salut","Hallo","您好","안녕하세요","こんにちは";
 say @multilingual;
 say @multilingual.WHAT;
 
-my Str %capitals = (UK => 'London', Germany => 'Berlin');
-say %capitals;
-say %capitals.WHAT;
+my Str %capitali = (Italia => 'Roma', Germania => 'Berlino');
+say %capitali;
+say %capitali.WHAT;
 
-my Int %country-codes = (UK => 44, Germany => 49);
+my Int %country-codes = (Italia => 39, Germania => 49);
 say %country-codes;
 say %country-codes.WHAT;
 ----
 
-.Below is a list of the most commonly used types:
-You will most probably never use the first two but they are listed for informational purpose.
+.Qui sotto una lista dei tipi più comunemente usati:
+Probabilmente non userai mai i primi due ma essi vengono inclusi in questa lista per completezza.
 
 [cols="^.^1m,.^3m,.^2m,.^1m, options="header"]
 |===
 
-| *Type* | *Description* | *Example* | *Result*
+| *Tipo* | *Descrizione* | *Example* | *Result*
 
 | Mu | The root of the Perl 6 type hierarchy | |
 
@@ -1385,7 +1386,7 @@ If we fail to provide a return value that matches the type constraint, an error 
 Type check failed for return value; expected Int but got Rat (1.44)
 ----
 
-[TIP]
+[Noticina]
 ====
 Not only can type constraints control the type of the return value; they can also control its definedness.
 
@@ -2683,7 +2684,7 @@ The following methods can be called on the _Match Object_: +
 `.from` returns the starting position of the match. +
 `.to` returns the ending position of the match. +
 
-TIP: By default, whitespace in a regex definition is ignored. +
+Noticina: By default, whitespace in a regex definition is ignored. +
 If we want to match against a regex containing whitespace, we have to do so explicitly. +
 The `:s` in the regex `m/:s Perl 6/` forces whitespace to be considered. +
 Alternatively, we could have written the regex as `m/ Perl\s6 /` and used `\s` which represents a whitespace. +
@@ -2925,7 +2926,7 @@ This method will enable parallel iteration of the array elements.
 
 After running both examples (with and without `race`), compare the time it took for both scripts to complete.
 
-[TIP]
+[Noticina]
 ====
 `race` will not preserve the order of elements. If you wish to do, so use `hyper` instead.
 
