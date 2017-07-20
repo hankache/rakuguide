@@ -742,26 +742,26 @@ Probabilmente non userai mai i primi due ma essi vengono inclusi in questa lista
 
 | *Tipo* | *Descrizione* | *Example* | *Result*
 
-| Mu | The root of the Perl 6 type hierarchy | |
+| Mu | La radice della gerarchia dei tipi del Perl 6 | |
 
-| Any | Default base class for new classes and for most built-in classes | |
+| Any | Classe base per nuove classi e per la maggior parte delle classi predefinite | |
 
-| Cool | Value that can be treated as a string or number interchangeably | my Cool $var = 31; say $var.flip; say $var * 2; | 13 62
+| Cool | Valore che può essere trattato indifferentemente come una stringa oppure come un numero | my Cool $var = 31; say $var.flip; say $var * 2; | 13 62
 
-| Str | String of characters | my Str $var = "NEON"; say $var.flip; | NOEN
+| Str | Stringa di caratteri | my Str $var = "NEON"; say $var.flip; | NOEN
 
-| Int | Integer (arbitrary-precision) | 7 + 7 | 14
+| Int | Intero (precisioine arbitraria) | 7 + 7 | 14
 
-| Rat | Rational number (limited-precision) | 0.1 + 0.2 | 0.3
+| Rat | Numero razionale (precisione limitata) | 0.1 + 0.2 | 0.3
 
-| Bool | Boolean | !True | False
+| Bool | Booleano | !True | False
 
 |===
 
-=== Introspection
+=== Introspezione
 
-Introspection is the process of getting information about an object properties like its type. +
-In one of the previous example we used `.WHAT` to return the type of the variable.
+Introspezione è il processo per cui si ottiene una informazione sulle proprietà di un oggetto, come il tipo. +
+In un esempio precedente abbiamo usato `.WHAT` per ottenere il tipo di una variabile.
 
 [source,perl6]
 ----
@@ -779,13 +779,13 @@ $var2 = Nil;
 say $var2.WHAT;   # (Any)
 ----
 
-The type of a variable holding a value is correlated to its value. +
-The type of a strongly declared empty variable is the type with which it was declared. +
-The type of an empty variable that wasn't strongly declared is `(Any)` +
-To clear the value of a variable, assign `Nil` to it.
+Il tipo di una variabile che contiene un valore è correlato a tale valore. +
+Il tipo di una variabile vuota dichiarata staticamente è il tipo con il quale è stata dichiarata. +
+Il tipo di una variabile vuote che non è stata dichiarata staticamente è `(Any)` +
+Per cancellare il valroe di una variabile assegnale `Nil`.
 
-=== Scoping
-Before using a variable for the first time, it needs to be declared.
+=== Ambito
+Prima di usare una variabile per la prima volta essa deve essere dichiarata.
 
 Several declarators are used in Perl 6. We've been using `my`, so far.
 
