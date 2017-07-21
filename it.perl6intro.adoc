@@ -10,7 +10,7 @@
 :pygments-linenums-mode: table
 :toc: left
 :doctype: book
-:lang: en
+:lang: it
 
 
 Scopo di questo documento è dare una veloce panoramica del linguaggio di 
@@ -821,19 +821,19 @@ my Int $var = 123;
 say $var;
 ----
 
-=== Assignment vs. Binding
-We've seen in the previous examples, how to *assign* values to variables. +
-*Assignment* is done using the `=` operator.
+=== Assegnamenti e vincoli
+Abbiamo visto negli esempi precedenti come *assegnare valori alle variabili. +
+Un *assegnamento* viene fatto tramite l'operatore `=`.
 [source,perl6]
 ----
 my Int $var = 123;
 say $var;
 ----
 
-We can change the value assigned to a variable:
+IL valore assegnato ad una variabile si può cambiare:
 
 [source,perl6]
-.Assignment
+.Assegnamento
 ----
 my Int $var = 123;
 say $var;
@@ -847,11 +847,11 @@ say $var;
 999
 ----
 
-On the other hand, we cannot change the value *bound* to a variable. +
-*Binding* is done using the `:=` operator.
+D'altro canto, non possiamo cambiare il valore di una variabile quando questo è *vincolato*. +
+Il *vincolo* viene definito tramite l'operatore `:=`.
 
 [source,perl6]
-.Binding
+.Vincolo
 ----
 my Int $var := 123;
 say $var;
@@ -866,7 +866,7 @@ Cannot assign to an immutable value
 ----
 
 [source,perl6]
-.Variables can also be bound to other variables:
+.le variabili possono anche essere vincolate ad altre variabli:
 ----
 my $a;
 my $b;
@@ -883,30 +883,30 @@ say $a;
 8
 ----
 
-Binding variables is bi-directional. +
-`$a := $b` and `$b := $a` have the same effect.
+Vincolare le variabili è bidirezionale. +
+`$a := $b` and `$b := $a` hanno lo stesso effetto.
 
-NOTA: For more info on variables, see https://docs.perl6.org/language/variables
+NOTA: Per avere più informazioni sulle variabli vedi qui https://docs.perl6.org/language/variables
 
-== Functions and mutators
+== Funzioni e modificatori
 
-It is important to differentiate between functions and mutators. +
-Functions do not change the state of the object they were called on. +
-Mutators modify the state of the object.
+Ci sono differenze tra funzioni e modificatori. +
+Le funzioni non cambiano lo stato dell'oggetto su cui vengono chiamate ad operare. +
+I modificatori sì.
 
 [source,perl6,linenums]
 .`Script`
 ----
-my @numbers = [7,2,4,9,11,3];
+my @numeri = [7,2,4,9,11,3];
 
-@numbers.push(99);
-say @numbers;      #1
+@numeri.push(99);
+say @numeri;      #1
 
-say @numbers.sort; #2
-say @numbers;      #3
+say @numeri.sort; #2
+say @numeri;      #3
 
-@numbers.=sort;
-say @numbers;      #4
+@numeri.=sort;
+say @numeri;      #4
 ----
 
 .`Output`
@@ -917,29 +917,29 @@ say @numbers;      #4
 [2 3 4 7 9 11 99] #4
 ----
 
-.Explanation
-`.push` is a mutator; it changes the state of the array (#1)
+.Spiegazione
+`.push` è un modificatore; esso cambia lo stato dell'array (#1)
 
-`.sort` is a function; it returns a sorted array but doesn't modify the state of the initial array:
+`.sort` è una funzione; essa ritorna un array ordinato ma non modifica lo stato iniziale dell'array:
 
-* (#2) shows that it returned a sorted array.
+* (#2) mostra che viene ritornato un array ordinato.
 
-* (#3) shows that the initial array is still unmodified.
+* (#3) mostra che l'array iniziale è rimasto immutato.
 
-In order to enforce a function to act as a mutator, we use `.=` instead of `.` (#4) (Line 9 of the script)
+Per forzare una funzione a comportarsi da modificatore usiamo `.=` invece di `.` (#4) (linea 9 dello script)
 
-== Loops and conditions
-Perl 6 has many conditional and looping constructs.
+== Cicli e condizioni
+Perl 6 ha molti costrutti condizionali e ciclici.
 
 === if
-The code runs only if a condition has been met; i.e., an expression evaluates to `True`.
+Il codice gira solo se la condizione specificata viene soddisfatta, ossia una espressione viene valutata come `True`.
 
 [source,perl6]
 ----
-my $age = 19;
+my $anni = 19;
 
-if $age > 18 {
-  say 'Welcome'
+if $anni > 18 {
+  say 'Benvenuto'
 }
 ----
 
