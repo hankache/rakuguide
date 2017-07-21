@@ -1,6 +1,6 @@
 = Perl 6 Introduzione
 :descrizione: Introduzione generale a Perl 6
-:Author: Naoum Hankache; MarsMarsico
+:Author: Naoum Hankache; MarsMarsico <marsmarsico@tiscali.it>
 :keywords: perl6, perl 6, introduzione, perl6intro, perl 6 introduzione, perl 6 tutorial, perl 6 intro
 :Revision: 1.0
 :icons: font
@@ -10,7 +10,7 @@
 :pygments-linenums-mode: table
 :toc: left
 :doctype: book
-:lang: en
+:lang: it
 
 
 Scopo di questo documento è dare una veloce panoramica del linguaggio di 
@@ -36,7 +36,7 @@ Se vuoi contribuire a questo documento, riferisciti a:
 .Feedback
 tutti i feedback sono benvenuti:
 naoum@hankache.com
-marcello.dusini@gmail.com
+marsmarsico@tiscali.it
 
 Se questo lavoro ti piace, clicca la _Star_ nel repository che trovi qui:
 link:https://github.com/hankache/perl6intro[Github].
@@ -569,7 +569,7 @@ Per dichiarare un array di dimensione fissata devi specificare il massimo numero
 [source,perl6]
 my @array[3];
 
-Questo array potrà tenere al massimo tre volri, indicizzati da 0 a 2.
+Questo array potrà tenere al massimo tre valori, indicizzati da 0 a 2.
 
 [source,perl6]
 ----
@@ -590,10 +590,11 @@ my @array[3];
 ----
 
 
-Otterresti il seguente messaggio di errore: [l'indice 3 è fuori di uno dall'intervallo consentito (che deve essere 0..2) ndt.]
+Otterresti il seguente messaggio di errore: 
 ----
 Index 3 for dimension 1 out of range (must be 0..2) 
-----
+-----
+_l'indice 3 è fuori di uno dall'intervallo consentito (che deve essere 0..2)_
 
 ==== Array multidimensionali
 Gli array che abbiamo visto sono monodimensionali. +
@@ -706,7 +707,7 @@ say $var;
 say $var.WHAT;
 ----
 
-Fallirà con questo messaggio di errore: `Type check failed in assignment to $var; expected Int but got Str` [ossia `controllo sul tipo fallito per $var; mi aspettavo un Int ma ho ricevuto Str`]
+Fallirà con questo messaggio di errore: `Type check failed in assignment to $var; expected Int but got Str` [ossia _controllo sul tipo fallito per $var; mi aspettavo un Int ma ho ricevuto Str_]
 
 Ciò che è successo è che abbiamo specificato che la variabile avrebbe dovuto essere di un tipo (Int), ma quando l'abbiamo assegnata ad una stringa è fallita.
 
@@ -740,7 +741,7 @@ Probabilmente non userai mai i primi due ma essi vengono inclusi in questa lista
 [cols="^.^1m,.^3m,.^2m,.^1m, options="header"]
 |===
 
-| *Tipo* | *Descrizione* | *Example* | *Result*
+| *Tipo* | *Descrizione* | *Esempio* | *Risultato*
 
 | Mu | La radice della gerarchia dei tipi del Perl 6 | |
 
