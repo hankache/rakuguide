@@ -594,7 +594,6 @@ Otterresti il seguente messaggio di errore:
 ----
 Index 3 for dimension 1 out of range (must be 0..2) 
 -----
-[l'indice 3 è fuori di uno dall'intervallo consentito (che deve essere 0..2)]
 
 ==== Array multidimensionali
 Gli array che abbiamo visto sono monodimensionali. +
