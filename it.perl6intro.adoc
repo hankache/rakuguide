@@ -10,7 +10,7 @@
 :pygments-linenums-mode: table
 :toc: left
 :doctype: book
-:lang: it
+:lang: en
 
 
 Scopo di questo documento è dare una veloce panoramica del linguaggio di 
@@ -594,7 +594,7 @@ Otterresti il seguente messaggio di errore:
 ----
 Index 3 for dimension 1 out of range (must be 0..2) 
 -----
-_l'indice 3 è fuori di uno dall'intervallo consentito (che deve essere 0..2)_
+[l'indice 3 è fuori di uno dall'intervallo consentito (che deve essere 0..2)]
 
 ==== Array multidimensionali
 Gli array che abbiamo visto sono monodimensionali. +
@@ -707,7 +707,8 @@ say $var;
 say $var.WHAT;
 ----
 
-Fallirà con questo messaggio di errore: `Type check failed in assignment to $var; expected Int but got Str` [ossia _controllo sul tipo fallito per $var; mi aspettavo un Int ma ho ricevuto Str_]
+Fallirà con questo messaggio di errore: `Type check failed in assignment to $var; expected Int but got Str` 
+ controllo sul tipo fallito per $var; mi aspettavo un Int ma ho ricevuto Str]
 
 Ciò che è successo è che abbiamo specificato che la variabile avrebbe dovuto essere di un tipo (Int), ma quando l'abbiamo assegnata ad una stringa è fallita.
 
