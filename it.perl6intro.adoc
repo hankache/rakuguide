@@ -943,92 +943,92 @@ if $anni > 18 {
 }
 ----
 
-In Perl 6, we can invert the code and the condition. +
-Even if the code and the condition have been inverted, the condition is always evaluated first.
+In Perl 6, possiamo invertire il codice condizionato e la condizione. +
+Anche se il codice e la condizione vengono invertiti, la condizione viene sempre valutata per prima.
 
 [source,perl6]
 ----
-my $age = 19;
+my $anni = 19;
 
-say 'Welcome' if $age > 18;
+say 'Benvenuto' if $anni > 18;
 ----
 
-If the condition is not met, we can specify alternate blocks for execution by using:
+Se la condizione non viene soddisfatta, possiamo specificare blocchi da eseguire in alternativa usando:
 
 * `else`
 * `elsif`
 
 [source,perl6]
 ----
-# run the same code for different values of the variable
-my $number-of-seats = 9;
+# fai girare lo stesso codice per valori dfferenti della variabile
+my $numero_di_posti = 9;
 
-if $number-of-seats <= 5 {
-  say 'I am a sedan'
-} elsif $number-of-seats <= 7 {
-  say 'I am 7 seater'
+if $numero_di_posti <= 5 {
+  say 'sono una berlina'
+} elsif $numero_di_posti <= 7 {
+  say 'sono una station'
 } else {
-  say 'I am a van'
+  say 'sono un furgone'
 }
 ----
 
 === unless
-The negated version of an if statement can be written using `unless`.
+La versione negata di una istruzione `if` può essere `unless`.
 
-The following code:
-
-[source,perl6]
-----
-my $clean-shoes = False;
-
-if not $clean-shoes {
-  say 'Clean your shoes'
-}
-----
-can be written as:
+Il codice seguente:
 
 [source,perl6]
 ----
-my $clean-shoes = False;
+my $scarpe-pulite = False;
 
-unless $clean-shoes {
-  say 'Clean your shoes'
+if not $scarpe-pulite {
+  say 'Pulisciti le scarpe'
+}
+----
+può essere scritto così:
+
+[source,perl6]
+----
+my $scarpe-pulite = False;
+
+unless $scarpe-pulite {
+  say 'Pulisciti le scarpe'
 }
 ----
 
-Negation in Perl 6 is done using either `!` or `not`.
+La negazione, in Perl 6, viene fatta usando o `!` o `not`.
 
-`unless (condition)` is used instead of `if not (condition)`.
+`unless (codizione)` viene usato al posto di `if not (condizione)`.
 
-`unless` cannot have an `else` clause.
+`unless` non può avere una clausola di alternativa `else`.
 
 === with
 
-`with` behaves like the `if` statement, but checks if the variable is defined.
+`with` si comporta come `if`, ma controlla se la variabile sia definita.
 
 [source,perl6]
 ----
 my Int $var=1;
 
 with $var {
-  say 'Hello'
+  say 'Ciao'
 }
 ----
 
-If you run the code without assigning a value to the variable, nothing should happen.
+Se fai girare il codice senza assegnare una valore alla variabile, non accade nulla.
 [source,perl6]
 ----
 my Int $var;
 
 with $var {
-  say 'Hello'
+  say 'Ciao'
 }
 ----
 
-`without` is the negated version of `with`. You should be able to relate it to `unless`.
+`without` è la versione negata di `with`. Puoi vederne un'analogia di `unless`.
 
-If the first `with` condition is not met, an alternate path can be specified using `orwith`. +
-`with` and `orwith` can be compared to `if` and `elsif`.
+se il primo `with` non viene soddisfatto, si può specificare un percorso alternativo con `orwith`. +
+`with` ed `orwith` sono analoghi ad `if` ed `elsif`.
 
 === for
 
