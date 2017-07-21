@@ -1032,7 +1032,7 @@ se il primo `with` non viene soddisfatto, si può specificare un percorso altern
 
 === for
 
-The `for` loop iterates over multiple values.
+Il ciclo `for` itera su valori multipli.
 
 [source,perl6]
 ----
@@ -1043,106 +1043,106 @@ for @array -> $array-item {
 }
 ----
 
-Notice that we created an iteration variable `$array-item` and then performed the operation `*100` on each array item.
+Nota che abbiamo creato una variabile di iterazione `$array-item` e poi eseguito l'operazione `*100` su ogni occorrenza della stessa.
 
 === given
 
-`given` is the Perl 6 equivalent of the switch statement in other languages,
-but much more powerful.
+`given` è l'equivalente Perl 6 dell'istruzione switch che si trova in altri linguaggi,
+ma molto più potente.
 
 [source,perl6]
 ----
 my $var = 42;
 
 given $var {
-    when 0..50 { say 'Less than or equal to 50'}
-    when Int { say "is an Int" }
+    when 0..50 { say 'minore di o uguale a 50'}
+    when Int { say "è un Int" }
     when 42  { say 42 }
-    default  { say "huh?" }
+    default  { say "eh?" }
 }
 ----
 
-After a successful match, the matching process will stop.
+A seguito di una condizione soddisfatta, il processo di confronto si interrompe.
 
-Alternatively `proceed` will instruct Perl 6 to continue matching even after a successful match.
+L'alternativa è usare `proceed` che dice a Perl 6 di continuare i confronti anche dopo un successo.
 [source,perl6]
 ----
 my $var = 42;
 
 given $var {
-    when 0..50 { say 'Less than or equal to 50';proceed}
-    when Int { say "is an Int";proceed}
+    when 0..50 { say 'minore di o uguale a 50';proceed}
+    when Int { say "è un Int";proceed}
     when 42  { say 42 }
-    default  { say "huh?" }
+    default  { say "eh?" }
 }
 ----
 
 === loop
 
-`loop` is another way of writing a `for` loop.
+`loop` è un altro modo di scrivere un ciclo `for`.
 
-Actually, `loop` is how `for` loops are  written in C-family programming languages.
+In realtà `loop` sarebbe il `for` per come è scritto nei linguaggi di programmazione della famiglia che si rifà al C.
 
-Perl 6 belongs to the C-family languages.
+Infatti il Perl 6 appartiene a tale famiglia.
 
 [source,perl6]
 ----
 loop (my $i = 0; $i < 5; $i++) {
-  say "The current number is $i"
+  say "Il numero corrente è $i"
 }
 ----
 
-NOTA: For more info on loops and conditions, see https://docs.perl6.org/language/control
+NOTA: Per avere più informazioni su cicli e costrutti condizioniali vedi qui https://docs.perl6.org/language/control
 
 == I/O
-In Perl 6, two of the most common _Input/Output_ interfaces are the _Terminal_ and _Files_.
+In Perl 6 due delle più comuni interfacce di _Input/Output_ sono il _terminale_ ed i _file_.
 
-=== Basic I/O using the Terminal
+=== I/O essenziale usando il terminale
 
 ==== say
-`say` writes to the standard output. It appends a newline at the end. In other words, the following code:
+`say` scrive sullo standard output. Aggiunge un a-capo alla fine. In altre parole il seguente codice:
 
 [source,perl6]
 ----
-say 'Hello Mam.';
-say 'Hello Sir.';
+say 'Salve Signora.';
+say 'Salve Signore.';
 ----
-will be written on 2 separate lines.
+viene scritto su due linee separate.
 
 ==== print
-`print` on the other hand behaves like `say` but doesn't add a new line.
+`print` invece si comporta come `say` ma senza aggiungere l'a-capo.
 
-Try replacing `say` with `print` and compare the results.
+Prova a sostituire `say` con `print` e confronta i risultati.
 
 ==== get
-`get` is used to capture input from the terminal.
+`get` viene usato per catturare l'ingresso dal terminale.
 
 [source,perl6]
 ----
 my $name;
 
-say "Hi, what's your name?";
+say "Ciao, come ti chiami?";
 $name = get;
 
-say "Dear $name welcome to Perl 6";
+say "Caro $name benvenuto al Perl 6";
 ----
 
-When the above code runs, the terminal will be waiting for you to input your name. Enter it and then hit [Enter].
-Subsequently, it will greet you.
+Quando il codice qui sopra viene eseguito il terminale aspetterà che tu inserisca un nome. Poi premi [Enter].
+In questo modo ti saluterà.
 
 ==== prompt
-`prompt` is a combination of `print` and `get`.
+`prompt` è una combinazione di `print` e `get`.
 
-The above example can be written like this:
+L'esempio sopra può essere scritto così:
 
 [source,perl6]
 ----
-my $name = prompt "Hi, what's your name? ";
+my $name = prompt "Ciao come ti chiami? ";
 
-say "Dear $name welcome to Perl 6";
+say "Caro $name benvenuto a Perl 6";
 ----
 
-=== Running Shell Commands
+=== Eseguire comandi shell
 Two subroutines can be used to run shell commands:
 
 * `run` Runs an external command without involving a shell
