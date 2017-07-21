@@ -1137,51 +1137,51 @@ L'esempio sopra può essere scritto così:
 
 [source,perl6]
 ----
-my $name = prompt "Ciao come ti chiami? ";
+my $nome = prompt "Ciao come ti chiami? ";
 
-say "Caro $name benvenuto a Perl 6";
+say "Caro $nome benvenuto a Perl 6";
 ----
 
 === Eseguire comandi shell
-Two subroutines can be used to run shell commands:
+Si possono usare due subroutine per far girare comandi shell:
 
-* `run` Runs an external command without involving a shell
+* `run` Fa girare un comando esterno senza coinvolgere shell.
 
-* `shell` Runs a command through the system shell. It is platform and shell dependent.
-All shell meta characters are interpreted by the shell, including pipes, redirects, environment variable substitutions and so on.
+* `shell` Fa girare un comando mediante una vera system shell; esso dipende sia dalla shell di sistema sia dalla piattaforma.
+Tutti i meta caratteri tipici della shell verranno interpretati proprio dalla shell di sistema, inclusa pipe, ridirezione, variabili di ambiente, sostituzioni ecc.
 
 [source,perl6]
-.Run this if you're on Linux/macOS
+.Fai girare questo codice se lavori su piattaforma Linux/macOS
 ----
-my $name = 'Neo';
-run 'echo', "hello $name";
+my $nome = 'Neo';
+run 'echo', "ciao $nome";
 shell "ls";
 ----
 
 [source,perl6]
-.Run this if you're on Windows
+.Fai girare questo se lavori su piattaforma Windows
 ----
 shell "dir";
 ----
-`echo` and `ls` are common shell keywords on Linux: +
-`echo` prints text to the terminal (the equivalent of `print` in Perl 6) +
-`ls` lists all files and folders in the current directory
+`echo` ed `ls` sono comandi Linux: +
+`echo` stampa un testo su terminale (equivalente a `say` in Perl 6) +
+`ls` lista tutti i file e le cartelle della directory corrente
 
-`dir` is the equivalent of `ls` on Windows.
+`dir` equivale a `ls` quando sei su Windows.
 
 
 === File I/O
 ==== slurp
-`slurp` is used to read data from a file.
+`slurp` si usa per leggere dati da un file.
 
-Create a text file with the following content:
+Crea un file di testo con il seguente contenuto:
 
 .datafile.txt
 ----
-John 9
-Johnnie 7
-Jane 8
-Joanna 7
+Giovanni 9
+Giovannino 7
+Giovanna 8
+Gianna 7
 ----
 [source,perl6]
 ----
@@ -1190,19 +1190,19 @@ say $data;
 ----
 
 ==== spurt
-`spurt` is used to write data to a file.
+`spurt` si usa per scrivere dati in un file.
 
 [source,perl6]
 ----
-my $newdata = "New scores:
+my $nuovodato = "nuovi punti:
 Paul 10
 Paulie 9
 Paulo 11";
 
-spurt "newdatafile.txt", $newdata;
+spurt "nuovodatafile.txt", $nuovodato;
 ----
 
-After running the above code, a new file named _newdatafile.txt_ will be created. It will contain the new scores.
+Dopo aver fatto girare il codice qui sopra avremo un nuovo file _newdatafile.txt_ ;esso conterrà i nuovi punti.
 
 === Working with files and directories
 Perl 6 can list the contents of a directory without resorting to shell commands (by using `ls`, for example).
