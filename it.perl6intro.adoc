@@ -594,7 +594,7 @@ Otterresti il seguente messaggio di errore:
 [source,perl6]
 ----
 Index 3 for dimension 1 out of range (must be 0..2) 
------
+----
 
 ==== Array multidimensionali
 Gli array che abbiamo visto sono monodimensionali. +
