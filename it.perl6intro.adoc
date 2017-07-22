@@ -1249,7 +1249,7 @@ NOTA: Per avere più informazioni sull'I/O vedi qui https://docs.perl6.org/type/
 
 == Subroutine
 === Definizioni
-*Subroutine* (chiamate anche *sub* o *funzioni* o *procedure*) sono strumenti per riutilizzare delle specifiche funzionalità. +
+*Subroutine* (chiamate anche *sub* o *funzioni* o *procedure* o *metodi*) sono strumenti per riutilizzare delle specifiche funzionalità. +
 
 La definizione di una subroutine inizia con la parola chiave `sub`. Dopo la loro definizione possono essere chiamate tramite il loro identificativo. +
 Prova questo esempio:
@@ -1391,43 +1391,43 @@ Negli esempi precedente abbiamo specificato che il valore atteso doveva essere I
 Possiamo specificare anche che il valore da ritornare debba essere strettamente definito (oppure indefinito) usando queste notazioni: +
 `-\-> Int:D` e `-\-> Int:U`
 
-That being said, it is good practice to use those type constraints. +
-Below is the modified version of the previous example that uses `:D` to force the returned `Int` to be defined.
+Ossia, è buona pratica usare questo tipo di vincoli. +
+Qui sotto la versione modificata degll'esempio precedente che usa la faccina `:D` per vincolare l'intero ritornato ad essere anche definito.
 
 [source,perl6]
 ----
-sub squared ($x --> Int:D) {
+sub quadrato ($x --> Int:D) {
   return $x ** 2;
 }
-say "1.2 al quadrato è uguale a " ~ squared(1.2);
+say "1.2 al quadrato è uguale a " ~ quadrato(1.2);
 ----
 ====
 
-NOTA: For more info on subroutines and functions, see https://docs.perl6.org/language/functions
+NOTA: Per avere più informazioni su procedure e funzioni vedi qui https://docs.perl6.org/language/functions
 
-== Functional Programming
-In this chapter we will take a look at some of the features that facilitate Functional Programming.
+== Programmazione funzionale
+In questo capitolo daremo un'occhiata ad alcune funzionalità orientate alla programmazione funzionale.
 
-=== Functions are first-class citizens
-Functions/subroutines are first-class citizens:
+=== I metodi sono cittadini di prima classe
+I metodi sono cittadini di prima classe:
 
-* They can be passed as arguments
+* possono essere passate come argomenti
 
-* They can be returned from other functions
+* possono essere ritornate da altre funzini
 
-* They can be assigned to variables
+* possono essere assegnae a variabili
 
-A great example is the `map` function. +
-`map` is a _higher order function_, it can accept another function as an argument.
+Un ottimo esempio di questo è la funzione `map`. +
+`map` è una _funzione di alto livello_, può accettare un'altra funzione come agomento.
 
 [source,perl6]
 .Script
 ----
-my @array = <1 2 3 4 5>;
-sub squared($x) {
+my @vettore = <1 2 3 4 5>;
+sub quadrato($x) {
   $x ** 2
 }
-say map(&squared,@array);
+say map(&quadrato,@vettore);
 ----
 
 .Output
@@ -1435,43 +1435,42 @@ say map(&squared,@array);
 (1 4 9 16 25)
 ----
 
-.Explanation
-We defined a subroutine called `squared` that takes an argument and multiplies that argument by itself. +
-Next, we used `map`, a higher order function, and gave it two arguments, the `squared` subroutine and an array. +
-The result is a list of the squared elements of the array.
+.Spiegazione
+Abbiamo definito la subroutine `quadrato` che prende un argomento e lo eleva al quadrato. +
+Poi abbiamo usato `map`, una funzione di alto livello, e le abbiamo passato due argomenti: la funzione `quadrato` ed un vettore di interi. +
+Il risultato è un vettore di elementi al quadrato.
 
-Notice that when passing a subroutine as an argument, we need to prepend `&` to its name.
+Nota che per passare la funzione come argomento abbiamo avuto bisogno di anteporle `&`.
 
-=== Anonymous functions
-An *anonymous function* is also called a *lambda*. +
-An anonymous function is not bound to an identifier (it has no name).
+=== Funzioni anonime
+Una funzione anonime non è legata ad un identificatore, non ha un nome.
+Una *funzione anonima* si chiama anche *lambda*. +
 
-Let's rewrite the `map` example and have it use an anonymous function
+Proviamo a riscrivere l'esempio `map` ed usiamo una funzione anonima
 [source,perl6]
 ----
-my @array = <1 2 3 4 5>;
-say map(-> $x {$x ** 2},@array);
+my @vettore = <1 2 3 4 5>;
+say map(-> $x {$x ** 2},@vettore);
 ----
-Notice that instead of declaring the squared subroutine and passing it as an argument to `map`, we defined
-it within the anonymous subroutine as `\-> $x {$x ** 2}`.
+Nota che invece di dichiarare la funzioine `quadrato` e passarla come argomento a `map` abbiamo invece definitio questa funzione anonima `\-> $x {$x ** 2}`.
 
-In Perl 6 parlance, we call this notation a *pointy block*
+Nel gego del Perl 6 quesa notazione si chiama `blocco a punta`.
 
 [source,perl6]
-.A pointy block may also be used to assign functions to variables:
+.Un blocco a punta può essere usato per assegnare funzioni a variabili:
 ----
-my $squared = -> $x {
+my $quadrato = -> $x {
   $x ** 2
 }
-say $squared(9);
+say $quadrato(9);
 ----
 
-=== Chaining
-In Perl 6, methods can be chained, so you're not required to pass the result of one method to another as an argument.
+=== Concatenazione
+In Perl 6 i metodi possono essere concatenati: in tal modo non è più necessario passare il risultato di un metodo ad un altro come argomento.
 
-To illustrate: Given an array, you may need to return the unique values of the array, sorted from biggest to smallest.
+Per esempio: Dato un array, puoi voler ritornare i valori unici dell'array, ordinati dal maggiore al minore.
 
-Here's a non-chained solution:
+Questa è la soluzione _senza concatenazione_:
 
 [source,perl6]
 ----
@@ -1479,9 +1478,9 @@ my @array = <7 8 9 0 1 2 4 3 5 6 7 8 9>;
 my @final-array = reverse(sort(unique(@array)));
 say @final-array;
 ----
-Here, we call `unique` on `@array`, pass the result as an argument to `sort`, and then pass that result to `reverse`.
+Qui chiamiamo la procedura `unique` su `@array`, e passiamo il risultato come argomento a `sort`, e poi passiamo il risultato a `reverse`.
 
-In contrast, with chained methods, the above example can be rewritten as:
+Al contrario, usando i metodi concatenati, l'esempio sopra può essere riscritto così:
 
 [source,perl6]
 ----
@@ -1490,16 +1489,15 @@ my @final-array = @array.unique.sort.reverse;
 say @final-array;
 ----
 
-You can already see that chaining methods is _easier on the eye_.
+_molto più leggibile_!
 
-=== Feed Operator
-The *feed operator*, called _pipe_ in some functional programming languages, further illustrates
-method chaining.
+=== Operatore alimentazione
+L' *operatore alimentazione*, chiamato _pipe_ in alcuni linguaggi di programmazione funzionale, illustra ulteriormente le tecniche di concatenazione.
 
 [source,perl6]
-.Forward Feed
+.Alimentazione in avanti (o finale)
 ----
-my @array = <7 8 9 0 1 2 4 3 5 6 7 8 9>;
+my @array = <7 8 9 0 1 2then sort it 4 3 5 6 7 8 9>;
 @array ==> unique()
        ==> sort()
        ==> reverse()
@@ -1507,18 +1505,18 @@ my @array = <7 8 9 0 1 2 4 3 5 6 7 8 9>;
 say @final-array;
 ----
 
-.Explanation
+.Spiegazione
 ----
-Start with `@array` then return a list of unique elements
-                    then sort it
-                    then reverse it
-                    then store the result in @final-array
+Inizi con `@array` poi restituisci una lista di elementi unici
+                   poi li ordini
+                   poi inverti questo ordine
+                   poi li memorizzi nel risultato @final-array
 ----
-Note that the flow of the method calls is top-down -- from first to final step.
+Qui il metodo delle chiamate è `top-down` -- dal primo passo all'ultimo.
 
 
 [source,perl6]
-.Backward Feed
+.Alimentazione inversa (o causale)
 ----
 my @array = <7 8 9 0 1 2 4 3 5 6 7 8 9>;
 my @final-array-v2 <== reverse()
@@ -1528,147 +1526,146 @@ my @final-array-v2 <== reverse()
 say @final-array-v2;
 ----
 
-.Explanation
-The backward feed is like the forward feed, but in reverse. +
-The flow of the method calls is bottom-up -- from final to first step.
+.Spiegazione
+Nella sostanza l'alimentazione inversa è identica a quella in avanti. +
+Il flusso si inverte, dal passo finale al primo passo.
 
-=== Hyper operator
-The *hyper operator* `>>.` will call a method on all elements of a list and return a list of the results.
+=== Operatore iper
+L' *operatore iper* `>>.` chiama un metodo su tutti gli elementi di una lista e ritorna la lista dei risultati.
 [source,perl6]
 ----
 my @array = <0 1 2 3 4 5 6 7 8 9 10>;
-sub is-even($var) { $var %% 2 };
+sub est-pari($var) { $var %% 2 };
 
 say @array>>.is-prime;
-say @array>>.&is-even;
+say @array>>.&est-pari;
 ----
 
-Using the hyper operator we can call methods already defined in Perl 6, e.g. `is-prime` that tells us if a number is prime or not. +
-In addition we can define new subroutines and call them using the hyper operator. In this case we have to prepend `&` to the name of the method; e.g., `&is-even`.
+Usando l'operatore iper possiamo chiamare i metodi predefiniti in Perl 6, per esempio `is-prime` che ci dice se un numero è primo oppure no. +
+Inoltre possiamo definire nuove subroutine e chiamarle usando l'operatore iper. In questo caso dobbiamo anteporre `&` al nome del metodo; per esempio `&is-even`.
 
-This is very practical as it relieves us from writing a `for` loop to iterate over each value.
+Questo è molto comodo e ci solleva dal dover scrivere cicli `for` per iterare su ogni valore.
 
-WARNING: Perl 6 guarantees that the order of the results is the same as that of the original list.
-However, there is *no guarantee* that Perl 6 will actually call the methods in list order or in the same thread. So, be careful with methods that have side-effects, such as `say` or `print`.
+ATTENZIONE: Perl 6 garantisce che l'ordine dei risultati sia lo stesso di quello della lista originale.
+Tuttavia non c'è garnzia che Perl 6 chiami i metodi nell'ordine della lista, oppure all'interno dello stesso thread. Quindi dobbiamo stare attenti con i metodi che hanno effetti collaterali come `say` o `print`.
 
-=== Junctions
-A *junction* is a logical superposition of values.
+=== Giunzioni
+Una *giunzione* è una sovrapposizione logica di valori.
 
-In the below example `1|2|3` is a junction.
+Nell'esempio qui sotto `1|2|3` è una giunzione.
 [source,perl6]
 ----
 my $var = 2;
 if $var == 1|2|3 {
-  say "The variable is 1 or 2 or 3"
+  say "La variabile è 1 o 2 o 3"
 }
 ----
-The use of junctions usually triggers *autothreading*;
-the operation is carried out for each junction element, and all the results are combined into a new junction and returned.
+L'uso di giunzioni nomalmente scatena l'*autothreading*; 
+ossia, l'operazione viene eseguita per ogni valore della giunzione e tutti i risultati vengono combinati in una nuova giunzione e ritornati.
 
-=== Lazy Lists
-A *lazy list* is a list that is lazily evaluated. +
-Lazy evaluation delays the evaluation of an expression until required, and avoids repeating evaluations by storing results in a lookup table.
+=== Liste pigre
+Una *lista pigra* è una lista che viene valutata con pigrizia. +
+Valutare con pigrizia significa ritardala la valutazione di una espressione fino a che essa non venga richiesta ed evita di ripetere valutazioni su valutazioni immagazzinando i risultati in una tabella predittiva.
 
-The benefits include:
+I benefici includono:
 
-* Performance increase by avoiding needless calculations
+* Miglioramento delle prestazioni evitando calcoli inutili
 
-* The ability to construct potentially infinite data structures
+* La capacità di contruire strutture potenzialmente infinite
 
-* The ability to define control flow
+* La capacità di definire il flusso di controllo
 
-To build a lazy list we use the infix operator `...` +
-A lazy list has *initial element(s)*, a *generator* and an *endpoint*.
+Per costruire una lista pigra usiamo l'operatore `...` +
+Una lista pigra ha uno o più *elementi iniziali*, un *generatore* ed un *punto finale*.
 
 [source,perl6]
-.Simple lazy list
+.Lista pigra semplice
 ----
 my $lazylist = (1 ... 10);
 say $lazylist;
 ----
-The initial element is 1 and the endpoint is 10. No generator was defined so the default generator is the successor (+1) +
-In other words this lazy list may return (if requested) the following elements (1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+L'elemento iniziale è 1 ed il punto finale è 10. Qui non viene definito alcun gneeeratore quindi il generatore è il successore (+1) +
+In altre parole la lista pigra può ritornare (se richiesti) i seguenti elementin (1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
 
 [source,perl6]
-.Infinite lazy list
+.Lista pigra infinita
 ----
 my $lazylist = (1 ... Inf);
 say $lazylist;
 ----
-This list may return (if requested) any integer between 1 and infinity, in other words any integer number.
+Questa può ritornare (se richiesto) un intero tra 1 ed infinito, in altre parle un numero naturale.
 
 [source,perl6]
-.Lazy list built using a deduced generator
+.Lista pigra costruita usando un generatore dedotto
 ----
 my $lazylist = (0,2 ... 10);
 say $lazylist;
 ----
-The initial elements are 0 and 2 and the endpoint is 10.
-No generator was defined, but using the initial elements, Perl 6 will deduce that the generator is (+2) +
-This lazy list may return (if requested) the following elements (0, 2, 4, 6, 8, 10)
+Gli elementi iniziali sono 0 e 2 ed il punto di fine è 10.
+Non viene definito alcun generatore, ma usando gli elementi iniziali, Perl 6 dedurrà che il generatore è (+2) +
+Questa lista pigra può ritornare (se richiesti) i seguenti elementi (0, 2, 4, 6, 8, 10)
 
 [source,perl6]
-.Lazy list built using a defined generator
+.Lista pigra costruita usando un generatore definito
 ----
 my $lazylist = (0, { $_ + 3 } ... 12);
 say $lazylist;
 ----
-In this example, we defined explicitly a generator enclosed in `{ }` +
-This lazy list may return (if requested) the following elements (0, 3, 6, 9, 12)
+In questo esempio abbiamo definito esplicitamente il generatore abbacciandolo tra le `{ }` +
+Questa lista pigra può ritornare (se richiesti) i seguenti elementi (0, 3, 6, 9, 12)
 
-[WARNING]
+[Attenzione]
 ====
-When using an explicit generator, the endpoint must be one of the values that the generator can return. +
-If we reproduce the above example with the endpoint being 10 instead of 12, it will not stop.
-The generator _jumps over_ the endpoint.
+Quando usiamo un generatore esplicito, il punto di fine deve essere uno dei valori che il generatore può ritornare. +
+Se riproduciamo l'esempio di prima con un punto di fine che sia 10 invece di 12, esso non si fermerà mai.
+il generatore _salta oltre_ il punto di fine.
 
-Alternatively you can replace `0 ... 10` with `0 ...^ * > 10` +
-You can read it as: From 0 until the first value greater than 10 (excluding it)
+Come alternativa puoi sostituire`0 ... 10` con `0 ...^ * > 10` +
+Questa notazione si può leggere in questo modo: da 0 fino al primo valore maggiore di 10 (escluso tale valore)
 
 [source,perl6]
-.This will not stop the generator
+.Questo non fermerà il generatore
 ----
 my $lazylist = (0, { $_ + 3 } ... 10);
 say $lazylist;
 ----
 
 [source,perl6]
-.This will stop the generator
+.Questo fermerà il generatore
 ----
 my $lazylist = (0, { $_ + 3 } ...^ * > 10);
 say $lazylist;
 ----
 ====
 
-=== Closures
-All code objects in Perl 6 are closures, which means they can reference lexical variables from an outer scope.
+=== Chiusure
+Tutti gli oggetti di Perl 6 sono chiusure, ossia essi possono riferirsi a variabili lessicali da un ambito più esterno.
 
 [source,perl6]
 ----
-sub generate-greeting {
-    my $name = "John Doe";
-    sub greeting {
-      say "Good Morning $name";
+sub genera-saluti {
+    my $nome = "Giovanni Dossi";
+    sub saluti {
+      say "Buongiorno $name";
     };
-    return &greeting;
+    return &saluti;
 }
-my $generated = generate-greeting;
-$generated();
+my $saluto-generato = genera-saluti;
+$saluto-generato();
 ----
 
-If you run the above code, it will display `Good Morning John Doe` on the terminal. +
-While the result is fairly simple, what is interesting about this example, is that the `greeting` inner subroutine was returned from the outer subroutine before being executed.
+Quando fai girare il codice qui sopra, esso scriverà `Buongiorno Giovanni Dossi` sul terminale. +
+Mentre il risultato è giustamente semplice, ciò che è interessante in questo esempio, è che la subroutine interna `saluti` venga ritornata da una routine esterna prima di essere eseguita. 
 
-`$generated` has become a *closure*.
+`$saluto-generato` è diventata una *chiusura*.
 
-A *closure* is a special kind of object that combines two things:
+Una *chiusura* è uno speciale tipo di oggetto che combina due cose:
 
-* A Subroutine
+* Una subroutine
 
-* The Environment in which that subroutine was created.
+* L'ambiente in cui tale subroutine è stata creata
 
-The environment consists of any local variable that was in-scope at the time that the closure was created.
-In this case, `$generated` is a closure that incorporates both the `greeting` subroutine and the `John Doe` string that existed when the closure was created.
+L'ambiente consiste in qualsiasi variabile locale che era all'interno dell'ambito al momento in cui la chiusura è stata creata. In questo esempio specifico, `$saluto-generato` è una chiusura che incorpora sia la funzione `saluti` che la stringa `Giovanni Dossi` che esisteva quando la chiusura era stata creata.
 
 Let's take a look at a more interesting example.
 [source,perl6]
