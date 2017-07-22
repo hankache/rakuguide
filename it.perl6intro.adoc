@@ -1165,7 +1165,7 @@ shell "dir";
 ----
 `echo` ed `ls` sono comandi Linux: +
 `echo` stampa un testo su terminale (equivalente a `say` in Perl 6) +
-`ls` lista tutti i file e le cartelle della directory corrente
+`ls` lista tutti i file e le cartelle del direttorio corrente
 
 `dir` equivale a `ls` quando sei su Windows.
 
@@ -1202,135 +1202,130 @@ Paulo 11";
 spurt "nuovodatafile.txt", $nuovodato;
 ----
 
-Dopo aver fatto girare il codice qui sopra avremo un nuovo file _newdatafile.txt_ ;esso conterrà i nuovi punti.
+Dopo aver fatto girare il codice qui sopra avremo un nuovo file _nuovodatafile.txt_ ; esso conterrà i nuovi punti.
 
-=== Working with files and directories
-Perl 6 can list the contents of a directory without resorting to shell commands (by using `ls`, for example).
-
-[source,perl6]
-----
-say dir;                # List files and folders in the current directory
-say dir "/Documents";   # List files and folders in the specified directory
-----
-
-In addition, you can create and delete directories.
+=== Lavorare con file e cartello
+Perl 6 può listare il contentuo di una cartella senza ricorrere alla shell di comando (per esempio se vogliamo fare un `ls`).
 
 [source,perl6]
 ----
-mkdir "newfolder";
-rmdir "newfolder";
+say dir;                # Lista di file e cartelle nel direttorio corrente
+say dir "/Documents";   # Lista di file e cartelle nel direttorio specificato
 ----
 
-`mkdir` creates a new directory. +
-`rmdir` deletes an empty directory and returns an error if not empty.
+In oltre puoi creare e cancellare cartelle.
 
-You can also check if a path exists; if it is a file; or a directory:
+[source,perl6]
+----
+mkdir "nuovacartella"; # crea una nuova cartella
+rmdir "nuovacartella"; # cancella una cartella vuota e ritorna un errore se non è vuota
+----
 
-In the directory where you will be running the below script, create an empty folder `folder123` and an empty pl6 file `script123.pl6`
+Puoi anche controllare se un certo percorso esista; puoi controllare se sia un file, oppure una cartella:
+
+Nella cartella dove farai girare lo script sottostante, crea prima una sottocartella vuota chiamata `cartella123` e crea anche un file vuoto chiamato `script123.pl6`
 
 [source,perl6]
 ----
 say "script123.pl6".IO.e;
-say "folder123".IO.e;
+say "cartella123".IO.e;
 
 say "script123.pl6".IO.d;
-say "folder123".IO.d;
+say "cartella123".IO.d;
 
 say "script123.pl6".IO.f;
-say "folder123".IO.f;
+say "cartella123".IO.f;
 ----
 
-`IO.e` checks if the directory/file exists. +
-`IO.f` checks if the path is a file. +
-`IO.d` checks if the path is a directory.
+`IO.e` controlla che la cartella o il file esistano. +
+`IO.f` controlla che il percorso sia un file. +
+`IO.d` controlla che il percorso sia una cartella.
 
-WARNING: Windows users can use `/` or `\\` to define directories +
+ATTENZIONE: Gli utenti Windows possono usare sia `/` che `\\` per definire le cartelle +
 `C:\\rakudo\\bin` +
 `C:/rakudo/bin` +
 
-NOTA: For more info on I/O, see https://docs.perl6.org/type/IO
+NOTA: Per avere più informazioni sull'I/O vedi qui https://docs.perl6.org/type/IO
 
-== Subroutines
-=== Definition
-*Subroutines* (also called *subs* or *functions*) are a means of packaging and reusing functionality. +
+== Subroutine
+=== Definizioni
+*Subroutine* (chiamate anche *sub* o *funzioni* o *procedure*) sono strumenti per riutilizzare delle specifiche funzionalità. +
 
-A subroutine definition begins with the keyword `sub`. After their definition, they can be called by their handle. +
-Check out the below example:
-
-[source,perl6]
-----
-sub alien-greeting {
-  say "Hello earthlings";
-}
-
-alien-greeting;
-----
-
-The previous example showcased a subroutine that doesn't require any input.
-
-=== Signature
-Subroutines can require input. That input is provided by *arguments*.
-A subroutine may define zero or more *parameters*.
-The number and type of parameters that a subroutine defines is called its *signature*.
-
-The below subroutine accepts a string argument.
+La definizione di una subroutine inizia con la parola chiave `sub`. Dopo la loro definizione possono essere chiamate tramite il loro identificativo. +
+Prova questo esempio:
 
 [source,perl6]
 ----
-sub say-hello (Str $name) {
-    say "Hello " ~ $name ~ "!!!!"
+sub saluto-alieno {
+  say "Salve terrestri";
 }
-say-hello "Paul";
-say-hello "Paula";
+
+saluto-alieno;
 ----
 
-=== Multiple dispatch
-It is possible to define multiple subroutines that have the same name but different signatures.
-When the subroutine is called, the runtime environment will decide which version to use based on the number and type of supplied arguments. This type of subroutine is defined the same way as normal subs except that we use the `multi` keyword instead of `sub`.
+L'esempio precedente mostra una subroutine che non richiede alcun input.
+
+=== Firma
+Le subroutine possono richiedere un input. Tali input vengono forniti tramite *argomenti*. Gli argomenti sono anche detti *parametri*. Il numero ed il tipo di parametri che una subroutine definisce viene chiamato *firma*.
+
+La subroutine qui sotto accetta un argomento di tipo stringa.
 
 [source,perl6]
 ----
-multi greet($name) {
-    say "Good morning $name";
+sub saluta (Str $nome) {
+    say "Ciao " ~ $name ~ "!!!!"
 }
-multi greet($name, $title) {
-    say "Good morning $title $name";
-}
-
-greet "Johnnie";
-greet "Laura","Mrs.";
+saluta "Paolo";
+saluta "Paola";
 ----
 
-=== Default and Optional Parameters
-If a subroutine is defined to accept an argument, and we call it without providing it with the required argument, it will fail.
-
-Perl 6 provides us the ability to define subroutines with:
-
-* Optional Parameters
-* Default Parameters
-
-Optional parameters are defined by appending `?` to the parameter name.
+=== Indirizzamento multiplo (overload)
+Ci possono essere subroutine che hanno lo stesso nome ma firme diverse.
+Quando si chiama una subroutne, l'ambiente di esecuzione decide quale versione usare basandosi sul numero e sul tipo degli argomenti forniti. Questo tipo di subroutine è definito nello stesso modo con cui si definiscono le normali sub eccetto per il fatto che usiamo la parola chiave `multi` al posto dell'originale `sub`.
 
 [source,perl6]
 ----
-sub say-hello($name?) {
-  with $name { say "Hello " ~ $name }
-  else { say "Hello Human" }
+multi saluti($nome) {
+    say "Buongiorno $nome";
 }
-say-hello;
-say-hello("Laura");
+multi saluti($nome, $titolo) {
+    say "Buongiorno $titolo $nome";
+}
+
+saluti "Giovannino";
+saluti "Laura","Signora";
 ----
 
-If the user doesn't need to supply an argument, a default value can be defined. +
-This is done by assigning a value to the parameter within the subroutine definition.
+=== Parametri opzionali e mancanti
+Se una subroutine viene definita per accettare un argomento e noi invece la chiamiamo senza fornire tale argomento avremo un fallimento.
+
+Perl 6 allora fornisce la possiblilità di definire:
+
+* Parametri opzionali
+* Parametri mancanti
+
+I parametri opzionali vengono definiti aggiungendo `?` al nome del parametro.
 
 [source,perl6]
 ----
-sub say-hello($name="Matt") {
-  say "Hello " ~ $name;
+sub saluta($nome?) {
+  with $nome { say "Ciao " ~ $nome }
+  else { say "Ciao" }
 }
-say-hello;
-say-hello("Laura");
+saluta;
+saluta("Laura");
+----
+
+Se non hai bisogno di fornire un argomento, puoi definirne uno in caso di mancanza. +
+Per farlo assegni un valore al tuo parametro in fase di definizione.
+
+[source,perl6]
+----
+sub saluta($nome="Matteo") {
+  say "Ciao " ~ $name;
+}
+saluta;
+saluta("Laura");
 ----
 
 === Returning values
