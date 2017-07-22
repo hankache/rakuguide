@@ -1204,7 +1204,7 @@ spurt "nuovodatafile.txt", $nuovodato;
 
 Dopo aver fatto girare il codice qui sopra avremo un nuovo file _nuovodatafile.txt_ ; esso conterrà i nuovi punti.
 
-=== Lavorare con file e cartello
+=== Lavorare con file e cartelle
 Perl 6 può listare il contentuo di una cartella senza ricorrere alla shell di comando (per esempio se vogliamo fare un `ls`).
 
 [source,perl6]
@@ -1328,56 +1328,55 @@ saluta;
 saluta("Laura");
 ----
 
-=== Returning values
-All the subroutines we've seen so far *do something* -- they display some text on the terminal.
+=== Restituire valori
+Tutte le subroutine che abbiamo visto *fanno qualcosa* -- scrivono del testo al terminale.
 
-Sometimes, though, we execute a subroutine for its *return* value so we can use it later in the flow of our program.
+Talvolta, tuttavia, eseguiamo subroutine perché ci *restituiscano* un valore con il fino di usarlo nei passi successivi del nostro programma.
 
-If a function is allowed to run through it's block to the end, the last statement or expression will determine the return value.
+Se una funzione giunge alla fine del suo blocco, l'ultima istruzione o espressione determinerà il valore di ritorno; è il *ritorno implicito*
 
 [source,perl6]
-.Implicit return
+.Ritorno implicito
 ----
-sub squared ($x) {
+sub quadrato ($x) {
   $x ** 2;
 }
-say "7 squared is equal to " ~ squared(7);
+say "7 a quadrato è uguale a " ~ quadrato(7);
 ----
 
-For the sake of clarity, it might be a good idea to _explicitly_ specify what we want returned.
-This can be done using the `return` keyword.
+Per leggibilità e pulizia del codice, potrebbe essere bene specificare _esplicitamente_ che cosa viene restituito; usiamo allora la parola chiave `return`; è il *ritorno esplicito*
 [source,perl6]
-.Explicit return
+.Ritorno esplicito
 ----
-sub squared ($x) {
+sub quadrato ($x) {
   return $x ** 2;
 }
-say "7 squared is equal to " ~ squared(7);
+say "7 al quadrato è uguale a " ~ quadrato(7);
 ----
-==== Restricting return values
-In one of the previous examples, we saw how we can restrict the accepted argument to be of a certain type.
-The same can be done with return values.
+==== Vincolare i valori di ritorno
+In un esempio precedente abbiamo visto come possiamo vincolare gli argomenti ad essere di un certo tipo.
+Possiamo fare lo stesso con i valori di ritorno.
 
-To restrict the return value to a certain type, we either use the `returns` trait or the arrow notation `-\->` in the signature.
-
-[source,perl6]
-.Using the returns trait
-----
-sub squared ($x) returns Int {
-  return $x ** 2;
-}
-say "1.2 squared is equal to " ~ squared(1.2);
-----
+Per vincolare il valore di ritorno ad un certo tipo, possiamo usare la parola chiave `returns` oppure la notazione a freccia `-\->`.
 
 [source,perl6]
-.Using the arrow
+.uso di returns
 ----
-sub squared ($x --> Int) {
+sub quadrato ($x) returns Int {
   return $x ** 2;
 }
-say "1.2 squared is equal to " ~ squared(1.2);
+say "1.2 al quadrato è uguale a " ~ quadrato(1.2);
 ----
-If we fail to provide a return value that matches the type constraint, an error will be thrown.
+
+[source,perl6]
+.uso della notazione a freccia
+----
+sub quadrato ($x --> Int) {
+  return $x ** 2;
+}
+say "1.2 al quadrato è uguale a " ~ quadrato(1.2);
+----
+Se sbagliamo a fornire un valore di ritorno che sia allineato con il vincolo di tipo, avremo un errore di questo tipo.
 
 ----
 Type check failed for return value; expected Int but got Rat (1.44)
@@ -1385,12 +1384,12 @@ Type check failed for return value; expected Int but got Rat (1.44)
 
 [Noticina]
 ====
-Not only can type constraints control the type of the return value; they can also control its definedness.
+Il vincolo sul tipo può fare un controllo aggiuntivo: la sua definitezza.
 
-In the previous examples, we specified that the return value should be an `Int`.
+Negli esempi precedente abbiamo specificato che il valore atteso doveva essere Int.
 
-We could also have specified that the returned `Int` should be strictly defined or undefined using the following signatures: +
-`--> Int:D` and `--> Int:U`
+Possiamo specificare anche che il valore da ritornare debba essere strettamente definito (oppure indefinito) usando queste notazioni: +
+`-\-> Int:D` e `-\-> Int:U`
 
 That being said, it is good practice to use those type constraints. +
 Below is the modified version of the previous example that uses `:D` to force the returned `Int` to be defined.
@@ -1400,7 +1399,7 @@ Below is the modified version of the previous example that uses `:D` to force th
 sub squared ($x --> Int:D) {
   return $x ** 2;
 }
-say "1.2 squared is equal to " ~ squared(1.2);
+say "1.2 al quadrato è uguale a " ~ squared(1.2);
 ----
 ====
 
