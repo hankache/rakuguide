@@ -1247,9 +1247,9 @@ ATTENZIONE: Gli utenti Windows possono usare sia `/` che `\\` per definire le ca
 
 NOTA: Per avere più informazioni sull'I/O vedi qui https://docs.perl6.org/type/IO
 
-== Subroutine
+== Funzioni o metodi
 === Definizioni
-*Subroutine* (chiamate anche *sub* o *funzioni* o *procedure* o *metodi*) sono strumenti per riutilizzare delle specifiche funzionalità. +
+Le *Subroutine* (chiamate anche *sub* o *funzioni* o *procedure* o *metodi*) sono strumenti per riutilizzare delle specifiche funzionalità. +
 
 La definizione di una subroutine inizia con la parola chiave `sub`. Dopo la loro definizione possono essere chiamate tramite il loro identificativo. +
 Prova questo esempio:
@@ -1667,28 +1667,25 @@ Una *chiusura* è uno speciale tipo di oggetto che combina due cose:
 
 L'ambiente consiste in qualsiasi variabile locale che era all'interno dell'ambito al momento in cui la chiusura è stata creata. In questo esempio specifico, `$saluto-generato` è una chiusura che incorpora sia la funzione `saluti` che la stringa `Giovanni Dossi` che esisteva quando la chiusura era stata creata.
 
-Let's take a look at a more interesting example.
+Vediamo ora un esempio più interessante.
 [source,perl6]
 ----
-sub greeting-generator($period) {
-  return sub ($name) {
-    return "Good $period $name"
+sub genera-saluti($periodo) {
+  return sub ($nome) {
+    return "Buon $periodo $nome"
   }
 }
-my $morning = greeting-generator("Morning");
-my $evening = greeting-generator("Evening");
+my $giorno = genera-salut("giorno");
+my $natale = genera-salut("Natale");
 
-say $morning("John");
-say $evening("Jane");
+say $morning("Giovanni");
+say $evening("Giovanna");
 ----
-In this example, we have defined a subroutine `greeting-generator($period)` that accepts a single argument `$period`
-and returns a new subroutine. The subroutine it returns accepts a single argument `$name` and returns the constructed greeting.
+In questo esempio abbiamo definito un metodo `genera-saluti($periodo)` che accetta un argomento singolo `$periodo` e ritorna una nuova funzione. Tale funzione accetta un argomento singolo `$nome` e ritorna un saluto.
 
-Basically, `greeting-generator` is a subroutine factory. In this example, we used `greeting-generator` to create two new subroutines,
-one that says `Good Morning` and one that says `Good Evening`.
+Essenzialmente, `genera-saluti` è una fabbrica di funzioni. In questo esempio usiamo `genera-saluti` per creare due nuove funzioni, una dice `Buon giorno` mentre l'altra dice `Buon Natale`.
 
-`$morning` and `$evening` are both closures. They share the same subroutine body definition, but store different environments. +
-In `$morning` 's environment `$period` is `Morning`. In `$evening` 's environment `$period` is `Evening`.
+`$giorno` e `$natale` sono entrambe delle chiusure. Esse condividono la stessa definizione di corpo, ma si portando dentro ambienti diversi. In `$giorno l'ambiente è `$periodo = "giorno"`. In `$natale` l'ambiente è `$periodo = "Natale"`
 
 == Classes & Objects
 In the previous chapter, we learned how Perl 6 facilitates Functional Programming. +
