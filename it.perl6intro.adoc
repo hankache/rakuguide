@@ -1687,45 +1687,45 @@ Essenzialmente, `genera-saluti` è una fabbrica di funzioni. In questo esempio u
 
 `$giorno` e `$natale` sono entrambe delle chiusure. Esse condividono la stessa definizione di corpo, ma si portando dentro ambienti diversi. In `$giorno l'ambiente è `$periodo = "giorno"`. In `$natale` l'ambiente è `$periodo = "Natale"`
 
-== Classes & Objects
-In the previous chapter, we learned how Perl 6 facilitates Functional Programming. +
-In this chapter we will take a look at Object Oriented programming in Perl 6.
+== Classi e oggetti
+Nel capitolo precedente abbiamo imparato come Perl 6 ficiliti la programmazione funzionale. +
+In questo vedremo la programmazione orientata agli oggetti in Perl 6. Perl 6.
 
-=== Introduction
+=== Introduzione
 
-_Object Oriented_ programming is one of the widely used paradigms nowadays. +
-An *object* is a set of variables and subroutines bundled together. +
-The variables are called *attributes* and the subroutines are called *methods*. +
-Attributes define the *state* and methods define the *behavior* of an object.
+_programmazione orientata agli oggetti_ è uno dei paradigmi maggiormente usati oggi. +
+Un *oggetto* è un insieme di variabili e funzioni riuniti tutti insieme in una unità. +
+Le variabili vengono cambiati *attributi* mentre le funzioni vengono chiamate *metodi*. +
+Gli attributi definiscono lo *stato* mentre i metodi definiscono il *comportamento* di un oggetto.
 
-A *class* is a template for creating *objects*. +
+Una *classe* è un modello per creare *oggetti*. +
 
-In order to understand the relationship consider the below example:
-
-|===
-
-| There are 4 people present in a room | *objects* => 4 people
-
-| These 4 people are humans | *class* => Human
-
-| They have different names, age, sex and nationality | *attributes* => name, age, sex, nationality
+Per capire le relazioni tra questi concetti considera questo esempio:
 
 |===
 
-In _object oriented_ parlance, we say that objects are *instances* of a class.
+| Ci sono quattro persone in una stanza | *oggetti* => 4 persone
 
-Consider the below script:
+| Queste persone sono esseri umani | *classe* => umana
+
+| Essi hanno nomi, età, sesso e nazionalità diversi | *attributi* => nome, anni, sesso, nazione
+
+|===
+
+Nel gergo _orientato agli oggetti_ diciamo che gli oggetti sono *istanze* di una classe.
+
+Considera questo script:
 [source,perl6]
 ----
-class Human {
-  has $.name;
-  has $.age;
-  has $.sex;
-  has $.nationality;
+class umano {
+  has $.nome;
+  has $.anni;
+  has $.sesso;
+  has $.nazione;
 }
 
-my $john = Human.new(name => 'John', age => 23, sex => 'M', nationality => 'American');
-say $john;
+my $giovanni = umano.new(nome => 'Giovanni', anni => 23, sesso => 'M', nazione => 'Italia');
+say $giovanni;
 ----
 The `class` keyword is used to define a class. +
 The `has` keyword is used to define attributes of a class. +
