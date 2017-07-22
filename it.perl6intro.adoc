@@ -1688,14 +1688,14 @@ Essenzialmente, `genera-saluti` è una fabbrica di funzioni. In questo esempio u
 `$giorno` e `$natale` sono entrambe delle chiusure. Esse condividono la stessa definizione di corpo, ma si portando dentro ambienti diversi. In `$giorno l'ambiente è `$periodo = "giorno"`. In `$natale` l'ambiente è `$periodo = "Natale"`
 
 == Classi e oggetti
-Nel capitolo precedente abbiamo imparato come Perl 6 ficiliti la programmazione funzionale. +
-In questo vedremo la programmazione orientata agli oggetti in Perl 6. Perl 6.
+Nel capitolo precedente abbiamo imparato come Perl 6 faciliti la programmazione funzionale. +
+In questo vedremo la programmazione orientata agli oggetti in Perl 6.
 
 === Introduzione
 
-_programmazione orientata agli oggetti_ è uno dei paradigmi maggiormente usati oggi. +
+La _programmazione orientata agli oggetti_ è uno dei paradigmi maggiormente usati oggi. +
 Un *oggetto* è un insieme di variabili e funzioni riuniti tutti insieme in una unità. +
-Le variabili vengono cambiati *attributi* mentre le funzioni vengono chiamate *metodi*. +
+Le variabili vengono chiamate *attributi* mentre le funzioni vengono chiamate *metodi*. +
 Gli attributi definiscono lo *stato* mentre i metodi definiscono il *comportamento* di un oggetto.
 
 Una *classe* è un modello per creare *oggetti*. +
@@ -1704,9 +1704,9 @@ Per capire le relazioni tra questi concetti considera questo esempio:
 
 |===
 
-| Ci sono quattro persone in una stanza | *oggetti* => 4 persone
+| Ci sono quattro persone in una stanza | *oggetti* => 4 (persone)
 
-| Queste persone sono esseri umani | *classe* => umana
+| Queste persone sono esseri umani | *classe* => umano
 
 | Essi hanno nomi, età, sesso e nazionalità diversi | *attributi* => nome, anni, sesso, nazione
 
@@ -1727,36 +1727,35 @@ class umano {
 my $giovanni = umano.new(nome => 'Giovanni', anni => 23, sesso => 'M', nazione => 'Italia');
 say $giovanni;
 ----
-The `class` keyword is used to define a class. +
-The `has` keyword is used to define attributes of a class. +
-The `.new()` method is called a *constructor*. It creates the object as an instance of the class it has been called on.
+La parole chiave `class` definisce la classe. +
+`has` definisce gli attributi di una classe. +
+Il metodo `.new()` è detto *costruttore*. Esso crea l'oggetto come una istanza della classe su cui è stato chiamato.
 
-In the above script, a new variable `$john` holds a reference to a new instance of "Human" defined by `Human.new()`. +
-The arguments passed to the `.new()` method are used to set the attributes of the underlying object.
+Nello script riportato qui sopra la nuova variabile `$giovanni` contiene un puntatore ad una nuova istanza di "umano" che è stata definita con `umano.new()`. +
+Gli argomenti passati al metodo `.new()` vengono usati per definire gli attribuiti dell'oggetto sotteso.
 
-A class can be given _lexical scope_ using `my`:
+L'_ambito lessicale_ di una classe può essere dato tramite `my`:
 [source,perl6]
 ----
-my class Human {
+my class umano {
 
 }
 ----
 
-=== Encapsulation
-Encapsulation  is an object oriented concept that bundles a set of data and methods together. +
-The data (attributes) within an object should be *private*, in other words, accessible only from within the object. +
-In order to access the attributes from outside the object, we use methods called *accessors*.
+=== Incapsulazione
+L'incapsulazione è un concetto del paradigma agli oggetti; esso racchiude dati e metodi di un oggetto in una unità. I dati (attributi) che si trovano all'interno dell'oggetto dovranno essere *privati*, ossia accessibili solamente dall'interno dell'oggetto. +
+Per accedere agli attributi dall'esterno dell'oggetto bisognerà quindi usare speciali metodi detti *accessori* (ossia _che accedono_ n.d.t).
 
-The below two scripts have the same result.
+I due script qui sotto danno lo stesso risultato.
 
-.Direct access to the variable:
+.Accesso diretto alla variabile:
 [source,perl6]
 ----
 my $var = 7;
 say $var;
 ----
 
-.Encapsulation:
+.Incapsulazione:
 [source,perl6]
 ----
 my $var = 7;
@@ -1765,115 +1764,114 @@ sub sayvar {
 }
 say sayvar;
 ----
-The method `sayvar` is an accessor. It lets us access the value of the variable without getting direct access to it.
+Il metodo `sayvar` è un metodo accessorio. Ci permette di accedere al valore di una variabile senza entrare in contatto diretto con essa.
 
-Encapsulation is facilitated in Perl 6 with the use of *twigils*. +
-Twigils are secondary _sigils_. They come between the sigil and the attribute name. +
-Two twigils are used in classes:
+L'incapsulazione è facilitata in Perl 6 grazie all'uso dei *sigilli secondari*. +
+Si pongono tra il sigillo ed il nome dell'attributo. +
+Ci sono due tipi di sigilli secondari per le classi:
 
-* `!` is used to explicitly declare that the attribute is private.
-* `.` is used to automatically generate an accessor for the attribute.
+* `!` viene usato per dichiarare esplicitamente che l'attributo è privato.
+* `.` viene usato per generare automaticamente un accessore per l'attributo.
 
-By default, all attributes are private but it is a good habit to always use the `!` twigil.
+Tutti gli attributi sono privati, in mancanza di una precisazione diversa, ma è buona pratica usare sempre il sigillo secondario `!`.
 
-Therefore, we should rewrite the above class as:
+Quindi, dovremmo riscrivere la classe in questa forma:
 [source,perl6]
 ----
-class Human {
-  has $!name;
-  has $!age;
-  has $!sex;
-  has $!nationality;
+class umano {
+  has $!nome;
+  has $!anni;
+  has $!sesso;
+  has $!nazione;
 }
 
-my $john = Human.new(name => 'John', age => 23, sex => 'M', nationality => 'American');
-say $john;
+my $giovanni = umano.new(nome => 'Giovanni', anni => 23, sesso => 'M', nazione => 'Italia');
+say $giovanni;
 ----
-Append to the script the following statement: `say $john.age;` +
-It will return this error: `Method 'age' not found for invocant of class 'Human'`
-because `$!age` is private and can only be used within the object.
-Trying to access it outside the object will return an error.
+Aggiungi allo script questa istruzione: `say $giovanni.anni;` +
+Essa ti risponderà con un messaggio di errore: `Method 'anni' not found for invocant of class 'umano'`
+perché `$!anni` è privata e può essere usata solo all'interno dell'oggetto.
+Provando ad accedere ad essa dall'esterno l'oggetto ritorna un errore.
 
-Now replace `has $!age` with `has $.age` and observe the result of `say $john.age;`
+Sostituisci ora `has $!anni` con `has $.anni` ed osserva il risultato di `say $giovanni.anni;`
 
-=== Named vs. Positional Parameters
-In Perl 6, all classes inherit a default `.new()` constructor. +
-It can be used to create objects by providing it with arguments. +
-The default constructor can only be provided with *named arguments*. +
-In our example above, notice that the arguments supplied to `.new()` are defined by name:
+=== Parametri per nome e parametri per posizione
+In Perl 6, tutte le classi ereditano un costruttore base `.new()`. +
+Esso può essere usato per creare oggetti passandogli degli argomenti. +
+Il costruttore base accetta solamente *argomenti nominali*. +
+Nel nostro esempio qui sopra, nota che gli argomenti passati al costruttore sono definiti tramite un nome di riferimento:
 
-* name => 'John'
+* nome => 'Giovanni'
 
-* age => 23
+* anni => 23
 
-
-What if I do not want to supply the name of each attribute each time I want to create an object? +
-Then I need to create another constructor that accepts *positional arguments*.
+Che accade se io non voglio fornire il nome di ciascun attributo ogni volta che voglio creare un oggetto?
+Ho bisogno di creare un diverso costrutto, il quale accetti *argomenti posizionali*.
 
 [source,perl6]
 ----
-class Human {
-  has $.name;
-  has $.age;
-  has $.sex;
-  has $.nationality;
-  # new constructor that overrides the default one.
-  method new ($name,$age,$sex,$nationality) {
-    self.bless(:$name,:$age,:$sex,:$nationality);
+class umano {
+  has $.nome;
+  has $.anni;
+  has $.sesso;
+  has $.nazione;
+  # nuovo costruttore che rimpiazza (override) quello base.
+  method new ($nome,$anni,$sesso,$nazione) {
+    self.bless(:$nome,:$anni,:$sesso,:$nazione);
   }
 }
 
-my $john = Human.new('John',23,'M','American');
-say $john;
+my $giovanni = umano.new('Giovanni',23,'M','Italia');
+say $giovanni;
 ----
 
-=== Methods
+=== Metodi
 
-==== Introduction
-Methods are the _subroutines_ of an object. +
-Like subroutines, they are a means of packaging a set of functionality, they accept *arguments*, have a *signature* and can be defined as *multi*.
+==== Introduzione
+I metodi sono le _subroutine_ di un oggetto. +
+Come le subroutine, sono un mezzo di confezionare un insieme di funzionalità, accettano *argomenti*, hanno una *firma* e possono esser definiti *multi* ossia consentono l'overload.
 
-Methods are defined using the `method` keyword. +
-In normal circumstances, methods are required to perform some sort of action on the objects' attributes.
-This enforces the concept of encapsulation. Object attributes can only be manipulated from within the object using methods.
-The outside world can only interact with the object methods, and has no direct access to its attributes.
+I metodi sono definiti usando la parola chiave `method`. +
+In circostanze normali, i metodi sono invocati per compiere certe azioini sugli attributi degli oggetti.
+Questo implica il concetto di incapsulazione. Gli attributi di un oggetto possono essere manipolati dall'esterno dell'oggetto solo usando i metodi. 
+Il mondo esterno può interagire con i metodi dell'oggetto e non ha accesso diretto ai suoi attributi.
 
 [source,perl6]
 ----
-class Human {
-  has $.name;
-  has $.age;
-  has $.sex;
-  has $.nationality;
-  has $.eligible;
-  method assess-eligibility {
-      if self.age < 21 {
-        $!eligible = 'No'
+class umano {
+  has $.nome;
+  has $.anni;
+  has $.sesso;
+  has $.nazione;
+  has $.valido;
+  method valuta-accesso {
+      if self.anni < 21 {
+        $!valido = 'No'
       } else {
-        $!eligible = 'Yes'
+        $!valido = 'Yes'
       }
   }
 
 }
 
-my $john = Human.new(name => 'John', age => 23, sex => 'M', nationality => 'American');
-$john.assess-eligibility;
-say $john.eligible;
+my $giovanni = umano.new(nome => 'Giovanni', anni => 23, sesso => 'M', nazione => 'Italia');
+$giovanni.valuta-accesso;
+say $giovanni.valido;
 ----
 
-Once methods are defined within a class, they can be called on an object using the _dot notation_: +
-_object_ *.* _method_ or as in the above example: `$john.assess-eligibility`
+Una volta definiti all'interno della classe, i metodi possono essere invocati su un oggetto usando la _notazione punto_: +
+_oggetto_ *.* _metodo_ oppure come nell'esempio sopra: `$giovanni.valuta-accesso`
 
-Within the definition of a method, if we need to reference the object itself to call another method we use the `self` keyword. +
+Nella definizione di un metodo, se abbiamo bisogno di un riferimento all'oggetto stesso per chiamare un altro metodo dell'oggetto usiamo la parola chiave `self`. +
 
-Within the definition of a method, if we need to reference an attribute we use `!` even if it was defined with `.` +
-The rationale being that what the `.` twigil does is declare an attribute with `!` and automate the creation of an accessor.
+Nella definizione di un metodo, se abbiamo bisogno di un riferimento ad un attributo usiamo `!` anche se è stato definito con `.` +
+Il concetto di base è questo: il sigillo secondario `.` dichiara un attributo con `!` ed automatizza la creazione di un accessore.
 
-In the above example, `if self.age < 21` and `if $!age < 21` would have the same effect, although they are technically different:
+Nell'esempio sopra, `if self.anni < 21` ed `if $!anni < 21` avrebbero lo stesso effetto, sebbene essi siano tecnicamente diversi:
 
-* `self.age` calls the `.age` method (accessor) +
-Can be written alternatively as `$.age`
-* `$!age` is a direct call to the variable
+* `self.anni` invoca il metodo accessorio `.anni` +
+Esso può anche essere scritto così `$.anni`
+* `$!anni` è una accesso diretto alla variabile.
 
 ==== Private methods
 Normal methods can be called on objects from outside the class.
