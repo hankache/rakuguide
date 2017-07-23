@@ -2093,18 +2093,16 @@ Correnti e previste:
 [10 9 11 8 7 10]
 ----
 
-.Explanation
-The `grafico-combinato` class should be able to hold two series, one for the actual values plotted on bars,
-and another for forecast values plotted on a line. +
-This is why we defined it as a child of `grafico-a-linee` and `grafico-a-barre`. +
-You should have noticed that calling the method `traccia` on the `grafico-combinato` didn't yield the required result.
-Only one series was plotted. +
-Why did this happen? +
-`grafico-combinato` inherits from `grafico-a-linee` and `grafico-a-barre`, and both of them have a method called `plot`.
-When we call that method on `grafico-combinato` Perl 6 internals will try to resolve the conflict by calling one of the inherited methods.
+.Spiegazione
+La classe `grafico-combinato` dovrebbe essere in grado di gestire le due serie, quella dei valori correnti tracciati sulle barre, e quella dei valori previsti tracciati tramite linee. +
+Questo perché abbiamo definito una figlia di `grafico-a-linee` e di `grafico-a-barre`. +
+Dovresti aver notato che invocare il metodo `traccia` sulla classe `grafico-combinato` non porta il risultato richiesto.
+Soltanot una serie viene tracciata. +
+Perché? +
+`grafico-combinato` eredita da `grafico-a-linee` e da `grafico-a-barre`, le quali possiedono entrambe un metodo chiamato `traccia`. Quando invochiamo il metodo su `grafico-combinato` Perl 6, internamente, cerca di risolvere il conflitto chiamando uno dei due metodi.
 
-.Correction
-In order to behave correctly, we should have overridden the method `traccia` in the `grafico-combinato`.
+.Correzione
+Per avere il comportamento corretto dobbiamo fare l'override del metodo `traccia` all'interno di `grafico-combinato`.
 
 [source,perl6]
 ----
@@ -2153,12 +2151,12 @@ Correnti e previste:
 [9 8 10 7 6 9]
 ----
 
-=== Roles
-*Roles* are similar to classes in that they are a collection of attributes and methods.
+=== Ruoli
+I *ruoli* sono simili alle classi per il fatto che essi sono collezioni di attributi e metodi.
 
-Roles are declared with the keyword `role`. Classes that wish to implement a role, do so using the `does` keyword.
+I ruoli vengono dichiarati con la parola chiave `role`. Classi che vogliono implementare un ruolo debbono usare la parola chiave `does`.
 
-.Let's rewrite the multiple inheritance example using roles:
+.Riscriviamo allora l'esempio dell'ereditarietà multipla usando i ruoli:
 [source,perl6]
 ----
 role grafico-a-barre {
@@ -2195,11 +2193,10 @@ say "Correnti e previste:";
 $correnti-e-previste.traccia;
 ----
 
-Run the above script and you will see that results are the same.
+Fai girare questo script e vedrai che il risultato non muta.
 
-By now you're asking yourself: If roles behave like classes, what's their use? +
-To answer your question, modify the first script used to showcase multiple inheritance,
-the one where we _forgot_ to override the `traccia` method.
+Allora ti chiederai: se i ruoli si comportano come le classi, che senso hanno? +
+Per rispondere alla domanda modifica il primo script usato per le ereditarietà multiple, quello dove abbiamo _dimenticato_ di fare l'override del metodo `traccia`.
 
 [source,perl6]
 ----
@@ -2238,15 +2235,17 @@ $correnti-e-previste.traccia;
 ===SORRY!===
 Method 'traccia' must be resolved by class grafico-combinato because it exists in multiple roles (grafico-a-linee, grafico-a-barre)
 ----
+.traduzione
+Il metodo `traccia` deve essere risolto dalla classe grafico-combinato poiché esso esiste in ruoli multipli (grafico-a-linee, grafico-a-barre)
 
-.Explanation
-If multiple roles are applied to the same class and a conflict exists, a compile-time error will be thrown. +
-This is a much safer approach than multiple inheritance, where conflicts are not considered errors and are simply resolved at runtime.
+.Spiegazione
+Se i ruoli multipli vengono applicati alla stessa classe e si presenta un conflitto, si genera un errore durante la compilazione del codice. +
+Questo risulta essere un approccio molto più sicuro rispetto alla semplice eredità multipla, dove i conflitti non vengono conderati errori e vengono risolti (in qualche modo) in fase di esecuzione.
 
-Roles will warn you that there's a conflict.
+I ruoli ti avvisano che c'è un conflitto.
 
-=== Introspection
-*Introspection* is the process of getting information about an object, like its type, attributes or methods.
+=== Introspezione
+L'*introspezione* è il processo di estrarre l'informazione su un oggetto, come per esempio quale sia il suo tipo, i suoi attributi o i suoi metodi.
 
 [source,perl6]
 ----
@@ -2254,7 +2253,7 @@ class umano {
   has Str $.nome;
   has Int $.anni;
   method presentati {
-    say 'Hi I am a human being, my nome is ' ~ self.nome;
+    say 'ciao sono un essere umano, mi chiamo ' ~ self.nome;
   }
 }
 
@@ -2262,7 +2261,7 @@ class impiegato is umano {
   has Str $.azienda;
   has Int $.salario;
   method presentati {
-    say 'Hi I am a employee, my nome is ' ~ self.nome ~ ' and I work at: ' ~ self.azienda;
+    say 'ciao sono un impiegato, mi chiamo ' ~ self.nome ~ ' e lavoro in ' ~ self.azienda;
   }
 }
 
@@ -2276,171 +2275,177 @@ say $gianna.^attributes;
 say $giovanni.^methods;
 say $gianna.^methods;
 say $gianna.^parents;
-if $gianna ~~ umano {say 'Gianna is a umano'};
+if $gianna ~~ umano {say 'Gianna è un essere umano'};
 ----
-Introspection is facilitated by:
+L'introspezione è facilitata da:
 
-* `.WHAT` -- returns the class from which the object was created
+* `.WHAT` -- restituisce la classe di appartenenza dell'oggetto
 
-* `.^attributes` -- returns all the attributes of the object
+* `.^attributes` -- restituisce tutti gli attributi dell'oggetto
 
-* `.^methods` -- returns all the methods that can be called on the object
+* `.^methods` -- restituisce tutti i metodi che possono essere invocati sull'oggetto
 
-* `.^parents` -- returns the parent classes of the object
+* `.^parents` -- restituisce le classi genitrici
 
-* `~~` is called the smart-match operator.
-It evaluates to _True_ if the object is created from the class it is being compared against or any of its inheritances.
+* `~~` è un operatore chiamato `corrispondenza intelligente`
+Esso valuta a _True_ se l'oggetto è creato dalla classe con cui viene comparato o da qualche sua figlia.
 
 [NOTA]
 --
-For more info on Object Oriented Programming in Perl 6, see:
+Per avere più informazioni sulla prgrammazione orientata agli oggetti in Perl 6 vedi qui:
 
 * https://docs.perl6.org/language/classtut
 * https://docs.perl6.org/language/objects
 --
-== Exception Handling
+== Gestione delle eccezioni
 
-=== Catching Exceptions
-*Exceptions* are a special behavior that happens at runtime when something goes wrong. +
-We say that exceptions are _thrown_.
+=== Catturare le eccezioni
+Le *eccezioni* sono eventi speciali che accadono durante l'esecuzione del programma quando qualche cosa va storto. +
+In questi casi si dice che le eccezioni vengono _scatentate_.
 
-Consider the below script that runs correctly:
+Considera lo script qui sotto, esso gira correttamente:
 
 [source,perl6]
 ----
 my Str $nome;
-$name = "Joanna";
-say "Hello " ~ $nome;
-say "How are you doing today?"
+$name = "Giovanna";
+say "Ciao " ~ $nome;
+say "Come stai oggi?"
 ----
 
 .`Output`
 ----
-Hello Joanna
-How are you doing today?
+Ciao Giovanna
+Come stai oggi?
 ----
 
-Now consider this script that throws an exception:
+Ora considera questo script, che scatena una eccezione:
 
 [source,perl6]
 ----
 my Str $nome;
 $nome = 123;
-say "Hello " ~ $nome;
-say "How are you doing today?"
+say "Ciao " ~ $nome;
+say "Come stai oggi?"
 ----
 
 .`Output`
 ----
 Type check failed in assignment to $nome; expected Str but got Int
-   in block <unit> at exceptions.pl6:2
+   in block <unit> at <nome script>.pl6:2
 ----
+.traduzione
+Fallimento nel controllo sui tipi durante l'assegnamento a $nome; mi aspettavo Str ma ho ricevuto Int
+ nel blocco <unit> in <nome script>.pl6:2
 
-Notice that whenever an error occurs (in this case, assigning a number to a string variable) the program will stop and other lines of code will not be evaluated.
+Notiamo che tutte le volte che accade un errore (in questo caso assegnando un numero ad una variabile stringa) il programma si ferma e la successiva linea di codice non viene neppure valutata.
 
-*Exception handling* is the process of _catching_ an exception that has been _thrown_ in order for the script to continue working.
+la *gestione delle eccezioni* è il processo di _cattura_ di una eccezione che è stata _scatenata_ con il fine di permettere allo script di proseguire.
 
 [source,perl6]
 ----
 my Str $nome;
 try {
   $nome = 123;
-  say "Hello " ~ $nome;
+  say "Ciao " ~ $nome;
   CATCH {
     default {
-      say "Can you tell us your nome again, we couldn't find it in the register.";
+      say "Puoi ripetere il nome, non lo abbiamo trovato nell'archivio.";
     }
   }
 }
-say "How are you doing today?";
+say "Come stai oggi?";
 ----
 
 .`Output`
 ----
-Can you tell us your nome again, we couldn't find it in the register.
-How are you doing today?
+Puoi ripetere il nome, non lo abbiamo trovato nell'archivio.
+Come stai oggi?";
 ----
 
-Exception handling is done by using a `try-catch` block.
+La gestione delle eccezioni si implementa con un blocco `try-catch` (prova e cattura, n.d.t.).
 
 [source,perl6]
 ----
 try {
-  # code goes in here
+  # qui metti del codice
+  # se qualcosa va storto, lo script entrerà qui sotto, nel blocco CATCH
+  # se invece va tutto bene il blocco CATCH viene ignorato
   # if anything goes wrong, the script will enter the below CATCH block
   # if nothing goes wrong, the CATCH block will be ignored
   CATCH {
     default {
-      # the code in here will be evaluated only if an exception has been thrown
+      # Il codice che metterai qui sarà valutato solo nel caso in cui l'eccezione venga scatenata.
     }
   }
 }
 ----
 
-The `CATCH` block can be defined the same way a `given` block is defined.
-This means we can _catch_ and handle differently many types of exceptions.
+Il blocco `CATCH` può essere definito nello stesso modo in cui viene definito un blocco `given`; ossia possiamo _catturare_ e gestire diversi tipi di eccezioni. Ecco un esempio:
 
 [source,perl6]
 ----
 try {
-  # code goes in here
-  # if anything goes wrong, the script will enter the below CATCH block
-  # if nothing goes wrong, the CATCH block will be ignored
+  # qui metti del codice
+  # se qualcosa va storto, lo script entrerà qui sotto, nel blocco CATCH
+  # se invece va tutto bene il blocco CATCH viene ignorato
   CATCH {
-    when X::AdHoc   { # do something if exception of type X::AdHoc is thrown }
-    when X::IO      { # do something if exception of type X::IO is thrown }
-    when X::OS      { # do something if exception of type X::OS is thrown }
-    default         { # do something if exception is thrown and doesn't belong to the above types }
+    when X::AdHoc   { # gestisci l'eccezione di tipo X::AdHoc }
+    when X::IO      { # gestisci l'eccezione di tipo X::IO }
+    when X::OS      { # gestisci l'eccezione di tipo X::OS }
+    default         { # gestisci gli altri tipi di eccezione }
   }
 }
 ----
 
-=== Throwing Exceptions
-Perl 6 also allows you to explicitly throw exceptions. +
-Two types of exceptions can be thrown:
+=== Scatenare eccezioni
+Il Perl 6 permette anche di scatenare esplicitamente delle eccezioni. +
+Si possono scatenare due tipi di eccezioni:
 
-* ad-hoc exceptions
+* ad-hoc 
 
-* typed exceptions
+* tipizzate
 
 [source,perl6]
 .ad-hoc
 ----
 my Int $anni = 21;
-die "Error !";
+die "Errore !";
 ----
 
 [source,perl6]
-.typed
+.tipizzata
 ----
 my Int $anni = 21;
-X::AdHoc.new(payload => 'Error !').throw;
+X::AdHoc.new(payload => 'Errore !').throw;
 ----
 
-Ad-hoc exceptions are thrown using the `die` subroutine, followed by the exception message.
+Le eccezioni Ad-hoc vengono scatenate usando la subroutine `die`, seguita dal messaggio di eccezione.
 
-Typed exceptions are objects, hence the use of the `.new()` constructor in the above example. +
-All typed exceptions descend from class `X` , below are a few examples: +
-`X::AdHoc` is the simplest exception type +
-`X::IO` is related to IO errors +
-`X::OS` is related to OS errors +
-`X::Str::Numeric` related to trying to coerce a string to a number
+Le eccezioni tipizzate sono oggetti; per questo abbiamo usato il costruttore `.new()` nell'esempio. +
+Tutte le eccezioni tipizzate discendono dalla classe `X`; qui sotto alcuni esempi: +
+`X::AdHoc` il più semplice tipo di eccezione +
+`X::IO` errori relativi all'IO +
+`X::OS` errori relativi al sistema operativo +
+`X::Str::Numeric` errori relativi al tentare di forzare una stringa in un numero
 
-NOTA: For a complete list of exception types and their associated methods, go to https://docs.perl6.org/type-exceptions.html
+NOTA: Per vedere una lista completa dei tipi di eccezione ed i loro metodi associati vedi qui https://docs.perl6.org/type-exceptions.html
 
 
-== Regular Expressions
-A regular expression, or _regex_, is a sequence of characters that is used for pattern matching. +
-Think of it as a pattern.
+== Espressioni regolari
+Una espressione regolare, o _regex_, è una sequenza di caratteri che si usano per la corrispondenza delle sequenze di caratteri (pattern-matching). +
+Pensa ad una sequenza di caratteri.
 
 [source,perl6]
 ----
-if 'enlightenment' ~~ m/ light / {
-    say "enlightenment contains the word light";
+if 'illuminismo' ~~ m/lumi/ {
+    say "illuminismo contiene la parola lumi";
 }
 ----
 
-In this example, the smart match operator `~~` is used to check if a string (enlightenment) contains the word (light). +
+In questo esempio l'operatore di corrispondenza intelligente `~~` viene usato per controllare che la stringa (illuminismo) contenga la parola (lumi). +
+"illuminismo" corrisponde alla regex `m/light /`
+is used to check if a string (enlightenment) contains the word (light). +
 "Enlightenment" is matched against the regex `m/ light /`
 
 === Regex definition
