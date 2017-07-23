@@ -2444,7 +2444,7 @@ if 'illuminismo' ~~ m/lumi/ {
 ----
 
 In questo esempio l'operatore di corrispondenza intelligente `~~` viene usato per controllare che la stringa (illuminismo) contenga la parola (lumi). +
-"illuminismo" corrisponde alla regex `m/light /`
+"illuminismo" corrisponde alla regex `m/lumi/`
 
 === Regex definition
 
