@@ -279,9 +279,9 @@ Usa sempre le doppie virgolette se:
 say 'Salve Mondo';   # Salve Mondo
 say "Salve Mondo";   # Salve Mondo
 say "l'amo";         # l'amo
-my $name = 'John Doe';
-say 'Salve $name';   # Salve $name
-say "Salve $name";   # Salve John Doe
+my $nome = 'John Doe';
+say 'Salve $nome';   # Salve $nome
+say "Salve $nome";   # Salve John Doe
 -----------------------------------
 
 == Operatori
@@ -449,8 +449,8 @@ Gli scalari portano un singolo valore oppure un puntatore.
 [source,perl6]
 ----
 # Stringa
-my $name = 'John Doe';
-say $name;
+my $nome = 'John Doe';
+say $nome;
 
 # Interi
 my $anni = 99;
@@ -462,10 +462,10 @@ Sugli scalari si può applicare un gruppo specifico di operazioni, dipendentemen
 [source,perl6]
 .Stringhe
 ----
-my $name = 'John Doe';
-say $name.uc;
-say $name.chars;
-say $name.flip;
+my $nome = 'John Doe';
+say $nome.uc;
+say $nome.chars;
+say $nome.flip;
 ----
 
 ----
@@ -492,10 +492,10 @@ NOTA: Per avere una lista completa dei metodi applicabili agli interi vei qui ht
 [source,perl6]
 .Numeri razionali
 ----
-my $age = 2.3;
-say $age.numerator;
-say $age.denominator;
-say $age.nude;
+my $anni = 2.3;
+say $anni.numerator;
+say $anni.denominator;
+say $anni.nude;
 ----
 
 ----
@@ -789,27 +789,27 @@ Per cancellare il valroe di una variabile assegnale `Nil`.
 === Ambito
 Prima di usare una variabile per la prima volta essa deve essere dichiarata.
 
-Several declarators are used in Perl 6. We've been using `my`, so far.
+Ci sono molti dichiaratori in Perl 6. Finora abbiamo usato il `my`.
 
 [source,perl6]
 my $var=1;
 
-The `my` declarator give the variable *lexical* scope.
-In other words, the variable will only be accessible in the same block it was declared.
+Il `my` fornisce alla variabile un ambito *lessicale*.
+In altre parole la variabile sarà accessibile nel nello stesso blocco in cui è stata dichiarata.
 
-A block in Perl 6 is delimited by `{ }`.
-If no block is found, the variable will be available in the whole Perl 6 script.
+Un blocco in Perl 6 è delimitato dalle parentesi graffe `{ }`.
+Se non ci sono blocchi la variabile sarà disponibile nell'intero script.
 
 [source,perl6]
 ----
 {
-  my Str $var = 'Text';
-  say $var;   # is accessible
+  my Str $var = 'testo';
+  say $var;   # è accessibile
 }
-say $var;   # is not accessible, returns an error
+say $var;   # non è accessibile, dà errore
 ----
 
-Since a variable is only accessible in the block where it is defined, the same variable name can be used in another block.
+Dato che una variabile è accessibile nel blocco dove viene definita, lo stesso nome di variabile può tranquillamente essere usato in un altro blocco.
 
 [source,perl6]
 ----
@@ -1938,108 +1938,107 @@ say $giovanni.anni;
 ----
 In mancanza di specificazioni, gli attributi vengono dichiarati come _solo leggibili non scrivibili_, ma questo tipo di accesso si può anche specificare esplicitamente tramite la parola chiave `is readonly`.
 
-=== Inheritance
-==== Introduction
-*Inheritance* is another concept of object oriented programming.
+=== Ereditarietà
+==== Introduzione
+L'*ereditarietà* è un altro concetto che appartiene alla programmazione orientata agli oggetti.
 
-When defining classes, soon enough we will realize that some attributes/methods are common to many classes. +
-Should we duplicate code? +
-NO! We should use *inheritance*
+Quando si definiscono le classi, abbastanza presto ci si rende conto che certi attributi e metodi sono comuni a molte classi. +
+Dovremmo duplicare il codice? NO! Dovremmo usare l'*ereditarietà*
 
-Let's consider we want to define two classes, a class for Human beings and a class for Employees. +
-Human beings have 2 attributes: name and age. +
-Employees have 4 attributes: name, age, company and salary
+Consideriamo quindi di voler definire due classi, la prima per gli esseri umani ed una classe per gli impegati. +
+Gli esseri umani hanno due attributi: nome ed età. +
+Gli impiegati hanno quattro attributi: nome, età, azienda e salario.
 
-One would be tempted to define the classes as:
+Potresti essere tentato di definire le classi in questo modo:
 [source,perl6]
 ----
-class Human {
-  has $.name;
-  has $.age;
+class umano {
+  has $.nome;
+  has $.anni;
 }
 
-class Employee {
-  has $.name;
-  has $.age;
-  has $.company;
-  has $.salary;
+class impiegato {
+  has $.nome;
+  has $.anni;
+  has $.azienda;
+  has $.salario;
 }
 ----
-While technically correct, the above piece of code is considered conceptually poor.
+Sebbene tecnicamente corretto il codice qui sopra è considerato concettualmente debole.
 
-A better way to write this would be:
+Un modo migliore di scrivere sarebbe questo:
 [source,perl6]
 ----
-class Human {
-  has $.name;
-  has $.age;
+class umano {
+  has $.nome;
+  has $.anni;
 }
 
-class Employee is Human {
-  has $.company;
-  has $.salary;
+class impiegato is umano {
+  has $.azienda;
+  has $.salario;
 }
 ----
-The `is` keyword defines inheritance. +
-In object oriented parlance, we say Employee is a *child* of Human and that Human is a *parent* of Employee.
+La parola chiave `is` definisce un legame di ereditarietà. +
+Nel gergo del paradigma agli oggetti si dice che impiegato è *figlio* di umano e che umano è *padre* di impiegato.
 
-All child classes inherit the attributes and methods of the parent class, so there is no need to redefine them.
+Tutte le classi figlie ereditano gli attributi ed i metodi della classe padre, così non è necessario ridefinirli.
 
 ==== Overriding
-Classes inherit all attributes and methods from their parent classes. +
-There are cases where we need the method in the child class to behave differently than the one inherited. +
-To achieve this, we redefine the method in the child class. +
-This concept is called *overriding*.
+Le classi ereditano tutti gli attributi ed i metodi dalle loro classi genitrici. +
+Ci sono casi in cui abbiamo bisogno che il metodo nella classe figlia si comporti in modo diverso rispetto a quello ereditato. +
+Questo si ottiene ridefinendo il metodo nella classe figlia. +
+Questo concetto si chiama *overriding*.
 
-In the below example, the method `introduce-yourself` is inherited by the Employee class.
-
-[source,perl6]
-----
-class Human {
-  has $.name;
-  has $.age;
-  method introduce-yourself {
-    say 'Hi I am a human being, my name is ' ~ self.name;
-  }
-}
-
-class Employee is Human {
-  has $.company;
-  has $.salary;
-}
-
-my $john = Human.new(name =>'John', age => 23,);
-my $jane = Employee.new(name =>'Jane', age => 25, company => 'Acme', salary => 4000);
-
-$john.introduce-yourself;
-$jane.introduce-yourself;
-----
-Overriding works like this:
+Nell'esempio qui sotto, il metodo `presentati` viene ereditato dalla classe impiegato.
 
 [source,perl6]
 ----
-class Human {
+class umano {
+  has $.nome;
+  has $.anni;
+  method presentati {
+    say 'ciao sono un essere umano, il mio nome è' ~ self.nome;
+  }
+}
+
+class impiegato is umano {
+  has $.azienda;
+  has $.salario;
+}
+
+my $giovanni = umano.new(name =>'Giovanni', anni => 23,);
+my $gianna = impiegato.new(name =>'Gianna', anni => 25, azienda => 'Luxottica', salario => 4000);
+
+$giovanni.presentati;
+$gianna.presentati;
+----
+L'overriding funziona in questo modo:
+
+[source,perl6]
+----
+class umano {
   has $.name;
-  has $.age;
-  method introduce-yourself {
-    say 'Hi I am a human being, my name is ' ~ self.name;
+  has $.anni;
+  method presentati {
+    say 'Ciao sono un essere umano, mi chiamo ' ~ self.nome;
   }
 }
 
-class Employee is Human {
-  has $.company;
-  has $.salary;
-  method introduce-yourself {
-    say 'Hi I am a employee, my name is ' ~ self.name ~ ' and I work at: ' ~ self.company;
+class impiegato is umano {
+  has $.azienda;
+  has $.salario;
+  method presentati {
+    say 'Hi I am a employee, my nome is ' ~ self.nome ~ ' and I work at: ' ~ self.azienda;
   }
 
 }
 
-my $john = Human.new(name =>'John',age => 23,);
-my $jane = Employee.new(name =>'Jane',age => 25,company => 'Acme',salary => 4000);
+my $giovanni = umano.new(nome =>'Giovanni',anni => 23,);
+my $gianna = impiegato.new(nome =>'Gianna',anni => 25,azienda => 'Luxottica',salario => 4000);
 
-$john.introduce-yourself;
-$jane.introduce-yourself;
+$giovanni.presentati;
+$gianna.presentati;
 ----
 
 Depending of which class the object is, the right method will be called.
@@ -2251,33 +2250,33 @@ Roles will warn you that there's a conflict.
 
 [source,perl6]
 ----
-class Human {
-  has Str $.name;
-  has Int $.age;
-  method introduce-yourself {
-    say 'Hi I am a human being, my name is ' ~ self.name;
+class umano {
+  has Str $.nome;
+  has Int $.anni;
+  method presentati {
+    say 'Hi I am a human being, my nome is ' ~ self.nome;
   }
 }
 
-class Employee is Human {
-  has Str $.company;
-  has Int $.salary;
-  method introduce-yourself {
-    say 'Hi I am a employee, my name is ' ~ self.name ~ ' and I work at: ' ~ self.company;
+class impiegato is umano {
+  has Str $.azienda;
+  has Int $.salario;
+  method presentati {
+    say 'Hi I am a employee, my nome is ' ~ self.nome ~ ' and I work at: ' ~ self.azienda;
   }
 }
 
-my $john = Human.new(name =>'John',age => 23,);
-my $jane = Employee.new(name =>'Jane',age => 25,company => 'Acme',salary => 4000);
+my $giovanni = umano.new(nome =>'Giovanni',anni => 23,);
+my $gianna = impiegato.new(nome =>'Gianna',anni => 25,azienda => 'Luxottica',salario => 4000);
 
-say $john.WHAT;
-say $jane.WHAT;
-say $john.^attributes;
-say $jane.^attributes;
-say $john.^methods;
-say $jane.^methods;
-say $jane.^parents;
-if $jane ~~ Human {say 'Jane is a Human'};
+say $giovanni.WHAT;
+say $gianna.WHAT;
+say $giovanni.^attributes;
+say $gianna.^attributes;
+say $giovanni.^methods;
+say $gianna.^methods;
+say $gianna.^parents;
+if $gianna ~~ umano {say 'Gianna is a umano'};
 ----
 Introspection is facilitated by:
 
@@ -2309,9 +2308,9 @@ Consider the below script that runs correctly:
 
 [source,perl6]
 ----
-my Str $name;
+my Str $nome;
 $name = "Joanna";
-say "Hello " ~ $name;
+say "Hello " ~ $nome;
 say "How are you doing today?"
 ----
 
@@ -2325,15 +2324,15 @@ Now consider this script that throws an exception:
 
 [source,perl6]
 ----
-my Str $name;
-$name = 123;
-say "Hello " ~ $name;
+my Str $nome;
+$nome = 123;
+say "Hello " ~ $nome;
 say "How are you doing today?"
 ----
 
 .`Output`
 ----
-Type check failed in assignment to $name; expected Str but got Int
+Type check failed in assignment to $nome; expected Str but got Int
    in block <unit> at exceptions.pl6:2
 ----
 
@@ -2343,13 +2342,13 @@ Notice that whenever an error occurs (in this case, assigning a number to a stri
 
 [source,perl6]
 ----
-my Str $name;
+my Str $nome;
 try {
-  $name = 123;
-  say "Hello " ~ $name;
+  $nome = 123;
+  say "Hello " ~ $nome;
   CATCH {
     default {
-      say "Can you tell us your name again, we couldn't find it in the register.";
+      say "Can you tell us your nome again, we couldn't find it in the register.";
     }
   }
 }
@@ -2358,7 +2357,7 @@ say "How are you doing today?";
 
 .`Output`
 ----
-Can you tell us your name again, we couldn't find it in the register.
+Can you tell us your nome again, we couldn't find it in the register.
 How are you doing today?
 ----
 
@@ -2407,14 +2406,14 @@ Two types of exceptions can be thrown:
 [source,perl6]
 .ad-hoc
 ----
-my Int $age = 21;
+my Int $anni = 21;
 die "Error !";
 ----
 
 [source,perl6]
 .typed
 ----
-my Int $age = 21;
+my Int $anni = 21;
 X::AdHoc.new(payload => 'Error !').throw;
 ----
 
@@ -2471,7 +2470,7 @@ if 'Temperature: 13' ~~ m/ \: / {
 [source,perl6]
 .Single quotes
 ----
-if 'Age = 13' ~~ m/ '=' / {
+if 'Anni = 13' ~~ m/ '=' / {
     say "The string provided contains an equal character = ";
 }
 ----
@@ -2479,7 +2478,7 @@ if 'Age = 13' ~~ m/ '=' / {
 [source,perl6]
 .Double quotes
 ----
-if 'name@company.com' ~~ m/ "@" / {
+if 'nome@azienda.com' ~~ m/ "@" / {
     say "This is a valid email address because it contains an @ character";
 }
 ----
@@ -2510,12 +2509,12 @@ We can also match against the inverse of that category (everything except it):
 
 [source,perl6]
 ----
-if "John123" ~~ / \d / {
-  say "This is not a valid name, numbers are not allowed";
+if "Giovanni123" ~~ / \d / {
+  say "This is not a valid nome, numbers are not allowed";
 } else {
-  say "This is a valid name"
+  say "This is a valid nome"
 }
-if "John-Doe" ~~ / \s / {
+if "Giovanni-Doe" ~~ / \s / {
   say "This string contains whitespace";
 } else {
   say "This string doesn't contain whitespace"
@@ -2541,7 +2540,7 @@ if "Привет, Иван." ~~ / <:Lu> / {
 } else {
   say "Doesn't contain an upper case letter"
 }
-if "John-Doe" ~~ / <:Pd> / {
+if "Giovanni-Doe" ~~ / <:Pd> / {
   say "Contains a dash";
 } else {
   say "Doesn't contain a dash"
@@ -2681,7 +2680,7 @@ If a regex contains more than a single whitespace, using `:s` is a better option
 === Example
 Let's check if an email is valid or not. +
 For the sake of this example we will assume that a valid email address has this format: +
-first name [dot] last name [at] company [dot] (com/org/net)
+first nome [dot] last nome [at] azienda [dot] (com/org/net)
 
 WARNING: The regex used in this example for email validation is not very accurate. +
 Its sole purpose is to demonstrate regex functionality in Perl 6. +
@@ -2713,15 +2712,15 @@ if $email ~~ $regex {
 
 The regex can be decomposed as following:
 
-* *first name* `<:L>+`
+* *first nome* `<:L>+`
 
 * *[dot]* `\.`
 
-* *last name* `<:L>+`
+* *last nome* `<:L>+`
 
 * *[at]* `\@`
 
-* *company name* `<:L+:N>+`
+* *azienda nome* `<:L+:N>+`
 
 * *[dot]* `\.`
 
@@ -2760,7 +2759,7 @@ _Zef_ is a module management tool that comes with Rakudo Star.
 
 To install a specific module, type the below command in your terminal:
 
-`zef install "module name"`
+`zef install "module nome"`
 
 NOTA: The Perl 6 modules directory can be found on: https://modules.perl6.org/
 
@@ -2814,7 +2813,7 @@ The above 3 lines showcase different ways of building a character:
 
 . Using `\x` and the code point
 
-. Using `\c` and the code point name
+. Using `\c` and the code point nome
 
 .Now lets output a smiley
 [source,perl6]
@@ -3098,8 +3097,8 @@ Notice how we modified both C and Perl 6 code to accept a string (`char*` in C a
 ----
 #include <stdio.h>
 
-void hellofromc (char* name) {
-  printf("Hello, %s! This is C!\n", name);
+void hellofromc (char* nome) {
+  printf("Hello, %s! This is C!\n", nome);
 }
 ----
 
@@ -3111,7 +3110,7 @@ use NativeCall;
 constant LIBPATH = "$*CWD/ncitest";
 sub hello(Str) is native(LIBPATH) is symbol('hellofromc') { * }
 
-hello('Jane');
+hello('Gianna');
 ----
 
 === Returning values
