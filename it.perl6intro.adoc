@@ -2029,7 +2029,7 @@ class impiegato is umano {
   has $.azienda;
   has $.salario;
   method presentati {
-    say 'Hi I am a employee, my nome is ' ~ self.nome ~ ' and I work at: ' ~ self.azienda;
+    say 'Ciao sono un impiegato, il mio nome è ' ~ self.nome ~ ' e lavoro in ' ~ self.azienda;
   }
 
 }
@@ -2041,114 +2041,114 @@ $giovanni.presentati;
 $gianna.presentati;
 ----
 
-Depending of which class the object is, the right method will be called.
+Verrà sempre invocato il metodo corretto dipendentemente a quale classe l'oggetto appartenga.
 
-==== Submethods
-*Submethods* are a type of method that are not inherited by child classes. +
-They are only accessible from the class they were declared in. +
-They are defined using the `submethod` keyword.
+==== Sottometodi
+I *sottometodi* sono tipi di metodi che non sono ereditati da classi figlie. +
+Essi sono accessibili dalla classe che li dichiara. +
+Sono definiti dalla parola chiave `submethod`.
 
-=== Multiple Inheritance
-Multiple inheritance is allowed in Perl 6. A class can inherit from multiple other classes.
+=== Ereditarietà multipla
+L'ereditarietà multipla è supportata in Perl 6. Una classe può ereditare da svariate classi.
 
 [source,perl6]
 ----
-class bar-chart {
+class grafico-a-barre {
   has Int @.bar-values;
-  method plot {
+  method traccia {
     say @.bar-values;
   }
 }
 
-class line-chart {
+class grafico-a-linee {
   has Int @.line-values;
-  method plot {
+  method traccia {
     say @.line-values;
   }
 }
 
-class combo-chart is bar-chart is line-chart {
+class grafico-combinato is grafico-a-barre is grafico-a-linee {
 }
 
-my $actual-sales = bar-chart.new(bar-values => [10,9,11,8,7,10]);
-my $forecast-sales = line-chart.new(line-values => [9,8,10,7,6,9]);
+my $vendite-correnti = grafico-a-barre.new(bar-values => [10,9,11,8,7,10]);
+my $vendite-previste = grafico-a-linee.new(line-values => [9,8,10,7,6,9]);
 
-my $actual-vs-forecast = combo-chart.new(bar-values => [10,9,11,8,7,10],
+my $correnti-e-previste = grafico-combinato.new(bar-values => [10,9,11,8,7,10],
                                          line-values => [9,8,10,7,6,9]);
-say "Actual sales:";
-$actual-sales.plot;
-say "Forecast sales:";
-$forecast-sales.plot;
-say "Actual vs Forecast:";
-$actual-vs-forecast.plot;
+say "Vendite correnti:";
+$vendite-correnti.traccia;
+say "Vendite previste:";
+$vendite-previste.traccia;
+say "Correnti e previste:";
+$correnti-e-previste.traccia;
 ----
 
 .`Output`
 ----
-Actual sales:
+Vendite correnti:
 [10 9 11 8 7 10]
-Forecast sales:
+Vendite previste:
 [9 8 10 7 6 9]
-Actual vs Forecast:
+Correnti e previste:
 [10 9 11 8 7 10]
 ----
 
 .Explanation
-The `combo-chart` class should be able to hold two series, one for the actual values plotted on bars,
+The `grafico-combinato` class should be able to hold two series, one for the actual values plotted on bars,
 and another for forecast values plotted on a line. +
-This is why we defined it as a child of `line-chart` and `bar-chart`. +
-You should have noticed that calling the method `plot` on the `combo-chart` didn't yield the required result.
+This is why we defined it as a child of `grafico-a-linee` and `grafico-a-barre`. +
+You should have noticed that calling the method `traccia` on the `grafico-combinato` didn't yield the required result.
 Only one series was plotted. +
 Why did this happen? +
-`combo-chart` inherits from `line-chart` and `bar-chart`, and both of them have a method called `plot`.
-When we call that method on `combo-chart` Perl 6 internals will try to resolve the conflict by calling one of the inherited methods.
+`grafico-combinato` inherits from `grafico-a-linee` and `grafico-a-barre`, and both of them have a method called `plot`.
+When we call that method on `grafico-combinato` Perl 6 internals will try to resolve the conflict by calling one of the inherited methods.
 
 .Correction
-In order to behave correctly, we should have overridden the method `plot` in the `combo-chart`.
+In order to behave correctly, we should have overridden the method `traccia` in the `grafico-combinato`.
 
 [source,perl6]
 ----
-class bar-chart {
+class grafico-a-barre {
   has Int @.bar-values;
-  method plot {
+  method traccia {
     say @.bar-values;
   }
 }
 
-class line-chart {
+class grafico-a-linee {
   has Int @.line-values;
-  method plot {
+  method traccia {
     say @.line-values;
   }
 }
 
-class combo-chart is bar-chart is line-chart {
-  method plot {
+class grafico-combinato is grafico-a-barre is grafico-a-linee {
+  method traccia {
     say @.bar-values;
     say @.line-values;
   }
 }
 
-my $actual-sales = bar-chart.new(bar-values => [10,9,11,8,7,10]);
-my $forecast-sales = line-chart.new(line-values => [9,8,10,7,6,9]);
+my $vendite-correnti = grafico-a-barre.new(bar-values => [10,9,11,8,7,10]);
+my $vendite-previste = grafico-a-linee.new(line-values => [9,8,10,7,6,9]);
 
-my $actual-vs-forecast = combo-chart.new(bar-values => [10,9,11,8,7,10],
+my $correnti-e-previste = grafico-combinato.new(bar-values => [10,9,11,8,7,10],
                                          line-values => [9,8,10,7,6,9]);
-say "Actual sales:";
-$actual-sales.plot;
-say "Forecast sales:";
-$forecast-sales.plot;
-say "Actual vs Forecast:";
-$actual-vs-forecast.plot;
+say "Vendite correnti:";
+$vendite-correnti.traccia;
+say "Vendite previste:";
+$vendite-previste.traccia;
+say "Correnti e previste:";
+$correnti-e-previste.traccia;
 ----
 
 .`Output`
 ----
-Actual sales:
+Vendite correnti:
 [10 9 11 8 7 10]
-Forecast sales:
+Vendite previste:
 [9 8 10 7 6 9]
-Actual vs Forecast:
+Correnti e previste:
 [10 9 11 8 7 10]
 [9 8 10 7 6 9]
 ----
@@ -2161,82 +2161,82 @@ Roles are declared with the keyword `role`. Classes that wish to implement a rol
 .Let's rewrite the multiple inheritance example using roles:
 [source,perl6]
 ----
-role bar-chart {
+role grafico-a-barre {
   has Int @.bar-values;
-  method plot {
+  method traccia {
     say @.bar-values;
   }
 }
 
-role line-chart {
+role grafico-a-linee {
   has Int @.line-values;
-  method plot {
+  method traccia {
     say @.line-values;
   }
 }
 
-class combo-chart does bar-chart does line-chart {
-  method plot {
+class grafico-combinato does grafico-a-barre does grafico-a-linee {
+  method traccia {
     say @.bar-values;
     say @.line-values;
   }
 }
 
-my $actual-sales = bar-chart.new(bar-values => [10,9,11,8,7,10]);
-my $forecast-sales = line-chart.new(line-values => [9,8,10,7,6,9]);
+my $vendite-correnti = grafico-a-barre.new(bar-values => [10,9,11,8,7,10]);
+my $vendite-previste = grafico-a-linee.new(line-values => [9,8,10,7,6,9]);
 
-my $actual-vs-forecast = combo-chart.new(bar-values => [10,9,11,8,7,10],
+my $correnti-e-previste = grafico-combinato.new(bar-values => [10,9,11,8,7,10],
                                          line-values => [9,8,10,7,6,9]);
-say "Actual sales:";
-$actual-sales.plot;
-say "Forecast sales:";
-$forecast-sales.plot;
-say "Actual vs Forecast:";
-$actual-vs-forecast.plot;
+say "Vendite correnti:";
+$vendite-correnti.traccia;
+say "Vendite previste:";
+$vendite-previste.traccia;
+say "Correnti e previste:";
+$correnti-e-previste.traccia;
 ----
 
 Run the above script and you will see that results are the same.
 
 By now you're asking yourself: If roles behave like classes, what's their use? +
 To answer your question, modify the first script used to showcase multiple inheritance,
-the one where we _forgot_ to override the `plot` method.
+the one where we _forgot_ to override the `traccia` method.
 
 [source,perl6]
 ----
-role bar-chart {
+role grafico-a-barre {
   has Int @.bar-values;
-  method plot {
+  method traccia {
     say @.bar-values;
-  }
+  vendite-correnti
 }
 
-role line-chart {
+role grafico-a-linee {
   has Int @.line-values;
-  method plot {
+  method traccia {
     say @.line-values;
   }
+}vendite-correnti
+
+class grafico-combinato does grafico-a-barre does grafico-a-linee {
 }
 
-class combo-chart does bar-chart does line-chart {
-}
+my $vendite-correnti = grafico-a-barre.new(bar-values => [10,9,11,8,7,10]);
+my $vendite-previste = grafico-a-linee.new(line-values => [9,8,10,7,6,9]);
 
-my $actual-sales = bar-chart.new(bar-values => [10,9,11,8,7,10]);
-my $forecast-sales = line-chart.new(line-values => [9,8,10,7,6,9]);
-
-my $actual-vs-forecast = combo-chart.new(bar-values => [10,9,11,8,7,10],
+my $correnti-e-previste = grafico-combinato.new(bar-values => [10,9,11,8,7,10],
                                          line-values => [9,8,10,7,6,9]);
-say "Actual sales:";
-$actual-sales.plot;
-say "Forecast sales:";
-$forecast-sales.plot;
-say "Actual vs Forecast:";
-$actual-vs-forecast.plot;
+say "Vendite correnti:";
+$vendite-correnti.traccia;
+say "Vendite previste:";
+$vendite-previste.traccia;
+say "Correnti e previste:";
+$correnti-e-previste.traccia;
 ----
 
 .`Output`
 ----
 ===SORRY!===
-Method 'plot' must be resolved by class combo-chart because it exists in multiple roles (line-chart, bar-chart)
+Method 'traccia' must be resolved by class grafico-combinato because it exists in multiple roles (grafico-a-linee, grafico-a-barre)
 ----
 
 .Explanation
