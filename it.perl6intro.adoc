@@ -1873,70 +1873,70 @@ Nell'esempio sopra, `if self.anni < 21` ed `if $!anni < 21` avrebbero lo stesso 
 Esso può anche essere scritto così `$.anni`
 * `$!anni` è una accesso diretto alla variabile.
 
-==== Private methods
-Normal methods can be called on objects from outside the class.
+==== Metodi privati
+I metodi ordinari possono essere invocati sugli oggetti dall'esterno della classe.
 
-*Private methods* are methods that can only be called from within the class. +
-A possible use case would be a method that calls another one for specific action.
-The method that interfaces with the outside world is public while the one referenced should stay private.
-We do not want users to call it directly, so we declare it as private.
+I *metodi privati* sono metodi che possono essere invocati solo dall'interno della classe. +
+Un possibile uso di questi sono metodi che ne chiamano un'altro per un'azione specifica.
+Il metodo che si interfaccia con l'esterno è pubblico, mentre l'altro privato.
+Non vogliamo che l'utente lo invochi direttamente, quindi lo dichiariamo come privato.
 
-The declaration of a private method requires the use of the `!` twigil before its name. +
-Private methods are called with `!` instead of `.`
-
-[source,perl6]
-----
-method !iamprivate {
-  # code goes in here
-}
-
-method iampublic {
-  self!iamprivate;
-  # do additional things
-}
-----
-
-=== Class Attributes
-
-*Class attributes* are attributes that belong to the class itself and not to its objects. +
-They can be initialized during definition. +
-Class attributes are declared using `my` instead of `has`. +
-They are called on the class itself instead of its objects.
+La dichiarazione di un metodo privato richiede l'uso del sigillo secondario `!` prima del nome. +
+I metodi privati sono chiamati con `!` invece di `.`
 
 [source,perl6]
 ----
-class Human {
-  has $.name;
-  my $.counter = 0;
-  method new($name) {
-    Human.counter++;
-    self.bless(:$name);
+method !sonoprivato {
+  # scrivi qui il tuo codice
+}
+
+method sonopubblico {
+  self!sonoprivato;
+  # qui fai altre cose
+}
+----
+
+=== Attributi di classe
+
+Gli *attributi di classe* sono attributi che appartengono alla classe stessa e non ai suoi oggetti. +
+Essi possono essere inizializzati durante la definizione. +
+Gli attributi di classe vengono dichiarati usanto `my` al posto di `has`. +
+Sono invocati sulla classe stessa, invece che sugli oggetti.
+
+[source,perl6]
+----
+class umano {
+  has $.nome;
+  my $.contatore = 0;
+  method new($nome) {
+    umano.contatore++;
+    self.bless(:$nome);
   }
 }
-my $a = Human.new('a');
-my $b = Human.new('b');
+my $a = umano.new('a');
+my $b = umano.new('b');
 
-say Human.counter;
+say umano.contatore;
 ----
 
-=== Access Type
-Until now, all the examples that we've seen have used accessors to *get* information from the objects' attributes.
+=== Tipi di accesso agli attributi
+Fino ad ora tutti gli esempi che abbiamo visto hanno usato accessori per *prendere* informazioni dagli oggetti.
 
-What if we need to modify the value of an attribute? +
-We need to label it as _read/write_ using the keywords `is rw`
+Che accade se abbiamo bisogno di modificare il valore di un attributo? +
+Abbiamo bisogno di marcarlo come _sia leggibile e scrivibile_ usando la parola chiave `is rw`.
 [source,perl6]
 ----
-class Human {
-  has $.name;
-  has $.age is rw;
+class umano {
+  has $.nome;
+  has $.anni is rw;
 }
-my $john = Human.new(name => 'John', age => 21);
-say $john.age;
+my $giovanni = umano.new(nome => 'Giovanni', anni => 21);
+say $giovanni.anni;
 
-$john.age = 23;
-say $john.age;
+$giovanni.anni = 23;
+say $giovanni.anni;
 ----
-By default, all attributes are declared as _read only_ but you can explicitly do it using `is readonly`
+In mancanza di specificazioni, gli attributi vengono dichiarati come _solo leggibili non scrivibili_, ma questo tipo di accesso si può anche specificare esplicitamente tramite la parola chiave `is readonly`.
 
 === Inheritance
 ==== Introduction
