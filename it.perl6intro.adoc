@@ -203,7 +203,7 @@ Gli *operatore* vengono classificati nei seguenti tipi:
 Gli identificatori sono nomi dati agli opernadi quando questi vengono definiti.
 
 .Regole:
-* Debbono iniziare con un carattere alfanumerico oppure con un underscore.
+* Debbono iniziare con un carattere alfanumerico oppure con un trattino-basso.
 
 * Possono contenere cifre numeriche (eccetto che al primo posto).
 
@@ -2446,239 +2446,237 @@ if 'illuminismo' ~~ m/lumi/ {
 In questo esempio l'operatore di corrispondenza intelligente `~~` viene usato per controllare che la stringa (illuminismo) contenga la parola (lumi). +
 "illuminismo" corrisponde alla regex `m/lumi/`
 
-=== Regex definition
+=== Definizione delle espressioni regolari
 
-A regular expression can be defined like this:
+Una espressione regolare può essere definita in questi modi:
 
-* `/light/`
+* `/lumi/`
 
-* `m/light/`
+* `m/lumi/`
 
-* `rx/light/`
+* `rx/lumi/`
 
-Unless specified explicitly, white space is ignored; `m/light/` and `m/ light /` are the same.
+Ameno che non sia specificato esplicitamente lo spazio bianco viene ignorato; `m/lumi/` and `m/ lumi /` sono equivalenti.
 
-=== Matching characters
-Alphanumeric characters and the underscore `_` are written as is. +
-All other characters have to be escaped using a backslash or surrounded by quotes.
+=== Corrispondenza dei caratteri
+Caratteri alfanumerici ed il trattino-basso `_` vengono scritti normalmente. +
+Tutti gli altri caratteri debbono essere contrassegnati dal backslash o abbracciati da apici.
 
 [source,perl6]
 .Backslash
 ----
-if 'Temperature: 13' ~~ m/ \: / {
-    say "The string provided contains a colon :";
+if 'Temperatura: 13' ~~ m/ \: / {
+    say "La stringa fornita contiene un due-punti :";
 }
 ----
 
 [source,perl6]
-.Single quotes
+.apici singoli
 ----
 if 'Anni = 13' ~~ m/ '=' / {
-    say "The string provided contains an equal character = ";
+    say "La stringa fornita contiene il carattere = ";
 }
 ----
 
 [source,perl6]
-.Double quotes
+.doppi apici
 ----
 if 'nome@azienda.com' ~~ m/ "@" / {
-    say "This is a valid email address because it contains an @ character";
+    say "Questo è un indirizzo di posta elettronica valido, perché contiene un carattere @";
 }
 ----
 
-=== Matching categories of characters
-Characters can be classified into categories and we can match against them. +
-We can also match against the inverse of that category (everything except it):
+=== Corrispondenza di categorie di caratteri
+I caratteri possono essere classificati in categorie e possiamo riferirci a queste. +
+Possiamo anche trovare corrispondenze inverse di tali categorie (ossia "tutto tranne questo insieme"):
 
 |===
 
-| *Category* | *Regex* | *Inverse* | *Regex*
+| *Categoria* | *Regex* | *Inversa* | *Regex*
 
-| Word character (letter, digit or underscore) | \w | Any character except a word character | \W
+| Carattere di parola (lettera, cifra o trattino-basso) | \w | Carattere di non-parola | \W
 
-| Digit | \d | Any character except a digit | \D
+| Cifra | \d | carattere non-numero | \D
 
-| Whitespace | \s | Any character except a whitespace | \S
+| spazio | \s | tutti i caratteri tranne lo spazio | \S
 
-| Horizontal whitespace | \h | Any character except a horizontal whitespace | \H
+| spazio orizzontale | \h | tutti i caratteri tranne lo spazio orizzontale | \H
 
-| Vertical whitespace | \v | Any character except a vertical whitespace | \V
+| spazio verticale | \v | tutti i caratteri tranne lo spazio verticale | \V
 
-| Tab | \t | Any character except a Tab | \T
+| tabulazione | \t | tutti i caratteri tranne la tabulazione | \T
 
-| New line | \n | Any character except a new line | \N
+| a-capo | \n | tutti i caratteri tranne a-capo | \N
 
 |===
 
 [source,perl6]
 ----
 if "Giovanni123" ~~ / \d / {
-  say "This is not a valid nome, numbers are not allowed";
+  say "Questo non è un nome valido, i nomi non sono consentiti";
 } else {
-  say "This is a valid nome"
+  say "Questo è un nome valido"
 }
 if "Giovanni-Doe" ~~ / \s / {
-  say "This string contains whitespace";
+  say "questa stringa contiene uno spazio bianco";
 } else {
-  say "This string doesn't contain whitespace"
+  say "questa stringa non contiene uno spazio bianco"
 }
 ----
 
-=== Unicode properties
-Matching against categories of characters, as seen in the preceding section, is convenient. +
-That being said, a more systematic approach would be to use Unicode properties. +
-This allows you to match against categories of characters inside and outside of +
-the ASCII standard. +
-Unicode properties are enclosed in `<: >`
+=== Proprietà della codifica Unicode
+La corrispondenza con categorie di caratteri, come visto nella precedente sezione, è conveniente. +
+Detto questo, un approccio più sistematico sarebbe l'uso delle proprietà Unicode. +
+Queste ti permetttono di trovare corrispondenze tra categorie di caratteri sia all'interno che all'esterno dello standart ASCII. +
+Le proprietà Unicode sono abbracciate da queste parentesi `<: >`
 
 [source,perl6]
 ----
-if "Devanagari Numbers १२३" ~~ / <:N> / {
-  say "Contains a number";
+if "Numeri Devanagari १२३" ~~ / <:N> / {
+  say "Contiene un numero";
 } else {
-  say "Doesn't contain a number"
+  say "Non contiene un numero"
 }
 if "Привет, Иван." ~~ / <:Lu> / {
-  say "Contains an uppercase letter";
+  say "Contiene lettere maiuscole;
 } else {
-  say "Doesn't contain an upper case letter"
+  say "Non contiene lettere maiuscole"
 }
 if "Giovanni-Doe" ~~ / <:Pd> / {
-  say "Contains a dash";
+  say "Contiene il trattino"
 } else {
-  say "Doesn't contain a dash"
+  say "Non contiene il trattino"
 }
 ----
 
-=== Wildcards
-Wildcards can also be used in a regex.
+=== Jolly
+I jolly possono essere usati nelle espressioni regolari.
 
-The dot `.` means any single character.
+Il punto `.` indica il singolo carattere.
 
 [source,perl6]
 ----
 if 'abc' ~~ m/ a.c / {
-    say "Match";
+    say "Corrispondenza trovata";
 }
 if 'a2c' ~~ m/ a.c / {
-    say "Match";
+    say "Corrispondenza trovata";
 }
 if 'ac' ~~ m/ a.c / {
-    say "Match";
+    say "Corrispondenza trovata";
 } else {
-    say "No Match";
+    say "Nessuna corrispondenza";
 }
 ----
 
-=== Quantifiers
-Quantifiers come after a character and are used to specify how many times we are expecting it.
+=== Quantificatori
+I quantificatori seguono un carattere e vengono usati per specificare quante volte ce lo aspettiamo.
 
-The question mark `?` means zero or one time.
+Il punto di domanda `?` significa zero o una volta.
 
 [source,perl6]
 ----
 if 'ac' ~~ m/ a?c / {
-    say "Match";
+    say "Corrispondono";
 } else {
-    say "No Match";
+    say "Non corrispondono";
 }
 if 'c' ~~ m/ a?c / {
-    say "Match";
+    say "Corrispondono";
 } else {
-    say "No Match";
+    say "Non corrispondono";
 }
 ----
 
-The star `*` means zero or multiple times.
+La stellina `*` indica zero o più volte
 
 [source,perl6]
 ----
 if 'az' ~~ m/ a*z / {
-    say "Match";
+    say "Corrispondono";
 } else {
-    say "No Match";
+    say "Non corrispondono";
 }
 if 'aaz' ~~ m/ a*z / {
-    say "Match";
+    say "Corrispondono";
 } else {
-    say "No Match";
+    say "Non corrispondono";
 }
 if 'aaaaaaaaaaz' ~~ m/ a*z / {
-    say "Match";
+    say "Corrispondono";
 } else {
-    say "No Match";
+    say "Non corrispondono";
 }
 if 'z' ~~ m/ a*z / {
-    say "Match";
+    say "Corrispondono";
 } else {
-    say "No Match";
+    say "Non corrispondono";
 }
 ----
 
-The `+` means at least one time.
+Il `+` indica almeno una volta.
 
 [source,perl6]
 ----
 if 'az' ~~ m/ a+z / {
-    say "Match";
+    say "Corrispondono";
 } else {
-    say "No Match";
+    say "Non corrispondono";
 }
 if 'aaz' ~~ m/ a+z / {
-    say "Match";
+    say "Corrispondono";
 } else {
-    say "No Match";
+    say "Non corrispondono";
 }
 if 'aaaaaaaaaaz' ~~ m/ a+z / {
-    say "Match";
+    say "Corrispondono";
 } else {
-    say "No Match";
+    say "Non corrispondono";
 }
 if 'z' ~~ m/ a+z / {
-    say "Match";
+    say "Corrispondono";
 } else {
-    say "No Match";
+    say "Non corrispondono";
 }
 ----
 
-=== Match Results
-Whenever the process of matching a string against a regex is successful,
-the match result is stored in a special variable `$/`
+=== Risultati della corrispondenza
+Ogni volta che il processo di corrispondenza ha successo, il risultato viene memorizzato in una variabile speciale `$/`
 
 [source,perl6]
 .Script
 ----
-if 'Rakudo is a Perl 6 compiler' ~~ m/:s Perl 6/ {
-    say "The match is: " ~ $/;
-    say "The string before the match is: " ~ $/.prematch;
-    say "The string after the match is: " ~ $/.postmatch;
-    say "The matching string starts at position: " ~ $/.from;
-    say "The matching string ends at position: " ~ $/.to;
+if 'Rakudo è un compilatore Perl 6!' ~~ m/:s Perl 6/ {
+    say "Il risultato è: " ~ $/;
+    say "La stringa prima del risultato è: " ~ $/.prematch;
+    say "La stringa dopo il risultato è: " ~ $/.postmatch;
+    say "La corrispondenza inizia alla posizione: " ~ $/.from;
+    say "La corrispondenza finisce alla posizione: " ~ $/.to;
 }
 ----
 
 .Output
 ----
-The match is: Perl 6
-The string before the match is: Rakudo is a
-The string after the match is: compiler
-The matching string starts at position: 12
-The matching string ends at position: 18
+Il risultato è: Perl 6
+La stringa prima del risultato è: Rakudo è un compilatore
+The string after the match is: !
+The matching string starts at position: 24
+The matching string ends at position: 30
 ----
 
-.Explanation
-`$/` returns a _Match Object_ (the string that matches the regex) +
-The following methods can be called on the _Match Object_: +
-`.prematch` returns the string preceding the match. +
-`.postmatch` returns the string following the match. +
-`.from` returns the starting position of the match. +
-`.to` returns the ending position of the match. +
+.Spiegazione
+`$/` ritorna un _oggetto corrispondente_ (la stringa che corrisponde all'espressione regolare) +
+I metodi seguenti possono essere chiamati sull'_oggetto corrispondente_: +
+`.prematch` ritorna la stringa che precede la corrispondenza. +
+`.postmatch` ritorna la stringa che segue la corrispondenza. +
+`.from` ritorna la posizione di partenza della corrispondenza. +
+`.to` ritorna la posizione finale della corrispondenza. +
 
-Noticina: By default, whitespace in a regex definition is ignored. +
-If we want to match against a regex containing whitespace, we have to do so explicitly. +
-The `:s` in the regex `m/:s Perl 6/` forces whitespace to be considered. +
-Alternatively, we could have written the regex as `m/ Perl\s6 /` and used `\s` which represents a whitespace. +
-If a regex contains more than a single whitespace, using `:s` is a better option than using `\s` for each and every whitespace.
+Noticina: Di norma lo spazio bianco in una espressione regolare viene ignorato. +
+Se vogliamo una corrispondenza con una regex che contenga spazi, dobbiamo farlo esplicitamente. +
+Il `:s` nella regex di esempio `m/:s Perl 6/` forza l'espressione a considerare gli spazi. +
+Alternativamete potevamo scrivere la regex come `m/ Perl\s6 /` usando `\s` che rappresenta lo spazio. +
+Se la regex contiene più di un singolo spazio, l'uso di `:s` è una scelta migliore che usare `\s` esplicitamente per ogni spazio presente.
 
 === Example
 Let's check if an email is valid or not. +
