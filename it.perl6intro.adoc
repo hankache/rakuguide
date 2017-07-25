@@ -2751,29 +2751,28 @@ Una espressione regolare con nome può essere chiamata usando questa sintassi: `
 
 NOTA: Per avere più informazione sulle espressioni regolari vedi qui https://docs.perl6.org/language/regexes
 
-== Perl 6 Modules
-Perl 6 is a general purpose programming language. It can be used to tackle a multitude of tasks including:
-text manipulation, graphics, web, databases, network protocols etc.
+== I moduli Perl 6
+Perl 6 è un linguaggio di programmazione di utilizzo generale. Può essere usato per affrontare una moltitudine di compiti tra cui la manipolazione dei testi, grafica, web, database, protocolli di rete ecc.
 
-Reusability is a very important concept whereby programmers don't have to reinvent the wheel each time they want to do a new task.
+Riusabilità è un concetto molto importante per i programmatori non devono reinventare la ruota ogni volta che vogliono svolgere un nuovo compito.
 
-Perl 6 allows the creation and redistribution of *modules*. Each module is a packaged set of functionality that can be reused once installed.
+Perl 6 permette la creazione e la redistribuzione di *moduli*. Ogni modulo è un insieme di funzionalità ben impacchettate che possono essere riusate una volta installate.
 
-_Zef_ is a module management tool that comes with Rakudo Star.
+_Zef_ è uno strumento di gestione dei moduli integrato con Rakudo Star.
 
-To install a specific module, type the below command in your terminal:
+Per installare un modulo specifico digita questo comando dal tuo terminale:
 
-`zef install "module nome"`
+`zef install "nome-del-modulo"`
 
-NOTA: The Perl 6 modules directory can be found on: https://modules.perl6.org/
+NOTA: Le cartelle con i moduli Perl 6 sono qui: https://modules.perl6.org/
 
-=== Using Modules
-MD5 is a cryptographic hash function that produces a 128-bit hash value. +
-MD5 has a variety of applications, including the encryption of stored passwords in a database.
-When a new user registers, their credentials are not stored as plain text but rather _hashed_.
-The rationale behind this is that if the DB gets compromised, the attacker will not be able to know what the passwords are.
+=== Usare i moduli
+MD5 è una funzione di crittografia che produce has a 128-bit. +
+MD5 ha varie applicazioni, inclusa la codifica di password immagazzinate in un database.
+Quando un nuovo utente si registra, le sue credenziali non vengono memorizzate come un semplice testo ma piùttosto inserite in un _hash_.
+L'idea che sta dietro questa scelta è questa: se il DB viene compromesso, l'attaccante non sarà in gradi di sapere quali sono le password.
 
-Luckily, you don't need to implement the MD5 algorithm yourself; there's a Perl 6 module already implemented.
+Fortunatamente, non devi implementare l'algoritmo MD5 da solo; già esiste un modulo Perl 6 che lo implementa.
 
 Let's install it: +
 `zef install Digest::MD5`
