@@ -2678,75 +2678,78 @@ Il `:s` nella regex di esempio `m/:s Perl 6/` forza l'espressione a considerare 
 Alternativamete potevamo scrivere la regex come `m/ Perl\s6 /` usando `\s` che rappresenta lo spazio. +
 Se la regex contiene più di un singolo spazio, l'uso di `:s` è una scelta migliore che usare `\s` esplicitamente per ogni spazio presente.
 
-=== Example
-Let's check if an email is valid or not. +
-For the sake of this example we will assume that a valid email address has this format: +
-first nome [dot] last nome [at] azienda [dot] (com/org/net)
+=== Esempio
+Controlliamo se una mail è valida o no. +
+Per semplicità assumiamo che una email valida abbia questo formato. +
+nome [punto] cognome [chiocciolina] azienda [punto] (com/org/net)
 
-WARNING: The regex used in this example for email validation is not very accurate. +
-Its sole purpose is to demonstrate regex functionality in Perl 6. +
-Do not use it as-is in production.
+ATTENZIONE: l'espressione regolare usata in questo
+esempio per la validazione dell'indirizzo email non è
+molto accurata. +
+Il suo solo scopo è di dimostrare la funzionalià delle 
+espressioni regolari in Perl 6. +
+Non usarla in vero software applicativo!
 
 [source,perl6]
 .Script
 ----
-my $email = 'john.doe@perl6.org';
+my $email = 'giovanni.dossi@perl6.org';
 my $regex = / <:L>+\.<:L>+\@<:L+:N>+\.<:L>+ /;
 
 if $email ~~ $regex {
-  say $/ ~ " is a valid email";
+  say $/ ~ " è una mail valida";
 } else {
-  say "This is not a valid email";
+  say "questa non è una mail valida";
 }
 ----
 
 .Output
-`john.doe@perl6.org is a valid email`
+`giovanni.dossi@perl6.org è una mail valida`
 
-.Explanation
-`<:L>` matches a single letter +
-`<:L>+` matches one or more letters +
-`\.` matches a single [dot] character +
-`\@` matches a single [at] character +
-`<:L+:N>` matches a letter or a single number +
-`<:L+:N>+` matches one or more letters or numbers +
+.Spiegazione
+`<:L>` trova la corrispondenza di una singola lettera +
+`<:L>+` trova la corrispondenza con una o più lettere +
+`\.` trova la corrisondenza con un singolo carattere [punto] +
+`\@` trova la corrispondenza con un singolo carattere chiocciolina [@] +
+`<:L+:N>` trova una singola lettera ho una singola cifra numerica +
+`<:L+:N>+` una o più lettere o numeri +
 
-The regex can be decomposed as following:
+L'espressione regolare può quindi essere decomposta in questo modo:
 
-* *first nome* `<:L>+`
+* *nome* `<:L>+`
 
-* *[dot]* `\.`
+* *[punto]* `\.`
 
-* *last nome* `<:L>+`
+* *cognome* `<:L>+`
 
-* *[at]* `\@`
+* *[chiocciolina]* `\@`
 
-* *azienda nome* `<:L+:N>+`
+* *nome azienda* `<:L+:N>+`
 
-* *[dot]* `\.`
+* *[punto]* `\.`
 
 * *com/org/net* `<:L>+`
 
 [source,perl6]
-.Alternatively, a regex can be broken down into multiple named regexes
+.In alternativa una espressione regolare può essere spezzata in espressioni regolari più semplici
 ----
-my $email = 'john.doe@perl6.org';
-my regex many-letters { <:L>+ };
-my regex dot { \. };
-my regex at { \@ };
-my regex many-letters-numbers { <:L+:N>+ };
+my $email = 'giovanni.dossi@perl6.org';
+my regex molte-lettere { <:L>+ };
+my regex punto { \. };
+my regex chiocciolina { \@ };
+my regex molte-lettere-e-numeri { <:L+:N>+ };
 
-if $email ~~ / <many-letters> <dot> <many-letters> <at> <many-letters-numbers> <dot> <many-letters> / {
-  say $/ ~ " is a valid email";
+if $email ~~ / <molte-lettere> <punto> <molte-lettere> <chiocciolina> <molte-lettere-e-numeri> <punto> <molte-lettere> / {
+  say $/ ~ " è una mail valida";
 } else {
-  say "This is not a valid email";
+  say "questa non è una mail valida";
 }
 ----
 
-A named regex is defined using the following syntax: `my regex regex-name { regex definition }` +
-A named regex can be called using the following syntax: `<regex-name>`
+Una espressione regolare con nome viene definita con questa sintassi: `my regex nome-regex { defininizione-regex }` +
+Una espressione regolare con nome può essere chiamata usando questa sintassi: `<nome-regex>`
 
-NOTA: For more info on regexes, see https://docs.perl6.org/language/regexes
+NOTA: Per avere più informazione sulle espressioni regolari vedi qui https://docs.perl6.org/language/regexes
 
 == Perl 6 Modules
 Perl 6 is a general purpose programming language. It can be used to tackle a multitude of tasks including:
