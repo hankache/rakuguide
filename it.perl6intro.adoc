@@ -2774,10 +2774,10 @@ L'idea che sta dietro questa scelta è questa: se il DB viene compromesso, l'att
 
 Fortunatamente, non devi implementare l'algoritmo MD5 da solo; già esiste un modulo Perl 6 che lo implementa.
 
-Let's install it: +
+Installiamolo: +
 `zef install Digest::MD5`
 
-Now, run the below script:
+Ora fai girare questo script:
 [source,perl6]
 ----
 use Digest::MD5;
@@ -2786,31 +2786,31 @@ my $hashed-password = Digest::MD5.new.md5_hex($password);
 
 say $hashed-password;
 ----
-In order to run the `md5_hex()` function that creates hashes, we need to load the required module. +
-The `use` keyword loads the module for use in the script.
+Per far girare la funzione `md5_hex()` che crea gli has, abbiamo bisono di caricare il modulo richiesto. +
+La parola chiave `use` carica il modulo permettendo di usarlo nello script.
 
-WARNING: In practice MD5 hashing alone is not sufficient, because it is prone to dictionary attacks. +
-It should be combined with a salt link:https://en.wikipedia.org/wiki/Salt_(cryptography)[https://en.wikipedia.org/wiki/Salt_(cryptography)].
+ATTENZIONE: In pradica il fatto che MD5 produca gli hash non è sufficiente, perché questa è una soluzione vulnerabile agli attacchi a dizionario [https://it.wikipedia.org/wiki/Attacco_a_dizionario]. +
+Dovrebbe essere combinato con un'azione crittografica [https://it.wikipedia.org/wiki/Sale_(crittografia)].
 
 == Unicode
 
-Unicode is a standard for encoding and representing text for most writing systems in the world. +
-UTF-8 is a character encoding capable of encoding all possible characters, or code points, in Unicode.
+Unicode uno standard di codifca e di rappresentazione del test per la maggior parte dei sistemi di scrittura. +
+UTF-8 è una codifica dei caratteri capace di codificare tutti i possibili caratteri, o punti di codice, in Unicode.
 
-Characters are defined by a: +
-*Grapheme*: Visual representation. +
-*Code point*: A number assigned to the character.
+I caratteri sono definiti da: +
+*grafemi*: una rappresentazione visuale. +
+*punti di codice*: un numero assegnato di caratteri.
 
-=== Using Unicode
+=== Usare l'unicode
 
-.Let's look at how we can output characters using Unicode
+.Guardiamo a come possiamo stampare i caratteri usando unicode.
 [source,perl6]
 ----
 say "a";
 say "\x0061";
-say "\c[LATIN SMALL LETTER A]";
+say "\c[piccola lettera A latina]";
 ----
-The above 3 lines showcase different ways of building a character:
+Le tre linee qui sopra mostrano diversi modi di costruire un carattere:
 
 . Writing the character directly (grapheme)
 
