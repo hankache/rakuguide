@@ -2808,17 +2808,17 @@ I caratteri sono definiti da: +
 ----
 say "a";
 say "\x0061";
-say "\c[piccola lettera A latina]";
+say "\c[LATIN SMALL LETTER A]";
 ----
 Le tre linee qui sopra mostrano diversi modi di costruire un carattere:
 
-. Writing the character directly (grapheme)
+. Scrivere un carattere direttamente (grafema)
 
-. Using `\x` and the code point
+. usare `\x` ed il codice unicode relativo
 
-. Using `\c` and the code point nome
+. Usare `\c` ed il codice unicode nominale (in inglese)
 
-.Now lets output a smiley
+.Ora stampiamo una faccina che sorride
 [source,perl6]
 ----
 say "☺";
@@ -2826,7 +2826,7 @@ say "\x263a";
 say "\c[WHITE SMILING FACE]";
 ----
 
-.Another example combining two code points
+.Un altro esempio che combina due codifiche
 [source,perl6]
 ----
 say "á";
@@ -2835,13 +2835,13 @@ say "\x0061\x0301";
 say "\c[LATIN SMALL LETTER A WITH ACUTE]";
 ----
 
-The letter `á` can be written:
+La lettera `á` può essere scritta:
 
-* using its unique code point `\x00e1`
+* usando il suo codice unicode numerico `\x00e1`
 
-* or as a combination of the code points of `a` and acute `\x0061\x0301`
+* come combinazione di due docidic numerici, quello della `a` con quello dell'accento: `\x0061\x0301`
 
-.Some of the methods that can be used:
+.Alcuni metodi che si possono usare:
 [source,perl6]
 ----
 say "á".NFC;
@@ -2856,11 +2856,11 @@ NFD:0x<0061 0301>
 LATIN SMALL LETTER A WITH ACUTE
 ----
 
-`NFC` returns the unique code point. +
-`NFD` decomposes the character and return the code point of each part. +
-`uniname` returns the code point name.
+`NFC` restituisce il codice numerico. +
+`NFD` decompone il carattere nei codice numerici che lo compongono. +
+`uniname` ritorna il codice nominale in inglese.
 
-.Unicode letters can be used as identifiers:
+.Le lettere unicode possono essere usate come identificatori:
 [source,perl6]
 ----
 my $Δ = 1;
@@ -2868,151 +2868,150 @@ $Δ++;
 say $Δ;
 ----
 
-.Unicode can be used to do math:
+.Il codice unicode può essere usato nelle espressioni matematiche in Perl 6:
 [source,perl6]
 ----
 my $var = 2 + ⅒;
 say $var;
 ----
 
-== Parallelism, Concurrency and Asynchrony
+== Parallelismo, concorrenza ed asyncronismo
 
-=== Parallelism
-Under normal circumstances, all tasks in a program run sequentially. +
-This might not be a problem, unless what you're trying to do takes a lot of time.
+=== Parallelismo
+In circostanze nomali, tutti i compiti di un programma girano in sequenza. +
+Questo potrebbe non essere un problema, a meno che tu non stia tentando di perdere molto tempo.
 
-Thankfully, Perl 6 has features that will enable you to run things in parallel. +
-At this stage, it is important to note that parallelism can mean one of two things:
+Fortunatamente, Perl 6 fornisce funzionalità che permettono di far girare codice in parallelo. +
+A questo punto, è importante notare che il parallelismo significa due cose:
 
-* *Task Parallelism*: Two (or more) independent expressions running in parallel.
+* *parallelismo dei task*: due o più espressioni indipendenti girano in parallelo.
 
-* *Data Parallelism*: A single expression iterating over a list of elements in parallel.
+* *parallelismo dei dati*: uns singola espressione che si applica su una lista di elementi in parallelo.
 
-Let's begin with the latter.
+Iniziamo da quest ultimo caso.
 
-==== Data Parallelism
+==== Parallelismo dei dati
 [source,perl6]
 ----
-my @array = (0..50000);                     # Array population
-my @result = @array.map({ is-prime $_ });   # call is-prime for each array element
-say now - INIT now;                         # Output the time it took for the script to complete
+my @array = (0..50000);                     # inizializzazione dell'array
+my @risultato = @array.map({ is-prime $_ });   # invoca is-prime per ogni elemento dell'array
+say now - INIT now;                         # stampa il tempo impiegato per completare 
 ----
 
-.Considering the above example:
-We are only doing one operation `@array.map({ is-prime $_ })` +
-The `is-prime` subroutine is being called for each array element sequentially: +
-`is-prime @array[0]` then `is-prime @array[1]` then `is-prime @array[2]` etc.
+.Considerando l'esempio qui sopra:
+Stiamo facendo solo una operazione `@array.map({ is-prime $_ })` +
+La funzione `is-prime` viene invocata per ogni elemento dell'array alla volta: +
+`is-prime @array[0]` poi `is-prime @array[1]` poi `is-prime @array[2]` ecc.
 
-.Fortunately we can call `is-prime` on multiple array elements at the same time:
+.Per fortuna possiamo invocare `is-prime` su elementi multipli contemporaneamente:
 [source,perl6]
 ----
-my @array = (0..50000);                         # Array population
-my @result = @array.race.map({ is-prime $_ });  # call is-prime for each array element
-say now - INIT now;                             # Output the time it took to complete
+my @array = (0..50000);                         # inizializzazione dell'array
+my @risultato = @array.race.map({ is-prime $_ });  # invoca is-prime per ogni elemento dell'array
+say now - INIT now;                             # stampa il tempo impiegato per completare 
 ----
 
-Notice the use of `race` in the expression.
-This method will enable parallel iteration of the array elements.
+Vedi che qui abbiamo introdotto `race` nell'espressione.
+Questo metodo abilita l'iterazione parallela sugli elementi dell'array.
 
-After running both examples (with and without `race`), compare the time it took for both scripts to complete.
+Dopo aver fatto girare entrambi gli esempi (con e senza `race`), confrontiamo il tempo speso.
 
 [Noticina]
 ====
-`race` will not preserve the order of elements. If you wish to do, so use `hyper` instead.
+`race` non conserva l'ordine degli elementi. Se vuoi conservarlo devi usare `hyper`.
 
 [source,perl6]
 .race
 ----
 my @array = (1..1000);
-my @result = @array.race.map( {$_ + 1} );
-.say for @result;
+my @risultato = @array.race.map( {$_ + 1} );
+.say for @risultato;
 ----
 
 [source,perl6]
 .hyper
 ----
 my @array = (1..1000);
-my @result = @array.hyper.map( {$_ + 1} );
-.say for @result;
+my @risultato = @array.hyper.map( {$_ + 1} );
+.say for @risultato;
 ----
 
-If you run both examples, you should notice that one is sorted and the other is not.
+Se fai girare entrambi questi esempi, dovresti notare ch ein uno gli elementi sono ordinati, nell'altro no.
 
 ====
 
-==== Task Parallelism
+==== Parallelismo delle operazioni
 
 [source,perl6]
 ----
 my @array1 = (0..49999);
 my @array2 = (2..50001);
 
-my @result1 = @array1.map( {is-prime($_ + 1)} );
-my @result2 = @array2.map( {is-prime($_ - 1)} );
+my @risultato1 = @array1.map( {is-prime($_ + 1)} );
+my @risultato2 = @array2.map( {is-prime($_ - 1)} );
 
-say @result1 eqv @result2;
+say @risultato1 eqv @risultato2;
 
 say now - INIT now;
 ----
 
-.Considering the above example:
+.Consideriamo l'esempio qui sopra:
 
-. We defined 2 arrays
+. abbiamo definito due array
 
-. applied a different operation for each array and stored the results
+. abbiamo applicato operazioni diverse su ognuno degli array ed abbiamo memorizzato il risultato
 
-. and checked if both results are the same
+. infine abbiamo controllato che entrambi i risultati siano identici
 
-The script waits for `@array1.map( {is-prime($_ + 1)} )` to finish +
-and then evaluates `@array2.map( {is-prime($_ - 1)} )`
+Lo script aspetta che `@array1.map( {is-prime($_ + 1)} )` finisca +
+e poi valuta `@array2.map( {is-prime($_ - 1)} )`
 
-Both operations applied to each array do not depend on each other.
+Entrambe le operazioni applicate a ciascun array non dipendono l'una dall'altra.
 
-.Why not do both in parallel?
+.Perchè quindi non farle girare il parallelo?
 [source,perl6]
 ----
 my @array1 = (0..49999);
 my @array2 = (2..50001);
 
-my $promise1 = start @array1.map( {is-prime($_ + 1)} ).eager;
-my $promise2 = start @array2.map( {is-prime($_ - 1)} ).eager;
+my $promessa1 = start @array1.map( {is-prime($_ + 1)} ).eager;
+my $promessa2 = start @array2.map( {is-prime($_ - 1)} ).eager;
 
-my @result1 = await $promise1;
-my @result2 = await $promise2;
+my @risultato1 = await $promessa1;
+my @risultato2 = await $promessa2;
 
-say @result1 eqv @result2;
+say @risultato1 eqv @risultato2;
 
 say now - INIT now;
 ----
 
-.Explanation
-The `start` subroutine evaluates the code and returns *an object of type promise* or shortly *a promise*. +
-If the code is evaluated correctly, the _promise_ will be *kept*. +
-If the code throws an exception, the _promise_ will be *broken*.
+.Spiegazione
+La funzione `start` valuta il codice e restutisce *un oggetto di tipo promessa* or brevemente *una promessa*. +
+Se il codice è valutato correttamente la _promessa_ sarà *mantenuta*. +
+Se il codice scatena una eccezione, la _promessa_ sarà *spezzata*.
 
-The `await` subroutine waits for a *promise*. +
-If it's *kept* it will get the returned values. +
-If it's *broken* it will get the exception thrown.
+la funzione `await` aspetta la *promessa*. +
+Se essa sarà *mantenuta* allora fornirà il valore di ritorno. +
+Se sarà *spezzata* allora fornirà l'eccezione scatenata.
 
-Check the time it took each script to complete.
+Controlla il tempo impiegato da ciascuno script per completarsi
 
-WARNING: Parallelism always adds a threading overhead. If that overhead is not offset by gains in computational speed, the script will seem slower. +
-This is why, using `race`, `hyper`, `start` and `await` for fairly simple scripts can actually slow them down.
+ATTENZIONE: il parallelismo aggiunge sempre un carico sul thread. Se questo sovraccarico non è compensato dai guadagni dovuti alla velocità di computazione, lo script sarà più lento. +
+Questa è  la ragione per cui, usando `race`, `hyper`, `start` e `await` per script brevi e semplici si possono ottenere tempi di esecuzione peggiori.
 
-=== Concurrency and Asynchrony
-NOTA: For more info on Concurrency and Asynchronous Programming, see https://docs.perl6.org/language/concurrency
+=== Concorrenza ed asincronismo
+NOTA: Per avere più informazioni su programmazone concorrente ed asincronismo vedi qui https://docs.perl6.org/language/concurrency
 
-== Native Calling Interface
+== Interfaccia chiamante nativa
 
-Perl 6 gives us the ability to use C libraries, using the Native Calling Interface.
+Perl 6 fornisce la possibilità di usare le librerie C tramite l'interfaccia chiamante nativa.
 
-`NativeCall` is a standard module that ships with Perl 6 and offers a set of functionality to ease the job
-of interfacing Perl 6 and C.
+`NativeCall` è un modulo standard che è rilasciato con Perl 6 ed offre un insieme di funzionalità che facilitano il lavoro di interfacciare Perl 6 e C.
 
-=== Calling a function
+=== Chiamata a funzione
 
-Consider the below C code that defines a function called `hellofromc`.
-This function prints on the terminal `Hello from C`. It doesn't accept any argument nor return any value.
+Considera il codice C sottostante: esso definisce una funzione chiamata `hellofromc`.
+Questa funzione stampa sul terminale la stringa `Hello from C`. Essa non accetta alcun argomento e non restituisce alcun valore.
 
 [source,c]
 .ncitest.c
@@ -3024,22 +3023,21 @@ void hellofromc () {
 }
 ----
 
-Depending on your OS run the following commands to compile the above C code into a library.
+Dipendendemente dal tuo sistema operativo i seguenti comandi servono per compilare tale codice C all'interno di una libreria.
 
-.On Linux:
+.Su Linux:
 ----
 gcc -c -fpic ncitest.c
 gcc -shared -o libncitest.so ncitest.o
 ----
 
-.On Windows:
+.Su Windows:
 ----
 gcc -c ncitest.c
 gcc -shared -o ncitest.dll ncitest.o
 ----
 
-Within the same directory where you compiled your C library, create a new Perl 6
-file that contains the below code and run it.
+All'interno della stessa cartello dove hai compilato la tua libreria in C, crea un nuovo file Perl 6 che contene il codice sottostante e fallo girare.
 
 [source,perl6]
 .ncitest.pl6
@@ -3052,28 +3050,28 @@ sub hellofromc() is native(LIBPATH) { * }
 hellofromc();
 ----
 
-.Explanation:
-First of all we declared that we will be using the `NativeCall` module. +
-Then we created a constant `LIBPATH` that holds the path to the C library. +
-Notice that `$*CWD` returns the current working directory. +
-Then we created a new Perl 6 subroutine called `hellofromc()` that should act as a
-wrapper to its counterpart C function having the same name and residing in the C
-library found in `LIBPATH`. +
-All of this was done by using the `is native` trait. +
-Finally we called our Perl 6 subroutine.
+.Spiegazione:
+Prima di tutto dichiariamo che useremo il modulo `NativeCall`. +
+Poi creiamo una costante `LIBPATH` che contiene il percorso fino alla libreria C. +
+Nota che `$*CWD` restituisce la cartella corrente. +
+Poi creiamo una nuova funzione Perl 6 chiamata `hellofromc()` la quale funge da
+wrapper per la sua controparte C avendo lo stesso nome e risiedendo nella libreria C che si
+trova in `LIBPATH`. +
+Tutto questo viene fatto usando  la direttiva `is native`. +
+Alla fine invochiamo la nostra subroutine Perl 6.
 
-In essence, it all boils down to declaring a subroutine with the trait `is native` and the name of the C library.
+Alla fine, il tutto si riduce a dichiarare una subroutine con la direttiva `is native` ed il nome della libreria C.
 
-=== Renaming a function
+=== Rinominare una funzione
 
-In the above part, we saw how we can call a very simple C function by wrapping
-it with a Perl 6 subroutine having the same name, using the `is native` trait.
+Nel paragrafo qui sopra, abbiamo visto come possiamo chiamare una funzione C molto semplice 
+wrappandola con una subroutine Perl 6 che ha lo stesso nome, tramite la direttiva `is native`.
 
-In some cases, we would want to change the name of the Perl 6 subroutine. +
-To do so, we use the `is symbol` trait.
+In alcuni casi, potremmo voler cambiare il nome della subroutine Perl 6. +
+Per farlo usiamo la direttiva `is symbol`.
 
-Lets modify the above Perl 6 script and rename the Perl 6 subroutine `hello`
-instead of `hellofromc`
+Modifichiamo allora il codice Perl 6 qui sopra e rinominiamo la subroutine come `hello`
+invece di `hellofromc`
 
 [source,perl6]
 .ncitest.pl6
@@ -3086,14 +3084,14 @@ sub hello() is native(LIBPATH) is symbol('hellofromc') { * }
 hello();
 ----
 
-.Explanation:
-In case the Perl 6 subroutine has a different name than its C counterpart, we
-should use the `is symbol` trait with the name of the original C function.
+.Spiegazione:
+Nel caso in cui la subroutine Perl 6 abbia un nome diverso dalla sua controparte C, 
+dovremmo usare `is symbol` con il nome della funzione C originale.
 
-=== Passing Arguments
+=== Passaggio di argomenti
 
-Compile the following modified C library and run the Perl 6 script found below again. +
-Notice how we modified both C and Perl 6 code to accept a string (`char*` in C and `Str` in Perl 6)
+Compila e fai girare la seguente libreria C nello script Perl 6 che trovi ancora più sotto. +
+Nota come abbiamo modificato sia C che Perl 6 per accettale la stringa (`char*` in C e `Str` in Perl 6)
 
 [source,c]
 .ncitest.c
@@ -3116,11 +3114,10 @@ sub hello(Str) is native(LIBPATH) is symbol('hellofromc') { * }
 hello('Gianna');
 ----
 
-=== Returning values
+=== restituire i valori
 
-Lets repeat the process one more time and create a simple calculator that takes
-2 integers and add them. +
-Compile the C library and run the Perl 6 script.
+Ripetiamo il processo ancora una volta e creiamo un semplice calcolatore che prende due interi e li somma. +
+Compila la libreria C e lancia lo script Perl 6.
 
 [source,c]
 .ncitest.c
@@ -3141,16 +3138,16 @@ sub add(int32,int32) returns int32 is native(LIBPATH) { * }
 say add(2,3);
 ----
 
-Notice how both C and Perl 6 functions accept two integers and return one
-(`int` in C and `int32` in Perl 6)
+Nota come entrambi C e Perl 6 accettino due interi e ne restituiscano uno solo.
+(`int` in C e `int32` in Perl 6)
 
-=== Types
+=== Tipi
 
-You might have asked yourself why did we use `int32` instead of `Int` in the latest Perl 6 script. +
-Some Perl 6 types like `Int`, `Rat` etc. can't be used as is to pass and receive values from a C function. +
-One must use in Perl 6 the same types as the ones in C.
+Potresti chiederti perché abbiamo usato `int32` invece di `Int` nell'ultimo script. +
+Alcuni tipi del Perl 6, come `Int`, `Rat` ecc. non possono essere usati per passare e ricevere valori dalle funzioni C. +
+Si debbono infatti usare tipi omologhi tra i due linguaggi.
 
-Luckily Perl 6 provides many types that map to their respective C counterpart.
+Fortunatamente Perl 6 fornisce molti tipi che si mappano perfettamente con le loro controparti in C.
 
 [cols="^.^,^.^",options="header"]
 |===
@@ -3199,13 +3196,13 @@ Luckily Perl 6 provides many types that map to their respective C counterpart.
 
 | `char*` (String) | `Str`
 
-| Arrays: For example `int*` (Array of int) and `double*` (Array of double) | `CArray`: For example `CArray[int32]` and `CArray[num64]`
+| Arrays: Per esempio `int*` (Array of int) e `double*` (Array of double) | `CArray`:Per esempio `CArray[int32]` e `CArray[num64]`
 
 |===
 
-NOTA: For more info on the Native Calling Interface, see https://docs.perl6.org/language/nativecall
+NOTA: Per avere più informazioni sull'interfaccia chiamante nativa vedi qui https://docs.perl6.org/language/nativecall
 
-== The Community
+== La comunità
 
 * link:irc://irc.freenode.net/#perl6[#perl6] IRC channel. Much discussion happens on IRC. This should be your go to place for any enquiry: https://perl6.org/community/irc
 
