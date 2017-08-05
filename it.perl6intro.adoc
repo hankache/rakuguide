@@ -13,11 +13,11 @@
 :lang: it
 
 
-Scopo di questo documento è dare una veloce panoramica del linguaggio di 
+Scopo di questo documento è dare una veloce panoramica del linguaggio di
 programmazione Perl 6. Per i neofiti di Perl 6, questo dovrebbe mettere in grado di partire.
 
 Alcune sezioni di questo documento si riferiscono ad altre parti della http://docs.perl6.org[Perl 6 documentation]
-(più completa ed accurata); consultale in caso di necessità di maggiori informazioni. 
+(più completa ed accurata); consultale in caso di necessità di maggiori informazioni.
 
 In questo documento, troverai esempi sulle materie più in voga.
 Per comprenderli meglio, prenditi il tempo di riprodurre tutti gli esempi.
@@ -103,7 +103,7 @@ Se la tua architettura è una 32-bit, scarica il file x86; se è una 64-bit, il 
 === Eseguire codice Perl 6
 
 Eseguire codice Perl 6 può essere fatto usando REPL (Read-Eval-Print Loop).
-Per farlo apri un terminale, digita `perl6` e premi [Enter].  
+Per farlo apri un terminale, digita `perl6` e premi [Enter].
 Questo farà apparire il prompt `>`.
 Poi digita una linea di codice e digita [Enter].
 REPL fornirà il valore della linea. Puoi digitare un'altra linea, oppure `exit`
@@ -123,9 +123,9 @@ di immagazzinarel prima in un file e poi far girare quello.
 Linee singole possono essere provate anche non interattivamente sulla linea di comando
 attaverso il comando `perl6 -e 'tuo-codice-qui'` e premendo [Enter].
 
-[NOTA]
+[NOTE]
 --
-Rakudo Star contiene un editor di liea che permette di fare quasi tutto senza REPL. 
+Rakudo Star contiene un editor di liea che permette di fare quasi tutto senza REPL.
 
 Se hai installato il semplice Rakudo invece di Rakudo Star allor probabilmente non avrai
 abilitate le funzionalità di editing  di linea (che sono frecce alto e basso per la storia,
@@ -141,13 +141,13 @@ Valuta di far girare i seguenti comandi per avere tutto disponibile:
 Poiché scriveremo e salveremo il nostro codice Perl 6 per la maggior parte del tempo,
 dovremmo avere un buon editor di testo che riconosca la sintassi Perl 6.
 
-Personalmente uso e raccomando https://atom.io/[Atom]. 
+Personalmente uso e raccomando https://atom.io/[Atom].
 Si tratta di un moderno editor di testo che fornisce nativamente riconoscimento sintattico di Perl 6
 
 https://atom.io/packages/language-perl6[Perl 6 FE] è un altro riconoscitore sintattico di Perl 6 per Atom;
 è derivato da un package originale corretto e riveduto.
 
-Altre persone della comunità usano anche http://www.vim.org/[Vim], https://www.gnu.org/software/emacs/[Emacs] oppure 
+Altre persone della comunità usano anche http://www.vim.org/[Vim], https://www.gnu.org/software/emacs/[Emacs] oppure
 http://padre.perlide.org/[Padre].
 
 Versioni recenti di Vim forniscono il riconoscimento sintattico nativamente.
@@ -432,7 +432,7 @@ Si formano avvolgendo l'operatore tra parentesi quadre `[]`
 
 |===
 
-NOTA: Per vedere una lista completa degli operatori, incluse le precedenze tra di loro, vai qui https://docs.perl6.org/language/operators
+NOTE: Per vedere una lista completa degli operatori, incluse le precedenze tra di loro, vai qui https://docs.perl6.org/language/operators
 
 == Variabili
 Le variabili Perl 6 sono classificate in tre categorie: scalari, array e hash.
@@ -474,7 +474,7 @@ JOHN DOE
 eoD nhoJ
 ----
 
-NOTA: Per avere una lista completa dei metodi applicabili alle stringhe, vedi qui https://docs.perl6.org/type/Str
+NOTE: Per avere una lista completa dei metodi applicabili alle stringhe, vedi qui https://docs.perl6.org/type/Str
 
 [source,perl6]
 .Interi
@@ -487,7 +487,7 @@ say $anni.is-prime;
 True
 ----
 
-NOTA: Per avere una lista completa dei metodi applicabili agli interi vei qui https://docs.perl6.org/type/Int
+NOTE: Per avere una lista completa dei metodi applicabili agli interi vei qui https://docs.perl6.org/type/Int
 
 [source,perl6]
 .Numeri razionali
@@ -504,7 +504,7 @@ say $anni.nude;
 (23 10)
 ----
 
-NOTA: Per una lista completa dei metodi applicabili ai numeri razionali vedi qui https://docs.perl6.org/type/Rat
+NOTE: Per una lista completa dei metodi applicabili ai numeri razionali vedi qui https://docs.perl6.org/type/Rat
 
 === Array
 Gli array (alias vettori, liste etc ndt.) sono liste contenenti valori multipli.
@@ -517,7 +517,7 @@ say @animali;
 
 Sugli array si possono fare un sacco di perazioni, come mostrato nell'esempio sottostante:
 
-Noticina: La tilde `~` si usa per la concatenazione delle stringhe.
+TIP: La tilde `~` si usa per la concatenazione delle stringhe.
 
 [source,perl6]
 .`Script`
@@ -544,7 +544,7 @@ Ora il mio zoo ha: cammello vigogna lama gufo
 Il primo animale adottato fu il cammello
 Sfortunatamente il gufo è volato via e siamo rimasti con: cammello vigogna lama
 Stiamo chiudendo lo zoo tenendo un solo animale
-Stiamo lasciando andare: vigogna lama e teniamo il cammello 
+Stiamo lasciando andare: vigogna lama e teniamo il cammello
 ----
 
 .Spiegazione
@@ -590,10 +590,10 @@ my @array[3];
 ----
 
 
-Otterresti il seguente messaggio di errore: 
+Otterresti il seguente messaggio di errore:
 [source,perl6]
 ----
-Index 3 for dimension 1 out of range (must be 0..2) 
+Index 3 for dimension 1 out of range (must be 0..2)
 ----
 
 ==== Array multidimensionali
@@ -631,7 +631,7 @@ say @tbl
 [3 z]
 ----
 
-NOTA: Per avere una guida completa sugli array vedi qui https://docs.perl6.org/type/Array
+NOTE: Per avere una guida completa sugli array vedi qui https://docs.perl6.org/type/Array
 
 === Hash
 [source,perl6]
@@ -675,12 +675,12 @@ La capitale della Francia è: Parigi
 `.values` ritorna una lista contenente tutti i valori. +
 Possiamo accedere ad uno specifico valore nell'hash specificando la sua chaive, così `%hash<key>`
 
-NOTA: Per avere una guida completa sugli hash vedi qui https://docs.perl6.org/type/Hash
+NOTE: Per avere una guida completa sugli hash vedi qui https://docs.perl6.org/type/Hash
 
 === Tipi
 Nei precedenti esempi non abbiamo specificato che tipo di valori le variabili dovrebbero contenere.
 
-Noticina: `.WHAT` ritornerà il tipo di valore contentuo in una variabile.
+TIP: `.WHAT` ritornerà il tipo di valore contentuo in una variabile.
 
 [source,perl6]
 ----
@@ -707,7 +707,7 @@ say $var;
 say $var.WHAT;
 ----
 
-Fallirà con questo messaggio di errore: `Type check failed in assignment to $var; expected Int but got Str` 
+Fallirà con questo messaggio di errore: `Type check failed in assignment to $var; expected Int but got Str`
  controllo sul tipo fallito per $var; mi aspettavo un Int ma ho ricevuto Str]
 
 Ciò che è successo è che abbiamo specificato che la variabile avrebbe dovuto essere di un tipo (Int), ma quando l'abbiamo assegnata ad una stringa è fallita.
@@ -886,7 +886,7 @@ say $a;
 Vincolare le variabili è bidirezionale. +
 `$a := $b` and `$b := $a` hanno lo stesso effetto.
 
-NOTA: Per avere più informazioni sulle variabli vedi qui https://docs.perl6.org/language/variables
+NOTE: Per avere più informazioni sulle variabli vedi qui https://docs.perl6.org/language/variables
 
 == Funzioni e modificatori
 
@@ -1092,7 +1092,7 @@ loop (my $i = 0; $i < 5; $i++) {
 }
 ----
 
-NOTA: Per avere più informazioni su cicli e costrutti condizioniali vedi qui https://docs.perl6.org/language/control
+NOTE: Per avere più informazioni su cicli e costrutti condizioniali vedi qui https://docs.perl6.org/language/control
 
 == I/O
 In Perl 6 due delle più comuni interfacce di _Input/Output_ sono il _terminale_ ed i _file_.
@@ -1245,7 +1245,7 @@ ATTENZIONE: Gli utenti Windows possono usare sia `/` che `\\` per definire le ca
 `C:\\rakudo\\bin` +
 `C:/rakudo/bin` +
 
-NOTA: Per avere più informazioni sull'I/O vedi qui https://docs.perl6.org/type/IO
+NOTE: Per avere più informazioni sull'I/O vedi qui https://docs.perl6.org/type/IO
 
 == Funzioni o metodi
 === Definizioni
@@ -1382,7 +1382,7 @@ Se sbagliamo a fornire un valore di ritorno che sia allineato con il vincolo di 
 Type check failed for return value; expected Int but got Rat (1.44)
 ----
 
-[Noticina]
+[TIP]
 ====
 Il vincolo sul tipo può fare un controllo aggiuntivo: la sua definitezza.
 
@@ -1403,7 +1403,7 @@ say "1.2 al quadrato è uguale a " ~ quadrato(1.2);
 ----
 ====
 
-NOTA: Per avere più informazioni su procedure e funzioni vedi qui https://docs.perl6.org/language/functions
+NOTE: Per avere più informazioni su procedure e funzioni vedi qui https://docs.perl6.org/language/functions
 
 == Programmazione funzionale
 In questo capitolo daremo un'occhiata ad alcune funzionalità orientate alla programmazione funzionale.
@@ -1560,7 +1560,7 @@ if $var == 1|2|3 {
   say "La variabile è 1 o 2 o 3"
 }
 ----
-L'uso di giunzioni nomalmente scatena l'*autothreading*; 
+L'uso di giunzioni nomalmente scatena l'*autothreading*;
 ossia, l'operazione viene eseguita per ogni valore della giunzione e tutti i risultati vengono combinati in una nuova giunzione e ritornati.
 
 === Liste pigre
@@ -1614,7 +1614,7 @@ say $lazylist;
 In questo esempio abbiamo definito esplicitamente il generatore abbacciandolo tra le `{ }` +
 Questa lista pigra può ritornare (se richiesti) i seguenti elementi (0, 3, 6, 9, 12)
 
-[Attenzione]
+[WARNING]
 ====
 Quando usiamo un generatore esplicito, il punto di fine deve essere uno dei valori che il generatore può ritornare. +
 Se riproduciamo l'esempio di prima con un punto di fine che sia 10 invece di 12, esso non si fermerà mai.
@@ -1655,7 +1655,7 @@ $saluto-generato();
 ----
 
 Quando fai girare il codice qui sopra, esso scriverà `Buongiorno Giovanni Dossi` sul terminale. +
-Mentre il risultato è giustamente semplice, ciò che è interessante in questo esempio, è che la subroutine interna `saluti` venga ritornata da una routine esterna prima di essere eseguita. 
+Mentre il risultato è giustamente semplice, ciò che è interessante in questo esempio, è che la subroutine interna `saluti` venga ritornata da una routine esterna prima di essere eseguita.
 
 `$saluto-generato` è diventata una *chiusura*.
 
@@ -1833,7 +1833,7 @@ Come le subroutine, sono un mezzo di confezionare un insieme di funzionalità, a
 
 I metodi sono definiti usando la parola chiave `method`. +
 In circostanze normali, i metodi sono invocati per compiere certe azioini sugli attributi degli oggetti.
-Questo implica il concetto di incapsulazione. Gli attributi di un oggetto possono essere manipolati dall'esterno dell'oggetto solo usando i metodi. 
+Questo implica il concetto di incapsulazione. Gli attributi di un oggetto possono essere manipolati dall'esterno dell'oggetto solo usando i metodi.
 Il mondo esterno può interagire con i metodi dell'oggetto e non ha accesso diretto ai suoi attributi.
 
 [source,perl6]
@@ -2290,7 +2290,7 @@ L'introspezione è facilitata da:
 * `~~` è un operatore chiamato `corrispondenza intelligente`
 Esso valuta a _True_ se l'oggetto è creato dalla classe con cui viene comparato o da qualche sua figlia.
 
-[NOTA]
+[NOTE]
 --
 Per avere più informazioni sulla prgrammazione orientata agli oggetti in Perl 6 vedi qui:
 
@@ -2402,7 +2402,7 @@ try {
 Il Perl 6 permette anche di scatenare esplicitamente delle eccezioni. +
 Si possono scatenare due tipi di eccezioni:
 
-* ad-hoc 
+* ad-hoc
 
 * tipizzate
 
@@ -2429,7 +2429,7 @@ Tutte le eccezioni tipizzate discendono dalla classe `X`; qui sotto alcuni esemp
 `X::OS` errori relativi al sistema operativo +
 `X::Str::Numeric` errori relativi al tentare di forzare una stringa in un numero
 
-NOTA: Per vedere una lista completa dei tipi di eccezione ed i loro metodi associati vedi qui https://docs.perl6.org/type-exceptions.html
+NOTE: Per vedere una lista completa dei tipi di eccezione ed i loro metodi associati vedi qui https://docs.perl6.org/type-exceptions.html
 
 
 == Espressioni regolari
@@ -2538,7 +2538,7 @@ if "Numeri Devanagari १२३" ~~ / <:N> / {
   say "Non contiene un numero"
 }
 if "Привет, Иван." ~~ / <:Lu> / {
-  say "Contiene lettere maiuscole;
+  say "Contiene lettere maiuscole";
 } else {
   say "Non contiene lettere maiuscole"
 }
@@ -2672,7 +2672,7 @@ I metodi seguenti possono essere chiamati sull'_oggetto corrispondente_: +
 `.from` ritorna la posizione di partenza della corrispondenza. +
 `.to` ritorna la posizione finale della corrispondenza. +
 
-Noticina: Di norma lo spazio bianco in una espressione regolare viene ignorato. +
+TIP: Di norma lo spazio bianco in una espressione regolare viene ignorato. +
 Se vogliamo una corrispondenza con una regex che contenga spazi, dobbiamo farlo esplicitamente. +
 Il `:s` nella regex di esempio `m/:s Perl 6/` forza l'espressione a considerare gli spazi. +
 Alternativamete potevamo scrivere la regex come `m/ Perl\s6 /` usando `\s` che rappresenta lo spazio. +
@@ -2686,7 +2686,7 @@ nome [punto] cognome [chiocciolina] azienda [punto] (com/org/net)
 ATTENZIONE: l'espressione regolare usata in questo
 esempio per la validazione dell'indirizzo email non è
 molto accurata. +
-Il suo solo scopo è di dimostrare la funzionalià delle 
+Il suo solo scopo è di dimostrare la funzionalià delle
 espressioni regolari in Perl 6. +
 Non usarla in vero software applicativo!
 
@@ -2749,7 +2749,7 @@ if $email ~~ / <molte-lettere> <punto> <molte-lettere> <chiocciolina> <molte-let
 Una espressione regolare con nome viene definita con questa sintassi: `my regex nome-regex { defininizione-regex }` +
 Una espressione regolare con nome può essere chiamata usando questa sintassi: `<nome-regex>`
 
-NOTA: Per avere più informazione sulle espressioni regolari vedi qui https://docs.perl6.org/language/regexes
+NOTE: Per avere più informazione sulle espressioni regolari vedi qui https://docs.perl6.org/language/regexes
 
 == I moduli Perl 6
 Perl 6 è un linguaggio di programmazione di utilizzo generale. Può essere usato per affrontare una moltitudine di compiti tra cui la manipolazione dei testi, grafica, web, database, protocolli di rete ecc.
@@ -2764,7 +2764,7 @@ Per installare un modulo specifico digita questo comando dal tuo terminale:
 
 `zef install "nome-del-modulo"`
 
-NOTA: Le cartelle con i moduli Perl 6 sono qui: https://modules.perl6.org/
+NOTE: Le cartelle con i moduli Perl 6 sono qui: https://modules.perl6.org/
 
 === Usare i moduli
 MD5 è una funzione di crittografia che produce has a 128-bit. +
@@ -2895,7 +2895,7 @@ Iniziamo da quest ultimo caso.
 ----
 my @array = (0..50000);                     # inizializzazione dell'array
 my @risultato = @array.map({ is-prime $_ });   # invoca is-prime per ogni elemento dell'array
-say now - INIT now;                         # stampa il tempo impiegato per completare 
+say now - INIT now;                         # stampa il tempo impiegato per completare
 ----
 
 .Considerando l'esempio qui sopra:
@@ -2908,7 +2908,7 @@ La funzione `is-prime` viene invocata per ogni elemento dell'array alla volta: +
 ----
 my @array = (0..50000);                         # inizializzazione dell'array
 my @risultato = @array.race.map({ is-prime $_ });  # invoca is-prime per ogni elemento dell'array
-say now - INIT now;                             # stampa il tempo impiegato per completare 
+say now - INIT now;                             # stampa il tempo impiegato per completare
 ----
 
 Vedi che qui abbiamo introdotto `race` nell'espressione.
@@ -2916,7 +2916,7 @@ Questo metodo abilita l'iterazione parallela sugli elementi dell'array.
 
 Dopo aver fatto girare entrambi gli esempi (con e senza `race`), confrontiamo il tempo speso.
 
-[Noticina]
+[TIP]
 ====
 `race` non conserva l'ordine degli elementi. Se vuoi conservarlo devi usare `hyper`.
 
@@ -3000,7 +3000,7 @@ ATTENZIONE: il parallelismo aggiunge sempre un carico sul thread. Se questo sovr
 Questa è  la ragione per cui, usando `race`, `hyper`, `start` e `await` per script brevi e semplici si possono ottenere tempi di esecuzione peggiori.
 
 === Concorrenza ed asincronismo
-NOTA: Per avere più informazioni su programmazone concorrente ed asincronismo vedi qui https://docs.perl6.org/language/concurrency
+NOTE: Per avere più informazioni su programmazone concorrente ed asincronismo vedi qui https://docs.perl6.org/language/concurrency
 
 == Interfaccia chiamante nativa
 
@@ -3064,7 +3064,7 @@ Alla fine, il tutto si riduce a dichiarare una subroutine con la direttiva `is n
 
 === Rinominare una funzione
 
-Nel paragrafo qui sopra, abbiamo visto come possiamo chiamare una funzione C molto semplice 
+Nel paragrafo qui sopra, abbiamo visto come possiamo chiamare una funzione C molto semplice
 wrappandola con una subroutine Perl 6 che ha lo stesso nome, tramite la direttiva `is native`.
 
 In alcuni casi, potremmo voler cambiare il nome della subroutine Perl 6. +
@@ -3085,7 +3085,7 @@ hello();
 ----
 
 .Spiegazione:
-Nel caso in cui la subroutine Perl 6 abbia un nome diverso dalla sua controparte C, 
+Nel caso in cui la subroutine Perl 6 abbia un nome diverso dalla sua controparte C,
 dovremmo usare `is symbol` con il nome della funzione C originale.
 
 === Passaggio di argomenti
@@ -3200,7 +3200,7 @@ Fortunatamente Perl 6 fornisce molti tipi che si mappano perfettamente con le lo
 
 |===
 
-NOTA: Per avere più informazioni sull'interfaccia chiamante nativa vedi qui https://docs.perl6.org/language/nativecall
+NOTE: Per avere più informazioni sull'interfaccia chiamante nativa vedi qui https://docs.perl6.org/language/nativecall
 
 == La comunità
 
