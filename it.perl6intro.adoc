@@ -1,6 +1,6 @@
 = Perl 6 Introduzione
-:descrizione: Introduzione generale a Perl 6
-:Author: Naoum Hankache; MarsMarsico <marsmarsico@tiscali.it>
+Naoum Hankache <naoum@hankache.com>; MarsMarsico <marsmarsico@tiscali.it>
+:description: Introduzione generale a Perl 6
 :keywords: perl6, perl 6, introduzione, perl6intro, perl 6 introduzione, perl 6 tutorial, perl 6 intro
 :Revision: 1.0
 :icons: font
@@ -35,8 +35,10 @@ Se vuoi contribuire a questo documento, riferisciti a:
 
 .Feedback
 tutti i feedback sono benvenuti:
-naoum@hankache.com
-marsmarsico@tiscali.it
+
+* naoum@hankache.com
+
+* marsmarsico@tiscali.it
 
 Se questo lavoro ti piace, clicca la _Star_ nel repository che trovi qui:
 link:https://github.com/hankache/perl6intro[Github].
@@ -1241,7 +1243,7 @@ say "cartella123".IO.f;
 `IO.f` controlla che il percorso sia un file. +
 `IO.d` controlla che il percorso sia una cartella.
 
-ATTENZIONE: Gli utenti Windows possono usare sia `/` che `\\` per definire le cartelle +
+WARNING: Gli utenti Windows possono usare sia `/` che `\\` per definire le cartelle +
 `C:\\rakudo\\bin` +
 `C:/rakudo/bin` +
 
@@ -1546,7 +1548,7 @@ Inoltre possiamo definire nuove subroutine e chiamarle usando l'operatore iper. 
 
 Questo è molto comodo e ci solleva dal dover scrivere cicli `for` per iterare su ogni valore.
 
-ATTENZIONE: Perl 6 garantisce che l'ordine dei risultati sia lo stesso di quello della lista originale.
+WARNING: Perl 6 garantisce che l'ordine dei risultati sia lo stesso di quello della lista originale.
 Tuttavia non c'è garnzia che Perl 6 chiami i metodi nell'ordine della lista, oppure all'interno dello stesso thread. Quindi dobbiamo stare attenti con i metodi che hanno effetti collaterali come `say` o `print`.
 
 === Giunzioni
@@ -2683,7 +2685,7 @@ Controlliamo se una mail è valida o no. +
 Per semplicità assumiamo che una email valida abbia questo formato. +
 nome [punto] cognome [chiocciolina] azienda [punto] (com/org/net)
 
-ATTENZIONE: l'espressione regolare usata in questo
+WARNING: l'espressione regolare usata in questo
 esempio per la validazione dell'indirizzo email non è
 molto accurata. +
 Il suo solo scopo è di dimostrare la funzionalià delle
@@ -2789,7 +2791,7 @@ say $hashed-password;
 Per far girare la funzione `md5_hex()` che crea gli has, abbiamo bisono di caricare il modulo richiesto. +
 La parola chiave `use` carica il modulo permettendo di usarlo nello script.
 
-ATTENZIONE: In pradica il fatto che MD5 produca gli hash non è sufficiente, perché questa è una soluzione vulnerabile agli attacchi a dizionario [https://it.wikipedia.org/wiki/Attacco_a_dizionario]. +
+WARNING: In pradica il fatto che MD5 produca gli hash non è sufficiente, perché questa è una soluzione vulnerabile agli attacchi a dizionario [https://it.wikipedia.org/wiki/Attacco_a_dizionario]. +
 Dovrebbe essere combinato con un'azione crittografica [https://it.wikipedia.org/wiki/Sale_(crittografia)].
 
 == Unicode
@@ -2996,7 +2998,7 @@ Se sarà *spezzata* allora fornirà l'eccezione scatenata.
 
 Controlla il tempo impiegato da ciascuno script per completarsi
 
-ATTENZIONE: il parallelismo aggiunge sempre un carico sul thread. Se questo sovraccarico non è compensato dai guadagni dovuti alla velocità di computazione, lo script sarà più lento. +
+WARNING: il parallelismo aggiunge sempre un carico sul thread. Se questo sovraccarico non è compensato dai guadagni dovuti alla velocità di computazione, lo script sarà più lento. +
 Questa è  la ragione per cui, usando `race`, `hyper`, `start` e `await` per script brevi e semplici si possono ottenere tempi di esecuzione peggiori.
 
 === Concorrenza ed asincronismo
