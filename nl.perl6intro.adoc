@@ -53,8 +53,8 @@ In Perl 6 kan met diverse paradigma's geprogrammeerd worden.  Ondersteund worden
 Een implementatie van Perl 6 die al deze tests succesvol kan uitvoeren, mag zich een "Perl 6" implementatie noemen.
 * *Rakudo*: Is een compiler voor Perl 6.
 * *Rakudobrew*: Is een installatie-manager van Perl 6.
-* *Panda*: Is een installatie-programma voor modules.
-* *Rakudo Star*: Is een bundel software waarin zich Rakudo, Panda, documentatie en een verzameling van Perl 6 modules bevindt.
+* *Zef*: Is een installatie-programma voor modules.
+* *Rakudo Star*: Is een bundel software waarin zich Rakudo, zef, documentatie en een verzameling van Perl 6 modules bevindt.
 
 === Installeren van Perl 6
 .Linux
@@ -62,9 +62,9 @@ Een implementatie van Perl 6 die al deze tests succesvol kan uitvoeren, mag zich
 
 . Installeer Rakudo: Typ het volgende commando in een terminalvenster `rakudobrew build moar`
 
-. Installeer Panda: Typ het volgende commando in een terminalvenster `rakudobrew build panda`
+. Installeer Zef: Typ het volgende commando in een terminalvenster `rakudobrew build zef`
 
-. Ten slotte, installeer Task::Star.  Dit zal alle modules installeren die gebundeld zijn met de Rakudo Star Perl 6 distributie: `panda install Task::Star`
+. Ten slotte, installeer Task::Star.  Dit zal alle modules installeren die gebundeld zijn met de Rakudo Star Perl 6 distributie: `zef install Task::Star`
 
 Zie http://rakudo.org/how-to-get-rakudo/#Installing-Rakud-Star-Linux voor meer opties.
 
@@ -109,9 +109,9 @@ In de bundel Rakudo Star zit ook een regel-editor die het uitproberen in de REPL
 Als je alleen maar Rakudo hebt geïnstalleerd, en niet Rakudo Star, dan heb je standaard niet alle handige regel-editor mogelijkheden (zoals pijltje naar onder/boven om eerder ingetypte regels te bekijken, pijltje links/rechts om je invoer te veranderen, en automatisch invullen met TAB).
 Voer het volgende commando uit om deze functionaliteit te installeren:
 
-* `panda install Linenoise` werkt op Windows, Linux en OS X
+* `zef install Linenoise` werkt op Windows, Linux en OS X
 
-* `panda install Readline` als je op Linux werkt en liever werkt met de _Readline_ bibliotheek
+* `zef install Readline` als je op Linux werkt en liever werkt met de _Readline_ bibliotheek
 --
 
 === Bewerkingsprogramma's (Editors)
@@ -2697,11 +2697,11 @@ Herbruikbaarheid is een erg belangrijke eigenschap waardoor programmeurs niet te
 
 Perl 6 maakt het mogelijk om *modules* aan te maken en die te distribueren.  Elke module is een bundel van functionaliteit die kan worden gebruikt zodra deze is geïnstalleerd.
 
-_Panda_ is een programma om modules te beheren dat deel is van Rakudo Star.
+_Zef_ is een programma om modules te beheren dat deel is van Rakudo Star.
 
 Om een specifieke module te installeren moet men onderstaand commando in een terminalvenster intypen:
 
-`panda install "module name"`
+`zef install "module name"`
 
 NOTE: Een overzicht van beschikbare Perl 6 modules is te vinden op: https://modules.perl6.org/
 
@@ -2714,7 +2714,7 @@ Het idee daarachter is dat in het geval dat een database wordt gestolen, de dief
 Laat ons een script schrijven dat een MD5 hash van een wachtwoord maakt voordat het in een database wordt opgeslagen.
 
 Gelukkig is er al een Perl 6 module geimplementeerd voor het MD5 algoritme.  Laten we het eerst installeren: +
-`panda install Digest::MD5`
+`zef install Digest::MD5`
 
 Voer daarna onderstaand script uit:
 [source,perl6]
