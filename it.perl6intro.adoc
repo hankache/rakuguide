@@ -41,22 +41,25 @@ tutti i feedback sono benvenuti:
 * marsmarsico@tiscali.it
 
 Se questo lavoro ti piace, clicca la _Star_ nel repository che trovi qui:
-link:https://github.com/hankache/perl6intro[Github].
+link:https://github.com/marsmarsico/perl6intro[Github]
+grazie!
 
-.Versioni disponibili
+.Altre versioni disponibili
 * Bulgaro: http://bg.perl6intro.com
 * Cinese: http://zh.perl6intro.com
-* Olandese: http://nl.perl6intro.com
 * Francese: http://fr.perl6intro.com
-* Tedesco: http://de.perl6intro.com
 * Giapponese: http://ja.perl6intro.com
+* Inglese: http://perl6intro.com
+* Olandese: http://nl.perl6intro.com
 * Portoghese: http://pt.perl6intro.com
 * Spagnolo: http://es.perl6intro.com
+* Tedesco: http://de.perl6intro.com
+
 
 :sectnums:
 == Introduzione
 === Cos'è Perl 6
-Perl 6 è un linguaggio gradualmente tipizzato, di alto livello, general-purpose.
+Perl 6 è un linguaggio gradualmente tipizzato, di alto livello, di uso generale.
 Perl 6 è multiparadigmatico. Supporta sia programmazione procedurale
 che orientatata agli oggetti che funzionale.
 
@@ -120,7 +123,7 @@ per scrivere un output sul monitor.
 
 REPL in generale si usa per fare delle prove su pezzetti specifici di codice,
 tipicamente singole linee. Per programmi con più di una singola linea si raccomanda
-di immagazzinarel prima in un file e poi far girare quello.
+di scriverle prima in un file e poi far girare quello.
 
 Linee singole possono essere provate anche non interattivamente sulla linea di comando
 attaverso il comando `perl6 -e 'tuo-codice-qui'` e premendo [Enter].
@@ -1680,8 +1683,8 @@ sub genera-saluti($periodo) {
 my $giorno = genera-salut("giorno");
 my $natale = genera-salut("Natale");
 
-say $morning("Giovanni");
-say $evening("Giovanna");
+say $giorno("Giovanni");
+say $natale("Giovanna");
 ----
 In questo esempio abbiamo definito un metodo `genera-saluti($periodo)` che accetta un argomento singolo `$periodo` e ritorna una nuova funzione. Tale funzione accetta un argomento singolo `$nome` e ritorna un saluto.
 
@@ -3206,10 +3209,10 @@ NOTE: Per avere più informazioni sull'interfaccia chiamante nativa vedi qui htt
 
 == La comunità
 
-* link:irc://irc.freenode.net/#perl6[#perl6] IRC channel. Much discussion happens on IRC. This should be your go to place for any enquiry: https://perl6.org/community/irc
+* link:irc://irc.freenode.net/#perl6[#perl6] Canale IRC. Si discute molto su IRC. Per le tue investigazioni rivolgiti a questo canale: https://perl6.org/community/irc
 
-* link:https://p6weekly.wordpress.com[p6weekly] a weekly overview of changes in and around Perl 6.
+* link:https://p6weekly.wordpress.com[p6weekly] Panoramica settimanale dei cambiamenti intorno al mondo Perl 6.
 
-* link:http://pl6anet.org[pl6anet] blog aggregator. Stay tuned by reading blog posts that focus on Perl 6.
+* link:http://pl6anet.org[pl6anet] Aggregatore di blog. Resta sintonizzto su questo canale per leggere le ultime novità Perl 6.
 
-* link:https://www.reddit.com/r/perl6/[/r/perl6] Subscribe to the Perl 6 subreddit.
+* link:https://www.reddit.com/r/perl6/[/r/perl6] Iscriviti al subreddit su Perl 6.
