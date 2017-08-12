@@ -41,13 +41,14 @@ link:https://github.com/hankache/perl6intro[Github] 给这个仓库点赞。
 
 .Translations
 * Bulgarian: http://bg.perl6intro.com
+* Chinese: http://zh.perl6intro.com
 * Dutch: http://nl.perl6intro.com
 * French: http://fr.perl6intro.com
 * German: http://de.perl6intro.com
+* Italian http://it.perl6intro.com
 * Japanese: http://ja.perl6intro.com
 * Portuguese: http://pt.perl6intro.com
 * Spanish: http://es.perl6intro.com
-* Chinese: http://zh.perl6intro.com
 
 :sectnums:
 == 序言
@@ -71,10 +72,10 @@ Perl 6 是通过该规范测试套件的实现。
 .Linux
 . 安装 Rakudo Star: 在终端中运行：
 ----
-wget https://rakudo.perl6.org/downloads/star/rakudo-star-2017.04.tar.gz
-tar xfz rakudo-star-2017.04.tar.gz
-cd rakudo-star-2017.04
-perl Configure.pl --gen-moar --prefix /opt/rakudo-star-2017.04
+wget https://rakudo.perl6.org/downloads/star/rakudo-star-2017.07.tar.gz
+tar xfz rakudo-star-2017.07.tar.gz
+cd rakudo-star-2017.07
+perl Configure.pl --gen-moar --prefix /opt/rakudo-star-2017.07
 make install
 ----
 
