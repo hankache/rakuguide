@@ -159,7 +159,8 @@ that can also be written as:
 'hello world'.say;
 
 === Syntax overview
-Perl 6 is *free form*: You are free (most of the time) to use any amount of whitespace.
+Perl 6 is *free form*: Most of the time you are free to use any amount of whitespace, although in certain
+cases whitespace carries meaning.
 
 *Statements* are typically a logical line of code, they need to end with a semicolon:
 `say "Hello" if True;`
