@@ -41,7 +41,7 @@ tutti i feedback sono benvenuti:
 * marsmarsico@tiscali.it
 
 Se questo lavoro ti piace, clicca la _Star_ nel repository che trovi qui:
-link:https://github.com/marsmarsico/perl6intro[Github]
+link:https://github.com/hankache/perl6intro[Github]
 grazie!
 
 .Altre versioni disponibili
