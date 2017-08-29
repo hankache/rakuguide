@@ -130,7 +130,7 @@ que también puede escribirse como:
 'hola mundo'.say;
 
 === Sintaxis general
-Perl 6 tiene *forma libre*, esto es, eres libre (casi siempre) de utilizar cualquier cantidad de espacios en blanco.
+Perl 6 tiene *forma libre*: generalmente los espacios en blanco carecen de significado salvo en ciertos casos.
 
 *Una Sentencia* normalmente es una línea lógica de código que finaliza en punto y coma:
 `say "Hola" if True;`
