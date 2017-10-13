@@ -149,7 +149,7 @@ say 'hello world';
 'hello world'.say;
 
 === 语法概要
-Perl 6 是 *形式自由的*: 你可以使用(大多数时候)任何数量的空格。
+Perl 6 是 *形式自由的*, (大多数时候)你可以使用任意数量的空格。
 
 *语句* 通常是一个逻辑代码行, 它们需要以一个分号结尾:
 `say "Hello" if True;`
@@ -171,22 +171,22 @@ Perl 6 是 *形式自由的*: 你可以使用(大多数时候)任何数量的空
 
 | *类型* | *解释* | *示例*
 
-| 前缀 | Before the term. | `++1`
+| 前缀 | 用在项前 | `++1`
 
-| 中缀 | Between terms | `1+2`
+| 中缀 | 用在项与项之间 | `1+2`
 
-| 后缀 | After the term | `1++`
+| 后缀 | 用在项后 | `1++`
 
-| 环缀 | Around the term | `(1)`
+| 环缀 | 包围项 | `(1)`
 
-| 后环缀 | After one term, around another  | `Array[1]`
+| 后环缀 | 在一个项之后, 包围另一个项  | `Array[1]`
 
 |===
 
 ==== 标识符
 标识符是你定义项时给它们起的名字。
 
-.Rules:
+.命名规则:
 * 它们必须以字母字符或下划线开头。
 
 * 它们可以包含数字 (除了第一个字符)。
@@ -195,7 +195,7 @@ Perl 6 是 *形式自由的*: 你可以使用(大多数时候)任何数量的空
 
 |===
 
-| *Valid* | *Invalid*
+| *有效标识符* | *无效标识符*
 
 | `var1` | `1var`
 
@@ -214,17 +214,17 @@ Perl 6 是 *形式自由的*: 你可以使用(大多数时候)任何数量的空
 
 * 串联式: `variable-no1`
 
-* Snake case: `variable_no1`
+* 蛇行式: `variable_no1`
 
-您可以随意命名您的标识符，但是最好采用一个命名约定。
+你可以随意命名标识符，但是最好采用一个命名约定。
 
 使用有意义的名称将减轻你（和其他人）的编程工作负担。
 
-* `var1 = var2 * var3` 在语法上是正确的，但它的目的不明显。
-* `monthly-salary = daily-rate * working-days` 会是更好的命名变量的方法。
+* `var1 = var2 * var3` 在语法上是正确的，但它的意图不明显。
+* `monthly-salary = daily-rate * working-days` 是更好的命名变量的方法。
 
 ==== 注释
-注释是被编译器忽略的文本片段并用作注解。
+注释是用于注解的文本片段, 编译器会忽略注释。
 
 注释被分为 3 种类型:
 
@@ -250,13 +250,13 @@ Comment 2
 -----------------------------
 
 ==== 引号
-字符串要么被双引号包围要么被单引号包围。
+字符串被双引号或单引号包围。
 
-总是使用双引号:
+必须使用双引号, 如果:
 
-* 如果你的字符串包含单引号。
+* 你的字符串包含单引号。
 
-* 如果你的字符串包含需要被替换的变量。
+* 你的字符串包含需要被替换的变量。
 
 [source,perl6]
 -----------------------------------
@@ -287,7 +287,8 @@ say "Hello $name";   # Hello John Doe
 
 | / | 中缀 | 除 | 3 / 2 | 1.5
 
-| div | 中缀 |  整除(rounds down) | 3 div 2 | 1
+.2+| div .2+| 中缀 .2+|  整除 (向下取整) | 3 div 2 | 1
+<| (-3) div 2 <| -2
 
 | % | 中缀 | 取模 | 7 % 4 | 3
 
@@ -315,7 +316,7 @@ say "Hello $name";   # Hello John Doe
 
 | ne | 中缀 | 字符串不等 | "John" ne "Jane"  | True
 
-| = | 中缀 | 赋值 | my $var = 7  | `$var` 将`7`赋值给变量`$var`
+| = | 中缀 | 赋值 | my $var = 7  | 将字面值 `7` 赋值给变量 `$var`
 
 .2+| ~ .2+| 中缀 .2+| 字符串连接 | 9 ~ 7 | 97
 
@@ -335,7 +336,7 @@ say "Hello $name";   # Hello John Doe
 
 <| "enlightenment" ~~ /light/ <| ｢light｣
 
-.2+| ++ | 前缀 | 递增 | my $var = 2; ++$var;  | 变量加1并返回结果 `3`
+.2+| ++ | 前缀 | 递增 | my $var = 2; ++$var;  | 递增变量然后返回变量值 `3`
 
 <m| 后缀 <d| 递增 <m| my $var = 2; $var++;  <| 返回变量值 `2` 然后递增变量
 
@@ -343,7 +344,7 @@ say "Hello $name";   # Hello John Doe
 
 <m| 后缀 <d| 递减 <m| my $var = 2; $var--;  <| 返回变量值 `2` 然后递减变量
 
-.3+| + .3+| 前缀(Prefix) .3+| 强制转变为数值 | +"3"  | 3
+.3+| + .3+| 前缀 .3+| 强制转变为数值 | +"3"  | 3
 
 <| +True <| 1
 
@@ -367,7 +368,7 @@ say "Hello $name";   # Hello John Doe
 
 <| my $var = 7; ?$var; <| True
 
-| ! | 前缀 | 将运算对象转换成布尔值并返回否运算后的结果 | !4 | False
+| ! | 前缀 | 强制转换为布尔值并返回相反数 | !4 | False
 
 | .. | 中缀 | Range 构造函数 |  0..5  | 创建 0 到 5 的整数列
 
@@ -377,7 +378,7 @@ say "Hello $name";   # Hello John Doe
 
 | \^..^ | 中缀 | Range 构造函数 |  0\^..^5  | 创建 1 到 4 的整数列
 
-| ^ | 前缀 | Range 构造函数 |  ^5  | 和0..^5相同，创建 0 到 4 的整数列
+| ^ | 前缀 | Range 构造函数 |  ^5  | 等价于0..^5，创建 0 到 4 的整数列
 
 | ... | 中缀 | 惰性列表构造函数 |  0...9999  |  只有接到请求时才返回元素
 
@@ -404,7 +405,7 @@ say "Hello $name";   # Hello John Doe
 === 归约运算符
 
 归约运算符应用于一个值的列表。
-归约运算符由包裹有方括号 `[]` 的运算符来表示。
+归约运算符由被方括号 `[]` 包围的运算符来表示。
 
 [cols=".^m,.^m,.^m,.^m", options="header"]
 |===
@@ -421,11 +422,11 @@ NOTE: 可以到 https://docs.perl6.org/language/operators 查看完整的运算�
 == 变量
 Perl 6 中的变量分为 3 类：标量、数组和哈希。
 
-变量名以 *魔符*（sigil）开头以区分不同类型。
+变量名以 *魔符* (sigil) 开头以区分不同类型。
 
-* `$` 用于标量(scalars)
-* `@` 用于数组(arrays)
-* `%` 用于哈希(hashes)
+* `$` 用于标量 (scalars)
+* `@` 用于数组 (arrays)
+* `%` 用于哈希 (hashes)
 
 === 标量
 标量用于存储一项数据或引用。
@@ -441,15 +442,15 @@ my $age = 99;
 say $age;
 ----
 
-根据标量中存储的数据类型，一类特殊的操作符可以用于标量。
+特定数据类型的标量对应一组作用于它的操作。
 
 [source,perl6]
 .字符串
 ----
-my $name = 'John Doe';
-say $name.uc;
-say $name.chars;
-say $name.flip;
+my $name = 'John Doe'; # 对于字符串类型
+say $name.uc;          # .uc 将字母全部大写
+say $name.chars;       # .chars 获得字符串的字符数, 即字符串长度
+say $name.flip;        # .flip 返回翻转字符串的结果
 ----
 
 ----
@@ -464,7 +465,7 @@ NOTE: 所有可应用于字符串的方法列表，请参照 https://docs.perl6.
 .整数
 ----
 my $age = 17;
-say $age.is-prime;
+say $age.is-prime; # .is-prime 判断整数值是否为质数
 ----
 
 ----
@@ -477,9 +478,9 @@ NOTE: 所有可应用于整数的方法列表，请参照 https://docs.perl6.org
 .有理数
 ----
 my $age = 2.3;
-say $age.numerator;
-say $age.denominator;
-say $age.nude;
+say $age.numerator;   # .numerator 获得有理数值对应最简分数的分子
+say $age.denominator; # .denominator 获得有理数值对应最简分数的分母
+say $age.nude;        # .nude 同时获得分子分母
 ----
 
 ----
@@ -490,7 +491,7 @@ say $age.nude;
 
 NOTE: 所有可应用于有理数的方法列表，请参照 https://docs.perl6.org/type/Rat
 
-=== Arrays 数组
+=== 数组
 数组是储存有多个值的列表。
 
 [source,perl6]
@@ -499,7 +500,7 @@ my @animals = 'camel','llama','owl';
 say @animals;
 ----
 
-下面例子中的操作符可以应用于列表：
+下面例子中的操作可以应用于列表：
 
 TIP: 波浪符 `~` 可用于列表中字符串的连接。
 
@@ -553,7 +554,7 @@ my @array;
 [source,perl6]
 my @array[3];
 
-这个数组最多可以储存 3 个变量，索引从 0 开始到 2 结束。
+这个数组最多可以储存 3 个变量，索引从 0 开始, 到 2 结束。
 
 [source,perl6]
 ----
@@ -612,7 +613,7 @@ say @tbl
 [3 z]
 ----
 
-NOTE: 对于完整的数组参考资料，请参见https://docs.perl6.org/type/Array
+NOTE: 对于完整的数组参考资料，请参照 https://docs.perl6.org/type/Array
  
 === Hashes 哈希
 [source,perl6]
@@ -656,7 +657,7 @@ The capital of France is: Paris
 `.values` 返回一个包含所有值的列表。 +
 我们可以通过哈希中特定值所对应的键来访问这个值。 `%hash<key>`
 
-NOTE: 完整的哈希参考资料，请见 https://docs.perl6.org/type/Hash
+NOTE: 完整的哈希参考资料，请参照 https://docs.perl6.org/type/Hash
 
 === 类型
 前面的例子中，我们并没有指定变量中值的类型。
@@ -679,7 +680,7 @@ say $var.WHAT;
 这种编程风格被称作动态类型。动态在这里是指变量可以储存任何类型的值。
 
 接下来试着运行下面的例子: +
-Notice `Int` 注意在变量名前的 `Int`。
+注意在变量名前的 `Int`。
 
 [source,perl6]
 ----
@@ -714,6 +715,10 @@ say %capitals.WHAT;
 my Int %country-codes = (UK => 44, Germany => 49);
 say %country-codes;
 say %country-codes.WHAT;
+
+my Str %student-name{Int} = (1 => 'Alex', 2 => 'Mary');
+say %student-name;
+say %student-name.WHAT;
 ----
 
 .下面是最常用的类型:
@@ -726,7 +731,7 @@ say %country-codes.WHAT;
 
 | Mu | Perl 6 的基础类型 | |
 
-| Any | 新类的默认类型，同时也是大部分内部类的类型 | |
+| Any | 新类和大部分内部类的默认基类 | |
 
 | Cool | 既可以被当做数值也可以作为字符串 | my Cool $var = 31; say $var.flip; say $var * 2; | 13 62
 
@@ -784,9 +789,9 @@ Perl 6 中块有 `{}` 界定。
 ----
 {
   my Str $var = 'Text';
-  say $var; #is accessible
+  say $var; # 可以使用
 }
-say $var; #is not accessible, returns an error
+say $var;   # 不能使用, 会报错
 ----
 
 因为一个变量只有在定义它的块中有效，所以同样的变量名可以在另一个块中使用。
@@ -802,7 +807,7 @@ say $var;
 ----
 
 === 赋值 vs. 绑定
-我们已经在前面的例子中看到如何将 *值赋* 给变量。 +
+我们已经在前面的例子中看到如何将值 *赋* 给变量。 +
 *赋值* 通过 `=` 操作符完成。
 [source,perl6]
 ----
@@ -866,7 +871,7 @@ say $a;
 就像你已经注意到的那样，绑定变量是双向的。 +
 `$a := $b` 和 `$b := $a` 拥有同样的效果.
 
-NOTE: 关于变量的更多信息，请见： https://docs.perl6.org/language/variables
+NOTE: 关于变量的更多信息，请参见 https://docs.perl6.org/language/variables
 
 == 函数和修改器
 
