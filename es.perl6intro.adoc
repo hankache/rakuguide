@@ -61,10 +61,10 @@ Las implementaciones que pasan el banco de pruebas de la especificación se cons
 .Linux
 Instalación de Rakudo Star desde la línea de comandos:
 ----
-wget https://rakudo.perl6.org/downloads/star/rakudo-star-2017.07.tar.gz
-tar xfz rakudo-star-2017.07.tar.gz
-cd rakudo-star-2017.07
-perl Configure.pl --gen-moar --prefix /opt/rakudo-star-2017.07
+wget https://rakudo.perl6.org/downloads/star/rakudo-star-2017.10.tar.gz
+tar xfz rakudo-star-2017.10.tar.gz
+cd rakudo-star-2017.10
+perl Configure.pl --gen-moar --prefix /opt/rakudo-star-2017.10
 make install
 ----
 Tienes más información en http://rakudo.org/how-to-get-rakudo/#Installing-Rakudo-Star-Linux
