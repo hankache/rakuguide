@@ -1,0 +1,3120 @@
+= Perl 6'ya Giriş
+Naouman Hanckache <naoum@hankache.com>; Yalın Pala <yalinpala@protonmail.com>
+:description: Perl 6'ya genel Giriş
+:keywords: perl6, perl 6, giriş, perl6giriş, perl 6'ya giriş, perl 6 öğretici
+:Email: yalinpala@protonmail.com
+:Revision: 1.0
+:icon: font
+:source-highlighter: pygments
+//:pytgments-style: manni
+:source-language: perl6
+:pygments-linenums-mode: table
+:toc: left
+:doctype: book
+:lang: tr
+
+
+Bu belge, size Perl 6 programlama dili hakkında hızlı bir genel bakış sunmak amacıyla hazırlanmıştır.
+Yeni olanları Perl 6'ya hazırlama amacı ile yazılmıştır.
+
+Bu belgenin bazı bölümleri http://docs.perl6.org[Perl 6 dökümantasyonu]'na değinmektedir.
+Belirli bir konuda daha fazla bilgiye ihtiyacınız varsa bunları okumalısınız.
+
+Belge boyunca tartışılan konuların örneklerini bulacaksınız.
+Örneklerden daha iyi yararlanmak için örnekler üzerine zaman ayırın ve kendi örneklerinizi oluşturmaya çalışın.
+
+.Lisans
+Bu eser Creative Commons Atıf-AynıLisanslaPaylaş 4.0 Uluslararası Lisansı uyarınca lisanslanmıştır.
+Bu lisansın bir kopyasını görüntülemek için aşağıdaki adresi ziyaret edin
+
+* https://creativecommons.org/licenses/by-sa/4.0/deed.tr
+
+.Katkı
+Bu belgeye katkıda bulunmak isterseniz:
+
+* https://github.com/hankache/perl6intro
+
+.Geri Bildirim
+Tüm görüşeriniz memnuniyetle karşılanmaktadır:
+
+* naoum@hankache.com -_İngilizce_
+* yalinpala@protonmail.com
+
+Bu eseri beğendiyseniz, kaynağına göz atabilirsiniz
+link:https://github.com/hankache/perl6intro[Github].
+
+.Çeviriler
+* Almanca: http://de.perl6intro.com
+* Bulgarca: http://bg.perl6intro.com
+* Çince: http://zh.perl6intro.com
+* Flemenkçe: http://nl.perl6intro.com
+* Fransızca: http://fr.perl6intro.com
+* İngilizce: http://perl6intro.com
+* İspanyolca: http://es.perl6intro.com
+* İtalyanca: http://it.perl6intro.com
+* Japonca: http://ja.perl6intro.com
+* Portekizce: http://pt.perl6intro.com
+
+:sectnums:
+== Giriş
+=== Perl 6 Nedir?
+Perl 6 yüksek seviyeli, genel amaçlı, kademeli yazılan(_gradually typed_) bir dildir.
+Perl 6 prosedürel, nesne yönelimli ve fonksiyonel programlamayı destekler. _(multi-paradigmatic)_
+
+.Perl 6 mottoları:
+* TMTOWTDI (Tim Toady şeklinde telaffuz edilir.): Birşeyi yapmanın birden fazla yolu vardır. _-There is more than one way to do it._
+* Kolay şeyler kolay olmalı, zor şeyler kolaylaştırılmalı ve imkansız şeyler zorlanmalı. _-Easy things should stay easy, hard things should get easier, and impossible things should get hard._
+
+=== Jargon
+* *Perl 6*: Perl programlama dili ailesinin bir üyesidir. Bir dil belirtimi ile test paketi vardır. Belirtim test paketini geçen uygulamalar Perl 6 olarak kabul edilir.
+* *Rakudo*: Perl 6 derleyicisidir.
+* *Rakudobrew*: Rakudo kurulum yöneticisidir.
+* *Zef*: Perl 6 modül yöneticisidir.
+* *Rakudo Star*: Rakudo, Zef, Perl 6 modül koleksiyonu ve dökümantasyonu içeren pakettir.
+
+=== Perl 6 Kurulumu
+.Linux
+
+Rakudo Star kurulumu için komutları takip edin:
+----
+wget https://rakudo.perl6.org/downloads/star/rakudo-star-2018.01.tar.gz
+tar xfz rakudo-star-2018.01.tar.gz
+cd rakudo-star-2018.01
+perl Configure.pl --gen-moar --prefix /opt/rakudo-star-2018.01
+make install
+----
+Diğer ayarlar için http://rakudo.org/how-to-get-rakudo/#Installing-Rakudo-Star-Linux adresini ziyaret edebilirsiniz.
+
+.macOS
+Dört seçenek mevcuttur:
+
+* Linux'a yüklemek için gereken adımları takip edin.
+* Homebrew ile kurulum için: `brew install rakudo-star`
+* MacPorts ile kurulum için: `sudo port install rakudo`
+* Son çıkan kurulum dosyasını(.dmg) indirmek için: https://rakudo.perl6.org/downloads/star/ adresini ziyaret edin.
+
+.Windows
+* Son kurulum dosyasını(.msi) indirin, eğer sisteminiz 32-bit ise x86 dosyasını, 64-bit ise x86_64 dosyasını: http://rakudo.org/how-to-get-rakudo/ adresini ziyaret edin.
+* Eğer kurulum sırasında PATH’e ekleme seçeneğini seçmediyseniz, kurulum sonrasında C:\rakudo\bin yolunu PATH’e eklemeniz gerekir.
+
+.Docker
+* Resmi Docker imajını edinin: `docker pull rakudo-star`
+* Konteynırı çalıştırmak için: `docker run -it rakudo-star`
+
+=== Perl 6 Kodunun Çalıştırılması
+
+Perl 6'nın REPL(Read-Eval-Print Loop) üzerinden çalıştırılması için terminali açıp `perl6` yazmanız ve [Enter]'a basmanız yeterli.
+Herşey yolunda giderse `>` işareti ile terminalin sizden giriş beklediğini görmelisiniz. Eğer bir hatayla karşılaşırsanız kurulum bölümüne geri dönmelisiniz. REPL'dan çıkmak için `exit` yazmanız ve [Enter]'a basmanız şimdilik yeterli.
+
+Perl 6 kodunu çalıştırmanın alternatif bir yöntemi ise herhangi bir editörle yazdığımız kodu uzantısı `.pl6` olacak şekilde kaydederek terminale `perl6 dosyaismi.pl6` yazmanız ve [Enter]'a basmanızdır. Burada önemli olan nokta dosya ile aynı dizinde olmanızdır ve eğer kodunuz bir çıktı üretmiyorsa ekranda bir şey göremezsiniz.
+
+Farklı bir yöntem ise tek satırlık komutlardır. Tek satırlık kodlar çalıştırmak için `perl6 -e 'kodunuz'` şeklinde kullanılması gerekir.
+
+[TIP]
+--
+Eğer Rakudo Star paketini kurmadıysanız, REPL üzerinde sağ veya sol ok tuşlarının farklı çalıştığını görebilirsiniz, bu REPL'den yararlanmamızı zorlaştıracaktır.
+
+Bu durumda yardımcı olacak bir satır düzenleyicisi için:
+
+* `zef install Linenoise` Windows, Linux ve macOS üzerinde çalışmaktadır.
+
+* Linux üzerindeyseniz `zef install Readline` modülünü tercih edebilirsiniz.
+--
+
+== Editörler
+Çoğu zaman, Perl 6 programlarmızı dosyalara yazıp depolayacağımız için, Perl 6 sözdizimini tanıyan iyi bir metin editörüne sahip olmalıyız. Birçok alternatif bulunduğundan biz sadece ikisine değineceğiz.
+* Modern bir metin editörü olan https://atom.io[Atom] ve Perl 6 Language Highlighter https://atom.io/packages/language-perl6[Perl 6 FE] eklentisi.
+* Diğer editörlere http://www.vim.org/[Vim], https://www.gnu.org/software/emacs/[Emacs] http://padre.perlide.org/[Padre] adreslerinden ulaşabilirsiniz.
+
+Bu editörlerden herhangi birisini kullanabilirsiniz.
+
+
+=== Merhaba Dünya!
+`Merhaba Dünya` ritüelini yerine getirerek başlayalım.
+
+[source,perl6]
+say 'Merhaba Dünya';
+
+Ayrıca şu şekilde de yazılabilir:
+
+[source,perl6]
+'Merhaba Dünya'.say;
+
+=== Söz Dizimine Genel Bakış
+Perl 6 çoğu zaman düzensiz çalışmanıza izin verir.
+
+Her bir ifade, genellikle mantıksal bir kod satırıdır ve noktalı virgülle bitmesi gerekir:
+`say "Merhaba" if True;`
+
+İşlemler değer döndürürler:
+`1+2` ifadesi `3` değerini döndürür.
+
+İfadeler koşul ve operatörlerden oluşur.
+
+*Koşullar*:
+
+* *Değişkenler*: Manipüle edilebilir ve değiştirilebilir bir değer.
+* *Sabitler*: Bir sayı veya karakter dizisi gibi sabit bir değer.
+
+*Operatörler* tiplerine göre sınıflandırılır:
+|===
+
+| *Tip* | *Açıklama* | *Örnek*
+
+| Önek(Prefix) | Terimden önce | `++1`
+
+| Bağlama(Infix) | Terimler arasında | `1+2`
+
+| Sonek(Postfix) | Terimden sonra | `1++`
+
+| Başında ve sonunda(Circumfix) | Terimin etrafında | `(1)`
+
+| Sonrasında, başında ve sonunda(Postcircumfix) | Terimin öncesinde ve etrafında  | `Array[1]`
+
+|===
+
+==== Tanımlayıcılar
+Tanımlayıcı, tanımlanan veriye verilen isimdir.
+
+.Rules:
+* Alfabetik bir karakter veya alt çizgi ile başlamalıdırlar.
+
+* İlk karakter hariç rakamlar içerebilirler.
+
+* İlk ve son karakter hariç tire veya kesme işareti içerebilir. Yani her tire veya kesme işaretinin sağ tarafında alfabetik bir karakter olmalı.
+
+|===
+
+| *Geçerli* | *Geçersiz*
+
+| `var1` | `1var`
+
+| `var-one` | `var-1`
+
+| `var'one` | `var'1`
+
+| `var1_` | `var1'`
+
+| `_var` | `-var`
+
+|===
+
+.Adlandırma Kuralları:
+* Camel Case: `degerNo1`
+
+* Kebab Case: `deger-no1`
+
+* Snake Case: `deger_no1`
+
+Tanımlayıcılarınızı istediğiniz gibi adlandırmakta serbestsiniz ancak sürekli aynı kuralı kullanmak iyi bir huydur.
+
+Anlamlı isimler kullanmak sizin ve kodu okuyanların anlamasını kolaylaştıracaktır. Örneğin:
+
+* `var1 = var2 * var3` söz dizimsel açıdan doğrudur, ancak amacı açık değildir.
+* `monthly-salary = daily-rate * working-days` gibi bir kullanım değişken isimlendirmede daha iyi bir yöntemdir.
+
+==== Yorumlar
+Yorumlar derleyici tarafından yok sayılır ve not olarak kullanılırlar.
+
+Yorumlar üç tipe ayrılmışlardır:
+
+* Tek satırlık yorumlar:
++
+[source,perl6]
+# Bu tek satırlık bir yorumdur
+
+* Gömülü yorumlar:
++
+[source,perl6]
+say #`(Bu gömülü bir yorumdur.) "Merhaba"
+
+* Çok satırlı yorumlar:
++
+[source,perl6]
+-----------------------------
+=begin yorum
+Bu bir çok satırlı yorumdur.
+Yorum 1
+Yorum 2
+=end yorum
+-----------------------------
+
+==== Tırnak İşareti
+String veri tipinin tek veya çift tırnak işareti ile sınırlandırılması gerekir.
+
+Çift tırnak kullanılması gereken durumlar:
+
+* Karakter diziniz kesme işareti içeriyorsa.
+
+* İşleme tabii tutulması gereken bir değişken içeriyorsa.
+
+Örneğin:
+[source,perl6]
+-----------------------------------
+say 'Hello World';   # Hello World
+say "Hello World";   # Hello World
+say "Don't";         # Don't
+my $name = 'John Doe';
+say 'Hello $name';   # Hello $name
+say "Hello $name";   # Hello John Doe
+-----------------------------------
+
+== Operatörler
+
+=== Yaygın Operatörler
+Aşağıdaki tabloda sık kullanılan operatörler listelenmiştir.
+[cols="^.^5m,^.^5m,.^20,.^20m,.^20m", options="header"]
+|===
+
+| Operator | Type | Description | Example | Result
+
+| + | Bağlama(inflix) | Ekleme | 1 + 2 | 3
+
+| - | Infix | Çıkarma | 3 - 1 | 2
+
+| * | Infix | Çarpma | 3 * 2 | 6
+
+| ** | Infix | Kuvvet | 3 ** 2 | 9
+
+| / | Infix | Bölme | 3 / 2 | 1.5
+
+| div | Infix | Tam sayı bölme | 3 div 2 | 1
+
+| % | Infix | Modül | 7 % 4 | 3
+
+.2+| %% .2+| Infix .2+| Bölünebilirlik | 6 %% 4 | False
+
+<| 6 %% 3 <| True
+
+| gcd | Infix | En büyük ortak bölen | 6 gcd 9 | 3
+
+| lcm | Infix | En küçük ortak kat | 6 lcm 9 | 18
+
+| == | Infix | Numerik eşitlik | 9 == 7  | False
+
+| != | Infix | Numerik eşitsizlik | 9 != 7  | True
+
+| < | Infix | Küçükse | 9 < 7  | False
+
+| > | Infix | Büyükse | 9 > 7  | True
+
+| \<= | Infix | Küçük veya eşitse | 7 \<= 7  | True
+
+| >= | Infix | Büyük veya eşitse | 9 >= 7  | True
+
+| eq | Infix | Karakter dizisi(String) eşitliği | "John" eq "John"  | True
+
+| ne | Infix | String eşit değilse | "John" ne "Jane"  | True
+
+| = | Infix | Atama | my $var = 7  | `7` değerini `$var` değişkenine atar
+
+.2+| ~ .2+| Infix .2+| Stringleri birbirine bağlar | 9 ~ 7 | 97
+
+<m| "Hi " ~ "there"  <| Hi there
+
+.2+| x .2+| Infix .2+| String çoğaltır | 13 x 3  | 131313
+
+<| "Hello " x 3  <| Hello Hello Hello
+
+.5+| ~~ .5+| Infix .5+| Akıllı eşleme | 2 ~~ 2  | True
+
+<| 2 ~~ Int <| True
+
+<| "Perl 6" ~~ "Perl 6" <| True
+
+<| "Perl 6" ~~ Str <| True
+
+<| "enlightenment" ~~ /light/ <| ｢light｣
+
+.2+| ++ | Önek(Prefix) | Arttırma | my $var = 2; ++$var;  | Değeri 1 arttırır ve sonucu `3` olarak döner
+
+<m| Sonek(Postfix) <d| Arttırma <m| my $var = 2; $var++;  <| `2` sonucunu döner ve değeri 1 arttırır
+
+.2+|\--| Prefix | Azaltma | my $var = 2; --$var;  | Değeri 1 azaltır ve sonucu `1` olarak döner
+
+<m| Postfix <d| Azaltma <m| my $var = 2; $var--;  <| `2` sonucunu döner ve değeri 1 azaltır
+
+.3+| + .3+| Prefix .3+| İşlenen değeri numerik sonuca zorlar | +"3"  | 3
+
+<| +True <| 1
+
+<| +False <| 0
+
+.3+| - .3+| Prefix .3+| İşlenen değeri negatif numerik sonuca zorlar | -"3"  | -3
+
+<| -True <| -1
+
+<| -False <| 0
+
+.6+| ? .6+| Prefix .6+| İşlenen değeri mantıksal(boolean) sonuca zorlar | ?0 | False
+
+<| ?9.8 <| True
+
+<| ?"Hello" <| True
+
+<| ?"" <| False
+
+<| my $var; ?$var; <| False
+
+<| my $var = 7; ?$var; <| True
+
+| ! | Prefix | İşlenen değeri mantıksal sonuca zorlar ve tersini alır | !4 | False
+
+| .. | Infix | Aralık oluşturucu |  0..5  | 0'dan 5'e
+
+| ..^ | Infix | Aralık oluşturucu |  0..^5  | 0'dan 4'e
+
+| ^.. | Infix | Aralık oluşturucu |  0^..5  | 1'den 5'e
+
+| \^..^ | Infix | Aralık oluşturucu |  0\^..^5  | 1'den 4'de
+
+| ^ | Prefix | Aralık oluşturucu |  ^5  | 0..^5'e demektir, 0'dan 4'e
+
+| ... | Infix | Tembel liste oluşturucu |  0...9999  |  aralıktaki eleman çağırılınca döndürür
+
+.2+| {vbar} .2+| Prefix .2+| Düzleştirme | {vbar}(0..5)  | (0 1 2 3 4 5)
+
+<| {vbar}(0\^..^5)  <| (1 2 3 4)
+
+|===
+
+=== Ters Operatörleri
+
+Herhangi bir işlemden önce `R` kullanmak işlemi tersine çevirecektir.
+
+
+[cols=".^m,.^m,.^m,.^m", options="header"]
+|===
+| Operasyon | Sonuç | Ters Operatörü | Sonuç
+
+| 2 / 3 | 0.666667 | 2 R/ 3 | 1.5
+
+| 2 - 1 | 1 | 2 R- 1 | -1
+
+|===
+
+=== İndirgeme Operatörleri
+
+Listelerle çalışırlar ve `[]` ile çevrelenirler.
+
+[cols=".^m,.^m,.^m,.^m", options="header"]
+|===
+| Operasyon | Sonuç | İndirgeme Operatörü | Sonuç
+
+| 1 + 2 + 3 + 4 + 5 | 15 | [+] 1,2,3,4,5 | 15
+
+| 1 * 2 * 3 * 4 * 5 | 120 | [*] 1,2,3,4,5 | 120
+
+|===
+
+NOTE: Operatörler hakkında daha fazla bilgiye https://docs.perl6.org/language/operators adresinden ulaşabilirsiniz.
+
+== Değişkenler
+Perl 6’da değişkenler üç kategoriye ayrılır: Skalar değişkenler, Diziler ve Hashler.
+
+Değişkenlerin başın da, değişkenleri kategorize etmek için kullanılan karakterler vardır.
+
+* `$` skalar değişkenler için kullanılır.
+* `@` diziler için kullanılır.
+* `%` hashler için kullanılır.
+
+=== Skalar Değişkenler
+Bir skalar değeri veya referansı tutar.
+
+[source,perl6]
+----
+# String
+my $name = 'Cahit Sıtkı Tarancı';
+say $name;
+
+# Integer
+my $age = 35;
+say $age;
+----
+
+Bir skaların tuttuğu değere göre bazı operasyonlar gerçekleştirebiliriz.
+
+[source,perl6]
+.String
+----
+my $name = 'Cahit Sıtkı Tarancı';
+say $name.uc;
+say $name.chars;
+say $name.flip;
+----
+
+----
+CAHIT SITKI TARANCI
+19
+ıcnaraT ıktıS tihaC
+----
+
+NOTE: String verilere uygulanabilen metotların listesi için https://docs.perl6.org/type/Str adresine bakabilirsiniz.
+
+[source,perl6]
+.Integer
+----
+my $age = 17;
+say $age.is-prime;
+----
+
+----
+True
+----
+
+NOTE: Integer verilere uygulanabilen metotların listesi için https://docs.perl6.org/type/Int adresine bakabilirsiniz.
+
+[source,perl6]
+.Rational Number
+----
+my $age = 2.3;
+say $age.numerator;
+say $age.denominator;
+say $age.nude;
+----
+
+----
+23
+10
+(23 10)
+----
+
+NOTE: Rational number verilere uygulanabilen metotların listesi için https://docs.perl6.org/type/Rat adresine bakabilirsiniz.
+
+=== Diziler
+Diziler birden fazla veri içerebilen listelerdir.
+
+[source,perl6]
+----
+my @animals = 'camel','llama','owl';
+say @animals;
+----
+
+Diziler ile yapılabilecek işlemler:
+
+TIP: `~` operatörü ile string birleştirme yapabiliyorduk.
+
+[source,perl6]
+.`Betik`
+----
+my @animals = 'camel','vicuña','llama';
+say "The zoo contains " ~ @animals.elems ~ " animals";
+say "The animals are: " ~ @animals;
+say "I will adopt an owl for the zoo";
+@animals.push("owl");
+say "Now my zoo has: " ~ @animals;
+say "The first animal we adopted was the " ~ @animals[0];
+@animals.pop;
+say "Unfortunately the owl got away and we're left with: " ~ @animals;
+say "We're closing the zoo and keeping one animal only";
+say "We're going to let go: " ~ @animals.splice(1,2) ~ " and keep the " ~ @animals;
+----
+
+.`Çıktı`
+----
+The zoo contains 3 animals
+The animals are: camel vicuña llama
+I will adopt an owl for the zoo
+Now my zoo has: camel vicuña llama owl
+The first animal we adopted was the camel
+Unfortunately the owl got away and we're left with: camel vicuña llama
+We're closing the zoo and keeping one animal only
+We're going to let go: vicuña llama and keep the camel
+----
+
+.Açıklama
+`.elems` dizideki elemanların listesini döndürür.
+`.push()` diziye bir veya birden fazla eleman eklemek için kullanılır.
+`.pop` dizinin sonundaki elemanı diziden çıkarır ve çıkan elemanı döndürür.
+`.splice(a,b)` a, b pozisyonlarını dahil arada kalan elemanları diziden çıkaracaktır.
+
+==== Sabit Boyutlu Diziler
+Temel bir dizi tanımı aşağıdaki gibidir:
+[source,perl6]
+my @array;
+
+Temel bir dizi sonsuz uzunlukta olabilir ve uzunluğu eleman ekledikçe otomatik arttırılır. Herhangi bir sayıda elemanı kabul eder.
+Buna karşılık sabit boyutlu diziler de oluşturulabilir. Bu diziler tanımlanan uzunluğun dışına çıkamaz.
+
+Sabit boyutlu bir dizi tanımlamak için, adından hemen sonra köşeli parantez içerisinde tutabileceği eleman sayısı belirtilir.
+[source,perl6]
+my @array[3];
+
+Bu dizi 0'dan 2'ye indexlenen en fazla 3 elemana sahip olabilecektir.
+
+[source,perl6]
+----
+my @array[3];
+@array[0] = "first value";
+@array[1] = "second value";
+@array[2] = "third value";
+----
+
+Bu diziye dördüncü bir eleman eklemeye çalıştığımızda:
+[source,perl6]
+----
+my @array[3];
+@array[0] = "first value";
+@array[1] = "second value";
+@array[2] = "third value";
+@array[3] = "fourth value";
+----
+
+----
+Index 3 for dimension 1 out of range (must be 0..2)
+----
+hatasını döndürecektir.
+
+==== Çok Boyutlu Diziler
+Şimdiye kadar görüğümüz diziler tek boyutluydu.
+Perl 6 çok boyutlu diziler tanımlamamıza izin verir.
+
+[source,perl6]
+my @tbl[3;2];
+
+Bu dizi iki boyutludur. İlk boyut maksimum 3 değer, ikinci boyut maksimum 2 değer içerebilir.
+3x2'lik bir tablo gibi düşünülebilir.
+
+[source,perl6]
+----
+my @tbl[3;2];
+@tbl[0;0] = 1;
+@tbl[0;1] = "x";
+@tbl[1;0] = 2;
+@tbl[1;1] = "y";
+@tbl[2;0] = 3;
+@tbl[2;1] = "z";
+say @tbl
+----
+
+----
+[[1 x] [2 y] [3 z]]
+----
+
+.Dizinin görsel sunumu:
+----
+[1 x]
+[2 y]
+[3 z]
+----
+
+NOTE: Diziler hakkında daha fazla bilgiye https://docs.perl6.org/type/Array adresinden ulaşabilirsiniz.
+
+=== Hashler
+[source,perl6]
+.Bir hash Anahtar/Değer çiftlerinden oluşur.
+----
+my %capitals = ('UK','London','Germany','Berlin');
+say %capitals;
+----
+
+[source,perl6]
+.Hash oluşturmanın farklı bir yolu:
+----
+my %capitals = (UK => 'London', Germany => 'Berlin');
+say %capitals;
+----
+
+Hashler üzerinde çalıştırılabilecek bazı metotlar şöyle:
+[source,perl6]
+.`Betik`
+----
+my %capitals = (UK => 'London', Germany => 'Berlin');
+%capitals.push: (France => 'Paris');
+say %capitals.kv;
+say %capitals.keys;
+say %capitals.values;
+say "The capital of France is: " ~ %capitals<France>;
+----
+
+.`Çıktı`
+----
+(France Paris Germany Berlin UK London)
+(France Germany UK)
+(Paris Berlin London)
+The capital of France is: Paris
+----
+
+.Açıklama
+`.push: (anahtar => 'Değer')` yeni bir anahtar değer çifti ekler. +
+`.kv` tüm anahtar ve değerlerin bir listesini döndürür. +
+`.keys` tüm anahtarların listesini döndürür. +
+`.values` tüm değerlerin listesini döndürür. +
+`%hash<anahtar>` ile özel bir değere ulaşılabilir.
+
+NOTE: Hashler hakkında daha fazla bilgiye https://docs.perl6.org/type/Hash adresinden ulaşabilirsiniz.
+
+=== Veri Tipleri
+Önceki bölümlerde değişkenlerin ne tür değerler tutması gerektiğini belirtmedik.
+
+TIP: `.WHAT` değişkende tutulan değerin tipini döndürür.
+
+[source,perl6]
+----
+my $var = 'Text';
+say $var;
+say $var.WHAT;
+
+$var = 123;
+say $var;
+say $var.WHAT;
+----
+
+Yukarıdaki örnekte görülebileceği gibi `$var` değişkeninin tipi (Str) ve ardından (Int) oldu.
+
+Bu programlama tarzına dinamik yazım denir. Dinamik değişkenlerin herhangi bir değer içerebileceği anlamındadır.
+
+Şimdi aşağıdaki örneği çalıştırmayı deneyelim, değişken adından önce `Int` olduğunu tanımlayalım.
+
+[source,perl6]
+----
+my Int $var = 'Text';
+say $var;
+say $var.WHAT;
+----
+
+Bu kod çalışmaz ve bir hata mesajı döndürür: `Type check failed in assignment to $var; expected Int but got Str`
+
+Değişkenin tipinin (Int) olması gerektiğini söyledik ve bir (Str) atamaya çalıştığımızda başarısız oldu, hata ile karşılaştık.
+
+Bu programlama tarzına statik yazım denir. Değişkenin tipinin atama öncesi tanımlandığı ve değiştirilemeyeceği anlamına gelir.
+
+Perl 6 *kadelemeli* _-gradually typed_ olarak yazılan bir dil olarak tanımlanmıştır; hem *statik* hem de *dinamik* yazıma izin verir.
+
+.Diziler ve hashler statik olarak yazılabilir:
+[source,perl6]
+----
+my Int @array = 1,2,3;
+say @array;
+say @array.WHAT;
+
+my Str @multilingual = "Hello","Salut","Hallo","您好","안녕하세요","こんにちは";
+say @multilingual;
+say @multilingual.WHAT;
+
+my Str %capitals = (UK => 'London', Germany => 'Berlin');
+say %capitals;
+say %capitals.WHAT;
+
+my Int %country-codes = (UK => 44, Germany => 49);
+say %country-codes;
+say %country-codes.WHAT;
+----
+
+.Sık kullanılan tiplerin listesi:
+
+[cols="^.^1m,.^3m,.^2m,.^1m, options="header"]
+|===
+
+| *Tip* | *Açıklama* | *Örnek* | *Sonuç*
+
+| Mu | Perl 6 tür hiyerarşisinin kökü | |
+
+| Any | Yeni sınıflar ve çoğu tanımlı sınıf için varsayılan taban sınıf | |
+
+| Cool | Stringler veya sayılar gibi birbiri yerine kullanılabilen değerler | my Cool $var = 31; say $var.flip; say $var * 2; | 13 62
+
+| Str | Karakter dizileri | my Str $var = "NEON"; say $var.flip; | NOEN
+
+| Int | Tam sayılar (Keyfi hassasiyet) | 7 + 7 | 14
+
+| Rat | Rasyonel sayılar (Sınırlı hassasiyet) | 0.1 + 0.2 | 0.3
+
+| Bool | Mantıksal | !True | False
+
+|===
+
+=== İçgözlem
+
+Veri tipi gibi nesne özellikleri hakkında bilgi alma sürecidir. +
+Önceki örneklerde değişken tipini döndürmek için `.WHAT` kullanmıştık.
+
+[source,perl6]
+----
+my Int $var;
+say $var.WHAT;    # (Int)
+my $var2;
+say $var2.WHAT;   # (Any)
+$var2 = 1;
+say $var2.WHAT;   # (Int)
+$var2 = "Hello";
+say $var2.WHAT;   # (Str)
+$var2 = True;
+say $var2.WHAT;   # (Bool)
+$var2 = Nil;
+say $var2.WHAT;   # (Any)
+----
+
+Tipi tanımlanan boş bir değişkenin tipi, tanımlanan tip olur. +
+Tipi tanımlanmayan boş bir değişkenin tipi `(Any)` olur. +
+Bir değişkenin tipini temizlemek için `Nil` ataması yapılır.
+
+=== Kapsam (_Scoping_)
+Kullanılmadan önce bir değişkenin tanımlanması gerekir.
+Perl 6'da birçok tanımlama kullanılmaktadır. Biz şuana kadar `my` kullanıyorduk.
+
+[source,perl6]
+my $var=1;
+
+`my` bildirimi kapsamı verir. Başka bir deyişle `my` ile tanımlanan bir değişken yalnızca tanımladığı blokta erişilebilir olacaktır.
+
+Perl 6'da bir blok `{ }` ile sınırlandırılmış alandır.
+Eğer yazdığımız kodda blok blunmuyorsa, değişken Perl 6 betiğinin tamamında kullanılabilir olacaktır.
+
+
+[source,perl6]
+----
+{
+  my Str $var = 'Text';
+  say $var;   # Erişilebilir
+}
+say $var;   # Erişilemez ve hata döndürür
+----
+
+Bir değişkene yalnızca tanımlandığı blokta erişilebildiğinden, aynı değişken adı farklı bir blokta kullanılabilir.
+
+source,perl6]
+----
+{
+  my Str $var = 'Text';
+  say $var;
+}
+my Int $var = 123;
+say $var;
+----
+
+=== Atama ve Bağlama (_Assignment vs. Binding_)
+Önceki örneklerde, değişkenlere değer atamanın nasıl yapıldığını gördük.
+*Atama* `=` operatörü ile yapılır.
+[source,perl6]
+----
+my Int $var = 123;
+say $var;
+----
+
+Bir değişkene atanan değeri değiştirebiliriz:
+
+[source,perl6]
+.Atama
+----
+my Int $var = 123;
+say $var;
+$var = 999;
+say $var;
+----
+
+.`Çıktı`
+----
+123
+999
+----
+
+Öte yandan bir değişkene *bağlanan* veriyi değiştiremeyiz.
+*Bağlama* `:=` operatörü ile yapılır.
+
+[source,perl6]
+.Bağlama
+----
+my Int $var := 123;
+say $var;
+$var = 999;
+say $var;
+----
+
+.`Çıktı`
+----
+123
+Cannot assign to an immutable value
+----
+
+[source,perl6]
+.Değişkenler diğer değişkenlere de bağlanabilir:
+----
+my $a;
+my $b;
+$b := $a;
+$a = 7;
+say $b;
+$b = 8;
+say $a;
+----
+
+.`Çıktı`
+----
+7
+8
+----
+
+Değişkenleri bağlama iki yönlüdür +
+`$a := $b` ve `$b := $a` aynı etkiye sahiptir.
+
+NOTE: Değişkenler ile ilgili daha fazla bilgiye https://docs.perl6.org/language/variables adresinden ulaşabilirsiniz.
+
+== Fonksiyonlar ve Mutatörler(_Mutators_)
+
+Fonksiyonlar ile mutatörler arasında ayrım yapmak önemlidir.
+Fonksiyonlar çağırıldıkları nesnenin durumunu değiştirmezler.
+Mutatörler nesnenin durumunu değiştirirler ve metotlar gibi düşünülebilir.
+
+[source,perl6,linenums]
+.`Betik`
+----
+my @numbers = [7,2,4,9,11,3];
+
+@numbers.push(99);
+say @numbers;      #1
+
+say @numbers.sort; #2
+say @numbers;      #3
+
+@numbers.=sort;
+say @numbers;      #4
+----
+
+.`Çıktı`
+----
+[7 2 4 9 11 3 99] #1
+(2 3 4 7 9 11 99) #2
+[7 2 4 9 11 3 99] #3
+[2 3 4 7 9 11 99] #4
+----
+
+.Açıklama
+`.push` bir mutatördür ve dizinin içeriğini değiştirir (#1)
+
+`.sort` bir fonksiyondur ve dizinin sıralanmış halini döndürür. Ancak dizinin ilk halini değiştirmez.
+
+* (#2) Sıralanmış diziyi döndürür.
+
+* (#3) Dizinin ilk halinin hala değişmediğini gösterir.
+
+Bir fonksiyonun mutatör görevi görmesi için `.=` kullanın. (#4) (Betiğimizin 9. satırında)
+
+== Döngüler ve Koşullar
+Perl 6 birçok döngü ve koşul yapısına sahiptir.
+
+=== if
+Kod ancak bir koşul sağlandığında çalışır. Yani bir ifadenin `True` olarak değerlendirilmesi gerekir.
+
+[source,perl6]
+----
+my $age = 19;
+
+if $age > 18 {
+  say 'Welcome'
+}
+----
+
+Koşul olumsuz `False` olarak değerlendirildiğinde yürütülecek alternatif blokları şu ifadeleri kullanarak belirleyebiliriz:
+
+* `else`
+* `elsif`
+
+[source,perl6]
+----
+# değişkenin farklı değerleri için aynı kodu çalıştırın
+my $number-of-seats = 9;
+
+if $number-of-seats <= 5 {
+  say 'I am a sedan'
+} elsif $number-of-seats <= 7 {
+  say 'I am 7 seater'
+} else {
+  say 'I am a van'
+}
+----
+
+=== unless
+if ifadesinin, olumsuz halini yazarken kullanılabilir.
+
+örnek:
+
+[source,perl6]
+----
+my $clean-shoes = False;
+
+if not $clean-shoes {
+  say 'Clean your shoes'
+}
+----
+Yukarıdaki kod aşağıdaki şekilde yazılabilir:
+
+[source,perl6]
+----
+my $clean-shoes = False;
+
+unless $clean-shoes {
+  say 'Clean your shoes'
+}
+----
+
+Perl 6'da bir ifadeyi olumsuzlamak için `!` veya `not` kullanılır.
+
+`unless (koşul)` yerine `if not (koşul)` kullanılabilir.
+
+`unless` kullanıldığı durumlarda `else` bloğu kullanılamaz.
+
+=== with
+
+`if` ifadesi gibi kullanılır ancak değişkenin tanımlanıp tanımlanmadığını kontrol eder.
+
+[source,perl6]
+----
+my Int $var=1;
+
+with $var {
+  say 'Hello'
+}
+----
+
+Kodu değişkene değer atamadan kullandığınızda birşey olmamalı.
+[source,perl6]
+----
+my Int $var;
+
+with $var {
+  say 'Hello'
+}
+----
+
+`without` ise `with` ifadesinin olumsuz versiyonudur. Bunu `unless` ifadesine benzetebilirsiniz.
+
+Koşullu olan ilk `with` gerçekleşemez ise `orwith` kullanılarak alternatif blok belirlenebilir.
+`with` ve `orwith` ile `if` ve `elsif` benzetilebilir.
+
+=== for
+`for` döngüsü birden fazla değeri tek tek ele alır. Yineleme yapar.
+
+[source,perl6]
+----
+my @array = [1,2,3];
+
+for @array -> $array-item {
+  say $array-item * 100
+}
+----
+
+Bir yineleme değişkeni `$array-item` oluşturduğumuza ve her bir dizi elemanı için `*100` işlemini gerçekleştirdiğimize dikkat edin.
+
+=== given
+
+Diğer dillerdeki `switch` ifadesinin Perl 6'daki daha güçlü ifadesidir.
+
+[source,perl6]
+----
+my $var = 42;
+
+given $var {
+    when 0..50 { say 'Less than or equal to 50'}
+    when Int { say "is an Int" }
+    when 42  { say 42 }
+    default  { say "huh?" }
+}
+----
+
+Başarılı bir eşleme sonrasında eşleme işlemi durdurulur ve `given` sonlanır.
+
+Alternatif olarak `proceed` ifadesi ile Perl 6'ya başarılı bir eşleme sonrasında bile eşlemeye devam etmesi söylenebilir.
+[source,perl6]
+----
+my $var = 42;
+
+given $var {
+    when 0..50 { say 'Less than or equal to 50';proceed}
+    when Int { say "is an Int";proceed}
+    when 42  { say 42 }
+    default  { say "huh?" }
+}
+----
+
+=== loop
+
+`loop` `for` döngüsü yazmanın farklı bir yoludur.
+
+Aslında `loop` C programlama dili ailesinde `for` döngüsü yazmaya benzer.
+
+Perl 6, C ailesi dillerindendir.
+
+[source,perl6]
+----
+loop (my $i = 0; $i < 5; $i++) {
+  say "The current number is $i"
+}
+----
+
+NOTE: Döngüler ve koşullar hakkında daha fazla bilgiye https://docs.perl6.org/language/control adresinden ulaşabilirsiniz.
+
+== G/Ç (_I/O_)
+Perl 6'da en yaygın _Girdi/Çıktı_ arabirimlerinden ikisi _Terminal_ ve _Dosyadır_.
+
+=== Terminal Kullanarak Basit G/Ç
+
+==== say
+`say` standart çıktıya sonuna satır sonu karakteri ekleyerek yazar.
+
+[source,perl6]
+----
+say 'Hello Mam.';
+say 'Hello Sir.';
+----
+Betik iki farklı satır üzerine yazar.
+
+==== print
+`print`, `say` gibi kullanılır ancak satır sonu karakteri eklemez. Yani yeni bir satıra geçmez.
+
+Yukarıdaki `say` ifadesini `print` ile değiştirin ve sonuçları karşılaştırın.
+
+==== get
+`get` terminal ekranından giriş almanızı sağlar.
+
+[source,perl6]
+----
+my $name;
+
+say "Hi, what's your name?";
+$name = get;
+
+say "Dear $name welcome to Perl 6";
+----
+
+Yukarıdaki kod çalıştırıldığında terminal adınızı girmenizi bekliyor olacak. Adnınızı girin ve ardından [Enter] tuşuna basın.
+
+==== prompt
+`prompt`, `print` ve `get` ifadesinin kombinasyonudur.
+
+Yukarıdaki kod şu şekilde yazılabilir:
+
+[source,perl6]
+----
+my $name = prompt "Hi, what's your name? ";
+
+say "Dear $name welcome to Perl 6";
+----
+
+=== Kabuk Komutu Çalıştırmak
+Kabuk komutlarını çalıştırmak için iki altyordam kullanılabilir:
+
+* `run` Kabuk içermeden harici bir komut çalıştırır.
+
+* `shell` Sistem kabuğu aracılığı ile bir komut çalıştırır. Platform ve kabuk bağımlıdır.
+
+[source,perl6]
+.Eğer Linux/macOS kullanıyorsanız
+----
+my $name = 'Neo';
+run 'echo', "hello $name";
+shell "ls";
+----
+
+[source,perl6]
+.Eğer Windows kullanıyorsanız
+----
+shell "dir";
+----
+`echo` ve `ls`, Linux kabuğu için ortak anahtar kelimelerdir.
+`echo` metni terminale yazdırır. (Perl 6’da print’in eşdeğeri)
+`ls` mevcut izindeki tüm dosya ve klasörleri listeler.
+
+`dir` ise `ls`’in Windows ortamındaki eş değeridir.
+
+=== Dosya G/Ç
+==== slurp
+Dosyadan veri okunmasını sağlar.
+
+İçeriği aşağıdaki gibi olan bir dosya yaratalım:
+
+.datafile.txt
+----
+John 9
+Johnnie 7
+Jane 8
+Joanna 7
+----
+[source,perl6]
+----
+my $data = slurp "datafile.txt";
+say $data;
+----
+
+==== spurt
+Dosyaya veri yazılmasını sağlar.
+
+[source,perl6]
+----
+my $newdata = "New scores:
+Paul 10
+Paulie 9
+Paulo 11";
+
+spurt "newdatafile.txt", $newdata;
+----
+
+Kod çalıştırıldıktan sonra _newdatafile.txt_ isminde yeni bir dosya oluşturur ve içine `$newdata` değişkeninin içeriğini yazar.
+
+=== Dosya ve Dizinler ile Çalışmak
+Perl 6 kabuk komutlarına başvurmadan(örneğin `ls`) bir dizinin içeriğini listeleyebilir.
+
+[source,perl6]
+----
+say dir;                # Mevcut dizindeki dosya ve klasörleri listeler
+say dir "/Documents";   # Özel bir dizindeki dosya ve klasörleri listeler
+----
+
+Buna ek olarak dizinleri oluşturabilir ve silebiliriz.
+
+[source,perl6]
+----
+mkdir "newfolder";
+rmdir "newfolder";
+----
+
+`mkdir` yeni bir dizin oluşturur. +
+`rmdir` boş dizini siler veya dizin boş değilse hata döndürür.
+
+Yolun bir dizin veya bir dosya olup olmadığını kontrol edebilirsiniz.
+
+Aşağıdaki betiği çalıştırdığınız dizinde `folder123` adında boş bir klasör ve `script123.pl6` adında boş bir pl6 dosyası oluşturun.
+
+[source,perl6]
+----
+say "script123.pl6".IO.e;
+say "folder123".IO.e;
+
+say "script123.pl6".IO.d;
+say "folder123".IO.d;
+
+say "script123.pl6".IO.f;
+say "folder123".IO.f;
+----
+
+`IO.e` dizinin/dosyanın mevcut olup olmadığını kontrol eder. +
+`IO.f` yolun dosya olup olmadığını kontrol eder. +
+`IO.d` yolun dizin olup olmadığını kontrol eder.
+
+WARNING: Windows kullanıcıları dizinleri tanımlamak için `/` veya `\\` kullanmalı +
+`C:\\rakudo\\bin` +
+`C:/rakudo/bin` +
+
+NOTE: G/Ç hakkında daha fazla bilgiye https://docs.perl6.org/type/IO adresinden ulaşabilirsiniz.
+
+== Altyordamlar
+=== Tanımlama
+*Altyordamlar* (altprogramlar veya fonksiyonlar olarak da adlandırılır), işlevselliği paketleme ve yeniden kullanma yöntemidir.
+
+Altprogram tanımlaması `sub` anahtarıyla başlar. Tanımlandıktan sonra adı ile çağırılabilir.
+Aşağıdaki örneği inceleyin:
+
+[source,perl6]
+----
+sub alien-greeting {
+  say "Hello earthlings";
+}
+
+alien-greeting;
+----
+
+Yukarıdaki örnek herhangi bir girdi gerektirmeyen altyordam idi.
+
+=== İmza
+Altprogramlar parametre alabilir.  Bir altyordam sıfır veya daha fazla parametre alabilir.
+Bir altyordamın tanımladığı parametre türü ve sayısına imzası denir.
+
+Aşağıdaki altprogram bir string değişkeni parametre olarak kabul eder.
+
+[source,perl6]
+----
+sub say-hello (Str $name) {
+    say "Hello " ~ $name ~ "!!!!"
+}
+say-hello "Paul";
+say-hello "Paula";
+----
+
+=== Çoklu Altyordam(_Multiple dispatch_)
+Aynı adı taşıyan ancak imzaları farklı olan birden fazla altprogram tanımlamak mümkündür.
+Altprogram çağrıldığında, çalışma zamanı ortamı, verilen bağımsız değişkenlerin sayısı ve türüne göre hangi sürümü kullanacağına karar verecektir.
+Bu tür bir altprogram `sub` yerine `multi` anahtar sözcüğü kullanılması dışında altyordamlar ile aynı şekilde tanımlanır.
+
+[source,perl6]
+----
+multi greet($name) {
+    say "Good morning $name";
+}
+multi greet($name, $title) {
+    say "Good morning $title $name";
+}
+
+greet "Johnnie";
+greet "Laura","Mrs.";
+----
+
+=== Varsayılan ve İsteğe Bağlı Parametreler
+Altyordam, parametre alacak şekilde tanımlandıysa ve gerekli parametre verilmeden çalıştırılırsa hata döner.
+
+Perl 6 bize opsiyonel ve varsayılan parametreli olmak üzere iki altyordam tanımlama imkanı verir.
+
+Opsiyonel parametreleri belirtmek için sonuna `?` karakteri koyulur.
+
+[source,perl6]
+----
+sub say-hello($name?) {
+  with $name { say "Hello " ~ $name }
+  else { say "Hello Human" }
+}
+say-hello;
+say-hello("Laura");
+----
+
+Kullanıcı isteğe bağlı parametreyi sağlamazsa parametre için varsayılan değer kullanılabilir.
+Bu altyordam tanımında belirtilen parametreye değer atayarak yapılır.
+
+[source,perl6]
+----
+sub say-hello($name="Matt") {
+  say "Hello " ~ $name;
+}
+say-hello;
+say-hello("Laura");
+----
+
+=== Dönüş Değeri
+Şmdiye kadar gördüğümüz altprogramlar bir şeyler yapıyordu, örneğin terminalde bazı metinler gösteriyordu.
+
+Bazen dönüş değeri için bir altprogram yürütürüz, böylece daha sonra program akışında bunu kullanabiliriz.
+
+[source,perl6]
+.Belirtilmemiş dönüş
+----
+sub squared ($x) {
+  $x ** 2;
+}
+say "7 squared is equal to " ~ squared(7);
+----
+
+Netlik açısından dönüşü açıkça belirtmek iyi bir fikirdir. Bunun için `return` anahtar kelimesi kullanılır.
+
+[source,perl6]
+.Belirtilmiş dönüş
+----
+sub squared ($x) {
+  return $x ** 2;
+}
+say "7 squared is equal to " ~ squared(7);
+----
+
+==== Dönüş Değerini Sınırlama
+Önceki örneklerde parametrenin belirli bir türde olmasını nasıl sınırlayabileceğimizi gördük. Aynı şey dönüş değeri için de yapılabilir.
+Dönüş değerini belirli bir tür ile sınırlamak için imza içinde `returns` veya `-\->` işareti kullanabiliriz.
+
+[source,perl6]
+.returns kullanarak
+----
+sub squared ($x) returns Int {
+  return $x ** 2;
+}
+say "1.2 squared is equal to " ~ squared(1.2);
+----
+
+[source,perl6]
+.Ok kullanarak
+----
+sub squared ($x --> Int) {
+  return $x ** 2;
+}
+say "1.2 squared is equal to " ~ squared(1.2);
+----
+
+Tip sınırlamasına uyan bir dönüş değeri sağlanmadığı takdirde hata fırlatılır.
+
+---
+Peki beklenen değer Int ama Rat(1.44) değeri varsa.
+---
+
+[TIP]
+====
+Tip kısıtlamaları dönüş değerinin türünü denetlemekle kalmaz, tanımlanışınıda kontrol edebilir.
+Önceki örneklerde dönüş değerinin `Int` olması gerektiğini belirttik.
+Aşağıda önceki örneğin değiştirilmiş bir hali verilmiştir, `:D` ifadesi döndürülen `Int`’in tanımlanmasını zorlamak için kullanılır.
+
+[source,perl6]
+----
+sub squared ($x --> Int:D) {
+  return $x ** 2;
+}
+say "1.2 squared is equal to " ~ squared(1.2);
+----
+====
+
+NOTE: Altyordamlar ve fonksiyonlar ile ilgili daha fazla bilgiye https://docs.perl6.org/language/functions adresinden ulaşabilirsiniz.
+
+== Fonksiyonel Programlama
+Bu bölümde fonksiyonel programlamayı kolaylaştıran özelliklere bakacağız.
+
+=== Fonksiyonlar Birinci Sınıf Vatandaşlardır
+Fonksiyonlar/Altyordamlar birinci sınıf vatandaşlardır:
+
+* Argüman olarak iletilebilirler
+
+* Farklı fonksiyonları döndürebilirler
+
+* Değişkenlere atanabilirler
+
+Harika bir örnek `map` fonksiyonudur.
+`map` yüksek seviyeli bir fonksiyondur, başka bir fonksiyonu argüman olarak kabul edebilir.
+
+[source,perl6]
+.Betik
+----
+my @array = <1 2 3 4 5>;
+sub squared($x) {
+  $x ** 2
+}
+say map(&squared,@array);
+----
+
+.Çıktı
+----
+(1 4 9 16 25)
+----
+
+.Açıklama
+Bir parametre alan ve paremetreyi kendisi ile çarpan sonucu döndüren bir altyordam tanımladık.
+Daha sonra, yüksek seviye bir fonksiyon olan `map` kullandık ve iki parametre verdik, karesi altyordamı ve bir dizi.
+Sonuç dizinin karesi alınmış öğelerinin bir listesidir.
+
+Bir altyordamı parametre olarak alırken adının başına `&` karakterini eklememiz gerekir.
+
+=== Anonim Fonksiyonlar
+Anonim fonksiyonlara lambda denir. +
+Anonim fonksiyonların tanımlayıcısı(adı) yoktur.
+
+map örneğini anonim fonksiyon kullanarak tekrar yazalım.
+[source,perl6]
+----
+my @array = <1 2 3 4 5>;
+say map(-> $x {$x ** 2},@array);
+----
+Altyordamı bildirmek ve `map` fonksiyonuna parametre olarak vermek yerine, anonim fonksiyon olarak tanımladık `\-> $x {$x ** 2}`.
+
+Perl 6 dilinde bu gösterimi *sivri blok* olarak adlandırıyoruz.
+
+Değişkenlere fonksiyon atamak için de sivri blok kullanılabilir:
+
+[source,perl6]
+----
+my $squared = -> $x {
+  $x ** 2
+}
+say $squared(9);
+----
+
+=== Zincirleme
+Perl 6’da fonksiyonlar zincirlenebilir, bu sayede bir fonksiyonun sonucunu argüman olarak başka birine geçmeniz gerekmez.
+
+Örnek vermek gerekirse: Bir dizi verildiğinde, dizinin büyükten küçüğe sıralı ve benzersiz değerlerini döndürmeniz gerekebilir.
+
+Zincirsiz çözüm:
+
+[source,perl6]
+----
+my @array = <7 8 9 0 1 2 4 3 5 6 7 8 9>;
+my @final-array = reverse(sort(unique(@array)));
+say @final-array;
+----
+
+Buna karşı zincirleme yöntemde aynı örnek şu şekilde yazılabilir:
+
+[source,perl6]
+----
+my @array = <7 8 9 0 1 2 4 3 5 6 7 8 9>;
+my @final-array = @array.unique.sort.reverse;
+say @final-array;
+----
+
+Zincirleme yönteminin anlaşılması daha kolay olduğunu görebilirsiniz.
+
+=== Besleme Operatörü(_Feed Operator_)
+Bazı fonksiyonel programlama dillerinde boru(pipe) olarak adlandırılan besleme operatörü, zincirleme işlemini daha da görselleştirir.
+
+[source,perl6]
+.İleriye doğru besleme
+----
+my @array = <7 8 9 0 1 2 4 3 5 6 7 8 9>;
+@array ==> unique()
+       ==> sort()
+       ==> reverse()
+       ==> my @final-array;
+say @final-array;
+----
+
+.Açıklama
+---
+`@array` ile başlanır
+         ardından benzersiz öğelerin listesi döndürülür
+         sıralanır
+         ters çevrilir
+         @final-array adlı değişkende depolanır.
+---
+İlk adımdan son adıma kadar işlem akışı yukarıdan aşşağıya iner.
+
+[source,perl6]
+.Geriye doğru besleme
+----
+my @array = <7 8 9 0 1 2 4 3 5 6 7 8 9>;
+my @final-array-v2 <== reverse()
+                   <== sort()
+                   <== unique()
+                   <== @array;
+say @final-array-v2;
+----
+
+.Açıklama
+Geriye doğru besleme ileriye doğru beslemeye benzer ancak tam tersidir.
+Akış son adımdan ilk adıma kadar aşağıdan yukarıya doğrudur.
+
+=== Hiper Operatörü(_Hyper operator_)
+`>>` ile temsil edilir. Listenin tüm elemanları üzerinde fonksiyon çağıracağından sonuçların bir listesini döndürür.
+[source,perl6]
+----
+my @array = <0 1 2 3 4 5 6 7 8 9 10>;
+sub is-even($var) { $var %% 2 };
+
+say @array>>.is-prime;
+say @array>>.&is-even;
+----
+
+Hiper operatörü ile dizinin her bir elemanı için tek olma veya çift olma durumunu kontrol ettik.
+Bu her bir değeri yenilemek için for döngüsü yazmamıza gerek kalmadığı için pratiktir.
+
+=== Kavşaklar (_-Junctions_)
+Bir kavşak, değerlerin mantıksal bir süperpozisyonudur.
+
+Aşağıdaki örnekte 1|2|3 kavşaktır.
+[source,perl6]
+----
+my $var = 2;
+if $var == 1|2|3 {
+  say "The variable is 1 or 2 or 3"
+}
+----
+Kavşak kullanımı genellikle *autothreading*'i tetikler.
+Bir kavşak noktası için işlem yapılır ve tüm sonuçlar yeni bir kavşağa birleştirilir.
+
+=== Tembel Listeler
+Tembel liste, tembel olarak değerlendirilen bir listedir. +
+Tembel değerlendirme, bir işlemin değerlendirilmesini gerekli olana kadar geciktirir ve sonuçların bir arama tablosunda depolayarak değerlendirmenin tekrarını önler.
+
+Yararları:
+
+* Gereksiz hesaplamalardan kaçınarak performans artışı.
+
+* Teorik olarak sonsuz veri yapıları oluşturma.
+
+* Kontrol akışını tanımlama becerisi.
+
+Tembel liste oluşturmak için `…` operatörü kullanılır.
+Tembel liste başlangıç elemanları, arttırım ve son nokta içerir.
+
+[source,perl6]
+.Basit bir tembel liste
+----
+my $lazylist = (1 ... 10);
+say $lazylist;
+----
+Başlangıç noktası 1 ve bitiş noktası 10’dur. Arttırım tanımlanmadığı için varsayılan olarak +1 artar.
+Diğer bir deyişle, bu tembel liste talep edilirse (1, 2, 3, 4, 5, 6, 7, 8, 9, 10) elamanları döndürebilir.
+
+[source,perl6]
+.Sonsuz tembel liste
+----
+my $lazylist = (1 ... Inf);
+say $lazylist;
+----
+Bu liste 1’den sonsuza kadar olan herhangi bir tam sayıyı istendiği takdirde döndürebilir.
+
+[source,perl6]
+.Artış değeri çıkarsanmış tembel liste
+----
+my $lazylist = (0,2 ... 10);
+say $lazylist;
+----
+
+Bu tembel liste istediği takdirde (0, 2, 4, 6, 8, 10) elamaları döndürebilir.
+
+[source,perl6]
+.Artış değeri belirlenmiş tembel liste
+----
+my $lazylist = (0, { $_ + 3 } ... 12);
+say $lazylist;
+----
+Bu örnekte açıkça `{ }` ile çevrelenmiş artış değeri tanımladık.
+Bu tembel liste istendiği takdirde (0, 3, 6, 9, 12) elemanlarını gösterir.
+
+[WARNING]
+====
+Son nokta artış değerinin geri dönebileceği değerlerden biri olmalıdır.
+Yukarıdaki örneği bitiş noktası 12 yerine 10 yazarsak durmaz. Artış değeri bitiş değerinin üzerinden zıplayacaktır.
+Alternatif olarak `0 … 10` yerine `0 …^* > 10` yazılabilir.
+
+[source,perl6]
+.Durmaz
+----
+my $lazylist = (0, { $_ + 3 } ... 10);
+say $lazylist;
+----
+
+[source,perl6]
+.Durur
+----
+my $lazylist = (0, { $_ + 3 } ...^ * > 10);
+say $lazylist;
+----
+====
+
+=== Closures
+Closures bir fonksiyonun içinde verilen değere göre döndürülen başka fonksiyonlardır.
+
+[source,perl6]
+----
+sub generate-greeting {
+    my $name = "John Doe";
+    sub greeting {
+      say "Good Morning $name";
+    };
+    return &greeting;
+}
+my $generated = generate-greeting;
+$generated();
+----
+
+Yukarıdaki kodu çalıştırdığımızda terminal ekranında `Good Morning John Doe` çıktısını görürüz. +
+Sonuç oldukça basit olmakla birlikte, ilginç olan `greeting` altyordamının `generate-greeting` tarafından döndürülmüş olmasıdır.
+
+`$generated` bir *closure* haline geldi.
+
+*closure* iki şeyi birleştiren bir nesne türüdür:
+
+* Bir Altyordam
+
+* Altprogramın oluşturulduğu ortam
+
+Ortam, closure'un oluşturduğu kapsamdaki herhangi bir yerel değişkenden oluşur.
+Bu durumda `$generated`, closure oluşturulduğunda var olan `greeting` altyordamını ve `Jhon Doe` dizisini birleştiren bir closure olur.
+
+Şimdi daha ilginç bir örneği inceleyelim.
+[source,perl6]
+----
+sub greeting-generator($period) {
+  return sub ($name) {
+    return "Good $period $name"
+  }
+}
+my $morning = greeting-generator("Morning");
+my $evening = greeting-generator("Evening");
+
+say $morning("John");
+say $evening("Jane");
+----
+
+Bu örnekte, `greeting-generator($period)` altyordamını tanımladık. Altyordamımız farklı bir altyordam döndürür.
+Döndürülen altprogram, tek parametre alır ve string döndürür.
+
+`greetin-generator` bir altyordam fabrikasıdır. Örneğimizde `greeting-generator` kullanılarak iki yeni altyordam oluşturduk.
+Birisi  `Good Morning` ve diğeri `Good Evening` diyor.
+
+`$morning` ve `$evening` her ikiside closure olur. Altyordamlar farklı ortamlarda tutulurlar ancak aynı içeriği kullanırlar.
+ `$morning` ortamında `$period` `Morning`'dir. `$evening` ortamında `$period` `Evening`'dir.
+
+== Sınıflar ve Nesneler
+Bir önceki bölümde Perl 6'nın Fonksiyonel Programlamayı nasıl kolaylaştırdığını öğrendik. +
+Bu bölümde, PErl 6'daki Nesne Yönelinli Programlamaya göz atacağız.
+
+=== Giriş
+
+_Nesne Yöneli_ programlama günümüzde yaygın olarak kullanılan paradigmalardan biridir. +
+Bir *nesne* birlikte paketlenmiş bir dizi değişken ve altyordamdır. +
+Değişkenlere *attributes(özellikler)* denir ve altprogramlara *metot* denir. +
+Özellikler nesnenin *durumunu* tanımlar, metotlar ise nesnenin *davranışını* tanımlar.
+
+Bir *class* *nesneler* oluşturmak için şablondur. +
+
+İlişkiyi anlamak için aşağıdaki örneği ele alalım:
+
+|===
+
+| Bir odada 4 kişi var | *objects* => 4 kişi
+
+| Bu 4 kişi insan | *class* => İnsan
+
+| Farklı isimler, yaş, cinsiyet ve uyrukları var. | *attributes* => isim, yaş, cinsiyet, uyruk
+
+|===
+
+_Nesneye yönelik_ programlamada nesnelerin sınıfların örnekleri olduğunu söyleriz.
+
+Aşağıdaki betiğe bakalım:
+[source,perl6]
+----
+class Human {
+  has $.name;
+  has $.age;
+  has $.sex;
+  has $.nationality;
+}
+
+my $john = Human.new(name => 'John', age => 23, sex => 'M', nationality => 'American');
+say $john;
+----
+`class` anahtar kelimesi sınıfı tanımlamak için kullanılır. +
+`has` anahtar kelimesi sınıfın niteliklerini tanımlamak için kullanılır.
+`.new()` metodu *yapıcı(constructor)*'ı çağırır. Nesneyi çağırıldığı sınıfın bir örneği olarak yaratır.
+
+Betiğimizde, `$john` adında yeni bir "Human" örneği tanımladık `Human.new()`. +
+`.new()` içinde belirtilen değişkenler temel alınan sınıfın niteliklerini belirtmek için kullanılır.
+
+Bir sınıfa `my` kullanılarak _kapsamı_ belirtilebilir:
+[source,perl6]
+----
+my class Human {
+
+}
+----
+
+=== Kapsülleme (_Encapsulation_)
+Sınıf(_class_) özelliklerinin dışarıya kapalı olması ve bu sınıfın her türlü veri iletişiminin kontrol altındaki metotlar ile yapılmasıdır. +
+
+Aşağıdaki betikler aynı sonuca sahiptir.
+
+.Değişkene doğrudan erişim:
+[source,perl6]
+----
+my $var = 7;
+say $var;
+----
+
+.Kapsülleme:
+[source,perl6]
+----
+my $var = 7;
+sub sayvar {
+  $var;
+}
+say sayvar;
+----
+
+`sayvar` metodu erişimcidir. Değişkenin kendisine doğrudan erişmeden, değerine erişmemize izin verir.
+
+Perl 6 kapsülleme kullanımını kolaylaştırılmıştır:
+
+* `!` özelliğinin doğrudan dışarıdan erişilemez olduğunu belirtir.
+* `.` özellik için otomatik olarak erişimci oluşturulur.
+
+Varsayılan olarak tüm özellikler özel(_private_)dir. Ancak her zaman `!` kullanılması iyi bir alışkanlıktır.
+
+Yukarıdaki sınıfı şu şekilde yeniden yazabiliriz:
+[source,perl6]
+----
+class Human {
+  has $!name;
+  has $!age;
+  has $!sex;
+  has $!nationality;
+}
+
+my $john = Human.new(name => 'John', age => 23, sex => 'M', nationality => 'American');
+say $john;
+----
+Betiğe `say $john.age;` komutunu ekleyelim. +
+Çalıştırmaya çalıştığımızda hata döndürür: `Method 'age' not found for invocant of class 'Human'`
+çünkü `$age` özeldir ve yalnızca nesne içinde kullanılabilir.
+
+Şimdi `has $!age` yerine `has $.age` yazalım ve `say $john.age` ile tekrar çağıralım.
+
+=== Yapıcı Metot
+Perl 6'da tüm sınıflar varsayılan olarak `.new()` _constructor_'ı vardır. +
+Yeni nesneler oluşturmak için kullanılabilir. +
+Varsayılan _constructor_ yalnızca parametreler ile kullanılabilir. +
+Yukarıdaki örneğimizde, `.new()` verilen parametreler ile tanımlanmıştır bu parametreler değişkenler için konum göstermiştir:
+
+* name => 'John'
+
+* age => 23
+
+Peki konum göstermeden kullanmak isteseydik?
+Bunun için yeni bir yapıcı metot şu şekilde tanımlanabilir.
+
+[source,perl6]
+----
+class Human {
+  has $.name;
+  has $.age;
+  has $.sex;
+  has $.nationality;
+  # varsayılanı geçersiz kılan yeni bir yapıcı
+  method new ($name,$age,$sex,$nationality) {
+    self.bless(:$name,:$age,:$sex,:$nationality);
+  }
+}
+
+my $john = Human.new('John',23,'M','American');
+say $john;
+----
+
+=== Metotlar
+
+==== Giriş
+Metotlar bir nesnenin _altyordamları_'dır. +
+Altyordamlar gibi, bir dizi işlevselliği paketleme aracıdır. Parametre alabilirler.
+
+Metotlar `method` kelimesi ile tanımlanır. +
+Nesne nitelikleri üzerinde bir takım işlemler yapmak için metotlar kullanılır.
+Bu kapsülleme kavramının kullanımını zorlar. Nesne nitelikleri, yalnızca metotlar kullanılarak nesne içinde manipüle edilebilir.
+
+Nesne niteliklerine dışarıdan yalnızca nesne metotları ile iletişime geçilebilir. Niteliklere doğrudan erişim yoktur.
+
+[source,perl6]
+----
+class Human {
+ has $.name;
+ has $.age;
+ has $.sex;
+ has $.nationality;
+ has $.eligible;
+ method assess-eligibility {
+     if self.age < 21 {
+       $!eligible = 'No'
+     } else {
+       $!eligible = 'Yes'
+     }
+ }
+
+}
+
+my $john = Human.new(name => 'John', age => 23, sex => 'M', nationality => 'American');
+$john.assess-eligibility;
+say $john.eligible;
+----
+
+Metotlar bir sınıfa tanımlandıktan sonra çağırmak için _nesne_ *.* _metot_ şeklinde çağrılır.
+
+Bir metodun tanımı çevresinde, başka bir metodu çağırmak için nesnenin kendisine referans vermemiz gerekiyorsa `self` kelimesini kullanırız. +
+Bir özelliğe başvuru yapmamız gerekiyorsa `.` ile tanımlanmış olsa bile `!` kullanırız. +
+
+Yukarıdaki örnekte `if self.age < 21` ve `if $!age < 21` aynı etkiye sahiptir, teknik olarak farklı olsalarda:
+
+* `self.age` `.age` metodunu çağırır +
+Alternatif olarak `$.age` olarak yazılabilir.
+* `$!age` değişkenin doğrudan çağrısıdır.
+
+==== Özel(_Private_) Metotlar
+Metotlar sınıf dışından çağırılabilir.
+
+*Özel metotlar* ise yalnızca Sınıf içerisinden çağırılabilir. +
+Olası kullanım durumu, belirli bir işlem için başka bir metot çağıran bir metot olacaktır.
+
+Özel metot tanımlanırken `!` kullanılmalıdır. +
+Özel metotlar `.` yerine `!` ile çağırılır.
+
+[source,perl6]
+----
+method !iamprivate {
+  # kodlar
+}
+
+method iampublic {
+  self!iamprivate;
+  # kodlar
+}
+----
+
+=== Sınıf Özellikleri(_Class attributes_)
+*Sınıf Özellikleri* nesnenin değil sınıfın kendisine ait özelliklerddir. +
+Oluşturma sırasında başlatılabilirler. +
+Sınıf Nitelikleri `has` yerine `my` kullanılarak tanımlanır. +
+
+[source,perl6]
+----
+class Human {
+  has $.name;
+  my $.counter = 0;
+  method new($name) {
+    Human.counter++;
+    self.bless(:$name);
+  }
+}
+my $a = Human.new('a');
+my $b = Human.new('b');
+
+say Human.counter;
+----
+
+=== Erişim Türü
+Şimdiye kadar gördüğümüz tüm örneklernesnelerin özelliklerinden bilgi almak için erişimciler kullanıldı.
+
+Bir niteliğin değerini değiştirmemiz gerekiryorsa ne olur? +
+Bunun için `is rw` anahtar kelimesini kullanarak özelliği _read/write(okuma/yazma)_ olarak etiketlemeliyiz.
+[source,perl6]
+----
+class Human {
+  has $.name;
+  has $.age is rw;
+}
+my $john = Human.new(name => 'John', age => 21);
+say $john.age;
+
+$john.age = 23;
+say $john.age;
+----
+
+Varsayılan olarak tüm nitelikler _read only(yalnız okuma)_ olarak bildirilir ancak bunu açık olarak `readonly` kullanarak yapabiliriz.
+
+=== Miras Alma(_Inheritance_)
+Miras, nesne yönelimli programlamının başka bir kabulüdür.
+
+Sınıfları tanımlarken, bazı özelliklerin/metotların birçok sınıfa ait olduğunu farkedeceğiz. +
+Bu durumda kodu tekrar tekrar yazmak yerine *miras* kavramını kullanacağız.
+
+İnsanlar ve Çalışanlar için birer sınıf tanımlamak istediğimizi düşünelim. +
+İnsanlar iki niteliğe sahip olsun: adı ve yaşı. +
+Çalışanlar ise dört niteliğe sahip olsun: adı, yaşı, şirketi ve maaşı.
+
+Bu sınıflar şu şekilde tanımlanabilir:
+[source,perl6]
+----
+class Human {
+  has $.name;
+  has $.age;
+}
+
+class Employee {
+  has $.name;
+  has $.age;
+  has $.company;
+  has $.salary;
+}
+----
+Yukarıdaki kod teknik olarak doğru olmakla birlikte, kavramsal olarak zayıf olduğu kabul edilir.
+
+Bunu yazmanın daha iyi bir yolu şöyledir:
+[source,perl6]
+----
+class Human {
+  has $.name;
+  has $.age;
+}
+
+class Employee is Human {
+  has $.company;
+  has $.salary;
+}
+----
+`is` anahtar kelimesi miras alındığını tanımlar. +
+Bu şu şekilde ifade edilir, Çalışanlar sınıfı İnsanlar sınıfının *çocuğudur* veya İnsanlar sınıfı Çalışanlar sınıfının *ebeveynidir*.
+
+Tüm çocuk sınıflar, ebeveyn sınıfın niteliklerini ve metotlarını devralırlar. Dolayısı ile tekrar tanımlanmalarına gerek yoktur.
+
+==== Metotların Ezilmesi(_Overriding_)
+Sınıflar, tüm nitelikleri ve metotları ebeveyn sınıflarından devralır. +
+Çocuk sınıfındaki metodun devralınan metottan farklı davranması gereken durumlar olabilir. +
+Bunun üstesinden gelmek için, metodu çocuk sınıfta yeniden tanımlarız. +
+Bu kavrama *Overriding(ezme, geçersiz kılma)* denir.
+
+Aşağıdaki örnekte, `introduce-yourself` yöntemi Çalışan sınıfı tarafından devralınır.
+
+[source,perl6]
+----
+class Human {
+  has $.name;
+  has $.age;
+  method introduce-yourself {
+    say 'Hi I am a human being, my name is ' ~ self.name;
+  }
+}
+
+class Employee is Human {
+  has $.company;
+  has $.salary;
+}
+
+my $john = Human.new(name =>'John', age => 23,);
+my $jane = Employee.new(name =>'Jane', age => 25, company => 'Acme', salary => 4000);
+
+$john.introduce-yourself;
+$jane.introduce-yourself;
+----
+Ezme şöyle çalışır:
+
+[source,perl6]
+----
+class Human {
+  has $.name;
+  has $.age;
+  method introduce-yourself {
+    say 'Hi I am a human being, my name is ' ~ self.name;
+  }
+}
+
+class Employee is Human {
+  has $.company;
+  has $.salary;
+  method introduce-yourself {
+    say 'Hi I am a employee, my name is ' ~ self.name ~ ' and I work at: ' ~ self.company;
+  }
+
+}
+
+my $john = Human.new(name =>'John',age => 23,);
+my $jane = Employee.new(name =>'Jane',age => 25,company => 'Acme',salary => 4000);
+
+$john.introduce-yourself;
+$jane.introduce-yourself;
+----
+
+Nesnenin hangi sınıfa dahil olduğuna bakılarak doğru metot çağırılır.
+
+==== Altmetotlar
+Alt sınıflar tarafından devralınmayan bir metot türüdür. +
+Onlara yalnızca tanımlandığı sınıftan erişilebilir. +
+Tanımlamak için `submethod` anahtar kelimesi kullanılır.
+
+=== Çoklu Miras
+Perl 6'da çoklu kalıtıma izin verilir. Bir sınıf birden çok sınıftan miras alabilir.
+
+[source,perl6]
+----
+class bar-chart {
+  has Int @.bar-values;
+  method plot {
+    say @.bar-values;
+  }
+}
+
+class line-chart {
+  has Int @.line-values;
+  method plot {
+    say @.line-values;
+  }
+}
+
+class combo-chart is bar-chart is line-chart {
+}
+
+my $actual-sales = bar-chart.new(bar-values => [10,9,11,8,7,10]);
+my $forecast-sales = line-chart.new(line-values => [9,8,10,7,6,9]);
+
+my $actual-vs-forecast = combo-chart.new(bar-values => [10,9,11,8,7,10],
+                                         line-values => [9,8,10,7,6,9]);
+say "Actual sales:";
+$actual-sales.plot;
+say "Forecast sales:";
+$forecast-sales.plot;
+say "Actual vs Forecast:";
+$actual-vs-forecast.plot;
+----
+
+.`Çıktı`
+----
+Actual sales:
+[10 9 11 8 7 10]
+Forecast sales:
+[9 8 10 7 6 9]
+Actual vs Forecast:
+[10 9 11 8 7 10]
+----
+
+.Açıklama
+`combo-chart` sınıfı iki seriyi tutabilmelidir; bir tanesi çubuklara çizilen gerçek değerler için,
+bir diğeri bir satırda çizilen tahmin değeri için. +
+Bu yüzden onu `line-chart` ve `bar-chart` sınıflarının bir çocuğu olarak tanımladık. +
+`combo-chart` üzerinde `plot` metodunu çağırmanın gerekli sonucu vermediğini fark etmiş olmalısınız.
+Sadece bir seri çizildi. +
+Bu neden oldu? +
+`combo-chart`, `line-chart` ve `bar-chart` sınıflarından miras alır ve her ikisinde de `plot` adlı bir yöntem bulunur.
+Perl 6, miras alınan metotlardan birini çağırarak çakışmayı çözmeye çalışacaktır.
+
+.Düzeltme
+Doğru davranışı sağlamak için `combo-chart` üzerinde `plot` yöntemini geçersiz kıldık.
+
+[source,perl6]
+----
+class bar-chart {
+  has Int @.bar-values;
+  method plot {
+    say @.bar-values;
+  }
+}
+
+class line-chart {
+  has Int @.line-values;
+  method plot {
+    say @.line-values;
+  }
+}
+
+class combo-chart is bar-chart is line-chart {
+  method plot {
+    say @.bar-values;
+    say @.line-values;
+  }
+}
+
+my $actual-sales = bar-chart.new(bar-values => [10,9,11,8,7,10]);
+my $forecast-sales = line-chart.new(line-values => [9,8,10,7,6,9]);
+
+my $actual-vs-forecast = combo-chart.new(bar-values => [10,9,11,8,7,10],
+                                         line-values => [9,8,10,7,6,9]);
+say "Actual sales:";
+$actual-sales.plot;
+say "Forecast sales:";
+$forecast-sales.plot;
+say "Actual vs Forecast:";
+$actual-vs-forecast.plot;
+----
+
+.`Çıktı`
+----
+Actual sales:
+[10 9 11 8 7 10]
+Forecast sales:
+[9 8 10 7 6 9]
+Actual vs Forecast:
+[10 9 11 8 7 10]
+[9 8 10 7 6 9]
+----
+
+=== Roller(_Roles_)
+Roller, özelliklerin ve metotların bir koleksiyonu oldukları için sınıflara benzerler.
+
+Roller `role` anahtar sözcüğü ile tanımlanır. Bir rol uygulanmak istenen sınıf `do` anahtar kelimesini kullanır.
+
+.Rolleri kullanarak çoklu miras örneğini tekrar yazalım:
+[source,perl6]
+----
+role bar-chart {
+  has Int @.bar-values;
+  method plot {
+    say @.bar-values;
+  }
+}
+
+role line-chart {
+  has Int @.line-values;
+  method plot {
+    say @.line-values;
+  }
+}
+
+class combo-chart does bar-chart does line-chart {
+  method plot {
+    say @.bar-values;
+    say @.line-values;
+  }
+}
+
+my $actual-sales = bar-chart.new(bar-values => [10,9,11,8,7,10]);
+my $forecast-sales = line-chart.new(line-values => [9,8,10,7,6,9]);
+
+my $actual-vs-forecast = combo-chart.new(bar-values => [10,9,11,8,7,10],
+                                         line-values => [9,8,10,7,6,9]);
+say "Actual sales:";
+$actual-sales.plot;
+say "Forecast sales:";
+$forecast-sales.plot;
+say "Actual vs Forecast:";
+$actual-vs-forecast.plot;
+----
+
+Örneği çalıştırdığınızda sonuçların aynı olduğunu göreceksiniz.
+Şimdi kendimize şu soruyu soralım: Roller sınıflar gibi kullanılıyorsa, bunların kullanım amacı nedir? +
+Sorumuza cevap verebilmesi için birden fazla miras alması için kullandığımız ilk betiği değiştirelim, `plot` metodunu geçersiz kıldık.
+
+[source,perl6]
+----
+role bar-chart {
+  has Int @.bar-values;
+  method plot {
+    say @.bar-values;
+  }
+}
+
+role line-chart {
+  has Int @.line-values;
+  method plot {
+    say @.line-values;
+  }
+}
+
+class combo-chart does bar-chart does line-chart {
+}
+
+my $actual-sales = bar-chart.new(bar-values => [10,9,11,8,7,10]);
+my $forecast-sales = line-chart.new(line-values => [9,8,10,7,6,9]);
+
+my $actual-vs-forecast = combo-chart.new(bar-values => [10,9,11,8,7,10],
+                                         line-values => [9,8,10,7,6,9]);
+say "Actual sales:";
+$actual-sales.plot;
+say "Forecast sales:";
+$forecast-sales.plot;
+say "Actual vs Forecast:";
+$actual-vs-forecast.plot;
+----
+
+.`Çıktı`
+----
+===SORRY!===
+Method 'plot' must be resolved by class combo-chart because it exists in multiple roles (line-chart, bar-chart)
+----
+
+.Açıklama
+Eğer aynı sınıfa birden fazla rol uygulanırsa ve çakışma varsa, derleme zamanı hatası alınır. +
+Bu çoklu mirastan daha güvenli bir yaklaşımdır, çoklu miras bunu hata olarak görmüyordu.
+
+Roller bir çakışma olduğunda sizi uyaracaktır.
+
+=== İçgözlem
+Nesnenin tipi, nitelikleri veya metotları hakkında bilgi alma sürecidir.
+
+[source,perl6]
+----
+class Human {
+  has Str $.name;
+  has Int $.age;
+  method introduce-yourself {
+    say 'Hi I am a human being, my name is ' ~ self.name;
+  }
+}
+
+class Employee is Human {
+  has Str $.company;
+  has Int $.salary;
+  method introduce-yourself {
+    say 'Hi I am a employee, my name is ' ~ self.name ~ ' and I work at: ' ~ self.company;
+  }
+}
+
+my $john = Human.new(name =>'John',age => 23,);
+my $jane = Employee.new(name =>'Jane',age => 25,company => 'Acme',salary => 4000);
+
+say $john.WHAT;
+say $jane.WHAT;
+say $john.^attributes;
+say $jane.^attributes;
+say $john.^methods;
+say $jane.^methods;
+say $jane.^parents;
+if $jane ~~ Human {say 'Jane is a Human'};
+----
+İçgözlem aşağıdakiler tarafından kolaylaştırılır:
+
+* `.WHAT` -- nesnenin oluşturulduğu sınıfı döndürür.
+
+* `.^attributes` -- nesnenin tüm niteliklerini döndürür.
+
+* `.^methods` -- nesnede çağırılabilecek tüm metotları döndürür.
+
+* `.^parents` -- nesnenin ebeveynlerini döndürür.
+
+* `~~` -- akıllı eşleme operatörünü çağırır.
+Nesne karşılaştırıldığı sınıftan veya çocuklarından herhangi biriyle yaratıldıysa _True_ olarak değerlendirilir.
+
+[NOTE]
+--
+Nesne yönelimli programlama hakkında daha fazla bilgiye ulaşmak için:
+
+* https://docs.perl6.org/language/classtut
+* https://docs.perl6.org/language/objects
+--
+
+== İstisna İşleme(_Exception Handling_)
+istisnalar bir şey ters gittiğinde çalışma anında gerçekleşen özel davranışlardır.
+
+Doğru çalışan aşağıdaki betik dosyasını göz önünde bulundurursak:
+
+[source,perl6]
+----
+my Str $name;
+$name = "Joanna";
+say "Hello " ~ $name;
+say "How are you doing today?"
+----
+
+.`Çıktı`
+----
+Hello Joanna
+How are you doing today?
+----
+
+Şimdi bir istisna fırlatan aşağıdaki betik dosyasını göz önünde bulunduralım:
+
+[source,perl6]
+----
+my Str $name;
+$name = 123;
+say "Hello " ~ $name;
+say "How are you doing today?"
+----
+
+.`Çıktı`
+----
+Type check failed in assignment to $name; expected Str but got Int
+   in block <unit> at exceptions.pl6:2
+----
+
+Bir hata oluştuğunda (bu durumda string değişkenine tam sayı atamak) programın duracağına ve diğer kod satırlarının değerlendirilmeyeceğine dikkat edin.
+
+*İstisna işleme*, betik dosyasının çalışmaya devam etmesi için atılan bir istisnayı yakalama işlemidir.
+
+[source,perl6]
+----
+my Str $name;
+try {
+  $name = 123;
+  say "Hello " ~ $name;
+  CATCH {
+    default {
+      say "Can you tell us your name again, we couldn't find it in the register.";
+    }
+  }
+}
+say "How are you doing today?";
+----
+
+.`Çıktı`
+----
+Can you tell us your name again, we couldn't find it in the register.
+How are you doing today?
+----
+
+İstisna yakalama `try-catch` bloğu kullanılarak yapılır.
+
+[source,perl6]
+----
+try {
+  # kodlar
+  # bir şeyler ters giderse catch bloğu çağırılır
+  # ters giden bir şey olmazsa catch bloğu yok sayılır
+  CATCH {
+    default {
+      # burada bulunan kod yalnızca istisna fırlatıldığında işleyecektir
+    }
+  }
+}
+----
+
+`CATCH` bloğu `given` bloğu tanımlandığı gibi tanımlanabilir.
+Bu birçok istisna türünü farklı şekillerde ele alıp tutabiliriz demektir.
+
+[source,perl6]
+----
+try {
+  # kodlar
+  # bir şeyler ters giderse catch bloğu çağırılır
+  # ters giden bir şey olmazsa catch bloğu yok sayılır
+  CATCH {
+    when X::AdHoc   { # eğer hata tipi X::AdHoc ise çalışır }
+    when X::IO      { # eğer hata tipi X::IO ise çalışır }
+    when X::OS      { # eğer hata tipi X::OS ise çalışır }
+    default         { # eğer istisna atılır ve yukarıdaki tiplere ait değilse buraya düşer }
+  }
+}
+----
+
+=== İstisna Fırlatma
+Perl 6 da açıkça istisnaları atmanızı sağlar.
+İstisna fırlatmanın iki türü vardır:
+
+* ad-hoc(_Özel_) istisnalar
+
+* typed(_Yazılan_) İstisnalar
+
+[source,perl6]
+.ad-hoc
+----
+my Int $age = 21;
+die "Error !";
+----
+
+[source,perl6]
+.typed
+----
+my Int $age = 21;
+X::AdHoc.new(payload => 'Error !').throw;
+----
+
+Özel istisnalar, `die` altyordamı ve ardından özel mesaj ile atılır.
+
+Yazılan istisnalar nesnelerdir, bu yüzden yukarıdaki örnekte `.new()` yapıcısı kullanılmıştır.
+Yazılan tüm istisnalar `X` sınıfından alınır, birkaç örnek: +
+`X::AdHoc` en basit istisna tipidir +
+`X::IO` G/Ç hataları ile ilgilidir +
+`X::OS` OS hataları ile ilgilidir +
+`X::Str::Numeric` string ifadeyi sayıya zorlamakla ilgilidir.
+
+NOTE: İstisnalar ile ilgili daha fazla bilgiye https://docs.perl6.org/type-exceptions.html adresinden ulaşabilirsiniz.
+
+
+== Düzenli İfadeler (_Regular Expression_)
+Düzenli ifadeler veya _regex_, desen eşleştirmesi için kullanılan bir dizi karakterdir.
+Bir desen olarak düşünün.
+
+[source,perl6]
+----
+if 'enlightenment' ~~ m/ light / {
+    say "enlightenment contains the word light";
+}
+----
+
+Bu örnekte, akıllı eşleme operatörü `~~` bir stringin kelimeyi içerip içermediğini kontrol için kullanılır.
+
+=== Regex Tanımlama
+
+Şöyle tanımlanabilir:
+
+* `/light/`
+
+* `m/light/`
+
+* `rx/light/`
+
+Açıkça belirtilmediği sürece boşluklar göz ardı edilir; `m/light/` ve `m/ light /` aynı anlama gelir.
+
+=== Karakter Eşleme
+Alfanumerik karakterler ve altçizgi `_` olduğu gibi yazılı.
+Diğer tüm karakterler ters eğik çizgi kullanılarak veya tırnak işareti ile çevrilmelidir.
+
+[source,perl6]
+.Ters Eğik Çizgi
+----
+if 'Temperature: 13' ~~ m/ \: / {
+    say "The string provided contains a colon :";
+}
+----
+
+[source,perl6]
+.Tek Tırnak
+----
+if 'Age = 13' ~~ m/ '=' / {
+    say "The string provided contains an equal character = ";
+}
+----
+
+[source,perl6]
+.Çift Tırnak
+----
+if 'name@company.com' ~~ m/ "@" / {
+    say "This is a valid email address because it contains an @ character";
+}
+----
+
+=== Kategorilerine Göre Karakter Eşleme
+Karakterler, kategorilere ve zıt eşlemelerine göre sınıflandırılabilir.
+Bir kategori veya tersi ile karşılaşabiliriz.
+
+|===
+
+| *Kategori* | *Regex* | *Ters* | *Regex*
+
+| Kelime karakteri (harf, rakam veya altçizgi) | \w | Bir kelime karakteri haricindeki herhangi bir karakter | \W
+
+| Ondalıklı sayılar | \d | sayı harici herhangi bir karakter | \D
+
+| Boşluk | \s | boşluk haricinde herhangi bir karakter | \S
+
+| Yatay boşluk | \h | yatay boşluk harici herhangi bir karakter | \H
+
+| Dikey boşluk | \v | dikey boşluk harici herhangi bir karakter | \V
+
+| Tab | \t | Tab harici herhangi bir karakter | \T
+
+| Yeni satır | \n | Yeni satır karakteri hariç herhangi bir karakter | \N
+
+|===
+
+[source,perl6]
+----
+if "John123" ~~ / \d / {
+  say "This is not a valid name, numbers are not allowed";
+} else {
+  say "This is a valid name"
+}
+if "John-Doe" ~~ / \s / {
+  say "This string contains whitespace";
+} else {
+  say "This string doesn't contain whitespace"
+}
+----
+
+=== Unicode Özellikleri
+Bir önceki bölümde görüldüğü gibi karakter kategorilerine karşı ters eşleme de yapılabilir. +
+Sistematik bir yaklaşım Unicode özeliklerini kullanmak olacaktır. +
+Bu yöntem ASCII standardı içindeki ve dışındaki karakter kategorileri ile eşleyebilmemizi sağlar.
+Unicode özellikleri `<: >` ile belirtilir.
+
+[source,perl6]
+----
+if "Devanagari Numbers १२३" ~~ / <:N> / {
+  say "Contains a number";
+} else {
+  say "Doesn't contain a number"
+}
+if "Привет, Иван." ~~ / <:Lu> / {
+  say "Contains an uppercase letter";
+} else {
+  say "Doesn't contain an upper case letter"
+}
+if "John-Doe" ~~ / <:Pd> / {
+  say "Contains a dash";
+} else {
+  say "Doesn't contain a dash"
+}
+----
+
+=== Joker Karakterler
+Joker karakterler regex ifadeler ile kullanılabilir.
+
+Örneğin nokta `.` herhangi bir tek karakter anlamına gelir.
+
+[source,perl6]
+----
+if 'abc' ~~ m/ a.c / {
+    say "Match";
+}
+if 'a2c' ~~ m/ a.c / {
+    say "Match";
+}
+if 'ac' ~~ m/ a.c / {
+    say "Match";
+} else {
+    say "No Match";
+}
+----
+
+=== Niceleyiciler
+Nicelik belirteçleri, bir karakterin peşinden gelir ve bunu kaç kere beklediğimizi belirtmek için kullanılır.
+
+Örneğin soru işareti `?`, sıfır veya bir kez demektir.
+
+[source,perl6]
+----
+if 'ac' ~~ m/ a?c / {
+    say "Match";
+} else {
+    say "No Match";
+}
+if 'c' ~~ m/ a?c / {
+    say "Match";
+} else {
+    say "No Match";
+}
+----
+
+Yıldız `*`, sıfır veya birden çok kez anlamına gelir.
+
+[source,perl6]
+----
+if 'az' ~~ m/ a*z / {
+    say "Match";
+} else {
+    say "No Match";
+}
+if 'aaz' ~~ m/ a*z / {
+    say "Match";
+} else {
+    say "No Match";
+}
+if 'aaaaaaaaaaz' ~~ m/ a*z / {
+    say "Match";
+} else {
+    say "No Match";
+}
+if 'z' ~~ m/ a*z / {
+    say "Match";
+} else {
+    say "No Match";
+}
+----
+
+Artı `+`, en az bir kez demektir.
+
+[source,perl6]
+----
+if 'az' ~~ m/ a+z / {
+    say "Match";
+} else {
+    say "No Match";
+}
+if 'aaz' ~~ m/ a+z / {
+    say "Match";
+} else {
+    say "No Match";
+}
+if 'aaaaaaaaaaz' ~~ m/ a+z / {
+    say "Match";
+} else {
+    say "No Match";
+}
+if 'z' ~~ m/ a+z / {
+    say "Match";
+} else {
+    say "No Match";
+}
+----
+
+=== Eşleme Sonuçları
+Bir string eşleştirme işlemi her regex'e karşı başarılı ise, eşeleme sonucu `$/` özel karakterinde saklanır.
+
+[source,perl6]
+.Betik
+----
+if 'Rakudo is a Perl 6 compiler' ~~ m/:s Perl 6/ {
+    say "The match is: " ~ $/;
+    say "The string before the match is: " ~ $/.prematch;
+    say "The string after the match is: " ~ $/.postmatch;
+    say "The matching string starts at position: " ~ $/.from;
+    say "The matching string ends at position: " ~ $/.to;
+}
+----
+
+.Çıktı
+----
+The match is: Perl 6
+The string before the match is: Rakudo is a
+The string after the match is: compiler
+The matching string starts at position: 12
+The matching string ends at position: 18
+----
+
+.Açıklama
+`$/` eşleme nesnesini döner. (regexle eşlenen string) +
+Aşağıdaki yöntemler eşleme nesnesi üzerinden çağırılabilir:
+`.prematch` eşleşmeden önceki dizi döndürülür.
+`.postmatch` eşleşmeden sonraki dizi döndürülür.
+`.from` eşleştirmenin başladığı pozisyon döndürülür.
+`.to` eşleşmenin bittiği pozisyon döndürülür.
+
+TIP: Varsayılan olarak regex tanımındaki boşluklar yok sayılır. +
+Boşluk içeren bir regexle eşleştirme yapmak istersek bunu açıkça belirtmeliyiz. +
+`:s` regex içinde `m/:s Perl 6/` boşlukları hesaba katmaya zorlar. +
+Alternatif olarak regex'i şöyle yazmış olabiliriz: `m/ Perl\s6 /` ve `\s` kullanmış olabiliriz. Bu boşlukları temsil eder. +
+Bir regex tek boşluk içeriyorsa `\s` kullanmak iyi bir seçenektir.
+
+=== Örnek
+Bir e-postanın geçerli olup olmadığını kontrol edelim. +
+Örneğimiz için geçerli bir e-posta adresinin şöyle olduğunu varsayalım: +
+first name [dot] last name [at] company [dot] (com/org/net)
+
+WARNING: Bu örnekte kullanılan e-posta doğrulaması pek doğru değildir. +
+Tek amacı Perl 6'da düzenli ifadelerin kullanımını göstermektir. +
+Ürününüzde olduğu gibi kullanmayın.
+
+[source,perl6]
+.Betik
+----
+my $email = 'john.doe@perl6.org';
+my $regex = / <:L>+\.<:L>+\@<:L+:N>+\.<:L>+ /;
+
+if $email ~~ $regex {
+  say $/ ~ " is a valid email";
+} else {
+  say "This is not a valid email";
+}
+----
+
+.Çıktı
+`john.doe@perl6.org is a valid email`
+
+.Açıklama
+`<:L>` tek harfle eşleştir +
+`<:L>+` bir veya daha fazla harf ile eşleştir +
+`\.` bir [nokta] karakteri ile eşleştir +
+`\@` bir [at] karakteri ile eşleştir +
+`<:L+:N>` bir harfle veya bir sayıyla eşleştir +
+`<:L+:N>+` bir veya daha fazla harf veya rakamla eşleştir +
+
+Regex aşağıdaki gibi parçalanabilir:
+
+* *first name* `<:L>+`
+
+* *[dot]* `\.`
+
+* *last name* `<:L>+`
+
+* *[at]* `\@`
+
+* *company name* `<:L+:N>+`
+
+* *[dot]* `\.`
+
+* *com/org/net* `<:L>+`
+
+[source,perl6]
+.Alternatif olarak bir regex adlandırılmış regexlere bölünebilir.
+----
+my $email = 'john.doe@perl6.org';
+my regex many-letters { <:L>+ };
+my regex dot { \. };
+my regex at { \@ };
+my regex many-letters-numbers { <:L+:N>+ };
+
+if $email ~~ / <many-letters> <dot> <many-letters> <at> <many-letters-numbers> <dot> <many-letters> / {
+  say $/ ~ " is a valid email";
+} else {
+  say "This is not a valid email";
+}
+----
+
+Adlandırılmış bir regex şöyle bir sözdizimini kullanılarak tanımlanır: `my regex regex-name { regex definition }` +
+Adlandırılmış bir regex şöyle bir sözdizimini kullanarak çağrılabilir: `<regex-name>`
+
+NOTE: Düzenli ifadeler hakkında daha fazla bilgi için https://docs.perl6.org/language/regexes adresini ziyaret edebilirsiniz.
+
+== Perl 6 Modülleri
+Perl 6, genel amaçlı bir programlama dilidir. Aşağıdakiler dahil pek çok görevin üstesinden gelmek için kullanılabilir:
+metin işlemem, grafik, web, veritabanı, ağ protokolleri vb.
+
+Tekrar kullanılabilirlik, programcıların her seferinde tekerleği yeniden icar etmelerini gerektirmeyen önemli bir kavramdır.
+
+Perl 6 tekrar kullanılabilir *modüller* yaratılmasına ve dağıtılmasına izin verir. Her bir modül, kurulduktan sonra tekrar tekrar kullanılabilen işlev kümesidir.
+
+_Zef_ Rakudo Star paketiyle gelen modül yöneticisidir.
+
+Özel bir modül kurmak için terminal ekranına komutunu girmelisiniz:
+
+`zef install "modül adı"`
+
+NOTE: Perl 6 modül dizinine https://modules.perl6.org/ adresinden ulaşabilirsiniz.
+
+=== Modüllerin Kullanımı
+MD5, yaygın olarak kullanılan kriptografik özet fonksiyonudur. Girilen verinin boyutundan bağımsız olarak, 128-bit özet değer üretir. +
+MD5, veritabanında saklanan parolaların şifrelenmesi de dahil olmak üzere çeşitli uygulama alanları içerir.
+Yeni bir kullanıcı kayıt olduğunda, bilgileri düz metin olarak değil _hashlenmiş_ olarak saklanır.
+Bunun arkasındaki mantık veritabanının bir saldırıya maruz kaldığı durumda, saldırganın kullanıcı bilgilerini görüntüleyememesidir.
+
+MD5 algoritmasını kendiniz uygulamak zorunda değilsiniz, bunun için Perl 6 modülü kullanıma hazırdır.
+
+Öncelikle kuralım: +
+`zef install Digest::MD5`
+
+Şimdi betiğimizi çalıştıralım:
+[source,perl6]
+----
+use Digest::MD5;
+my $password = "password123";
+my $hashed-password = Digest::MD5.new.md5_hex($password);
+
+say $hashed-password;
+----
+Gerekli modülü betiğimize çağırıdıktan sonra bunu `use` anahtar kelimesi ile yapıyoruz, `md5_hex()` fonksiyonu kullanılarak hash oluşturur.
+
+WARNING: Gerçek bir uygulamada tek başına MD5 hashlemesi yeterli olmayabilir, sözlük saldırılarına açıktır. +
+Salt ile kombine edilmelidir, link:https://en.wikipedia.org/wiki/Salt_(cryptography)[https://en.wikipedia.org/wiki/Salt_(cryptography)].
+
+== Unicode
+
+Farklı karakter kodlama sistemlerinin birbiriyle tutarlı çalışmasını ve dünyadaki tüm yazım sistemlerinden metinlerin bilgisayar ortamında tek bir standart altında temsil edilebilmesini sağlamaktır. +
+UTF-8, 8-bitlik bir Unicode dönüşüm biçimidir. Unicode karakterlerini değişken sayıda 8 bitten oluşan gruplar ile kodlamakta kullanılır.
+
+Karakterler şu şekilde tanımlanır: +
+*Grapheme*: Görsel temsil. +
+*Code point*: Karaktere atanan bir sayı.
+
+=== Unicode Kullanmak
+
+.Unicode kullanarak karakterleri nasıl yazdırabileceğimizi görelim
+[source,perl6]
+----
+say "a";
+say "\x0061";
+say "\c[LATIN SMALL LETTER A]";
+----
+Yukarıdaki üç satır, bir karakteri oluşturmak için farklı yollar gösteriyor:
+
+. Karakteri doğrudan yazmak (grapheme)
+
+. `\x` kullanarak ve yanına _code point_
+
+. `\c` kullanarak ve yanına _code point_ adı
+
+.Şimdi bir gülen surat yazdıralım
+[source,perl6]
+----
+say "☺";
+say "\x263a";
+say "\c[WHITE SMILING FACE]";
+----
+
+.İki -code points'i birleştiren örnek
+[source,perl6]
+----
+say "á";
+say "\x00e1";
+say "\x0061\x0301";
+say "\c[LATIN SMALL LETTER A WITH ACUTE]";
+----
+
+`á` karakteri için:
+
+* Benzersiz _code point_ kullanarak `\x00e1`
+
+* veya _code points_ ve `a` karakterinin kombosu şeklinde `\x0061\x0301`
+
+.Bazı örnekler:
+[source,perl6]
+----
+say "á".NFC;
+say "á".NFD;
+say "á".uniname;
+----
+
+.`Çıktı`
+----
+NFC:0x<00e1>
+NFD:0x<0061 0301>
+LATIN SMALL LETTER A WITH ACUTE
+----
+
+`NFC` benzersiz _code point_ döndürür. +
+`NFD` karakter parçalanır ve _code point_ ve karakter döndürülür. +
+`uniname` _code point_ adı döndürülür.
+
+.Değişken adı olarak Unicode karakterler kullanılabilir:
+[source,perl6]
+----
+my $Δ = 1;
+$Δ++;
+say $Δ;
+----
+
+.Unicode matematiksel ifadeler için kullanılabilir:
+[source,perl6]
+----
+my $var = 2 + ⅒;
+say $var;
+----
+
+== Paralel, Eşzamanlı ve Asenkron Programlama
+
+=== Paralellik
+Normal koşullar altında bir programdaki tüm görevler sırayla çalışır. +
+Yapmaya çalıştığınız şey çok zaman almazsa bu sorun olmayabilir.
+
+Neyse ki Perl 6, işleri paralel olarak yürütmenizi sağlayacak özelliklere sahiptir. +
+Bu aşamada paralellik aşağıdaki şeylerden biri anlamına gelebilir:
+
+* *Görev Paralelliği* Paralel olarak çalışan iki (veya daha fazla) işlem.
+
+* *Veri Paralelliği* Paralel olarak bir öğe listesi üzerinde yenilenen tek ifade.
+
+İkincisi ile başlayalım.
+
+==== Veri Paralelliği (_Data Parallelism_)
+[source,perl6]
+----
+my @array = (0..50000);                     # Dizi nüfusu
+my @result = @array.map({ is-prime $_ });   # Dizi üzerindeki her bir eleman için is-prime çağrılıyor
+say now - INIT now;                         # Betiğin tamamlanma süresini yazdıralım.
+----
+
+.Yukarudaki örnek göz önüne alındığında:
+Sadece tek bir işlem yapıyoruz: `@array.map({ is-prime $_ })` +
+`is-prime` her bir dizi elemanı için çağırılıyor: +
+`is-prime @array[0]`, `is-prime @array[1]` şeklinde.
+
+.Aynı anda birden çok dizi elamanı için `is-prime` çağırabiliriz.
+[source,perl6]
+----
+my @array = (0..50000);                         # Dizi nüfusu
+my @result = @array.race.map({ is-prime $_ });  # Dizi üzerindeki her bir eleman için is-prime çağrılıyor
+say now - INIT now;                             # Betiğin tamamlanma süresini yazdıralım.
+----
+
+ifadede `race` kullanımına dikkat edelim.
+Bu metot bize dizi elelamanlarının paralel olarak yinelenmesini sağlayacaktır.
+
+Her iki örneğide çalıştırdıktan sonra süreleri karşılaştırın.
+
+[TIP]
+====
+`race` elemanların sırasını koruyamaz. Eğer bunu istiyorsanız `race` yerine `hyper` kullanın.
+
+[source,perl6]
+.race
+----
+my @array = (1..1000);
+my @result = @array.race.map( {$_ + 1} );
+.say for @result;
+----
+
+[source,perl6]
+.hyper
+----
+my @array = (1..1000);
+my @result = @array.hyper.map( {$_ + 1} );
+.say for @result;
+----
+
+Her iki örneğide çalıştırırsanız birinin sıralı diğerinin sırasız olduğunu göreceksiniz.
+
+====
+
+==== Görev Paralelliği (_Task Parallelism_)
+
+[source,perl6]
+----
+my @array1 = (0..49999);
+my @array2 = (2..50001);
+
+my @result1 = @array1.map( {is-prime($_ + 1)} );
+my @result2 = @array2.map( {is-prime($_ - 1)} );
+
+say @result1 eqv @result2;
+
+say now - INIT now;
+----
+
+.Yukarıdaki örnek göz önüne alındığında:
+
+. 2 dizi tanımladık
+
+. Her dizi için farklı işlem uygulandı ve sonuçlar değişkenlere kaydedildi.
+
+. Ve sonuçların aynı olup olmadığı kontrol edildi.
+
+Betik `@array1.map( {is-prime($_ + 1)} )` işleminin bitmesini bekler +
+ve `@array2.map( {is-prime($_ - 1)} )` işlemine geçer.
+
+Dizilere uygulanan işlemler birbirine bağlı değildir.
+
+.O halde paralel kullanabiliriz.
+[source,perl6]
+----
+my @array1 = (0..49999);
+my @array2 = (2..50001);
+
+my $promise1 = start @array1.map( {is-prime($_ + 1)} ).eager;
+my $promise2 = start @array2.map( {is-prime($_ - 1)} ).eager;
+
+my @result1 = await $promise1;
+my @result2 = await $promise2;
+
+say @result1 eqv @result2;
+
+say now - INIT now;
+----
+
+.Açıklama
+`start` altyordamı kodu işleme alır ve bir *promise* döndürür. +
+Kod doğru şekilde çalışırsa, _promise_ *tutulur*. +
+Kod bir istisna fırlatırsa, _promise_ *kırılmış* olacaktır.
+
+`await` altyordamı bir *promise* bekler. +
+*Tutulan* bir değer döndürülürse alacaktır. +
+Eğer *kırılmış* ise istisna fırlatacaktır.
+
+WARNING: Paralellik her zaman iş parçacığına yük ekler. Bu yük, hesaplama hızındaki kazançlarla dengelenmemişse betik yavaş görünür. +
+Bu nedenle, basit betikler için `race`, `hyper`, `start` ve `await` kullanmak aslında onları yavaşlatabilir.
+
+=== Eşzamanlılık ve Asenkron
+NOTE: Eşzamanlılık ve asenkron programlama hakkında bilgi için https://docs.perl6.org/language/concurrency adresine bakınız.
+
+== Native Çağrı Arayüzü (_Native Calling Interface_)
+
+Perl 6 bize C kütüphanelerini kullanma imkanı verir, bunu _Native Calling Interface_ kullanarak yaparız.
+`NativeCall`, Perl 6 ile gelen standart bir modüldür ve işi kolaylaştırmak için işlevsellik sunar.
+
+=== Bir Fonksiyon Çağırmak
+
+`hellofromc` adlo fonksiyonu olan aşağıdaki C kodunu göz önünde bulundurun.
+Bu fonksiyon ekrana `Hello from C` yazar. Parametre almaz ve geriye değer döndürmez.
+
+[source,c]
+.ncitest.c
+----
+#include <stdio.h>
+
+void hellofromc () {
+  printf("Hello from C\n");
+}
+----
+
+İşletim sisteminize göre aşağıdaki komutları çalıştırarak bir C kütüphanesi elde edelim.
+
+.Linux:
+----
+gcc -c -fpic ncitest.c
+gcc -shared -o libncitest.so ncitest.o
+----
+
+.Windows:
+----
+gcc -c ncitest.c
+gcc -shared -o ncitest.dll ncitest.o
+----
+
+C kütüphanemiz derlendiği dizinde oluşturulmuş oldu, şimdi bir Perl 6 dosyası oluşturalım ve aşağıdaki kodu yazarak çalıştıralım.
+
+[source,perl6]
+.ncitest.pl6
+----
+use NativeCall;
+
+constant LIBPATH = "$*CWD/ncitest";
+sub hellofromc() is native(LIBPATH) { * }
+
+hellofromc();
+----
+
+.Açıklama
+İlk olarak `NaticeCall` modülünü betiğimize ekledik. +
+Daha sonra C kütüphanemizin yolunu tutan `LIBPATH` adında bir sabit oluşturduk. +
+`$*CWD` geçerli çalışma dizinini döndürür. +
+Ardından adı `hellofromc` olan yeni bir altyordam oluşturduk, bu C fonksiyonuyla aynı adı taşıyan bir sarmalayıcı. +
+Bunu `is native` ile yaptık. +
+Son olarak Perl 6 altyordamımızı çağırdık.
+
+=== Fonksiyonu Yeniden Adlandırma
+
+Yukarıdaki bölümde C kütüphanesinin `is native` kullanılarak nasıl çağırıldığını gördük.
+
+Bazı durumlarda Perl 6 altyordamının adını değiştirmek isteyebiliriz. +
+Bunu yapmak için `is symbol` özelliğini kullanırız.
+
+Yukarıdaki Perl 6 betiğini değiştirelim ve altyordamımızın adını `hellofromc` yerine `hello` yapalım.
+
+[source,perl6]
+.ncitest.pl6
+----
+use NativeCall;
+
+constant LIBPATH = "$*CWD/ncitest";
+sub hello() is native(LIBPATH) is symbol('hellofromc') { * }
+
+hello();
+----
+
+.Açıklama
+Perl 6 altyordamının C fonksiyonundan farklı bir adı varsa `is symbol` özelliği ile orjinal C fonksiyonunun ismi kullanılmalıdır.
+
+=== Geçici Argümanlar
+
+Aşağıda değiştirilmiş C kütüphanesini derleyin ve aşağıda bulunan Perl 6 betiğini çalıştırın.
+C'de `char*` Perl 6'da `Str`
+
+[source,c]
+.ncitest.c
+----
+#include <stdio.h>
+
+void hellofromc (char* name) {
+  printf("Hello, %s! This is C!\n", name);
+}
+----
+
+[source,perl6]
+.ncitest.pl6
+----
+use NativeCall;
+
+constant LIBPATH = "$*CWD/ncitest";
+sub hello(Str) is native(LIBPATH) is symbol('hellofromc') { * }
+
+hello('Jane');
+----
+
+=== Dönüş Değeri
+
+2 tam sayı değerini parametre olarak alan ve toplamlarını döndüren basit bir hesap makinesi yapalım.
+C kütüphanesini derleyin ve Perl 6 betiğini çalıştırın.
+
+[source,c]
+.ncitest.c
+----
+int add (int a, int b) {
+  return (a + b);
+}
+----
+
+[source,perl6]
+.ncitest.pl6
+----
+use NativeCall;
+
+constant LIBPATH = "$*CWD/ncitest";
+sub add(int32,int32) returns int32 is native(LIBPATH) { * }
+
+say add(2,3);
+----
+
+C'de `int`, Perl 6'da `int32`
+
+=== Tipler
+
+Son Perl 6 betiğimizde neden `int` yerine `int32` kullanıldığını kendimize sorabiliriz. +
+`Int`, `Rat` gibi bazı Perl 6 veri tipleri, bir C fonksiyonunda parametre olarak veya dönüş tipi olarak kullanılamaz. +
+Kullanılabilmesi için Perl 6'da C'deki ile aynı tipte olması gerekir.
+
+Perl 6'da C ile eşleşen birçok veri tipi vardır.
+
+[cols="^.^,^.^",options="header"]
+|===
+
+| C Tipi | Perl 6 Tipi
+
+| `char` .2+| `int8`
+
+| `int8_t`
+
+| `short` .2+| `int16`
+
+| `int16_t`
+
+| `int` .2+| `int32`
+
+| `int32_t`
+
+| `int64_t` | `int64`
+
+| `unsigned char` .2+| `uint8`
+
+| `uint8_t`
+
+| `unsigned short` .2+| `uint16`
+
+| `uint16_t`
+
+| `unsigned int` .2+| `uint32`
+
+| `uint32_t`
+
+| `uint64_t` | `uint64`
+
+| `long` | `long`
+
+| `long long` | `longlong`
+
+| `float` | `num32`
+
+| `double` | `num64`
+
+| `size_t` | `size_t`
+
+| `bool` | `bool`
+
+| `char*` (String) | `Str`
+
+| Arrays: Örnek olarak `int*` (int dizisi) and `double*` (double dizisi) | `CArray`: Örnek olarak `CArray[int32]` ve `CArray[num64]`
+
+|===
+
+NOTE: _Native Calling Interface_ hakkında daha fazla bilgiye https://docs.perl6.org/language/nativecall adresinden ulaşabilirsiniz.
+
+== Topluluk
+
+* link:irc://irc.freenode.net/#perl6[#perl6] IRC kanalı. IRC oldukça aktiftir. Hakkında daha fazla bilgi için: https://perl6.org/community/irc
+
+* link:https://p6weekly.wordpress.com[p6weekly] Perl 6 ve yapılan değişiklikler ile ilgili bir haftalık bülten.
+
+* link:http://pl6anet.org[pl6anet] Perl 6'ya odaklanan blog yayınlarını okuyabilirsiniz.
+
+* link:https://www.reddit.com/r/perl6/[/r/perl6] Perl 6 alt redditine üye olabilirsiniz.
