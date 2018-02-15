@@ -15,6 +15,7 @@ For online reading navigate to:
 * Bulgarian: http://bg.perl6intro.com
 * Chinese: http://zh.perl6intro.com
 * Italian: http://it.perl6intro.com
+* Turkish: http://tr.perl6intro.com
 
 ### Building the document
 The document is written in asciidoc format and generated using
@@ -63,6 +64,7 @@ Kindly prefix your commit title with the language it is targeting. For example, 
 * Bulgarian Translation: [Красимир Беров](https://github.com/kberov)
 * Chinese Translation: [wenjie1991](https://github.com/wenjie1991) and [ohmycloud](https://ohmycloud.github.io)
 * Italian Translation: [MarsMarsico](https://github.com/marsmarsico)
+* Turkish Translation: [Yalın Pala](https://github.com/yplog)
 
 For the full list of contributors: https://github.com/hankache/perl6intro/graphs/contributors
 
