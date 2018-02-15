@@ -1,12 +1,11 @@
 = Perl 6'ya Giriş
-Naouman Hanckache <naoum@hankache.com>; Yalın Pala <yalinpala@protonmail.com>
+Naoum Hankache <naoum@hankache.com>; Yalın Pala <yalinpala@protonmail.com>
 :description: Perl 6'ya genel Giriş
 :keywords: perl6, perl 6, giriş, perl6giriş, perl 6'ya giriş, perl 6 öğretici
-:Email: yalinpala@protonmail.com
 :Revision: 1.0
-:icon: font
+:icons: font
 :source-highlighter: pygments
-//:pytgments-style: manni
+//:pygments-style: manni
 :source-language: perl6
 :pygments-linenums-mode: table
 :toc: left
