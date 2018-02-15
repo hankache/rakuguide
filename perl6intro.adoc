@@ -51,6 +51,7 @@ link:https://github.com/hankache/perl6intro[Github].
 * Japanese: http://ja.perl6intro.com
 * Portuguese: http://pt.perl6intro.com
 * Spanish: http://es.perl6intro.com
+* Turkish: http://tr.perl6intro.com
 
 :sectnums:
 == Introduction
