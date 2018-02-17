@@ -13,8 +13,8 @@ Naoum Hankache <naoum@hankache.com>; Yalın Pala <yalinpala@protonmail.com>
 :lang: tr
 
 
-Bu belge, size Perl 6 programlama dili hakkında hızlı bir genel bakış sunmak amacıyla hazırlanmıştır.
-Yeni olanları Perl 6'ya hazırlama amacı ile yazılmıştır.
+Bu belge, Perl 6 programlama dili hakkında genel bir bakış sunması amacıyla hazırlanmıştır.
+Yeni olanlar için hızlı bir başlangıç olacaktır.
 
 Bu belgenin bazı bölümleri http://docs.perl6.org[Perl 6 dökümantasyonu]'na değinmektedir.
 Belirli bir konuda daha fazla bilgiye ihtiyacınız varsa bunları okumalısınız.
@@ -61,11 +61,11 @@ Perl 6 yüksek seviyeli, genel amaçlı, kademeli yazılan(_gradually typed_) bi
 Perl 6 prosedürel, nesne yönelimli ve fonksiyonel programlamayı destekler. _(multi-paradigmatic)_
 
 .Perl 6 mottoları:
-* TMTOWTDI (Tim Toady şeklinde telaffuz edilir.): Birşeyi yapmanın birden fazla yolu vardır. _-There is more than one way to do it._
+* TMTOWTDI (Tim Toady şeklinde telaffuz edilir.): Bir şeyi yapmanın birden fazla yolu vardır. _-There is more than one way to do it._
 * Kolay şeyler kolay olmalı, zor şeyler kolaylaştırılmalı ve imkansız şeyler zorlanmalı. _-Easy things should stay easy, hard things should get easier, and impossible things should get hard._
 
 === Jargon
-* *Perl 6*: Perl programlama dili ailesinin bir üyesidir. Bir dil belirtimi ile test paketi vardır. Belirtim test paketini geçen uygulamalar Perl 6 olarak kabul edilir.
+* *Perl 6*: Perl programlama dili ailesinin bir üyesidir. Bir dil belirtimi ile test paketi içerir. Belirtim test paketini geçen uygulamalar Perl 6 olarak kabul edilir.
 * *Rakudo*: Perl 6 derleyicisidir.
 * *Rakudobrew*: Rakudo kurulum yöneticisidir.
 * *Zef*: Perl 6 modül yöneticisidir.
