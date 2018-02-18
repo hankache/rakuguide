@@ -120,7 +120,7 @@ Bu durumda yardımcı olacak bir satır düzenleyicisi için:
 * Linux üzerindeyseniz `zef install Readline` modülünü tercih edebilirsiniz.
 --
 
-== Editörler
+=== Editörler
 Çoğu zaman, Perl 6 programlarmızı dosyalara yazıp depolayacağımız için, Perl 6 sözdizimini tanıyan iyi bir metin editörüne sahip olmalıyız. Birçok alternatif bulunduğundan biz sadece ikisine değineceğiz.
 * Modern bir metin editörü olan https://atom.io[Atom] ve Perl 6 Language Highlighter https://atom.io/packages/language-perl6[Perl 6 FE] eklentisi.
 * Diğer editörlere http://www.vim.org/[Vim], https://www.gnu.org/software/emacs/[Emacs] http://padre.perlide.org/[Padre] adreslerinden ulaşabilirsiniz.
@@ -2226,6 +2226,9 @@ Nesne yönelimli programlama hakkında daha fazla bilgiye ulaşmak için:
 --
 
 == İstisna İşleme(_Exception Handling_)
+
+=== Catching Exceptions
+
 istisnalar bir şey ters gittiğinde çalışma anında gerçekleşen özel davranışlardır.
 
 Doğru çalışan aşağıdaki betik dosyasını göz önünde bulundurursak:
