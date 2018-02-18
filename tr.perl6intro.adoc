@@ -2227,9 +2227,9 @@ Nesne yönelimli programlama hakkında daha fazla bilgiye ulaşmak için:
 
 == İstisna İşleme(_Exception Handling_)
 
-=== Catching Exceptions
+=== İstisna Yakalama(_Catching Exceptions_)
 
-istisnalar bir şey ters gittiğinde çalışma anında gerçekleşen özel davranışlardır.
+İstisna, çalışma anında gerçekleşen beklenmedik durumlardır. İstisna yakalama ise beklenmedik bir olayı algılayıp buna karşı bir kod parçasının çalıştırılmasıdır.
 
 Doğru çalışan aşağıdaki betik dosyasını göz önünde bulundurursak:
 
@@ -2322,7 +2322,7 @@ try {
 }
 ----
 
-=== İstisna Fırlatma
+=== İstisna Fırlatma(_Throwing Exceptions_)
 Perl 6 da açıkça istisnaları atmanızı sağlar.
 İstisna fırlatmanın iki türü vardır:
 
