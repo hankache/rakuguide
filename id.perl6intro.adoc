@@ -19,7 +19,7 @@ Bagi anda yang baru pada pemrograman Perl 6, dokumen ini diharapkan dapat member
 Beberapa bagian dari dokumen ini merujuk ke http://docs.perl6.org[tautan resmi dokumentasi Perl 6] dimana tautan yang dirujuk lebih lengkap dan akurat..
 Anda diharapkan untuk merujuk kesana bila memerlukan informasi lebih spesifik dari subjek tertentu.
 
-Lewat dokumen ini, anda akan menemukan beberapa contoh untuk topik yang banyak dibahas.
+Melalui dokumen ini, anda akan menemukan beberapa contoh untuk topik yang banyak dibahas.
 Agar lebih dapat dimengerti, luangkan waktu untuk mencoba semua contoh yang diberikan.
 
 .Lisensi
@@ -43,9 +43,9 @@ Kirimkan saran anda ke:
 === Apa itu Perl 6
 Perl 6 adalah bahasa pemrograman tingkat tinggi yang bersifat umum/non-spesifik dan data type variable ataupun ekspresi dapat dideklarasikan secara statis maupun dinamis. 
 Perl 6 mendukung beberapa paradigma (teknis penyelesain masalah), antara lain : Pemrograman secara Prosedural, Berorientasi Objek, dan Fungsional.
-https://id.wikipedia.org/wiki/Pemrograman_Prosedural
-https://id.wikipedia.org/wiki/Pemrograman_berorientasi_objek
-https://id.wikipedia.org/wiki/Pemrograman_Fungsional
+* https://id.wikipedia.org/wiki/Pemrograman_Prosedural
+* https://id.wikipedia.org/wiki/Pemrograman_berorientasi_objek
+* https://id.wikipedia.org/wiki/Pemrograman_Fungsional
 
 .Perl 6 moto:
 * TMTOWTDI (dibaca "Tim Toady"): There is more than one way to do it (Ada lebih dari satu cara untuk melakukan sesuatu).
@@ -56,13 +56,13 @@ https://id.wikipedia.org/wiki/Pemrograman_Fungsional
 Implementasi yang lulus uji spesifikasi dari rangkaian test dianggap Perl 6.
 * *Rakudo*: Kompilator (compiler - https://id.wikipedia.org/wiki/Kompilator) untuk Perl 6.
 * *Rakudobrew*: program untuk mengelola instalasi Rakudo.
-* *Zef*: program untuk mengelola instalasi modul dari Perl 6 module.
-* *Rakudo Star*: Bundel program : Rakudo, Zef, koleksi beberapa modul Perl6 dan dokumentasi.
+* *Zef*: program untuk mengelola instalasi modul dari Perl 6.
+* *Rakudo Star*: Bundel program yang terdiri dari Rakudo, Zef, koleksi beberapa modul Perl6 dan dokumentasi.
 
 === Cara Instalasi Perl 6
 .Linux
 
-Untuk menginstall "Rakudo Start", jalankan perintah berikut diterminal anda:
+Untuk menginstall "Rakudo Star", jalankan perintah berikut diterminal anda:
 ----
 wget https://rakudo.perl6.org/downloads/star/rakudo-star-2018.01.tar.gz
 tar xfz rakudo-star-2018.01.tar.gz
@@ -91,71 +91,65 @@ Ada 4 pilihan metode instalasi yang tersedia:
 
 === Menjalankan kode Perl 6
 
-Running Perl 6 code can be done using the REPL (Read-Eval-Print Loop).
-To do this, open a terminal, type `perl6` into the terminal window,
-and hit [Enter].  This will cause a prompt of `>` to appear.
-Next, type a line of code and hit [Enter]. The REPL will print out
-the value of the line.  You may then type another line, or type `exit`
-and hit [Enter] to leave the REPL.
+Menjalankan program / kode Perl 6 dapat dilakukan melalui REPL(Read-Eval-Print Loop). 
+Caranya, buka program terminal, ketik `perl6` kemudian tekan tombol [Enter]. 
+Tanda / karakter '>' akan muncul. 
+Selanjutnya, ketik kode yang mau dijalankan dan tekan tombol [Enter].
+REPL akan mencetak keluaran nilai dari kode yang diproses. 
+Anda dapat menulis kode lainnya dibaris yang baru atau ketik `exit` dan tekan enter untuk keluar dari REPL.
 
-Alternatively, write your code in a file, save it and run it.
-It is recommended that Perl 6 scripts have a  `.pl6` file name extension.
-Run the file by typing `perl6 filename.pl6` into the terminal window
-and hitting [Enter]. Unlike the REPL, this will not automatically print
-the result of each line: the code must contain a statement like `say`
-to print output.
+Cara lainnya, ketik kode di file, simpan, dan jalankan menggunakan file tersebut. 
+Direkomendasikan bahwa file script Perl 6 menggunakan ekstensien `.pl6`. 
+Jalankan file script tersebut melalui terminal, ketik `perl6 namafileyangdisimpan.pl6`, kemudian tekan tombol [Enter]. 
+Berbeda dengan metode REPL, cara ini tidak akan secara otomatis mencetak hasil tiap baris: kode harus menyertakan fungsi `say` untuk mengeluarkan cetakan hasil kode.
 
-The REPL is mostly used for trying a specific piece of code, typically a
-single line. For programs with more than a single line it is recommended to
-store them in a file and then run them.
+Metode REPL kebanyakan dipakai untuk mencoba spesifik bagian dari kode, biasanya program yang hanya berisi 1 baris. 
+Untuk program yang membutuhkan kode lebih dari 1 baris, direkomendasikan untuk menyimpan kode kedalam file untuk kemudian diproses.
 
-Single lines may also be tried non-interactively on the command-line by
-typing `perl6 -e 'your code here'` and hitting [Enter].
+Program yang hanya membutuhkan 1 baris dapat juga menggunakan command line dengan mengetikkan `perl6 -e 'kode anda disini'` diterminal dan tekan [Enter].
 
-[TIP]
+[SARAN]
 --
-Rakudo Star bundles a line editor that helps you get the most out of the REPL.
+Apabila anda menginstall Rakudo bukan "Rakudo Star", direkomendasikan untuk menginstall modul tambahan berikut ini (Ketik didalam terminal):
 
-If you installed plain Rakudo instead of Rakudo Star then you probably don't have line editing features enabled (using the up and down arrows for history, left and right to edit input, TAB completion).
-Consider running the following command and you shall be all set:
+* `zef install Linenoise` bila menggunakan Windows, Linux and macOS
 
-* `zef install Linenoise` would work on Windows, Linux and macOS
-
-* `zef install Readline` if you are on Linux and prefer the _Readline_ library
+* `zef install Readline`  Apabila anda menggunakan Linux, modul ini lebih direkomendasikan
 --
 
-=== Editors
-Since most of the time we will be writing and storing our Perl 6 programs in files, we should have
-a decent text editor that recognizes Perl 6 syntax.
+=== Teks Editor
+Karena sebagian waktu kita digunakan untuk menulis kode dan menyimpannya dalam file, sebaiknya kita menggunakan teks editor yang dapat mengenali sintaks Perl 6. 
 
-I personally use and recommend https://atom.io/[Atom]. It is a modern text editor and comes with Perl 6 syntax highlighting out of the box.
-https://atom.io/packages/language-perl6[Perl 6 FE] is an alternative Perl 6 syntax highlighter for Atom, derived from the original package but with many bug fixes and additions.
+Saya menggunakan dan merekomendasi https://atom.io/[Atom]. 
+Atom adalah teks editor yang modern dan mempunyai fitur untuk mengenali dan menyorot sintaks Perl 6. 
+https://atom.io/packages/language-perl6[Perl 6 FE] adalah alternatif sintaks highlight(direpresentasikan dengan penekanan warna) untuk Perl 6, 
+diturunkan dari paket original tetapi disertai dengan perbaikan bug (https://id.wikipedia.org/wiki/Kekutu) dan fitur tambahan.
 
-Other people in the community also use http://www.vim.org/[Vim], https://www.gnu.org/software/emacs/[Emacs] or http://padre.perlide.org/[Padre].
+Sebagian orang dikomunitas juga menggunakan http://www.vim.org/[Vim], https://www.gnu.org/software/emacs/[Emacs] or http://padre.perlide.org/[Padre]. 
 
-Recent versions of Vim ship with syntax highlighting out of the box. Emacs and Padre will require installation of additional packages.
+Versi baru dari Vim disertai dengan sintaks highlight. Sedangkan Emacs dan Padre membutuhkan paket tambahan untuk mendukung hal tersebut. 
 
 
 === Hello World!
-We shall begin with The `hello world` ritual.
+Mari kita mulai dengan ritual `hello world`.
 
 [source,perl6]
 say 'hello world';
 
-that can also be written as:
+Dapat juga ditulis seperti:
 
 [source,perl6]
 'hello world'.say;
 
-=== Syntax overview
-Perl 6 is *free form*: Most of the time you are free to use any amount of whitespace, although in certain
-cases whitespace carries meaning.
+=== Gambaran ikhtisar dari Sintaks
+Sintaks Perl 6 memiliki bentuk yang bebas: Dalam artian posisi karakter dibaris maupun kolom dikode anda tidak mempunyai efek yang signifikan.  
+Contohnya Anda bebas untuk menggunakan karakter spasi dibagian manapun, walaupun pada kasus tertentu, spasi mengandung arti bagi Perl 6.
 
-*Statements* are typically a logical line of code, they need to end with a semicolon:
+*Pernyataan* adalah kumpulan perintah kode, harus diakhiri dengan karakter titik koma:
 `say "Hello" if True;`
 
-*Expressions* are a special type of statement that returns a value:
-`1+2` will return `3`
+*Ekspresi* adalah salah satu tipe dari pernyataan yang mengembalikan suatu nilai:
+`1+2` akan mengembalikan nilai `3`
 
 Expressions are made of *Terms* and *Operators*.
 
