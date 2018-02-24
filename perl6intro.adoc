@@ -381,15 +381,15 @@ The below table lists the most commonly used operators.
 
 | ! | Prefix | Coerce the operand to a boolean value and return the negation | !4 | False
 
-| .. | Infix | Range Constructor |  0..5  | Creates a range from 0 to 5
+| .. | Infix | Range Constructor |  0..5  | Creates a range of the interval [0, 5] footnote:[Notations for intervals: https://en.wikipedia.org/wiki/Interval_(mathematics)#Notations_for_intervals]
 
-| ..^ | Infix | Range Constructor |  0..^5  | Creates a range from 0 to 4
+| ..^ | Infix | Range Constructor |  0..^5  | Creates a range of the interval [0, 5)
 
-| ^.. | Infix | Range Constructor |  0^..5  | Creates a range from 1 to 5
+| ^.. | Infix | Range Constructor |  0^..5  | Creates a range of the interval (0, 5]
 
-| \^..^ | Infix | Range Constructor |  0\^..^5  | Creates a range from 1 to 4
+| \^..^ | Infix | Range Constructor |  0\^..^5  | Creates a range of the interval (0, 5)
 
-| ^ | Prefix | Range Constructor |  ^5  | Same as 0..^5 Creates a range from 0 to 4
+| ^ | Prefix | Range Constructor |  ^5  | Same as 0..^5 Creates a range of the interval [0, 5)
 
 | ... | Infix | Lazy List Constructor |  0...9999  |  return the elements only if requested
 
