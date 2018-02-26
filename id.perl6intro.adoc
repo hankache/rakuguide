@@ -148,48 +148,48 @@ Contohnya Anda bebas untuk menggunakan karakter spasi dibagian manapun, walaupun
 *Pernyataan* adalah kumpulan perintah kode, harus diakhiri dengan karakter titik koma:
 `say "Hello" if True;`
 
-*Ekspresi* adalah salah satu tipe dari pernyataan yang mengembalikan suatu nilai:
+*Ekspresi* adalah salah satu tipe bagian dari pernyataan yang mengembalikan suatu nilai:
 `1+2` akan mengembalikan nilai `3`
 
-Expressions are made of *Terms* and *Operators*.
+Ekspresi adalah kombinasi dari 'Terms' (suatu nilai / variabel) dan "penghubung"(operator).
 
-*Terms* are:
+*Terms* adalah:
 
-* *Variables*: A value that can be manipulated and changed.
+* *Variabel*: Wadah untuk menyimpan suatu nilai yang dapat digunakan dan dimodifikasi.
 
-* *Literals*: A constant value like a number or a string.
+* *notasi*: Suatu tetapan nilai seperti angka atau kumpulan karakter (strings).
 
-*Operators* are classified into types:
+*Operator* dibagi menjadi beberapa tipe:
 
 |===
 
-| *Type* | *Explanation* | *Example*
+| *Tipe* | *Penjelasan* | *Contoh*
 
-| Prefix | Before the term. | `++1`
+| Prefix | sebelum 'terms' | `++1`
 
-| Infix | Between terms | `1+2`
+| Infix | diantara 'terms' | `1+2`
 
-| Postfix | After the term | `1++`
+| Postfix | setelah 'terms' | `1++`
 
-| Circumfix | Around the term | `(1)`
+| Circumfix | sekeliling 'terms' | `(1)`
 
-| Postcircumfix | After one term, around another  | `Array[1]`
+| Postcircumfix | setelah satu 'term', disekitar yang lain  | `Array[1]`
 
 |===
 
 ==== Identifiers
-Identifiers are the names given to terms when you define them.
+Identifiers adalah penamaan yang diberikan / didefinisikan kepada 'terms' contohnya nama variabel.
 
-.Rules:
-* They must start with an alphabetic character or an underscore.
+.Syarat:
+* Harus dimulai dengan karakter alfabetis atau garis bawah `_`.
 
-* They can contain digits (except the first character).
+* Dapat memakai angka (kecuali karakter pertama).
 
-* They can contain dashes or apostrophes (except the first and last character), provided there's an alphabetic character to the right side of each dash or apostrophe.
+* Dapat memakai tanda garis `-` atau apostrof `'` (kecuali karakter pertama dan terakhir), harus diikuti karakter alfabetis setelah tanda garis maupun apostrof.
 
 |===
 
-| *Valid* | *Invalid*
+| *Valid* | *Tidak valid*
 
 | `var1` | `1var`
 
@@ -203,54 +203,55 @@ Identifiers are the names given to terms when you define them.
 
 |===
 
-.Naming conventions:
+.Kaidah Penamaan:
 * Camel case: `variableNo1`
 
 * Kebab case: `variable-no1`
 
 * Snake case: `variable_no1`
 
-You are free to name your identifiers as you like, but it is good practice to adopt one naming convention consistently.
+Anda bebas untuk memilih penamaan dari identifier, tetapi disarankan untuk mengadopsi satu kaidah penamaan secara konsisten.
 
-Using meaningful names will ease your (and other's) programming life.
+Penggunaan nama yang mempunyai arti akan mempermudah anda atau orang lain dalam dunia koding.
 
-* `var1 = var2 * var3` is syntactically correct but its purpose is not evident.
-* `monthly-salary = daily-rate * working-days` would be a better way to name your variables.
+* `var1 = var2 * var3` secara sintaks benar tetapi tujuannya kurang jelas.
+* `gaji-bulan-ini = gaji-perhari * jumlah-hari-kerja` penamaan ini akan lebih baik untuk penamaan variabel.
 
-==== Comments
-A comment is text ignored by the compiler and used as a note.
+==== Komentar
+Komentar adalah teks yang tidak dibaca oleh kompiler dan digunakan sebagai catatan.
 
-Comments are divided into 3 types:
+Komentar dibagi menjadi 3 tipe:
 
-* Single line:
+* Satu baris:
 +
 [source,perl6]
-# This is a single line comment
+# Ini adalah contoh komentar satu baris
 
-* Embedded:
+* Tertanam (Embedded):
 +
 [source,perl6]
-say #`(This is an embedded comment) "Hello World."
+say #`(Ini adalah contoh komentar tertanam) "Hello World."
 
-* Multi line:
+* Lebih dari satu baris (multi):
 +
 [source,perl6]
 -----------------------------
-=begin comment
-This is a multi line comment.
-Comment 1
-Comment 2
-=end comment
+=begin komentar
+Ini adalah contoh komentar lebih dari satu baris
+Komentar 1
+Komentar 2
+=end komentar
 -----------------------------
 
-==== Quotes
-Strings need to be delimited by either double quotes or single quotes.
+==== Tanda Kutip
+String harus dipisah dengan tanda kutip ganda `"..."` atau tunggal `'...'`.
+* https://id.wikipedia.org/wiki/String
 
-Always use double quotes:
+Selalu gunakan tanda kutip ganda:
 
-* if your string contains an apostrophe.
+* Jika string mengandung apostrop `'`
 
-* if your string contains a variable that needs to be interpolated.
+* Jika string mengandung variabel yang perlu diinterpolasi
 
 [source,perl6]
 -----------------------------------
@@ -262,34 +263,34 @@ say 'Hello $name';   # Hello $name
 say "Hello $name";   # Hello John Doe
 -----------------------------------
 
-== Operators
+== Operator
 
-=== Common Operators
-The below table lists the most commonly used operators.
+=== Jenis Operator Yang Umum
+Dibawah ini adalah tabel dari Operator yang umum dipakai.
 [cols="^.^5m,^.^5m,.^20,.^20m,.^20m", options="header"]
 |===
 
-| Operator | Type | Description | Example | Result
+| Operator | Tipe | Deskripsi | Contoh | Hasil
 
-| + | Infix | Addition | 1 + 2 | 3
+| + | Infix | Penambahan | 1 + 2 | 3
 
-| - | Infix | Subtraction | 3 - 1 | 2
+| - | Infix | Pengurangan | 3 - 1 | 2
 
-| * | Infix | Multiplication | 3 * 2 | 6
+| * | Infix | Perkalian | 3 * 2 | 6
 
-| ** | Infix | Power | 3 ** 2 | 9
+| ** | Infix | Pangkat | 3 ** 2 | 9
 
-| / | Infix | Division | 3 / 2 | 1.5
+| / | Infix | Pembagian | 3 / 2 | 1.5
 
-| div | Infix | Integer Division (rounds down) | 3 div 2 | 1
+| div | Infix | Pembagian Integer (dibulatkan kebawah) | 3 div 2 | 1
 
-| % | Infix | Modulo | 7 % 4 | 3
+| % | Infix | Modulus (sisa hasil bagi)| 7 % 4 | 3
 
-.2+| %% .2+| Infix .2+| Divisibility | 6 %% 4 | False
+.2+| %% .2+| Infix .2+| Divisibility (apakah mungkin untuk dibagi habis) | 6 %% 4 | False
 
 <| 6 %% 3 <| True
 
-| gcd | Infix | Greatest common divisor | 6 gcd 9 | 3
+| gcd | Infix | Greatest common divisor (nilai terbesar yang dapat membagi habis) | 6 gcd 9 | 3
 
 | lcm | Infix | Least common multiple | 6 lcm 9 | 18
 
