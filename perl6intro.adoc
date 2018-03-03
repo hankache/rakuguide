@@ -111,8 +111,8 @@ the value of the line.  You may then type another line, or type `exit`
 and hit [Enter] to leave the REPL.
 
 Alternatively, write your code in a file, save it and run it.
-It is recommended that Perl 6 scripts have a  `.pl6` file name extension.
-Run the file by typing `perl6 filename.pl6` into the terminal window
+It is recommended that Perl 6 scripts have a  `.p6` file name extension.
+Run the file by typing `perl6 filename.p6` into the terminal window
 and hitting [Enter]. Unlike the REPL, this will not automatically print
 the result of each line: the code must contain a statement like `say`
 to print output.
@@ -1219,17 +1219,17 @@ rmdir "newfolder";
 
 You can also check if a path exists; if it is a file; or a directory:
 
-In the directory where you will be running the below script, create an empty folder `folder123` and an empty pl6 file `script123.pl6`
+In the directory where you will be running the below script, create an empty folder `folder123` and an empty p6 file `script123.p6`
 
 [source,perl6]
 ----
-say "script123.pl6".IO.e;
+say "script123.p6".IO.e;
 say "folder123".IO.e;
 
-say "script123.pl6".IO.d;
+say "script123.p6".IO.d;
 say "folder123".IO.d;
 
-say "script123.pl6".IO.f;
+say "script123.p6".IO.f;
 say "folder123".IO.f;
 ----
 
@@ -2341,7 +2341,7 @@ say "How are you doing today?"
 .`Output`
 ----
 Type check failed in assignment to $name; expected Str but got Int
-   in block <unit> at exceptions.pl6:2
+   in block <unit> at exceptions.p6:2
 ----
 
 Notice that whenever an error occurs (in this case, assigning a number to a string variable) the program will stop and other lines of code will not be evaluated.
@@ -3047,7 +3047,7 @@ Within the same directory where you compiled your C library, create a new Perl 6
 file that contains the below code and run it.
 
 [source,perl6]
-.ncitest.pl6
+.ncitest.p6
 ----
 use NativeCall;
 
@@ -3081,7 +3081,7 @@ Lets modify the above Perl 6 script and rename the Perl 6 subroutine `hello`
 instead of `hellofromc`
 
 [source,perl6]
-.ncitest.pl6
+.ncitest.p6
 ----
 use NativeCall;
 
@@ -3111,7 +3111,7 @@ void hellofromc (char* name) {
 ----
 
 [source,perl6]
-.ncitest.pl6
+.ncitest.p6
 ----
 use NativeCall;
 
@@ -3136,7 +3136,7 @@ int add (int a, int b) {
 ----
 
 [source,perl6]
-.ncitest.pl6
+.ncitest.p6
 ----
 use NativeCall;
 
