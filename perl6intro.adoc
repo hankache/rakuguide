@@ -3043,6 +3043,11 @@ gcc -c ncitest.c
 gcc -shared -o ncitest.dll ncitest.o
 ----
 
+.En MacOS:
+----
+gcc -dynamiclib -o libncitest.dylib ncitest.c
+----
+
 Within the same directory where you compiled your C library, create a new Perl 6
 file that contains the below code and run it.
 
