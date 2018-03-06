@@ -258,9 +258,9 @@ Selalu gunakan tanda kutip ganda:
 say 'Hello World';   # Hello World
 say "Hello World";   # Hello World
 say "Don't";         # Don't
-my $name = 'John Doe';
+my $name = 'Wiro Sableng';
 say 'Hello $name';   # Hello $name
-say "Hello $name";   # Hello John Doe
+say "Hello $name";   # Hello Wiro Sableng
 -----------------------------------
 
 == Operator
@@ -292,35 +292,35 @@ Dibawah ini adalah tabel dari Operator yang umum dipakai.
 
 | gcd | Infix | Greatest common divisor (nilai terbesar yang dapat membagi habis) | 6 gcd 9 | 3
 
-| lcm | Infix | Least common multiple | 6 lcm 9 | 18
+| lcm | Infix | Least common multiple (kelipatan persekutuan terkecil) | 6 lcm 9 | 18
 
-| == | Infix | Numeric equal | 9 == 7  | False
+| == | Infix | Numeric equal (Perbandingan Numerik yang sama) | 9 == 7  | False
 
-| != | Infix | Numeric not equal | 9 != 7  | True
+| != | Infix | Numeric not equal (Perbandingan Numerik yang tidak sama) | 9 != 7  | True
 
-| < | Infix | Less than | 9 < 7  | False
+| < | Infix | Less than (lebih kecil dari) | 9 < 7  | False
 
-| > | Infix | Greater than | 9 > 7  | True
+| > | Infix | Greater than (lebih besar dari) | 9 > 7  | True
 
-| \<= | Infix | Less than or equal | 7 \<= 7  | True
+| \<= | Infix | Less than or equal (lebih kecil atau sama dengan) | 7 \<= 7  | True
 
-| >= | Infix | Greater than or equal | 9 >= 7  | True
+| >= | Infix | Greater than or equal (lebih besar atau sama dengan) | 9 >= 7  | True
 
-| eq | Infix | String equal | "John" eq "John"  | True
+| eq | Infix | String equal (Perbandingan string sama dengan) | "John" eq "John"  | True
 
-| ne | Infix | String not equal | "John" ne "Jane"  | True
+| ne | Infix | String not equal (Perbandingan string tidak sama dengan) | "John" ne "Jane"  | True
 
-| = | Infix | Assignment | my $var = 7  | Assigns the value of `7` to the variable `$var`
+| = | Infix | Assignment (memberikan suatu nilai) | my $var = 7  | memberikan nilai `7` ke variabel `$var`
 
-.2+| ~ .2+| Infix .2+| String concatenation | 9 ~ 7 | 97
+.2+| ~ .2+| Infix .2+| merangkai / menyambungkan String | 9 ~ 7 | 97
 
 <m| "Hi " ~ "there"  <| Hi there
 
-.2+| x .2+| Infix .2+| String replication | 13 x 3  | 131313
+.2+| x .2+| Infix .2+| Replikasi String | 13 x 3  | 131313
 
 <| "Hello " x 3  <| Hello Hello Hello
 
-.5+| ~~ .5+| Infix .5+| Smart match | 2 ~~ 2  | True
+.5+| ~~ .5+| Infix .5+| Smart match (perbandingan pintar) | 2 ~~ 2  | True
 
 <| 2 ~~ Int <| True
 
@@ -330,27 +330,27 @@ Dibawah ini adalah tabel dari Operator yang umum dipakai.
 
 <| "enlightenment" ~~ /light/ <| ｢light｣
 
-.2+| ++ | Prefix | Increment | my $var = 2; ++$var;  | Increment the variable by 1 and return the result `3`
+.2+| ++ | Prefix | Increment (kenaikan / tambahan) | my $var = 2; ++$var;  | menambah variable + 1 dan mengembalikan nilai `3`
 
-<m| Postfix <d| Increment <m| my $var = 2; $var++;  <| Return the variable `2` and then increment it
+<m| Postfix <d| Increment <m| my $var = 2; $var++;  <| mengembalikan nilai variabel `2` kemudian menambah variabel + 1
 
-.2+|\--| Prefix | Decrement | my $var = 2; --$var;  | Decrement the variable by 1 and return the result `1`
+.2+|\--| Prefix | Decrement | my $var = 2; --$var;  | mengurangi nilai variabel - 1 dan mengembalikan nilai menjadi `1`
 
-<m| Postfix <d| Decrement <m| my $var = 2; $var--;  <| Return the variable `2` and then decrement it
+<m| Postfix <d| Decrement <m| my $var = 2; $var--;  <| mengembalikan nilai variabel `2` kemudian  then mengurangi variabel -1
 
-.3+| + .3+| Prefix .3+| Coerce the operand to a numeric value | +"3"  | 3
+.3+| + .3+| Prefix .3+| merubah nilai menjadi nilai numerik | +"3"  | 3
 
 <| +True <| 1
 
 <| +False <| 0
 
-.3+| - .3+| Prefix .3+| Coerce the operand to a numeric value and return the negation | -"3"  | -3
+.3+| - .3+| Prefix .3+| merubah nilai menjadi nilai numerik dan mengembalikan hasil sebaliknya | -"3"  | -3
 
 <| -True <| -1
 
 <| -False <| 0
 
-.6+| ? .6+| Prefix .6+| Coerce the operand to a boolean value | ?0 | False
+.6+| ? .6+| Prefix .6+| merubah nilai menjadi nilai boolean (tipe data yang hanya mempunyai 2 nilai antara benar(True) atau salah(False)) | ?0 | False
 
 <| ?9.8 <| True
 
@@ -362,33 +362,33 @@ Dibawah ini adalah tabel dari Operator yang umum dipakai.
 
 <| my $var = 7; ?$var; <| True
 
-| ! | Prefix | Coerce the operand to a boolean value and return the negation | !4 | False
+| ! | Prefix | merubah nilai menjadi nilai boolean dan mengembalikan hasil sebaliknya | !4 | False
 
-| .. | Infix | Range Constructor |  0..5  | Creates a range from 0 to 5
+| .. | Infix | Range Constructor (pembangun rentang nilai) |  0..5  | membuat rentang nilai dari 0 sampai 5
 
-| ..^ | Infix | Range Constructor |  0..^5  | Creates a range from 0 to 4
+| ..^ | Infix | Range Constructor |  0..^5  | membuat rentang nilai dari 0 sampai 4
 
-| ^.. | Infix | Range Constructor |  0^..5  | Creates a range from 1 to 5
+| ^.. | Infix | Range Constructor |  0^..5  | membuat rentang nilai dari 1 sampai 5
 
-| \^..^ | Infix | Range Constructor |  0\^..^5  | Creates a range from 1 to 4
+| \^..^ | Infix | Range Constructor |  0\^..^5  | membuat rentang nilai dari 1 sampai 4
 
-| ^ | Prefix | Range Constructor |  ^5  | Same as 0..^5 Creates a range from 0 to 4
+| ^ | Prefix | Range Constructor |  ^5  | sama seperti 0..^5 membuat rentang nilai dari 0 sampai 4
 
-| ... | Infix | Lazy List Constructor |  0...9999  |  return the elements only if requested
+| ... | Infix | Lazy List Constructor |  0...9999  |  mengembalikan elemen hanya jika diminta
 
-.2+| {vbar} .2+| Prefix .2+| Flattening | {vbar}(0..5)  | (0 1 2 3 4 5)
+.2+| {vbar} .2+| Prefix .2+| Flattening (perataan) | {vbar}(0..5)  | (0 1 2 3 4 5)
 
 <| {vbar}(0\^..^5)  <| (1 2 3 4)
 
 |===
 
-=== Reversed Operators
+=== Reversed Operators (Operator terbalik)
 
-Adding `R` before any operator will have the effect of reversing its operands.
+Penambahan karakter `R` sebelum operator akan membalikkan operand (https://id.wikipedia.org/wiki/Operand)
 
 [cols=".^m,.^m,.^m,.^m", options="header"]
 |===
-| Normal Operation | Result | Reversed Operator | Result
+| Pengoperasian Normal | Hasil | Reversed Operator | Hasil
 
 | 2 / 3 | 0.666667 | 2 R/ 3 | 1.5
 
@@ -396,14 +396,14 @@ Adding `R` before any operator will have the effect of reversing its operands.
 
 |===
 
-=== Reduction Operators
+=== Reduction Operators (Operator spesial yang digunakan untuk mengurangi elemen array / list menjadi satu nilai)
 
-Reduction operators work on lists of values.
-They are formed by surrounding the operator with brackets `[]`
+Reduction operators dapat berjalan di rangkaian atau daftar suatu nilai.
+Dibentuk oleh kurung kotak buka dan tutup `[]`
 
 [cols=".^m,.^m,.^m,.^m", options="header"]
 |===
-| Normal Operation | Result | Reduction Operator | Result
+| Perngoperasian Normal | Hasil | Reduction Operator | Hasil
 
 | 1 + 2 + 3 + 4 + 5 | 15 | [+] 1,2,3,4,5 | 15
 
@@ -411,70 +411,70 @@ They are formed by surrounding the operator with brackets `[]`
 
 |===
 
-NOTE: For the complete list of operators, including their precedence, go to https://docs.perl6.org/language/operators
+CATATAN: Untuk mengetahui operator lainnya termasuk tata cara penggabungan atau susunannya, kunjungi https://docs.perl6.org/language/operators
 
-== Variables
-Perl 6 variables are classified into 3 categories: Scalars, Arrays and Hashes.
+== Variabel
+Variabel dari Perl6 diklasifikasian menjadi 3 kategori: Scalars, Arrays dan Hashes.
 
-A *sigil* (Sign in Latin) is a character that is used as a prefix to categorize variables.
+Karakter *sigil* (Sign in Latin) adalah karakter yang digunakan sebagai awalan untuk mengkategorikan variabel.
 
-* `$` is used for scalars
-* `@` is used for arrays
-* `%` is used for hashes
+* karakter `$` digunakan untuk scalars
+* karakter `@` digunakan untuk arrays
+* karakter `%` digunakan untuk hashes
 
 === Scalars
-A scalar holds one value or reference.
+Scalar menampung satu nilai atau referensi.
 
 [source,perl6]
 ----
 # String
-my $name = 'John Doe';
-say $name;
+my $nama = 'Wiro Sableng';
+say $nama;
 
 # Integer
-my $age = 99;
-say $age;
+my $umur = 99;
+say $umur;
 ----
 
-A specific set of operations can be performed on a scalar, depending on the value it holds.
+Suatu set pengoperasian tertentu dapat dilakukan di scalar, tergantung dari nilai yang ditampung.
 
 [source,perl6]
 .String
 ----
-my $name = 'John Doe';
-say $name.uc;
-say $name.chars;
-say $name.flip;
+my $nama = 'Wiro Sableng';
+say $nama.uc;
+say $nama.chars;
+say $nama.flip;
 ----
 
 ----
-JOHN DOE
-8
-eoD nhoJ
+WIRO SABLENG
+12
+gnelbaS oriW
 ----
 
-NOTE: For the complete list of methods applicable to Strings, see https://docs.perl6.org/type/Str
+CATATAN: Untuk melihat metode yang lebih lengkap dan dapat diaplikasikan pada String, kunjungi https://docs.perl6.org/type/Str
 
 [source,perl6]
 .Integer
 ----
-my $age = 17;
-say $age.is-prime;
+my $umur = 17;
+say $umur.is-prime;
 ----
 
 ----
 True
 ----
 
-NOTE: For the complete list of methods applicable to Integers, see https://docs.perl6.org/type/Int
+CATATAN: Untuk melihat metode yang lebih lengkap dan dapat diaplikasikan pada Integer, kunjungi https://docs.perl6.org/type/Int
 
 [source,perl6]
-.Rational Number
+.Rational Number (https://id.wikipedia.org/wiki/Bilangan_rasional)
 ----
-my $age = 2.3;
-say $age.numerator;
-say $age.denominator;
-say $age.nude;
+my $umur = 2.3;
+say $umur.numerator;
+say $umur.denominator;
+say $umur.nude;
 ----
 
 ----
@@ -483,89 +483,89 @@ say $age.nude;
 (23 10)
 ----
 
-NOTE: For the complete list of methods applicable to Rational Numbers, see https://docs.perl6.org/type/Rat
+CATATAN: Untuk melihat metode yang lebih lengkap dan dapat diaplikasikan pada Bilangan Rasional, kunjungi https://docs.perl6.org/type/Rat
 
 === Arrays
-Arrays are lists containing multiple values.
+Arrays adalah daftar yang dapat berisi lebih dari satu nilai.
 
 [source,perl6]
 ----
-my @animals = 'camel','llama','owl';
-say @animals;
+my @hewan = 'ayam','bebek','burung';
+say @hewan;
 ----
 
-Many operations can be performed on arrays as shown in the below example:
+Banyak pengoperasian dapat dilakukan pada arrays seperti contoh dibawah:
 
-TIP: The tilde `~` is used for string concatenation.
+Saran: karakter tilde  `~` digunakan untuk menggabungkan string.
 
 [source,perl6]
 .`Script`
 ----
-my @animals = 'camel','vicuña','llama';
-say "The zoo contains " ~ @animals.elems ~ " animals";
-say "The animals are: " ~ @animals;
-say "I will adopt an owl for the zoo";
-@animals.push("owl");
-say "Now my zoo has: " ~ @animals;
-say "The first animal we adopted was the " ~ @animals[0];
-@animals.pop;
-say "Unfortunately the owl got away and we're left with: " ~ @animals;
-say "We're closing the zoo and keeping one animal only";
-say "We're going to let go: " ~ @animals.splice(1,2) ~ " and keep the " ~ @animals;
+my @hewan = 'harimau','gajah','panda';
+say "Di kebun binatang ada " ~ @hewan.elems ~ " hewan";
+say "Hewannya antara lain: " ~ @hewan;
+say "Kebun binatang akan mengadopsi gorila";
+@hewan.push("gorila");
+say "Sekarang kebun binatang mempunyai hewan: " ~ @hewan; 
+say "Hewan pertama yang diadopsi adalah " ~ @hewan[0];
+@hewan.pop;
+say "Sayangnya gorilanya kabur dan yang tersisa: " ~ @hewan;
+say "Kebun binatang akan ditutup dan hanya akan mempertahankan 1 hewan saja";
+say "Kebun binatang akan melepas: " ~ @hewan.splice(1,2) ~ " dan mempertahankan " ~ @hewan;
 ----
 
-.`Output`
+.`Output` (Hasil Keluaran)
 ----
-The zoo contains 3 animals
-The animals are: camel vicuña llama
-I will adopt an owl for the zoo
-Now my zoo has: camel vicuña llama owl
-The first animal we adopted was the camel
-Unfortunately the owl got away and we're left with: camel vicuña llama
-We're closing the zoo and keeping one animal only
-We're going to let go: vicuña llama and keep the camel
+Di kebun binatang ada 3 hewan
+Hewannya antara lain: harimau gajah panda
+Kebun binatang akan mengadopsi gorila
+Sekarang kebun binatang mempunyai hewan: harimau gajah panda gorila
+Hewan pertama yang diadopsi adalah harimau
+Sayangnya gorilanya kabur dan yang tersisa: harimau gajah panda
+Kebun binatang akan ditutup dan hanya akan mempertahankan 1 hewan saja
+Kebun binatang akan melepas: gajah panda dan mempertahankan harimau
 ----
 
-.Explanation
-`.elems` returns the number of elements in an array. +
-`.push()` adds one or more elements to the array. +
-We can access a specific element in the array by specifying its position `@animals[0]`. +
-`.pop` removes the last element from the array and returns it. +
-`.splice(a,b)` will remove `b` elements starting at position `a`.
+.Penjelasan
+`.elems` mengembalikan nilai dari jumlah elemen dalam suatu array. +
+`.push()` menambahkan satu atau lebih elemen kedalam array. +
+Kita dapat mengakses spesifik elemen array dengan menspesifikasian posisinya `@hewan[0]`. +
+`.pop` menghapus elemen terakhir dari array dan mengembalikan elemen yang dihapus. +
+`.splice(a,b)` menghapus elemen `b` dimulai dari posisi `a`.
 
-==== Fixed-size arrays
-A basic array is declared as following:
+==== Fixed-size arrays (array yang berukuran tetap)
+Secara dasar, array dideklarasikan sebagai berikut:
 [source,perl6]
 my @array;
 
-The basic array can have indefinite length and thus is called auto-extending. +
-The array will accept any number of values with no restriction.
+Array dapat mempunyai ukuran tak terbatas dan karenanya disebut auto-extending(diperpanjang otomatis). +
+Array dapat menerima suatu nilai tanpa batasan.
 
-In contrast, we can also create fixed-size arrays. +
-These arrays cannot be accessed beyond their defined size.
+Sebaliknya, kita dapat juga membuat array dengan ukuran yang tetap. +
+Array ini tidak dapat diakses diluar atau melebihi ukuran yang ditetapkan.
 
-To declare an array of fixed size, specify its maximum number of elements in square brackets immediately after its name:
+Untuk mendeklarasi array dengan ukuran tetap, spesifikasikan jumlah maksimum elemen di kurung kotak setelah penamaan variabelnya:
 [source,perl6]
 my @array[3];
 
-This array will be able to hold a maximum of 3 values, indexed from 0 to 2.
+Array ini akan dapat menampung maksimum 3 nilai, terindeks dari 0 sampai 2.
 
 [source,perl6]
 ----
 my @array[3];
-@array[0] = "first value";
-@array[1] = "second value";
-@array[2] = "third value";
+@array[0] = "nilai pertama";
+@array[1] = "nilai kedua";
+@array[2] = "nilai ketiga";
 ----
 
-You will not be able to add a fourth value to this array:
+Anda tidak dapat menambah nilai keempat kedalam array ini:
 [source,perl6]
 ----
 my @array[3];
-@array[0] = "first value";
-@array[1] = "second value";
-@array[2] = "third value";
-@array[3] = "fourth value";
+@array[0] = "nilai pertama";
+@array[1] = "nilai kedua";
+@array[2] = "nilai ketiga";
+@array[3] = "nilai keempat";
 ----
 
 ----
@@ -573,90 +573,90 @@ Index 3 for dimension 1 out of range (must be 0..2)
 ----
 
 ==== Multidimensional arrays
-The arrays we saw until now are one-dimensional. +
-Fortunately, we can define multi-dimensional arrays in Perl 6.
+Array yang kita demonstrasikan diatas adalah array dengan 1 dimensi. +
+Kita juga dapat mendefinisikan array multi dimensi.
 
 [source,perl6]
-my @tbl[3;2];
+my @tabel[3;2];
 
-This array is two-dimensional.
-The first dimension can have a maximum of 3 values and the second dimension a maximum of 2 values.
+Ini adalah array dengan 2 dimensi.
+Dimensi pertama dapat mempunyai maksimal 3 nilai dan dimensi yang kedua dapat mempunyai maksimal 2 nilai.
 
-Think of it as a 3x2 grid.
+Dapat diilustrasikan seperti tabel 3x2.
 
 [source,perl6]
 ----
-my @tbl[3;2];
-@tbl[0;0] = 1;
-@tbl[0;1] = "x";
-@tbl[1;0] = 2;
-@tbl[1;1] = "y";
-@tbl[2;0] = 3;
-@tbl[2;1] = "z";
-say @tbl
+my @tabel[3;2];
+@tabel[0;0] = 1;
+@tabel[0;1] = "x";
+@tabel[1;0] = 2;
+@tabel[1;1] = "y";
+@tabel[2;0] = 3;
+@tabel[2;1] = "z";
+say @tabel;
 ----
 
 ----
 [[1 x] [2 y] [3 z]]
 ----
 
-.Visual representation of the array:
+.Representasi visual dari array:
 ----
 [1 x]
 [2 y]
 [3 z]
 ----
 
-NOTE: For the complete Array reference, see https://docs.perl6.org/type/Array
+CATATAN: Untuk lebih lengkapnya tentang referensi Array, kunjungi https://docs.perl6.org/type/Array
 
 === Hashes
 [source,perl6]
-.A Hash is a set of Key/Value pairs.
+.Hash adalah kumpulan dari satu atau lebih pasangan kata kunci dan nilainya.
 ----
-my %capitals = ('UK','London','Germany','Berlin');
-say %capitals;
+my %ibukota = ('UK','London','Indonesia','Jakarta');
+say %ibukota;
 ----
 
 [source,perl6]
-.Another succinct way of filling the hash:
+.Cara lain dalam mengisi nilai hash:
 ----
-my %capitals = (UK => 'London', Germany => 'Berlin');
-say %capitals;
+my %ibukota = (UK => 'London', Indonesia => 'Jakarta');
+say %ibukota;
 ----
 
-Some of the methods that can be called on hashes are:
+Beberapa metode yang dapat dipanggil dengan hash:
 [source,perl6]
 .`Script`
 ----
-my %capitals = (UK => 'London', Germany => 'Berlin');
-%capitals.push: (France => 'Paris');
-say %capitals.kv;
-say %capitals.keys;
-say %capitals.values;
-say "The capital of France is: " ~ %capitals<France>;
+my %ibukota = (UK => 'London', Indonesia => 'Jakarta');
+%ibukota.push: (Perancis => 'Paris');
+say %ibukota.kv;
+say %ibukota.keys;
+say %ibukota.values;
+say "Ibukota dari Perancis adalah: " ~ %ibukota<Perancis>;
 ----
 
 .`Output`
 ----
-(France Paris Germany Berlin UK London)
-(France Germany UK)
-(Paris Berlin London)
-The capital of France is: Paris
+(Perancis Paris UK London Indonesia Jakarta)
+(Perancis UK Indonesia)
+(Paris London Jakarta)
+Ibukota dari Perancis adalah: Paris
 ----
 
-.Explanation
-`.push: (key => 'Value')` adds a new key/value pair. +
-`.kv` returns a list containing all keys and values. +
-`.keys` returns a list that contains all keys. +
-`.values` returns a list that contains all values. +
-We can access a specific value in the hash by specifying its key `%hash<key>`
+.Penjelasan
+`.push: (katakunci => 'nilai')` menambahkan pasangan kata kunci dan nilainya. +
+`.kv` mengembalikan daftar nilai seluruh pasangan kata kunci dan nilainya. +
+`.keys` mengembalikan daftar nilai seluruh kata kunci saja. +
+`.values` mengembalikan daftar nilai seluruh nilai dari kata kunci saja. +
+Kita dapak mengakses nilai spesifik dari kata kunci tertentu dengan `%hash<katakunci>`
 
-NOTE: For the complete Hash reference, see https://docs.perl6.org/type/Hash
+CATATAN: Untuk referensi lengkap Hash, kunjungi https://docs.perl6.org/type/Hash
 
 === Types
-In the previous examples, we did not specify what type of values the variables should hold.
+Dicontoh sebelumnya, kita tidak menspesifikasi tipe nilai dari suatu variabel.
 
-TIP: `.WHAT` will return the type of value held in a variable.
+SARAN: `.WHAT` akan mengembalikan tipe nilai yang disimpan dalam variabel.
 
 [source,perl6]
 ----
@@ -669,12 +669,12 @@ say $var;
 say $var.WHAT;
 ----
 
-As you can see in the above example, the type of value in `$var` was once (Str) and then (Int).
+Contoh diatas menunjukkan awalnya tipe nilai dari `$var` adalah (Str) kemudian berubah menjadi (Int).
 
-This style of programming is called dynamic typing. Dynamic in the sense that variables may contain values of Any type.
+Gaya koding seperti ini disebut dynamic typing. Dinamis dalam artian suatu variable dapat menampung segala tipe nilai.
 
-Now try running the below example: +
-Notice `Int` before the variable name.
+Sekarang coba untuk menjalankan contoh dibawah: +
+Perhatikan `Int` sebelum nama variabel.
 
 [source,perl6]
 ----
@@ -683,16 +683,16 @@ say $var;
 say $var.WHAT;
 ----
 
-It will fail and return this error message: `Type check failed in assignment to $var; expected Int but got Str`
+Contoh diatas akan gagal dan mengembalikan pesan eror: `Type check failed in assignment to $var; expected Int but got Str`
 
-What happened is that we specified beforehand that the variable should be of type (Int).
-When we tried to assign an (Str) to it, it failed.
+Apa yang terjadi adalah kita menspesifikasikan kalau variable tersebut nilainya harus berupa tipe (Int).
+Ketika kita mencoba untuk memberikan nilai berupa (Str), kode tersebut akan gagal.
 
-This style of programming is called static typing. Static in the sense that variable types are defined before assignment and cannot change.
+Gaya koding ini disebut static typing. Statis dalam artian tipe nilai variabel didefinisikan sebelumnya dan tidak dapat dirubah.
 
-Perl 6 is classified as *gradually typed*; it allows both *static* and *dynamic* typing.
+Perl 6 diklasifikasikan sebagai *gradually typed*; Memperbolehkan gaya statis dan dinamis.
 
-.Arrays and hashes can also be statically typed:
+.Arrays dan hashes dapat juga dideklarasikan secara statis:
 [source,perl6]
 ----
 my Int @array = 1,2,3;
@@ -703,43 +703,43 @@ my Str @multilingual = "Hello","Salut","Hallo","您好","안녕하세요","こ�
 say @multilingual;
 say @multilingual.WHAT;
 
-my Str %capitals = (UK => 'London', Germany => 'Berlin');
-say %capitals;
-say %capitals.WHAT;
+my Str %ibukota = (Indonesia => 'Jakarta', UK => 'London', Germany => 'Berlin');
+say %ibukota;
+say %ibukota.WHAT;
 
-my Int %country-codes = (UK => 44, Germany => 49);
-say %country-codes;
-say %country-codes.WHAT;
+my Int %kode-negara = (Indonesia => 62, UK => 44, Germany => 49);
+say %kode-negara;
+say %kode-negara.WHAT;
 ----
 
-.Below is a list of the most commonly used types:
-You will most probably never use the first two but they are listed for informational purpose.
+.Dibawah adalah daftar dari tipe yang sering dipakai:
+Anda mungkin tidak akan pernah memakai dua tipe yang pertama, tipe tersebut dicantumkan untuk tujuan informasi.
 
 [cols="^.^1m,.^3m,.^2m,.^1m, options="header"]
 |===
 
-| *Type* | *Description* | *Example* | *Result*
+| *Tipe* | *Deskripsi* | *Contoh* | *Hasil*
 
-| Mu | The root of the Perl 6 type hierarchy | |
+| Mu | Hirarki paling atas dari tipe Perl 6 | |
 
-| Any | Default base class for new classes and for most built-in classes | |
+| Any | Default kelas dasar untuk kelas baru dan hampir semua kelas lainnya yang termasuk dalam Perl 6 | |
 
-| Cool | Value that can be treated as a string or number interchangeably | my Cool $var = 31; say $var.flip; say $var * 2; | 13 62
+| Cool | Nilai yang dapat dianggap sebagai string atau numerik | my Cool $var = 31; say $var.flip; say $var * 2; | 13 62
 
-| Str | String of characters | my Str $var = "NEON"; say $var.flip; | NOEN
+| Str | String atau kumpulan dari karakter | my Str $var = "NEON"; say $var.flip; | NOEN
 
-| Int | Integer (arbitrary-precision) | 7 + 7 | 14
+| Int | Integer (bilangan bulat) | 7 + 7 | 14
 
-| Rat | Rational number (limited-precision) | 0.1 + 0.2 | 0.3
+| Rat | Rational number (bilangan rational) | 0.1 + 0.2 | 0.3
 
 | Bool | Boolean | !True | False
 
 |===
 
-=== Introspection
+=== Introspection (Introspeksi)
 
-Introspection is the process of getting information about an object properties like its type. +
-In one of the previous example we used `.WHAT` to return the type of the variable.
+Introspection adalah proses untuk medapatkan informasi tentang properti suatu objek seperti tipe objek. +
+Disalah satu contoh sebelumnya, kita menggunakan `.WHAT` untuk mengembalikan tipe dari variabel.
 
 [source,perl6]
 ----
@@ -757,35 +757,35 @@ $var2 = Nil;
 say $var2.WHAT;   # (Any)
 ----
 
-The type of a variable holding a value is correlated to its value. +
-The type of a strongly declared empty variable is the type with which it was declared. +
-The type of an empty variable that wasn't strongly declared is `(Any)` +
-To clear the value of a variable, assign `Nil` to it.
+Tipe dari suatu variabel yang menyimpan suatu nilai berkorelasi terhadap nilainya. +
+Tipe dari suatu variabel kosong yang dideklarasikan adalah tipe dari yang mana dideklarasikan. +
+Tipe dari suatu variable kosong yang tidak dideklarasikan adalah `(Any)` +
+Untuk menhapus nilai dari suatu variabel, berikan `Nil` ke variabel tersebut.
 
-=== Scoping
-Before using a variable for the first time, it needs to be declared.
+=== Scoping (Ruang lingkup)
+Sebelum menggunakan variabel, variabel perlu dideklarasikan.
 
-Several declarators are used in Perl 6. We've been using `my`, so far.
+Beberapa deklarator digunakan di Perl 6. Kita telah menggunakan `my` selama ini.
 
 [source,perl6]
 my $var=1;
 
-The `my` declarator give the variable *lexical* scope.
-In other words, the variable will only be accessible in the same block it was declared.
+Deklarator `my` declarator memberikan variabel ruang lingkup *lexical*.
+Dengan kata lain, variabel cuma bisa diakses bila berada didalam blok dimana variabel dideklarasikan.
 
-A block in Perl 6 is delimited by `{ }`.
-If no block is found, the variable will be available in the whole Perl 6 script.
+Suatu blok di Perl 6 dibatasi oleh `{  }`.
+Jika blok tidak ditemukan, variabel akan bisa diakses diseluruh kode Perl 6.
 
 [source,perl6]
 ----
 {
   my Str $var = 'Text';
-  say $var;   # is accessible
+  say $var;   # dapat diakses
 }
-say $var;   # is not accessible, returns an error
+say $var;   # bagian ini tidak dapat diakses, akan terdapat error
 ----
 
-Since a variable is only accessible in the block where it is defined, the same variable name can be used in another block.
+Karena sebuah variabel hanya dapat diakses diblok dimana variabel tersebut didefinisikan, nama variabel yang sama dapat digunakan diblok yang lain.
 
 [source,perl6]
 ----
@@ -798,15 +798,15 @@ say $var;
 ----
 
 === Assignment vs. Binding
-We've seen in the previous examples, how to *assign* values to variables. +
-*Assignment* is done using the `=` operator.
+Kita telah melihat dicontoh sebelumnya bagaimana untuk memberikan nilai ke variabel. +
+Pemberian nilai (Assignment) dilakukan menggunakan operator `=`.
 [source,perl6]
 ----
 my Int $var = 123;
 say $var;
 ----
 
-We can change the value assigned to a variable:
+Kita dapat mengubah nilai yang diberi pada suatu variabel:
 
 [source,perl6]
 .Assignment
@@ -823,8 +823,8 @@ say $var;
 999
 ----
 
-On the other hand, we cannot change the value *bound* to a variable. +
-*Binding* is done using the `:=` operator.
+Disamping itu, kita tidak dapat merubah nilai yang *terikat* pada variabel. +
+*Binding* atau pengikatan suatu nilai dilakukan menggunakan operator `:=`.
 
 [source,perl6]
 .Binding
@@ -842,7 +842,7 @@ Cannot assign to an immutable value
 ----
 
 [source,perl6]
-.Variables can also be bound to other variables:
+.Variabel dapat juga direferensikan kevariabel lainnya:
 ----
 my $a;
 my $b;
@@ -859,16 +859,16 @@ say $a;
 8
 ----
 
-Binding variables is bi-directional. +
-`$a := $b` and `$b := $a` have the same effect.
+Binding variabel (pengikatan pada variabel) bersifat 2 arah. +
+`$a := $b` and `$b := $a` mempunyai efek yang sama.
 
-NOTE: For more info on variables, see https://docs.perl6.org/language/variables
+CATATAN: Untuk informasi yang lebih lengkap tentang variabel, kunjungi https://docs.perl6.org/language/variables
 
-== Functions and mutators
+== Fungsi dan Mutator
 
-It is important to differentiate between functions and mutators. +
-Functions do not change the state of the object they were called on. +
-Mutators modify the state of the object.
+Penting untuk mengetahui perbedaan fungsi dan mutator. +
+Fungsi tidak mengubah status dari objek atau variabel yang dipanggil / digunakan. +
+Mutator memodifikasi status dari objek atau variabel.
 
 [source,perl6,linenums]
 .`Script`
@@ -893,18 +893,18 @@ say @numbers;      #4
 [2 3 4 7 9 11 99] #4
 ----
 
-.Explanation
-`.push` is a mutator; it changes the state of the array (#1)
+.Penjelasan
+`.push` adalah mutator karena merubah status dari array (#1)
 
-`.sort` is a function; it returns a sorted array but doesn't modify the state of the initial array:
+`.sort` adalah fungsi karena mengembalikan nilai array yang telah diurutkan tetapi tidak mengubah status array seperti diawal:
 
-* (#2) shows that it returned a sorted array.
+* (#2) menunjukkan bahwa hasil output array yang telah diurutkan.
 
-* (#3) shows that the initial array is still unmodified.
+* (#3) menunjukkan bahwa array tidak termodifikasi, masih seperti status diawal.
 
-In order to enforce a function to act as a mutator, we use `.=` instead of `.` (#4) (Line 9 of the script)
+Untuk memaksa fungsi menjadi mutator, kita gunakan `.=` sebagai pengganti `.` (#4) (Baris ke 9)
 
-== Loops and conditions
+== Loops and conditions (pengulangan dan kondisi)
 Perl 6 has many conditional and looping constructs.
 
 === if
@@ -1628,7 +1628,7 @@ All code objects in Perl 6 are closures, which means they can reference lexical 
 [source,perl6]
 ----
 sub generate-greeting {
-    my $name = "John Doe";
+    my $name = "Wiro Sableng";
     sub greeting {
       say "Good Morning $name";
     };
@@ -1638,7 +1638,7 @@ my $generated = generate-greeting;
 $generated();
 ----
 
-If you run the above code, it will display `Good Morning John Doe` on the terminal. +
+If you run the above code, it will display `Good Morning Wiro Sableng` on the terminal. +
 While the result is fairly simple, what is interesting about this example, is that the `greeting` inner subroutine was returned from the outer subroutine before being executed.
 
 `$generated` has become a *closure*.
@@ -1650,7 +1650,7 @@ A *closure* is a special kind of object that combines two things:
 * The Environment in which that subroutine was created.
 
 The environment consists of any local variable that was in-scope at the time that the closure was created.
-In this case, `$generated` is a closure that incorporates both the `greeting` subroutine and the `John Doe` string that existed when the closure was created.
+In this case, `$generated` is a closure that incorporates both the `greeting` subroutine and the `Wiro Sableng` string that existed when the closure was created.
 
 Let's take a look at a more interesting example.
 [source,perl6]
