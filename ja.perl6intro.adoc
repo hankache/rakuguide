@@ -3031,6 +3031,11 @@ gcc -c ncitest.c
 gcc -shared -o ncitest.dll ncitest.o
 ----
 
+.On macOS:
+----
+gcc -dynamiclib -o libncitest.dylib ncitest.c
+----
+
 Cのライブラリをコンパイルしたのと同じディレクトリで、次のコードを含むPerl 6のファイルを作り、実行してください。
 
 [source,perl6]
