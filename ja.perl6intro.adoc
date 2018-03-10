@@ -102,8 +102,8 @@ REPL はこの行の値を出力するでしょう。
 そうしたら、次のコードの行を打つか、 `exit` と打った後[Enter]を押すことでREPLを去るか、どちらでも選ぶことができます。
 
 あるいは、ファイルの中にコードを書いて、保存して実行してください。
-Perl6のスクリプトは `.pl6` 拡張子を持つことが推奨されています。
-ターミナルの窓に対して `perl6 filename.pl6` と打ち、[Enter]を押してください。
+Perl6のスクリプトは `.p6` 拡張子を持つことが推奨されています。
+ターミナルの窓に対して `perl6 filename.p6` と打ち、[Enter]を押してください。
 REPLとは違って、それぞれの行の結果が自動的に出力されるでしょう。: 出力を行うには、 `say` のような命令が含まれている必要があります。
 
 REPLは多くの場合、特定のコードを実行するために用いられ、そのコードは一般的には一行です。
@@ -1212,17 +1212,17 @@ rmdir "newfolder";
 
 ファイルかディレクトリであれば、パスが存在するかどうか確かめることもできます。:
 
-下記のスクリプトを実行するディレクトリで、 `folder123` という空のフォルダと `script123.pl6` という空のpl6ファイルを生成してください。
+下記のスクリプトを実行するディレクトリで、 `folder123` という空のフォルダと `script123.p6` という空のp6ファイルを生成してください。
 
 [source,perl6]
 ----
-say "script123.pl6".IO.e;
+say "script123.p6".IO.e;
 say "folder123".IO.e;
 
-say "script123.pl6".IO.d;
+say "script123.p6".IO.d;
 say "folder123".IO.d;
 
-say "script123.pl6".IO.f;
+say "script123.p6".IO.f;
 say "folder123".IO.f;
 ----
 
@@ -2332,7 +2332,7 @@ say "How are you doing today?"
 .`出力`
 ----
 Type check failed in assignment to $name; expected Str but got Int
-   in block <unit> at exceptions.pl6:2
+   in block <unit> at exceptions.p6:2
 ----
 
 エラーが発生したとき(この場合は文字列変数に数値を代入している)は必ずプログラムが停止し、ほかの行のコードは評価されないということに注目してください。
@@ -3034,7 +3034,7 @@ gcc -shared -o ncitest.dll ncitest.o
 Cのライブラリをコンパイルしたのと同じディレクトリで、次のコードを含むPerl 6のファイルを作り、実行してください。
 
 [source,perl6]
-.ncitest.pl6
+.ncitest.p6
 ----
 use NativeCall;
 
@@ -3065,7 +3065,7 @@ hellofromc();
 上記のPerl 6のスクリプトを変更し、 Perl 6のサブルーチンの名前を `hellofromc` の代わりに `hello` と付けてみましょう。
 
 [source,perl6]
-.ncitest.pl6
+.ncitest.p6
 ----
 use NativeCall;
 
@@ -3095,7 +3095,7 @@ void hellofromc (char* name) {
 ----
 
 [source,perl6]
-.ncitest.pl6
+.ncitest.p6
 ----
 use NativeCall;
 
@@ -3119,7 +3119,7 @@ int add (int a, int b) {
 ----
 
 [source,perl6]
-.ncitest.pl6
+.ncitest.p6
 ----
 use NativeCall;
 
