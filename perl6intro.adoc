@@ -3043,7 +3043,7 @@ gcc -c ncitest.c
 gcc -shared -o ncitest.dll ncitest.o
 ----
 
-.En MacOS:
+.On macOS:
 ----
 gcc -dynamiclib -o libncitest.dylib ncitest.c
 ----

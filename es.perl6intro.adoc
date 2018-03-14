@@ -350,15 +350,15 @@ La siguiente tabla muestra los operadores más utilizados.
 
 | ! | Prefijo | Fuerza el operador a un valor booleano y devuelve la negación | !4 | False
 
-| .. | Infijo | Constructor de Series |  0..5  | Crea una serie de 0 a 5
+| .. | Infijo | Constructor de Rangos |  0..5  | Crea un rango cuyo intervalo es [0, 5] footnoteref:[intervalos,Notación de intervalos: https://es.wikipedia.org/wiki/Intervalo_(matemática)#Notación]
 
-| ..^ | Infijo | Constructor de Series |  0..^5  | Crea una serie de 0 a 4
+| ..^ | Infijo | Constructor de Rangos |  0..^5  | Crea un rango cuyo intervalo es [0, 5) footnoteref:[intervalos]
 
-| ^.. | Infijo | Constructor de Series |  0^..5  | Crea una serie de 1 a 5
+| ^.. | Infijo | Constructor de Rangos |  0^..5  | Crea un rango cuyo intervalo es (0, 5] footnoteref:[intervalos]
 
-| \^..^ | Infijo | Constructor de Series |  0\^..^5  | Crea una serie de 1 a 4
+| \^..^ | Infijo | Constructor de Rangos |  0\^..^5  | Crea un rango cuyo intervalo es (0, 5) footnoteref:[intervalos]
 
-| ^ | Prefijo | Constructor de Series |  ^5  | Igual que 0..^5 Crea una serie de 0 a 4
+| ^ | Prefijo | Constructor de Rangos |  ^5  | Igual que 0..^5 Crea un rango cuyo intervalo es [0, 5) footnoteref:[intervalos]
 
 | ... | Infijo | Constructor de listas perezosas |  0...9999  |  devuelve los elementos si son solicitados
 
