@@ -3225,4 +3225,4 @@ NOTE: For more info on the Native Calling Interface, see https://docs.perl6.org/
 
 * link:https://www.reddit.com/r/perl6/[/r/perl6] Subscribe to the Perl 6 subreddit.
 
-* link:https://alerts.perl6.org[P6lert] alerts from Perl 6 Core Developers. Keeping up to date with important changes.
+* link:https://alerts.perl6.org[P6lert] alerts from Perl 6 Core Developers. Keep up to date with important changes.
