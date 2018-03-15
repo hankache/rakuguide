@@ -904,83 +904,83 @@ say @numbers;      #4
 
 Untuk memaksa fungsi menjadi mutator, kita gunakan `.=` sebagai pengganti `.` (#4) (Baris ke 9)
 
-== Loops and conditions (pengulangan dan kondisi)
-Perl 6 has many conditional and looping constructs.
+== Loops and conditions (pengulangan dan syarat / kondisi)
+Perl6 mempunyai banyak sintaks atau cara untuk melakukan persyaratan dan pengulangan
 
 === if
-The code runs only if a condition has been met; i.e., an expression evaluates to `True`.
+Kode hanya akan berjalan apabila syarat atau kondisi tertentu dipenuhi, misalnya sebuah ekpresi yang mengembalikan nilai `True`.
 
 [source,perl6]
 ----
-my $age = 19;
+my $umur = 19;
 
-if $age > 18 {
-  say 'Welcome'
+if $umur > 18 {
+  say 'Selamat Datang';
 }
 ----
 
-In Perl 6, we can invert the code and the condition. +
-Even if the code and the condition have been inverted, the condition is always evaluated first.
+Dalam Perl 6, kita dapat membalikkan susunan kode dan kondisinya. +
+Bahkan bila kode dan kondisinya sudah dibalik, kondisi / syarat selalu akan dievaluasi terlebih dahulu.
 
 [source,perl6]
 ----
-my $age = 19;
+my $umur = 19;
 
-say 'Welcome' if $age > 18;
+say 'Selamat Datang' if $umur > 18;
 ----
 
-If the condition is not met, we can specify alternate blocks for execution by using:
+Jika syarat atau kondisi tidak terpenuhi, kita dapat menyertakan blok alternatif untuk mengeksekusinya dengan:
 
 * `else`
 * `elsif`
 
 [source,perl6]
 ----
-# run the same code for different values of the variable
-my $number-of-seats = 9;
+# Menjalankan kode yang sama dengan nilai variabel yang berbeda
+my $jumlah-kursi = 9;
 
-if $number-of-seats <= 5 {
-  say 'I am a sedan'
-} elsif $number-of-seats <= 7 {
-  say 'I am 7 seater'
+if $jumlah-kursi <= 5 {
+  say 'mobil sedan'
+} elsif $jumlah-kursi <= 7 {
+  say 'mobil 7 kursi'
 } else {
-  say 'I am a van'
+  say 'bis kota'
 }
 ----
 
-=== unless
-The negated version of an if statement can be written using `unless`.
+=== unless (kecuali)
+Merupakan pernyataan negasi atau lawan statement dari `if`.
 
-The following code:
+Kode berikut ini:
 
 [source,perl6]
 ----
-my $clean-shoes = False;
+my $sepatu-bersih = False;
 
-if not $clean-shoes {
-  say 'Clean your shoes'
+if not $sepatu-bersih {
+  say 'Bersihkan sepatumu'
 }
 ----
-can be written as:
+Dapat juga ditulis seperti:
 
 [source,perl6]
 ----
-my $clean-shoes = False;
+my $sepatu-bersih = False;
 
-unless $clean-shoes {
-  say 'Clean your shoes'
+unless $sepatu-bersih {
+  say 'Bersihkan sepatumu'
 }
 ----
 
-Negation in Perl 6 is done using either `!` or `not`.
+Negasi dalam Perl 6 dilakukan dengan `!` atau `not`.
 
-`unless (condition)` is used instead of `if not (condition)`.
+`unless (condition)` digunakan bukannya `if not (condition)`.
 
-`unless` cannot have an `else` clause.
+`unless` tidak dapat menggunakan statement / klausa `else`.
 
 === with
 
-`with` behaves like the `if` statement, but checks if the variable is defined.
+`with` hampir sama dengan pernyataan `if`, bedanya `with` mengecek apakah variabel terdefinisi.
 
 [source,perl6]
 ----
@@ -991,7 +991,7 @@ with $var {
 }
 ----
 
-If you run the code without assigning a value to the variable, nothing should happen.
+Apabila variabel tidak diberikan suatu nilai, tidak akan ada output.
 [source,perl6]
 ----
 my Int $var;
@@ -1001,14 +1001,14 @@ with $var {
 }
 ----
 
-`without` is the negated version of `with`. You should be able to relate it to `unless`.
+`without` adalah versi negasi dari `with`. Hampir sama dengan analogi `unless` dengan `if`.
 
-If the first `with` condition is not met, an alternate path can be specified using `orwith`. +
-`with` and `orwith` can be compared to `if` and `elsif`.
+Jika kondisi pertama `with` tidak terpenuhi, alternatifnya dapat ditentukan dengan `orwith`. +
+`with` dan `orwith` sama dengan hubungan antara `if` dan `elsif`.
 
 === for
 
-The `for` loop iterates over multiple values.
+Pernyataan `for` melakukan pengulangan terhadap kelipatan nilai.
 
 [source,perl6]
 ----
@@ -1019,35 +1019,37 @@ for @array -> $array-item {
 }
 ----
 
-Notice that we created an iteration variable `$array-item` and then performed the operation `*100` on each array item.
+Kode diatas kita membuat sebuah array, kemudian kita melakukan pengulangan terhadap array tersebut, 
+membuat variabel `$array-item` untuk menampung nilai dari tiap pengulangan, 
+melakukan perkalian `*100` pada tiap item array, kemudian menampilkan hasil tiap perulangan.
 
 === given
 
-`given` is the Perl 6 equivalent of the switch statement in other languages,
-but much more powerful.
+`given` dalam Perl 6 hampir sama dengan pernyataan `switch` pada bahasa pemrograman lainnya,
+tetapi lebih powerful.
 
 [source,perl6]
 ----
 my $var = 42;
 
 given $var {
-    when 0..50 { say 'Less than or equal to 50'}
-    when Int { say "is an Int" }
+    when 0..50 { say 'Kurang dari atau sama dengan 50'}
+    when Int { say "ini adalah Int" }
     when 42  { say 42 }
     default  { say "huh?" }
 }
 ----
 
-After a successful match, the matching process will stop.
+Proses perbandingan akan berhenti (tidak diteruskan keperbandingan selanjutnya) apabila ada yang sukses.
 
-Alternatively `proceed` will instruct Perl 6 to continue matching even after a successful match.
+Apabila ingin lanjut keperbandingan selanjutnya, bisa menggunakan `proceed`.
 [source,perl6]
 ----
 my $var = 42;
 
 given $var {
-    when 0..50 { say 'Less than or equal to 50';proceed}
-    when Int { say "is an Int";proceed}
+    when 0..50 { say 'Kurang dari atau sama dengan 50';proceed}
+    when Int { say "ini adalah Int";proceed}
     when 42  { say 42 }
     default  { say "huh?" }
 }
@@ -1055,56 +1057,55 @@ given $var {
 
 === loop
 
-`loop` is another way of writing a `for` loop.
+`loop` adalah cara lain untuk menulis pengulangan `for`.
 
-Actually, `loop` is how `for` loops are  written in C-family programming languages.
+Sebenarnya, `loop` adalah bagaimana pengulangan `for` ditulis dalam bahasa pemrograman C.
 
-Perl 6 belongs to the C-family languages.
+Perl 6 tergolong didalam keluarga bahasa pemrograman C.
 
 [source,perl6]
 ----
 loop (my $i = 0; $i < 5; $i++) {
-  say "The current number is $i"
+  say "nomor sekarang adalah $i"
 }
 ----
 
-NOTE: For more info on loops and conditions, see https://docs.perl6.org/language/control
+CATATAN: Untuk informasi lebih lanjut tentang pengulangan dan pengkondisian, kunjungi https://docs.perl6.org/language/control
 
 == I/O
-In Perl 6, two of the most common _Input/Output_ interfaces are the _Terminal_ and _Files_.
+Dalam Perl 6, dua antar muka yang sering dipakai adalah Terminal dan file.
 
-=== Basic I/O using the Terminal
+=== Dasar I/O menggunakan Terminal
 
 ==== say
-`say` writes to the standard output. It appends a newline at the end. In other words, the following code:
+`say` menulis ke standard output. Ia menambah karakter baris baru diakhir. Dengan kata lain, kode dibawah:
 
 [source,perl6]
 ----
 say 'Hello Mam.';
 say 'Hello Sir.';
 ----
-will be written on 2 separate lines.
+Akan ditulis dalam 2 baris yang terpisah.
 
 ==== print
-`print` on the other hand behaves like `say` but doesn't add a new line.
+`print` hampir sama dengan `say` tetapi tidak menambahkan karakter baris baru diakhir.
 
-Try replacing `say` with `print` and compare the results.
+Coba untuk mengganti `say` dengan `print` dan bandingkan keluaran hasilnya.
 
 ==== get
-`get` is used to capture input from the terminal.
+`get` digunakan untuk menangkap input dari terminal.
 
 [source,perl6]
 ----
-my $name;
+my $nama;
 
-say "Hi, what's your name?";
-$name = get;
+say "Hi, namanya siapa?";
+$nama = get;
 
-say "Dear $name welcome to Perl 6";
+say "Halo $nama, selamat datang di Perl 6";
 ----
 
-When the above code runs, the terminal will be waiting for you to input your name. Enter it and then hit [Enter].
-Subsequently, it will greet you.
+Ketika kode dijalankan, terminal akan menunggu input nama. Masukkan nama anda dan tekan tombol [Enter].
 
 ==== prompt
 `prompt` is a combination of `print` and `get`.
