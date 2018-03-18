@@ -1108,50 +1108,55 @@ say "Halo $nama, selamat datang di Perl 6";
 Ketika kode dijalankan, terminal akan menunggu input nama. Masukkan nama anda dan tekan tombol [Enter].
 
 ==== prompt
-`prompt` is a combination of `print` and `get`.
+`prompt` adalah kombinasi dari `print` dan `get`.
 
-The above example can be written like this:
-
-[source,perl6]
-----
-my $name = prompt "Hi, what's your name? ";
-
-say "Dear $name welcome to Perl 6";
-----
-
-=== Running Shell Commands
-Two subroutines can be used to run shell commands:
-
-* `run` Runs an external command without involving a shell
-
-* `shell` Runs a command through the system shell. It is platform and shell dependent.
-All shell meta characters are interpreted by the shell, including pipes, redirects, environment variable substitutions and so on.
+Contoh diatas bisa juga ditulis seperti ini:
 
 [source,perl6]
-.Run this if you're on Linux/macOS
 ----
-my $name = 'Neo';
-run 'echo', "hello $name";
+my $nama = prompt "Hi, nama anda siapa? ";
+
+say "Dear $nama, selamat datang di Perl 6";
+----
+
+=== Running Shell Commands (Menjalankan program shell/terminal)
+
+2 subroutines (https://id.wikipedia.org/wiki/Subrutin) dapat digunakan untuk menjalankan program shell:
+
+* `run` menjalankan program external tanpa melibatkan shell
+
+* `shell` menjalan program dengan melibatkan shell. Metode ini tergantung dari platform dan tipe shell yang digunakan.
+Semua spesial karakter akan ditafsirkan oleh shell yang bersangkutan, termasuk pipes, redirection, pergantian environment variable dan lainnya.
+Pipes adalah suatu teknik untuk memberikan informasi / output dari satu proses ke proses lainnya.
+Redirection adalah suatu teknik mengalihkan input atau output suatu proses ke lokasi yang diinginkan oleh pengguna.
+Environment variable adalah variabel yang mempengaruhi proses / program yang sedang berjalan, biasanya diset sebelum program berjalan dan dapat berubah
+seiring jalannya program.
+
+[source,perl6]
+.Jalankan program dibawah apabila anda menggunakan sistem operasi Linux/macOS
+----
+my $nama = 'Neo';
+run 'echo', "hello $nama";
 shell "ls";
 ----
 
 [source,perl6]
-.Run this if you're on Windows
+.Jalankan program dibawah apabila anda menggunakan sistem operasi Windows
 ----
 shell "dir";
 ----
-`echo` and `ls` are common shell keywords on Linux: +
-`echo` prints text to the terminal (the equivalent of `print` in Perl 6) +
-`ls` lists all files and folders in the current directory
+Perintah atau program `echo` dan `ls` adalah perintah shell yang umum pada sistem operasi Linux: +
+Perintah `echo` mencetak keluaran teks pada terminal (hampir sama dengan fungsi `print` di Perl 6) +
+Perintah `ls` mencetak daftar semua file dan direktori yang ada pada direktori yang sekarang. 
 
-`dir` is the equivalent of `ls` on Windows.
+Perintah atau program `dir` sama dengan perintah `ls` di sistem operasi Windows.
 
 
 === File I/O
 ==== slurp
-`slurp` is used to read data from a file.
+`slurp` digunakan untuk membaca data dari suatu file.
 
-Create a text file with the following content:
+Buat sebuah file teks dengan isi sebagai berikut:
 
 .datafile.txt
 ----
@@ -1167,43 +1172,43 @@ say $data;
 ----
 
 ==== spurt
-`spurt` is used to write data to a file.
+`spurt` digunakan untuk menulis data kedalam suatu file.
 
 [source,perl6]
 ----
-my $newdata = "New scores:
+my $databaru = "Nilai baru:
 Paul 10
 Paulie 9
 Paulo 11";
 
-spurt "newdatafile.txt", $newdata;
+spurt "datafilebaru.txt", $databaru;
 ----
 
-After running the above code, a new file named _newdatafile.txt_ will be created. It will contain the new scores.
+Setelah menjalankan kode diatas, file baru dengan nama _datafilebaru.txt_ akan terbuat. File tersebut akan berisi nilai baru.
 
-=== Working with files and directories
-Perl 6 can list the contents of a directory without resorting to shell commands (by using `ls`, for example).
+=== Bekerja dengan file dan direktori
+Perl 6 dapat memberikan daftar isi dari sebuah direktori tanpa menggunakan perintah shell (contohnya seperti perintah `ls`).
 
 [source,perl6]
 ----
-say dir;                # List files and folders in the current directory
-say dir "/Documents";   # List files and folders in the specified directory
+say dir;              # Mencetak daftar file dan direktori pada direktori yang sekarang
+say dir "/Dokumen";   # Mencetak daftar file dan direktori pada direktory yang ditentukan
 ----
 
-In addition, you can create and delete directories.
+Anda juga dapat membuat dan meghapus direktori.
 
 [source,perl6]
 ----
-mkdir "newfolder";
-rmdir "newfolder";
+mkdir "folderbaru";
+rmdir "folderbaru";
 ----
 
-`mkdir` creates a new directory. +
-`rmdir` deletes an empty directory and returns an error if not empty.
+`mkdir` membuat direktori baru. +
+`rmdir` menghapus direktori yang kosong dan mengembalikan error apabila direktori tidak kosong.
 
-You can also check if a path exists; if it is a file; or a directory:
+Anda juga dapat memeriksa jika suatu file atau direktori ada atau tidak:
 
-In the directory where you will be running the below script, create an empty folder `folder123` and an empty pl6 file `script123.pl6`
+Buat direktori baru `folder123` dan file kosong `script123.pl6`
 
 [source,perl6]
 ----
@@ -1217,124 +1222,126 @@ say "script123.pl6".IO.f;
 say "folder123".IO.f;
 ----
 
-`IO.e` checks if the directory/file exists. +
-`IO.f` checks if the path is a file. +
-`IO.d` checks if the path is a directory.
+`IO.e` memeriksa jika file atau direktori ada. +
+`IO.f` memeriksa jika file path adalah file. +
+`IO.d` memeriksa jika file path adalah sebuah direktori.
 
-WARNING: Windows users can use `/` or `\\` to define directories +
+PERINGATAN: Pengguna Windows dapat menggunakan `/` atau `\\` untuk mendefinisikan direktori +
 `C:\\rakudo\\bin` +
 `C:/rakudo/bin` +
 
-NOTE: For more info on I/O, see https://docs.perl6.org/type/IO
+CATATAN: Untuk informasi lanjut seputar I/O, kunjungi https://docs.perl6.org/type/IO
 
 == Subroutines
-=== Definition
-*Subroutines* (also called *subs* or *functions*) are a means of packaging and reusing functionality. +
+=== Definisi
+*Subroutines* (biasa disebut *subs* atau *functions) bertujuan untuk mengemas dan menggunakan kembali suatu fungsi. +
 
-A subroutine definition begins with the keyword `sub`. After their definition, they can be called by their handle. +
-Check out the below example:
+Sebuah definisi subroutine dimulai dengan kata kunci `sub`. 
+Perhatikan contoh dibawah:
 
 [source,perl6]
 ----
-sub alien-greeting {
-  say "Hello earthlings";
+sub selamat-pagi {
+  say "Hello, selamat pagi !";
 }
 
-alien-greeting;
+selamat-pagi;
 ----
 
-The previous example showcased a subroutine that doesn't require any input.
+Contoh diatas menunjukkan sebuah subroutine yang tidak memerlukan suatu input.
 
 === Signature
-Subroutines can require input. That input is provided by *arguments*.
-A subroutine may define zero or more *parameters*.
-The number and type of parameters that a subroutine defines is called its *signature*.
+Subroutine dapat mengharuskan suatu input. Input tersebut disediakan oleh *arguments*.
+Suatu subroutine boleh tidak mendefinisikan atau mendefinisikan lebih dari satu *parameters*.
+Jumlah dan tipe dari parameter tersebut dinamakan *signature*.
 
+subroutine dibawah menerima argumen sebuah string.
 The below subroutine accepts a string argument.
 
 [source,perl6]
 ----
-sub say-hello (Str $name) {
-    say "Hello " ~ $name ~ "!!!!"
+sub say-hello (Str $nama) {
+    say "Hello " ~ $nama ~ "!!!!"
 }
 say-hello "Paul";
 say-hello "Paula";
 ----
 
 === Multiple dispatch
-It is possible to define multiple subroutines that have the same name but different signatures.
-When the subroutine is called, the runtime environment will decide which version to use based on the number and type of supplied arguments. This type of subroutine is defined the same way as normal subs except that we use the `multi` keyword instead of `sub`.
+Memungkinkan untuk mendefinisi lebih dari satu subroutine dengan mengunakan nama yang sama tetapi signature yang berbeda.
+Ketika subroutine dipanggil, runtime akan memutuskan versi mana yang akan digunakan berdasarkan jumlah dan tipe dari argumen yang diterima.
+Tipe subroutine seperti ini memerlukan kata kunci `multi` bukan `sub`.
 
 [source,perl6]
 ----
-multi greet($name) {
-    say "Good morning $name";
+multi selamat-pagi($nama) {
+    say "Selamat Pagi $nama";
 }
-multi greet($name, $title) {
-    say "Good morning $title $name";
+multi selamat-pagi($nama, $gelar) {
+    say "Selamat Pagi $gelar $nama";
 }
 
-greet "Johnnie";
-greet "Laura","Mrs.";
+selamat-pagi "Johnnie";
+selamat-pagi "Laura","Nyonya";
 ----
 
 === Default and Optional Parameters
-If a subroutine is defined to accept an argument, and we call it without providing it with the required argument, it will fail.
+Jika sebuah subroutine didefinisikan untuk menerima sebuah argumen dan dipanggil tanpa argumen, maka program tersebut akan gagal.
 
-Perl 6 provides us the ability to define subroutines with:
+Perl 6 menyediakan kemampuan untuk mendefinisi subroutine dengan :
 
-* Optional Parameters
-* Default Parameters
+* Optional Parameters : argumen yang boleh ada atau tidak
+* Default Parameters :  apabila argumen tidak diberikan, maka nilai default yang akan dipakai sebagai acuan
 
-Optional parameters are defined by appending `?` to the parameter name.
+Optional parameters didefinisikan dengan menambah karakter `?` setelah penamaan parameter.
 
 [source,perl6]
 ----
-sub say-hello($name?) {
-  with $name { say "Hello " ~ $name }
-  else { say "Hello Human" }
+sub say-hello($nama?) {
+  with $nama { say "Hello " ~ $nama }
+  else { say "Hello Manusia" }
 }
 say-hello;
 say-hello("Laura");
 ----
 
-If the user doesn't need to supply an argument, a default value can be defined. +
-This is done by assigning a value to the parameter within the subroutine definition.
+Jika tidak memberikan argumen, nilai default dapat didefinisikan. +
+Ini dapat dilakukan dengan memberikan nilai pada parameter.
 
 [source,perl6]
 ----
-sub say-hello($name="Matt") {
-  say "Hello " ~ $name;
+sub say-hello($nama="Matt") {
+  say "Hello " ~ $nama;
 }
 say-hello;
 say-hello("Laura");
 ----
 
 === Returning values
-All the subroutines we've seen so far *do something* -- they display some text on the terminal.
+Semua contoh subroutine yang kita lihat melakukan suatu fungsi -- misalnya menampilkan teks pada terminal.
 
-Sometimes, though, we execute a subroutine for its *return* value so we can use it later in the flow of our program.
+Terkadang, kita memanggil subroutine hanya untuk nilai yang dikembalikan *return value* agar kita dapat menggunakan nilai tersebut dialur program kita.
 
-If a function is allowed to run through it's block to the end, the last statement or expression will determine the return value.
+Apabila *return value* tidak ditulis secara implisit maka statement atau ekspresi terakhir yang akan menjadi *return value*.
 
 [source,perl6]
 .Implicit return
 ----
-sub squared ($x) {
+sub kuadrat ($x) {
   $x ** 2;
 }
-say "7 squared is equal to " ~ squared(7);
+say "7 kuadrat = " ~ kuadrat(7);
 ----
 
-For the sake of clarity, it might be a good idea to _explicitly_ specify what we want returned.
-This can be done using the `return` keyword.
+Supaya lebih jelas, disarankan untuk secara eksplisit mendefinisikan nilai yang akan dikembalikan. 
+Ini dapat dilakukan dengan kata kunci `return`.
 [source,perl6]
 .Explicit return
 ----
-sub squared ($x) {
+sub kuadrat ($x) {
   return $x ** 2;
 }
-say "7 squared is equal to " ~ squared(7);
+say "7 kuadrat = " ~ kuadrat(7);
 ----
 ==== Restricting return values
 In one of the previous examples, we saw how we can restrict the accepted argument to be of a certain type.
