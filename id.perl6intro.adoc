@@ -1344,29 +1344,29 @@ sub kuadrat ($x) {
 say "7 kuadrat = " ~ kuadrat(7);
 ----
 ==== Restricting return values
-In one of the previous examples, we saw how we can restrict the accepted argument to be of a certain type.
-The same can be done with return values.
+Disalah satu contoh diatas, kita melihat bagaimana argumen yang diterima dapat dibatasi untuk tipe tertentu.
+Begitupun dengan return values.
 
-To restrict the return value to a certain type, we either use the `returns` trait or the arrow notation `-\->` in the signature.
-
-[source,perl6]
-.Using the returns trait
-----
-sub squared ($x) returns Int {
-  return $x ** 2;
-}
-say "1.2 squared is equal to " ~ squared(1.2);
-----
+Untuk membatasi return value ke tipe tertentu, dapat menggunakan `returns` atau tanda panah `-\->` di signature.
 
 [source,perl6]
-.Using the arrow
+.Penggunaan returns trait
 ----
-sub squared ($x --> Int) {
+sub kuadrat ($x) returns Int {
   return $x ** 2;
 }
-say "1.2 squared is equal to " ~ squared(1.2);
+say "1.2 kuadrat = " ~ kuadrat(1.2);
 ----
-If we fail to provide a return value that matches the type constraint, an error will be thrown.
+
+[source,perl6]
+.Penggunaan tanda panah
+----
+sub kuadrat ($x --> Int) {
+  return $x ** 2;
+}
+say "1.2 kuadrat = " ~ kuadrat(1.2);
+----
+Jika return value tidak sesuai dengan tipe yang diharapkan, error akan terjadi.
 
 ----
 Type check failed for return value; expected Int but got Rat (1.44)
@@ -1374,50 +1374,51 @@ Type check failed for return value; expected Int but got Rat (1.44)
 
 [TIP]
 ====
-Not only can type constraints control the type of the return value; they can also control its definedness.
+Tipe constraints tidak hanya membatasi tipe dari return value tapi dapat juga mengontrol definisinya.
 
-In the previous examples, we specified that the return value should be an `Int`.
+Dicontoh sebelumnya, kita menspesifikasi jika return value harus sebuah `Int`.
 
-We could also have specified that the returned `Int` should be strictly defined or undefined using the following signatures: +
-`--> Int:D` and `--> Int:U`
+Kita dapat juga menentukan bahwa nilai `Int` yang dikembalikan harus terdefinisi atau tidak terdefinisi menggunakan signature berikut: +
+`--> Int:D` dan `--> Int:U`
 
-That being said, it is good practice to use those type constraints. +
-Below is the modified version of the previous example that uses `:D` to force the returned `Int` to be defined.
+Sangat disarankan untuk menggunakan tipe constraints tersebut. +
+Dibawah adalah versi modifikasi dari contoh sebelumnya yang memakai `:D` untuk memaksa nilai `Int` yang dikembalikan harus terdefinisi.
 
 [source,perl6]
 ----
-sub squared ($x --> Int:D) {
+sub kuadrat ($x --> Int:D) {
   return $x ** 2;
 }
-say "1.2 squared is equal to " ~ squared(1.2);
+say "1.2 kuadrat = " ~ kuadrat(1.2);
 ----
 ====
 
-NOTE: For more info on subroutines and functions, see https://docs.perl6.org/language/functions
+CATATAN: Untuk info lebih lanjut tentang subroutines dan functions, kunjungi https://docs.perl6.org/language/functions
 
 == Functional Programming
-In this chapter we will take a look at some of the features that facilitate Functional Programming.
+https://id.wikipedia.org/wiki/Pemrograman_Fungsional
+Dichapter ini kita akan melihat beberapa fitur yang mengfasilitasi Functional Programming.
 
 === Functions are first-class citizens
-Functions/subroutines are first-class citizens:
+Functions/subroutines adalah warga negara kelas satu:
 
-* They can be passed as arguments
+* dapat diberikan sebagai argumen
 
-* They can be returned from other functions
+* dapat dikembalikan dari fungsi lain
 
-* They can be assigned to variables
+* dapat diperuntukkan ke variabel
 
-A great example is the `map` function. +
-`map` is a _higher order function_, it can accept another function as an argument.
+Contohnya fungsi `map`. +
+`map` adalah  _higher order function_, ia dapat menerima fungsi lain sebagai argument.
 
 [source,perl6]
 .Script
 ----
 my @array = <1 2 3 4 5>;
-sub squared($x) {
+sub kuadrat($x) {
   $x ** 2
 }
-say map(&squared,@array);
+say map(&kuadrat,@array);
 ----
 
 .Output
@@ -1425,43 +1426,43 @@ say map(&squared,@array);
 (1 4 9 16 25)
 ----
 
-.Explanation
-We defined a subroutine called `squared` that takes an argument and multiplies that argument by itself. +
-Next, we used `map`, a higher order function, and gave it two arguments, the `squared` subroutine and an array. +
-The result is a list of the squared elements of the array.
+.Penjelasan
+Kita mendefinisikan sebuah subroutine bernama `kuadrat` yang menerima sebuah argumen dan mengalikannnya. +.
+Selanjuntnya, kita menggunakan `map`, dan memberikan 2 argumen, subroutine `kuadrat` dan sebuah array. +
+Hasilnya adalah sebuah daftar elemen kuadrat dari array.
 
-Notice that when passing a subroutine as an argument, we need to prepend `&` to its name.
+Perhatikan bahwa ketika memberikan subroutine sebagai argumen, kita perlu menggunakan `&` sebelum nama subroutine.
 
 === Anonymous functions
-An *anonymous function* is also called a *lambda*. +
-An anonymous function is not bound to an identifier (it has no name).
+Fungsi anonim biasa disebut juga *lambda*. +
+Fungsi anonim tidak mempunyai nama.
 
-Let's rewrite the `map` example and have it use an anonymous function
+Mari kita tulis ulang contoh dari `map` dan memakai fungsi anonim
 [source,perl6]
 ----
 my @array = <1 2 3 4 5>;
 say map(-> $x {$x ** 2},@array);
 ----
-Notice that instead of declaring the squared subroutine and passing it as an argument to `map`, we defined
-it within the anonymous subroutine as `\-> $x {$x ** 2}`.
+Perhatikan bahwa kita tidak mendeklarasikan subroutine kuadrat.
+Kita mendefinisikannya kedalam fungsi anonim sebagai `\-> $x {$x ** 2}`.
 
-In Perl 6 parlance, we call this notation a *pointy block*
+Dalam istilah Perl 6, kita memanggilnya sebagai *pointy block*
 
 [source,perl6]
-.A pointy block may also be used to assign functions to variables:
+.Sebuah pointy block dapat juga digunakan untuk menempatkan fungsi ke variabel:
 ----
-my $squared = -> $x {
+my $kuadrat = -> $x {
   $x ** 2
 }
-say $squared(9);
+say $kuadrat(9);
 ----
 
 === Chaining
-In Perl 6, methods can be chained, so you're not required to pass the result of one method to another as an argument.
+Di Perl 6, methods dapat dirangkai, jadi anda tidak perlu menyerahkan hasil dari satu method ke method lainnya sebagai argumen.
 
-To illustrate: Given an array, you may need to return the unique values of the array, sorted from biggest to smallest.
+Sebagai ilustrasi: Dalam sebuah array, anda mungkin perlu mengembalikan nilai yang unik, mengurutkannya dari nilai terbesar sampai terkecil.
 
-Here's a non-chained solution:
+Solusi dimana methods tidak dirangkai:
 
 [source,perl6]
 ----
@@ -1469,9 +1470,9 @@ my @array = <7 8 9 0 1 2 4 3 5 6 7 8 9>;
 my @final-array = reverse(sort(unique(@array)));
 say @final-array;
 ----
-Here, we call `unique` on `@array`, pass the result as an argument to `sort`, and then pass that result to `reverse`.
+Disini, kita menggunakan `unique` on `@array`, memberikan hasilnya sebagai argumen dari `sort` dan kemudian memberikan hasil ke `reverse`.
 
-In contrast, with chained methods, the above example can be rewritten as:
+Sebaliknya, dengan method yang dirangkai, contoh diatas dapat ditulis sebagai berikut:
 
 [source,perl6]
 ----
@@ -1480,11 +1481,10 @@ my @final-array = @array.unique.sort.reverse;
 say @final-array;
 ----
 
-You can already see that chaining methods is _easier on the eye_.
+Anda dapat melihat bahwa methods yang dirangkai lebih mudah untuk dilihat dimata. 
 
 === Feed Operator
-The *feed operator*, called _pipe_ in some functional programming languages, further illustrates
-method chaining.
+*feed operator*, biasa disebut _pipe_ dibeberapa pemrograman fungsional, mengilustrasikan lebih lanjut method yang dirangkai.
 
 [source,perl6]
 .Forward Feed
@@ -1497,14 +1497,14 @@ my @array = <7 8 9 0 1 2 4 3 5 6 7 8 9>;
 say @final-array;
 ----
 
-.Explanation
+.Penjelasan
 ----
-Start with `@array` then return a list of unique elements
-                    then sort it
-                    then reverse it
-                    then store the result in @final-array
+Mulai dengan `@Array`   kemudian mengembalikan daftar elemen yang unik
+                        kemudian mengurutkannya
+                        kemudian urutannya dibalik
+                        kemudian simpah hasilnya di @final-array
 ----
-Note that the flow of the method calls is top-down -- from first to final step.
+Alur dari method dieksekusi dari atas kebawah.
 
 
 [source,perl6]
@@ -1518,57 +1518,58 @@ my @final-array-v2 <== reverse()
 say @final-array-v2;
 ----
 
-.Explanation
-The backward feed is like the forward feed, but in reverse. +
-The flow of the method calls is bottom-up -- from final to first step.
+.Penjelasan
+Kebalikan dari forward feed. +
+Alur dari method dieksekusi dari bawah keatas.
 
 === Hyper operator
-The *hyper operator* `>>.` will call a method on all elements of a list and return a list of the results.
+*hyper operator* `>>.` akan mengeksekusi sebuah method kesemua elemen dan mengembalikan daftar hasilnya.
 [source,perl6]
 ----
 my @array = <0 1 2 3 4 5 6 7 8 9 10>;
-sub is-even($var) { $var %% 2 };
+sub genap($var) { $var %% 2 };
 
 say @array>>.is-prime;
-say @array>>.&is-even;
+say @array>>.&genap;
 ----
 
-Using the hyper operator we can call methods already defined in Perl 6, e.g. `is-prime` that tells us if a number is prime or not. +
-In addition we can define new subroutines and call them using the hyper operator. In this case we have to prepend `&` to the name of the method; e.g., `&is-even`.
+Kita dapat menggunakan methods bawaan Perl 6 seperti `is-prime` yang mengecek apakah suatu bilangan merupakan bilangan prima atau bukan. +
+Kita dapat juga menggunakan subroutine custom. Didalam hal ini `&genap`.
 
-This is very practical as it relieves us from writing a `for` loop to iterate over each value.
+Hal ini sangat praktis mengingat kita tidak perlu menggunakan pengulangan `loop` untuk setiap nilai elemen.
 
-WARNING: Perl 6 guarantees that the order of the results is the same as that of the original list.
-However, there is *no guarantee* that Perl 6 will actually call the methods in list order or in the same thread. So, be careful with methods that have side-effects, such as `say` or `print`.
+PERINGATAN: Perl 6 memberikan garansi bahwa urutan dari hasil adalah sama dengan daftar yang asli.
+            Tetapi tidak ada garansi bahwa Perl 6 akan mengeksekusi methods sesuai daftar urutan atau dalam thread yang sama. Jadi, hati-hati dengan methods yang dapat menimbulkan efek samping, seperti `say` atau `print`.
 
 === Junctions
-A *junction* is a logical superposition of values.
+A *junction* adalah superpoisi logis dari nilai-nilai.
 
-In the below example `1|2|3` is a junction.
+Contoh dibawah `1|2|3` adalah junction.
 [source,perl6]
 ----
 my $var = 2;
 if $var == 1|2|3 {
-  say "The variable is 1 or 2 or 3"
+  say "Variabel adalah 1 or 2 or 3"
 }
 ----
-The use of junctions usually triggers *autothreading*;
-the operation is carried out for each junction element, and all the results are combined into a new junction and returned.
+Penggunaan junction biasanya memicu *autothreading*;
+
+Proses dilakukan dalam tiap elemen junction dan semua hasilnya digabungkan ke junction baru dan nilainya dikembalikan.
 
 === Lazy Lists
-A *lazy list* is a list that is lazily evaluated. +
-Lazy evaluation delays the evaluation of an expression until required, and avoids repeating evaluations by storing results in a lookup table.
+A *lazy list* adalah sebuah daftar yang dievaluasi secara malas. +
+Evaluasi yang malas menunda evaluasi dari sebuah eskpresi sampai diperlukan dan mencegah evaluasi yang berulang dengan menyimpan hasil ditabel pencarian.
 
-The benefits include:
+Berikut manfaatnya:
 
-* Performance increase by avoiding needless calculations
+* Kinerja bertambah dengan menghindari kalkulasi yang tidak perlu
 
-* The ability to construct potentially infinite data structures
+* Kemampuan untuk membangun struktur data tidak terbatas
 
-* The ability to define control flow
+* Kemampuan untuk mendefinisikan alur kontrol
 
-To build a lazy list we use the infix operator `...` +
-A lazy list has *initial element(s)*, a *generator* and an *endpoint*.
+Untuk membangun lazy listm kita menggunakan operator infix `...` +
+lazy list mempunyai *elemen awal*, *generator* and an *titik akhir*.
 
 [source,perl6]
 .Simple lazy list
@@ -1576,54 +1577,54 @@ A lazy list has *initial element(s)*, a *generator* and an *endpoint*.
 my $lazylist = (1 ... 10);
 say $lazylist;
 ----
-The initial element is 1 and the endpoint is 10. No generator was defined so the default generator is the successor (+1) +
-In other words this lazy list may return (if requested) the following elements (1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+Elemen awal adalah 1 dan titik akhir adalah 10. Tidak ada generator yang didefinisikan, jadi defaultnya adalah (+1) +
+Dengan kata lain lazy list akan mengembalikan elemen (Jika dipanggil) sebagai berikut (1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
 
 [source,perl6]
-.Infinite lazy list
+.lazy list tak terbatas
 ----
 my $lazylist = (1 ... Inf);
 say $lazylist;
 ----
-This list may return (if requested) any integer between 1 and infinity, in other words any integer number.
+Jika dipanggil maka akan mengembalikan nilai integer antara 1 dan tak terhingga.
 
 [source,perl6]
-.Lazy list built using a deduced generator
+.Lazy list menggunakan generator yang disimpulkan
 ----
 my $lazylist = (0,2 ... 10);
 say $lazylist;
 ----
+Elemen awal adalah 0 dan 2, titik akhir adalah 10.
 The initial elements are 0 and 2 and the endpoint is 10.
-No generator was defined, but using the initial elements, Perl 6 will deduce that the generator is (+2) +
-This lazy list may return (if requested) the following elements (0, 2, 4, 6, 8, 10)
+Tidak ada generator yang didefinisikam tapi menggunakan elemen awal, Perl 6 akan menyimpulkan generator adalah (+2) +
+lazy list akan mengembalikan elemen (Jika dipanggil) sebagai berikut (0, 2, 4, 6, 8, 10)
 
 [source,perl6]
-.Lazy list built using a defined generator
+.Lazy list menggunakan generator yang didefinisikan
 ----
 my $lazylist = (0, { $_ + 3 } ... 12);
 say $lazylist;
 ----
-In this example, we defined explicitly a generator enclosed in `{ }` +
-This lazy list may return (if requested) the following elements (0, 3, 6, 9, 12)
+Dicontoh ini, kita mendefinisikan secara eksplisit sebuah generator dalan `{ }` +
+lazy list akan mengembalikan elemen (Jika dipanggil) sebagai berikut (0, 3, 6, 9, 12)
 
-[WARNING]
+[PERINGATAN]
 ====
-When using an explicit generator, the endpoint must be one of the values that the generator can return. +
-If we reproduce the above example with the endpoint being 10 instead of 12, it will not stop.
-The generator _jumps over_ the endpoint.
+Ketika menggunakan generator secara eksplisit, titik akhir harus nilai yang dapat digenerate oleh generator. +
+Jika titik akhir contoh diatas diubah menjadi 10, maka program tidak akan berhenti.
 
-Alternatively you can replace `0 ... 10` with `0 ...^ * > 10` +
-You can read it as: From 0 until the first value greater than 10 (excluding it)
+Alternatifnya anda dapat mengganti `0 ... 10` dengan `0 ...^ * > 10` +
+Dapat dibaca: Dari 0 sampai nilai pertama yang lebih dari 10 (tidak termasuk)
 
 [source,perl6]
-.This will not stop the generator
+.Dicontoh ini generator tidak akan berhenti
 ----
 my $lazylist = (0, { $_ + 3 } ... 10);
 say $lazylist;
 ----
 
 [source,perl6]
-.This will stop the generator
+.Dicontoh ini generator bisa berhenti
 ----
 my $lazylist = (0, { $_ + 3 } ...^ * > 10);
 say $lazylist;
