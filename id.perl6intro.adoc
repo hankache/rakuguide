@@ -1632,128 +1632,127 @@ say $lazylist;
 ====
 
 === Closures
-All code objects in Perl 6 are closures, which means they can reference lexical variables from an outer scope.
+Semua kode objek di Perl 6 adalah closures, artinya objek dapat direferensikan ke variabel dari lingkup luarnya.
 
 [source,perl6]
 ----
-sub generate-greeting {
-    my $name = "Wiro Sableng";
-    sub greeting {
-      say "Good Morning $name";
+sub selamat-pagi {
+    my $nama = "Wiro Sableng";
+    sub salam {
+      say "Selamat pagi $nama";
     };
-    return &greeting;
+    return &salam;
 }
-my $generated = generate-greeting;
-$generated();
+my $ucapan = selamat-pagi;
+$ucapan();
 ----
 
-If you run the above code, it will display `Good Morning Wiro Sableng` on the terminal. +
-While the result is fairly simple, what is interesting about this example, is that the `greeting` inner subroutine was returned from the outer subroutine before being executed.
+Jika anda menjalankan kode diatas, maka akan ada output `Selamat pagi Wiro Sableng` diterminal. +
+Yang menarik dari contoh tersebut adalah subroutine `salam` yang ada didalam subroutine `selamat-pagi` dikembalikan nilainya sebelum dieksekusi.
 
-`$generated` has become a *closure*.
+`$ucapan` telah menjadi sebuah *closure*.
 
-A *closure* is a special kind of object that combines two things:
+*closure* adalah objek spesial yang mengkombinasi 2 hal:
 
-* A Subroutine
+* Sebuah subroutine
 
-* The Environment in which that subroutine was created.
+* Environment dimana subroutine dibuat.
 
-The environment consists of any local variable that was in-scope at the time that the closure was created.
-In this case, `$generated` is a closure that incorporates both the `greeting` subroutine and the `Wiro Sableng` string that existed when the closure was created.
+Environment terdiri dari variabel lokal yang didalam lingkupnya, pada saat itulah clouser terbuat.
+Dicontoh diatas, `$ucapan` adalah closure yang menggabungkan subroutine `salam` dan string `Wiro Sableng`.
 
-Let's take a look at a more interesting example.
+Mari kita lihat lebih lanjut kecontoh yang lebih menarik.
 [source,perl6]
 ----
-sub greeting-generator($period) {
-  return sub ($name) {
-    return "Good $period $name"
+sub selamat($periode) {
+  return sub ($nama) {
+    return "Selamat $periode $nama"
   }
 }
-my $morning = greeting-generator("Morning");
-my $evening = greeting-generator("Evening");
+my $pagi  = selamat("Pagi");
+my $malam = selamat("Malam");
 
-say $morning("John");
-say $evening("Jane");
+say $pagi("John");
+say $malam("Jane");
 ----
-In this example, we have defined a subroutine `greeting-generator($period)` that accepts a single argument `$period`
-and returns a new subroutine. The subroutine it returns accepts a single argument `$name` and returns the constructed greeting.
+Dicontoh ini, kita mendefinisikan sebuah subroutine `selamat($periode)` yang menerima satu argumen `$periode`
+dan megembalikan subroutine baru. Subroutine tersebut menerima satu argumen `$nama` dan mengembalikan gabungan argumen.
 
-Basically, `greeting-generator` is a subroutine factory. In this example, we used `greeting-generator` to create two new subroutines,
-one that says `Good Morning` and one that says `Good Evening`.
+Dicontoh ini kita menggunakan subroutine `selamat` untuk membuat 2 subroutine baru, yang pertama mengeluarkan output `Selamat Pagi` 
+dan satu lagi `Selamat Malam`.
 
-`$morning` and `$evening` are both closures. They share the same subroutine body definition, but store different environments. +
-In `$morning` 's environment `$period` is `Morning`. In `$evening` 's environment `$period` is `Evening`.
+`$pagi` dan `$malam` keduanya adalah closures. Mereka sama-sama memakai subroutine yang sama, tetapi berbeda environment. + 
+Pada environment `$pagi`, `$periode` nya `Pagi` sedangkan `$malam`, `$periode` nya `Malam`.
 
 == Classes & Objects
-In the previous chapter, we learned how Perl 6 facilitates Functional Programming. +
-In this chapter we will take a look at Object Oriented programming in Perl 6.
+Dichapter ini kita akan membahas pemrograman berbasis objek pada Perl 6.
 
-=== Introduction
+=== Pengenalan
 
-_Object Oriented_ programming is one of the widely used paradigms nowadays. +
-An *object* is a set of variables and subroutines bundled together. +
-The variables are called *attributes* and the subroutines are called *methods*. +
-Attributes define the *state* and methods define the *behavior* of an object.
+Pemrograman berbasis objek adalah paradigma yang secara luas diadopsi dijaman sekarang. +
+Sebuah objek adalah set dari variabel dan subroutine yang digabungkan bersama-sama. +
+Variabel disebut *attributes* dan subroutine disebut *methods*. +
+Atribut mendefinisikan *state* dan methods mendefinisikan *behavior* dari sebuah objek.
 
-A *class* is a template for creating *objects*. +
+Sebuah *class* adalah template untuk membuat objek.+
 
-In order to understand the relationship consider the below example:
-
-|===
-
-| There are 4 people present in a room | *objects* => 4 people
-
-| These 4 people are humans | *class* => Human
-
-| They have different names, age, sex and nationality | *attributes* => name, age, sex, nationality
+Untuk dapat lebih memahami relasinya, lihat contoh dibawah:
 
 |===
 
-In _object oriented_ parlance, we say that objects are *instances* of a class.
+| Ada 4 orang didalam suatu ruangan | *objek* => 4 orang
 
-Consider the below script:
+| ke 4 orang ini adalah manusia | *class* => Manusia
+
+| Masing-masing mempunyai nama, umur, jenis kelamin, kebangsaan yang berbeda | *attributes* => nama, umur, jenis kelamin, kebangsaan
+
+|===
+
+Dalam istilah pemprograman berbasis objek, objek adalah *instances* dari sebuah kelas.
+
+Perhatikan skrip dibawah:
 [source,perl6]
 ----
-class Human {
-  has $.name;
-  has $.age;
-  has $.sex;
-  has $.nationality;
+class Manusia {
+  has $.nama;
+  has $.umur;
+  has $.jenis_kelamin;
+  has $.kebangsaan;
 }
 
-my $john = Human.new(name => 'John', age => 23, sex => 'M', nationality => 'American');
+my $john = Manusia.new(nama => 'John', umur => 23, jenis_kelamin => 'M', kebangsaan => 'American');
 say $john;
 ----
-The `class` keyword is used to define a class. +
-The `has` keyword is used to define attributes of a class. +
-The `.new()` method is called a *constructor*. It creates the object as an instance of the class it has been called on.
+Kata kunci `class` digunakan untuk mendefinisikan sebuah class. +
+Kata kunci `has` digunakan untuk mendefiniskan atribut dari sebuah class. +
+Method `.new()` disebut *constructor*. method ini membuat objek sebagai instansi dari class yang dipanggil.
 
-In the above script, a new variable `$john` holds a reference to a new instance of "Human" defined by `Human.new()`. +
-The arguments passed to the `.new()` method are used to set the attributes of the underlying object.
+Pada contoh diatas, variabel `$john` menampung referensi kepada instansi baru "Manusia" yang didefinisikan melalui `Manusia.new()`. + 
+Argumen-argumen yang dideklarasikan pada method `.new()` digunakan untuk memberikan nilai kepada atribut-atribut class tersebut.
 
-A class can be given _lexical scope_ using `my`:
+Sebuah kelas dapat diberikan ruang lingkup lexical menggunakan kata kunci `my`:
 [source,perl6]
 ----
-my class Human {
+my class Manusia {
 
 }
 ----
 
-=== Encapsulation
-Encapsulation  is an object oriented concept that bundles a set of data and methods together. +
-The data (attributes) within an object should be *private*, in other words, accessible only from within the object. +
-In order to access the attributes from outside the object, we use methods called *accessors*.
+=== Enkapsulasi
+Enkapsulasi adalah konsep basis objek yang membundel suatu set data dan methods bersama-sama. +
+Data (atribut) didalam suatu objek bersifat *private*, dengan kata lain, hanya bisa diakses didalam lingkup objek tersebut saja. +
+Untuk mengakses atribut dari luar objek, kita menggunakan methods yang disebut *accessors*.
 
-The below two scripts have the same result.
+Kedua skrip dibawah memhasilkan output yang sama.
 
-.Direct access to the variable:
+.Akses langsung ke variabel:
 [source,perl6]
 ----
 my $var = 7;
 say $var;
 ----
 
-.Encapsulation:
+.Enkapsulasi:
 [source,perl6]
 ----
 my $var = 7;
@@ -1762,76 +1761,75 @@ sub sayvar {
 }
 say sayvar;
 ----
-The method `sayvar` is an accessor. It lets us access the value of the variable without getting direct access to it.
+Method `sayvar` adalah sebuah accessor. Ia memungkinkan akses nilai dari suatu variabel tanpa akses langsung.
 
-Encapsulation is facilitated in Perl 6 with the use of *twigils*. +
-Twigils are secondary _sigils_. They come between the sigil and the attribute name. +
-Two twigils are used in classes:
+Enkapsulasi difasilitasi dengan penggunaan *twigils*. +
+Twigils adalah sekunder dari _sigils_. Posisinya berada diantara sigil dan nama atribut. +
+Kedua twigils ini dapat digunakan dalam class:
 
-* `!` is used to explicitly declare that the attribute is private.
-* `.` is used to automatically generate an accessor for the attribute.
+* `!` digunakan untuk secara eksplisit mendeklarasikan sebuah atribut adalah private (hanya dapat diakses didalam lingkup objek).
+* `.` digunakan untuk secara otomatis menghasilkan sebuah accessor untuk atribut maka atribut tersebut dapat diakses diluar lingkup objek.
 
-By default, all attributes are private but it is a good habit to always use the `!` twigil.
+Defaultnya, semua atribut adalah private tetapi disarankan untuk selalu menggunakan twigil `!`.
 
-Therefore, we should rewrite the above class as:
+Maka kita harusnya menulis ulang class diatas sebagai berikut:
 [source,perl6]
 ----
-class Human {
-  has $!name;
-  has $!age;
-  has $!sex;
-  has $!nationality;
+class Manusia {
+  has $!nama;
+  has $!umur;
+  has $!jenis_kelamin;
+  has $!kebangsaan;
 }
 
-my $john = Human.new(name => 'John', age => 23, sex => 'M', nationality => 'American');
+my $john = Manusia.new(nama => 'John', umur => 23, jenis_kelamin => 'M', kebangsaan => 'American');
 say $john;
 ----
-Append to the script the following statement: `say $john.age;` +
-It will return this error: `Method 'age' not found for invocant of class 'Human'`
-because `$!age` is private and can only be used within the object.
-Trying to access it outside the object will return an error.
+Tambahkan statement berikut dalam skrip diatas: `say $john.umur;` +
+Program akan mengembalikan error: `Method 'umur' not found for invocant of class 'Human'`
+Karena `$!umur` bersifat private dan hanya bisa digunakan didalam ruang lingkup objek.
 
-Now replace `has $!age` with `has $.age` and observe the result of `say $john.age;`
+Sekarang coba ganti `has $!umur` menjadi `has $.umur` dan perhatikan hasil dari `say $john.umur;`
 
 === Named vs. Positional Parameters
-In Perl 6, all classes inherit a default `.new()` constructor. +
-It can be used to create objects by providing it with arguments. +
-The default constructor can only be provided with *named arguments*. +
-In our example above, notice that the arguments supplied to `.new()` are defined by name:
+Dalam Perl 6, semua class menurunkan default konstruktor `.new()`. +
+Konstruktor tersebut dapat digunakan untuk membuat objek dengan memberikan argumen. +
+Defaultnya, argumen pada konstruktor hanya dapat diberikan dengan *named arguments*. +
+Dalam contoh diatas, perhatikan argumen yang diberikan ke `.new()` didefinisikan dengan penamaan:
 
-* name => 'John'
+* nama => 'John'
 
-* age => 23
+* umur => 23
 
 
-What if I do not want to supply the name of each attribute each time I want to create an object? +
-Then I need to create another constructor that accepts *positional arguments*.
+Bagaimana jika kita tidak ingin memberikan nama dari tiap atribut setiap kali kita ingin mebuat objek? +
+Maka kita harus membuat konstruktor lain yang menerima *positional arguments*.
 
 [source,perl6]
 ----
-class Human {
-  has $.name;
-  has $.age;
-  has $.sex;
-  has $.nationality;
-  # new constructor that overrides the default one.
-  method new ($name,$age,$sex,$nationality) {
-    self.bless(:$name,:$age,:$sex,:$nationality);
+class Manusia {
+  has $.nama;
+  has $.umur;
+  has $.jenis_kelamin;
+  has $.kebangsaan;
+  # konstruktor baru yang mengganti defaultnya(named parameter).
+  method new ($nama,$umur,$jenis_kelamin,$kebangsaan) {
+    self.bless(:$nama,:$umur,:$jenis_kelamin,:$kebangsaan);
   }
 }
 
-my $john = Human.new('John',23,'M','American');
+my $john = Manusia.new('John',23,'M','American');
 say $john;
 ----
 
 === Methods
 
-==== Introduction
-Methods are the _subroutines_ of an object. +
-Like subroutines, they are a means of packaging a set of functionality, they accept *arguments*, have a *signature* and can be defined as *multi*.
+==== Pengenalan
+Methods adalah subroutine dari sebuah objek. +
+Seperti layaknya subroutine, tujuannya adalah mengemas fungsi, dapat menerima argumen, mempunyai *signature* dan dapat didefinisikan sebagai *multi*.
 
-Methods are defined using the `method` keyword. +
-In normal circumstances, methods are required to perform some sort of action on the objects' attributes.
+Methods didefinisikan dengan mengunakan kata kunci `method`. +
+Dalam keadaan normal, methods diperlukan untuk melancarkan suatu aksi kepada atribut objek.
 This enforces the concept of encapsulation. Object attributes can only be manipulated from within the object using methods.
 The outside world can only interact with the object methods, and has no direct access to its attributes.
 
