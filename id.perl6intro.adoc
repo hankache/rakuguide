@@ -2040,230 +2040,228 @@ $jane.perkenalkan-dirimu;
 Tergantung dari objek dari kelas yang mana, method akan dipanggil.
 
 ==== Submethods
-*Submethods* are a type of method that are not inherited by child classes. +
-They are only accessible from the class they were declared in. +
-They are defined using the `submethod` keyword.
+*Submethods* adalah suatu tipe dari method yang tidak diwariskan ke child class. +
+Hanya bisa diakses dari dalam class dimana dideklarasikan. +
+Didefinisikan dengan kata kunci `submethod`.
 
-=== Multiple Inheritance
-Multiple inheritance is allowed in Perl 6. A class can inherit from multiple other classes.
+=== Multiple Inheritance (pewarisan ganda atau lebih dari satu)
+Multiple inheritance diperbolehkan pada Perl 6. Sebuah class dapat mewarisi dari satu atau lebih class.
 
 [source,perl6]
 ----
-class bar-chart {
-  has Int @.bar-values;
+class grafik-batang {
+  has Int @.nilai-batang;
   method plot {
-    say @.bar-values;
+    say @.nilai-batang;
   }
 }
 
-class line-chart {
-  has Int @.line-values;
+class grafik-garis {
+  has Int @.nilai-garis;
   method plot {
-    say @.line-values;
+    say @.nilai-garis;
   }
 }
 
-class combo-chart is bar-chart is line-chart {
+class grafik-gabungan is grafik-batang is grafik-garis {
 }
 
-my $actual-sales = bar-chart.new(bar-values => [10,9,11,8,7,10]);
-my $forecast-sales = line-chart.new(line-values => [9,8,10,7,6,9]);
+my $penjualan-aktual    = grafik-batang.new(nilai-batang => [10,9,11,8,7,10]);
+my $perkiraan-penjualan = grafik-garis.new(nilai-garis => [9,8,10,7,6,9]);
 
-my $actual-vs-forecast = combo-chart.new(bar-values => [10,9,11,8,7,10],
-                                         line-values => [9,8,10,7,6,9]);
-say "Actual sales:";
-$actual-sales.plot;
-say "Forecast sales:";
-$forecast-sales.plot;
-say "Actual vs Forecast:";
-$actual-vs-forecast.plot;
+my $aktual-vs-perkiraan = grafik-gabungan.new(nilai-batang => [10,9,11,8,7,10],
+                                         nilai-garis => [9,8,10,7,6,9]);
+say "Penjualan aktual:";
+$penjualan-aktual.plot;
+say "Perkiraan penjualan:";
+$perkiraan-penjualan.plot;
+say "Aktual vs Perkiraan:";
+$aktual-vs-perkiraan.plot;
 ----
 
 .`Output`
 ----
-Actual sales:
+Penjualan aktual:
 [10 9 11 8 7 10]
-Forecast sales:
+Perkiraan penjualan:
 [9 8 10 7 6 9]
-Actual vs Forecast:
+Aktual vs Perkiraan:
 [10 9 11 8 7 10]
 ----
 
-.Explanation
-The `combo-chart` class should be able to hold two series, one for the actual values plotted on bars,
-and another for forecast values plotted on a line. +
-This is why we defined it as a child of `line-chart` and `bar-chart`. +
-You should have noticed that calling the method `plot` on the `combo-chart` didn't yield the required result.
-Only one series was plotted. +
-Why did this happen? +
-`combo-chart` inherits from `line-chart` and `bar-chart`, and both of them have a method called `plot`.
-When we call that method on `combo-chart` Perl 6 internals will try to resolve the conflict by calling one of the inherited methods.
+.Penjelasan
+Class `grafik-gabungan` dapat menampung 2 class, grafik-batang dan grafik-garis. +
+Perhatikan bahwa method `plot` yang dipanggil dalam class `grafik-gabungan` hanya menampilkan 1 plot. +
+Kenapa ini bisa terjadi? +
+`grafik-gabungan` mewarisi class `grafik-garis` dan `grafik-batang`, dan keduanya mempunyai method `plot`.
+Ketika kita memanggil method tersebut di `grafik-gabungan`, Perl 6 akan mecoba menyelesaikan konflik dengan hanya memanggil salah 1 dari method yang diwarisi.
 
-.Correction
+.Koreksi
+Agar dapat menampilkan kedua plot dengan benar, kita menggunakan konsep override di `grafik-gabungan`.
 In order to behave correctly, we should have overridden the method `plot` in the `combo-chart`.
 
 [source,perl6]
 ----
-class bar-chart {
-  has Int @.bar-values;
+class grafik-batang {
+  has Int @.nilai-batang;
   method plot {
-    say @.bar-values;
+    say @.nilai-batang;
   }
 }
 
-class line-chart {
-  has Int @.line-values;
+class grafik-garis {
+  has Int @.nilai-garis;
   method plot {
-    say @.line-values;
+    say @.nilai-garis;
   }
 }
 
-class combo-chart is bar-chart is line-chart {
+class grafik-gabungan is grafik-batang is grafik-garis {
   method plot {
-    say @.bar-values;
-    say @.line-values;
+    say @.nilai-batang;
+    say @.nilai-garis;;
   }
 }
 
-my $actual-sales = bar-chart.new(bar-values => [10,9,11,8,7,10]);
-my $forecast-sales = line-chart.new(line-values => [9,8,10,7,6,9]);
+my $penjualan-aktual    = grafik-batang.new(nilai-batang => [10,9,11,8,7,10]);
+my $perkiraan-penjualan = grafik-garis.new(nilai-garis => [9,8,10,7,6,9]);
 
-my $actual-vs-forecast = combo-chart.new(bar-values => [10,9,11,8,7,10],
-                                         line-values => [9,8,10,7,6,9]);
-say "Actual sales:";
-$actual-sales.plot;
-say "Forecast sales:";
-$forecast-sales.plot;
-say "Actual vs Forecast:";
-$actual-vs-forecast.plot;
+my $aktual-vs-perkiraan = grafik-gabungan.new(nilai-batang => [10,9,11,8,7,10],
+                                         nilai-garis => [9,8,10,7,6,9]);
+say "Penjualan aktual:";
+$penjualan-aktual.plot;
+say "Perkiraan penjualan:";
+$perkiraan-penjualan.plot;
+say "Aktual vs Perkiraan:";
+$aktual-vs-perkiraan.plot;
 ----
 
 .`Output`
 ----
-Actual sales:
+Penjualan aktual:
 [10 9 11 8 7 10]
-Forecast sales:
+Perkiraan penjualan:
 [9 8 10 7 6 9]
-Actual vs Forecast:
+Aktual vs Perkiraan:
 [10 9 11 8 7 10]
 [9 8 10 7 6 9]
 ----
 
 === Roles
-*Roles* are similar to classes in that they are a collection of attributes and methods.
+*Roles* sama dengan class dalam hal mereka terdiri dari koleksi atribut dan method.
 
-Roles are declared with the keyword `role`. Classes that wish to implement a role, do so using the `does` keyword.
+Roles dideklarasikan dengan kata kunci `role`. Class yang ingin mengimplementasi role dapat menggunakan kata kunci `does`.
 
-.Let's rewrite the multiple inheritance example using roles:
+.Mari kita tulis ulang contoh multiple inheritance menggunakan roles:
 [source,perl6]
 ----
-role bar-chart {
-  has Int @.bar-values;
+role grafik-batang {
+  has Int @.nilai-batang;
   method plot {
-    say @.bar-values;
+    say @.nilai-batang;
   }
 }
 
-role line-chart {
-  has Int @.line-values;
+role grafik-garis {
+  has Int @.nilai-garis;
   method plot {
-    say @.line-values;
+    say @.nilai-garis;
   }
 }
 
-class combo-chart does bar-chart does line-chart {
+class grafik-gabungan does grafik-batang does grafik-garis {
   method plot {
-    say @.bar-values;
-    say @.line-values;
+    say @.nilai-batang;
+    say @.nilai-garis;;
   }
 }
 
-my $actual-sales = bar-chart.new(bar-values => [10,9,11,8,7,10]);
-my $forecast-sales = line-chart.new(line-values => [9,8,10,7,6,9]);
+my $penjualan-aktual    = grafik-batang.new(nilai-batang => [10,9,11,8,7,10]);
+my $perkiraan-penjualan = grafik-garis.new(nilai-garis => [9,8,10,7,6,9]);
 
-my $actual-vs-forecast = combo-chart.new(bar-values => [10,9,11,8,7,10],
-                                         line-values => [9,8,10,7,6,9]);
-say "Actual sales:";
-$actual-sales.plot;
-say "Forecast sales:";
-$forecast-sales.plot;
-say "Actual vs Forecast:";
-$actual-vs-forecast.plot;
+my $aktual-vs-perkiraan = grafik-gabungan.new(nilai-batang => [10,9,11,8,7,10],
+                                         nilai-garis => [9,8,10,7,6,9]);
+say "Penjualan aktual:";
+$penjualan-aktual.plot;
+say "Perkiraan penjualan:";
+$perkiraan-penjualan.plot;
+say "Aktual vs Perkiraan:";
+$aktual-vs-perkiraan.plot;
 ----
 
-Run the above script and you will see that results are the same.
+Jalankan skrip diatas dan anda dapat melihat kalau hasilnya sama.
 
-By now you're asking yourself: If roles behave like classes, what's their use? +
-To answer your question, modify the first script used to showcase multiple inheritance,
-the one where we _forgot_ to override the `plot` method.
+Jadi, apa bedanya dengan class, kegunaannya apa ? +
+Untuk menjawabnya, modifikasi skrip yang pertama untuk menunjukkan multiple inheritance,
+skrip yang dimana kita lupa untuk override method `plot`.
 
 [source,perl6]
 ----
-role bar-chart {
-  has Int @.bar-values;
+role grafik-batang {
+  has Int @.nilai-batang;
   method plot {
-    say @.bar-values;
+    say @.nilai-batang;
   }
 }
 
-role line-chart {
-  has Int @.line-values;
+role grafik-garis {
+  has Int @.nilai-garis;
   method plot {
-    say @.line-values;
+    say @.nilai-garis;
   }
 }
 
-class combo-chart does bar-chart does line-chart {
+class grafik-gabungan does grafik-batang does grafik-garis {
 }
 
-my $actual-sales = bar-chart.new(bar-values => [10,9,11,8,7,10]);
-my $forecast-sales = line-chart.new(line-values => [9,8,10,7,6,9]);
+my $penjualan-aktual    = grafik-batang.new(nilai-batang => [10,9,11,8,7,10]);
+my $perkiraan-penjualan = grafik-garis.new(nilai-garis => [9,8,10,7,6,9]);
 
-my $actual-vs-forecast = combo-chart.new(bar-values => [10,9,11,8,7,10],
-                                         line-values => [9,8,10,7,6,9]);
-say "Actual sales:";
-$actual-sales.plot;
-say "Forecast sales:";
-$forecast-sales.plot;
-say "Actual vs Forecast:";
-$actual-vs-forecast.plot;
+my $aktual-vs-perkiraan = grafik-gabungan.new(nilai-batang => [10,9,11,8,7,10],
+                                         nilai-garis => [9,8,10,7,6,9]);
+say "Penjualan aktual:";
+$penjualan-aktual.plot;
+say "Perkiraan penjualan:";
+$perkiraan-penjualan.plot;
+say "Aktual vs Perkiraan:";
+$aktual-vs-perkiraan.plot;
 ----
 
 .`Output`
 ----
 ===SORRY!===
-Method 'plot' must be resolved by class combo-chart because it exists in multiple roles (line-chart, bar-chart)
+Method 'plot' must be resolved by class grafik-gabungan because it exists in multiple roles (grafik-garis, grafik-batang)
 ----
 
-.Explanation
-If multiple roles are applied to the same class and a conflict exists, a compile-time error will be thrown. +
-This is a much safer approach than multiple inheritance, where conflicts are not considered errors and are simply resolved at runtime.
+.Penjelasan
+Jika lebih dari satu role diwariskan dalam class yang sama dan ada konflik, error pada waktu compile akan terjadi. +
+Pendekatan ini lebih aman dari multiple inheritance dimana konflik tidak dianggap error dan diproses pada saat runtime.
 
-Roles will warn you that there's a conflict.
+Roles akan memperingatkan jika ada konflik.
 
 === Introspection
-*Introspection* is the process of getting information about an object, like its type, attributes or methods.
+*Introspection* adalah proses memperoleh informasi tentang suatu objek seperti tipenya, atribut atau method.
 
 [source,perl6]
 ----
-class Human {
-  has Str $.name;
-  has Int $.age;
-  method introduce-yourself {
-    say 'Hi I am a human being, my name is ' ~ self.name;
+class Manusia {
+  has Str $.nama;
+  has Int $.umur;
+  method perkenalkan-dirimu {
+    say 'Hi saya manusia, nama saya adalah ' ~ self.nama;
   }
 }
 
-class Employee is Human {
-  has Str $.company;
-  has Int $.salary;
-  method introduce-yourself {
-    say 'Hi I am a employee, my name is ' ~ self.name ~ ' and I work at: ' ~ self.company;
+class Karyawan is Manusia {
+  has Str $.perusahaan;
+  has Int $.gaji;
+  method perkenalkan-dirimu {
+    say 'Hi Saya karyawan, nama saya adalah ' ~ self.nama ~ ' dan saya bekerja di: ' ~ self.perusahaan;
   }
 }
 
-my $john = Human.new(name =>'John',age => 23,);
-my $jane = Employee.new(name =>'Jane',age => 25,company => 'Acme',salary => 4000);
+my $john = Manusia.new(nama =>'John', umur => 23,);
+my $jane = Karyawan.new(nama =>'Jane', umur => 25, perusahaan => 'Acme', gaji => 4000);
 
 say $john.WHAT;
 say $jane.WHAT;
@@ -2274,22 +2272,22 @@ say $jane.^methods;
 say $jane.^parents;
 if $jane ~~ Human {say 'Jane is a Human'};
 ----
-Introspection is facilitated by:
+Introspection difasilitasi dengan:
 
-* `.WHAT` -- returns the class from which the object was created
+* `.WHAT` -- mengembalikan class dimana objek dibuat
 
-* `.^attributes` -- returns all the attributes of the object
+* `.^attributes` -- mengembalikan semua atribut dari suatu objek
 
-* `.^methods` -- returns all the methods that can be called on the object
+* `.^methods` -- mengembalikan semua method yang dapat dipanggil pada objek
 
-* `.^parents` -- returns the parent classes of the object
+* `.^parents` -- mengembalikan parent class dari suatu objek
 
-* `~~` is called the smart-match operator.
-It evaluates to _True_ if the object is created from the class it is being compared against or any of its inheritances.
+* `~~` disebut operator smart-match.
+Ia mengevaluasi ke _True_ bila objek dibuat dari class yang dibandingkan atau apapun yang diwariskan.
 
-[NOTE]
+[CATATAN]
 --
-For more info on Object Oriented Programming in Perl 6, see:
+Untuk informasi lebih lanjut Pemrograman berbasis objek, kunjungi:
 
 * https://docs.perl6.org/language/classtut
 * https://docs.perl6.org/language/objects
@@ -2297,44 +2295,43 @@ For more info on Object Oriented Programming in Perl 6, see:
 == Exception Handling
 
 === Catching Exceptions
-*Exceptions* are a special behavior that happens at runtime when something goes wrong. +
-We say that exceptions are _thrown_.
+*Exceptions* adalah perilaku khusus yang terjadi pada saat runtime ketika sesuatu ada yang salah. +
 
-Consider the below script that runs correctly:
+Skrip dibawah berjalan dengan baik:
 
 [source,perl6]
 ----
-my Str $name;
-$name = "Joanna";
-say "Hello " ~ $name;
-say "How are you doing today?"
+my Str $nama;
+$nama = "Joanna";
+say "Hello " ~ $nama;
+say "Apa kabar?"
 ----
 
 .`Output`
 ----
 Hello Joanna
-How are you doing today?
+Apa kabar?
 ----
 
-Now consider this script that throws an exception:
+Sekarang perhatikan skrip yang mengeluarkan eksepsi:
 
 [source,perl6]
 ----
-my Str $name;
-$name = 123;
-say "Hello " ~ $name;
-say "How are you doing today?"
+my Str $nama;
+$nama = 123;
+say "Hello " ~ $nama;
+say "Apa kabar?"
 ----
 
 .`Output`
 ----
-Type check failed in assignment to $name; expected Str but got Int
+Type check failed in assignment to $nama; expected Str but got Int
    in block <unit> at exceptions.pl6:2
 ----
 
-Notice that whenever an error occurs (in this case, assigning a number to a string variable) the program will stop and other lines of code will not be evaluated.
+Perhatikan pada saat error terjadi (dalam hal ini, memberikan bilangan angka ke variabel string) program akan terhenti dan baris kode lainnya tidak akan dievaluasi.
 
-*Exception handling* is the process of _catching_ an exception that has been _thrown_ in order for the script to continue working.
+*Exception handling* adalah proses menangkap eksepsi yang dilemparkan agar skrip dapat lanjut bekerja.
 
 [source,perl6]
 ----
