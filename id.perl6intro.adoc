@@ -1830,216 +1830,214 @@ Seperti layaknya subroutine, tujuannya adalah mengemas fungsi, dapat menerima ar
 
 Methods didefinisikan dengan mengunakan kata kunci `method`. +
 Dalam keadaan normal, methods diperlukan untuk melancarkan suatu aksi kepada atribut objek.
-This enforces the concept of encapsulation. Object attributes can only be manipulated from within the object using methods.
-The outside world can only interact with the object methods, and has no direct access to its attributes.
+Ini merupakan konsep dari enkapsulasi. Atribut dari objek hanya dapat dimanipulasi dari dalam objek menggunakan methods.
+Diluar itu, hanya dapat berinteraksi dengan method suatu objek, dan tidak dapat akses langsung ke atribut.
 
 [source,perl6]
 ----
-class Human {
-  has $.name;
-  has $.age;
-  has $.sex;
-  has $.nationality;
-  has $.eligible;
-  method assess-eligibility {
-      if self.age < 21 {
-        $!eligible = 'No'
+class Manusia {
+  has $.nama;
+  has $.umur;
+  has $.jenis-kelamin;
+  has $.kebangsaan;
+  has $.berhak;
+  method nilai-umur {
+      if self.umur < 21 {
+        $!berhak = 'Tidak'
       } else {
-        $!eligible = 'Yes'
+        $!berhak = 'Iya'
       }
   }
-
 }
 
-my $john = Human.new(name => 'John', age => 23, sex => 'M', nationality => 'American');
-$john.assess-eligibility;
-say $john.eligible;
+my $john = Manusia.new(nama => 'John', umur => 23, jenis-kelamin => 'Pria', Kebangsaan => 'Indonesian');
+$john.nilai-umur;
+say $john.berhak;
 ----
 
-Once methods are defined within a class, they can be called on an object using the _dot notation_: +
-_object_ *.* _method_ or as in the above example: `$john.assess-eligibility`
+Ketika methods didefinisikan didalam suatu class, method dapat dipanggil pada objek tertentu menggunakan _tanda titik_: +
+_objek_*.*_method_ atau seperti contoh diatas: `$john.nilai-umur`
 
-Within the definition of a method, if we need to reference the object itself to call another method we use the `self` keyword. +
+Didalam definisi suatu method, jika kita perlu mereferensikan objek untuk memanggil method lainnya, kita dapat menggunakan kata kunci `self`. +
 
-Within the definition of a method, if we need to reference an attribute we use `!` even if it was defined with `.` +
-The rationale being that what the `.` twigil does is declare an attribute with `!` and automate the creation of an accessor.
+Didalam definisi suatu method, jika kita mereferensikan atribut, kita menggunakan `!` bahkan bila atribut tersebut didefinisikan menggunakan `.` +
+Alasannya adalah karena twigil `.` mendeklarasikan atribut dengan `!` dan mengotomatis pembuatan accessor (method yang berfungsi untuk mengakses atribut).
 
-In the above example, `if self.age < 21` and `if $!age < 21` would have the same effect, although they are technically different:
+Dalam contoh diatas, `if self.umur < 21` dan `if $!umur < 21` akan mempunyai efek yang sama, walaupun secara teknis berbeda:
 
-* `self.age` calls the `.age` method (accessor) +
-Can be written alternatively as `$.age`
-* `$!age` is a direct call to the variable
+* `self.age` memanggil `.age` method (accessor) +
+Dapat ditulis alternatifnya dengan `$.age`
+* `$!age` mengakses langsung ke variabel
 
 ==== Private methods
-Normal methods can be called on objects from outside the class.
+Method normal dapat dipanggil dari luar class.
 
-*Private methods* are methods that can only be called from within the class. +
-A possible use case would be a method that calls another one for specific action.
-The method that interfaces with the outside world is public while the one referenced should stay private.
-We do not want users to call it directly, so we declare it as private.
+*Private methods* adalah methods yang hanya dapat dipanggil dari dalam class. +
+Contohnya suatu method yang memanggil method lainnya untuk fungsi yang spesifik.
+Method yang dapat dipanggil dari luar class adalah publik sedangkan yang direferensikan harus tetap private.
+Kita tidak menginginkan pengguna untuk mengakses langsung, maka kita mendeklarasikannya sebagai private.
 
-The declaration of a private method requires the use of the `!` twigil before its name. +
-Private methods are called with `!` instead of `.`
+Pendeklarasian method private harus menggunakan twigil `!` sebelum penamaannya. +
+Method private diakses dengan `!` bukan `.`
 
 [source,perl6]
 ----
-method !iamprivate {
-  # code goes in here
+method !ini-private {
+  # kode kamu disini
 }
 
-method iampublic {
-  self!iamprivate;
-  # do additional things
+method ini-public {
+  self!ini-private;
+  # kode tambahan disini
 }
 ----
 
 === Class Attributes
 
-*Class attributes* are attributes that belong to the class itself and not to its objects. +
-They can be initialized during definition. +
-Class attributes are declared using `my` instead of `has`. +
-They are called on the class itself instead of its objects.
+*Class attributes* adalah atribut yang dipunyai oleh class itu sendiri bukan ke objek. +
+Atribut tersebut dapat diinisialisasi pada saat pendefinisian. +
+*Class attributes* dideklarasikan dengan kata kunci `my` bukan `has`. +
+Mereka diakses dalam class itu sendiri, tidak dilevel objek.
 
 [source,perl6]
 ----
-class Human {
-  has $.name;
+class Manusia {
+  has $.nama;
   my $.counter = 0;
-  method new($name) {
-    Human.counter++;
-    self.bless(:$name);
+  method new($nama) {
+    Manusia.counter++;
+    self.bless(:$nama);
   }
 }
-my $a = Human.new('a');
-my $b = Human.new('b');
+my $a = Manusia.new('a');
+my $b = Manusia.new('b');
 
-say Human.counter;
+say Manusia.counter;
 ----
 
-=== Access Type
-Until now, all the examples that we've seen have used accessors to *get* information from the objects' attributes.
+=== Tipe Akses
+Sampai tahap ini, semua contoh yang kita lihat menggunakan accessor untuk mendapatkan informasi dari atribut objek.
 
-What if we need to modify the value of an attribute? +
-We need to label it as _read/write_ using the keywords `is rw`
+Bagaimana jika kita butuh untuk memodifikasi nilai dari sebuah atribut? +
+Kita harus memberikan label _read/write_ menggunakan kata kunci `is rw`
 [source,perl6]
 ----
-class Human {
-  has $.name;
-  has $.age is rw;
+class Manusia {
+  has $.nama;
+  has $.umur is rw;
 }
-my $john = Human.new(name => 'John', age => 21);
-say $john.age;
+my $john = Manusia.new(nama => 'John', umur => 21);
+say $john.umur;
 
-$john.age = 23;
-say $john.age;
+$john.umur = 23;
+say $john.umur;
 ----
-By default, all attributes are declared as _read only_ but you can explicitly do it using `is readonly`
+Defaultnya, semua atribut dideklarasi sebagai _read only_ tetapi anda dapat secara eksplisit menggunakan kata kunci `is readonly`
 
 === Inheritance
-==== Introduction
-*Inheritance* is another concept of object oriented programming.
+==== Pengenalan
+*Inheritance* adalah salah satu konsep dari pemrograman berbasis objek.
 
-When defining classes, soon enough we will realize that some attributes/methods are common to many classes. +
-Should we duplicate code? +
-NO! We should use *inheritance*
+Pada saat mendefinisikan class, kita akan sadar bahwa beberapa atribut/methods biasa diperlukan pada beberapa class yang berbeda. +
+Apakah kita harus menduplikasi kode tersebut? +
+Tidak! Kita harus menggunakan *inheritance*
 
-Let's consider we want to define two classes, a class for Human beings and a class for Employees. +
-Human beings have 2 attributes: name and age. +
-Employees have 4 attributes: name, age, company and salary
+Apabila kita ingin mendefiniskan 2 class, class Manusia dan Karyawan. +
+Manusia mempuyai 2 atribut: nama dan umur. +
+Karyawan mempunyai 4 atribut: nama, umur, perusahaan dan gaji
 
-One would be tempted to define the classes as:
+Seseorang akan tergoda untuk mendefinisikan class seperti ini:
 [source,perl6]
 ----
-class Human {
-  has $.name;
-  has $.age;
+class Manusia {
+  has $.nama;
+  has $.umur;
 }
 
-class Employee {
-  has $.name;
-  has $.age;
-  has $.company;
-  has $.salary;
+class Karyawan {
+  has $.nama;
+  has $.umur;
+  has $.perusahaan;
+  has $.gaji;
 }
 ----
-While technically correct, the above piece of code is considered conceptually poor.
+Secara teknis benar, tetapi secara konsep tidak baik.
 
-A better way to write this would be:
+Cara yang lebih baik adalah:
 [source,perl6]
 ----
-class Human {
-  has $.name;
-  has $.age;
+class Manusia {
+  has $.nama;
+  has $.umur;
 }
 
-class Employee is Human {
-  has $.company;
-  has $.salary;
+class Karyawan is Manusia {
+  has $.perusahaan;
+  has $.gaji;
 }
 ----
-The `is` keyword defines inheritance. +
-In object oriented parlance, we say Employee is a *child* of Human and that Human is a *parent* of Employee.
+Kata kunci `is` mendefinisikan inheritance(warisan). +
+Dalam istilah basis objek, Karyawan adalah *child* dari Manusia dan Manusia adalah *parent* dari Karyawan.
 
-All child classes inherit the attributes and methods of the parent class, so there is no need to redefine them.
+Semua child class mewarisi semua atribut dan methods dari parent class, jadi tidak perlu mendefinisi ulang.
 
 ==== Overriding
-Classes inherit all attributes and methods from their parent classes. +
-There are cases where we need the method in the child class to behave differently than the one inherited. +
-To achieve this, we redefine the method in the child class. +
-This concept is called *overriding*.
+Ada sejumlah kasus dimana kita memerlukan method pada child class berbeda dengan method yang diwarisinya. +
+Untuk ini, kita mendefinisi ulang method tersebut dalam child class. +
+Konsep ini dinamakan *overriding*.
 
-In the below example, the method `introduce-yourself` is inherited by the Employee class.
-
-[source,perl6]
-----
-class Human {
-  has $.name;
-  has $.age;
-  method introduce-yourself {
-    say 'Hi I am a human being, my name is ' ~ self.name;
-  }
-}
-
-class Employee is Human {
-  has $.company;
-  has $.salary;
-}
-
-my $john = Human.new(name =>'John', age => 23,);
-my $jane = Employee.new(name =>'Jane', age => 25, company => 'Acme', salary => 4000);
-
-$john.introduce-yourself;
-$jane.introduce-yourself;
-----
-Overriding works like this:
+Dalam contoh dibawah, method `perkenalkan-dirimu` diwariskan oleh class Karyawan.
 
 [source,perl6]
 ----
-class Human {
-  has $.name;
-  has $.age;
-  method introduce-yourself {
-    say 'Hi I am a human being, my name is ' ~ self.name;
+class Manusia {
+  has $.nama;
+  has $.umur;
+  method perkenalkan-dirimu {
+    say 'Hi, saya manusia, nama saya adalah ' ~ self.nama;
   }
 }
 
-class Employee is Human {
-  has $.company;
-  has $.salary;
-  method introduce-yourself {
-    say 'Hi I am a employee, my name is ' ~ self.name ~ ' and I work at: ' ~ self.company;
+class Karyawan is Manusia {
+  has $.perusahaan;
+  has $.gaji;
+}
+
+my $john = Manusia.new(nama =>'John', umur => 23,);
+my $jane = Karyawan.new(nama =>'Jane', umur => 25, perusahaan => 'Acme', gaji => 4000);
+
+$john.perkenalkan-dirimu;
+$jane.perkenalkan-dirimu;
+----
+Overriding bekerja seperti ini:
+
+[source,perl6]
+----
+class Manusia {
+  has $.nama;
+  has $.umur;
+  method perkenalkan-dirimu {
+    say 'Hi, saya manusia, nama saya adalah ' ~ self.nama;
+  }
+}
+
+class Karyawan is Manusia {
+  has $.perusahaan;
+  has $.gaji;
+  method perkenalkan-dirimu {
+    say 'Hi saya seorang karyawan, nama saya adalah ' ~ self.nama ~ ' dan saya bekerja di: ' ~ self.perusahaan;
   }
 
 }
 
-my $john = Human.new(name =>'John',age => 23,);
-my $jane = Employee.new(name =>'Jane',age => 25,company => 'Acme',salary => 4000);
+my $john = Manusia.new(nama =>'John',umur => 23,);
+my $jane = Karyawan.new(nama =>'Jane',umur => 25,perusahaan => 'Acme',gaji => 4000);
 
-$john.introduce-yourself;
-$jane.introduce-yourself;
+$john.perkenalkan-dirimu;
+$jane.perkenalkan-dirimu;
 ----
 
-Depending of which class the object is, the right method will be called.
+Tergantung dari objek dari kelas yang mana, method akan dipanggil.
 
 ==== Submethods
 *Submethods* are a type of method that are not inherited by child classes. +
