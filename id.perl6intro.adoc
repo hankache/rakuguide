@@ -2335,62 +2335,62 @@ Perhatikan pada saat error terjadi (dalam hal ini, memberikan bilangan angka ke 
 
 [source,perl6]
 ----
-my Str $name;
+my Str $nama;
 try {
-  $name = 123;
-  say "Hello " ~ $name;
+  $nama = 123;
+  say "Hello " ~ $nama;
   CATCH {
     default {
-      say "Can you tell us your name again, we couldn't find it in the register.";
+      say "Bisa diulangi lagi nama anda, kami tidak dapat menemukannya didaftar.";
     }
   }
 }
-say "How are you doing today?";
+say "Apa kabar?";
 ----
 
 .`Output`
 ----
-Can you tell us your name again, we couldn't find it in the register.
-How are you doing today?
+Bisa diulangi lagi nama anda, kami tidak dapat menemukannya didaftar.
+Apa kabar?
 ----
 
-Exception handling is done by using a `try-catch` block.
+Exception handling dilakukan dengan menggunakan blok `try-catch`.
 
 [source,perl6]
 ----
 try {
-  # code goes in here
-  # if anything goes wrong, the script will enter the below CATCH block
-  # if nothing goes wrong, the CATCH block will be ignored
+  # kode disini
+  # jika ada apapun yang salah, skrip akan mengeksusi dibawah blok CATCH
+  # jika berjalan normal, blok CATCH akan diabaikan
   CATCH {
     default {
-      # the code in here will be evaluated only if an exception has been thrown
+      # kode disini akan dievaluasi hanya jika ada eksepsi
     }
   }
 }
 ----
 
-The `CATCH` block can be defined the same way a `given` block is defined.
-This means we can _catch_ and handle differently many types of exceptions.
+Blok `CATCH` dapat didefinisikan seperti blok `given`.
+Ini berarti kita dapat menangkap dan mengatur banyak tipe eksepsi.
 
 [source,perl6]
 ----
 try {
-  # code goes in here
-  # if anything goes wrong, the script will enter the below CATCH block
-  # if nothing goes wrong, the CATCH block will be ignored
+  # kode disini
+  # jika ada apapun yang salah, skrip akan mengeksusi dibawah blok CATCH
+  # jika berjalan normal, blok CATCH akan diabaikan
   CATCH {
-    when X::AdHoc   { # do something if exception of type X::AdHoc is thrown }
-    when X::IO      { # do something if exception of type X::IO is thrown }
-    when X::OS      { # do something if exception of type X::OS is thrown }
-    default         { # do something if exception is thrown and doesn't belong to the above types }
+    when X::AdHoc   { # lakukan sesuatu jika eksepsi tipe X::AdHoc terjadi }
+    when X::IO      { # lakukan sesuatu jika eksepsi tipe X::IO terjadi }
+    when X::OS      { # lakukan sesuatu jika eksepsi tipe X::OS terjadi }
+    default         { # lakukan sesuatu jika tidak termasuk tipe diatas }
   }
 }
 ----
 
 === Throwing Exceptions
-Perl 6 also allows you to explicitly throw exceptions. +
-Two types of exceptions can be thrown:
+Perl 6 mengijinkan anda untuk secara eksplisit melempar eksespsi. +
+Berikut 2 tipenya:
 
 * ad-hoc exceptions
 
@@ -2399,285 +2399,285 @@ Two types of exceptions can be thrown:
 [source,perl6]
 .ad-hoc
 ----
-my Int $age = 21;
+my Int $umur = 21;
 die "Error !";
 ----
 
 [source,perl6]
 .typed
 ----
-my Int $age = 21;
+my Int $umur = 21;
 X::AdHoc.new(payload => 'Error !').throw;
 ----
 
-Ad-hoc exceptions are thrown using the `die` subroutine, followed by the exception message.
+Ad-hoc exceptions dilemparkan menggunakan subroutine `die` diikuti pesan eksepsi.
 
-Typed exceptions are objects, hence the use of the `.new()` constructor in the above example. +
-All typed exceptions descend from class `X` , below are a few examples: +
-`X::AdHoc` is the simplest exception type +
-`X::IO` is related to IO errors +
-`X::OS` is related to OS errors +
-`X::Str::Numeric` related to trying to coerce a string to a number
+Typed exceptions adalah objek, makanya menggunakan konstruktor `.new()` +
+Semua typed exceptions merupakan turunan dari class `X`, dibawah ada beberapa contoh: +
+`X::AdHoc` adalah tipe eksepsi yang paling sederhana +
+`X::IO` merupakan eksepsi terkait error IO +
+`X::OS` merupakan eksepsi terkait error OS +
+`X::Str::Numeric` meruapakan eksepsi terkait merubah tipe data string ke numerik
 
-NOTE: For a complete list of exception types and their associated methods, go to https://docs.perl6.org/type-exceptions.html
+CATATAN: Untuk tipe eksepsi yang lebih lengkap dan method terkait, kunjungi https://docs.perl6.org/type-exceptions.html
 
 
 == Regular Expressions
-A regular expression, or _regex_, is a sequence of characters that is used for pattern matching. +
-Think of it as a pattern.
+A regular expression, atau _regex_, adalah urutan karakter yang digunakan untuk pencocokan pola. +
+Pikirkan sebagai pola.
 
 [source,perl6]
 ----
-if 'enlightenment' ~~ m/ light / {
-    say "enlightenment contains the word light";
+if 'keterangan' ~~ m/ terang / {
+    say "keterangan mengandung kata terang";
 }
 ----
 
-In this example, the smart match operator `~~` is used to check if a string (enlightenment) contains the word (light). +
-"Enlightenment" is matched against the regex `m/ light /`
+Pada contoh ini, operator `~~` digunakan untuk mengecek apabila sebuah string (keterangan) terdapat kata (terang). +
+'keterangan' dicocokkan dengan regex `m/ terang /`
 
 === Regex definition
 
-A regular expression can be defined like this:
+Sebuah regular expression dapat didefinisikan seperti ini:
 
-* `/light/`
+* `/terang/`
 
-* `m/light/`
+* `m/terang/`
 
-* `rx/light/`
+* `rx/terang/`
 
-Unless specified explicitly, white space is ignored; `m/light/` and `m/ light /` are the same.
+Kecuali dispesifikasi secara eksplisit, spasi akan diabaikan; `m/terang/` dan `m/ terang /` adalah sama.
 
 === Matching characters
-Alphanumeric characters and the underscore `_` are written as is. +
-All other characters have to be escaped using a backslash or surrounded by quotes.
+Karakter Alfanumerik dan garis bawah dituliskan seperti apa adanya. +
+Karakter lainnya harus menggunakan `\` atau dikelilingi oleh kutipan `''`.
 
 [source,perl6]
 .Backslash
 ----
-if 'Temperature: 13' ~~ m/ \: / {
-    say "The string provided contains a colon :";
+if 'Suhu: 13' ~~ m/ \: / {
+    say "String yang diberikan mengandung titik dua :";
 }
 ----
 
 [source,perl6]
-.Single quotes
+.Single quote (kutipan satu)
 ----
-if 'Age = 13' ~~ m/ '=' / {
-    say "The string provided contains an equal character = ";
+if 'Umur = 13' ~~ m/ '=' / {
+    say "String yang diberikan mengandung karakter sama dengan = ";
 }
 ----
 
 [source,perl6]
-.Double quotes
+.Double quotes (kutipan ganda)
 ----
-if 'name@company.com' ~~ m/ "@" / {
-    say "This is a valid email address because it contains an @ character";
+if 'nama@company.com' ~~ m/ "@" / {
+    say "Emailnya valid karena mengandung karakter @";
 }
 ----
 
 === Matching categories of characters
-Characters can be classified into categories and we can match against them. +
-We can also match against the inverse of that category (everything except it):
+Karakter dapat diklasifikasi kedalam kategori dan kita dapat mencocokkannya. +
+Kita juga dapat mencocokkan dengan kebalikan dari kategori tersebut :
 
 |===
 
-| *Category* | *Regex* | *Inverse* | *Regex*
+| *Kategori* | *Regex* | *Kebalikan* | *Regex*
 
-| Word character (letter, digit or underscore) | \w | Any character except a word character | \W
+| Karakter kata (huruf, angka atau garis bawah) | \w | semua karakter kecuali karakter kata | \W
 
-| Digit | \d | Any character except a digit | \D
+| Angka | \d | Semua karakter kecuali angka | \D
 
-| Whitespace | \s | Any character except a whitespace | \S
+| Spasi | \s | Semua karakter kecuali spasi | \S
 
-| Horizontal whitespace | \h | Any character except a horizontal whitespace | \H
+| Spasi horisontal | \h | Semua karakter kecuali spasi horisontal | \H
 
-| Vertical whitespace | \v | Any character except a vertical whitespace | \V
+| Spasi vertikal | \v | Semua karakter kecuali spasi vertikal | \V
 
-| Tab | \t | Any character except a Tab | \T
+| Tab | \t | Semua karakter kecuali Tab | \T
 
-| New line | \n | Any character except a new line | \N
+| Baris baru | \n | Semua karakter kecuali baris baru | \N
 
 |===
 
 [source,perl6]
 ----
 if "John123" ~~ / \d / {
-  say "This is not a valid name, numbers are not allowed";
+  say "Ini bukan nama yang valid, angka tidak diperbolehkan";
 } else {
-  say "This is a valid name"
+  say "Ini nama yang valid"
 }
 if "John-Doe" ~~ / \s / {
-  say "This string contains whitespace";
+  say "String ini mengandung spasi";
 } else {
-  say "This string doesn't contain whitespace"
+  say "String ini tidak mengandung spasi"
 }
 ----
 
 === Unicode properties
-Matching against categories of characters, as seen in the preceding section, is convenient. +
-That being said, a more systematic approach would be to use Unicode properties. +
-This allows you to match against categories of characters inside and outside of +
-the ASCII standard. +
-Unicode properties are enclosed in `<: >`
+
+Mencocokkan dengan kategori dari karakter, seperti pada seksi sebelumnya, sangat memudahkan. +
+Pendekatan yang lebih sistematis adalah menggunakan properti Unicode. +
+Metode ini memungkinkan untuk mencocokkan kategori dari karakter didalam dan diluar standar ASCII. +
+Properti Unicode tertutup dalam `<: >`
 
 [source,perl6]
 ----
-if "Devanagari Numbers १२३" ~~ / <:N> / {
-  say "Contains a number";
+if "Angka Devanagari १२३" ~~ / <:N> / {
+  say "Mengandung angka";
 } else {
-  say "Doesn't contain a number"
+  say "Tidak mengandung angka"
 }
 if "Привет, Иван." ~~ / <:Lu> / {
-  say "Contains an uppercase letter";
+  say "Mengandung huruf besar";
 } else {
-  say "Doesn't contain an upper case letter"
+  say "Tidak mengandung huruf besar"
 }
 if "John-Doe" ~~ / <:Pd> / {
-  say "Contains a dash";
+  say "mengandung tanda garis";
 } else {
-  say "Doesn't contain a dash"
+  say "Tidak mengandung tanda garis"
 }
 ----
 
 === Wildcards
-Wildcards can also be used in a regex.
+Wildcards dapat juga digunakan dalam sebuah regex.
 
-The dot `.` means any single character.
+Tanda titik `.` berarti setiap karakter tunggal.
 
 [source,perl6]
 ----
 if 'abc' ~~ m/ a.c / {
-    say "Match";
+    say "Cocok";
 }
 if 'a2c' ~~ m/ a.c / {
-    say "Match";
+    say "Cocok";
 }
 if 'ac' ~~ m/ a.c / {
-    say "Match";
+    say "Cocok";
 } else {
-    say "No Match";
+    say "Tidak Cocok";
 }
 ----
 
-=== Quantifiers
-Quantifiers come after a character and are used to specify how many times we are expecting it.
+=== Quantifiers (pembilang)
+Quantifiers datang setelah karakter dan digunakan untuk berapa kali kita menginginkan pengulangannya.
 
-The question mark `?` means zero or one time.
+Tanda tanya `?` berarti nol atau satu kali.
 
 [source,perl6]
 ----
 if 'ac' ~~ m/ a?c / {
-    say "Match";
+    say "Cocok";
 } else {
-    say "No Match";
+    say "Tidak Cocok";
 }
 if 'c' ~~ m/ a?c / {
-    say "Match";
+    say "Cocok";
 } else {
-    say "No Match";
+    say "Tidak Cocok";
 }
 ----
 
-The star `*` means zero or multiple times.
+Karakter `*` berarti nol atau beberapa kali.
 
 [source,perl6]
 ----
 if 'az' ~~ m/ a*z / {
-    say "Match";
+    say "Cocok";
 } else {
-    say "No Match";
+    say "Tidak Cocok";
 }
 if 'aaz' ~~ m/ a*z / {
-    say "Match";
+    say "Cocok";
 } else {
-    say "No Match";
+    say "Tidak Cocok";
 }
 if 'aaaaaaaaaaz' ~~ m/ a*z / {
-    say "Match";
+    say "Cocok";
 } else {
-    say "No Match";
+    say "Tidak Cocok";
 }
 if 'z' ~~ m/ a*z / {
-    say "Match";
+    say "Cocok";
 } else {
-    say "No Match";
+    say "Tidak Cocok";
 }
 ----
 
-The `+` means at least one time.
+Tanda `+` berarti paling tidak satu kali.
 
 [source,perl6]
 ----
 if 'az' ~~ m/ a+z / {
-    say "Match";
+    say "Cocok";
 } else {
-    say "No Match";
+    say "Tidak Cocok";
 }
 if 'aaz' ~~ m/ a+z / {
-    say "Match";
+    say "Cocok";
 } else {
-    say "No Match";
+    say "Tidak cocok";
 }
 if 'aaaaaaaaaaz' ~~ m/ a+z / {
-    say "Match";
+    say "Cocok";
 } else {
-    say "No Match";
+    say "Tidak Cocok";
 }
 if 'z' ~~ m/ a+z / {
-    say "Match";
+    say "Cocok";
 } else {
-    say "No Match";
+    say "Tidak Cocok";
 }
 ----
 
-=== Match Results
-Whenever the process of matching a string against a regex is successful,
-the match result is stored in a special variable `$/`
+=== Match Results (Memcocokkan hasil)
+Setiap kalo proses pencocokan dengan regex berhasil,
+hasil string yang cocok disimpan dalam variabel spesial `$/`
 
 [source,perl6]
 .Script
 ----
-if 'Rakudo is a Perl 6 compiler' ~~ m/:s Perl 6/ {
-    say "The match is: " ~ $/;
-    say "The string before the match is: " ~ $/.prematch;
-    say "The string after the match is: " ~ $/.postmatch;
-    say "The matching string starts at position: " ~ $/.from;
-    say "The matching string ends at position: " ~ $/.to;
+if 'Rakudo adalah Perl 6 compiler' ~~ m/:s Perl 6/ {
+    say "Hasil yang cocok adalah: " ~ $/;
+    say "String sebelum hasil cocok adalah: " ~ $/.prematch;
+    say "String setelah hasil cocok adalah: " ~ $/.postmatch;
+    say "Hasil string yang cocok mulai pada posisi: " ~ $/.from;
+    say "Hasil string yang cocok berakhir pada posisi: " ~ $/.to;
 }
 ----
 
 .Output
 ----
-The match is: Perl 6
-The string before the match is: Rakudo is a
-The string after the match is: compiler
-The matching string starts at position: 12
-The matching string ends at position: 18
+Hasil yang cocok adalah: Perl 6
+String sebelum hasil cocok adalah: Rakudo adalah 
+String setelah hasil cocok adalah:  compiler
+Hasil string yang cocok mulai pada posisi: 14
+Hasil string yang cocok berakhir pada posisi: 20
 ----
 
-.Explanation
-`$/` returns a _Match Object_ (the string that matches the regex) +
-The following methods can be called on the _Match Object_: +
-`.prematch` returns the string preceding the match. +
-`.postmatch` returns the string following the match. +
-`.from` returns the starting position of the match. +
-`.to` returns the ending position of the match. +
+.Penjelasan
+`$/` mengembalikan _Match Object_ (string hasil yang cocok) +
+Method berikut dapat dipanggil pada _Match Object_: +
+`.prematch` mengembalikan string sebelum hasil yang cocok. +
+`.postmatch` mengembalikan string setelah hasil yang cocok. +
+`.from` mengembalikan posisi pertama pada hasil yang cocok. +
+`.to` mengembalikan posisi terakhir pada hasil yang cocok. +
 
-TIP: By default, whitespace in a regex definition is ignored. +
-If we want to match against a regex containing whitespace, we have to do so explicitly. +
-The `:s` in the regex `m/:s Perl 6/` forces whitespace to be considered. +
-Alternatively, we could have written the regex as `m/ Perl\s6 /` and used `\s` which represents a whitespace. +
-If a regex contains more than a single whitespace, using `:s` is a better option than using `\s` for each and every whitespace.
+TIP: Defaultnya, spasi pada regex diabaikan. +
+Jika kita ingin mencocokkan dengan suatu regex yang mengandung spasi, kita harus secara eksplisit menyatakannya. +
+`:s` dalam regex `m/:s Perl 6/` memaksa spasi untuk tidak diabaikan. +
+Alternatifnya, kita dapat menulis regex dengan cara `m/ Perl\s6 /` dan menggunakan `\s` yang merepresentasikan sebuah spasi. +
+Jika sebuah regex mengandung lebih dari satu spasi, penggunaan `:s` lebih baik dibanding `\s` untuk setiap spasi.
 
-=== Example
-Let's check if an email is valid or not. +
-For the sake of this example we will assume that a valid email address has this format: +
-first name [dot] last name [at] company [dot] (com/org/net)
+=== Contoh
+Mari kita cek jika suatu email itu valid atau tidak. +
+Untuk contoh ini kita akan berasumsi sebuah email yang valid mempunyai format sebagai berikut: +
+nama depan [dot] nama belakang [at] perusahaan [dot] (com/org/net)
 
-WARNING: The regex used in this example for email validation is not very accurate. +
-Its sole purpose is to demonstrate regex functionality in Perl 6. +
-Do not use it as-is in production.
+PERINGATAN: regex yang digunakan dicontoh ini untuk validasi email tidak terlalu akurat. +
+Hanya bertujuan sebagai demonstrasi fungsi regex pada Perl 6. +
+Jangan gunakan dalam lingkungan produksi.
 
 [source,perl6]
 .Script
@@ -2686,88 +2686,88 @@ my $email = 'john.doe@perl6.org';
 my $regex = / <:L>+\.<:L>+\@<:L+:N>+\.<:L>+ /;
 
 if $email ~~ $regex {
-  say $/ ~ " is a valid email";
+  say $/ ~ " adalah email yang valid";
 } else {
-  say "This is not a valid email";
+  say "ini bukan email yang valid";
 }
 ----
 
 .Output
-`john.doe@perl6.org is a valid email`
+`john.doe@perl6.org adalah email yang valid`
 
-.Explanation
-`<:L>` matches a single letter +
-`<:L>+` matches one or more letters +
-`\.` matches a single [dot] character +
-`\@` matches a single [at] character +
-`<:L+:N>` matches a letter or a single number +
-`<:L+:N>+` matches one or more letters or numbers +
+.Penjelasan
+`<:L>` mencocokkan dengan sebuah huruf +
+`<:L>+` mencocokkan dengan satu atau lebih huruf +
+`\.` mencocokkan dengan satu karakter [dot] +
+`\@` mencocokkan dengan satu karakter [at] +
+`<:L+:N>` mencocokkan sebuah huruf atau sebuah angka +
+`<:L+:N>+` mencocokkan satu atau lebih huruf atau angka +
 
-The regex can be decomposed as following:
+Regex dapat diuraikan sebagai berikut:
 
-* *first name* `<:L>+`
+* *nama depan* `<:L>+`
 
 * *[dot]* `\.`
 
-* *last name* `<:L>+`
+* *nama belakang* `<:L>+`
 
 * *[at]* `\@`
 
-* *company name* `<:L+:N>+`
+* *nama perusahaan* `<:L+:N>+`
 
 * *[dot]* `\.`
 
 * *com/org/net* `<:L>+`
 
 [source,perl6]
-.Alternatively, a regex can be broken down into multiple named regexes
+.Alternatively, sebuah regex dapat dipecah menjadi lebih dari satu penamaan regex
 ----
 my $email = 'john.doe@perl6.org';
-my regex many-letters { <:L>+ };
+my regex banyak-huruf { <:L>+ };
 my regex dot { \. };
 my regex at { \@ };
-my regex many-letters-numbers { <:L+:N>+ };
+my regex banyak-huruf-angka { <:L+:N>+ };
 
-if $email ~~ / <many-letters> <dot> <many-letters> <at> <many-letters-numbers> <dot> <many-letters> / {
-  say $/ ~ " is a valid email";
+if $email ~~ / <banyak-huruf> <dot> <banyak-huruf> <at> <banyak-huruf-angka> <dot> <banyak-huruf> / {
+  say $/ ~ " adalah email yang valid";
 } else {
-  say "This is not a valid email";
+  say "Ini bukan email yang valid";
 }
 ----
 
-A named regex is defined using the following syntax: `my regex regex-name { regex definition }` +
-A named regex can be called using the following syntax: `<regex-name>`
+Regex yang mempunyai nama didefinisikan dengan sintaks berikut `my regex nama-regex { definisi regex }` +
+Regex yang mempunyai nama dapat dipanggil menggunakan sintaks berikut: `<nama-regex>`
 
-NOTE: For more info on regexes, see https://docs.perl6.org/language/regexes
+CATATAN: Untuk info lebih lanjut tentang regex, kunjungi https://docs.perl6.org/language/regexes
 
 == Perl 6 Modules
-Perl 6 is a general purpose programming language. It can be used to tackle a multitude of tasks including:
-text manipulation, graphics, web, databases, network protocols etc.
+Perl 6 adalah bahasa pemrograman bertujuan umum. Ia dapat digunakan untuk mengatasi banyak kerjaan termasuk:
+Manipuasi teks, grafis, web, basis data, protokol jaringan, dsb.
 
-Reusability is a very important concept whereby programmers don't have to reinvent the wheel each time they want to do a new task.
+Usabilitas adalah konsep yang sangat penting dimana programer tidak perlu mengulang kembali tiap kali mereka ingin melakukan suatu tugas.
 
-Perl 6 allows the creation and redistribution of *modules*. Each module is a packaged set of functionality that can be reused once installed.
+Perl 6 mengijinkan pembuatan dan redistribusi dari *modules*. Tiap modul adalah sebuah kemasan dari bermacam fungsi yang dapat dipakai kembali.
 
-_Zef_ is a module management tool that comes with Rakudo Star.
+_Zef_ adalah alat manajemen modul yang datang dengan Rakudo Star.
 
-To install a specific module, type the below command in your terminal:
+Untuk menginstall sebuah modul yang spesifik, ketikkan perintah dibawah pada terminal anda:
 
-`zef install "module name"`
+`zef install "nama modul"`
 
-NOTE: The Perl 6 modules directory can be found on: https://modules.perl6.org/
+CATATAN: Direktori Modul Perl 6 dapat ditemukan di: https://modules.perl6.org/
 
-=== Using Modules
-MD5 is a cryptographic hash function that produces a 128-bit hash value. +
-MD5 has a variety of applications, including the encryption of stored passwords in a database.
-When a new user registers, their credentials are not stored as plain text but rather _hashed_.
-The rationale behind this is that if the DB gets compromised, the attacker will not be able to know what the passwords are.
+=== Menggunakan Modul
+MD5 adalah fungsi hash kriptografis yang memproduksi nilah hash 128-bit. +
+MD5 mempunyai kegunaan yang banyak, termasuk mengenkripsi password dalam basis data.
+Ketika ada registrasi user baru, keterangan infonya tidak disimpan dalam teks polos tetapi _hashed_ (terenkripsi).
+Alasannya adalah jika basis data diretas, penyerang tidak dapat mengetahui kata sandi yang disimpan.
 
-Luckily, you don't need to implement the MD5 algorithm yourself; there's a Perl 6 module already implemented.
+Untungnya, anda tidak perlu mengimplementasi algoritma MD5 sendiri; Ada modul Perl 6 yang sudah diimplementasikan.
 
-Let's install it: +
+Mari kita install: +
 `zef install Digest::MD5`
 
-Now, run the below script:
+Sekarang, jalankan skrip dibawah:
 [source,perl6]
 ----
 use Digest::MD5;
@@ -2776,39 +2776,39 @@ my $hashed-password = Digest::MD5.new.md5_hex($password);
 
 say $hashed-password;
 ----
-In order to run the `md5_hex()` function that creates hashes, we need to load the required module. +
-The `use` keyword loads the module for use in the script.
+Untuk dapat menjalankan fungsi `md5_hex()` yang membuat hashes, kita perlu untuk memuat modul yang dibutuhkan. +
+Kata kunci `use` memuat modul agar dapat digunakan didalam skrip.
 
-WARNING: In practice MD5 hashing alone is not sufficient, because it is prone to dictionary attacks. +
-It should be combined with a salt link:https://en.wikipedia.org/wiki/Salt_(cryptography)[https://en.wikipedia.org/wiki/Salt_(cryptography)].
+PERINGATAN: Dalam prakternya, MD5 Hash sendiri tidak cukup, karena dapat diserang dengan metode brute force memakai kumpulan kata. +
+Idealnya harus dikombinasikan dengan sebuah salt, tautan link:https://en.wikipedia.org/wiki/Salt_(cryptography)[https://en.wikipedia.org/wiki/Salt_(cryptography)].
 
 == Unicode
 
-Unicode is a standard for encoding and representing text for most writing systems in the world. +
-UTF-8 is a character encoding capable of encoding all possible characters, or code points, in Unicode.
+Unicode adalah standar encoding dan mewakili teks untuk sistem penulisan di dunia. +
+UTF-8 adalah karakter encoding yang mampu untuk menyandi semua kemungkinan karakter dalam Unicode.
 
-Characters are defined by a: +
-*Grapheme*: Visual representation. +
-*Code point*: A number assigned to the character.
+Karakter didefinisikan dengan sebuah: +
+*Grapheme*: representasi visual. +
+*Code point*: sebuah angka yang diberikan kekarakter.
 
-=== Using Unicode
+=== Menggunakan Unicode
 
-.Let's look at how we can output characters using Unicode
+.Mari kita lihat bagaimana kita dapat mengeluarkan karakter menggunakan Unicode
 [source,perl6]
 ----
 say "a";
 say "\x0061";
 say "\c[LATIN SMALL LETTER A]";
 ----
-The above 3 lines showcase different ways of building a character:
+3 baris diatas mendemonstrasikan berbagai cara untuk membangun sebuah karakter:
 
-. Writing the character directly (grapheme)
+. Menulis karakter angsung (grapheme)
 
-. Using `\x` and the code point
+. Menggunakan `\x` dan code point
 
-. Using `\c` and the code point name
+. Menggunakan `\c` dan nama code point
 
-.Now lets output a smiley
+.Sekarang mari kita output sebuah gambar senyuman
 [source,perl6]
 ----
 say "☺";
@@ -2816,7 +2816,7 @@ say "\x263a";
 say "\c[WHITE SMILING FACE]";
 ----
 
-.Another example combining two code points
+.Contoh lain menggabungkan dua code points
 [source,perl6]
 ----
 say "á";
@@ -2825,13 +2825,13 @@ say "\x0061\x0301";
 say "\c[LATIN SMALL LETTER A WITH ACUTE]";
 ----
 
-The letter `á` can be written:
+Huruf `á`dapat ditulis:
 
-* using its unique code point `\x00e1`
+* menggunakan code point `\x00e1`
 
-* or as a combination of the code points of `a` and acute `\x0061\x0301`
+* atau kombinasi dari code point daru `a` dan acute `\x0061\x0301`
 
-.Some of the methods that can be used:
+.Beberapa method yang dapat digunakan:
 [source,perl6]
 ----
 say "á".NFC;
@@ -2846,11 +2846,11 @@ NFD:0x<0061 0301>
 LATIN SMALL LETTER A WITH ACUTE
 ----
 
-`NFC` returns the unique code point. +
-`NFD` decomposes the character and return the code point of each part. +
-`uniname` returns the code point name.
+`NFC` mengembalikan nilai code point. +
+`NFD` menguraikan karakter dan mengembalikan code point pada tiap bagian. +
+`uniname` mengembalikan nama code point.
 
-.Unicode letters can be used as identifiers:
+.Huruf Unicode dapat digunakan sebagai identifiers:
 [source,perl6]
 ----
 my $Δ = 1;
@@ -2858,7 +2858,7 @@ $Δ++;
 say $Δ;
 ----
 
-.Unicode can be used to do math:
+.Unicode dapat juga digunakan untuk perhitungan can be used to do math:
 [source,perl6]
 ----
 my $var = 2 + ⅒;
@@ -2868,47 +2868,45 @@ say $var;
 == Parallelism, Concurrency and Asynchrony
 
 === Parallelism
-Under normal circumstances, all tasks in a program run sequentially. +
-This might not be a problem, unless what you're trying to do takes a lot of time.
+Dalam keadaan normal, semua tugas dalam suatu program berjalan secara sekuensial. +
+Ini mungkin bukan sebuah masalah, kecuali akan memakan waktu lebih lama.
 
-Thankfully, Perl 6 has features that will enable you to run things in parallel. +
-At this stage, it is important to note that parallelism can mean one of two things:
+Perl 6 mempunyai fitur yang dapat menjalankan tugas secara paralel. +
+Ditahap ini, penting untuk dicatat bahwa paralelisme dapat berarti 1 dari 2 hal:
 
-* *Task Parallelism*: Two (or more) independent expressions running in parallel.
+* *Task Parallelism*: dua (atau lebih) ekspresi yang berdiri sendiri berjalan secara paralel.
 
-* *Data Parallelism*: A single expression iterating over a list of elements in parallel.
-
-Let's begin with the latter.
+* *Data Parallelism*: ekspresi tunggal beriterasi pada suatu daftar elemen secara parelel..
 
 ==== Data Parallelism
 [source,perl6]
 ----
 my @array = (0..50000);                     # Array population
-my @result = @array.map({ is-prime $_ });   # call is-prime for each array element
-say now - INIT now;                         # Output the time it took for the script to complete
+my @result = @array.map({ is-prime $_ });   # panggil is-prime untuk tiap elemen array
+say now - INIT now;                         # Output waktu yang dikonsumsi oleh skrip sampai selesai
 ----
 
-.Considering the above example:
-We are only doing one operation `@array.map({ is-prime $_ })` +
-The `is-prime` subroutine is being called for each array element sequentially: +
-`is-prime @array[0]` then `is-prime @array[1]` then `is-prime @array[2]` etc.
+.Mempertimbangkan contoh diatas:
+Kita hanya melakukan satu operasi `@array.map({ is-prime $_ })` +
+Subroutine `is-prime`dipanggil untuk tiap elemen array secara sekuensial: +
+`is-prime @array[0]` kemudian `is-prime @array[1]` kemudian `is-prime @array[2]` dsb.
 
-.Fortunately we can call `is-prime` on multiple array elements at the same time:
+.Untungnya kita dapat memanggil `is-prime` pada lebih dari satu elemen array dalam waktu yang sama:
 [source,perl6]
 ----
 my @array = (0..50000);                         # Array population
-my @result = @array.race.map({ is-prime $_ });  # call is-prime for each array element
-say now - INIT now;                             # Output the time it took to complete
+my @result = @array.race.map({ is-prime $_ });  # panggil subroutine is-prime untuk tiap elemen array
+say now - INIT now;                             # Output waktu yang dikonsumsi oleh skrip sampai selesai
 ----
 
-Notice the use of `race` in the expression.
-This method will enable parallel iteration of the array elements.
+Perhatikan penggunaan `race` dalam ekpresi.
+Method ini akan membolehkan iterasi paralel pada elemen array.
 
-After running both examples (with and without `race`), compare the time it took for both scripts to complete.
+Setelah menjalankan kedua contoh (dengan atau tanpa `race`), bandingkan waktu eksekusi skrip tersebut.
 
 [TIP]
 ====
-`race` will not preserve the order of elements. If you wish to do, so use `hyper` instead.
+`race` tidak akan mempertahankan urutan dari elemen. Jika ingin, anda dapat menggunakan `hyper`.
 
 [source,perl6]
 .race
@@ -2926,7 +2924,7 @@ my @result = @array.hyper.map( {$_ + 1} );
 .say for @result;
 ----
 
-If you run both examples, you should notice that one is sorted and the other is not.
+Jika anda menjalankan kedua contoh, anda dapat melihat satu disortir dan yang satunya lagi tidak.
 
 ====
 
