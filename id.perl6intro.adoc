@@ -2935,28 +2935,28 @@ Jika anda menjalankan kedua contoh, anda dapat melihat satu disortir dan yang sa
 my @array1 = (0..49999);
 my @array2 = (2..50001);
 
-my @result1 = @array1.map( {is-prime($_ + 1)} );
-my @result2 = @array2.map( {is-prime($_ - 1)} );
+my @hasil1 = @array1.map( {is-prime($_ + 1)} );
+my @hasil2 = @array2.map( {is-prime($_ - 1)} );
 
-say @result1 eqv @result2;
+say @hasil1 eqv @hasil2;
 
 say now - INIT now;
 ----
 
-.Considering the above example:
+.Pada contoh diatas:
 
-. We defined 2 arrays
+. Kita mendefinisi 2 array
 
-. applied a different operation for each array and stored the results
+. Mengaplikasikan operasi yang berbeda untuk tiap array dan hasil yang disimpan
 
-. and checked if both results are the same
+. dan mengecek jika kedua hasil adalah sama
 
-The script waits for `@array1.map( {is-prime($_ + 1)} )` to finish +
-and then evaluates `@array2.map( {is-prime($_ - 1)} )`
+Skrip menunggu `@array1.map( {is-prime($_ + 1)} )` sampai selesai +
+dan kemudian mengevaluasi `@array2.map( {is-prime($_ - 1)} )`
 
-Both operations applied to each array do not depend on each other.
+Kedua operasi tersebut tidak bergantung satu sama lain.
 
-.Why not do both in parallel?
+.Kenapa tidak menjalankan keduanya secara paralel?
 [source,perl6]
 ----
 my @array1 = (0..49999);
@@ -2965,42 +2965,41 @@ my @array2 = (2..50001);
 my $promise1 = start @array1.map( {is-prime($_ + 1)} ).eager;
 my $promise2 = start @array2.map( {is-prime($_ - 1)} ).eager;
 
-my @result1 = await $promise1;
-my @result2 = await $promise2;
+my @hasil1 = await $promise1;
+my @hasil2 = await $promise2;
 
-say @result1 eqv @result2;
+say @hasil1 eqv @hasil2;
 
 say now - INIT now;
 ----
 
-.Explanation
-The `start` subroutine evaluates the code and returns *an object of type promise* or shortly *a promise*. +
-If the code is evaluated correctly, the _promise_ will be *kept*. +
-If the code throws an exception, the _promise_ will be *broken*.
+.Penjelasan
+subroutine `start` mengevaluasi kode dan mengembalikan *sebuah objek dari tipe promise* atau kependekannya *promise*. +
+Jika kode dievaluasi secara benar, _promise_ akan di *kept*. +
+Jika kodenya melemparkan eksepsi, _promise_ akan *broken*.
 
-The `await` subroutine waits for a *promise*. +
-If it's *kept* it will get the returned values. +
-If it's *broken* it will get the exception thrown.
+Subroutine `await` menunggu *promise*. +
+Jika hasilnya *kept*, maka akan ada pengembalian nilai. +
+Jika *broken*, maka akan ada eksepsi yang dilemparkan.
 
 Check the time it took each script to complete.
 
-WARNING: Parallelism always adds a threading overhead. If that overhead is not offset by gains in computational speed, the script will seem slower. +
-This is why, using `race`, `hyper`, `start` and `await` for fairly simple scripts can actually slow them down.
+PERINGATAN: paralelisme selalu menambah beban kerja pada threading. Jika penambahan beban tidak diimbangi dengan kecepatan, skrip akan lebih lambat. +
+Ini mengapa, penggunaan `race`, `hyper`, `start` dan `await` untuk skrip yang sederhana dapat melambatkannya.
 
 === Concurrency and Asynchrony
-NOTE: For more info on Concurrency and Asynchronous Programming, see https://docs.perl6.org/language/concurrency
+CATATAN: Untuk info lebih lanjut tentang Concurrency dan Asynchronous, kunjungi https://docs.perl6.org/language/concurrency
 
 == Native Calling Interface
 
-Perl 6 gives us the ability to use C libraries, using the Native Calling Interface.
+Perl 6 memberikan kita kemampuan untuk mengakses library C, menggunakan Native Calling Interface. 
 
-`NativeCall` is a standard module that ships with Perl 6 and offers a set of functionality to ease the job
-of interfacing Perl 6 and C.
+`NativeCall` adalah modul standar bawaan Perl 6 dan menawarkan fungsi untuk memudahkan tugas terkait interaksi antara Perl 6 dan C. 
 
-=== Calling a function
+=== Memanggil sebuah fungsi
 
-Consider the below C code that defines a function called `hellofromc`.
-This function prints on the terminal `Hello from C`. It doesn't accept any argument nor return any value.
+Kode C dibawah mendefinisikan sebuah fungsi bernama `hellofromc`.
+Fungsi ini mencetak `Hello dari C` ke terminal. Ia tidak menerima argumen apapun atau mengembalikan nilai.
 
 [source,c]
 .ncitest.c
@@ -3008,26 +3007,26 @@ This function prints on the terminal `Hello from C`. It doesn't accept any argum
 #include <stdio.h>
 
 void hellofromc () {
-  printf("Hello from C\n");
+  printf("Hello dari C\n");
 }
 ----
 
-Depending on your OS run the following commands to compile the above C code into a library.
+Tergantung dari OS anda, jalankan perintah berikut untuk mengkompliasi kode C diatas ke library.
 
-.On Linux:
+.Pada sistem operasi Linux:
 ----
 gcc -c -fpic ncitest.c
 gcc -shared -o libncitest.so ncitest.o
 ----
 
-.On Windows:
+.Pada sistem operasi Windows:
 ----
 gcc -c ncitest.c
 gcc -shared -o ncitest.dll ncitest.o
 ----
 
-Within the same directory where you compiled your C library, create a new Perl 6
-file that contains the below code and run it.
+Didalam direktori yang sama dimana anda mengkompilasi library C, buat file Perl 6 baru 
+yang berisi kode dibawah dan jalankan.
 
 [source,perl6]
 .ncitest.pl6
@@ -3040,28 +3039,26 @@ sub hellofromc() is native(LIBPATH) { * }
 hellofromc();
 ----
 
-.Explanation:
-First of all we declared that we will be using the `NativeCall` module. +
-Then we created a constant `LIBPATH` that holds the path to the C library. +
-Notice that `$*CWD` returns the current working directory. +
-Then we created a new Perl 6 subroutine called `hellofromc()` that should act as a
-wrapper to its counterpart C function having the same name and residing in the C
-library found in `LIBPATH`. +
-All of this was done by using the `is native` trait. +
-Finally we called our Perl 6 subroutine.
+.Penjelasan:
+Pertama-tama kita mendeklarasikan akan menggunakan modul `NativeCall`. +
+Kemudian kita membuat sebuah konstan `LIBPATH` yang menampung path ke library C. +
+Perhatikan bahwa `$*CWD` mengembalikan direktori kerja saat ini. +
+Kemudian kita membuat subroutine Perl 6 baru bernama `hellofromc()` yang bertindak sebagai
+pembungkus ke fungsi C yang mempunyai nama yang sama dan berada didalam library C di `LIBPATH`. +
+Semua ini diselesaikan dengan menggunakan trait `is native`. +
+Terakhir, kita memanggil subroutine Perl 6 kita.
 
-In essence, it all boils down to declaring a subroutine with the trait `is native` and the name of the C library.
+Intinya adalah deklarasi sebuah subroutine dengan trait `is native` dan penamaan dari library C.
 
-=== Renaming a function
+=== Mengganti nama sebuah fungsi 
 
-In the above part, we saw how we can call a very simple C function by wrapping
-it with a Perl 6 subroutine having the same name, using the `is native` trait.
+Pada contoh diatas, kita melihat bagaimana kita dapat memanggil fungsi C yang sederhana dengan membungkusnya
+dengan subroutine Perl 6 menggunakan penamaan yang sama dan trait `is native`.
 
-In some cases, we would want to change the name of the Perl 6 subroutine. +
-To do so, we use the `is symbol` trait.
+Dalam beberapa kasus, kita ingin merubah nama dari subroutine Perl 6. +
+Untuk melakukannya, kita dapat gunakan trait `is symbol`.
 
-Lets modify the above Perl 6 script and rename the Perl 6 subroutine `hello`
-instead of `hellofromc`
+Mari kita modifikasi skrip Perl 6 diatas dan merubah nama subroutine dari `hellofromc` menjadi `hello`
 
 [source,perl6]
 .ncitest.pl6
@@ -3074,22 +3071,22 @@ sub hello() is native(LIBPATH) is symbol('hellofromc') { * }
 hello();
 ----
 
-.Explanation:
-In case the Perl 6 subroutine has a different name than its C counterpart, we
-should use the `is symbol` trait with the name of the original C function.
+.Penjelasan:
+Dalam kasus subroutine Perl 6 mempunyai nama yang berbeda dengan fungsi C,
+Kita dapat menggunakan trait `is symbol` dengan mereferensikan nama fungsi C.
 
-=== Passing Arguments
+=== Pemberian Argumen dalam fungsi
 
-Compile the following modified C library and run the Perl 6 script found below again. +
-Notice how we modified both C and Perl 6 code to accept a string (`char*` in C and `Str` in Perl 6)
+Compile library C yang telah dimodifikasi berikut dan jalankan skrip Perl 6 dibawah. +
+Perhatikan bagaimana kita memodifikasi baik kode C dan Perl 6 untuk dapat menerima string (`char*` di C dan `Str` di Perl 6)
 
 [source,c]
 .ncitest.c
 ----
 #include <stdio.h>
 
-void hellofromc (char* name) {
-  printf("Hello, %s! This is C!\n", name);
+void hellofromc (char* nama) {
+  printf("Hello, %s! Ini adalah C!\n", nama);
 }
 ----
 
@@ -3106,14 +3103,14 @@ hello('Jane');
 
 === Returning values
 
-Lets repeat the process one more time and create a simple calculator that takes
-2 integers and add them. +
-Compile the C library and run the Perl 6 script.
+Mari kita mengulang proses sekali lagi dan membuat kalkulator sederhana yang menerima
+2 integer dan melakukan operasi penambahan. +
+Compile library C dan jalankan skrip Perl 6.
 
 [source,c]
 .ncitest.c
 ----
-int add (int a, int b) {
+int tambah (int a, int b) {
   return (a + b);
 }
 ----
@@ -3124,21 +3121,21 @@ int add (int a, int b) {
 use NativeCall;
 
 constant LIBPATH = "$*CWD/ncitest";
-sub add(int32,int32) returns int32 is native(LIBPATH) { * }
+sub tambah(int32,int32) returns int32 is native(LIBPATH) { * }
 
-say add(2,3);
+say tambah(2,3);
 ----
 
-Notice how both C and Perl 6 functions accept two integers and return one
-(`int` in C and `int32` in Perl 6)
+Perhatikan bagaimana baik fungsi C dan Perl 6 menerima 2 integer dan mengembalikan satu nilai
+(`int` pada C dan `int32` pada Perl 6)
 
 === Types
 
-You might have asked yourself why did we use `int32` instead of `Int` in the latest Perl 6 script. +
-Some Perl 6 types like `Int`, `Rat` etc. can't be used as is to pass and receive values from a C function. +
-One must use in Perl 6 the same types as the ones in C.
+Anda mungkin bertanya mengapa kita menggunakan `int32` bukan `Int` pada Perl 6.
+Beberapa tipe pada Perl 6 seperti `Int`, `Rat`, dsb, tidak dapat digunakan untuk menerima atau memberikan nilai dari fungsi C. +
+Harus menggunakan tipe yang sama dengan di C.
 
-Luckily Perl 6 provides many types that map to their respective C counterpart.
+Untungnya Perl 6 menyediakan banyak tipe untuk ini.
 
 [cols="^.^,^.^",options="header"]
 |===
@@ -3187,18 +3184,18 @@ Luckily Perl 6 provides many types that map to their respective C counterpart.
 
 | `char*` (String) | `Str`
 
-| Arrays: For example `int*` (Array of int) and `double*` (Array of double) | `CArray`: For example `CArray[int32]` and `CArray[num64]`
+| Arrays: Contohnya `int*` (Array of int) dan `double*` (Array of double) | `CArray`: Contohnya `CArray[int32]` dan `CArray[num64]`
 
 |===
 
-NOTE: For more info on the Native Calling Interface, see https://docs.perl6.org/language/nativecall
+CATATAN: Untuk info lebih lanjut pada Native Calling Interface, kunjungi https://docs.perl6.org/language/nativecall
 
-== The Community
+== Komunitas
 
-* link:irc://irc.freenode.net/#perl6[#perl6] IRC channel. Much discussion happens on IRC. This should be your go to place for any enquiry: https://perl6.org/community/irc
+* link:irc://irc.freenode.net/#perl6[#perl6] IRC channel. Banyak diskusi terjadi di IRC. Saluran ini merupakan tempat yang tepat bila anda ingin bertanya: https://perl6.org/community/irc
 
-* link:https://p6weekly.wordpress.com[p6weekly] a weekly overview of changes in and around Perl 6.
+* link:https://p6weekly.wordpress.com[p6weekly] Gambaran perubahan mingguan seputar Perl 6.
 
-* link:http://pl6anet.org[pl6anet] blog aggregator. Stay tuned by reading blog posts that focus on Perl 6.
+* link:http://pl6anet.org[pl6anet] blog aggregator. Blog yang fokus pada Perl 6.
 
-* link:https://www.reddit.com/r/perl6/[/r/perl6] Subscribe to the Perl 6 subreddit.
+* link:https://www.reddit.com/r/perl6/[/r/perl6] Berlangganan pada subreddit Perl 6.
