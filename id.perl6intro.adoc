@@ -35,6 +35,7 @@ Apabila anda ingin berkontribusi dalam dokumen ini, kunjungi:
 
 .Saran
 Kirimkan saran anda ke:
+
 * naoum@hankache.com    - Bahasa Inggris
 * heince@cpan.org       - Bahasa Indonesia
 
@@ -42,10 +43,8 @@ Kirimkan saran anda ke:
 == Perkenalan
 === Apa itu Perl 6
 Perl 6 adalah bahasa pemrograman tingkat tinggi yang bersifat umum/non-spesifik dan data type variable ataupun ekspresi dapat dideklarasikan secara statis maupun dinamis.
-Perl 6 mendukung beberapa paradigma (teknis penyelesain masalah), antara lain : Pemrograman secara Prosedural, Berorientasi Objek, dan Fungsional.
-* https://id.wikipedia.org/wiki/Pemrograman_Prosedural
-* https://id.wikipedia.org/wiki/Pemrograman_berorientasi_objek
-* https://id.wikipedia.org/wiki/Pemrograman_Fungsional
+Perl 6 mendukung beberapa paradigma (teknis penyelesain masalah), antara lain : link:https://id.wikipedia.org/wiki/Pemrograman_Prosedural[Pemrograman secara Prosedural],
+link:https://id.wikipedia.org/wiki/Pemrograman_berorientasi_objek[Berorientasi Objek], dan link:https://id.wikipedia.org/wiki/Pemrograman_Fungsional[Fungsional].
 
 .Perl 6 moto:
 * TMTOWTDI (dibaca "Tim Toady"): There is more than one way to do it (Ada lebih dari satu cara untuk melakukan sesuatu).
@@ -54,7 +53,7 @@ Perl 6 mendukung beberapa paradigma (teknis penyelesain masalah), antara lain : 
 === Istilah Khusus
 * *Perl 6*: Spesifikasi bahasa pemrograman dengan rangkain test.
 Implementasi yang lulus uji spesifikasi dari rangkaian test dianggap Perl 6.
-* *Rakudo*: Kompilator (compiler - https://id.wikipedia.org/wiki/Kompilator) untuk Perl 6.
+* *Rakudo*: link:https://id.wikipedia.org/wiki/Kompilator[Kompilator] untuk Perl 6.
 * *Rakudobrew*: program untuk mengelola instalasi Rakudo.
 * *Zef*: program untuk mengelola instalasi modul dari Perl 6.
 * *Rakudo Star*: Bundel program yang terdiri dari Rakudo, Zef, koleksi beberapa modul Perl6 dan dokumentasi.
@@ -76,8 +75,8 @@ Untuk metode instalasi lainnya, kunjungi http://rakudo.org/how-to-get-rakudo/#In
 Ada 4 pilihan metode instalasi yang tersedia:
 
 * Lakukan langkah-langkah yang sama sesuai cara instalasi Linux
-* Instalasi dengan program homebrew (https://brew.sh): `brew install rakudo-star`
-* Instalasi dengan program MacPorts (https://www.macports.org): `sudo port install rakudo`
+* Instalasi dengan program link:https://brew.sh[homebrew]: `brew install rakudo-star`
+* Instalasi dengan program link:https://www.macports.org[MacPorts]: `sudo port install rakudo`
 * Unduh program installer terakhir (dengan file ekstensien .dmg) dari https://rakudo.perl6.org/downloads/star/
 
 .Windows
@@ -123,7 +122,7 @@ Karena sebagian waktu kita digunakan untuk menulis kode dan menyimpannya dalam f
 Saya menggunakan dan merekomendasi https://atom.io/[Atom].
 Atom adalah teks editor yang modern dan mempunyai fitur untuk mengenali dan menyorot sintaks Perl 6.
 https://atom.io/packages/language-perl6[Perl 6 FE] adalah alternatif sintaks highlight(direpresentasikan dengan penekanan warna) untuk Perl 6,
-diturunkan dari paket original tetapi disertai dengan perbaikan bug (https://id.wikipedia.org/wiki/Kekutu) dan fitur tambahan.
+diturunkan dari paket original tetapi disertai dengan perbaikan link:https://id.wikipedia.org/wiki/Kekutu[bug] dan fitur tambahan.
 
 Sebagian orang dikomunitas juga menggunakan http://www.vim.org/[Vim], https://www.gnu.org/software/emacs/[Emacs] or http://padre.perlide.org/[Padre].
 
@@ -151,7 +150,7 @@ Contohnya Anda bebas untuk menggunakan karakter spasi dibagian manapun, walaupun
 *Ekspresi* adalah salah satu tipe bagian dari pernyataan yang mengembalikan suatu nilai:
 `1+2` akan mengembalikan nilai `3`
 
-Ekspresi adalah kombinasi dari 'Terms' (suatu nilai / variabel) dan "penghubung"(operator).
+Ekspresi adalah kombinasi dari *Terms* (suatu nilai / variabel) dan *penghubung* (operator).
 
 *Terms* adalah:
 
@@ -245,7 +244,8 @@ Komentar 2
 
 ==== Tanda Kutip
 String harus dipisah dengan tanda kutip ganda `"..."` atau tunggal `'...'`.
-* https://id.wikipedia.org/wiki/String
+
+https://id.wikipedia.org/wiki/String
 
 Selalu gunakan tanda kutip ganda:
 
@@ -384,7 +384,7 @@ Dibawah ini adalah tabel dari Operator yang umum dipakai.
 
 === Reversed Operators (Operator terbalik)
 
-Penambahan karakter `R` sebelum operator akan membalikkan operand (https://id.wikipedia.org/wiki/Operand)
+Penambahan karakter `R` sebelum operator akan membalikkan link:https://id.wikipedia.org/wiki/Operand[operand]
 
 [cols=".^m,.^m,.^m,.^m", options="header"]
 |===
@@ -469,7 +469,7 @@ True
 NOTE: Untuk melihat metode yang lebih lengkap dan dapat diaplikasikan pada Integer, kunjungi https://docs.perl6.org/type/Int
 
 [source,perl6]
-.Rational Number (https://id.wikipedia.org/wiki/Bilangan_rasional)
+.link:https://id.wikipedia.org/wiki/Bilangan_rasional[Rational Number]
 ----
 my $umur = 2.3;
 say $umur.numerator;
@@ -1121,7 +1121,7 @@ say "Dear $nama, selamat datang di Perl 6";
 
 === Running Shell Commands (Menjalankan program shell/terminal)
 
-2 subroutines (https://id.wikipedia.org/wiki/Subrutin) dapat digunakan untuk menjalankan program shell:
+2 link:https://id.wikipedia.org/wiki/Subrutin[subroutines] dapat digunakan untuk menjalankan program shell:
 
 * `run` menjalankan program external tanpa melibatkan shell
 
@@ -1234,7 +1234,7 @@ NOTE: Untuk informasi lanjut seputar I/O, kunjungi https://docs.perl6.org/type/I
 
 == Subroutines
 === Definisi
-*Subroutines* (biasa disebut *subs* atau *functions) bertujuan untuk mengemas dan menggunakan kembali suatu fungsi. +
+*Subroutines* (biasa disebut *subs* atau *functions*) bertujuan untuk mengemas dan menggunakan kembali suatu fungsi. +
 
 Sebuah definisi subroutine dimulai dengan kata kunci `sub`.
 Perhatikan contoh dibawah:
@@ -1396,8 +1396,7 @@ say "1.2 kuadrat = " ~ kuadrat(1.2);
 NOTE: Untuk info lebih lanjut tentang subroutines dan functions, kunjungi https://docs.perl6.org/language/functions
 
 == Functional Programming
-https://id.wikipedia.org/wiki/Pemrograman_Fungsional
-Dichapter ini kita akan melihat beberapa fitur yang mengfasilitasi Functional Programming.
+Dichapter ini kita akan melihat beberapa fitur yang mengfasilitasi link:https://id.wikipedia.org/wiki/Pemrograman_Fungsional[Functional Programming].
 
 === Functions are first-class citizens
 Functions/subroutines adalah warga negara kelas satu:
@@ -1856,7 +1855,7 @@ say $john.berhak;
 ----
 
 Ketika methods didefinisikan didalam suatu class, method dapat dipanggil pada objek tertentu menggunakan _tanda titik_: +
-_objek_*.*_method_ atau seperti contoh diatas: `$john.nilai-umur`
+_objek_ *.* _method_ atau seperti contoh diatas: `$john.nilai-umur`
 
 Didalam definisi suatu method, jika kita perlu mereferensikan objek untuk memanggil method lainnya, kita dapat menggunakan kata kunci `self`. +
 
