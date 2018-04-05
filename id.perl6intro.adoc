@@ -1,0 +1,3201 @@
+= Perkenalan Bahasa Pemrograman Perl 6 
+Naoum Hankache <naoum@hankache.com>; Heince Kurniawan <heince@cpan.org>
+:description: Pengenalan secara umum untuk bahasa pemrograman Perl 6
+:keywords: perl6, perl 6, introduction, perl6intro, perkenalan perl 6, perl 6 tutorial, perl 6 intro
+:Revision: 1.0
+:icons: font
+:source-highlighter: pygments
+//:pygments-style: manni
+:source-language: perl6
+:pygments-linenums-mode: table
+:toc: left
+:doctype: book
+:lang: id
+
+
+Dokumen ini dimaksudkan untuk memberikan gambaran secara umum dari bahasa pemrograman Perl 6.
+Bagi anda yang baru pada pemrograman Perl 6, dokumen ini diharapkan dapat memberikan informasi yang cukup dan bahan untuk memulai.
+
+Beberapa bagian dari dokumen ini merujuk ke http://docs.perl6.org[tautan resmi dokumentasi Perl 6] dimana tautan yang dirujuk lebih lengkap dan akurat..
+Anda diharapkan untuk merujuk kesana bila memerlukan informasi lebih spesifik dari subjek tertentu.
+
+Melalui dokumen ini, anda akan menemukan beberapa contoh untuk topik yang banyak dibahas.
+Agar lebih dapat dimengerti, luangkan waktu untuk mencoba semua contoh yang diberikan.
+
+.Lisensi
+Karya ini dilisensikan oleh the Creative Commons Attribution-ShareAlike 4.0 International License.
+Untuk melihat salinan lisensi ini, kunjungi
+
+* https://creativecommons.org/licenses/by-sa/4.0/.
+
+.Kontribusi
+Apabila anda ingin berkontribusi dalam dokumen ini, kunjungi:
+
+* https://github.com/hankache/perl6intro
+
+.Saran
+Kirimkan saran anda ke:
+* naoum@hankache.com    - Bahasa Inggris
+* heince@cpan.org       - Bahasa Indonesia
+
+:sectnums:
+== Perkenalan
+=== Apa itu Perl 6
+Perl 6 adalah bahasa pemrograman tingkat tinggi yang bersifat umum/non-spesifik dan data type variable ataupun ekspresi dapat dideklarasikan secara statis maupun dinamis. 
+Perl 6 mendukung beberapa paradigma (teknis penyelesain masalah), antara lain : Pemrograman secara Prosedural, Berorientasi Objek, dan Fungsional.
+* https://id.wikipedia.org/wiki/Pemrograman_Prosedural
+* https://id.wikipedia.org/wiki/Pemrograman_berorientasi_objek
+* https://id.wikipedia.org/wiki/Pemrograman_Fungsional
+
+.Perl 6 moto:
+* TMTOWTDI (dibaca "Tim Toady"): There is more than one way to do it (Ada lebih dari satu cara untuk melakukan sesuatu).
+* Hal-hal yang mudah harus tetap mudah, hal-hal yang sulit harus menjadi lebih mudah, dan hal-hal yang tidak mungkin menjadi sulit.
+
+=== Istilah Khusus
+* *Perl 6*: Spesifikasi bahasa pemrograman dengan rangkain test.
+Implementasi yang lulus uji spesifikasi dari rangkaian test dianggap Perl 6.
+* *Rakudo*: Kompilator (compiler - https://id.wikipedia.org/wiki/Kompilator) untuk Perl 6.
+* *Rakudobrew*: program untuk mengelola instalasi Rakudo.
+* *Zef*: program untuk mengelola instalasi modul dari Perl 6.
+* *Rakudo Star*: Bundel program yang terdiri dari Rakudo, Zef, koleksi beberapa modul Perl6 dan dokumentasi.
+
+=== Cara Instalasi Perl 6
+.Linux
+
+Untuk menginstall "Rakudo Star", jalankan perintah berikut diterminal anda:
+----
+wget https://rakudo.perl6.org/downloads/star/rakudo-star-2018.01.tar.gz
+tar xfz rakudo-star-2018.01.tar.gz
+cd rakudo-star-2018.01
+perl Configure.pl --gen-moar --prefix /opt/rakudo-star-2018.01
+make install
+----
+Untuk metode instalasi lainnya, kunjungi http://rakudo.org/how-to-get-rakudo/#Installing-Rakudo-Star-Linux
+
+.macOS
+Ada 4 pilihan metode instalasi yang tersedia:
+
+* Lakukan langkah-langkah yang sama sesuai cara instalasi Linux
+* Instalasi dengan program homebrew (https://brew.sh): `brew install rakudo-star`
+* Instalasi dengan program MacPorts (https://www.macports.org): `sudo port install rakudo`
+* Unduh program installer terakhir (dengan file ekstensien .dmg) dari https://rakudo.perl6.org/downloads/star/
+
+.Windows
+. Unduh program installer terakhir (dengan file ekstensien .msi, pilih sesuai arsitektur sistem) dari https://rakudo.perl6.org/downloads/star/
+. Setelah instalasi, pastikan `C:\rakudo\bin` terdeklarasi di PATH(variabel yang dipakai dilingkungan sistem operasi) 
+. Tes dengan menjalankan perintah `perl6 -v` dicommand line prompt untuk verifikasi versi.
+
+.Docker
+. Unduh dari tautan resmi `docker pull rakudo-star`
+. Kemudian jalankan container dengan perintah `docker run -it rakudo-star`
+
+=== Menjalankan kode Perl 6
+
+Menjalankan program / kode Perl 6 dapat dilakukan melalui REPL(Read-Eval-Print Loop). 
+Caranya, buka program terminal, ketik `perl6` kemudian tekan tombol [Enter]. 
+Tanda / karakter '>' akan muncul. 
+Selanjutnya, ketik kode yang mau dijalankan dan tekan tombol [Enter].
+REPL akan mencetak keluaran nilai dari kode yang diproses. 
+Anda dapat menulis kode lainnya dibaris yang baru atau ketik `exit` dan tekan enter untuk keluar dari REPL.
+
+Cara lainnya, ketik kode di file, simpan, dan jalankan menggunakan file tersebut. 
+Direkomendasikan bahwa file script Perl 6 menggunakan ekstensien `.pl6`. 
+Jalankan file script tersebut melalui terminal, ketik `perl6 namafileyangdisimpan.pl6`, kemudian tekan tombol [Enter]. 
+Berbeda dengan metode REPL, cara ini tidak akan secara otomatis mencetak hasil tiap baris: kode harus menyertakan fungsi `say` untuk mengeluarkan cetakan hasil kode.
+
+Metode REPL kebanyakan dipakai untuk mencoba spesifik bagian dari kode, biasanya program yang hanya berisi 1 baris. 
+Untuk program yang membutuhkan kode lebih dari 1 baris, direkomendasikan untuk menyimpan kode kedalam file untuk kemudian diproses.
+
+Program yang hanya membutuhkan 1 baris dapat juga menggunakan command line dengan mengetikkan `perl6 -e 'kode anda disini'` diterminal dan tekan [Enter].
+
+[SARAN]
+--
+Apabila anda menginstall Rakudo bukan "Rakudo Star", direkomendasikan untuk menginstall modul tambahan berikut ini (Ketik didalam terminal):
+
+* `zef install Linenoise` bila menggunakan Windows, Linux and macOS
+
+* `zef install Readline`  Apabila anda menggunakan Linux, modul ini lebih direkomendasikan
+--
+
+=== Teks Editor
+Karena sebagian waktu kita digunakan untuk menulis kode dan menyimpannya dalam file, sebaiknya kita menggunakan teks editor yang dapat mengenali sintaks Perl 6. 
+
+Saya menggunakan dan merekomendasi https://atom.io/[Atom]. 
+Atom adalah teks editor yang modern dan mempunyai fitur untuk mengenali dan menyorot sintaks Perl 6. 
+https://atom.io/packages/language-perl6[Perl 6 FE] adalah alternatif sintaks highlight(direpresentasikan dengan penekanan warna) untuk Perl 6, 
+diturunkan dari paket original tetapi disertai dengan perbaikan bug (https://id.wikipedia.org/wiki/Kekutu) dan fitur tambahan.
+
+Sebagian orang dikomunitas juga menggunakan http://www.vim.org/[Vim], https://www.gnu.org/software/emacs/[Emacs] or http://padre.perlide.org/[Padre]. 
+
+Versi baru dari Vim disertai dengan sintaks highlight. Sedangkan Emacs dan Padre membutuhkan paket tambahan untuk mendukung hal tersebut. 
+
+
+=== Hello World!
+Mari kita mulai dengan ritual `hello world`.
+
+[source,perl6]
+say 'hello world';
+
+Dapat juga ditulis seperti:
+
+[source,perl6]
+'hello world'.say;
+
+=== Gambaran ikhtisar dari Sintaks
+Sintaks Perl 6 memiliki bentuk yang bebas: Dalam artian posisi karakter dibaris maupun kolom dikode anda tidak mempunyai efek yang signifikan.  
+Contohnya Anda bebas untuk menggunakan karakter spasi dibagian manapun, walaupun pada kasus tertentu, spasi mengandung arti bagi Perl 6.
+
+*Pernyataan* adalah kumpulan perintah kode, harus diakhiri dengan karakter titik koma:
+`say "Hello" if True;`
+
+*Ekspresi* adalah salah satu tipe bagian dari pernyataan yang mengembalikan suatu nilai:
+`1+2` akan mengembalikan nilai `3`
+
+Ekspresi adalah kombinasi dari 'Terms' (suatu nilai / variabel) dan "penghubung"(operator).
+
+*Terms* adalah:
+
+* *Variabel*: Wadah untuk menyimpan suatu nilai yang dapat digunakan dan dimodifikasi.
+
+* *notasi*: Suatu tetapan nilai seperti angka atau kumpulan karakter (strings).
+
+*Operator* dibagi menjadi beberapa tipe:
+
+|===
+
+| *Tipe* | *Penjelasan* | *Contoh*
+
+| Prefix | sebelum 'terms' | `++1`
+
+| Infix | diantara 'terms' | `1+2`
+
+| Postfix | setelah 'terms' | `1++`
+
+| Circumfix | sekeliling 'terms' | `(1)`
+
+| Postcircumfix | setelah satu 'term', disekitar yang lain  | `Array[1]`
+
+|===
+
+==== Identifiers
+Identifiers adalah penamaan yang diberikan / didefinisikan kepada 'terms' contohnya nama variabel.
+
+.Syarat:
+* Harus dimulai dengan karakter alfabetis atau garis bawah `_`.
+
+* Dapat memakai angka (kecuali karakter pertama).
+
+* Dapat memakai tanda garis `-` atau apostrof `'` (kecuali karakter pertama dan terakhir), harus diikuti karakter alfabetis setelah tanda garis maupun apostrof.
+
+|===
+
+| *Valid* | *Tidak valid*
+
+| `var1` | `1var`
+
+| `var-one` | `var-1`
+
+| `var'one` | `var'1`
+
+| `var1_` | `var1'`
+
+| `_var` | `-var`
+
+|===
+
+.Kaidah Penamaan:
+* Camel case: `variableNo1`
+
+* Kebab case: `variable-no1`
+
+* Snake case: `variable_no1`
+
+Anda bebas untuk memilih penamaan dari identifier, tetapi disarankan untuk mengadopsi satu kaidah penamaan secara konsisten.
+
+Penggunaan nama yang mempunyai arti akan mempermudah anda atau orang lain dalam dunia koding.
+
+* `var1 = var2 * var3` secara sintaks benar tetapi tujuannya kurang jelas.
+* `gaji-bulan-ini = gaji-perhari * jumlah-hari-kerja` penamaan ini akan lebih baik untuk penamaan variabel.
+
+==== Komentar
+Komentar adalah teks yang tidak dibaca oleh kompiler dan digunakan sebagai catatan.
+
+Komentar dibagi menjadi 3 tipe:
+
+* Satu baris:
++
+[source,perl6]
+# Ini adalah contoh komentar satu baris
+
+* Tertanam (Embedded):
++
+[source,perl6]
+say #`(Ini adalah contoh komentar tertanam) "Hello World."
+
+* Lebih dari satu baris (multi):
++
+[source,perl6]
+-----------------------------
+=begin komentar
+Ini adalah contoh komentar lebih dari satu baris
+Komentar 1
+Komentar 2
+=end komentar
+-----------------------------
+
+==== Tanda Kutip
+String harus dipisah dengan tanda kutip ganda `"..."` atau tunggal `'...'`.
+* https://id.wikipedia.org/wiki/String
+
+Selalu gunakan tanda kutip ganda:
+
+* Jika string mengandung apostrop `'`
+
+* Jika string mengandung variabel yang perlu diinterpolasi
+
+[source,perl6]
+-----------------------------------
+say 'Hello World';   # Hello World
+say "Hello World";   # Hello World
+say "Don't";         # Don't
+my $name = 'Wiro Sableng';
+say 'Hello $name';   # Hello $name
+say "Hello $name";   # Hello Wiro Sableng
+-----------------------------------
+
+== Operator
+
+=== Jenis Operator Yang Umum
+Dibawah ini adalah tabel dari Operator yang umum dipakai.
+[cols="^.^5m,^.^5m,.^20,.^20m,.^20m", options="header"]
+|===
+
+| Operator | Tipe | Deskripsi | Contoh | Hasil
+
+| + | Infix | Penambahan | 1 + 2 | 3
+
+| - | Infix | Pengurangan | 3 - 1 | 2
+
+| * | Infix | Perkalian | 3 * 2 | 6
+
+| ** | Infix | Pangkat | 3 ** 2 | 9
+
+| / | Infix | Pembagian | 3 / 2 | 1.5
+
+| div | Infix | Pembagian Integer (dibulatkan kebawah) | 3 div 2 | 1
+
+| % | Infix | Modulus (sisa hasil bagi)| 7 % 4 | 3
+
+.2+| %% .2+| Infix .2+| Divisibility (apakah mungkin untuk dibagi habis) | 6 %% 4 | False
+
+<| 6 %% 3 <| True
+
+| gcd | Infix | Greatest common divisor (nilai terbesar yang dapat membagi habis) | 6 gcd 9 | 3
+
+| lcm | Infix | Least common multiple (kelipatan persekutuan terkecil) | 6 lcm 9 | 18
+
+| == | Infix | Numeric equal (Perbandingan Numerik yang sama) | 9 == 7  | False
+
+| != | Infix | Numeric not equal (Perbandingan Numerik yang tidak sama) | 9 != 7  | True
+
+| < | Infix | Less than (lebih kecil dari) | 9 < 7  | False
+
+| > | Infix | Greater than (lebih besar dari) | 9 > 7  | True
+
+| \<= | Infix | Less than or equal (lebih kecil atau sama dengan) | 7 \<= 7  | True
+
+| >= | Infix | Greater than or equal (lebih besar atau sama dengan) | 9 >= 7  | True
+
+| eq | Infix | String equal (Perbandingan string sama dengan) | "John" eq "John"  | True
+
+| ne | Infix | String not equal (Perbandingan string tidak sama dengan) | "John" ne "Jane"  | True
+
+| = | Infix | Assignment (memberikan suatu nilai) | my $var = 7  | memberikan nilai `7` ke variabel `$var`
+
+.2+| ~ .2+| Infix .2+| merangkai / menyambungkan String | 9 ~ 7 | 97
+
+<m| "Hi " ~ "there"  <| Hi there
+
+.2+| x .2+| Infix .2+| Replikasi String | 13 x 3  | 131313
+
+<| "Hello " x 3  <| Hello Hello Hello
+
+.5+| ~~ .5+| Infix .5+| Smart match (perbandingan pintar) | 2 ~~ 2  | True
+
+<| 2 ~~ Int <| True
+
+<| "Perl 6" ~~ "Perl 6" <| True
+
+<| "Perl 6" ~~ Str <| True
+
+<| "enlightenment" ~~ /light/ <| ｢light｣
+
+.2+| ++ | Prefix | Increment (kenaikan / tambahan) | my $var = 2; ++$var;  | menambah variable + 1 dan mengembalikan nilai `3`
+
+<m| Postfix <d| Increment <m| my $var = 2; $var++;  <| mengembalikan nilai variabel `2` kemudian menambah variabel + 1
+
+.2+|\--| Prefix | Decrement | my $var = 2; --$var;  | mengurangi nilai variabel - 1 dan mengembalikan nilai menjadi `1`
+
+<m| Postfix <d| Decrement <m| my $var = 2; $var--;  <| mengembalikan nilai variabel `2` kemudian  then mengurangi variabel -1
+
+.3+| + .3+| Prefix .3+| merubah nilai menjadi nilai numerik | +"3"  | 3
+
+<| +True <| 1
+
+<| +False <| 0
+
+.3+| - .3+| Prefix .3+| merubah nilai menjadi nilai numerik dan mengembalikan hasil sebaliknya | -"3"  | -3
+
+<| -True <| -1
+
+<| -False <| 0
+
+.6+| ? .6+| Prefix .6+| merubah nilai menjadi nilai boolean (tipe data yang hanya mempunyai 2 nilai antara benar(True) atau salah(False)) | ?0 | False
+
+<| ?9.8 <| True
+
+<| ?"Hello" <| True
+
+<| ?"" <| False
+
+<| my $var; ?$var; <| False
+
+<| my $var = 7; ?$var; <| True
+
+| ! | Prefix | merubah nilai menjadi nilai boolean dan mengembalikan hasil sebaliknya | !4 | False
+
+| .. | Infix | Range Constructor (pembangun rentang nilai) |  0..5  | membuat rentang nilai dari 0 sampai 5
+
+| ..^ | Infix | Range Constructor |  0..^5  | membuat rentang nilai dari 0 sampai 4
+
+| ^.. | Infix | Range Constructor |  0^..5  | membuat rentang nilai dari 1 sampai 5
+
+| \^..^ | Infix | Range Constructor |  0\^..^5  | membuat rentang nilai dari 1 sampai 4
+
+| ^ | Prefix | Range Constructor |  ^5  | sama seperti 0..^5 membuat rentang nilai dari 0 sampai 4
+
+| ... | Infix | Lazy List Constructor |  0...9999  |  mengembalikan elemen hanya jika diminta
+
+.2+| {vbar} .2+| Prefix .2+| Flattening (perataan) | {vbar}(0..5)  | (0 1 2 3 4 5)
+
+<| {vbar}(0\^..^5)  <| (1 2 3 4)
+
+|===
+
+=== Reversed Operators (Operator terbalik)
+
+Penambahan karakter `R` sebelum operator akan membalikkan operand (https://id.wikipedia.org/wiki/Operand)
+
+[cols=".^m,.^m,.^m,.^m", options="header"]
+|===
+| Pengoperasian Normal | Hasil | Reversed Operator | Hasil
+
+| 2 / 3 | 0.666667 | 2 R/ 3 | 1.5
+
+| 2 - 1 | 1 | 2 R- 1 | -1
+
+|===
+
+=== Reduction Operators (Operator spesial yang digunakan untuk mengurangi elemen array / list menjadi satu nilai)
+
+Reduction operators dapat berjalan di rangkaian atau daftar suatu nilai.
+Dibentuk oleh kurung kotak buka dan tutup `[]`
+
+[cols=".^m,.^m,.^m,.^m", options="header"]
+|===
+| Perngoperasian Normal | Hasil | Reduction Operator | Hasil
+
+| 1 + 2 + 3 + 4 + 5 | 15 | [+] 1,2,3,4,5 | 15
+
+| 1 * 2 * 3 * 4 * 5 | 120 | [*] 1,2,3,4,5 | 120
+
+|===
+
+CATATAN: Untuk mengetahui operator lainnya termasuk tata cara penggabungan atau susunannya, kunjungi https://docs.perl6.org/language/operators
+
+== Variabel
+Variabel dari Perl6 diklasifikasian menjadi 3 kategori: Scalars, Arrays dan Hashes.
+
+Karakter *sigil* (Sign in Latin) adalah karakter yang digunakan sebagai awalan untuk mengkategorikan variabel.
+
+* karakter `$` digunakan untuk scalars
+* karakter `@` digunakan untuk arrays
+* karakter `%` digunakan untuk hashes
+
+=== Scalars
+Scalar menampung satu nilai atau referensi.
+
+[source,perl6]
+----
+# String
+my $nama = 'Wiro Sableng';
+say $nama;
+
+# Integer
+my $umur = 99;
+say $umur;
+----
+
+Suatu set pengoperasian tertentu dapat dilakukan di scalar, tergantung dari nilai yang ditampung.
+
+[source,perl6]
+.String
+----
+my $nama = 'Wiro Sableng';
+say $nama.uc;
+say $nama.chars;
+say $nama.flip;
+----
+
+----
+WIRO SABLENG
+12
+gnelbaS oriW
+----
+
+CATATAN: Untuk melihat metode yang lebih lengkap dan dapat diaplikasikan pada String, kunjungi https://docs.perl6.org/type/Str
+
+[source,perl6]
+.Integer
+----
+my $umur = 17;
+say $umur.is-prime;
+----
+
+----
+True
+----
+
+CATATAN: Untuk melihat metode yang lebih lengkap dan dapat diaplikasikan pada Integer, kunjungi https://docs.perl6.org/type/Int
+
+[source,perl6]
+.Rational Number (https://id.wikipedia.org/wiki/Bilangan_rasional)
+----
+my $umur = 2.3;
+say $umur.numerator;
+say $umur.denominator;
+say $umur.nude;
+----
+
+----
+23
+10
+(23 10)
+----
+
+CATATAN: Untuk melihat metode yang lebih lengkap dan dapat diaplikasikan pada Bilangan Rasional, kunjungi https://docs.perl6.org/type/Rat
+
+=== Arrays
+Arrays adalah daftar yang dapat berisi lebih dari satu nilai.
+
+[source,perl6]
+----
+my @hewan = 'ayam','bebek','burung';
+say @hewan;
+----
+
+Banyak pengoperasian dapat dilakukan pada arrays seperti contoh dibawah:
+
+Saran: karakter tilde  `~` digunakan untuk menggabungkan string.
+
+[source,perl6]
+.`Script`
+----
+my @hewan = 'harimau','gajah','panda';
+say "Di kebun binatang ada " ~ @hewan.elems ~ " hewan";
+say "Hewannya antara lain: " ~ @hewan;
+say "Kebun binatang akan mengadopsi gorila";
+@hewan.push("gorila");
+say "Sekarang kebun binatang mempunyai hewan: " ~ @hewan; 
+say "Hewan pertama yang diadopsi adalah " ~ @hewan[0];
+@hewan.pop;
+say "Sayangnya gorilanya kabur dan yang tersisa: " ~ @hewan;
+say "Kebun binatang akan ditutup dan hanya akan mempertahankan 1 hewan saja";
+say "Kebun binatang akan melepas: " ~ @hewan.splice(1,2) ~ " dan mempertahankan " ~ @hewan;
+----
+
+.`Output` (Hasil Keluaran)
+----
+Di kebun binatang ada 3 hewan
+Hewannya antara lain: harimau gajah panda
+Kebun binatang akan mengadopsi gorila
+Sekarang kebun binatang mempunyai hewan: harimau gajah panda gorila
+Hewan pertama yang diadopsi adalah harimau
+Sayangnya gorilanya kabur dan yang tersisa: harimau gajah panda
+Kebun binatang akan ditutup dan hanya akan mempertahankan 1 hewan saja
+Kebun binatang akan melepas: gajah panda dan mempertahankan harimau
+----
+
+.Penjelasan
+`.elems` mengembalikan nilai dari jumlah elemen dalam suatu array. +
+`.push()` menambahkan satu atau lebih elemen kedalam array. +
+Kita dapat mengakses spesifik elemen array dengan menspesifikasian posisinya `@hewan[0]`. +
+`.pop` menghapus elemen terakhir dari array dan mengembalikan elemen yang dihapus. +
+`.splice(a,b)` menghapus elemen `b` dimulai dari posisi `a`.
+
+==== Fixed-size arrays (array yang berukuran tetap)
+Secara dasar, array dideklarasikan sebagai berikut:
+[source,perl6]
+my @array;
+
+Array dapat mempunyai ukuran tak terbatas dan karenanya disebut auto-extending(diperpanjang otomatis). +
+Array dapat menerima suatu nilai tanpa batasan.
+
+Sebaliknya, kita dapat juga membuat array dengan ukuran yang tetap. +
+Array ini tidak dapat diakses diluar atau melebihi ukuran yang ditetapkan.
+
+Untuk mendeklarasi array dengan ukuran tetap, spesifikasikan jumlah maksimum elemen di kurung kotak setelah penamaan variabelnya:
+[source,perl6]
+my @array[3];
+
+Array ini akan dapat menampung maksimum 3 nilai, terindeks dari 0 sampai 2.
+
+[source,perl6]
+----
+my @array[3];
+@array[0] = "nilai pertama";
+@array[1] = "nilai kedua";
+@array[2] = "nilai ketiga";
+----
+
+Anda tidak dapat menambah nilai keempat kedalam array ini:
+[source,perl6]
+----
+my @array[3];
+@array[0] = "nilai pertama";
+@array[1] = "nilai kedua";
+@array[2] = "nilai ketiga";
+@array[3] = "nilai keempat";
+----
+
+----
+Index 3 for dimension 1 out of range (must be 0..2)
+----
+
+==== Multidimensional arrays
+Array yang kita demonstrasikan diatas adalah array dengan 1 dimensi. +
+Kita juga dapat mendefinisikan array multi dimensi.
+
+[source,perl6]
+my @tabel[3;2];
+
+Ini adalah array dengan 2 dimensi.
+Dimensi pertama dapat mempunyai maksimal 3 nilai dan dimensi yang kedua dapat mempunyai maksimal 2 nilai.
+
+Dapat diilustrasikan seperti tabel 3x2.
+
+[source,perl6]
+----
+my @tabel[3;2];
+@tabel[0;0] = 1;
+@tabel[0;1] = "x";
+@tabel[1;0] = 2;
+@tabel[1;1] = "y";
+@tabel[2;0] = 3;
+@tabel[2;1] = "z";
+say @tabel;
+----
+
+----
+[[1 x] [2 y] [3 z]]
+----
+
+.Representasi visual dari array:
+----
+[1 x]
+[2 y]
+[3 z]
+----
+
+CATATAN: Untuk lebih lengkapnya tentang referensi Array, kunjungi https://docs.perl6.org/type/Array
+
+=== Hashes
+[source,perl6]
+.Hash adalah kumpulan dari satu atau lebih pasangan kata kunci dan nilainya.
+----
+my %ibukota = ('UK','London','Indonesia','Jakarta');
+say %ibukota;
+----
+
+[source,perl6]
+.Cara lain dalam mengisi nilai hash:
+----
+my %ibukota = (UK => 'London', Indonesia => 'Jakarta');
+say %ibukota;
+----
+
+Beberapa metode yang dapat dipanggil dengan hash:
+[source,perl6]
+.`Script`
+----
+my %ibukota = (UK => 'London', Indonesia => 'Jakarta');
+%ibukota.push: (Perancis => 'Paris');
+say %ibukota.kv;
+say %ibukota.keys;
+say %ibukota.values;
+say "Ibukota dari Perancis adalah: " ~ %ibukota<Perancis>;
+----
+
+.`Output`
+----
+(Perancis Paris UK London Indonesia Jakarta)
+(Perancis UK Indonesia)
+(Paris London Jakarta)
+Ibukota dari Perancis adalah: Paris
+----
+
+.Penjelasan
+`.push: (katakunci => 'nilai')` menambahkan pasangan kata kunci dan nilainya. +
+`.kv` mengembalikan daftar nilai seluruh pasangan kata kunci dan nilainya. +
+`.keys` mengembalikan daftar nilai seluruh kata kunci saja. +
+`.values` mengembalikan daftar nilai seluruh nilai dari kata kunci saja. +
+Kita dapak mengakses nilai spesifik dari kata kunci tertentu dengan `%hash<katakunci>`
+
+CATATAN: Untuk referensi lengkap Hash, kunjungi https://docs.perl6.org/type/Hash
+
+=== Types
+Dicontoh sebelumnya, kita tidak menspesifikasi tipe nilai dari suatu variabel.
+
+SARAN: `.WHAT` akan mengembalikan tipe nilai yang disimpan dalam variabel.
+
+[source,perl6]
+----
+my $var = 'Text';
+say $var;
+say $var.WHAT;
+
+$var = 123;
+say $var;
+say $var.WHAT;
+----
+
+Contoh diatas menunjukkan awalnya tipe nilai dari `$var` adalah (Str) kemudian berubah menjadi (Int).
+
+Gaya koding seperti ini disebut dynamic typing. Dinamis dalam artian suatu variable dapat menampung segala tipe nilai.
+
+Sekarang coba untuk menjalankan contoh dibawah: +
+Perhatikan `Int` sebelum nama variabel.
+
+[source,perl6]
+----
+my Int $var = 'Text';
+say $var;
+say $var.WHAT;
+----
+
+Contoh diatas akan gagal dan mengembalikan pesan eror: `Type check failed in assignment to $var; expected Int but got Str`
+
+Apa yang terjadi adalah kita menspesifikasikan kalau variable tersebut nilainya harus berupa tipe (Int).
+Ketika kita mencoba untuk memberikan nilai berupa (Str), kode tersebut akan gagal.
+
+Gaya koding ini disebut static typing. Statis dalam artian tipe nilai variabel didefinisikan sebelumnya dan tidak dapat dirubah.
+
+Perl 6 diklasifikasikan sebagai *gradually typed*; Memperbolehkan gaya statis dan dinamis.
+
+.Arrays dan hashes dapat juga dideklarasikan secara statis:
+[source,perl6]
+----
+my Int @array = 1,2,3;
+say @array;
+say @array.WHAT;
+
+my Str @multilingual = "Hello","Salut","Hallo","您好","안녕하세요","こんにちは";
+say @multilingual;
+say @multilingual.WHAT;
+
+my Str %ibukota = (Indonesia => 'Jakarta', UK => 'London', Germany => 'Berlin');
+say %ibukota;
+say %ibukota.WHAT;
+
+my Int %kode-negara = (Indonesia => 62, UK => 44, Germany => 49);
+say %kode-negara;
+say %kode-negara.WHAT;
+----
+
+.Dibawah adalah daftar dari tipe yang sering dipakai:
+Anda mungkin tidak akan pernah memakai dua tipe yang pertama, tipe tersebut dicantumkan untuk tujuan informasi.
+
+[cols="^.^1m,.^3m,.^2m,.^1m, options="header"]
+|===
+
+| *Tipe* | *Deskripsi* | *Contoh* | *Hasil*
+
+| Mu | Hirarki paling atas dari tipe Perl 6 | |
+
+| Any | Default kelas dasar untuk kelas baru dan hampir semua kelas lainnya yang termasuk dalam Perl 6 | |
+
+| Cool | Nilai yang dapat dianggap sebagai string atau numerik | my Cool $var = 31; say $var.flip; say $var * 2; | 13 62
+
+| Str | String atau kumpulan dari karakter | my Str $var = "NEON"; say $var.flip; | NOEN
+
+| Int | Integer (bilangan bulat) | 7 + 7 | 14
+
+| Rat | Rational number (bilangan rational) | 0.1 + 0.2 | 0.3
+
+| Bool | Boolean | !True | False
+
+|===
+
+=== Introspection (Introspeksi)
+
+Introspection adalah proses untuk medapatkan informasi tentang properti suatu objek seperti tipe objek. +
+Disalah satu contoh sebelumnya, kita menggunakan `.WHAT` untuk mengembalikan tipe dari variabel.
+
+[source,perl6]
+----
+my Int $var;
+say $var.WHAT;    # (Int)
+my $var2;
+say $var2.WHAT;   # (Any)
+$var2 = 1;
+say $var2.WHAT;   # (Int)
+$var2 = "Hello";
+say $var2.WHAT;   # (Str)
+$var2 = True;
+say $var2.WHAT;   # (Bool)
+$var2 = Nil;
+say $var2.WHAT;   # (Any)
+----
+
+Tipe dari suatu variabel yang menyimpan suatu nilai berkorelasi terhadap nilainya. +
+Tipe dari suatu variabel kosong yang dideklarasikan adalah tipe dari yang mana dideklarasikan. +
+Tipe dari suatu variable kosong yang tidak dideklarasikan adalah `(Any)` +
+Untuk menhapus nilai dari suatu variabel, berikan `Nil` ke variabel tersebut.
+
+=== Scoping (Ruang lingkup)
+Sebelum menggunakan variabel, variabel perlu dideklarasikan.
+
+Beberapa deklarator digunakan di Perl 6. Kita telah menggunakan `my` selama ini.
+
+[source,perl6]
+my $var=1;
+
+Deklarator `my` declarator memberikan variabel ruang lingkup *lexical*.
+Dengan kata lain, variabel cuma bisa diakses bila berada didalam blok dimana variabel dideklarasikan.
+
+Suatu blok di Perl 6 dibatasi oleh `{  }`.
+Jika blok tidak ditemukan, variabel akan bisa diakses diseluruh kode Perl 6.
+
+[source,perl6]
+----
+{
+  my Str $var = 'Text';
+  say $var;   # dapat diakses
+}
+say $var;   # bagian ini tidak dapat diakses, akan terdapat error
+----
+
+Karena sebuah variabel hanya dapat diakses diblok dimana variabel tersebut didefinisikan, nama variabel yang sama dapat digunakan diblok yang lain.
+
+[source,perl6]
+----
+{
+  my Str $var = 'Text';
+  say $var;
+}
+my Int $var = 123;
+say $var;
+----
+
+=== Assignment vs. Binding
+Kita telah melihat dicontoh sebelumnya bagaimana untuk memberikan nilai ke variabel. +
+Pemberian nilai (Assignment) dilakukan menggunakan operator `=`.
+[source,perl6]
+----
+my Int $var = 123;
+say $var;
+----
+
+Kita dapat mengubah nilai yang diberi pada suatu variabel:
+
+[source,perl6]
+.Assignment
+----
+my Int $var = 123;
+say $var;
+$var = 999;
+say $var;
+----
+
+.`Output`
+----
+123
+999
+----
+
+Disamping itu, kita tidak dapat merubah nilai yang *terikat* pada variabel. +
+*Binding* atau pengikatan suatu nilai dilakukan menggunakan operator `:=`.
+
+[source,perl6]
+.Binding
+----
+my Int $var := 123;
+say $var;
+$var = 999;
+say $var;
+----
+
+.`Output`
+----
+123
+Cannot assign to an immutable value
+----
+
+[source,perl6]
+.Variabel dapat juga direferensikan kevariabel lainnya:
+----
+my $a;
+my $b;
+$b := $a;
+$a = 7;
+say $b;
+$b = 8;
+say $a;
+----
+
+.`Output`
+----
+7
+8
+----
+
+Binding variabel (pengikatan pada variabel) bersifat 2 arah. +
+`$a := $b` and `$b := $a` mempunyai efek yang sama.
+
+CATATAN: Untuk informasi yang lebih lengkap tentang variabel, kunjungi https://docs.perl6.org/language/variables
+
+== Fungsi dan Mutator
+
+Penting untuk mengetahui perbedaan fungsi dan mutator. +
+Fungsi tidak mengubah status dari objek atau variabel yang dipanggil / digunakan. +
+Mutator memodifikasi status dari objek atau variabel.
+
+[source,perl6,linenums]
+.`Script`
+----
+my @numbers = [7,2,4,9,11,3];
+
+@numbers.push(99);
+say @numbers;      #1
+
+say @numbers.sort; #2
+say @numbers;      #3
+
+@numbers.=sort;
+say @numbers;      #4
+----
+
+.`Output`
+----
+[7 2 4 9 11 3 99] #1
+(2 3 4 7 9 11 99) #2
+[7 2 4 9 11 3 99] #3
+[2 3 4 7 9 11 99] #4
+----
+
+.Penjelasan
+`.push` adalah mutator karena merubah status dari array (#1)
+
+`.sort` adalah fungsi karena mengembalikan nilai array yang telah diurutkan tetapi tidak mengubah status array seperti diawal:
+
+* (#2) menunjukkan bahwa hasil output array yang telah diurutkan.
+
+* (#3) menunjukkan bahwa array tidak termodifikasi, masih seperti status diawal.
+
+Untuk memaksa fungsi menjadi mutator, kita gunakan `.=` sebagai pengganti `.` (#4) (Baris ke 9)
+
+== Loops and conditions (pengulangan dan syarat / kondisi)
+Perl6 mempunyai banyak sintaks atau cara untuk melakukan persyaratan dan pengulangan
+
+=== if
+Kode hanya akan berjalan apabila syarat atau kondisi tertentu dipenuhi, misalnya sebuah ekpresi yang mengembalikan nilai `True`.
+
+[source,perl6]
+----
+my $umur = 19;
+
+if $umur > 18 {
+  say 'Selamat Datang';
+}
+----
+
+Dalam Perl 6, kita dapat membalikkan susunan kode dan kondisinya. +
+Bahkan bila kode dan kondisinya sudah dibalik, kondisi / syarat selalu akan dievaluasi terlebih dahulu.
+
+[source,perl6]
+----
+my $umur = 19;
+
+say 'Selamat Datang' if $umur > 18;
+----
+
+Jika syarat atau kondisi tidak terpenuhi, kita dapat menyertakan blok alternatif untuk mengeksekusinya dengan:
+
+* `else`
+* `elsif`
+
+[source,perl6]
+----
+# Menjalankan kode yang sama dengan nilai variabel yang berbeda
+my $jumlah-kursi = 9;
+
+if $jumlah-kursi <= 5 {
+  say 'mobil sedan'
+} elsif $jumlah-kursi <= 7 {
+  say 'mobil 7 kursi'
+} else {
+  say 'bis kota'
+}
+----
+
+=== unless (kecuali)
+Merupakan pernyataan negasi atau lawan statement dari `if`.
+
+Kode berikut ini:
+
+[source,perl6]
+----
+my $sepatu-bersih = False;
+
+if not $sepatu-bersih {
+  say 'Bersihkan sepatumu'
+}
+----
+Dapat juga ditulis seperti:
+
+[source,perl6]
+----
+my $sepatu-bersih = False;
+
+unless $sepatu-bersih {
+  say 'Bersihkan sepatumu'
+}
+----
+
+Negasi dalam Perl 6 dilakukan dengan `!` atau `not`.
+
+`unless (condition)` digunakan bukannya `if not (condition)`.
+
+`unless` tidak dapat menggunakan statement / klausa `else`.
+
+=== with
+
+`with` hampir sama dengan pernyataan `if`, bedanya `with` mengecek apakah variabel terdefinisi.
+
+[source,perl6]
+----
+my Int $var=1;
+
+with $var {
+  say 'Hello'
+}
+----
+
+Apabila variabel tidak diberikan suatu nilai, tidak akan ada output.
+[source,perl6]
+----
+my Int $var;
+
+with $var {
+  say 'Hello'
+}
+----
+
+`without` adalah versi negasi dari `with`. Hampir sama dengan analogi `unless` dengan `if`.
+
+Jika kondisi pertama `with` tidak terpenuhi, alternatifnya dapat ditentukan dengan `orwith`. +
+`with` dan `orwith` sama dengan hubungan antara `if` dan `elsif`.
+
+=== for
+
+Pernyataan `for` melakukan pengulangan terhadap kelipatan nilai.
+
+[source,perl6]
+----
+my @array = [1,2,3];
+
+for @array -> $array-item {
+  say $array-item * 100
+}
+----
+
+Kode diatas kita membuat sebuah array, kemudian kita melakukan pengulangan terhadap array tersebut, 
+membuat variabel `$array-item` untuk menampung nilai dari tiap pengulangan, 
+melakukan perkalian `*100` pada tiap item array, kemudian menampilkan hasil tiap perulangan.
+
+=== given
+
+`given` dalam Perl 6 hampir sama dengan pernyataan `switch` pada bahasa pemrograman lainnya,
+tetapi lebih powerful.
+
+[source,perl6]
+----
+my $var = 42;
+
+given $var {
+    when 0..50 { say 'Kurang dari atau sama dengan 50'}
+    when Int { say "ini adalah Int" }
+    when 42  { say 42 }
+    default  { say "huh?" }
+}
+----
+
+Proses perbandingan akan berhenti (tidak diteruskan keperbandingan selanjutnya) apabila ada yang sukses.
+
+Apabila ingin lanjut keperbandingan selanjutnya, bisa menggunakan `proceed`.
+[source,perl6]
+----
+my $var = 42;
+
+given $var {
+    when 0..50 { say 'Kurang dari atau sama dengan 50';proceed}
+    when Int { say "ini adalah Int";proceed}
+    when 42  { say 42 }
+    default  { say "huh?" }
+}
+----
+
+=== loop
+
+`loop` adalah cara lain untuk menulis pengulangan `for`.
+
+Sebenarnya, `loop` adalah bagaimana pengulangan `for` ditulis dalam bahasa pemrograman C.
+
+Perl 6 tergolong didalam keluarga bahasa pemrograman C.
+
+[source,perl6]
+----
+loop (my $i = 0; $i < 5; $i++) {
+  say "nomor sekarang adalah $i"
+}
+----
+
+CATATAN: Untuk informasi lebih lanjut tentang pengulangan dan pengkondisian, kunjungi https://docs.perl6.org/language/control
+
+== I/O
+Dalam Perl 6, dua antar muka yang sering dipakai adalah Terminal dan file.
+
+=== Dasar I/O menggunakan Terminal
+
+==== say
+`say` menulis ke standard output. Ia menambah karakter baris baru diakhir. Dengan kata lain, kode dibawah:
+
+[source,perl6]
+----
+say 'Hello Mam.';
+say 'Hello Sir.';
+----
+Akan ditulis dalam 2 baris yang terpisah.
+
+==== print
+`print` hampir sama dengan `say` tetapi tidak menambahkan karakter baris baru diakhir.
+
+Coba untuk mengganti `say` dengan `print` dan bandingkan keluaran hasilnya.
+
+==== get
+`get` digunakan untuk menangkap input dari terminal.
+
+[source,perl6]
+----
+my $nama;
+
+say "Hi, namanya siapa?";
+$nama = get;
+
+say "Halo $nama, selamat datang di Perl 6";
+----
+
+Ketika kode dijalankan, terminal akan menunggu input nama. Masukkan nama anda dan tekan tombol [Enter].
+
+==== prompt
+`prompt` adalah kombinasi dari `print` dan `get`.
+
+Contoh diatas bisa juga ditulis seperti ini:
+
+[source,perl6]
+----
+my $nama = prompt "Hi, nama anda siapa? ";
+
+say "Dear $nama, selamat datang di Perl 6";
+----
+
+=== Running Shell Commands (Menjalankan program shell/terminal)
+
+2 subroutines (https://id.wikipedia.org/wiki/Subrutin) dapat digunakan untuk menjalankan program shell:
+
+* `run` menjalankan program external tanpa melibatkan shell
+
+* `shell` menjalan program dengan melibatkan shell. Metode ini tergantung dari platform dan tipe shell yang digunakan.
+Semua spesial karakter akan ditafsirkan oleh shell yang bersangkutan, termasuk pipes, redirection, pergantian environment variable dan lainnya.
+Pipes adalah suatu teknik untuk memberikan informasi / output dari satu proses ke proses lainnya.
+Redirection adalah suatu teknik mengalihkan input atau output suatu proses ke lokasi yang diinginkan oleh pengguna.
+Environment variable adalah variabel yang mempengaruhi proses / program yang sedang berjalan, biasanya diset sebelum program berjalan dan dapat berubah
+seiring jalannya program.
+
+[source,perl6]
+.Jalankan program dibawah apabila anda menggunakan sistem operasi Linux/macOS
+----
+my $nama = 'Neo';
+run 'echo', "hello $nama";
+shell "ls";
+----
+
+[source,perl6]
+.Jalankan program dibawah apabila anda menggunakan sistem operasi Windows
+----
+shell "dir";
+----
+Perintah atau program `echo` dan `ls` adalah perintah shell yang umum pada sistem operasi Linux: +
+Perintah `echo` mencetak keluaran teks pada terminal (hampir sama dengan fungsi `print` di Perl 6) +
+Perintah `ls` mencetak daftar semua file dan direktori yang ada pada direktori yang sekarang. 
+
+Perintah atau program `dir` sama dengan perintah `ls` di sistem operasi Windows.
+
+
+=== File I/O
+==== slurp
+`slurp` digunakan untuk membaca data dari suatu file.
+
+Buat sebuah file teks dengan isi sebagai berikut:
+
+.datafile.txt
+----
+John 9
+Johnnie 7
+Jane 8
+Joanna 7
+----
+[source,perl6]
+----
+my $data = slurp "datafile.txt";
+say $data;
+----
+
+==== spurt
+`spurt` digunakan untuk menulis data kedalam suatu file.
+
+[source,perl6]
+----
+my $databaru = "Nilai baru:
+Paul 10
+Paulie 9
+Paulo 11";
+
+spurt "datafilebaru.txt", $databaru;
+----
+
+Setelah menjalankan kode diatas, file baru dengan nama _datafilebaru.txt_ akan terbuat. File tersebut akan berisi nilai baru.
+
+=== Bekerja dengan file dan direktori
+Perl 6 dapat memberikan daftar isi dari sebuah direktori tanpa menggunakan perintah shell (contohnya seperti perintah `ls`).
+
+[source,perl6]
+----
+say dir;              # Mencetak daftar file dan direktori pada direktori yang sekarang
+say dir "/Dokumen";   # Mencetak daftar file dan direktori pada direktory yang ditentukan
+----
+
+Anda juga dapat membuat dan meghapus direktori.
+
+[source,perl6]
+----
+mkdir "folderbaru";
+rmdir "folderbaru";
+----
+
+`mkdir` membuat direktori baru. +
+`rmdir` menghapus direktori yang kosong dan mengembalikan error apabila direktori tidak kosong.
+
+Anda juga dapat memeriksa jika suatu file atau direktori ada atau tidak:
+
+Buat direktori baru `folder123` dan file kosong `script123.pl6`
+
+[source,perl6]
+----
+say "script123.pl6".IO.e;
+say "folder123".IO.e;
+
+say "script123.pl6".IO.d;
+say "folder123".IO.d;
+
+say "script123.pl6".IO.f;
+say "folder123".IO.f;
+----
+
+`IO.e` memeriksa jika file atau direktori ada. +
+`IO.f` memeriksa jika file path adalah file. +
+`IO.d` memeriksa jika file path adalah sebuah direktori.
+
+PERINGATAN: Pengguna Windows dapat menggunakan `/` atau `\\` untuk mendefinisikan direktori +
+`C:\\rakudo\\bin` +
+`C:/rakudo/bin` +
+
+CATATAN: Untuk informasi lanjut seputar I/O, kunjungi https://docs.perl6.org/type/IO
+
+== Subroutines
+=== Definisi
+*Subroutines* (biasa disebut *subs* atau *functions) bertujuan untuk mengemas dan menggunakan kembali suatu fungsi. +
+
+Sebuah definisi subroutine dimulai dengan kata kunci `sub`. 
+Perhatikan contoh dibawah:
+
+[source,perl6]
+----
+sub selamat-pagi {
+  say "Hello, selamat pagi !";
+}
+
+selamat-pagi;
+----
+
+Contoh diatas menunjukkan sebuah subroutine yang tidak memerlukan suatu input.
+
+=== Signature
+Subroutine dapat mengharuskan suatu input. Input tersebut disediakan oleh *arguments*.
+Suatu subroutine boleh tidak mendefinisikan atau mendefinisikan lebih dari satu *parameters*.
+Jumlah dan tipe dari parameter tersebut dinamakan *signature*.
+
+subroutine dibawah menerima argumen sebuah string.
+The below subroutine accepts a string argument.
+
+[source,perl6]
+----
+sub say-hello (Str $nama) {
+    say "Hello " ~ $nama ~ "!!!!"
+}
+say-hello "Paul";
+say-hello "Paula";
+----
+
+=== Multiple dispatch
+Memungkinkan untuk mendefinisi lebih dari satu subroutine dengan mengunakan nama yang sama tetapi signature yang berbeda.
+Ketika subroutine dipanggil, runtime akan memutuskan versi mana yang akan digunakan berdasarkan jumlah dan tipe dari argumen yang diterima.
+Tipe subroutine seperti ini memerlukan kata kunci `multi` bukan `sub`.
+
+[source,perl6]
+----
+multi selamat-pagi($nama) {
+    say "Selamat Pagi $nama";
+}
+multi selamat-pagi($nama, $gelar) {
+    say "Selamat Pagi $gelar $nama";
+}
+
+selamat-pagi "Johnnie";
+selamat-pagi "Laura","Nyonya";
+----
+
+=== Default and Optional Parameters
+Jika sebuah subroutine didefinisikan untuk menerima sebuah argumen dan dipanggil tanpa argumen, maka program tersebut akan gagal.
+
+Perl 6 menyediakan kemampuan untuk mendefinisi subroutine dengan :
+
+* Optional Parameters : argumen yang boleh ada atau tidak
+* Default Parameters :  apabila argumen tidak diberikan, maka nilai default yang akan dipakai sebagai acuan
+
+Optional parameters didefinisikan dengan menambah karakter `?` setelah penamaan parameter.
+
+[source,perl6]
+----
+sub say-hello($nama?) {
+  with $nama { say "Hello " ~ $nama }
+  else { say "Hello Manusia" }
+}
+say-hello;
+say-hello("Laura");
+----
+
+Jika tidak memberikan argumen, nilai default dapat didefinisikan. +
+Ini dapat dilakukan dengan memberikan nilai pada parameter.
+
+[source,perl6]
+----
+sub say-hello($nama="Matt") {
+  say "Hello " ~ $nama;
+}
+say-hello;
+say-hello("Laura");
+----
+
+=== Returning values
+Semua contoh subroutine yang kita lihat melakukan suatu fungsi -- misalnya menampilkan teks pada terminal.
+
+Terkadang, kita memanggil subroutine hanya untuk nilai yang dikembalikan *return value* agar kita dapat menggunakan nilai tersebut dialur program kita.
+
+Apabila *return value* tidak ditulis secara implisit maka statement atau ekspresi terakhir yang akan menjadi *return value*.
+
+[source,perl6]
+.Implicit return
+----
+sub kuadrat ($x) {
+  $x ** 2;
+}
+say "7 kuadrat = " ~ kuadrat(7);
+----
+
+Supaya lebih jelas, disarankan untuk secara eksplisit mendefinisikan nilai yang akan dikembalikan. 
+Ini dapat dilakukan dengan kata kunci `return`.
+[source,perl6]
+.Explicit return
+----
+sub kuadrat ($x) {
+  return $x ** 2;
+}
+say "7 kuadrat = " ~ kuadrat(7);
+----
+==== Restricting return values
+Disalah satu contoh diatas, kita melihat bagaimana argumen yang diterima dapat dibatasi untuk tipe tertentu.
+Begitupun dengan return values.
+
+Untuk membatasi return value ke tipe tertentu, dapat menggunakan `returns` atau tanda panah `-\->` di signature.
+
+[source,perl6]
+.Penggunaan returns trait
+----
+sub kuadrat ($x) returns Int {
+  return $x ** 2;
+}
+say "1.2 kuadrat = " ~ kuadrat(1.2);
+----
+
+[source,perl6]
+.Penggunaan tanda panah
+----
+sub kuadrat ($x --> Int) {
+  return $x ** 2;
+}
+say "1.2 kuadrat = " ~ kuadrat(1.2);
+----
+Jika return value tidak sesuai dengan tipe yang diharapkan, error akan terjadi.
+
+----
+Type check failed for return value; expected Int but got Rat (1.44)
+----
+
+[TIP]
+====
+Tipe constraints tidak hanya membatasi tipe dari return value tapi dapat juga mengontrol definisinya.
+
+Dicontoh sebelumnya, kita menspesifikasi jika return value harus sebuah `Int`.
+
+Kita dapat juga menentukan bahwa nilai `Int` yang dikembalikan harus terdefinisi atau tidak terdefinisi menggunakan signature berikut: +
+`--> Int:D` dan `--> Int:U`
+
+Sangat disarankan untuk menggunakan tipe constraints tersebut. +
+Dibawah adalah versi modifikasi dari contoh sebelumnya yang memakai `:D` untuk memaksa nilai `Int` yang dikembalikan harus terdefinisi.
+
+[source,perl6]
+----
+sub kuadrat ($x --> Int:D) {
+  return $x ** 2;
+}
+say "1.2 kuadrat = " ~ kuadrat(1.2);
+----
+====
+
+CATATAN: Untuk info lebih lanjut tentang subroutines dan functions, kunjungi https://docs.perl6.org/language/functions
+
+== Functional Programming
+https://id.wikipedia.org/wiki/Pemrograman_Fungsional
+Dichapter ini kita akan melihat beberapa fitur yang mengfasilitasi Functional Programming.
+
+=== Functions are first-class citizens
+Functions/subroutines adalah warga negara kelas satu:
+
+* dapat diberikan sebagai argumen
+
+* dapat dikembalikan dari fungsi lain
+
+* dapat diperuntukkan ke variabel
+
+Contohnya fungsi `map`. +
+`map` adalah  _higher order function_, ia dapat menerima fungsi lain sebagai argument.
+
+[source,perl6]
+.Script
+----
+my @array = <1 2 3 4 5>;
+sub kuadrat($x) {
+  $x ** 2
+}
+say map(&kuadrat,@array);
+----
+
+.Output
+----
+(1 4 9 16 25)
+----
+
+.Penjelasan
+Kita mendefinisikan sebuah subroutine bernama `kuadrat` yang menerima sebuah argumen dan mengalikannnya. +.
+Selanjuntnya, kita menggunakan `map`, dan memberikan 2 argumen, subroutine `kuadrat` dan sebuah array. +
+Hasilnya adalah sebuah daftar elemen kuadrat dari array.
+
+Perhatikan bahwa ketika memberikan subroutine sebagai argumen, kita perlu menggunakan `&` sebelum nama subroutine.
+
+=== Anonymous functions
+Fungsi anonim biasa disebut juga *lambda*. +
+Fungsi anonim tidak mempunyai nama.
+
+Mari kita tulis ulang contoh dari `map` dan memakai fungsi anonim
+[source,perl6]
+----
+my @array = <1 2 3 4 5>;
+say map(-> $x {$x ** 2},@array);
+----
+Perhatikan bahwa kita tidak mendeklarasikan subroutine kuadrat.
+Kita mendefinisikannya kedalam fungsi anonim sebagai `\-> $x {$x ** 2}`.
+
+Dalam istilah Perl 6, kita memanggilnya sebagai *pointy block*
+
+[source,perl6]
+.Sebuah pointy block dapat juga digunakan untuk menempatkan fungsi ke variabel:
+----
+my $kuadrat = -> $x {
+  $x ** 2
+}
+say $kuadrat(9);
+----
+
+=== Chaining
+Di Perl 6, methods dapat dirangkai, jadi anda tidak perlu menyerahkan hasil dari satu method ke method lainnya sebagai argumen.
+
+Sebagai ilustrasi: Dalam sebuah array, anda mungkin perlu mengembalikan nilai yang unik, mengurutkannya dari nilai terbesar sampai terkecil.
+
+Solusi dimana methods tidak dirangkai:
+
+[source,perl6]
+----
+my @array = <7 8 9 0 1 2 4 3 5 6 7 8 9>;
+my @final-array = reverse(sort(unique(@array)));
+say @final-array;
+----
+Disini, kita menggunakan `unique` on `@array`, memberikan hasilnya sebagai argumen dari `sort` dan kemudian memberikan hasil ke `reverse`.
+
+Sebaliknya, dengan method yang dirangkai, contoh diatas dapat ditulis sebagai berikut:
+
+[source,perl6]
+----
+my @array = <7 8 9 0 1 2 4 3 5 6 7 8 9>;
+my @final-array = @array.unique.sort.reverse;
+say @final-array;
+----
+
+Anda dapat melihat bahwa methods yang dirangkai lebih mudah untuk dilihat dimata. 
+
+=== Feed Operator
+*feed operator*, biasa disebut _pipe_ dibeberapa pemrograman fungsional, mengilustrasikan lebih lanjut method yang dirangkai.
+
+[source,perl6]
+.Forward Feed
+----
+my @array = <7 8 9 0 1 2 4 3 5 6 7 8 9>;
+@array ==> unique()
+       ==> sort()
+       ==> reverse()
+       ==> my @final-array;
+say @final-array;
+----
+
+.Penjelasan
+----
+Mulai dengan `@Array`   kemudian mengembalikan daftar elemen yang unik
+                        kemudian mengurutkannya
+                        kemudian urutannya dibalik
+                        kemudian simpah hasilnya di @final-array
+----
+Alur dari method dieksekusi dari atas kebawah.
+
+
+[source,perl6]
+.Backward Feed
+----
+my @array = <7 8 9 0 1 2 4 3 5 6 7 8 9>;
+my @final-array-v2 <== reverse()
+                   <== sort()
+                   <== unique()
+                   <== @array;
+say @final-array-v2;
+----
+
+.Penjelasan
+Kebalikan dari forward feed. +
+Alur dari method dieksekusi dari bawah keatas.
+
+=== Hyper operator
+*hyper operator* `>>.` akan mengeksekusi sebuah method kesemua elemen dan mengembalikan daftar hasilnya.
+[source,perl6]
+----
+my @array = <0 1 2 3 4 5 6 7 8 9 10>;
+sub genap($var) { $var %% 2 };
+
+say @array>>.is-prime;
+say @array>>.&genap;
+----
+
+Kita dapat menggunakan methods bawaan Perl 6 seperti `is-prime` yang mengecek apakah suatu bilangan merupakan bilangan prima atau bukan. +
+Kita dapat juga menggunakan subroutine custom. Didalam hal ini `&genap`.
+
+Hal ini sangat praktis mengingat kita tidak perlu menggunakan pengulangan `loop` untuk setiap nilai elemen.
+
+PERINGATAN: Perl 6 memberikan garansi bahwa urutan dari hasil adalah sama dengan daftar yang asli.
+            Tetapi tidak ada garansi bahwa Perl 6 akan mengeksekusi methods sesuai daftar urutan atau dalam thread yang sama. Jadi, hati-hati dengan methods yang dapat menimbulkan efek samping, seperti `say` atau `print`.
+
+=== Junctions
+A *junction* adalah superpoisi logis dari nilai-nilai.
+
+Contoh dibawah `1|2|3` adalah junction.
+[source,perl6]
+----
+my $var = 2;
+if $var == 1|2|3 {
+  say "Variabel adalah 1 or 2 or 3"
+}
+----
+Penggunaan junction biasanya memicu *autothreading*;
+
+Proses dilakukan dalam tiap elemen junction dan semua hasilnya digabungkan ke junction baru dan nilainya dikembalikan.
+
+=== Lazy Lists
+A *lazy list* adalah sebuah daftar yang dievaluasi secara malas. +
+Evaluasi yang malas menunda evaluasi dari sebuah eskpresi sampai diperlukan dan mencegah evaluasi yang berulang dengan menyimpan hasil ditabel pencarian.
+
+Berikut manfaatnya:
+
+* Kinerja bertambah dengan menghindari kalkulasi yang tidak perlu
+
+* Kemampuan untuk membangun struktur data tidak terbatas
+
+* Kemampuan untuk mendefinisikan alur kontrol
+
+Untuk membangun lazy listm kita menggunakan operator infix `...` +
+lazy list mempunyai *elemen awal*, *generator* and an *titik akhir*.
+
+[source,perl6]
+.Simple lazy list
+----
+my $lazylist = (1 ... 10);
+say $lazylist;
+----
+Elemen awal adalah 1 dan titik akhir adalah 10. Tidak ada generator yang didefinisikan, jadi defaultnya adalah (+1) +
+Dengan kata lain lazy list akan mengembalikan elemen (Jika dipanggil) sebagai berikut (1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+
+[source,perl6]
+.lazy list tak terbatas
+----
+my $lazylist = (1 ... Inf);
+say $lazylist;
+----
+Jika dipanggil maka akan mengembalikan nilai integer antara 1 dan tak terhingga.
+
+[source,perl6]
+.Lazy list menggunakan generator yang disimpulkan
+----
+my $lazylist = (0,2 ... 10);
+say $lazylist;
+----
+Elemen awal adalah 0 dan 2, titik akhir adalah 10.
+The initial elements are 0 and 2 and the endpoint is 10.
+Tidak ada generator yang didefinisikam tapi menggunakan elemen awal, Perl 6 akan menyimpulkan generator adalah (+2) +
+lazy list akan mengembalikan elemen (Jika dipanggil) sebagai berikut (0, 2, 4, 6, 8, 10)
+
+[source,perl6]
+.Lazy list menggunakan generator yang didefinisikan
+----
+my $lazylist = (0, { $_ + 3 } ... 12);
+say $lazylist;
+----
+Dicontoh ini, kita mendefinisikan secara eksplisit sebuah generator dalan `{ }` +
+lazy list akan mengembalikan elemen (Jika dipanggil) sebagai berikut (0, 3, 6, 9, 12)
+
+[PERINGATAN]
+====
+Ketika menggunakan generator secara eksplisit, titik akhir harus nilai yang dapat digenerate oleh generator. +
+Jika titik akhir contoh diatas diubah menjadi 10, maka program tidak akan berhenti.
+
+Alternatifnya anda dapat mengganti `0 ... 10` dengan `0 ...^ * > 10` +
+Dapat dibaca: Dari 0 sampai nilai pertama yang lebih dari 10 (tidak termasuk)
+
+[source,perl6]
+.Dicontoh ini generator tidak akan berhenti
+----
+my $lazylist = (0, { $_ + 3 } ... 10);
+say $lazylist;
+----
+
+[source,perl6]
+.Dicontoh ini generator bisa berhenti
+----
+my $lazylist = (0, { $_ + 3 } ...^ * > 10);
+say $lazylist;
+----
+====
+
+=== Closures
+Semua kode objek di Perl 6 adalah closures, artinya objek dapat direferensikan ke variabel dari lingkup luarnya.
+
+[source,perl6]
+----
+sub selamat-pagi {
+    my $nama = "Wiro Sableng";
+    sub salam {
+      say "Selamat pagi $nama";
+    };
+    return &salam;
+}
+my $ucapan = selamat-pagi;
+$ucapan();
+----
+
+Jika anda menjalankan kode diatas, maka akan ada output `Selamat pagi Wiro Sableng` diterminal. +
+Yang menarik dari contoh tersebut adalah subroutine `salam` yang ada didalam subroutine `selamat-pagi` dikembalikan nilainya sebelum dieksekusi.
+
+`$ucapan` telah menjadi sebuah *closure*.
+
+*closure* adalah objek spesial yang mengkombinasi 2 hal:
+
+* Sebuah subroutine
+
+* Environment dimana subroutine dibuat.
+
+Environment terdiri dari variabel lokal yang didalam lingkupnya, pada saat itulah clouser terbuat.
+Dicontoh diatas, `$ucapan` adalah closure yang menggabungkan subroutine `salam` dan string `Wiro Sableng`.
+
+Mari kita lihat lebih lanjut kecontoh yang lebih menarik.
+[source,perl6]
+----
+sub selamat($periode) {
+  return sub ($nama) {
+    return "Selamat $periode $nama"
+  }
+}
+my $pagi  = selamat("Pagi");
+my $malam = selamat("Malam");
+
+say $pagi("John");
+say $malam("Jane");
+----
+Dicontoh ini, kita mendefinisikan sebuah subroutine `selamat($periode)` yang menerima satu argumen `$periode`
+dan megembalikan subroutine baru. Subroutine tersebut menerima satu argumen `$nama` dan mengembalikan gabungan argumen.
+
+Dicontoh ini kita menggunakan subroutine `selamat` untuk membuat 2 subroutine baru, yang pertama mengeluarkan output `Selamat Pagi` 
+dan satu lagi `Selamat Malam`.
+
+`$pagi` dan `$malam` keduanya adalah closures. Mereka sama-sama memakai subroutine yang sama, tetapi berbeda environment. + 
+Pada environment `$pagi`, `$periode` nya `Pagi` sedangkan `$malam`, `$periode` nya `Malam`.
+
+== Classes & Objects
+Dichapter ini kita akan membahas pemrograman berbasis objek pada Perl 6.
+
+=== Pengenalan
+
+Pemrograman berbasis objek adalah paradigma yang secara luas diadopsi dijaman sekarang. +
+Sebuah objek adalah set dari variabel dan subroutine yang digabungkan bersama-sama. +
+Variabel disebut *attributes* dan subroutine disebut *methods*. +
+Atribut mendefinisikan *state* dan methods mendefinisikan *behavior* dari sebuah objek.
+
+Sebuah *class* adalah template untuk membuat objek.+
+
+Untuk dapat lebih memahami relasinya, lihat contoh dibawah:
+
+|===
+
+| Ada 4 orang didalam suatu ruangan | *objek* => 4 orang
+
+| ke 4 orang ini adalah manusia | *class* => Manusia
+
+| Masing-masing mempunyai nama, umur, jenis kelamin, kebangsaan yang berbeda | *attributes* => nama, umur, jenis kelamin, kebangsaan
+
+|===
+
+Dalam istilah pemprograman berbasis objek, objek adalah *instances* dari sebuah kelas.
+
+Perhatikan skrip dibawah:
+[source,perl6]
+----
+class Manusia {
+  has $.nama;
+  has $.umur;
+  has $.jenis_kelamin;
+  has $.kebangsaan;
+}
+
+my $john = Manusia.new(nama => 'John', umur => 23, jenis_kelamin => 'M', kebangsaan => 'American');
+say $john;
+----
+Kata kunci `class` digunakan untuk mendefinisikan sebuah class. +
+Kata kunci `has` digunakan untuk mendefiniskan atribut dari sebuah class. +
+Method `.new()` disebut *constructor*. method ini membuat objek sebagai instansi dari class yang dipanggil.
+
+Pada contoh diatas, variabel `$john` menampung referensi kepada instansi baru "Manusia" yang didefinisikan melalui `Manusia.new()`. + 
+Argumen-argumen yang dideklarasikan pada method `.new()` digunakan untuk memberikan nilai kepada atribut-atribut class tersebut.
+
+Sebuah kelas dapat diberikan ruang lingkup lexical menggunakan kata kunci `my`:
+[source,perl6]
+----
+my class Manusia {
+
+}
+----
+
+=== Enkapsulasi
+Enkapsulasi adalah konsep basis objek yang membundel suatu set data dan methods bersama-sama. +
+Data (atribut) didalam suatu objek bersifat *private*, dengan kata lain, hanya bisa diakses didalam lingkup objek tersebut saja. +
+Untuk mengakses atribut dari luar objek, kita menggunakan methods yang disebut *accessors*.
+
+Kedua skrip dibawah memhasilkan output yang sama.
+
+.Akses langsung ke variabel:
+[source,perl6]
+----
+my $var = 7;
+say $var;
+----
+
+.Enkapsulasi:
+[source,perl6]
+----
+my $var = 7;
+sub sayvar {
+  $var;
+}
+say sayvar;
+----
+Method `sayvar` adalah sebuah accessor. Ia memungkinkan akses nilai dari suatu variabel tanpa akses langsung.
+
+Enkapsulasi difasilitasi dengan penggunaan *twigils*. +
+Twigils adalah sekunder dari _sigils_. Posisinya berada diantara sigil dan nama atribut. +
+Kedua twigils ini dapat digunakan dalam class:
+
+* `!` digunakan untuk secara eksplisit mendeklarasikan sebuah atribut adalah private (hanya dapat diakses didalam lingkup objek).
+* `.` digunakan untuk secara otomatis menghasilkan sebuah accessor untuk atribut maka atribut tersebut dapat diakses diluar lingkup objek.
+
+Defaultnya, semua atribut adalah private tetapi disarankan untuk selalu menggunakan twigil `!`.
+
+Maka kita harusnya menulis ulang class diatas sebagai berikut:
+[source,perl6]
+----
+class Manusia {
+  has $!nama;
+  has $!umur;
+  has $!jenis_kelamin;
+  has $!kebangsaan;
+}
+
+my $john = Manusia.new(nama => 'John', umur => 23, jenis_kelamin => 'M', kebangsaan => 'American');
+say $john;
+----
+Tambahkan statement berikut dalam skrip diatas: `say $john.umur;` +
+Program akan mengembalikan error: `Method 'umur' not found for invocant of class 'Human'`
+Karena `$!umur` bersifat private dan hanya bisa digunakan didalam ruang lingkup objek.
+
+Sekarang coba ganti `has $!umur` menjadi `has $.umur` dan perhatikan hasil dari `say $john.umur;`
+
+=== Named vs. Positional Parameters
+Dalam Perl 6, semua class menurunkan default konstruktor `.new()`. +
+Konstruktor tersebut dapat digunakan untuk membuat objek dengan memberikan argumen. +
+Defaultnya, argumen pada konstruktor hanya dapat diberikan dengan *named arguments*. +
+Dalam contoh diatas, perhatikan argumen yang diberikan ke `.new()` didefinisikan dengan penamaan:
+
+* nama => 'John'
+
+* umur => 23
+
+
+Bagaimana jika kita tidak ingin memberikan nama dari tiap atribut setiap kali kita ingin mebuat objek? +
+Maka kita harus membuat konstruktor lain yang menerima *positional arguments*.
+
+[source,perl6]
+----
+class Manusia {
+  has $.nama;
+  has $.umur;
+  has $.jenis_kelamin;
+  has $.kebangsaan;
+  # konstruktor baru yang mengganti defaultnya(named parameter).
+  method new ($nama,$umur,$jenis_kelamin,$kebangsaan) {
+    self.bless(:$nama,:$umur,:$jenis_kelamin,:$kebangsaan);
+  }
+}
+
+my $john = Manusia.new('John',23,'M','American');
+say $john;
+----
+
+=== Methods
+
+==== Pengenalan
+Methods adalah subroutine dari sebuah objek. +
+Seperti layaknya subroutine, tujuannya adalah mengemas fungsi, dapat menerima argumen, mempunyai *signature* dan dapat didefinisikan sebagai *multi*.
+
+Methods didefinisikan dengan mengunakan kata kunci `method`. +
+Dalam keadaan normal, methods diperlukan untuk melancarkan suatu aksi kepada atribut objek.
+Ini merupakan konsep dari enkapsulasi. Atribut dari objek hanya dapat dimanipulasi dari dalam objek menggunakan methods.
+Diluar itu, hanya dapat berinteraksi dengan method suatu objek, dan tidak dapat akses langsung ke atribut.
+
+[source,perl6]
+----
+class Manusia {
+  has $.nama;
+  has $.umur;
+  has $.jenis-kelamin;
+  has $.kebangsaan;
+  has $.berhak;
+  method nilai-umur {
+      if self.umur < 21 {
+        $!berhak = 'Tidak'
+      } else {
+        $!berhak = 'Iya'
+      }
+  }
+}
+
+my $john = Manusia.new(nama => 'John', umur => 23, jenis-kelamin => 'Pria', Kebangsaan => 'Indonesian');
+$john.nilai-umur;
+say $john.berhak;
+----
+
+Ketika methods didefinisikan didalam suatu class, method dapat dipanggil pada objek tertentu menggunakan _tanda titik_: +
+_objek_*.*_method_ atau seperti contoh diatas: `$john.nilai-umur`
+
+Didalam definisi suatu method, jika kita perlu mereferensikan objek untuk memanggil method lainnya, kita dapat menggunakan kata kunci `self`. +
+
+Didalam definisi suatu method, jika kita mereferensikan atribut, kita menggunakan `!` bahkan bila atribut tersebut didefinisikan menggunakan `.` +
+Alasannya adalah karena twigil `.` mendeklarasikan atribut dengan `!` dan mengotomatis pembuatan accessor (method yang berfungsi untuk mengakses atribut).
+
+Dalam contoh diatas, `if self.umur < 21` dan `if $!umur < 21` akan mempunyai efek yang sama, walaupun secara teknis berbeda:
+
+* `self.age` memanggil `.age` method (accessor) +
+Dapat ditulis alternatifnya dengan `$.age`
+* `$!age` mengakses langsung ke variabel
+
+==== Private methods
+Method normal dapat dipanggil dari luar class.
+
+*Private methods* adalah methods yang hanya dapat dipanggil dari dalam class. +
+Contohnya suatu method yang memanggil method lainnya untuk fungsi yang spesifik.
+Method yang dapat dipanggil dari luar class adalah publik sedangkan yang direferensikan harus tetap private.
+Kita tidak menginginkan pengguna untuk mengakses langsung, maka kita mendeklarasikannya sebagai private.
+
+Pendeklarasian method private harus menggunakan twigil `!` sebelum penamaannya. +
+Method private diakses dengan `!` bukan `.`
+
+[source,perl6]
+----
+method !ini-private {
+  # kode kamu disini
+}
+
+method ini-public {
+  self!ini-private;
+  # kode tambahan disini
+}
+----
+
+=== Class Attributes
+
+*Class attributes* adalah atribut yang dipunyai oleh class itu sendiri bukan ke objek. +
+Atribut tersebut dapat diinisialisasi pada saat pendefinisian. +
+*Class attributes* dideklarasikan dengan kata kunci `my` bukan `has`. +
+Mereka diakses dalam class itu sendiri, tidak dilevel objek.
+
+[source,perl6]
+----
+class Manusia {
+  has $.nama;
+  my $.counter = 0;
+  method new($nama) {
+    Manusia.counter++;
+    self.bless(:$nama);
+  }
+}
+my $a = Manusia.new('a');
+my $b = Manusia.new('b');
+
+say Manusia.counter;
+----
+
+=== Tipe Akses
+Sampai tahap ini, semua contoh yang kita lihat menggunakan accessor untuk mendapatkan informasi dari atribut objek.
+
+Bagaimana jika kita butuh untuk memodifikasi nilai dari sebuah atribut? +
+Kita harus memberikan label _read/write_ menggunakan kata kunci `is rw`
+[source,perl6]
+----
+class Manusia {
+  has $.nama;
+  has $.umur is rw;
+}
+my $john = Manusia.new(nama => 'John', umur => 21);
+say $john.umur;
+
+$john.umur = 23;
+say $john.umur;
+----
+Defaultnya, semua atribut dideklarasi sebagai _read only_ tetapi anda dapat secara eksplisit menggunakan kata kunci `is readonly`
+
+=== Inheritance
+==== Pengenalan
+*Inheritance* adalah salah satu konsep dari pemrograman berbasis objek.
+
+Pada saat mendefinisikan class, kita akan sadar bahwa beberapa atribut/methods biasa diperlukan pada beberapa class yang berbeda. +
+Apakah kita harus menduplikasi kode tersebut? +
+Tidak! Kita harus menggunakan *inheritance*
+
+Apabila kita ingin mendefiniskan 2 class, class Manusia dan Karyawan. +
+Manusia mempuyai 2 atribut: nama dan umur. +
+Karyawan mempunyai 4 atribut: nama, umur, perusahaan dan gaji
+
+Seseorang akan tergoda untuk mendefinisikan class seperti ini:
+[source,perl6]
+----
+class Manusia {
+  has $.nama;
+  has $.umur;
+}
+
+class Karyawan {
+  has $.nama;
+  has $.umur;
+  has $.perusahaan;
+  has $.gaji;
+}
+----
+Secara teknis benar, tetapi secara konsep tidak baik.
+
+Cara yang lebih baik adalah:
+[source,perl6]
+----
+class Manusia {
+  has $.nama;
+  has $.umur;
+}
+
+class Karyawan is Manusia {
+  has $.perusahaan;
+  has $.gaji;
+}
+----
+Kata kunci `is` mendefinisikan inheritance(warisan). +
+Dalam istilah basis objek, Karyawan adalah *child* dari Manusia dan Manusia adalah *parent* dari Karyawan.
+
+Semua child class mewarisi semua atribut dan methods dari parent class, jadi tidak perlu mendefinisi ulang.
+
+==== Overriding
+Ada sejumlah kasus dimana kita memerlukan method pada child class berbeda dengan method yang diwarisinya. +
+Untuk ini, kita mendefinisi ulang method tersebut dalam child class. +
+Konsep ini dinamakan *overriding*.
+
+Dalam contoh dibawah, method `perkenalkan-dirimu` diwariskan oleh class Karyawan.
+
+[source,perl6]
+----
+class Manusia {
+  has $.nama;
+  has $.umur;
+  method perkenalkan-dirimu {
+    say 'Hi, saya manusia, nama saya adalah ' ~ self.nama;
+  }
+}
+
+class Karyawan is Manusia {
+  has $.perusahaan;
+  has $.gaji;
+}
+
+my $john = Manusia.new(nama =>'John', umur => 23,);
+my $jane = Karyawan.new(nama =>'Jane', umur => 25, perusahaan => 'Acme', gaji => 4000);
+
+$john.perkenalkan-dirimu;
+$jane.perkenalkan-dirimu;
+----
+Overriding bekerja seperti ini:
+
+[source,perl6]
+----
+class Manusia {
+  has $.nama;
+  has $.umur;
+  method perkenalkan-dirimu {
+    say 'Hi, saya manusia, nama saya adalah ' ~ self.nama;
+  }
+}
+
+class Karyawan is Manusia {
+  has $.perusahaan;
+  has $.gaji;
+  method perkenalkan-dirimu {
+    say 'Hi saya seorang karyawan, nama saya adalah ' ~ self.nama ~ ' dan saya bekerja di: ' ~ self.perusahaan;
+  }
+
+}
+
+my $john = Manusia.new(nama =>'John',umur => 23,);
+my $jane = Karyawan.new(nama =>'Jane',umur => 25,perusahaan => 'Acme',gaji => 4000);
+
+$john.perkenalkan-dirimu;
+$jane.perkenalkan-dirimu;
+----
+
+Tergantung dari objek dari kelas yang mana, method akan dipanggil.
+
+==== Submethods
+*Submethods* adalah suatu tipe dari method yang tidak diwariskan ke child class. +
+Hanya bisa diakses dari dalam class dimana dideklarasikan. +
+Didefinisikan dengan kata kunci `submethod`.
+
+=== Multiple Inheritance (pewarisan ganda atau lebih dari satu)
+Multiple inheritance diperbolehkan pada Perl 6. Sebuah class dapat mewarisi dari satu atau lebih class.
+
+[source,perl6]
+----
+class grafik-batang {
+  has Int @.nilai-batang;
+  method plot {
+    say @.nilai-batang;
+  }
+}
+
+class grafik-garis {
+  has Int @.nilai-garis;
+  method plot {
+    say @.nilai-garis;
+  }
+}
+
+class grafik-gabungan is grafik-batang is grafik-garis {
+}
+
+my $penjualan-aktual    = grafik-batang.new(nilai-batang => [10,9,11,8,7,10]);
+my $perkiraan-penjualan = grafik-garis.new(nilai-garis => [9,8,10,7,6,9]);
+
+my $aktual-vs-perkiraan = grafik-gabungan.new(nilai-batang => [10,9,11,8,7,10],
+                                         nilai-garis => [9,8,10,7,6,9]);
+say "Penjualan aktual:";
+$penjualan-aktual.plot;
+say "Perkiraan penjualan:";
+$perkiraan-penjualan.plot;
+say "Aktual vs Perkiraan:";
+$aktual-vs-perkiraan.plot;
+----
+
+.`Output`
+----
+Penjualan aktual:
+[10 9 11 8 7 10]
+Perkiraan penjualan:
+[9 8 10 7 6 9]
+Aktual vs Perkiraan:
+[10 9 11 8 7 10]
+----
+
+.Penjelasan
+Class `grafik-gabungan` dapat menampung 2 class, grafik-batang dan grafik-garis. +
+Perhatikan bahwa method `plot` yang dipanggil dalam class `grafik-gabungan` hanya menampilkan 1 plot. +
+Kenapa ini bisa terjadi? +
+`grafik-gabungan` mewarisi class `grafik-garis` dan `grafik-batang`, dan keduanya mempunyai method `plot`.
+Ketika kita memanggil method tersebut di `grafik-gabungan`, Perl 6 akan mecoba menyelesaikan konflik dengan hanya memanggil salah 1 dari method yang diwarisi.
+
+.Koreksi
+Agar dapat menampilkan kedua plot dengan benar, kita menggunakan konsep override di `grafik-gabungan`.
+In order to behave correctly, we should have overridden the method `plot` in the `combo-chart`.
+
+[source,perl6]
+----
+class grafik-batang {
+  has Int @.nilai-batang;
+  method plot {
+    say @.nilai-batang;
+  }
+}
+
+class grafik-garis {
+  has Int @.nilai-garis;
+  method plot {
+    say @.nilai-garis;
+  }
+}
+
+class grafik-gabungan is grafik-batang is grafik-garis {
+  method plot {
+    say @.nilai-batang;
+    say @.nilai-garis;;
+  }
+}
+
+my $penjualan-aktual    = grafik-batang.new(nilai-batang => [10,9,11,8,7,10]);
+my $perkiraan-penjualan = grafik-garis.new(nilai-garis => [9,8,10,7,6,9]);
+
+my $aktual-vs-perkiraan = grafik-gabungan.new(nilai-batang => [10,9,11,8,7,10],
+                                         nilai-garis => [9,8,10,7,6,9]);
+say "Penjualan aktual:";
+$penjualan-aktual.plot;
+say "Perkiraan penjualan:";
+$perkiraan-penjualan.plot;
+say "Aktual vs Perkiraan:";
+$aktual-vs-perkiraan.plot;
+----
+
+.`Output`
+----
+Penjualan aktual:
+[10 9 11 8 7 10]
+Perkiraan penjualan:
+[9 8 10 7 6 9]
+Aktual vs Perkiraan:
+[10 9 11 8 7 10]
+[9 8 10 7 6 9]
+----
+
+=== Roles
+*Roles* sama dengan class dalam hal mereka terdiri dari koleksi atribut dan method.
+
+Roles dideklarasikan dengan kata kunci `role`. Class yang ingin mengimplementasi role dapat menggunakan kata kunci `does`.
+
+.Mari kita tulis ulang contoh multiple inheritance menggunakan roles:
+[source,perl6]
+----
+role grafik-batang {
+  has Int @.nilai-batang;
+  method plot {
+    say @.nilai-batang;
+  }
+}
+
+role grafik-garis {
+  has Int @.nilai-garis;
+  method plot {
+    say @.nilai-garis;
+  }
+}
+
+class grafik-gabungan does grafik-batang does grafik-garis {
+  method plot {
+    say @.nilai-batang;
+    say @.nilai-garis;;
+  }
+}
+
+my $penjualan-aktual    = grafik-batang.new(nilai-batang => [10,9,11,8,7,10]);
+my $perkiraan-penjualan = grafik-garis.new(nilai-garis => [9,8,10,7,6,9]);
+
+my $aktual-vs-perkiraan = grafik-gabungan.new(nilai-batang => [10,9,11,8,7,10],
+                                         nilai-garis => [9,8,10,7,6,9]);
+say "Penjualan aktual:";
+$penjualan-aktual.plot;
+say "Perkiraan penjualan:";
+$perkiraan-penjualan.plot;
+say "Aktual vs Perkiraan:";
+$aktual-vs-perkiraan.plot;
+----
+
+Jalankan skrip diatas dan anda dapat melihat kalau hasilnya sama.
+
+Jadi, apa bedanya dengan class, kegunaannya apa ? +
+Untuk menjawabnya, modifikasi skrip yang pertama untuk menunjukkan multiple inheritance,
+skrip yang dimana kita lupa untuk override method `plot`.
+
+[source,perl6]
+----
+role grafik-batang {
+  has Int @.nilai-batang;
+  method plot {
+    say @.nilai-batang;
+  }
+}
+
+role grafik-garis {
+  has Int @.nilai-garis;
+  method plot {
+    say @.nilai-garis;
+  }
+}
+
+class grafik-gabungan does grafik-batang does grafik-garis {
+}
+
+my $penjualan-aktual    = grafik-batang.new(nilai-batang => [10,9,11,8,7,10]);
+my $perkiraan-penjualan = grafik-garis.new(nilai-garis => [9,8,10,7,6,9]);
+
+my $aktual-vs-perkiraan = grafik-gabungan.new(nilai-batang => [10,9,11,8,7,10],
+                                         nilai-garis => [9,8,10,7,6,9]);
+say "Penjualan aktual:";
+$penjualan-aktual.plot;
+say "Perkiraan penjualan:";
+$perkiraan-penjualan.plot;
+say "Aktual vs Perkiraan:";
+$aktual-vs-perkiraan.plot;
+----
+
+.`Output`
+----
+===SORRY!===
+Method 'plot' must be resolved by class grafik-gabungan because it exists in multiple roles (grafik-garis, grafik-batang)
+----
+
+.Penjelasan
+Jika lebih dari satu role diwariskan dalam class yang sama dan ada konflik, error pada waktu compile akan terjadi. +
+Pendekatan ini lebih aman dari multiple inheritance dimana konflik tidak dianggap error dan diproses pada saat runtime.
+
+Roles akan memperingatkan jika ada konflik.
+
+=== Introspection
+*Introspection* adalah proses memperoleh informasi tentang suatu objek seperti tipenya, atribut atau method.
+
+[source,perl6]
+----
+class Manusia {
+  has Str $.nama;
+  has Int $.umur;
+  method perkenalkan-dirimu {
+    say 'Hi saya manusia, nama saya adalah ' ~ self.nama;
+  }
+}
+
+class Karyawan is Manusia {
+  has Str $.perusahaan;
+  has Int $.gaji;
+  method perkenalkan-dirimu {
+    say 'Hi Saya karyawan, nama saya adalah ' ~ self.nama ~ ' dan saya bekerja di: ' ~ self.perusahaan;
+  }
+}
+
+my $john = Manusia.new(nama =>'John', umur => 23,);
+my $jane = Karyawan.new(nama =>'Jane', umur => 25, perusahaan => 'Acme', gaji => 4000);
+
+say $john.WHAT;
+say $jane.WHAT;
+say $john.^attributes;
+say $jane.^attributes;
+say $john.^methods;
+say $jane.^methods;
+say $jane.^parents;
+if $jane ~~ Human {say 'Jane is a Human'};
+----
+Introspection difasilitasi dengan:
+
+* `.WHAT` -- mengembalikan class dimana objek dibuat
+
+* `.^attributes` -- mengembalikan semua atribut dari suatu objek
+
+* `.^methods` -- mengembalikan semua method yang dapat dipanggil pada objek
+
+* `.^parents` -- mengembalikan parent class dari suatu objek
+
+* `~~` disebut operator smart-match.
+Ia mengevaluasi ke _True_ bila objek dibuat dari class yang dibandingkan atau apapun yang diwariskan.
+
+[CATATAN]
+--
+Untuk informasi lebih lanjut Pemrograman berbasis objek, kunjungi:
+
+* https://docs.perl6.org/language/classtut
+* https://docs.perl6.org/language/objects
+--
+== Exception Handling
+
+=== Catching Exceptions
+*Exceptions* adalah perilaku khusus yang terjadi pada saat runtime ketika sesuatu ada yang salah. +
+
+Skrip dibawah berjalan dengan baik:
+
+[source,perl6]
+----
+my Str $nama;
+$nama = "Joanna";
+say "Hello " ~ $nama;
+say "Apa kabar?"
+----
+
+.`Output`
+----
+Hello Joanna
+Apa kabar?
+----
+
+Sekarang perhatikan skrip yang mengeluarkan eksepsi:
+
+[source,perl6]
+----
+my Str $nama;
+$nama = 123;
+say "Hello " ~ $nama;
+say "Apa kabar?"
+----
+
+.`Output`
+----
+Type check failed in assignment to $nama; expected Str but got Int
+   in block <unit> at exceptions.pl6:2
+----
+
+Perhatikan pada saat error terjadi (dalam hal ini, memberikan bilangan angka ke variabel string) program akan terhenti dan baris kode lainnya tidak akan dievaluasi.
+
+*Exception handling* adalah proses menangkap eksepsi yang dilemparkan agar skrip dapat lanjut bekerja.
+
+[source,perl6]
+----
+my Str $nama;
+try {
+  $nama = 123;
+  say "Hello " ~ $nama;
+  CATCH {
+    default {
+      say "Bisa diulangi lagi nama anda, kami tidak dapat menemukannya didaftar.";
+    }
+  }
+}
+say "Apa kabar?";
+----
+
+.`Output`
+----
+Bisa diulangi lagi nama anda, kami tidak dapat menemukannya didaftar.
+Apa kabar?
+----
+
+Exception handling dilakukan dengan menggunakan blok `try-catch`.
+
+[source,perl6]
+----
+try {
+  # kode disini
+  # jika ada apapun yang salah, skrip akan mengeksusi dibawah blok CATCH
+  # jika berjalan normal, blok CATCH akan diabaikan
+  CATCH {
+    default {
+      # kode disini akan dievaluasi hanya jika ada eksepsi
+    }
+  }
+}
+----
+
+Blok `CATCH` dapat didefinisikan seperti blok `given`.
+Ini berarti kita dapat menangkap dan mengatur banyak tipe eksepsi.
+
+[source,perl6]
+----
+try {
+  # kode disini
+  # jika ada apapun yang salah, skrip akan mengeksusi dibawah blok CATCH
+  # jika berjalan normal, blok CATCH akan diabaikan
+  CATCH {
+    when X::AdHoc   { # lakukan sesuatu jika eksepsi tipe X::AdHoc terjadi }
+    when X::IO      { # lakukan sesuatu jika eksepsi tipe X::IO terjadi }
+    when X::OS      { # lakukan sesuatu jika eksepsi tipe X::OS terjadi }
+    default         { # lakukan sesuatu jika tidak termasuk tipe diatas }
+  }
+}
+----
+
+=== Throwing Exceptions
+Perl 6 mengijinkan anda untuk secara eksplisit melempar eksespsi. +
+Berikut 2 tipenya:
+
+* ad-hoc exceptions
+
+* typed exceptions
+
+[source,perl6]
+.ad-hoc
+----
+my Int $umur = 21;
+die "Error !";
+----
+
+[source,perl6]
+.typed
+----
+my Int $umur = 21;
+X::AdHoc.new(payload => 'Error !').throw;
+----
+
+Ad-hoc exceptions dilemparkan menggunakan subroutine `die` diikuti pesan eksepsi.
+
+Typed exceptions adalah objek, makanya menggunakan konstruktor `.new()` +
+Semua typed exceptions merupakan turunan dari class `X`, dibawah ada beberapa contoh: +
+`X::AdHoc` adalah tipe eksepsi yang paling sederhana +
+`X::IO` merupakan eksepsi terkait error IO +
+`X::OS` merupakan eksepsi terkait error OS +
+`X::Str::Numeric` meruapakan eksepsi terkait merubah tipe data string ke numerik
+
+CATATAN: Untuk tipe eksepsi yang lebih lengkap dan method terkait, kunjungi https://docs.perl6.org/type-exceptions.html
+
+
+== Regular Expressions
+A regular expression, atau _regex_, adalah urutan karakter yang digunakan untuk pencocokan pola. +
+Pikirkan sebagai pola.
+
+[source,perl6]
+----
+if 'keterangan' ~~ m/ terang / {
+    say "keterangan mengandung kata terang";
+}
+----
+
+Pada contoh ini, operator `~~` digunakan untuk mengecek apabila sebuah string (keterangan) terdapat kata (terang). +
+'keterangan' dicocokkan dengan regex `m/ terang /`
+
+=== Regex definition
+
+Sebuah regular expression dapat didefinisikan seperti ini:
+
+* `/terang/`
+
+* `m/terang/`
+
+* `rx/terang/`
+
+Kecuali dispesifikasi secara eksplisit, spasi akan diabaikan; `m/terang/` dan `m/ terang /` adalah sama.
+
+=== Matching characters
+Karakter Alfanumerik dan garis bawah dituliskan seperti apa adanya. +
+Karakter lainnya harus menggunakan `\` atau dikelilingi oleh kutipan `''`.
+
+[source,perl6]
+.Backslash
+----
+if 'Suhu: 13' ~~ m/ \: / {
+    say "String yang diberikan mengandung titik dua :";
+}
+----
+
+[source,perl6]
+.Single quote (kutipan satu)
+----
+if 'Umur = 13' ~~ m/ '=' / {
+    say "String yang diberikan mengandung karakter sama dengan = ";
+}
+----
+
+[source,perl6]
+.Double quotes (kutipan ganda)
+----
+if 'nama@company.com' ~~ m/ "@" / {
+    say "Emailnya valid karena mengandung karakter @";
+}
+----
+
+=== Matching categories of characters
+Karakter dapat diklasifikasi kedalam kategori dan kita dapat mencocokkannya. +
+Kita juga dapat mencocokkan dengan kebalikan dari kategori tersebut :
+
+|===
+
+| *Kategori* | *Regex* | *Kebalikan* | *Regex*
+
+| Karakter kata (huruf, angka atau garis bawah) | \w | semua karakter kecuali karakter kata | \W
+
+| Angka | \d | Semua karakter kecuali angka | \D
+
+| Spasi | \s | Semua karakter kecuali spasi | \S
+
+| Spasi horisontal | \h | Semua karakter kecuali spasi horisontal | \H
+
+| Spasi vertikal | \v | Semua karakter kecuali spasi vertikal | \V
+
+| Tab | \t | Semua karakter kecuali Tab | \T
+
+| Baris baru | \n | Semua karakter kecuali baris baru | \N
+
+|===
+
+[source,perl6]
+----
+if "John123" ~~ / \d / {
+  say "Ini bukan nama yang valid, angka tidak diperbolehkan";
+} else {
+  say "Ini nama yang valid"
+}
+if "John-Doe" ~~ / \s / {
+  say "String ini mengandung spasi";
+} else {
+  say "String ini tidak mengandung spasi"
+}
+----
+
+=== Unicode properties
+
+Mencocokkan dengan kategori dari karakter, seperti pada seksi sebelumnya, sangat memudahkan. +
+Pendekatan yang lebih sistematis adalah menggunakan properti Unicode. +
+Metode ini memungkinkan untuk mencocokkan kategori dari karakter didalam dan diluar standar ASCII. +
+Properti Unicode tertutup dalam `<: >`
+
+[source,perl6]
+----
+if "Angka Devanagari १२३" ~~ / <:N> / {
+  say "Mengandung angka";
+} else {
+  say "Tidak mengandung angka"
+}
+if "Привет, Иван." ~~ / <:Lu> / {
+  say "Mengandung huruf besar";
+} else {
+  say "Tidak mengandung huruf besar"
+}
+if "John-Doe" ~~ / <:Pd> / {
+  say "mengandung tanda garis";
+} else {
+  say "Tidak mengandung tanda garis"
+}
+----
+
+=== Wildcards
+Wildcards dapat juga digunakan dalam sebuah regex.
+
+Tanda titik `.` berarti setiap karakter tunggal.
+
+[source,perl6]
+----
+if 'abc' ~~ m/ a.c / {
+    say "Cocok";
+}
+if 'a2c' ~~ m/ a.c / {
+    say "Cocok";
+}
+if 'ac' ~~ m/ a.c / {
+    say "Cocok";
+} else {
+    say "Tidak Cocok";
+}
+----
+
+=== Quantifiers (pembilang)
+Quantifiers datang setelah karakter dan digunakan untuk berapa kali kita menginginkan pengulangannya.
+
+Tanda tanya `?` berarti nol atau satu kali.
+
+[source,perl6]
+----
+if 'ac' ~~ m/ a?c / {
+    say "Cocok";
+} else {
+    say "Tidak Cocok";
+}
+if 'c' ~~ m/ a?c / {
+    say "Cocok";
+} else {
+    say "Tidak Cocok";
+}
+----
+
+Karakter `*` berarti nol atau beberapa kali.
+
+[source,perl6]
+----
+if 'az' ~~ m/ a*z / {
+    say "Cocok";
+} else {
+    say "Tidak Cocok";
+}
+if 'aaz' ~~ m/ a*z / {
+    say "Cocok";
+} else {
+    say "Tidak Cocok";
+}
+if 'aaaaaaaaaaz' ~~ m/ a*z / {
+    say "Cocok";
+} else {
+    say "Tidak Cocok";
+}
+if 'z' ~~ m/ a*z / {
+    say "Cocok";
+} else {
+    say "Tidak Cocok";
+}
+----
+
+Tanda `+` berarti paling tidak satu kali.
+
+[source,perl6]
+----
+if 'az' ~~ m/ a+z / {
+    say "Cocok";
+} else {
+    say "Tidak Cocok";
+}
+if 'aaz' ~~ m/ a+z / {
+    say "Cocok";
+} else {
+    say "Tidak cocok";
+}
+if 'aaaaaaaaaaz' ~~ m/ a+z / {
+    say "Cocok";
+} else {
+    say "Tidak Cocok";
+}
+if 'z' ~~ m/ a+z / {
+    say "Cocok";
+} else {
+    say "Tidak Cocok";
+}
+----
+
+=== Match Results (Memcocokkan hasil)
+Setiap kalo proses pencocokan dengan regex berhasil,
+hasil string yang cocok disimpan dalam variabel spesial `$/`
+
+[source,perl6]
+.Script
+----
+if 'Rakudo adalah Perl 6 compiler' ~~ m/:s Perl 6/ {
+    say "Hasil yang cocok adalah: " ~ $/;
+    say "String sebelum hasil cocok adalah: " ~ $/.prematch;
+    say "String setelah hasil cocok adalah: " ~ $/.postmatch;
+    say "Hasil string yang cocok mulai pada posisi: " ~ $/.from;
+    say "Hasil string yang cocok berakhir pada posisi: " ~ $/.to;
+}
+----
+
+.Output
+----
+Hasil yang cocok adalah: Perl 6
+String sebelum hasil cocok adalah: Rakudo adalah 
+String setelah hasil cocok adalah:  compiler
+Hasil string yang cocok mulai pada posisi: 14
+Hasil string yang cocok berakhir pada posisi: 20
+----
+
+.Penjelasan
+`$/` mengembalikan _Match Object_ (string hasil yang cocok) +
+Method berikut dapat dipanggil pada _Match Object_: +
+`.prematch` mengembalikan string sebelum hasil yang cocok. +
+`.postmatch` mengembalikan string setelah hasil yang cocok. +
+`.from` mengembalikan posisi pertama pada hasil yang cocok. +
+`.to` mengembalikan posisi terakhir pada hasil yang cocok. +
+
+TIP: Defaultnya, spasi pada regex diabaikan. +
+Jika kita ingin mencocokkan dengan suatu regex yang mengandung spasi, kita harus secara eksplisit menyatakannya. +
+`:s` dalam regex `m/:s Perl 6/` memaksa spasi untuk tidak diabaikan. +
+Alternatifnya, kita dapat menulis regex dengan cara `m/ Perl\s6 /` dan menggunakan `\s` yang merepresentasikan sebuah spasi. +
+Jika sebuah regex mengandung lebih dari satu spasi, penggunaan `:s` lebih baik dibanding `\s` untuk setiap spasi.
+
+=== Contoh
+Mari kita cek jika suatu email itu valid atau tidak. +
+Untuk contoh ini kita akan berasumsi sebuah email yang valid mempunyai format sebagai berikut: +
+nama depan [dot] nama belakang [at] perusahaan [dot] (com/org/net)
+
+PERINGATAN: regex yang digunakan dicontoh ini untuk validasi email tidak terlalu akurat. +
+Hanya bertujuan sebagai demonstrasi fungsi regex pada Perl 6. +
+Jangan gunakan dalam lingkungan produksi.
+
+[source,perl6]
+.Script
+----
+my $email = 'john.doe@perl6.org';
+my $regex = / <:L>+\.<:L>+\@<:L+:N>+\.<:L>+ /;
+
+if $email ~~ $regex {
+  say $/ ~ " adalah email yang valid";
+} else {
+  say "ini bukan email yang valid";
+}
+----
+
+.Output
+`john.doe@perl6.org adalah email yang valid`
+
+.Penjelasan
+`<:L>` mencocokkan dengan sebuah huruf +
+`<:L>+` mencocokkan dengan satu atau lebih huruf +
+`\.` mencocokkan dengan satu karakter [dot] +
+`\@` mencocokkan dengan satu karakter [at] +
+`<:L+:N>` mencocokkan sebuah huruf atau sebuah angka +
+`<:L+:N>+` mencocokkan satu atau lebih huruf atau angka +
+
+Regex dapat diuraikan sebagai berikut:
+
+* *nama depan* `<:L>+`
+
+* *[dot]* `\.`
+
+* *nama belakang* `<:L>+`
+
+* *[at]* `\@`
+
+* *nama perusahaan* `<:L+:N>+`
+
+* *[dot]* `\.`
+
+* *com/org/net* `<:L>+`
+
+[source,perl6]
+.Alternatively, sebuah regex dapat dipecah menjadi lebih dari satu penamaan regex
+----
+my $email = 'john.doe@perl6.org';
+my regex banyak-huruf { <:L>+ };
+my regex dot { \. };
+my regex at { \@ };
+my regex banyak-huruf-angka { <:L+:N>+ };
+
+if $email ~~ / <banyak-huruf> <dot> <banyak-huruf> <at> <banyak-huruf-angka> <dot> <banyak-huruf> / {
+  say $/ ~ " adalah email yang valid";
+} else {
+  say "Ini bukan email yang valid";
+}
+----
+
+Regex yang mempunyai nama didefinisikan dengan sintaks berikut `my regex nama-regex { definisi regex }` +
+Regex yang mempunyai nama dapat dipanggil menggunakan sintaks berikut: `<nama-regex>`
+
+CATATAN: Untuk info lebih lanjut tentang regex, kunjungi https://docs.perl6.org/language/regexes
+
+== Perl 6 Modules
+Perl 6 adalah bahasa pemrograman bertujuan umum. Ia dapat digunakan untuk mengatasi banyak kerjaan termasuk:
+Manipuasi teks, grafis, web, basis data, protokol jaringan, dsb.
+
+Usabilitas adalah konsep yang sangat penting dimana programer tidak perlu mengulang kembali tiap kali mereka ingin melakukan suatu tugas.
+
+Perl 6 mengijinkan pembuatan dan redistribusi dari *modules*. Tiap modul adalah sebuah kemasan dari bermacam fungsi yang dapat dipakai kembali.
+
+_Zef_ adalah alat manajemen modul yang datang dengan Rakudo Star.
+
+Untuk menginstall sebuah modul yang spesifik, ketikkan perintah dibawah pada terminal anda:
+
+`zef install "nama modul"`
+
+CATATAN: Direktori Modul Perl 6 dapat ditemukan di: https://modules.perl6.org/
+
+=== Menggunakan Modul
+MD5 adalah fungsi hash kriptografis yang memproduksi nilah hash 128-bit. +
+MD5 mempunyai kegunaan yang banyak, termasuk mengenkripsi password dalam basis data.
+Ketika ada registrasi user baru, keterangan infonya tidak disimpan dalam teks polos tetapi _hashed_ (terenkripsi).
+Alasannya adalah jika basis data diretas, penyerang tidak dapat mengetahui kata sandi yang disimpan.
+
+Untungnya, anda tidak perlu mengimplementasi algoritma MD5 sendiri; Ada modul Perl 6 yang sudah diimplementasikan.
+
+Mari kita install: +
+`zef install Digest::MD5`
+
+Sekarang, jalankan skrip dibawah:
+[source,perl6]
+----
+use Digest::MD5;
+my $password = "password123";
+my $hashed-password = Digest::MD5.new.md5_hex($password);
+
+say $hashed-password;
+----
+Untuk dapat menjalankan fungsi `md5_hex()` yang membuat hashes, kita perlu untuk memuat modul yang dibutuhkan. +
+Kata kunci `use` memuat modul agar dapat digunakan didalam skrip.
+
+PERINGATAN: Dalam prakternya, MD5 Hash sendiri tidak cukup, karena dapat diserang dengan metode brute force memakai kumpulan kata. +
+Idealnya harus dikombinasikan dengan sebuah salt, tautan link:https://en.wikipedia.org/wiki/Salt_(cryptography)[https://en.wikipedia.org/wiki/Salt_(cryptography)].
+
+== Unicode
+
+Unicode adalah standar encoding dan mewakili teks untuk sistem penulisan di dunia. +
+UTF-8 adalah karakter encoding yang mampu untuk menyandi semua kemungkinan karakter dalam Unicode.
+
+Karakter didefinisikan dengan sebuah: +
+*Grapheme*: representasi visual. +
+*Code point*: sebuah angka yang diberikan kekarakter.
+
+=== Menggunakan Unicode
+
+.Mari kita lihat bagaimana kita dapat mengeluarkan karakter menggunakan Unicode
+[source,perl6]
+----
+say "a";
+say "\x0061";
+say "\c[LATIN SMALL LETTER A]";
+----
+3 baris diatas mendemonstrasikan berbagai cara untuk membangun sebuah karakter:
+
+. Menulis karakter angsung (grapheme)
+
+. Menggunakan `\x` dan code point
+
+. Menggunakan `\c` dan nama code point
+
+.Sekarang mari kita output sebuah gambar senyuman
+[source,perl6]
+----
+say "☺";
+say "\x263a";
+say "\c[WHITE SMILING FACE]";
+----
+
+.Contoh lain menggabungkan dua code points
+[source,perl6]
+----
+say "á";
+say "\x00e1";
+say "\x0061\x0301";
+say "\c[LATIN SMALL LETTER A WITH ACUTE]";
+----
+
+Huruf `á`dapat ditulis:
+
+* menggunakan code point `\x00e1`
+
+* atau kombinasi dari code point daru `a` dan acute `\x0061\x0301`
+
+.Beberapa method yang dapat digunakan:
+[source,perl6]
+----
+say "á".NFC;
+say "á".NFD;
+say "á".uniname;
+----
+
+.`Output`
+----
+NFC:0x<00e1>
+NFD:0x<0061 0301>
+LATIN SMALL LETTER A WITH ACUTE
+----
+
+`NFC` mengembalikan nilai code point. +
+`NFD` menguraikan karakter dan mengembalikan code point pada tiap bagian. +
+`uniname` mengembalikan nama code point.
+
+.Huruf Unicode dapat digunakan sebagai identifiers:
+[source,perl6]
+----
+my $Δ = 1;
+$Δ++;
+say $Δ;
+----
+
+.Unicode dapat juga digunakan untuk perhitungan can be used to do math:
+[source,perl6]
+----
+my $var = 2 + ⅒;
+say $var;
+----
+
+== Parallelism, Concurrency and Asynchrony
+
+=== Parallelism
+Dalam keadaan normal, semua tugas dalam suatu program berjalan secara sekuensial. +
+Ini mungkin bukan sebuah masalah, kecuali akan memakan waktu lebih lama.
+
+Perl 6 mempunyai fitur yang dapat menjalankan tugas secara paralel. +
+Ditahap ini, penting untuk dicatat bahwa paralelisme dapat berarti 1 dari 2 hal:
+
+* *Task Parallelism*: dua (atau lebih) ekspresi yang berdiri sendiri berjalan secara paralel.
+
+* *Data Parallelism*: ekspresi tunggal beriterasi pada suatu daftar elemen secara parelel..
+
+==== Data Parallelism
+[source,perl6]
+----
+my @array = (0..50000);                     # Array population
+my @result = @array.map({ is-prime $_ });   # panggil is-prime untuk tiap elemen array
+say now - INIT now;                         # Output waktu yang dikonsumsi oleh skrip sampai selesai
+----
+
+.Mempertimbangkan contoh diatas:
+Kita hanya melakukan satu operasi `@array.map({ is-prime $_ })` +
+Subroutine `is-prime`dipanggil untuk tiap elemen array secara sekuensial: +
+`is-prime @array[0]` kemudian `is-prime @array[1]` kemudian `is-prime @array[2]` dsb.
+
+.Untungnya kita dapat memanggil `is-prime` pada lebih dari satu elemen array dalam waktu yang sama:
+[source,perl6]
+----
+my @array = (0..50000);                         # Array population
+my @result = @array.race.map({ is-prime $_ });  # panggil subroutine is-prime untuk tiap elemen array
+say now - INIT now;                             # Output waktu yang dikonsumsi oleh skrip sampai selesai
+----
+
+Perhatikan penggunaan `race` dalam ekpresi.
+Method ini akan membolehkan iterasi paralel pada elemen array.
+
+Setelah menjalankan kedua contoh (dengan atau tanpa `race`), bandingkan waktu eksekusi skrip tersebut.
+
+[TIP]
+====
+`race` tidak akan mempertahankan urutan dari elemen. Jika ingin, anda dapat menggunakan `hyper`.
+
+[source,perl6]
+.race
+----
+my @array = (1..1000);
+my @result = @array.race.map( {$_ + 1} );
+.say for @result;
+----
+
+[source,perl6]
+.hyper
+----
+my @array = (1..1000);
+my @result = @array.hyper.map( {$_ + 1} );
+.say for @result;
+----
+
+Jika anda menjalankan kedua contoh, anda dapat melihat satu disortir dan yang satunya lagi tidak.
+
+====
+
+==== Task Parallelism
+
+[source,perl6]
+----
+my @array1 = (0..49999);
+my @array2 = (2..50001);
+
+my @hasil1 = @array1.map( {is-prime($_ + 1)} );
+my @hasil2 = @array2.map( {is-prime($_ - 1)} );
+
+say @hasil1 eqv @hasil2;
+
+say now - INIT now;
+----
+
+.Pada contoh diatas:
+
+. Kita mendefinisi 2 array
+
+. Mengaplikasikan operasi yang berbeda untuk tiap array dan hasil yang disimpan
+
+. dan mengecek jika kedua hasil adalah sama
+
+Skrip menunggu `@array1.map( {is-prime($_ + 1)} )` sampai selesai +
+dan kemudian mengevaluasi `@array2.map( {is-prime($_ - 1)} )`
+
+Kedua operasi tersebut tidak bergantung satu sama lain.
+
+.Kenapa tidak menjalankan keduanya secara paralel?
+[source,perl6]
+----
+my @array1 = (0..49999);
+my @array2 = (2..50001);
+
+my $promise1 = start @array1.map( {is-prime($_ + 1)} ).eager;
+my $promise2 = start @array2.map( {is-prime($_ - 1)} ).eager;
+
+my @hasil1 = await $promise1;
+my @hasil2 = await $promise2;
+
+say @hasil1 eqv @hasil2;
+
+say now - INIT now;
+----
+
+.Penjelasan
+subroutine `start` mengevaluasi kode dan mengembalikan *sebuah objek dari tipe promise* atau kependekannya *promise*. +
+Jika kode dievaluasi secara benar, _promise_ akan di *kept*. +
+Jika kodenya melemparkan eksepsi, _promise_ akan *broken*.
+
+Subroutine `await` menunggu *promise*. +
+Jika hasilnya *kept*, maka akan ada pengembalian nilai. +
+Jika *broken*, maka akan ada eksepsi yang dilemparkan.
+
+Check the time it took each script to complete.
+
+PERINGATAN: paralelisme selalu menambah beban kerja pada threading. Jika penambahan beban tidak diimbangi dengan kecepatan, skrip akan lebih lambat. +
+Ini mengapa, penggunaan `race`, `hyper`, `start` dan `await` untuk skrip yang sederhana dapat melambatkannya.
+
+=== Concurrency and Asynchrony
+CATATAN: Untuk info lebih lanjut tentang Concurrency dan Asynchronous, kunjungi https://docs.perl6.org/language/concurrency
+
+== Native Calling Interface
+
+Perl 6 memberikan kita kemampuan untuk mengakses library C, menggunakan Native Calling Interface. 
+
+`NativeCall` adalah modul standar bawaan Perl 6 dan menawarkan fungsi untuk memudahkan tugas terkait interaksi antara Perl 6 dan C. 
+
+=== Memanggil sebuah fungsi
+
+Kode C dibawah mendefinisikan sebuah fungsi bernama `hellofromc`.
+Fungsi ini mencetak `Hello dari C` ke terminal. Ia tidak menerima argumen apapun atau mengembalikan nilai.
+
+[source,c]
+.ncitest.c
+----
+#include <stdio.h>
+
+void hellofromc () {
+  printf("Hello dari C\n");
+}
+----
+
+Tergantung dari OS anda, jalankan perintah berikut untuk mengkompliasi kode C diatas ke library.
+
+.Pada sistem operasi Linux:
+----
+gcc -c -fpic ncitest.c
+gcc -shared -o libncitest.so ncitest.o
+----
+
+.Pada sistem operasi Windows:
+----
+gcc -c ncitest.c
+gcc -shared -o ncitest.dll ncitest.o
+----
+
+Didalam direktori yang sama dimana anda mengkompilasi library C, buat file Perl 6 baru 
+yang berisi kode dibawah dan jalankan.
+
+[source,perl6]
+.ncitest.pl6
+----
+use NativeCall;
+
+constant LIBPATH = "$*CWD/ncitest";
+sub hellofromc() is native(LIBPATH) { * }
+
+hellofromc();
+----
+
+.Penjelasan:
+Pertama-tama kita mendeklarasikan akan menggunakan modul `NativeCall`. +
+Kemudian kita membuat sebuah konstan `LIBPATH` yang menampung path ke library C. +
+Perhatikan bahwa `$*CWD` mengembalikan direktori kerja saat ini. +
+Kemudian kita membuat subroutine Perl 6 baru bernama `hellofromc()` yang bertindak sebagai
+pembungkus ke fungsi C yang mempunyai nama yang sama dan berada didalam library C di `LIBPATH`. +
+Semua ini diselesaikan dengan menggunakan trait `is native`. +
+Terakhir, kita memanggil subroutine Perl 6 kita.
+
+Intinya adalah deklarasi sebuah subroutine dengan trait `is native` dan penamaan dari library C.
+
+=== Mengganti nama sebuah fungsi 
+
+Pada contoh diatas, kita melihat bagaimana kita dapat memanggil fungsi C yang sederhana dengan membungkusnya
+dengan subroutine Perl 6 menggunakan penamaan yang sama dan trait `is native`.
+
+Dalam beberapa kasus, kita ingin merubah nama dari subroutine Perl 6. +
+Untuk melakukannya, kita dapat gunakan trait `is symbol`.
+
+Mari kita modifikasi skrip Perl 6 diatas dan merubah nama subroutine dari `hellofromc` menjadi `hello`
+
+[source,perl6]
+.ncitest.pl6
+----
+use NativeCall;
+
+constant LIBPATH = "$*CWD/ncitest";
+sub hello() is native(LIBPATH) is symbol('hellofromc') { * }
+
+hello();
+----
+
+.Penjelasan:
+Dalam kasus subroutine Perl 6 mempunyai nama yang berbeda dengan fungsi C,
+Kita dapat menggunakan trait `is symbol` dengan mereferensikan nama fungsi C.
+
+=== Pemberian Argumen dalam fungsi
+
+Compile library C yang telah dimodifikasi berikut dan jalankan skrip Perl 6 dibawah. +
+Perhatikan bagaimana kita memodifikasi baik kode C dan Perl 6 untuk dapat menerima string (`char*` di C dan `Str` di Perl 6)
+
+[source,c]
+.ncitest.c
+----
+#include <stdio.h>
+
+void hellofromc (char* nama) {
+  printf("Hello, %s! Ini adalah C!\n", nama);
+}
+----
+
+[source,perl6]
+.ncitest.pl6
+----
+use NativeCall;
+
+constant LIBPATH = "$*CWD/ncitest";
+sub hello(Str) is native(LIBPATH) is symbol('hellofromc') { * }
+
+hello('Jane');
+----
+
+=== Returning values
+
+Mari kita mengulang proses sekali lagi dan membuat kalkulator sederhana yang menerima
+2 integer dan melakukan operasi penambahan. +
+Compile library C dan jalankan skrip Perl 6.
+
+[source,c]
+.ncitest.c
+----
+int tambah (int a, int b) {
+  return (a + b);
+}
+----
+
+[source,perl6]
+.ncitest.pl6
+----
+use NativeCall;
+
+constant LIBPATH = "$*CWD/ncitest";
+sub tambah(int32,int32) returns int32 is native(LIBPATH) { * }
+
+say tambah(2,3);
+----
+
+Perhatikan bagaimana baik fungsi C dan Perl 6 menerima 2 integer dan mengembalikan satu nilai
+(`int` pada C dan `int32` pada Perl 6)
+
+=== Types
+
+Anda mungkin bertanya mengapa kita menggunakan `int32` bukan `Int` pada Perl 6.
+Beberapa tipe pada Perl 6 seperti `Int`, `Rat`, dsb, tidak dapat digunakan untuk menerima atau memberikan nilai dari fungsi C. +
+Harus menggunakan tipe yang sama dengan di C.
+
+Untungnya Perl 6 menyediakan banyak tipe untuk ini.
+
+[cols="^.^,^.^",options="header"]
+|===
+
+| C Type | Perl 6 Type
+
+| `char` .2+| `int8`
+
+| `int8_t`
+
+| `short` .2+| `int16`
+
+| `int16_t`
+
+| `int` .2+| `int32`
+
+| `int32_t`
+
+| `int64_t` | `int64`
+
+| `unsigned char` .2+| `uint8`
+
+| `uint8_t`
+
+| `unsigned short` .2+| `uint16`
+
+| `uint16_t`
+
+| `unsigned int` .2+| `uint32`
+
+| `uint32_t`
+
+| `uint64_t` | `uint64`
+
+| `long` | `long`
+
+| `long long` | `longlong`
+
+| `float` | `num32`
+
+| `double` | `num64`
+
+| `size_t` | `size_t`
+
+| `bool` | `bool`
+
+| `char*` (String) | `Str`
+
+| Arrays: Contohnya `int*` (Array of int) dan `double*` (Array of double) | `CArray`: Contohnya `CArray[int32]` dan `CArray[num64]`
+
+|===
+
+CATATAN: Untuk info lebih lanjut pada Native Calling Interface, kunjungi https://docs.perl6.org/language/nativecall
+
+== Komunitas
+
+* link:irc://irc.freenode.net/#perl6[#perl6] IRC channel. Banyak diskusi terjadi di IRC. Saluran ini merupakan tempat yang tepat bila anda ingin bertanya: https://perl6.org/community/irc
+
+* link:https://p6weekly.wordpress.com[p6weekly] Gambaran perubahan mingguan seputar Perl 6.
+
+* link:http://pl6anet.org[pl6anet] blog aggregator. Blog yang fokus pada Perl 6.
+
+* link:https://www.reddit.com/r/perl6/[/r/perl6] Berlangganan pada subreddit Perl 6.
