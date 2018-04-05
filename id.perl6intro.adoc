@@ -1,4 +1,4 @@
-= Perkenalan Bahasa Pemrograman Perl 6 
+= Perkenalan Bahasa Pemrograman Perl 6
 Naoum Hankache <naoum@hankache.com>; Heince Kurniawan <heince@cpan.org>
 :description: Pengenalan secara umum untuk bahasa pemrograman Perl 6
 :keywords: perl6, perl 6, introduction, perl6intro, perkenalan perl 6, perl 6 tutorial, perl 6 intro
@@ -41,7 +41,7 @@ Kirimkan saran anda ke:
 :sectnums:
 == Perkenalan
 === Apa itu Perl 6
-Perl 6 adalah bahasa pemrograman tingkat tinggi yang bersifat umum/non-spesifik dan data type variable ataupun ekspresi dapat dideklarasikan secara statis maupun dinamis. 
+Perl 6 adalah bahasa pemrograman tingkat tinggi yang bersifat umum/non-spesifik dan data type variable ataupun ekspresi dapat dideklarasikan secara statis maupun dinamis.
 Perl 6 mendukung beberapa paradigma (teknis penyelesain masalah), antara lain : Pemrograman secara Prosedural, Berorientasi Objek, dan Fungsional.
 * https://id.wikipedia.org/wiki/Pemrograman_Prosedural
 * https://id.wikipedia.org/wiki/Pemrograman_berorientasi_objek
@@ -82,7 +82,7 @@ Ada 4 pilihan metode instalasi yang tersedia:
 
 .Windows
 . Unduh program installer terakhir (dengan file ekstensien .msi, pilih sesuai arsitektur sistem) dari https://rakudo.perl6.org/downloads/star/
-. Setelah instalasi, pastikan `C:\rakudo\bin` terdeklarasi di PATH(variabel yang dipakai dilingkungan sistem operasi) 
+. Setelah instalasi, pastikan `C:\rakudo\bin` terdeklarasi di PATH(variabel yang dipakai dilingkungan sistem operasi)
 . Tes dengan menjalankan perintah `perl6 -v` dicommand line prompt untuk verifikasi versi.
 
 .Docker
@@ -91,24 +91,24 @@ Ada 4 pilihan metode instalasi yang tersedia:
 
 === Menjalankan kode Perl 6
 
-Menjalankan program / kode Perl 6 dapat dilakukan melalui REPL(Read-Eval-Print Loop). 
-Caranya, buka program terminal, ketik `perl6` kemudian tekan tombol [Enter]. 
-Tanda / karakter '>' akan muncul. 
+Menjalankan program / kode Perl 6 dapat dilakukan melalui REPL(Read-Eval-Print Loop).
+Caranya, buka program terminal, ketik `perl6` kemudian tekan tombol [Enter].
+Tanda / karakter '>' akan muncul.
 Selanjutnya, ketik kode yang mau dijalankan dan tekan tombol [Enter].
-REPL akan mencetak keluaran nilai dari kode yang diproses. 
+REPL akan mencetak keluaran nilai dari kode yang diproses.
 Anda dapat menulis kode lainnya dibaris yang baru atau ketik `exit` dan tekan enter untuk keluar dari REPL.
 
-Cara lainnya, ketik kode di file, simpan, dan jalankan menggunakan file tersebut. 
-Direkomendasikan bahwa file script Perl 6 menggunakan ekstensien `.pl6`. 
-Jalankan file script tersebut melalui terminal, ketik `perl6 namafileyangdisimpan.pl6`, kemudian tekan tombol [Enter]. 
+Cara lainnya, ketik kode di file, simpan, dan jalankan menggunakan file tersebut.
+Direkomendasikan bahwa file script Perl 6 menggunakan ekstensien `.pl6`.
+Jalankan file script tersebut melalui terminal, ketik `perl6 namafileyangdisimpan.pl6`, kemudian tekan tombol [Enter].
 Berbeda dengan metode REPL, cara ini tidak akan secara otomatis mencetak hasil tiap baris: kode harus menyertakan fungsi `say` untuk mengeluarkan cetakan hasil kode.
 
-Metode REPL kebanyakan dipakai untuk mencoba spesifik bagian dari kode, biasanya program yang hanya berisi 1 baris. 
+Metode REPL kebanyakan dipakai untuk mencoba spesifik bagian dari kode, biasanya program yang hanya berisi 1 baris.
 Untuk program yang membutuhkan kode lebih dari 1 baris, direkomendasikan untuk menyimpan kode kedalam file untuk kemudian diproses.
 
 Program yang hanya membutuhkan 1 baris dapat juga menggunakan command line dengan mengetikkan `perl6 -e 'kode anda disini'` diterminal dan tekan [Enter].
 
-[SARAN]
+[TIP]
 --
 Apabila anda menginstall Rakudo bukan "Rakudo Star", direkomendasikan untuk menginstall modul tambahan berikut ini (Ketik didalam terminal):
 
@@ -118,16 +118,16 @@ Apabila anda menginstall Rakudo bukan "Rakudo Star", direkomendasikan untuk meng
 --
 
 === Teks Editor
-Karena sebagian waktu kita digunakan untuk menulis kode dan menyimpannya dalam file, sebaiknya kita menggunakan teks editor yang dapat mengenali sintaks Perl 6. 
+Karena sebagian waktu kita digunakan untuk menulis kode dan menyimpannya dalam file, sebaiknya kita menggunakan teks editor yang dapat mengenali sintaks Perl 6.
 
-Saya menggunakan dan merekomendasi https://atom.io/[Atom]. 
-Atom adalah teks editor yang modern dan mempunyai fitur untuk mengenali dan menyorot sintaks Perl 6. 
-https://atom.io/packages/language-perl6[Perl 6 FE] adalah alternatif sintaks highlight(direpresentasikan dengan penekanan warna) untuk Perl 6, 
+Saya menggunakan dan merekomendasi https://atom.io/[Atom].
+Atom adalah teks editor yang modern dan mempunyai fitur untuk mengenali dan menyorot sintaks Perl 6.
+https://atom.io/packages/language-perl6[Perl 6 FE] adalah alternatif sintaks highlight(direpresentasikan dengan penekanan warna) untuk Perl 6,
 diturunkan dari paket original tetapi disertai dengan perbaikan bug (https://id.wikipedia.org/wiki/Kekutu) dan fitur tambahan.
 
-Sebagian orang dikomunitas juga menggunakan http://www.vim.org/[Vim], https://www.gnu.org/software/emacs/[Emacs] or http://padre.perlide.org/[Padre]. 
+Sebagian orang dikomunitas juga menggunakan http://www.vim.org/[Vim], https://www.gnu.org/software/emacs/[Emacs] or http://padre.perlide.org/[Padre].
 
-Versi baru dari Vim disertai dengan sintaks highlight. Sedangkan Emacs dan Padre membutuhkan paket tambahan untuk mendukung hal tersebut. 
+Versi baru dari Vim disertai dengan sintaks highlight. Sedangkan Emacs dan Padre membutuhkan paket tambahan untuk mendukung hal tersebut.
 
 
 === Hello World!
@@ -142,7 +142,7 @@ Dapat juga ditulis seperti:
 'hello world'.say;
 
 === Gambaran ikhtisar dari Sintaks
-Sintaks Perl 6 memiliki bentuk yang bebas: Dalam artian posisi karakter dibaris maupun kolom dikode anda tidak mempunyai efek yang signifikan.  
+Sintaks Perl 6 memiliki bentuk yang bebas: Dalam artian posisi karakter dibaris maupun kolom dikode anda tidak mempunyai efek yang signifikan.
 Contohnya Anda bebas untuk menggunakan karakter spasi dibagian manapun, walaupun pada kasus tertentu, spasi mengandung arti bagi Perl 6.
 
 *Pernyataan* adalah kumpulan perintah kode, harus diakhiri dengan karakter titik koma:
@@ -411,7 +411,7 @@ Dibentuk oleh kurung kotak buka dan tutup `[]`
 
 |===
 
-CATATAN: Untuk mengetahui operator lainnya termasuk tata cara penggabungan atau susunannya, kunjungi https://docs.perl6.org/language/operators
+NOTE: Untuk mengetahui operator lainnya termasuk tata cara penggabungan atau susunannya, kunjungi https://docs.perl6.org/language/operators
 
 == Variabel
 Variabel dari Perl6 diklasifikasian menjadi 3 kategori: Scalars, Arrays dan Hashes.
@@ -453,7 +453,7 @@ WIRO SABLENG
 gnelbaS oriW
 ----
 
-CATATAN: Untuk melihat metode yang lebih lengkap dan dapat diaplikasikan pada String, kunjungi https://docs.perl6.org/type/Str
+NOTE: Untuk melihat metode yang lebih lengkap dan dapat diaplikasikan pada String, kunjungi https://docs.perl6.org/type/Str
 
 [source,perl6]
 .Integer
@@ -466,7 +466,7 @@ say $umur.is-prime;
 True
 ----
 
-CATATAN: Untuk melihat metode yang lebih lengkap dan dapat diaplikasikan pada Integer, kunjungi https://docs.perl6.org/type/Int
+NOTE: Untuk melihat metode yang lebih lengkap dan dapat diaplikasikan pada Integer, kunjungi https://docs.perl6.org/type/Int
 
 [source,perl6]
 .Rational Number (https://id.wikipedia.org/wiki/Bilangan_rasional)
@@ -483,7 +483,7 @@ say $umur.nude;
 (23 10)
 ----
 
-CATATAN: Untuk melihat metode yang lebih lengkap dan dapat diaplikasikan pada Bilangan Rasional, kunjungi https://docs.perl6.org/type/Rat
+NOTE: Untuk melihat metode yang lebih lengkap dan dapat diaplikasikan pada Bilangan Rasional, kunjungi https://docs.perl6.org/type/Rat
 
 === Arrays
 Arrays adalah daftar yang dapat berisi lebih dari satu nilai.
@@ -496,7 +496,7 @@ say @hewan;
 
 Banyak pengoperasian dapat dilakukan pada arrays seperti contoh dibawah:
 
-Saran: karakter tilde  `~` digunakan untuk menggabungkan string.
+TIP: karakter tilde  `~` digunakan untuk menggabungkan string.
 
 [source,perl6]
 .`Script`
@@ -506,7 +506,7 @@ say "Di kebun binatang ada " ~ @hewan.elems ~ " hewan";
 say "Hewannya antara lain: " ~ @hewan;
 say "Kebun binatang akan mengadopsi gorila";
 @hewan.push("gorila");
-say "Sekarang kebun binatang mempunyai hewan: " ~ @hewan; 
+say "Sekarang kebun binatang mempunyai hewan: " ~ @hewan;
 say "Hewan pertama yang diadopsi adalah " ~ @hewan[0];
 @hewan.pop;
 say "Sayangnya gorilanya kabur dan yang tersisa: " ~ @hewan;
@@ -607,7 +607,7 @@ say @tabel;
 [3 z]
 ----
 
-CATATAN: Untuk lebih lengkapnya tentang referensi Array, kunjungi https://docs.perl6.org/type/Array
+NOTE: Untuk lebih lengkapnya tentang referensi Array, kunjungi https://docs.perl6.org/type/Array
 
 === Hashes
 [source,perl6]
@@ -651,12 +651,12 @@ Ibukota dari Perancis adalah: Paris
 `.values` mengembalikan daftar nilai seluruh nilai dari kata kunci saja. +
 Kita dapak mengakses nilai spesifik dari kata kunci tertentu dengan `%hash<katakunci>`
 
-CATATAN: Untuk referensi lengkap Hash, kunjungi https://docs.perl6.org/type/Hash
+NOTE: Untuk referensi lengkap Hash, kunjungi https://docs.perl6.org/type/Hash
 
 === Types
 Dicontoh sebelumnya, kita tidak menspesifikasi tipe nilai dari suatu variabel.
 
-SARAN: `.WHAT` akan mengembalikan tipe nilai yang disimpan dalam variabel.
+TIP: `.WHAT` akan mengembalikan tipe nilai yang disimpan dalam variabel.
 
 [source,perl6]
 ----
@@ -862,7 +862,7 @@ say $a;
 Binding variabel (pengikatan pada variabel) bersifat 2 arah. +
 `$a := $b` and `$b := $a` mempunyai efek yang sama.
 
-CATATAN: Untuk informasi yang lebih lengkap tentang variabel, kunjungi https://docs.perl6.org/language/variables
+NOTE: Untuk informasi yang lebih lengkap tentang variabel, kunjungi https://docs.perl6.org/language/variables
 
 == Fungsi dan Mutator
 
@@ -1019,8 +1019,8 @@ for @array -> $array-item {
 }
 ----
 
-Kode diatas kita membuat sebuah array, kemudian kita melakukan pengulangan terhadap array tersebut, 
-membuat variabel `$array-item` untuk menampung nilai dari tiap pengulangan, 
+Kode diatas kita membuat sebuah array, kemudian kita melakukan pengulangan terhadap array tersebut,
+membuat variabel `$array-item` untuk menampung nilai dari tiap pengulangan,
 melakukan perkalian `*100` pada tiap item array, kemudian menampilkan hasil tiap perulangan.
 
 === given
@@ -1070,7 +1070,7 @@ loop (my $i = 0; $i < 5; $i++) {
 }
 ----
 
-CATATAN: Untuk informasi lebih lanjut tentang pengulangan dan pengkondisian, kunjungi https://docs.perl6.org/language/control
+NOTE: Untuk informasi lebih lanjut tentang pengulangan dan pengkondisian, kunjungi https://docs.perl6.org/language/control
 
 == I/O
 Dalam Perl 6, dua antar muka yang sering dipakai adalah Terminal dan file.
@@ -1147,7 +1147,7 @@ shell "dir";
 ----
 Perintah atau program `echo` dan `ls` adalah perintah shell yang umum pada sistem operasi Linux: +
 Perintah `echo` mencetak keluaran teks pada terminal (hampir sama dengan fungsi `print` di Perl 6) +
-Perintah `ls` mencetak daftar semua file dan direktori yang ada pada direktori yang sekarang. 
+Perintah `ls` mencetak daftar semua file dan direktori yang ada pada direktori yang sekarang.
 
 Perintah atau program `dir` sama dengan perintah `ls` di sistem operasi Windows.
 
@@ -1226,17 +1226,17 @@ say "folder123".IO.f;
 `IO.f` memeriksa jika file path adalah file. +
 `IO.d` memeriksa jika file path adalah sebuah direktori.
 
-PERINGATAN: Pengguna Windows dapat menggunakan `/` atau `\\` untuk mendefinisikan direktori +
+WARNING: Pengguna Windows dapat menggunakan `/` atau `\\` untuk mendefinisikan direktori +
 `C:\\rakudo\\bin` +
 `C:/rakudo/bin` +
 
-CATATAN: Untuk informasi lanjut seputar I/O, kunjungi https://docs.perl6.org/type/IO
+NOTE: Untuk informasi lanjut seputar I/O, kunjungi https://docs.perl6.org/type/IO
 
 == Subroutines
 === Definisi
 *Subroutines* (biasa disebut *subs* atau *functions) bertujuan untuk mengemas dan menggunakan kembali suatu fungsi. +
 
-Sebuah definisi subroutine dimulai dengan kata kunci `sub`. 
+Sebuah definisi subroutine dimulai dengan kata kunci `sub`.
 Perhatikan contoh dibawah:
 
 [source,perl6]
@@ -1333,7 +1333,7 @@ sub kuadrat ($x) {
 say "7 kuadrat = " ~ kuadrat(7);
 ----
 
-Supaya lebih jelas, disarankan untuk secara eksplisit mendefinisikan nilai yang akan dikembalikan. 
+Supaya lebih jelas, disarankan untuk secara eksplisit mendefinisikan nilai yang akan dikembalikan.
 Ini dapat dilakukan dengan kata kunci `return`.
 [source,perl6]
 .Explicit return
@@ -1393,7 +1393,7 @@ say "1.2 kuadrat = " ~ kuadrat(1.2);
 ----
 ====
 
-CATATAN: Untuk info lebih lanjut tentang subroutines dan functions, kunjungi https://docs.perl6.org/language/functions
+NOTE: Untuk info lebih lanjut tentang subroutines dan functions, kunjungi https://docs.perl6.org/language/functions
 
 == Functional Programming
 https://id.wikipedia.org/wiki/Pemrograman_Fungsional
@@ -1481,7 +1481,7 @@ my @final-array = @array.unique.sort.reverse;
 say @final-array;
 ----
 
-Anda dapat melihat bahwa methods yang dirangkai lebih mudah untuk dilihat dimata. 
+Anda dapat melihat bahwa methods yang dirangkai lebih mudah untuk dilihat dimata.
 
 === Feed Operator
 *feed operator*, biasa disebut _pipe_ dibeberapa pemrograman fungsional, mengilustrasikan lebih lanjut method yang dirangkai.
@@ -1538,7 +1538,7 @@ Kita dapat juga menggunakan subroutine custom. Didalam hal ini `&genap`.
 
 Hal ini sangat praktis mengingat kita tidak perlu menggunakan pengulangan `loop` untuk setiap nilai elemen.
 
-PERINGATAN: Perl 6 memberikan garansi bahwa urutan dari hasil adalah sama dengan daftar yang asli.
+WARNING: Perl 6 memberikan garansi bahwa urutan dari hasil adalah sama dengan daftar yang asli.
             Tetapi tidak ada garansi bahwa Perl 6 akan mengeksekusi methods sesuai daftar urutan atau dalam thread yang sama. Jadi, hati-hati dengan methods yang dapat menimbulkan efek samping, seperti `say` atau `print`.
 
 === Junctions
@@ -1608,7 +1608,7 @@ say $lazylist;
 Dicontoh ini, kita mendefinisikan secara eksplisit sebuah generator dalan `{ }` +
 lazy list akan mengembalikan elemen (Jika dipanggil) sebagai berikut (0, 3, 6, 9, 12)
 
-[PERINGATAN]
+[WARNING]
 ====
 Ketika menggunakan generator secara eksplisit, titik akhir harus nilai yang dapat digenerate oleh generator. +
 Jika titik akhir contoh diatas diubah menjadi 10, maka program tidak akan berhenti.
@@ -1678,10 +1678,10 @@ say $malam("Jane");
 Dicontoh ini, kita mendefinisikan sebuah subroutine `selamat($periode)` yang menerima satu argumen `$periode`
 dan megembalikan subroutine baru. Subroutine tersebut menerima satu argumen `$nama` dan mengembalikan gabungan argumen.
 
-Dicontoh ini kita menggunakan subroutine `selamat` untuk membuat 2 subroutine baru, yang pertama mengeluarkan output `Selamat Pagi` 
+Dicontoh ini kita menggunakan subroutine `selamat` untuk membuat 2 subroutine baru, yang pertama mengeluarkan output `Selamat Pagi`
 dan satu lagi `Selamat Malam`.
 
-`$pagi` dan `$malam` keduanya adalah closures. Mereka sama-sama memakai subroutine yang sama, tetapi berbeda environment. + 
+`$pagi` dan `$malam` keduanya adalah closures. Mereka sama-sama memakai subroutine yang sama, tetapi berbeda environment. +
 Pada environment `$pagi`, `$periode` nya `Pagi` sedangkan `$malam`, `$periode` nya `Malam`.
 
 == Classes & Objects
@@ -1727,7 +1727,7 @@ Kata kunci `class` digunakan untuk mendefinisikan sebuah class. +
 Kata kunci `has` digunakan untuk mendefiniskan atribut dari sebuah class. +
 Method `.new()` disebut *constructor*. method ini membuat objek sebagai instansi dari class yang dipanggil.
 
-Pada contoh diatas, variabel `$john` menampung referensi kepada instansi baru "Manusia" yang didefinisikan melalui `Manusia.new()`. + 
+Pada contoh diatas, variabel `$john` menampung referensi kepada instansi baru "Manusia" yang didefinisikan melalui `Manusia.new()`. +
 Argumen-argumen yang dideklarasikan pada method `.new()` digunakan untuk memberikan nilai kepada atribut-atribut class tersebut.
 
 Sebuah kelas dapat diberikan ruang lingkup lexical menggunakan kata kunci `my`:
@@ -2285,7 +2285,7 @@ Introspection difasilitasi dengan:
 * `~~` disebut operator smart-match.
 Ia mengevaluasi ke _True_ bila objek dibuat dari class yang dibandingkan atau apapun yang diwariskan.
 
-[CATATAN]
+[NOTE]
 --
 Untuk informasi lebih lanjut Pemrograman berbasis objek, kunjungi:
 
@@ -2419,7 +2419,7 @@ Semua typed exceptions merupakan turunan dari class `X`, dibawah ada beberapa co
 `X::OS` merupakan eksepsi terkait error OS +
 `X::Str::Numeric` meruapakan eksepsi terkait merubah tipe data string ke numerik
 
-CATATAN: Untuk tipe eksepsi yang lebih lengkap dan method terkait, kunjungi https://docs.perl6.org/type-exceptions.html
+NOTE: Untuk tipe eksepsi yang lebih lengkap dan method terkait, kunjungi https://docs.perl6.org/type-exceptions.html
 
 
 == Regular Expressions
@@ -2650,7 +2650,7 @@ if 'Rakudo adalah Perl 6 compiler' ~~ m/:s Perl 6/ {
 .Output
 ----
 Hasil yang cocok adalah: Perl 6
-String sebelum hasil cocok adalah: Rakudo adalah 
+String sebelum hasil cocok adalah: Rakudo adalah
 String setelah hasil cocok adalah:  compiler
 Hasil string yang cocok mulai pada posisi: 14
 Hasil string yang cocok berakhir pada posisi: 20
@@ -2675,7 +2675,7 @@ Mari kita cek jika suatu email itu valid atau tidak. +
 Untuk contoh ini kita akan berasumsi sebuah email yang valid mempunyai format sebagai berikut: +
 nama depan [dot] nama belakang [at] perusahaan [dot] (com/org/net)
 
-PERINGATAN: regex yang digunakan dicontoh ini untuk validasi email tidak terlalu akurat. +
+WARNING: regex yang digunakan dicontoh ini untuk validasi email tidak terlalu akurat. +
 Hanya bertujuan sebagai demonstrasi fungsi regex pada Perl 6. +
 Jangan gunakan dalam lingkungan produksi.
 
@@ -2738,7 +2738,7 @@ if $email ~~ / <banyak-huruf> <dot> <banyak-huruf> <at> <banyak-huruf-angka> <do
 Regex yang mempunyai nama didefinisikan dengan sintaks berikut `my regex nama-regex { definisi regex }` +
 Regex yang mempunyai nama dapat dipanggil menggunakan sintaks berikut: `<nama-regex>`
 
-CATATAN: Untuk info lebih lanjut tentang regex, kunjungi https://docs.perl6.org/language/regexes
+NOTE: Untuk info lebih lanjut tentang regex, kunjungi https://docs.perl6.org/language/regexes
 
 == Perl 6 Modules
 Perl 6 adalah bahasa pemrograman bertujuan umum. Ia dapat digunakan untuk mengatasi banyak kerjaan termasuk:
@@ -2754,7 +2754,7 @@ Untuk menginstall sebuah modul yang spesifik, ketikkan perintah dibawah pada ter
 
 `zef install "nama modul"`
 
-CATATAN: Direktori Modul Perl 6 dapat ditemukan di: https://modules.perl6.org/
+NOTE: Direktori Modul Perl 6 dapat ditemukan di: https://modules.perl6.org/
 
 === Menggunakan Modul
 MD5 adalah fungsi hash kriptografis yang memproduksi nilah hash 128-bit. +
@@ -2779,7 +2779,7 @@ say $hashed-password;
 Untuk dapat menjalankan fungsi `md5_hex()` yang membuat hashes, kita perlu untuk memuat modul yang dibutuhkan. +
 Kata kunci `use` memuat modul agar dapat digunakan didalam skrip.
 
-PERINGATAN: Dalam prakternya, MD5 Hash sendiri tidak cukup, karena dapat diserang dengan metode brute force memakai kumpulan kata. +
+WARNING: Dalam prakternya, MD5 Hash sendiri tidak cukup, karena dapat diserang dengan metode brute force memakai kumpulan kata. +
 Idealnya harus dikombinasikan dengan sebuah salt, tautan link:https://en.wikipedia.org/wiki/Salt_(cryptography)[https://en.wikipedia.org/wiki/Salt_(cryptography)].
 
 == Unicode
@@ -2984,17 +2984,17 @@ Jika *broken*, maka akan ada eksepsi yang dilemparkan.
 
 Check the time it took each script to complete.
 
-PERINGATAN: paralelisme selalu menambah beban kerja pada threading. Jika penambahan beban tidak diimbangi dengan kecepatan, skrip akan lebih lambat. +
+WARNING: paralelisme selalu menambah beban kerja pada threading. Jika penambahan beban tidak diimbangi dengan kecepatan, skrip akan lebih lambat. +
 Ini mengapa, penggunaan `race`, `hyper`, `start` dan `await` untuk skrip yang sederhana dapat melambatkannya.
 
 === Concurrency and Asynchrony
-CATATAN: Untuk info lebih lanjut tentang Concurrency dan Asynchronous, kunjungi https://docs.perl6.org/language/concurrency
+NOTE: Untuk info lebih lanjut tentang Concurrency dan Asynchronous, kunjungi https://docs.perl6.org/language/concurrency
 
 == Native Calling Interface
 
-Perl 6 memberikan kita kemampuan untuk mengakses library C, menggunakan Native Calling Interface. 
+Perl 6 memberikan kita kemampuan untuk mengakses library C, menggunakan Native Calling Interface.
 
-`NativeCall` adalah modul standar bawaan Perl 6 dan menawarkan fungsi untuk memudahkan tugas terkait interaksi antara Perl 6 dan C. 
+`NativeCall` adalah modul standar bawaan Perl 6 dan menawarkan fungsi untuk memudahkan tugas terkait interaksi antara Perl 6 dan C.
 
 === Memanggil sebuah fungsi
 
@@ -3025,7 +3025,7 @@ gcc -c ncitest.c
 gcc -shared -o ncitest.dll ncitest.o
 ----
 
-Didalam direktori yang sama dimana anda mengkompilasi library C, buat file Perl 6 baru 
+Didalam direktori yang sama dimana anda mengkompilasi library C, buat file Perl 6 baru
 yang berisi kode dibawah dan jalankan.
 
 [source,perl6]
@@ -3050,7 +3050,7 @@ Terakhir, kita memanggil subroutine Perl 6 kita.
 
 Intinya adalah deklarasi sebuah subroutine dengan trait `is native` dan penamaan dari library C.
 
-=== Mengganti nama sebuah fungsi 
+=== Mengganti nama sebuah fungsi
 
 Pada contoh diatas, kita melihat bagaimana kita dapat memanggil fungsi C yang sederhana dengan membungkusnya
 dengan subroutine Perl 6 menggunakan penamaan yang sama dan trait `is native`.
@@ -3188,7 +3188,7 @@ Untungnya Perl 6 menyediakan banyak tipe untuk ini.
 
 |===
 
-CATATAN: Untuk info lebih lanjut pada Native Calling Interface, kunjungi https://docs.perl6.org/language/nativecall
+NOTE: Untuk info lebih lanjut pada Native Calling Interface, kunjungi https://docs.perl6.org/language/nativecall
 
 == Komunitas
 
