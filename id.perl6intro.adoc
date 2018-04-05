@@ -98,8 +98,8 @@ REPL akan mencetak keluaran nilai dari kode yang diproses.
 Anda dapat menulis kode lainnya dibaris yang baru atau ketik `exit` dan tekan enter untuk keluar dari REPL.
 
 Cara lainnya, ketik kode di file, simpan, dan jalankan menggunakan file tersebut.
-Direkomendasikan bahwa file script Perl 6 menggunakan ekstensien `.pl6`.
-Jalankan file script tersebut melalui terminal, ketik `perl6 namafileyangdisimpan.pl6`, kemudian tekan tombol [Enter].
+Direkomendasikan bahwa file script Perl 6 menggunakan ekstensien `.p6`.
+Jalankan file script tersebut melalui terminal, ketik `perl6 namafileyangdisimpan.p6`, kemudian tekan tombol [Enter].
 Berbeda dengan metode REPL, cara ini tidak akan secara otomatis mencetak hasil tiap baris: kode harus menyertakan fungsi `say` untuk mengeluarkan cetakan hasil kode.
 
 Metode REPL kebanyakan dipakai untuk mencoba spesifik bagian dari kode, biasanya program yang hanya berisi 1 baris.
@@ -1208,17 +1208,17 @@ rmdir "folderbaru";
 
 Anda juga dapat memeriksa jika suatu file atau direktori ada atau tidak:
 
-Buat direktori baru `folder123` dan file kosong `script123.pl6`
+Buat direktori baru `folder123` dan file kosong `script123.p6`
 
 [source,perl6]
 ----
-say "script123.pl6".IO.e;
+say "script123.p6".IO.e;
 say "folder123".IO.e;
 
-say "script123.pl6".IO.d;
+say "script123.p6".IO.d;
 say "folder123".IO.d;
 
-say "script123.pl6".IO.f;
+say "script123.p6".IO.f;
 say "folder123".IO.f;
 ----
 
@@ -2325,7 +2325,7 @@ say "Apa kabar?"
 .`Output`
 ----
 Type check failed in assignment to $nama; expected Str but got Int
-   in block <unit> at exceptions.pl6:2
+   in block <unit> at exceptions.p6:2
 ----
 
 Perhatikan pada saat error terjadi (dalam hal ini, memberikan bilangan angka ke variabel string) program akan terhenti dan baris kode lainnya tidak akan dievaluasi.
@@ -3028,7 +3028,7 @@ Didalam direktori yang sama dimana anda mengkompilasi library C, buat file Perl 
 yang berisi kode dibawah dan jalankan.
 
 [source,perl6]
-.ncitest.pl6
+.ncitest.p6
 ----
 use NativeCall;
 
@@ -3060,7 +3060,7 @@ Untuk melakukannya, kita dapat gunakan trait `is symbol`.
 Mari kita modifikasi skrip Perl 6 diatas dan merubah nama subroutine dari `hellofromc` menjadi `hello`
 
 [source,perl6]
-.ncitest.pl6
+.ncitest.p6
 ----
 use NativeCall;
 
@@ -3090,7 +3090,7 @@ void hellofromc (char* nama) {
 ----
 
 [source,perl6]
-.ncitest.pl6
+.ncitest.p6
 ----
 use NativeCall;
 
@@ -3115,7 +3115,7 @@ int tambah (int a, int b) {
 ----
 
 [source,perl6]
-.ncitest.pl6
+.ncitest.p6
 ----
 use NativeCall;
 
