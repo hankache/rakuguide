@@ -316,17 +316,37 @@ The below table lists the most commonly used operators.
 
 | != | Infix | Numeric not equal | 9 != 7  | True
 
-| < | Infix | Less than | 9 < 7  | False
+| < | Infix | Numeric less than | 9 < 7  | False
 
-| > | Infix | Greater than | 9 > 7  | True
+| > | Infix | Numeric greater than | 9 > 7  | True
 
-| \<= | Infix | Less than or equal | 7 \<= 7  | True
+| \<= | Infix | Numeric less than or equal | 7 \<= 7  | True
 
-| >= | Infix | Greater than or equal | 9 >= 7  | True
+| >= | Infix | Numeric greater than or equal | 9 >= 7  | True
+
+.3+| +<=>+ .3+| Infix .3+| Numeric three-way comparator | 1 +<=>+ 1.0 | Same
+
+<| 1 +<=>+ 2 <| Less
+
+<| 3 +<=> 2+ <| More
 
 | eq | Infix | String equal | "John" eq "John"  | True
 
 | ne | Infix | String not equal | "John" ne "Jane"  | True
+
+| lt | Infix | Sting less than | "a" lt "b" | True
+
+| gt | Infix | Sting greater than | "a" gt "b" | False
+
+| le | Infix | Sting less than or equal | "a" le "a" | True
+
+| ge | Infix | Sting greater than or equal | "a" ge "b" | False
+
+.3+| leg .3+| Infix .3+| String three-way comparator | "a" leg "a" | Same
+
+<| "a" leg "b" <| Less
+
+<| "c" leg "b" <| More
 
 | = | Infix | Assignment | my $var = 7  | Assigns the value of `7` to the variable `$var`
 
