@@ -2825,7 +2825,8 @@ UTF-8 is a character encoding capable of encoding all possible characters, or co
 
 Characters are defined by a: +
 *Grapheme*: Visual representation. +
-*Code point*: A number assigned to the character.
+*Code point*: A number assigned to the character. +
+*Code point name*: A name assigned to the character.
 
 === Using Unicode
 
@@ -2899,6 +2900,56 @@ say $Δ;
 ----
 my $var = 2 + ⅒;
 say $var;
+----
+
+=== Unicode-aware Operations
+
+==== Numbers
+
+Arabic numerals are the ten digits: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9.
+This numeral set is the most used worldwide.
+
+Nonetheless different sets of numerals are used to a lesser extent in different parts of the world.
+
+No special care needs to be taken when using a numeral set different than the Arabic numerals.
+All methods/operators work as expected.
+
+[source,perl6]
+----
+say (٤,٥,٦,1,2,3).sort;
+say 1 + ٩;
+----
+
+==== Strings
+If we were to use generic string operations, we might not always get the result that we were looking for,
+especially when comparing or sorting.
+
+===== Comparison
+
+[source,perl6]
+----
+say 'a' cmp 'B'; # More
+----
+The above example shows that `a` is bigger than `B`. The reason being that the
+code point of lowercase `a` is bigger than the code point of capital `B`.
+
+While technically correct, this is probably not what we were looking for.
+
+Luckily Perl 6 has methods/operators that implement the Unicode Collation Algorithm. +
+One of them is `unicmp` that behaves like the above showcased `cmp` but is unicode-aware.
+[source,perl6]
+----
+say 'a' unicmp 'B'; # Less
+----
+As you can see, using the `unicmp` operator now yields the expected result that `a` is smaller than `B`.
+
+===== Sorting
+As an alternative to the `sort` method that sorts using code points, Perl 6 provides a `collate`
+method that implements the Unicode Collation Algorithm.
+[source,perl6]
+----
+say ('a','b','c','D','E','F').sort;    # (D E F a b c)
+say ('a','b','c','D','E','F').collate; # (a b c D E F)
 ----
 
 == Parallelism, Concurrency and Asynchrony
