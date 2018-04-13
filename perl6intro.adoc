@@ -2916,8 +2916,8 @@ All methods/operators work as expected.
 
 [source,perl6]
 ----
-say (٤,٥,٦,1,2,3).sort;
-say 1 + ٩;
+say (٤,٥,٦,1,2,3).sort; # (1 2 3 4 5 6)
+say 1 + ٩;              # 10
 ----
 
 ==== Strings
@@ -2935,7 +2935,7 @@ code point of lowercase `a` is bigger than the code point of capital `B`.
 
 While technically correct, this is probably not what we were looking for.
 
-Luckily Perl 6 has methods/operators that implement the Unicode Collation Algorithm. +
+Luckily Perl 6 has methods/operators that implement the link:http://unicode.org/reports/tr10/[Unicode Collation Algorithm]. +
 One of them is `unicmp` that behaves like the above showcased `cmp` but is unicode-aware.
 [source,perl6]
 ----
@@ -2945,7 +2945,7 @@ As you can see, using the `unicmp` operator now yields the expected result that 
 
 ===== Sorting
 As an alternative to the `sort` method that sorts using code points, Perl 6 provides a `collate`
-method that implements the Unicode Collation Algorithm.
+method that implements the link:http://unicode.org/reports/tr10/[Unicode Collation Algorithm].
 [source,perl6]
 ----
 say ('a','b','c','D','E','F').sort;    # (D E F a b c)
