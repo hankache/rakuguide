@@ -348,6 +348,10 @@ The below table lists the most commonly used operators.
 
 <| "c" leg "b" <| More
 
+.2+| cmp .2+| Infix .2+| Smart three-way comparator | "a" cmp "b" | Less
+
+<| 3.5 cmp 2.6 <| More 
+
 | = | Infix | Assignment | my $var = 7  | Assigns the value of `7` to the variable `$var`
 
 .2+| ~ .2+| Infix .2+| String concatenation | 9 ~ 7 | 97
