@@ -3206,3 +3206,5 @@ NOTE: ネイティブコール インタフェースについてより詳しく�
 * link:http://pl6anet.org[pl6anet] Perl6のブログを集約しています。Perl6にフォーカスしたブログ記事にこうご期待ください。
 
 * link:https://www.reddit.com/r/perl6/[/r/perl6] Perl6のsubredditを購読しましょう。
+
+* link:https://alerts.perl6.org[P6lert] Perl6のコアディベロッパーからのアラートです。重要な変更に対応し遅れないようにしましょう。
