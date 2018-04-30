@@ -337,6 +337,10 @@ say "Hello $name";   # Hello John Doe
 
 <| "c" leg "b" <| More
 
+.2+| cmp .2+| Infix .2+| スマート三元演算子 | "a" cmp "b" | Less
+
+<| 3.5 cmp 2.6 <| More
+
 | = | 接中辞 | 代入 | my $var = 7  | 変数 `$var` に値 `7` を代入する
 
 .2+| ~ .2+| 接中辞 .2+| 文字列の結合 | 9 ~ 7 | 97
