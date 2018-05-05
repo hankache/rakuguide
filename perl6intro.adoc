@@ -334,13 +334,13 @@ The below table lists the most commonly used operators.
 
 | ne | Infix | String not equal | "John" ne "Jane"  | True
 
-| lt | Infix | Sting less than | "a" lt "b" | True
+| lt | Infix | String less than | "a" lt "b" | True
 
-| gt | Infix | Sting greater than | "a" gt "b" | False
+| gt | Infix | String greater than | "a" gt "b" | False
 
-| le | Infix | Sting less than or equal | "a" le "a" | True
+| le | Infix | String less than or equal | "a" le "a" | True
 
-| ge | Infix | Sting greater than or equal | "a" ge "b" | False
+| ge | Infix | String greater than or equal | "a" ge "b" | False
 
 .3+| leg .3+| Infix .3+| String three-way comparator | "a" leg "a" | Same
 
