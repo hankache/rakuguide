@@ -2525,11 +2525,11 @@ Wiederverwendbarkeit ist ein sehr wichtiges Konzept, dass es Programmierern erla
 
 Perl 6 ermöglicht das Erstellen und Verteilen von *Modulen*. Jedes Modul ist ein verpacktes Bündel von Funktionalität die wiederverwendet werden kann, sobald sie installiert wurde.
 
-_Panda_ ist ein Module-Management-Tool das mit Rakudo geliefert wird.
+_Zef_ ist ein Module-Management-Tool das mit Rakudo-Star mitgeliefert wird.
 
 Um ein beliebiges Modul zu installieren, tippt man folgendes Kommando in ein Terminal:
 
-`panda install "module name"`
+`zef install "module name"`
 
 NOTE: Das Perl 6 Modul-Verzeichnis findet man unter: http://modules.perl6.org/
 
