@@ -91,11 +91,11 @@ Four options are available:
 * Follow the same steps listed for installing on Linux
 * Install with homebrew: `brew install rakudo-star`
 * Install with MacPorts: `sudo port install rakudo`
-* Download the latest installer (file with .dmg extension) from https://rakudo.perl6.org/downloads/star/
+* Get the latest installer (file with .dmg extension) from https://rakudo.org/latest/star/macos
 
 .Windows
-. Download the latest installer (file with .msi extension) from https://rakudo.perl6.org/downloads/star/ +
-If your system architecture is 32-bit, download the x86 file; if it's 64-bit, download the x86_64 file.
+. For 64-bit architectures: Get the latest installer (file with .msi extension) from https://rakudo.org/latest/star/win64 +
+For 32-bit architectures: Get the latest installer (file with .msi extension) from https://rakudo.org/latest/star/win32
 . After installation, make sure `C:\rakudo\bin` is in the PATH
 
 .Docker
