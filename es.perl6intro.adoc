@@ -61,10 +61,10 @@ Las implementaciones que pasan el banco de pruebas de la especificación se cons
 .Linux
 Instalación de Rakudo Star desde la línea de comandos:
 ----
-wget https://rakudo.perl6.org/downloads/star/rakudo-star-2018.01.tar.gz
-tar xfz rakudo-star-2018.01.tar.gz
-cd rakudo-star-2018.01
-perl Configure.pl --gen-moar --prefix /opt/rakudo-star-2018.01
+wget https://rakudo.perl6.org/downloads/star/rakudo-star-2018.04.tar.gz
+tar xfz rakudo-star-2018.04.tar.gz
+cd rakudo-star-2018.04
+perl Configure.pl --gen-moar --prefix /opt/rakudo-star-2018.04
 make install
 ----
 Tienes más información en http://rakudo.org/how-to-get-rakudo/#Installing-Rakudo-Star-Linux
@@ -76,11 +76,14 @@ Tienes cuatro opciones:
 * Sigue los mismos pasos de la instalación para Linux
 * Realizar la instalación con homebrew: `brew install rakudo-star`
 * Realizar la instalación con MacPorts: `sudo port install rakudo`
-* Descargar el último instalador (archivo con extensión .dmg) desde https://rakudo.perl6.org/downloads/star/
+* Descargar el último instalador (archivo con extensión .dmg) desde
+* https://rakudo.org/latest/star/macos
 
 .Windows
-. Descarga el instalador más reciente (.msi) desde https://rakudo.perl6.org/downloads/star/ +
-Descarga la versión de 32-bit o 64-bit dependiendo de tu arquitectura.
+. Para arquitectura 64-bit: descarga el instalador más reciente (.msi) desde
+https://rakudo.org/latest/star/win64 +
+Para arquitectura 32-bit: descarga el instalador más reciente (.msi) desde
+https://rakudo.org/latest/star/win32
 . Finalizada la instalación, comprueba que C:\rakudo\bin figura en el PATH del sistema.
 
 .Docker
