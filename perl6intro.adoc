@@ -47,10 +47,12 @@ link:https://github.com/hankache/perl6intro[Github].
 * Dutch: http://nl.perl6intro.com
 * French: http://fr.perl6intro.com
 * German: http://de.perl6intro.com
+* Indonesian: http://id.perl6intro.com
 * Italian http://it.perl6intro.com
 * Japanese: http://ja.perl6intro.com
 * Portuguese: http://pt.perl6intro.com
 * Spanish: http://es.perl6intro.com
+* Turkish: http://tr.perl6intro.com
 
 :sectnums:
 == Introduction
@@ -75,10 +77,10 @@ Implementations that pass the specification test suite are considered Perl 6.
 
 To install Rakudo Star, run the following commands from your terminal:
 ----
-wget https://rakudo.perl6.org/downloads/star/rakudo-star-2018.01.tar.gz
-tar xfz rakudo-star-2018.01.tar.gz
-cd rakudo-star-2018.01
-perl Configure.pl --gen-moar --prefix /opt/rakudo-star-2018.01
+wget https://rakudo.perl6.org/downloads/star/rakudo-star-2018.04.tar.gz
+tar xfz rakudo-star-2018.04.tar.gz
+cd rakudo-star-2018.04
+perl Configure.pl --gen-moar --prefix /opt/rakudo-star-2018.04
 make install
 ----
 For other options, go to http://rakudo.org/how-to-get-rakudo/#Installing-Rakudo-Star-Linux
@@ -89,11 +91,11 @@ Four options are available:
 * Follow the same steps listed for installing on Linux
 * Install with homebrew: `brew install rakudo-star`
 * Install with MacPorts: `sudo port install rakudo`
-* Download the latest installer (file with .dmg extension) from https://rakudo.perl6.org/downloads/star/
+* Get the latest installer (file with .dmg extension) from https://rakudo.org/latest/star/macos
 
 .Windows
-. Download the latest installer (file with .msi extension) from https://rakudo.perl6.org/downloads/star/ +
-If your system architecture is 32-bit, download the x86 file; if it's 64-bit, download the x86_64 file.
+. For 64-bit architectures: Get the latest installer (file with .msi extension) from https://rakudo.org/latest/star/win64 +
+For 32-bit architectures: Get the latest installer (file with .msi extension) from https://rakudo.org/latest/star/win32
 . After installation, make sure `C:\rakudo\bin` is in the PATH
 
 .Docker
@@ -110,8 +112,8 @@ the value of the line.  You may then type another line, or type `exit`
 and hit [Enter] to leave the REPL.
 
 Alternatively, write your code in a file, save it and run it.
-It is recommended that Perl 6 scripts have a  `.pl6` file name extension.
-Run the file by typing `perl6 filename.pl6` into the terminal window
+It is recommended that Perl 6 scripts have a  `.p6` file name extension.
+Run the file by typing `perl6 filename.p6` into the terminal window
 and hitting [Enter]. Unlike the REPL, this will not automatically print
 the result of each line: the code must contain a statement like `say`
 to print output.
@@ -314,17 +316,41 @@ The below table lists the most commonly used operators.
 
 | != | Infix | Numeric not equal | 9 != 7  | True
 
-| < | Infix | Less than | 9 < 7  | False
+| < | Infix | Numeric less than | 9 < 7  | False
 
-| > | Infix | Greater than | 9 > 7  | True
+| > | Infix | Numeric greater than | 9 > 7  | True
 
-| \<= | Infix | Less than or equal | 7 \<= 7  | True
+| \<= | Infix | Numeric less than or equal | 7 \<= 7  | True
 
-| >= | Infix | Greater than or equal | 9 >= 7  | True
+| >= | Infix | Numeric greater than or equal | 9 >= 7  | True
+
+.3+| +<=>+ .3+| Infix .3+| Numeric three-way comparator | 1 +<=>+ 1.0 | Same
+
+<| 1 +<=>+ 2 <| Less
+
+<| 3 +<=> 2+ <| More
 
 | eq | Infix | String equal | "John" eq "John"  | True
 
 | ne | Infix | String not equal | "John" ne "Jane"  | True
+
+| lt | Infix | String less than | "a" lt "b" | True
+
+| gt | Infix | String greater than | "a" gt "b" | False
+
+| le | Infix | String less than or equal | "a" le "a" | True
+
+| ge | Infix | String greater than or equal | "a" ge "b" | False
+
+.3+| leg .3+| Infix .3+| String three-way comparator | "a" leg "a" | Same
+
+<| "a" leg "b" <| Less
+
+<| "c" leg "b" <| More
+
+.2+| cmp .2+| Infix .2+| Smart three-way comparator | "a" cmp "b" | Less
+
+<| 3.5 cmp 2.6 <| More
 
 | = | Infix | Assignment | my $var = 7  | Assigns the value of `7` to the variable `$var`
 
@@ -380,15 +406,15 @@ The below table lists the most commonly used operators.
 
 | ! | Prefix | Coerce the operand to a boolean value and return the negation | !4 | False
 
-| .. | Infix | Range Constructor |  0..5  | Creates a range from 0 to 5
+| .. | Infix | Range Constructor |  0..5  | Creates a range of the interval [0, 5] footnoteref:[intervals,Notations for intervals: https://en.wikipedia.org/wiki/Interval_(mathematics)#Notations_for_intervals]
 
-| ..^ | Infix | Range Constructor |  0..^5  | Creates a range from 0 to 4
+| ..^ | Infix | Range Constructor |  0..^5  | Creates a range of the interval [0, 5) footnoteref:[intervals]
 
-| ^.. | Infix | Range Constructor |  0^..5  | Creates a range from 1 to 5
+| ^.. | Infix | Range Constructor |  0^..5  | Creates a range of the interval (0, 5] footnoteref:[intervals]
 
-| \^..^ | Infix | Range Constructor |  0\^..^5  | Creates a range from 1 to 4
+| \^..^ | Infix | Range Constructor |  0\^..^5  | Creates a range of the interval (0, 5) footnoteref:[intervals]
 
-| ^ | Prefix | Range Constructor |  ^5  | Same as 0..^5 Creates a range from 0 to 4
+| ^ | Prefix | Range Constructor |  ^5  | Same as 0..^5 Creates a range of the interval [0, 5) footnoteref:[intervals]
 
 | ... | Infix | Lazy List Constructor |  0...9999  |  return the elements only if requested
 
@@ -1218,17 +1244,17 @@ rmdir "newfolder";
 
 You can also check if a path exists; if it is a file; or a directory:
 
-In the directory where you will be running the below script, create an empty folder `folder123` and an empty pl6 file `script123.pl6`
+In the directory where you will be running the below script, create an empty folder `folder123` and an empty p6 file `script123.p6`
 
 [source,perl6]
 ----
-say "script123.pl6".IO.e;
+say "script123.p6".IO.e;
 say "folder123".IO.e;
 
-say "script123.pl6".IO.d;
+say "script123.p6".IO.d;
 say "folder123".IO.d;
 
-say "script123.pl6".IO.f;
+say "script123.p6".IO.f;
 say "folder123".IO.f;
 ----
 
@@ -2340,7 +2366,7 @@ say "How are you doing today?"
 .`Output`
 ----
 Type check failed in assignment to $name; expected Str but got Int
-   in block <unit> at exceptions.pl6:2
+   in block <unit> at exceptions.p6:2
 ----
 
 Notice that whenever an error occurs (in this case, assigning a number to a string variable) the program will stop and other lines of code will not be evaluated.
@@ -2803,7 +2829,8 @@ UTF-8 is a character encoding capable of encoding all possible characters, or co
 
 Characters are defined by a: +
 *Grapheme*: Visual representation. +
-*Code point*: A number assigned to the character.
+*Code point*: A number assigned to the character. +
+*Code point name*: A name assigned to the character.
 
 === Using Unicode
 
@@ -2877,6 +2904,56 @@ say $Δ;
 ----
 my $var = 2 + ⅒;
 say $var;
+----
+
+=== Unicode-aware Operations
+
+==== Numbers
+
+Arabic numerals are the ten digits: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9.
+This numeral set is the most used worldwide.
+
+Nonetheless different sets of numerals are used to a lesser extent in different parts of the world.
+
+No special care needs to be taken when using a numeral set different than the Arabic numerals.
+All methods/operators work as expected.
+
+[source,perl6]
+----
+say (٤,٥,٦,1,2,3).sort; # (1 2 3 4 5 6)
+say 1 + ٩;              # 10
+----
+
+==== Strings
+If we were to use generic string operations, we might not always get the result that we were looking for,
+especially when comparing or sorting.
+
+===== Comparison
+
+[source,perl6]
+----
+say 'a' cmp 'B'; # More
+----
+The above example shows that `a` is bigger than `B`. The reason being that the
+code point of lowercase `a` is bigger than the code point of capital `B`.
+
+While technically correct, this is probably not what we were looking for.
+
+Luckily Perl 6 has methods/operators that implement the link:http://unicode.org/reports/tr10/[Unicode Collation Algorithm]. +
+One of them is `unicmp` that behaves like the above showcased `cmp` but is unicode-aware.
+[source,perl6]
+----
+say 'a' unicmp 'B'; # Less
+----
+As you can see, using the `unicmp` operator now yields the expected result that `a` is smaller than `B`.
+
+===== Sorting
+As an alternative to the `sort` method that sorts using code points, Perl 6 provides a `collate`
+method that implements the link:http://unicode.org/reports/tr10/[Unicode Collation Algorithm].
+[source,perl6]
+----
+say ('a','b','c','D','E','F').sort;    # (D E F a b c)
+say ('a','b','c','D','E','F').collate; # (a b c D E F)
 ----
 
 == Parallelism, Concurrency and Asynchrony
@@ -3042,11 +3119,16 @@ gcc -c ncitest.c
 gcc -shared -o ncitest.dll ncitest.o
 ----
 
+.On macOS:
+----
+gcc -dynamiclib -o libncitest.dylib ncitest.c
+----
+
 Within the same directory where you compiled your C library, create a new Perl 6
 file that contains the below code and run it.
 
 [source,perl6]
-.ncitest.pl6
+.ncitest.p6
 ----
 use NativeCall;
 
@@ -3080,7 +3162,7 @@ Lets modify the above Perl 6 script and rename the Perl 6 subroutine `hello`
 instead of `hellofromc`
 
 [source,perl6]
-.ncitest.pl6
+.ncitest.p6
 ----
 use NativeCall;
 
@@ -3110,7 +3192,7 @@ void hellofromc (char* name) {
 ----
 
 [source,perl6]
-.ncitest.pl6
+.ncitest.p6
 ----
 use NativeCall;
 
@@ -3135,7 +3217,7 @@ int add (int a, int b) {
 ----
 
 [source,perl6]
-.ncitest.pl6
+.ncitest.p6
 ----
 use NativeCall;
 
@@ -3217,4 +3299,8 @@ NOTE: For more info on the Native Calling Interface, see https://docs.perl6.org/
 
 * link:http://pl6anet.org[pl6anet] blog aggregator. Stay tuned by reading blog posts that focus on Perl 6.
 
-* link:https://www.reddit.com/r/perl6/[/r/perl6] Subscribe to the Perl 6 subreddit.
+* link:https://www.reddit.com/r/perl6/[/r/perl6] subscribe to the Perl 6 subreddit.
+
+* link:https://twitter.com/perl6org[@perl6org] follow the community on twitter.
+
+* link:https://alerts.perl6.org[P6lert] alerts from Perl 6 Core Developers. Keep up to date with important changes.

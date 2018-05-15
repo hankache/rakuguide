@@ -66,10 +66,10 @@ Perl6はマルチパラダイム言語です。手続き型、オブジェクト
 .Linux
 Rakudo Starをインストールするには、次のコマンドをターミナルで実行してください:
 ----
-wget https://rakudo.perl6.org/downloads/star/rakudo-star-2017.10.tar.gz
-tar xfz rakudo-star-2017.10.tar.gz
-cd rakudo-star-2017.10
-perl Configure.pl --gen-moar --prefix /opt/rakudo-star-2017.10
+wget https://rakudo.perl6.org/downloads/star/rakudo-star-2018.01.tar.gz
+tar xfz rakudo-star-2018.01.tar.gz
+cd rakudo-star-2018.01
+perl Configure.pl --gen-moar --prefix /opt/rakudo-star-2018.01
 make install
 ----
 
@@ -102,8 +102,8 @@ REPL はこの行の値を出力するでしょう。
 そうしたら、次のコードの行を打つか、 `exit` と打った後[Enter]を押すことでREPLを去るか、どちらでも選ぶことができます。
 
 あるいは、ファイルの中にコードを書いて、保存して実行してください。
-Perl6のスクリプトは `.pl6` 拡張子を持つことが推奨されています。
-ターミナルの窓に対して `perl6 filename.pl6` と打ち、[Enter]を押してください。
+Perl6のスクリプトは `.p6` 拡張子を持つことが推奨されています。
+ターミナルの窓に対して `perl6 filename.p6` と打ち、[Enter]を押してください。
 REPLとは違って、それぞれの行の結果が自動的に出力されるでしょう。: 出力を行うには、 `say` のような命令が含まれている必要があります。
 
 REPLは多くの場合、特定のコードを実行するために用いられ、そのコードは一般的には一行です。
@@ -305,17 +305,41 @@ say "Hello $name";   # Hello John Doe
 
 | != | 接中辞 | 数値が等しくない | 9 != 7  | True
 
-| < | 接中辞 | 小さい | 9 < 7  | False
+| < | 接中辞 | 数値が小さい | 9 < 7  | False
 
-| > | 接中辞 | 大きい | 9 > 7  | True
+| > | 接中辞 | 数値が大きい | 9 > 7  | True
 
-| \<= | 接中辞 | 以下 | 7 \<= 7  | True
+| \<= | 接中辞 | 数値が等しいか小さい | 7 \<= 7  | True
 
-| >= | 接中辞 | 以上 | 9 >= 7  | True
+| >= | 接中辞 | 数値が等しいか大きい | 9 >= 7  | True
+
+.3+| +<=>+ .3+| 接中辞 .3+| 数値の三元演算子 | 1 +<=>+ 1.0 | Same
+
+<| 1 +<=>+ 2 <| Less
+
+<| 3 +<=> 2+ <| More
 
 | eq | 接中辞 | 文字列が等しい | "John" eq "John"  | True
 
 | ne | 接中辞 | 文字列が等しくない | "John" ne "Jane"  | True
+
+| lt | 接中辞 | 辞書順で小さい | "a" lt "b" | True
+
+| gt | 接中辞 | 辞書順で大きい | "a" gt "b" | False
+
+| le | 接中辞 | 辞書順で小さいか等しい | "a" le "a" | True
+
+| ge | 接中辞 | 辞書順で大きいか等しい | "a" ge "b" | False
+
+.3+| leg .3+| 接中辞 .3+| 文字列の三元演算子 | "a" leg "a" | Same
+
+<| "a" leg "b" <| Less
+
+<| "c" leg "b" <| More
+
+.2+| cmp .2+| Infix .2+| スマート三元演算子 | "a" cmp "b" | Less
+
+<| 3.5 cmp 2.6 <| More
 
 | = | 接中辞 | 代入 | my $var = 7  | 変数 `$var` に値 `7` を代入する
 
@@ -371,15 +395,15 @@ say "Hello $name";   # Hello John Doe
 
 | ! | 接頭辞 | 被演算子をブーリアンにし、その否定を返す | !4 | False
 
-| .. | 接中辞 | Rangeクラスのコンストラクタ |  0..5  | 0から5までの範囲をつくる
+| .. | 接中辞 | Rangeクラスのコンストラクタ |  0..5  | 区間 [0, 5] のインスタンスをつくる footnoteref:[intervals,区間の記法: https://ja.wikipedia.org/wiki/区間_(数学)#記法]
 
-| ..^ | 接中辞 | Rangeクラスのコンストラクタ |  0..^5  | 0から4までの範囲をつくる
+| ..^ | 接中辞 | Rangeクラスのコンストラクタ |  0..^5  | 区間 [0, 5) のインスタンスをつくる footnoteref:[intervals]
 
-| ^.. | 接中辞 | Rangeクラスのコンストラクタ |  0^..5  | 1から5までの範囲をつくる
+| ^.. | 接中辞 | Rangeクラスのコンストラクタ |  0^..5  | 区間 (0, 5] のインスタンスをつくる footnoteref:[intervals]
 
-| \^..^ | 接中辞 | Rangeクラスのコンストラクタ |  0\^..^5  | 1から4までの範囲をつくる
+| \^..^ | 接中辞 | Rangeクラスのコンストラクタ |  0\^..^5  | 区間 (0, 5) のインスタンスをつくる footnoteref:[intervals]
 
-| ^ | 接頭辞 | Rangeクラスのコンストラクタ |  ^5  | 0..^5 と同じく0から4までの範囲をつくる
+| ^ | 接頭辞 | Rangeクラスのコンストラクタ |  ^5  | 0..^5 と同じく 区間 [0, 5) のインスタンスをつくる footnoteref:[intervals]
 
 | ... | 接中辞 | 遅延リストのコンストラクタ |  0...9999  | リクエストのある場合のみ要素を返す
 
@@ -1212,17 +1236,17 @@ rmdir "newfolder";
 
 ファイルかディレクトリであれば、パスが存在するかどうか確かめることもできます。:
 
-下記のスクリプトは、実行されているディレクトリにおいて、 `folder123` という空のフォルダと `script123.pl6` という空のpl6ファイルを生成します。
+下記のスクリプトを実行するディレクトリで、 `folder123` という空のフォルダと `script123.p6` という空のp6ファイルを生成してください。
 
 [source,perl6]
 ----
-say "script123.pl6".IO.e;
+say "script123.p6".IO.e;
 say "folder123".IO.e;
 
-say "script123.pl6".IO.d;
+say "script123.p6".IO.d;
 say "folder123".IO.d;
 
-say "script123.pl6".IO.f;
+say "script123.p6".IO.f;
 say "folder123".IO.f;
 ----
 
@@ -1827,7 +1851,7 @@ say $john;
 
 ==== イントロダクション
 メソッドはオブジェクトの _サブルーチン_ です。 +
-サブルーチンのように、機能の集合をパッケージングするための手段であり、 *引数* を受け取り、 *シグネチャ* を持ち、*複数* として定義することができます。
+サブルーチンのように、機能の集合をパッケージングするための手段であり、 *引数* を受け取り、 *シグネチャ* を持ち、*複数* あるとして定義することができます。
 
 メソッドは `method` キーワードを用いることで定義されます。
 一般的な状況では、メソッドはオブジェクトの属性に対して何かしらの処理を行うことを要求されます。
@@ -2332,7 +2356,7 @@ say "How are you doing today?"
 .`出力`
 ----
 Type check failed in assignment to $name; expected Str but got Int
-   in block <unit> at exceptions.pl6:2
+   in block <unit> at exceptions.p6:2
 ----
 
 エラーが発生したとき(この場合は文字列変数に数値を代入している)は必ずプログラムが停止し、ほかの行のコードは評価されないということに注目してください。
@@ -2789,11 +2813,12 @@ WARNING: 実用的にはMD5ハッシュ単独では不十分です、なぜな�
 == ユニコード
 
 ユニコードは標準的なエンコーディングで、世界のほとんどの書込システムにおいてテキストを表現します。 +
-UTF-8は、ユニコードにおける、すべての文字や符号点をエンコーディングすることができる文字エンコードです。
+UTF-8は、ユニコードにおける、すべての文字や符号位置をエンコーディングすることができる文字エンコードです。
 
 文字は次によって定義されます: +
 *書記素*: 視覚的表現。 +
-*符号点*: 文字に割り当てられた数。
+*符号位置*: 文字に割り当てられた数。 +
+*符号位置の名前*: 文字に割り当てられた名前。
 
 === ユニコードの使用
 
@@ -2808,9 +2833,9 @@ say "\c[LATIN SMALL LETTER A]";
 
 . 直接文字を書く (書記素)
 
-. `\x` と符号点を使う
+. `\x` と符号位置を使う
 
-. `\c` と符号点の名前を使う
+. `\c` と符号位置の名前を使う
 
 .では、スマイリーを出力してみましょう
 [source,perl6]
@@ -2820,7 +2845,7 @@ say "\x263a";
 say "\c[WHITE SMILING FACE]";
 ----
 
-.二つの符号点を組み合わせている例です
+.二つの符号位置を組み合わせている例です
 [source,perl6]
 ----
 say "á";
@@ -2831,9 +2856,9 @@ say "\c[LATIN SMALL LETTER A WITH ACUTE]";
 
 `a` は次のように書けます:
 
-* ユニークな符号点 `\x00e1` を使う
+* ユニークな符号位置 `\x00e1` を使う
 
-* もしくは `a` とアキュート・アクセントの符号点を組み合わせる `\x0061\x0301`
+* もしくは `a` とアキュート・アクセントの符号位置を組み合わせる `\x0061\x0301`
 
 .いくつかのメソッドを使うことができます:
 [source,perl6]
@@ -2850,9 +2875,9 @@ NFD:0x<0061 0301>
 LATIN SMALL LETTER A WITH ACUTE
 ----
 
-`NFC` はユニークな符号点を返します。 +
-`NFD` は文字を分解し、それぞれの符号点を返します。 +
-`uniname` は符号点の名前を返します。
+`NFC` はユニークな符号位置を返します。 +
+`NFD` は文字を分解し、それぞれの符号位置を返します。 +
+`uniname` は符号位置の名前を返します。
 
 .ユニコード文字は識別子として用いることができます:
 [source,perl6]
@@ -2867,6 +2892,57 @@ say $Δ;
 ----
 my $var = 2 + ⅒;
 say $var;
+----
+
+=== ユニコードを考慮した操作
+
+==== 数値
+
+アラビア数字は十個あります: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9
+この数字は世界でもっとも使われているものです。
+
+とはいえ、世界には異なる数字を使うような少数派の地域があります。
+
+アラビア数字以外の数字を使うときに特別な注意は必要ありません。
+すべてのメソッド/演算子は期待通りに動きます。
+
+[source,perl6]
+----
+say (٤,٥,٦,1,2,3).sort; # (1 2 3 4 5 6)
+say 1 + ٩;              # 10
+----
+
+==== 文字列
+一般的な文字列操作をしようとしたとき、特に比較やソートのときに、常に求めていた結果を得ることができるわけではないかもしれません。
+
+===== 比較
+
+[source,perl6]
+----
+say 'a' cmp 'B'; # More
+----
+上記の例では `a` は `B` よりも大きいということを示しています。
+小文字の `a` の符号位置は大文字の `B` の符号位置よりも大きいというのがその理由です。
+
+技術的には正しい一方、ひょっとしたら求めていたものとは違うかもしれません。
+
+幸運なことにPerl 6は link:http://unicode.org/reports/tr10/[ユニコード照合アルゴリズム] を実装したメソッド/演算子を持っています。 +
+その一つが `unicmp` です。これは上記で示した `cmp` のようにふるまいますがこのアルゴリズムを使用する点が異なります。
+
+[source,perl6]
+----
+say 'a' unicmp 'B'; # Less
+----
+
+見てわかる通り、 `unicmp` 演算子を使うことで `a` は `B` より小さいという期待通りの結果が得られました。
+
+===== ソート
+符号位置を利用したソートにおいて `sort` メソッドの他の選択肢として、Perl 6は link:http://unicode.org/reports/tr10/[ユニコード照合アルゴリズム] を実装した `collate` メソッドを提供しています。
+
+[source,perl6]
+----
+say ('a','b','c','D','E','F').sort;    # (D E F a b c)
+say ('a','b','c','D','E','F').collate; # (a b c D E F)
 ----
 
 == 並列処理、並行性、非同期性
@@ -3031,10 +3107,15 @@ gcc -c ncitest.c
 gcc -shared -o ncitest.dll ncitest.o
 ----
 
+.On macOS:
+----
+gcc -dynamiclib -o libncitest.dylib ncitest.c
+----
+
 Cのライブラリをコンパイルしたのと同じディレクトリで、次のコードを含むPerl 6のファイルを作り、実行してください。
 
 [source,perl6]
-.ncitest.pl6
+.ncitest.p6
 ----
 use NativeCall;
 
@@ -3065,7 +3146,7 @@ hellofromc();
 上記のPerl 6のスクリプトを変更し、 Perl 6のサブルーチンの名前を `hellofromc` の代わりに `hello` と付けてみましょう。
 
 [source,perl6]
-.ncitest.pl6
+.ncitest.p6
 ----
 use NativeCall;
 
@@ -3095,7 +3176,7 @@ void hellofromc (char* name) {
 ----
 
 [source,perl6]
-.ncitest.pl6
+.ncitest.p6
 ----
 use NativeCall;
 
@@ -3119,7 +3200,7 @@ int add (int a, int b) {
 ----
 
 [source,perl6]
-.ncitest.pl6
+.ncitest.p6
 ----
 use NativeCall;
 
@@ -3201,3 +3282,7 @@ NOTE: ネイティブコール インタフェースについてより詳しく�
 * link:http://pl6anet.org[pl6anet] Perl6のブログを集約しています。Perl6にフォーカスしたブログ記事にこうご期待ください。
 
 * link:https://www.reddit.com/r/perl6/[/r/perl6] Perl6のsubredditを購読しましょう。
+
+* link:https://twitter.com/perl6org[@perl6org] twitterでのPerl6のコミュニティをフォローしましょう。
+
+* link:https://alerts.perl6.org[P6lert] Perl6のコアディベロッパーからのアラートです。重要な変更に対応し遅れないようにしましょう。
