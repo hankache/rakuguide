@@ -87,11 +87,11 @@ make install
 * 按照在 Linux 上安装步骤进行同样的操作
 * 使用 homebrew 安装: `brew install rakudo-star`
 * 使用 MacPorts 安装: `sudo port install rakudo`
-* 从 https://rakudo.perl6.org/downloads/star/ 下载最新的安装器(.dmg 后缀的文件) 
+* 从 https://rakudo.org/latest/star/macos 下载最新的安装器(.dmg 后缀的文件) 
 
 .Windows
-. 从 http://rakudo.org/downloads/star/ 下载最新的安装器(.msi 后缀的文件) +
-如果你的系统架构是 32-bit, 则下载 x86 文件; 如果是 64-bit, 下载 x86_64 文件。
+. 从 或 下载最新的安装器(.msi 后缀的文件) +
+. 如果你的系统架构是 64-bit, 从 https://rakudo.org/latest/star/win64 下载最新的安装器(.msi 后缀的文件); 如果是 32-bit, 则从 https://rakudo.org/latest/star/win32 下载最新的安装器(.msi 后缀的文件）。
 . 安装完成后，确保 `C:\rakudo\bin` 在 PATH 中。
 
 .Docker
