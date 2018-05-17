@@ -91,7 +91,7 @@ make install
 
 .Windows
 . 从 或 下载最新的安装器(.msi 后缀的文件) +
-. 如果你的系统架构是 64-bit, 从 https://rakudo.org/latest/star/win64 下载最新的安装器(.msi 后缀的文件); 如果是 32-bit, 则从 https://rakudo.org/latest/star/win32 下载最新的安装器(.msi 后缀的文件）。
+. 如果你的系统架构是 64-bit, 可以从 https://rakudo.org/latest/star/win64 下载最新的安装器(.msi 后缀的文件); 如果是 32-bit, 则从 https://rakudo.org/latest/star/win32 下载最新的安装器(.msi 后缀的文件）。
 . 安装完成后，确保 `C:\rakudo\bin` 在 PATH 中。
 
 .Docker
@@ -2981,7 +2981,6 @@ my $var = 2 + ⅒;
 say $var;
 ----
 
-=== Unicode-aware Operations
 === Unicode 相关的操作符
 
 ==== 数字
