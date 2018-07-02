@@ -15,7 +15,7 @@ Naoum Hankache <naoum@hankache.com>; Elizabeth Mattijsen <perl6intro@liz.nl>
 Dit document is bedoeld om je een kort overzicht te geven van de Perl 6 programmeertaal.
 Het is zo opgezet dat je snel leert iets met Perl 6 te kunnen doen.
 
-Sommige onderdelen van dit document verwijzen aan (completere en preciezere) delen van de (Engelstalige) http://docs.perl6.org[Perl 6 documentatie].
+Sommige onderdelen van dit document verwijzen aan (completere en preciezere) delen van de (Engelstalige) https://docs.perl6.org[Perl 6 documentatie].
 Als je meer informatie over een bepaald onderwerp nodig hebt, is dat de beste plaats om die te vinden.
 
 Je zult voorbeelden vinden bij de meeste onderwerpen in dit document.
@@ -66,7 +66,7 @@ Een implementatie van Perl 6 die al deze tests succesvol kan uitvoeren, mag zich
 
 . Ten slotte, installeer Task::Star.  Dit zal alle modules installeren die gebundeld zijn met de Rakudo Star Perl 6 distributie: `zef install Task::Star`
 
-Zie http://rakudo.org/how-to-get-rakudo/#Installing-Rakud-Star-Linux voor meer opties.
+Zie https://rakudo.org/how-to-get-rakudo/#Installing-Rakud-Star-Linux voor meer opties.
 
 .OS X
 OS X kent vier mogelijkheden:
@@ -77,10 +77,10 @@ OS X kent vier mogelijkheden:
 
 * Installeer met MacPorts: `sudo port install rakudo`
 
-* Download de meest recente installer (bestand met .dmg extensie) van http://rakudo.org/downloads/star/
+* Download de meest recente installer (bestand met .dmg extensie) van https://rakudo.org/downloads/star/
 
 .Windows
-. Download de meest recente installer (bestand met .msi extensie) van http://rakudo.org/downloads/star/ +
+. Download de meest recente installer (bestand met .msi extensie) van https://rakudo.org/downloads/star/ +
 Op een 32-bit systeem, download het bestand met x86; op een 64-bit, download het x86_64 bestand.
 . Zorg ervoor dat `C:\rakudo\bin` in je PATH is na het installeren.
 
@@ -120,7 +120,7 @@ Aangezien je het grootste deel van je tijd Perl 6 programma's in bestanden aan h
 Ik gebruik https://atom.io/[Atom] en raadt het gebruik daarvan ook aan.  Het is een moderne tekst-editor die standaard uitgeleverd wordt met Perl 6 syntax-markeerder.
 https://atom.io/packages/language-perl6fe[Perl6-fe] is een alternatieve Perl 6 syntax-markeerder voor Atom, afgeleid van het origineel, maar met vele bug-fixes en toevoegingen.
 
-Andere mensen in de gemeenschap gebruiken ook http://www.vim.org/[Vim], https://www.gnu.org/software/emacs/[Emacs] of http://padre.perlide.org/[Padre].
+Andere mensen in de gemeenschap gebruiken ook https://www.vim.org/[Vim], https://www.gnu.org/software/emacs/[Emacs] of http://padre.perlide.org/[Padre].
 
 Recente versies van Vim worden standaard uitgeleverd met een syntax-markeerder. Emacs en Padre hebben de installatie van extra bibliotheken nodig.
 
