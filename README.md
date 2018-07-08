@@ -67,6 +67,7 @@ Kindly prefix your commit title with the language it is targeting. For example, 
 * Italian Translation: [MarsMarsico](https://github.com/marsmarsico)
 * Turkish Translation: [Yalın Pala](https://github.com/yplog)
 * Indonesian Translation: [Heince Kurniawan](https://github.com/heince)
+* Russian Translation: [Alexander Kiryuhin](https://github.com/Altai-man)
 
 For the full list of contributors: https://github.com/hankache/perl6intro/graphs/contributors
 
