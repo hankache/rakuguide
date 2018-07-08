@@ -17,6 +17,7 @@ For online reading navigate to:
 * Italian: https://perl6intro.com/it
 * Turkish: https://perl6intro.com/tr
 * Indonesian: https://perl6intro.com/id
+* Russian: https://perl6intro.com/ru
 
 ### Building the document
 The document is written in asciidoc format and generated using
