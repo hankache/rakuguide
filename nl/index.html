@@ -749,29 +749,25 @@ Een implementatie van Perl 6 die al deze tests succesvol kan uitvoeren, mag zich
 </div>
 <div class="sect2">
 <h3 id="_installeren_van_perl_6">1.3. Installeren van Perl 6</h3>
-<div class="olist arabic">
+<div class="paragraph">
 <div class="title">Linux</div>
-<ol class="arabic">
-<li>
-<p>Installeer Rakudobrew: <a href="https://github.com/tadzik/rakudobrew" class="bare">https://github.com/tadzik/rakudobrew</a></p>
-</li>
-<li>
-<p>Installeer Rakudo: Typ het volgende commando in een terminalvenster <code>rakudobrew build moar</code></p>
-</li>
-<li>
-<p>Installeer Zef: Typ het volgende commando in een terminalvenster <code>rakudobrew build zef</code></p>
-</li>
-<li>
-<p>Ten slotte, installeer Task::Star.  Dit zal alle modules installeren die gebundeld zijn met de Rakudo Star Perl 6 distributie: <code>zef install Task::Star</code></p>
-</li>
-</ol>
+<p>Voer de volgende commando&#8217;s uit in een Terminal venster om Rakudo Star te installeren:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>wget https://rakudo.perl6.org/downloads/star/rakudo-star-2018.04.tar.gz
+tar xfz rakudo-star-2018.04.tar.gz
+cd rakudo-star-2018.04
+perl Configure.pl --gen-moar --prefix /opt/rakudo-star-2018.04
+make install</pre>
+</div>
 </div>
 <div class="paragraph">
 <p>Zie <a href="https://rakudo.org/how-to-get-rakudo/#Installing-Rakud-Star-Linux" class="bare">https://rakudo.org/how-to-get-rakudo/#Installing-Rakud-Star-Linux</a> voor meer opties.</p>
 </div>
 <div class="paragraph">
-<div class="title">OS X</div>
-<p>OS X kent vier mogelijkheden:</p>
+<div class="title">MacOS</div>
+<p>MacOS kent vier mogelijkheden:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -785,7 +781,7 @@ Een implementatie van Perl 6 die al deze tests succesvol kan uitvoeren, mag zich
 <p>Installeer met MacPorts: <code>sudo port install rakudo</code></p>
 </li>
 <li>
-<p>Download de meest recente installer (bestand met .dmg extensie) van <a href="https://rakudo.org/downloads/star/" class="bare">https://rakudo.org/downloads/star/</a></p>
+<p>Download de meest recente installer (bestand met .dmg extensie) van <a href="https://rakudo.org/latest/star/macos" class="bare">https://rakudo.org/latest/star/macos</a></p>
 </li>
 </ul>
 </div>
@@ -793,8 +789,8 @@ Een implementatie van Perl 6 die al deze tests succesvol kan uitvoeren, mag zich
 <div class="title">Windows</div>
 <ol class="arabic">
 <li>
-<p>Download de meest recente installer (bestand met .msi extensie) van <a href="https://rakudo.org/downloads/star/" class="bare">https://rakudo.org/downloads/star/</a><br>
-Op een 32-bit systeem, download het bestand met x86; op een 64-bit, download het x86_64 bestand.</p>
+<p>Voor 64-bit systemen: Download de meest recente installer (bestand met .msi extensie) van <a href="https://rakudo.org/latest/star/win64" class="bare">https://rakudo.org/latest/star/win64</a><br>
+Voor 32-bit systemen: Download de meest recente installer (bestand met .msi extensie) van <a href="https://rakudo.org/latest/star/win32" class="bare">https://rakudo.org/latest/star/win32</a></p>
 </li>
 <li>
 <p>Zorg ervoor dat <code>C:\rakudo\bin</code> in je PATH is na het installeren.</p>
@@ -5095,7 +5091,7 @@ Zie <a href="https://docs.perl6.org/language/concurrency" class="bare">https://d
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-07-09 06:41:52 DST
+Last updated 2018-07-09 09:00:33 EEST
 </div>
 </div>
 </body>
