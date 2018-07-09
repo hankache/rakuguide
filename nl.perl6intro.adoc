@@ -58,30 +58,27 @@ Een implementatie van Perl 6 die al deze tests succesvol kan uitvoeren, mag zich
 
 === Installeren van Perl 6
 .Linux
-. Installeer Rakudobrew: https://github.com/tadzik/rakudobrew
-
-. Installeer Rakudo: Typ het volgende commando in een terminalvenster `rakudobrew build moar`
-
-. Installeer Zef: Typ het volgende commando in een terminalvenster `rakudobrew build zef`
-
-. Ten slotte, installeer Task::Star.  Dit zal alle modules installeren die gebundeld zijn met de Rakudo Star Perl 6 distributie: `zef install Task::Star`
-
+Voer de volgende commando's uit in een Terminal venster om Rakudo Star te installeren:
+----
+wget https://rakudo.perl6.org/downloads/star/rakudo-star-2018.04.tar.gz
+tar xfz rakudo-star-2018.04.tar.gz
+cd rakudo-star-2018.04
+perl Configure.pl --gen-moar --prefix /opt/rakudo-star-2018.04
+make install
+----
 Zie https://rakudo.org/how-to-get-rakudo/#Installing-Rakud-Star-Linux voor meer opties.
 
-.OS X
-OS X kent vier mogelijkheden:
+.MacOS
+MacOS kent vier mogelijkheden:
 
 * Volg dezelfde stappen als voor Linux
-
 * Installeer met homebrew: `brew install rakudo-star`
-
 * Installeer met MacPorts: `sudo port install rakudo`
-
-* Download de meest recente installer (bestand met .dmg extensie) van https://rakudo.org/downloads/star/
+* Download de meest recente installer (bestand met .dmg extensie) van https://rakudo.org/latest/star/macos
 
 .Windows
-. Download de meest recente installer (bestand met .msi extensie) van https://rakudo.org/downloads/star/ +
-Op een 32-bit systeem, download het bestand met x86; op een 64-bit, download het x86_64 bestand.
+. Voor 64-bit systemen: Download de meest recente installer (bestand met .msi extensie) van https://rakudo.org/latest/star/win64 +
+Voor 32-bit systemen: Download de meest recente installer (bestand met .msi extensie) van https://rakudo.org/latest/star/win32
 . Zorg ervoor dat `C:\rakudo\bin` in je PATH is na het installeren.
 
 .Docker
