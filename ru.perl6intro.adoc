@@ -24,7 +24,7 @@ Naoum Hankache <naoum@hankache.com>; Alexander Kiryuhin <alexander.kiryuhin@gmai
 Для того, чтобы лучше его понять, выделите время для набора и запуска всех представленных примеров.
 
 .Лицензия
-Данный документ находится под лицензией Creative Commons Attribution-ShareAlike 4.0 International License.
+Данный документ лицензирован в терминах Creative Commons Attribution-ShareAlike 4.0 International License.
 Для просмотра копии лицензии, посетите
 
 * https://creativecommons.org/licenses/by-sa/4.0/.
