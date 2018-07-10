@@ -1311,7 +1311,7 @@ REPL 将会打印出该行的返回值。然后你可以输入另外的行, 或�
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>True</code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>&lt;=&gt;</code></p></td>
+<td class="tableblock halign-center valign-middle" rowspan="3"><p class="tableblock"><code>&lt;=&gt;</code></p></td>
 <td class="tableblock halign-center valign-middle" rowspan="3"><p class="tableblock"><code>Infix</code></p></td>
 <td class="tableblock halign-left valign-middle" rowspan="3"><p class="tableblock">数值比较</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>1 &lt;=&gt; 1.0</code></p></td>
@@ -1320,59 +1320,59 @@ REPL 将会打印出该行的返回值。然后你可以输入另外的行, 或�
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>1 &lt;=&gt; 2</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>Less</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">3 &lt;=&gt; 2</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>3 &lt;=&gt; 2</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>More</code></p></td>
+</tr>
+<tr>
 <td class="tableblock halign-center valign-middle"><p class="tableblock"><code>eq</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">中缀</p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>中缀</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">字符串相等</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>"John" eq "John"</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>True</code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>字符串相等</code></p></td>
-<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>"John" eq "John"</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">True</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>ne</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>中缀</code></p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>ne</code></p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>中缀</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">字符串不等</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>"John" ne "Jane"</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>True</code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>字符串不等</code></p></td>
-<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>"John" ne "Jane"</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">True</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>lt</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>Infix</code></p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>lt</code></p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>Infix</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">字符串小于</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>"a" lt "b"</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>True</code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>字符串小于</code></p></td>
-<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>"a" lt "b"</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">True</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>gt</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>Infix</code></p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>gt</code></p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>Infix</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">字符串大于</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>"a" gt "b"</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>False</code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>字符串大于</code></p></td>
-<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>"a" gt "b"</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">False</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>le</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>Infix</code></p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>le</code></p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>Infix</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">字符串小于等于</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>"a" le "a"</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>True</code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>字符串小于等于</code></p></td>
-<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>"a" le "a"</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">True</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>ge</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>Infix</code></p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>ge</code></p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>Infix</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">字符串大于等于</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>"a" ge "b"</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>False</code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>字符串大于等于</code></p></td>
-<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>"a" ge "b"</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">False</p></td>
-<td class="tableblock halign-left valign-middle" rowspan="3"><p class="tableblock"><code>leg</code></p></td>
-<td class="tableblock halign-left valign-middle" rowspan="3"><p class="tableblock"><code>Infix</code></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-center valign-middle" rowspan="3"><p class="tableblock"><code>字符串比较</code></p></td>
-<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>"a" leg "a"</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Same</p></td>
+<td class="tableblock halign-center valign-middle" rowspan="3"><p class="tableblock"><code>leg</code></p></td>
+<td class="tableblock halign-center valign-middle" rowspan="3"><p class="tableblock"><code>Infix</code></p></td>
+<td class="tableblock halign-left valign-middle" rowspan="3"><p class="tableblock">字符串比较</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>"a" leg "a"</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>Same</code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>"a" leg "b"</code></p></td>
@@ -1381,53 +1381,53 @@ REPL 将会打印出该行的返回值。然后你可以输入另外的行, 或�
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>"c" leg "b"</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>More</code></p></td>
-<td class="tableblock halign-left valign-middle" rowspan="2"><p class="tableblock">cmp</p></td>
-<td class="tableblock halign-left valign-middle" rowspan="2"><p class="tableblock"><code>Infix</code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-center valign-middle" rowspan="2"><p class="tableblock"><code>智能比较</code></p></td>
-<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>"a" cmp "b"</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Less</p></td>
+<td class="tableblock halign-center valign-middle" rowspan="2"><p class="tableblock"><code>cmp</code></p></td>
+<td class="tableblock halign-center valign-middle" rowspan="2"><p class="tableblock"><code>Infix</code></p></td>
+<td class="tableblock halign-left valign-middle" rowspan="2"><p class="tableblock">智能比较</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>"a" cmp "b"</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>Less</code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>3.5 cmp 2.6</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>More</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">=</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>中缀</code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>赋值</code></p></td>
-<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>my $var = 7</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">将字面值 <code>7</code> 赋值给变量 <code>$var</code></p></td>
-<td class="tableblock halign-left valign-middle" rowspan="2"><p class="tableblock"><code>~</code></p></td>
-<td class="tableblock halign-left valign-middle" rowspan="2"><p class="tableblock"><code>中缀</code></p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>=</code></p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>中缀</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">赋值</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>my $var = 7</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>将字面值 <code>7</code> 赋值给变量 <code>$var</code></code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-center valign-middle" rowspan="2"><p class="tableblock"><code>字符串连接</code></p></td>
-<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>9 ~ 7</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">97</p></td>
+<td class="tableblock halign-center valign-middle" rowspan="2"><p class="tableblock"><code>~</code></p></td>
+<td class="tableblock halign-center valign-middle" rowspan="2"><p class="tableblock"><code>中缀</code></p></td>
+<td class="tableblock halign-left valign-middle" rowspan="2"><p class="tableblock">字符串连接</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>9 ~ 7</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>97</code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>"Hi " ~ "there"</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>Hi there</code></p></td>
-<td class="tableblock halign-left valign-middle" rowspan="2"><p class="tableblock">x</p></td>
-<td class="tableblock halign-left valign-middle" rowspan="2"><p class="tableblock"><code>中缀</code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-center valign-middle" rowspan="2"><p class="tableblock"><code>字符串重复</code></p></td>
-<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>13 x 3</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">131313</p></td>
+<td class="tableblock halign-center valign-middle" rowspan="2"><p class="tableblock"><code>x</code></p></td>
+<td class="tableblock halign-center valign-middle" rowspan="2"><p class="tableblock"><code>中缀</code></p></td>
+<td class="tableblock halign-left valign-middle" rowspan="2"><p class="tableblock">字符串重复</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>13 x 3</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>131313</code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>"Hello " x 3</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>Hello Hello Hello</code></p></td>
-<td class="tableblock halign-left valign-middle" rowspan="5"><p class="tableblock">~~</p></td>
-<td class="tableblock halign-left valign-middle" rowspan="5"><p class="tableblock"><code>中缀</code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-center valign-middle" rowspan="5"><p class="tableblock"><code>智能匹配</code></p></td>
-<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>2 ~~ 2</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">True</p></td>
+<td class="tableblock halign-center valign-middle" rowspan="5"><p class="tableblock"><code>~~</code></p></td>
+<td class="tableblock halign-center valign-middle" rowspan="5"><p class="tableblock"><code>中缀</code></p></td>
+<td class="tableblock halign-left valign-middle" rowspan="5"><p class="tableblock">智能匹配</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>2 ~~ 2</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>True</code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>2 ~~ Int</code></p></td>
@@ -1444,39 +1444,39 @@ REPL 将会打印出该行的返回值。然后你可以输入另外的行, 或�
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>"enlightenment" ~~ /light/</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>｢light｣</code></p></td>
-<td class="tableblock halign-left valign-middle" rowspan="2"><p class="tableblock">++</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>前缀</code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>递增</code></p></td>
-<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>my $var = 2; ++$var;</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">递增变量然后返回变量值 <code>3</code></p></td>
+<td class="tableblock halign-center valign-middle" rowspan="2"><p class="tableblock"><code>++</code></p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>前缀</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">递增</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>my $var = 2; ++$var;</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>递增变量然后返回变量值 <code>3</code></code></p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>后缀</code></p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">递增</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>my $var = 2; $var++;</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">返回变量值 <code>2</code> 然后递增变量</p></td>
-<td class="tableblock halign-left valign-middle" rowspan="2"><p class="tableblock"><code>--</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>前缀</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>返回变量值 <code>2</code> 然后递增变量</code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>递减</code></p></td>
-<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>my $var = 2; --$var;</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">递减变量然后返回变量值 <code>1</code></p></td>
+<td class="tableblock halign-center valign-middle" rowspan="2"><p class="tableblock"><code>--</code></p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>前缀</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">递减</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>my $var = 2; --$var;</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>递减变量然后返回变量值 <code>1</code></code></p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>后缀</code></p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">递减</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>my $var = 2; $var--;</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">返回变量值 <code>2</code> 然后递减变量</p></td>
-<td class="tableblock halign-left valign-middle" rowspan="3"><p class="tableblock"><code>+</code></p></td>
-<td class="tableblock halign-left valign-middle" rowspan="3"><p class="tableblock"><code>前缀</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>返回变量值 <code>2</code> 然后递减变量</code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-center valign-middle" rowspan="3"><p class="tableblock"><code>强制转变为数值</code></p></td>
-<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>+"3"</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">3</p></td>
+<td class="tableblock halign-center valign-middle" rowspan="3"><p class="tableblock"><code>+</code></p></td>
+<td class="tableblock halign-center valign-middle" rowspan="3"><p class="tableblock"><code>前缀</code></p></td>
+<td class="tableblock halign-left valign-middle" rowspan="3"><p class="tableblock">强制转变为数值</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>+"3"</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>3</code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>+True</code></p></td>
@@ -1485,13 +1485,13 @@ REPL 将会打印出该行的返回值。然后你可以输入另外的行, 或�
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>+False</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>0</code></p></td>
-<td class="tableblock halign-left valign-middle" rowspan="3"><p class="tableblock">-</p></td>
-<td class="tableblock halign-left valign-middle" rowspan="3"><p class="tableblock"><code>前缀</code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-center valign-middle" rowspan="3"><p class="tableblock"><code>强制转换为数值并返回相反数</code></p></td>
-<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>-"3"</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">-3</p></td>
+<td class="tableblock halign-center valign-middle" rowspan="3"><p class="tableblock"><code>-</code></p></td>
+<td class="tableblock halign-center valign-middle" rowspan="3"><p class="tableblock"><code>前缀</code></p></td>
+<td class="tableblock halign-left valign-middle" rowspan="3"><p class="tableblock">强制转换为数值并返回相反数</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>-"3"</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>-3</code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>-True</code></p></td>
@@ -1500,13 +1500,13 @@ REPL 将会打印出该行的返回值。然后你可以输入另外的行, 或�
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>-False</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>0</code></p></td>
-<td class="tableblock halign-left valign-middle" rowspan="6"><p class="tableblock">?</p></td>
-<td class="tableblock halign-left valign-middle" rowspan="6"><p class="tableblock"><code>前缀</code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-center valign-middle" rowspan="6"><p class="tableblock"><code>强制转换为布尔值</code></p></td>
-<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>?0</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">False</p></td>
+<td class="tableblock halign-center valign-middle" rowspan="6"><p class="tableblock"><code>?</code></p></td>
+<td class="tableblock halign-center valign-middle" rowspan="6"><p class="tableblock"><code>前缀</code></p></td>
+<td class="tableblock halign-left valign-middle" rowspan="6"><p class="tableblock">强制转换为布尔值</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>?0</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>False</code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>?9.8</code></p></td>
@@ -1527,62 +1527,66 @@ REPL 将会打印出该行的返回值。然后你可以输入另外的行, 或�
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>my $var = 7; ?$var;</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>True</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">!</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>前缀</code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>强制转换为布尔值并返回相反数</code></p></td>
-<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>!4</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">False</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>..</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>中缀</code></p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>!</code></p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>前缀</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">强制转换为布尔值并返回相反数</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>!4</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>False</code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>Range 构造函数</code></p></td>
-<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>0..5</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">创建 0 到 5 的整数列</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>..^</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>中缀</code></p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>..</code></p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>中缀</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Range 构造函数</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>0..5</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>创建 0 到 5 的整数列</code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>Range 构造函数</code></p></td>
-<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>0..^5</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">创建 0 到 4 的整数列</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>^..</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>中缀</code></p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>..^</code></p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>中缀</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Range 构造函数</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>0..^5</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>创建 0 到 4 的整数列</code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>Range 构造函数</code></p></td>
-<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>0^..5</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">创建 1 到 5 的整数列</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>^..^</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>中缀</code></p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>^..</code></p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>中缀</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Range 构造函数</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>0^..5</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>创建 1 到 5 的整数列</code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>Range 构造函数</code></p></td>
-<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>0^..^5</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">创建 1 到 4 的整数列</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>^</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>前缀</code></p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>^..^</code></p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>中缀</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Range 构造函数</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>0^..^5</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>创建 1 到 4 的整数列</code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>Range 构造函数</code></p></td>
-<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>^5</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">等价于0..^5，创建 0 到 4 的整数列</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>&#8230;&#8203;</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>中缀</code></p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>^</code></p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>前缀</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Range 构造函数</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>^5</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>等价于0..^5，创建 0 到 4 的整数列</code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>惰性列表构造函数</code></p></td>
-<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>0&#8230;&#8203;9999</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">只有接到请求时才返回元素</p></td>
-<td class="tableblock halign-left valign-middle" rowspan="2"><p class="tableblock"><code>|</code></p></td>
-<td class="tableblock halign-left valign-middle" rowspan="2"><p class="tableblock"><code>前缀</code></p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>&#8230;&#8203;</code></p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>中缀</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">惰性列表构造函数</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>0&#8230;&#8203;9999</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>只有接到请求时才返回元素</code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-center valign-middle" rowspan="2"><p class="tableblock"><code>扁平化</code></p></td>
-<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>|(0..5)</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">(0 1 2 3 4 5)</p></td>
+<td class="tableblock halign-center valign-middle" rowspan="2"><p class="tableblock"><code>|</code></p></td>
+<td class="tableblock halign-center valign-middle" rowspan="2"><p class="tableblock"><code>前缀</code></p></td>
+<td class="tableblock halign-left valign-middle" rowspan="2"><p class="tableblock">扁平化</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>|(0..5)</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>(0 1 2 3 4 5)</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>|(0^..^5)</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>(1 2 3 4)</code></p></td>
 </tr>
 </tbody>
 </table>
@@ -5661,7 +5665,7 @@ gcc -shared -o ncitest.dll ncitest.o</pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-07-09 06:41:52 DST
+Last updated 2018-07-10 15:51:56 EEST
 </div>
 </div>
 </body>
