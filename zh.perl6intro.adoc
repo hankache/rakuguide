@@ -312,7 +312,7 @@ say "Hello $name";   # Hello John Doe
 
 | >= | 中缀 | 大于等于 | 9 >= 7  | True
 
-| +<=>+ .3+| Infix .3+| 数值比较 | 1 +<=>+ 1.0 | Same
+.3+| +<=>+ .3+| Infix .3+| 数值比较 | 1 +<=>+ 1.0 | Same
 
 <| 1 +<=>+ 2 <| Less
 
