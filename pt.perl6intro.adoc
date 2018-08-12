@@ -62,8 +62,8 @@ Perl 6 é multi paradigma. Ela suporta programação Procedural, Orientada a Obj
 Implementações que passem na suite de testes da especificação são consideradas Perl 6.
 * *Rakudo*: É um compilador para Perl 6.
 * *Rakudobrew*: É um gerenciador de instalações para o Rakudo.
-* *Panda*: É um instalador de módulos do Perl 6.
-* *Rakudo Star*: É um pacote que inclui Rakudo, Panda, uma coleção de módulos Perl 6, e documentação.
+* *Zef*: É um instalador de módulos do Perl 6.
+* *Rakudo Star*: É um pacote que inclui Rakudo, Zef, uma coleção de módulos Perl 6, e documentação.
 
 === Instalando Perl 6
 .Linux
@@ -71,7 +71,7 @@ Implementações que passem na suite de testes da especificação são considera
 
 . Instale o Rakudo: Digite o seguinte comando no terminal `rakudobrew build moar`
 
-. Instale o Panda: Digite o seguinte comando no terminal `rakudobrew build panda`
+. Instale o Zef: Digite o seguinte comando no terminal `rakudobrew build zef`
 
 .OSX
 Quatro opções estão disponíveis:
@@ -124,9 +124,9 @@ para baixo para ver o histórico, esquerda e direita para editar a linha, e
 auto completar com a tecla TAB).
 Considere executar o seguinte comando e estará tudo pronto:
 
-* `panda install Linenoise` deve funcionar em Windows, Linux e OSX
+* `zef install Linenoise` deve funcionar em Windows, Linux e OSX
 
-* `panda install Readline` se estiver no Linux e preferir a biblioteca _Readline_
+* `zef install Readline` se estiver no Linux e preferir a biblioteca _Readline_
 --
 
 === Editores
@@ -2719,11 +2719,11 @@ Reusabilidade é um conceito muito importante onde programadores não precisam r
 
 Perl 6 permite a criação e redistribuição de *módulos*. Cada módulo é um conjunto de funcionalidades que pode ser reutilizado após instalado.
 
-_Panda_ é uma ferramenta de gestão de módulos que vem com o Rakudo Star.
+_Zef_ é uma ferramenta de gestão de módulos que vem com o Rakudo Star.
 
 Para instalar um módulo específico, digite o comando abaixo no seu terminal:
 
-`panda install "nome do módulo"`
+`zef install "nome do módulo"`
 
 NOTE: O diretório de módulos Perl 6 pode ser encontrado em: https://modules.perl6.org/
 
@@ -2736,7 +2736,7 @@ O raciocínio por trás disso é que se o banco de dados for comprometido, quem 
 Digamos que você precise de um script que gere um hash MD5 de uma senha antes de guardá-la no banco de dados.
 
 Felizmente existe um módulo em Perl 6 que já implementa o algoritmo MD5. Vamos instalá-lo: +
-`panda install Digest::MD5`
+`zef install Digest::MD5`
 
 Agora execute o script abaixo:
 [source,perl6]

@@ -56,8 +56,8 @@ Un programme ou script Perl 6 est un fichier texte qui sera compilé et exécut�
 Les implémentations qui passent la suite de tests sont considérées comme du Perl 6.
 * *Rakudo* est un compilateur pour Perl 6.
 * *Rakudobrew* est un gestionnaire d'installation pour Rakudo.
-* *Panda* est un installeur de modules pour Perl 6.
-* *Rakudo Star* est un paquet qui comprend : Rakudo, Panda, une collection de modules, et de la documentation.
+* *Zef* est un installeur de modules pour Perl 6.
+* *Rakudo Star* est un paquet qui comprend : Rakudo, Zef, une collection de modules, et de la documentation.
 
 === Installer Perl 6
 .Linux
@@ -65,7 +65,7 @@ Les implémentations qui passent la suite de tests sont considérées comme du P
 
 . Installez Rakudo: Tapez la commande suivante dans le terminal `rakudobrew build moar`
 
-. Installez Panda: Tapez la commande suivante dans le terminal `rakudobrew build panda`
+. Installez Zef: Tapez la commande suivante dans le terminal `rakudobrew build zef`
 
 .OS X
 Quatre solutions possibles :
@@ -114,9 +114,9 @@ Comme: le rappel des commandes par les flèches « haut/bas », l'édition avec 
 Si vous avez seulement installé Rakudo au lieu de Rakudo Star, vous n'aurez probablement pas les fonctions d'édition ligne par ligne.
 Lancez la commande suivante sur votre terminal pour y avoir accès:
 
-* `panda install Linenoise` fonctionne sur Windows, Linux and OS X
+* `zef install Linenoise` fonctionne sur Windows, Linux and OS X
 
-* `panda install Readline` si vous êtes sur Linux et préférez la bibliothèque _Readline_
+* `zef install Readline` si vous êtes sur Linux et préférez la bibliothèque _Readline_
 --
 
 
@@ -2551,11 +2551,11 @@ La réusabilité est un concept très important qui permet aux programmeurs de n
 
 Perl 6 permet la création et la redistribution de *modules*. Chaque module donne une série de fonctionnalités empaquetées, qui une fois installées, peuvent être réutilisées.
 
-_Panda_ et un outil de gestion de modules livré avec Rakudo.
+_Zef_ et un outil de gestion de modules livré avec Rakudo.
 
 Pour installer un module spécifique, taper la commande suivante dans votre terminal:
 
-`panda install "nom du module"`
+`zef install "nom du module"`
 
 NOTE: Une liste des modules Perl 6 se trouve ici: http://modules.perl6.org/
 
@@ -2568,7 +2568,7 @@ L'idée derrière tout ceci est que si la base de données est compromise, l'att
 Disons que vous ayez besoin d'un script qui génère un hachage MD5 sur un mot de passe avant stockage dans la base de données.
 
 Heureusement, Perl 6 possède un module qui implémente l'algorithme de hachage MD5. Installons-le: +
-`panda install Digest::MD5`
+`zef install Digest::MD5`
 
 Maintenant, lançons le script suivant:
 [source,perl6]
