@@ -61,11 +61,10 @@ Perl 6 ist multi-paradigmatisch. Es unterstützt prozedurales, objektorientierte
 
 Um Rakudo-Star zu installieren, führe diese Kommandos in einem Terminalfenster aus:
 ----
-wget https://rakudo.perl6.org/downloads/star/rakudo-star-2018.01.tar.gz
-tar xfz rakudo-star-2018.01.tar.gz
-cd rakudo-star-2018.01
-perl Configure.pl --gen-moar --prefix /opt/rakudo-star-2018.01
-make install
+wget https://rakudo.perl6.org/downloads/star/rakudo-star-2018.06.1.tar.gz
+tar xfz rakudo-star-2018.06.1.tar.gz
+cd rakudo-star-2018.06.1
+perl Configure.pl --gen-moar --make-install --prefix ~/rakudo
 ----
 Mehr Informationen stehen unter: http://rakudo.org/how-to-get-rakudo/#Installing-Rakudo-Star-Linux
 

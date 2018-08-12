@@ -80,11 +80,10 @@ Perl 6 является мультипарадигменным: он подде�
 
 Чтобы установить Rakudo Star, запустите следующие команды в вашем эмуляторе терминала:
 ----
-wget https://rakudo.perl6.org/downloads/star/rakudo-star-2018.04.tar.gz
-tar xfz rakudo-star-2018.04.tar.gz
-cd rakudo-star-2018.04
-perl Configure.pl --gen-moar --prefix /opt/rakudo-star-2018.04
-make install
+wget https://rakudo.perl6.org/downloads/star/rakudo-star-2018.06.1.tar.gz
+tar xfz rakudo-star-2018.06.1.tar.gz
+cd rakudo-star-2018.06.1
+perl Configure.pl --gen-moar --make-install --prefix ~/rakudo
 ----
 С другими вариантами можно ознакомиться на http://rakudo.org/how-to-get-rakudo/#Installing-Rakudo-Star-Linux
 
