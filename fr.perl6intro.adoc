@@ -25,12 +25,12 @@ Pour mieux les comprendre, vous pouvez expérimenter en les modifiant.
 Ce document est sous licence Creative Commons Attribution -  Partage dans les Mêmes Conditions 4.0 International.
 Pour accéder à une copie de cette licence, merci de vous rendre à l'adresse suivante
 
-* http://creativecommons.org/licenses/by-sa/4.0/.
+* https://creativecommons.org/licenses/by-sa/4.0/.
 
 .Contribution
 Si vous souhaitez contribuer à ce document rendez-vous à l'adresse suivante:
 
-* http://github.com/hankache/perl6intro
+* https://github.com/hankache/perl6intro
 
 .Feedback
 
@@ -61,13 +61,14 @@ Les implémentations qui passent la suite de tests sont considérées comme du P
 
 === Installer Perl 6
 .Linux
-. Installez Rakudobrew: https://github.com/tadzik/rakudobrew
+----
+wget https://rakudo.perl6.org/downloads/star/rakudo-star-2018.06.tar.gz
+tar xfz rakudo-star-2018.06.tar.gz
+cd rakudo-star-2018.06
+perl Configure.pl --gen-moar --make-install --prefix ~/rakudo
+----
 
-. Installez Rakudo: Tapez la commande suivante dans le terminal `rakudobrew build moar`
-
-. Installez Zef: Tapez la commande suivante dans le terminal `rakudobrew build zef`
-
-.OS X
+.macOS
 Quatre solutions possibles :
 
 * Suivez les mêmes étapes que celles indiquées pour l'installation sur Linux
@@ -76,10 +77,10 @@ Quatre solutions possibles :
 
 * Installez avec MacPorts: `sudo port install rakudo`
 
-* Téléchargez l'installateur (fichier avec l'extension .dmg) depuis http://rakudo.org/downloads/star/
+* Téléchargez l'installateur (fichier avec l'extension .dmg) depuis https://rakudo.org/latest/star/macos
 
 .Windows
-. Téléchargez l'installeur le plus récent (fichier avec une extension .MSI) de http://rakudo.org/downloads/star/ +
+. Téléchargez l'installeur le plus récent (fichier avec une extension .MSI) de https://rakudo.org/files/star +
 Si votre système possède une architecture 32 bits, téléchargez le fichier x86. S'il possède une architecture 64 bits, téléchargez le fichier x86_64..
 . Après l'installation, ajoutez `C:\rakudo\bin` à votre PATH.
 
@@ -96,8 +97,8 @@ Ensuite, tapez une ligne de code puis la touche [Entrée]. Le REPL affichera la 
 Vous pouvez taper une autre ligne, ou `exit` et ensuite [Entrée] pour sortir du REPL.
 
 L'autre façon consiste à écrire votre code dans un fichier, le sauvegarder puis l'exécuter.
-Il est conseillé, pour plus de clarté, que les scripts Perl 6 portent l'extension `.pl6`.
-Exécutez le fichier en entrant perl6 `nom-du-fichier.pl6` dans la fenêtre de terminal (puis [Entrée]). +
+Il est conseillé, pour plus de clarté, que les scripts Perl 6 portent l'extension `.p6`.
+Exécutez le fichier en entrant perl6 `nom-du-fichier.p6` dans la fenêtre de terminal (puis [Entrée]). +
 À l'inverse du REPL, le résultat ne sera pas automatiquement affiché pour chaque ligne:
  le code doit contenir une instruction comme `say` ou `print` pour afficher une sortie.
 
@@ -126,9 +127,9 @@ Comme la plupart du temps, nous allons écrire et stocker nos programmes en Perl
 nous devrions avoir un éditeur de texte décent qui reconnaît la syntaxe de Perl 6.
 
 Je recommande personnellement https://atom.io/[Atom]. C'est un éditeur de texte moderne livré avec une coloration syntaxique pour Perl 6.
-https://atom.io/packages/language-perl6fe[Perl6-fe] est une coloration syntaxique alternative pour Perl 6 sur Atom, basée sur l'originale, mais comprenant de nombreux correctifs et ajouts.
+https://atom.io/packages/language-perl6[Perl6-fe] est une coloration syntaxique alternative pour Perl 6 sur Atom, basée sur l'originale, mais comprenant de nombreux correctifs et ajouts.
 
-D'autres personnes de la communauté utilisent aussi http://www.vim.org/[Vim], https://www.gnu.org/software/emacs/[Emacs] ou http://padre.perlide.org/[Padre].
+D'autres personnes de la communauté utilisent aussi https://www.vim.org/[Vim], https://www.gnu.org/software/emacs/[Emacs] ou http://padre.perlide.org/[Padre].
 
 Les versions récentes de Vim sont livrées avec la coloration syntaxique pour Perl 6. Emacs et Padre nécessiteront l'installation de paquets supplémentaires.
 
@@ -383,7 +384,7 @@ say "Salut $nom";                #Salut François Pinon
 
 |===
 
-NOTE: Pour la liste complète des opérateurs, y compris leur priorité: http://doc.perl6.org/language/operators
+NOTE: Pour la liste complète des opérateurs, y compris leur priorité: https://docs.perl6.org/language/operators
 
 == Variables
 Les variables sont classées en trois catégories : scalaires, tableaux et hachages.
@@ -425,7 +426,7 @@ FRANÇOIS PINON
 noniP sioçnarF
 ----
 
-NOTE: Pour une liste exhaustive des méthodes applicables aux chaînes, voir http://doc.perl6.org/type/Str
+NOTE: Pour une liste exhaustive des méthodes applicables aux chaînes, voir https://docs.perl6.org/type/Str
 
 [source,perl6]
 .Entier
@@ -438,7 +439,7 @@ say $age.is-prime;
 True
 ----
 
-NOTE: Pour une liste exhaustive des méthodes applicables aux entiers, voir http://doc.perl6.org/type/Int
+NOTE: Pour une liste exhaustive des méthodes applicables aux entiers, voir https://docs.perl6.org/type/Int
 
 [source,perl6]
 .Nombre rationnel
@@ -455,7 +456,7 @@ say $age.nude;
 (23 10)
 ----
 
-NOTE: Pour une liste exhaustive des méthodes applicables aux nombres rationnels, voir http://doc.perl6.org/type/Rat
+NOTE: Pour une liste exhaustive des méthodes applicables aux nombres rationnels, voir https://docs.perl6.org/type/Rat
 
 === Tableaux
 Les tableaux sont des listes contenant plusieurs valeurs. +
@@ -572,7 +573,7 @@ say @multi-tab
 ----
 
 
-NOTE: Pour la référence complète des tableaux: http://doc.perl6.org/type/Array
+NOTE: Pour la référence complète des tableaux: https://docs.perl6.org/type/Array
 
 === Hachage
 
@@ -619,7 +620,7 @@ La capitale de la France est: Paris
 `.values` renvoie une liste des valeurs. +
 On peut accéder à la valeur particulière d'un hachage en spécifiant sa clef, comme suit: `%hachage<clef>`
 
-NOTE: Pour la référence complète des hachages: http://doc.perl6.org/type/Hash
+NOTE: Pour la référence complète des hachages: https://docs.perl6.org/type/Hash
 
 === Types
 Dans les exemples précédents, on n'a pas précisé quel type de valeurs les variables peuvent contenir.
@@ -803,7 +804,7 @@ say $b;
 Un lien ne peut être créé que lors de l'initialisation de la variable liée, et ne peut plus être modifié ensuite.
 Mais la valeur de la variable liée peut néanmoins changer si la valeur de la variable « maîtresse » à laquelle elle est liée change.
 
-NOTE: Pour plus d'informations sur les variables, rendez-vous à http://doc.perl6.org/language/variables
+NOTE: Pour plus d'informations sur les variables, rendez-vous à https://docs.perl6.org/language/variables
 
 == Fonctions normales et fonctions mutatrices
 
@@ -1010,7 +1011,7 @@ loop (my $i=0; $i < 5; $i++) {
 }
 ----
 
-NOTE: Pour plus d'informations sur les boucles et les conditions, voir http://doc.perl6.org/language/control
+NOTE: Pour plus d'informations sur les boucles et les conditions, voir https://docs.perl6.org/language/control
 
 == Entrées/Sorties
 En Perl 6, deux des interfaces _entrée/sortie_ les plus communes sont le _Terminal_ et les _Fichiers_.
@@ -1143,17 +1144,17 @@ rmdir "newfolder";
 
 Vous pouvez également vérifier si le chemin d'accès spécifié existe, si c'est un fichier ou un répertoire.
 
-Dans le répertoire où vous allez exécuter le script ci-dessous, créez un dossier vide `folder123` et un fichier Perl 6 vide `script123.pl6`
+Dans le répertoire où vous allez exécuter le script ci-dessous, créez un dossier vide `folder123` et un fichier Perl 6 vide `script123.p6`
 
 [source,perl6]
 ----
-say "script123.pl6".IO.e;
+say "script123.p6".IO.e;
 say "folder123".IO.e;
 
-say "script123.pl6".IO.d;
+say "script123.p6".IO.d;
 say "folder123".IO.d;
 
-say "script123.pl6".IO.f;
+say "script123.p6".IO.f;
 say "folder123".IO.f;
 ----
 
@@ -1168,7 +1169,7 @@ WARNING: Les utilisateurs Windows peuvent utiliser / ou \\ comme séparateur ent
 `C:/rakudo/bin` +
 
 
-NOTE: Pour plus d'informations sur les E/S, voir http://doc.perl6.org/type/IO
+NOTE: Pour plus d'informations sur les E/S, voir https://docs.perl6.org/type/IO
 
 == Routines
 === Définition
@@ -1253,7 +1254,7 @@ dis-bonjour;
 dis-bonjour("Laura");
 ----
 
-NOTE: Pour plus d'informations sur les routines et fonctions, voir http://doc.perl6.org/language/functions
+NOTE: Pour plus d'informations sur les routines et fonctions, voir https://docs.perl6.org/language/functions
 
 == Programmation fonctionnelle
 Ce chapitre traitera des fonctionnalités facilitant la programmation fonctionnelle.
@@ -2224,7 +2225,7 @@ Toutes les exceptions déscendent de la classe `X`, quelques exemples ci-dessous
 `X::OS` est lié aux erreurs OS (système) +
 `X::Str::Numeric` est lié aux erreurs de conversion d'une chaîne vers un nombre.
 
-NOTE: Pour une liste complète des types d'exceptions et une liste de leurs méthodes associées, allez sur http://doc.perl6.org/type.html et naviguez dans les types qui commencent par X.
+NOTE: Pour une liste complète des types d'exceptions et une liste de leurs méthodes associées, allez sur https://docs.perl6.org/type.html et naviguez dans les types qui commencent par X.
 
 
 == Expressions régulières
@@ -2541,7 +2542,7 @@ if $email ~~ / <lettres> <point> <lettres> <arobase> <lettres-et-chiffres> <poin
 Une regex nommée est définie en utilisant la syntaxe suivante: `my regex nom-de-la-regex { définition de la regex }` +
 Une regex nommée peut être appelée en utilisant la syntaxe suivante: `<nom-de-la-regex>`
 
-NOTE: Pour plus de détails sur les regexes, voir http://doc.perl6.org/language/regexes
+NOTE: Pour plus de détails sur les regexes, voir https://docs.perl6.org/language/regexes
 
 == Modules Perl 6
 Perl 6 est un langage à but générique. Il peut être utilisé pour remplir plusieurs taches, incluant:
@@ -2557,7 +2558,7 @@ Pour installer un module spécifique, taper la commande suivante dans votre term
 
 `zef install "nom du module"`
 
-NOTE: Une liste des modules Perl 6 se trouve ici: http://modules.perl6.org/
+NOTE: Une liste des modules Perl 6 se trouve ici: https://modules.perl6.org
 
 === Utiliser les modules
 MD5 est une fonction de hachage cryptographique qui produit une valeur de hachage de 128-bit. +
@@ -2785,12 +2786,12 @@ WARNING: Le parallélisme ajoute toujours un surcoût lié à la gestion des pro
 C'est pourquoi utiliser `race`, `hyper`, `start` et `await` avec des scripts assez simples peut effectivement les ralentir.
 
 === Concurrence et Asynchronisme
-NOTE: Pour plus de détails sur la concurrence et la programmation asynchrone, voir http://doc.perl6.org/language/concurrency
+NOTE: Pour plus de détails sur la concurrence et la programmation asynchrone, voir https://docs.perl6.org/language/concurrency
 
 == La communauté
 
 On discute beaucoup sur le canal IRC link:irc://irc.freenode.net/#perl6[#perl6] . C'est la bonne porte d'entrée pour toutes vos questions: +
-http://perl6.org/community/irc
+https://perl6.org/community/irc
 
 Pour des nouvelles ponctuelles basées sur Perl 6: +
 http://pl6anet.org/ est un agrégateur de blogs sur le sujet.
