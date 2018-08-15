@@ -665,7 +665,7 @@ Pour accéder à une copie de cette licence, merci de vous rendre à l&#8217;adr
 <div class="ulist">
 <ul>
 <li>
-<p><a href="http://creativecommons.org/licenses/by-sa/4.0/" class="bare">http://creativecommons.org/licenses/by-sa/4.0/</a>.</p>
+<p><a href="https://creativecommons.org/licenses/by-sa/4.0/" class="bare">https://creativecommons.org/licenses/by-sa/4.0/</a>.</p>
 </li>
 </ul>
 </div>
@@ -676,7 +676,7 @@ Pour accéder à une copie de cette licence, merci de vous rendre à l&#8217;adr
 <div class="ulist">
 <ul>
 <li>
-<p><a href="http://github.com/hankache/perl6intro" class="bare">http://github.com/hankache/perl6intro</a></p>
+<p><a href="https://github.com/hankache/perl6intro" class="bare">https://github.com/hankache/perl6intro</a></p>
 </li>
 </ul>
 </div>
@@ -744,22 +744,17 @@ Les implémentations qui passent la suite de tests sont considérées comme du P
 </div>
 <div class="sect2">
 <h3 id="_installer_perl_6">1.3. Installer Perl 6</h3>
-<div class="olist arabic">
+<div class="listingblock">
 <div class="title">Linux</div>
-<ol class="arabic">
-<li>
-<p>Installez Rakudobrew: <a href="https://github.com/tadzik/rakudobrew" class="bare">https://github.com/tadzik/rakudobrew</a></p>
-</li>
-<li>
-<p>Installez Rakudo: Tapez la commande suivante dans le terminal <code>rakudobrew build moar</code></p>
-</li>
-<li>
-<p>Installez Zef: Tapez la commande suivante dans le terminal <code>rakudobrew build zef</code></p>
-</li>
-</ol>
+<div class="content">
+<pre>wget https://rakudo.perl6.org/downloads/star/rakudo-star-2018.06.tar.gz
+tar xfz rakudo-star-2018.06.tar.gz
+cd rakudo-star-2018.06
+perl Configure.pl --gen-moar --make-install --prefix ~/rakudo</pre>
+</div>
 </div>
 <div class="paragraph">
-<div class="title">OS X</div>
+<div class="title">macOS</div>
 <p>Quatre solutions possibles :</p>
 </div>
 <div class="ulist">
@@ -774,7 +769,7 @@ Les implémentations qui passent la suite de tests sont considérées comme du P
 <p>Installez avec MacPorts: <code>sudo port install rakudo</code></p>
 </li>
 <li>
-<p>Téléchargez l&#8217;installateur (fichier avec l&#8217;extension .dmg) depuis <a href="http://rakudo.org/downloads/star/" class="bare">http://rakudo.org/downloads/star/</a></p>
+<p>Téléchargez l&#8217;installateur (fichier avec l&#8217;extension .dmg) depuis <a href="https://rakudo.org/latest/star/macos" class="bare">https://rakudo.org/latest/star/macos</a></p>
 </li>
 </ul>
 </div>
@@ -782,7 +777,7 @@ Les implémentations qui passent la suite de tests sont considérées comme du P
 <div class="title">Windows</div>
 <ol class="arabic">
 <li>
-<p>Téléchargez l&#8217;installeur le plus récent (fichier avec une extension .MSI) de <a href="http://rakudo.org/downloads/star/" class="bare">http://rakudo.org/downloads/star/</a><br>
+<p>Téléchargez l&#8217;installeur le plus récent (fichier avec une extension .MSI) de <a href="https://rakudo.org/files/star" class="bare">https://rakudo.org/files/star</a><br>
 Si votre système possède une architecture 32 bits, téléchargez le fichier x86. S&#8217;il possède une architecture 64 bits, téléchargez le fichier x86_64..</p>
 </li>
 <li>
@@ -813,8 +808,8 @@ Vous pouvez taper une autre ligne, ou <code>exit</code> et ensuite [Entrée] pou
 </div>
 <div class="paragraph">
 <p>L&#8217;autre façon consiste à écrire votre code dans un fichier, le sauvegarder puis l&#8217;exécuter.
-Il est conseillé, pour plus de clarté, que les scripts Perl 6 portent l&#8217;extension <code>.pl6</code>.
-Exécutez le fichier en entrant perl6 <code>nom-du-fichier.pl6</code> dans la fenêtre de terminal (puis [Entrée]).<br>
+Il est conseillé, pour plus de clarté, que les scripts Perl 6 portent l&#8217;extension <code>.p6</code>.
+Exécutez le fichier en entrant perl6 <code>nom-du-fichier.p6</code> dans la fenêtre de terminal (puis [Entrée]).<br>
 À l&#8217;inverse du REPL, le résultat ne sera pas automatiquement affiché pour chaque ligne:
  le code doit contenir une instruction comme <code>say</code> ou <code>print</code> pour afficher une sortie.</p>
 </div>
@@ -863,10 +858,10 @@ nous devrions avoir un éditeur de texte décent qui reconnaît la syntaxe de Pe
 </div>
 <div class="paragraph">
 <p>Je recommande personnellement <a href="https://atom.io/">Atom</a>. C&#8217;est un éditeur de texte moderne livré avec une coloration syntaxique pour Perl 6.
-<a href="https://atom.io/packages/language-perl6fe">Perl6-fe</a> est une coloration syntaxique alternative pour Perl 6 sur Atom, basée sur l&#8217;originale, mais comprenant de nombreux correctifs et ajouts.</p>
+<a href="https://atom.io/packages/language-perl6">Perl6-fe</a> est une coloration syntaxique alternative pour Perl 6 sur Atom, basée sur l&#8217;originale, mais comprenant de nombreux correctifs et ajouts.</p>
 </div>
 <div class="paragraph">
-<p>D&#8217;autres personnes de la communauté utilisent aussi <a href="http://www.vim.org/">Vim</a>, <a href="https://www.gnu.org/software/emacs/">Emacs</a> ou <a href="http://padre.perlide.org/">Padre</a>.</p>
+<p>D&#8217;autres personnes de la communauté utilisent aussi <a href="https://www.vim.org/">Vim</a>, <a href="https://www.gnu.org/software/emacs/">Emacs</a> ou <a href="http://padre.perlide.org/">Padre</a>.</p>
 </div>
 <div class="paragraph">
 <p>Les versions récentes de Vim sont livrées avec la coloration syntaxique pour Perl 6. Emacs et Padre nécessiteront l&#8217;installation de paquets supplémentaires.</p>
@@ -1478,7 +1473,7 @@ mais, pour des raisons de cohérence et de lisibilité, il est recommandé de ch
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Pour la liste complète des opérateurs, y compris leur priorité: <a href="http://doc.perl6.org/language/operators" class="bare">http://doc.perl6.org/language/operators</a>
+Pour la liste complète des opérateurs, y compris leur priorité: <a href="https://docs.perl6.org/language/operators" class="bare">https://docs.perl6.org/language/operators</a>
 </td>
 </tr>
 </table>
@@ -1549,7 +1544,7 @@ noniP sioçnarF</pre>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Pour une liste exhaustive des méthodes applicables aux chaînes, voir <a href="http://doc.perl6.org/type/Str" class="bare">http://doc.perl6.org/type/Str</a>
+Pour une liste exhaustive des méthodes applicables aux chaînes, voir <a href="https://docs.perl6.org/type/Str" class="bare">https://docs.perl6.org/type/Str</a>
 </td>
 </tr>
 </table>
@@ -1573,7 +1568,7 @@ Pour une liste exhaustive des méthodes applicables aux chaînes, voir <a href="
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Pour une liste exhaustive des méthodes applicables aux entiers, voir <a href="http://doc.perl6.org/type/Int" class="bare">http://doc.perl6.org/type/Int</a>
+Pour une liste exhaustive des méthodes applicables aux entiers, voir <a href="https://docs.perl6.org/type/Int" class="bare">https://docs.perl6.org/type/Int</a>
 </td>
 </tr>
 </table>
@@ -1601,7 +1596,7 @@ Pour une liste exhaustive des méthodes applicables aux entiers, voir <a href="h
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Pour une liste exhaustive des méthodes applicables aux nombres rationnels, voir <a href="http://doc.perl6.org/type/Rat" class="bare">http://doc.perl6.org/type/Rat</a>
+Pour une liste exhaustive des méthodes applicables aux nombres rationnels, voir <a href="https://docs.perl6.org/type/Rat" class="bare">https://docs.perl6.org/type/Rat</a>
 </td>
 </tr>
 </table>
@@ -1765,7 +1760,7 @@ La première dimension peut contenir un maximum de trois valeurs et la seconde u
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Pour la référence complète des tableaux: <a href="http://doc.perl6.org/type/Array" class="bare">http://doc.perl6.org/type/Array</a>
+Pour la référence complète des tableaux: <a href="https://docs.perl6.org/type/Array" class="bare">https://docs.perl6.org/type/Array</a>
 </td>
 </tr>
 </table>
@@ -1828,7 +1823,7 @@ On peut accéder à la valeur particulière d&#8217;un hachage en spécifiant sa
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Pour la référence complète des hachages: <a href="http://doc.perl6.org/type/Hash" class="bare">http://doc.perl6.org/type/Hash</a>
+Pour la référence complète des hachages: <a href="https://docs.perl6.org/type/Hash" class="bare">https://docs.perl6.org/type/Hash</a>
 </td>
 </tr>
 </table>
@@ -2101,7 +2096,7 @@ Mais la valeur de la variable liée peut néanmoins changer si la valeur de la v
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Pour plus d&#8217;informations sur les variables, rendez-vous à <a href="http://doc.perl6.org/language/variables" class="bare">http://doc.perl6.org/language/variables</a>
+Pour plus d&#8217;informations sur les variables, rendez-vous à <a href="https://docs.perl6.org/language/variables" class="bare">https://docs.perl6.org/language/variables</a>
 </td>
 </tr>
 </table>
@@ -2386,7 +2381,7 @@ Le code ci-dessus n&#8217;affichera donc que <code>Plus petit que 50</code>.</p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Pour plus d&#8217;informations sur les boucles et les conditions, voir <a href="http://doc.perl6.org/language/control" class="bare">http://doc.perl6.org/language/control</a>
+Pour plus d&#8217;informations sur les boucles et les conditions, voir <a href="https://docs.perl6.org/language/control" class="bare">https://docs.perl6.org/language/control</a>
 </td>
 </tr>
 </table>
@@ -2573,17 +2568,17 @@ Joanna 7</pre>
 <p>Vous pouvez également vérifier si le chemin d&#8217;accès spécifié existe, si c&#8217;est un fichier ou un répertoire.</p>
 </div>
 <div class="paragraph">
-<p>Dans le répertoire où vous allez exécuter le script ci-dessous, créez un dossier vide <code>folder123</code> et un fichier Perl 6 vide <code>script123.pl6</code></p>
+<p>Dans le répertoire où vous allez exécuter le script ci-dessous, créez un dossier vide <code>folder123</code> et un fichier Perl 6 vide <code>script123.p6</code></p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-nb">say</span> <span class="tok-s">&quot;script123.pl6&quot;</span>.<span class="tok-nb">IO</span>.<span class="tok-nb">e</span>;
+<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-nb">say</span> <span class="tok-s">&quot;script123.p6&quot;</span>.<span class="tok-nb">IO</span>.<span class="tok-nb">e</span>;
 <span class="tok-nb">say</span> <span class="tok-s">&quot;folder123&quot;</span>.<span class="tok-nb">IO</span>.<span class="tok-nb">e</span>;
 
-<span class="tok-nb">say</span> <span class="tok-s">&quot;script123.pl6&quot;</span>.<span class="tok-nb">IO</span>.<span class="tok-n">d</span>;
+<span class="tok-nb">say</span> <span class="tok-s">&quot;script123.p6&quot;</span>.<span class="tok-nb">IO</span>.<span class="tok-n">d</span>;
 <span class="tok-nb">say</span> <span class="tok-s">&quot;folder123&quot;</span>.<span class="tok-nb">IO</span>.<span class="tok-n">d</span>;
 
-<span class="tok-nb">say</span> <span class="tok-s">&quot;script123.pl6&quot;</span>.<span class="tok-nb">IO</span>.<span class="tok-n">f</span>;
+<span class="tok-nb">say</span> <span class="tok-s">&quot;script123.p6&quot;</span>.<span class="tok-nb">IO</span>.<span class="tok-n">f</span>;
 <span class="tok-nb">say</span> <span class="tok-s">&quot;folder123&quot;</span>.<span class="tok-nb">IO</span>.<span class="tok-n">f</span>;</code></pre>
 </div>
 </div>
@@ -2625,7 +2620,7 @@ Les utilisateurs Windows peuvent utiliser / ou \\ comme séparateur entre les do
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Pour plus d&#8217;informations sur les E/S, voir <a href="http://doc.perl6.org/type/IO" class="bare">http://doc.perl6.org/type/IO</a>
+Pour plus d&#8217;informations sur les E/S, voir <a href="https://docs.perl6.org/type/IO" class="bare">https://docs.perl6.org/type/IO</a>
 </td>
 </tr>
 </table>
@@ -2749,7 +2744,7 @@ Cela se fait par l&#8217;attribution d&#8217;une valeur à l&#8217;argument dura
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Pour plus d&#8217;informations sur les routines et fonctions, voir <a href="http://doc.perl6.org/language/functions" class="bare">http://doc.perl6.org/language/functions</a>
+Pour plus d&#8217;informations sur les routines et fonctions, voir <a href="https://docs.perl6.org/language/functions" class="bare">https://docs.perl6.org/language/functions</a>
 </td>
 </tr>
 </table>
@@ -3988,7 +3983,7 @@ Toutes les exceptions déscendent de la classe <code>X</code>, quelques exemples
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Pour une liste complète des types d&#8217;exceptions et une liste de leurs méthodes associées, allez sur <a href="http://doc.perl6.org/type.html" class="bare">http://doc.perl6.org/type.html</a> et naviguez dans les types qui commencent par X.
+Pour une liste complète des types d&#8217;exceptions et une liste de leurs méthodes associées, allez sur <a href="https://docs.perl6.org/type.html" class="bare">https://docs.perl6.org/type.html</a> et naviguez dans les types qui commencent par X.
 </td>
 </tr>
 </table>
@@ -4430,7 +4425,7 @@ Une regex nommée peut être appelée en utilisant la syntaxe suivante: <code>&l
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Pour plus de détails sur les regexes, voir <a href="http://doc.perl6.org/language/regexes" class="bare">http://doc.perl6.org/language/regexes</a>
+Pour plus de détails sur les regexes, voir <a href="https://docs.perl6.org/language/regexes" class="bare">https://docs.perl6.org/language/regexes</a>
 </td>
 </tr>
 </table>
@@ -4467,7 +4462,7 @@ traitement d&#8217;un texte, image, web, bases de données, protocoles réseau, 
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Une liste des modules Perl 6 se trouve ici: <a href="http://modules.perl6.org/" class="bare">http://modules.perl6.org/</a>
+Une liste des modules Perl 6 se trouve ici: <a href="https://modules.perl6.org" class="bare">https://modules.perl6.org</a>
 </td>
 </tr>
 </table>
@@ -4799,7 +4794,7 @@ C&#8217;est pourquoi utiliser <code>race</code>, <code>hyper</code>, <code>start
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Pour plus de détails sur la concurrence et la programmation asynchrone, voir <a href="http://doc.perl6.org/language/concurrency" class="bare">http://doc.perl6.org/language/concurrency</a>
+Pour plus de détails sur la concurrence et la programmation asynchrone, voir <a href="https://docs.perl6.org/language/concurrency" class="bare">https://docs.perl6.org/language/concurrency</a>
 </td>
 </tr>
 </table>
@@ -4812,7 +4807,7 @@ Pour plus de détails sur la concurrence et la programmation asynchrone, voir <a
 <div class="sectionbody">
 <div class="paragraph">
 <p>On discute beaucoup sur le canal IRC <a href="irc://irc.freenode.net/#perl6">#perl6</a> . C&#8217;est la bonne porte d&#8217;entrée pour toutes vos questions:<br>
-<a href="http://perl6.org/community/irc" class="bare">http://perl6.org/community/irc</a></p>
+<a href="https://perl6.org/community/irc" class="bare">https://perl6.org/community/irc</a></p>
 </div>
 <div class="paragraph">
 <p>Pour des nouvelles ponctuelles basées sur Perl 6:<br>
@@ -4823,7 +4818,7 @@ Pour plus de détails sur la concurrence et la programmation asynchrone, voir <a
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-08-12 21:59:44 EEST
+Last updated 2018-08-15 15:04:27 DST
 </div>
 </div>
 </body>
