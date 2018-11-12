@@ -63,9 +63,9 @@ Implementasi yang lulus uji spesifikasi dari rangkaian test dianggap Perl 6.
 
 Untuk menginstall "Rakudo Star", jalankan perintah berikut diterminal anda:
 ----
-wget https://rakudo.perl6.org/downloads/star/rakudo-star-2018.06.tar.gz
-tar xfz rakudo-star-2018.06.tar.gz
-cd rakudo-star-2018.06
+wget https://rakudo.perl6.org/downloads/star/rakudo-star-2018.10.tar.gz
+tar xfz rakudo-star-2018.10.tar.gz
+cd rakudo-star-2018.10
 perl Configure.pl --gen-moar --make-install --prefix ~/rakudo
 ----
 Untuk metode instalasi lainnya, kunjungi http://rakudo.org/how-to-get-rakudo/#Installing-Rakudo-Star-Linux
