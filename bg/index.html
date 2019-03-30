@@ -13,24 +13,24 @@
 <link rel="shortcut icon" type="image/x-icon" href="../favicon.ico">
 
 <meta charset="UTF-8">
-<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 1.5.7.1">
+<meta name="generator" content="Asciidoctor 2.0.3">
 <meta name="description" content="Общо въведение в Perl 6">
 <meta name="keywords" content="perl6, perl 6, въведение, perl6intro, въведение в perl 6, урок по пърл 6, увод в perl 6">
 <meta name="author" content="Naoum Hankache, Красимир Беров">
 <title>Увод в Perl 6</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
-/* Asciidoctor default stylesheet | MIT License | http://asciidoctor.org */
-/* Uncomment @import statement below to use as custom stylesheet */
+/* Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
+/* Uncomment @import statement when using as custom stylesheet */
 /*@import "https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700";*/
-article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section,summary{display:block}
+article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section{display:block}
 audio,canvas,video{display:inline-block}
 audio:not([controls]){display:none;height:0}
 script{display:none!important}
 html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}
-a{background:transparent}
+a{background:none}
 a:focus{outline:thin dotted}
 a:active,a:hover{outline:0}
 h1{font-size:2em;margin:.67em 0}
@@ -83,7 +83,7 @@ select{width:100%}
 div,dl,dt,dd,ul,ol,li,h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6,pre,form,p,blockquote,th,td{margin:0;padding:0;direction:ltr}
 a{color:#2156a5;text-decoration:underline;line-height:inherit}
 a:hover,a:focus{color:#1d4b8f}
-a img{border:none}
+a img{border:0}
 p{font-family:inherit;font-weight:400;font-size:1em;line-height:1.6;margin-bottom:1.25em;text-rendering:optimizeLegibility}
 p aside{font-size:.875em;line-height:1.35;font-style:italic}
 h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{font-family:"Open Sans","DejaVu Sans",sans-serif;font-weight:300;font-style:normal;color:#ba3925;text-rendering:optimizeLegibility;margin-top:1em;margin-bottom:.5em;line-height:1.0125em}
@@ -93,7 +93,7 @@ h2{font-size:1.6875em}
 h3,#toctitle,.sidebarblock>.content>.title{font-size:1.375em}
 h4,h5{font-size:1.125em}
 h6{font-size:1em}
-hr{border:solid #ddddd8;border-width:1px 0 0;clear:both;margin:1.25em 0 1.1875em;height:0}
+hr{border:solid #dddddf;border-width:1px 0 0;clear:both;margin:1.25em 0 1.1875em;height:0}
 em,i{font-style:italic;line-height:inherit}
 strong,b{font-weight:bold;line-height:inherit}
 small{font-size:60%;line-height:inherit}
@@ -124,20 +124,23 @@ table{background:#fff;margin-bottom:1.25em;border:solid 1px #dedede}
 table thead,table tfoot{background:#f7f8f7}
 table thead tr th,table thead tr td,table tfoot tr th,table tfoot tr td{padding:.5em .625em .625em;font-size:inherit;color:rgba(0,0,0,.8);text-align:left}
 table tr th,table tr td{padding:.5625em .625em;font-size:inherit;color:rgba(0,0,0,.8)}
-table tr.even,table tr.alt,table tr:nth-of-type(even){background:#f8f8f7}
+table tr.even,table tr.alt{background:#f8f8f7}
 table thead tr th,table tfoot tr th,table tbody tr td,table tr td,table tfoot tr td{display:table-cell;line-height:1.6}
 h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2;word-spacing:-.05em}
 h1 strong,h2 strong,h3 strong,#toctitle strong,.sidebarblock>.content>.title strong,h4 strong,h5 strong,h6 strong{font-weight:400}
 .clearfix::before,.clearfix::after,.float-group::before,.float-group::after{content:" ";display:table}
 .clearfix::after,.float-group::after{clear:both}
-*:not(pre)>code{font-size:.9375em;font-style:normal!important;letter-spacing:0;padding:.1em .5ex;word-spacing:-.15em;background-color:#f7f7f8;-webkit-border-radius:4px;border-radius:4px;line-height:1.45;text-rendering:optimizeSpeed;word-wrap:break-word}
-*:not(pre)>code.nobreak{word-wrap:normal}
-*:not(pre)>code.nowrap{white-space:nowrap}
-pre,pre>code{line-height:1.45;color:rgba(0,0,0,.9);font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;font-weight:400;text-rendering:optimizeSpeed}
+:not(pre):not([class^=L])>code{font-size:.9375em;font-style:normal!important;letter-spacing:0;padding:.1em .5ex;word-spacing:-.15em;background:#f7f7f8;-webkit-border-radius:4px;border-radius:4px;line-height:1.45;text-rendering:optimizeSpeed;word-wrap:break-word}
+:not(pre)>code.nobreak{word-wrap:normal}
+:not(pre)>code.nowrap{white-space:nowrap}
+pre{color:rgba(0,0,0,.9);font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;line-height:1.45;text-rendering:optimizeSpeed}
+pre code,pre pre{color:inherit;font-size:inherit;line-height:inherit}
+pre>code{display:block}
+pre.nowrap,pre.nowrap pre{white-space:pre;word-wrap:normal}
 em em{font-style:normal}
 strong strong{font-weight:400}
 .keyseq{color:rgba(51,51,51,.8)}
-kbd{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;display:inline-block;color:rgba(0,0,0,.8);font-size:.65em;line-height:1.45;background-color:#f7f7f7;border:1px solid #ccc;-webkit-border-radius:3px;border-radius:3px;-webkit-box-shadow:0 1px 0 rgba(0,0,0,.2),0 0 0 .1em white inset;box-shadow:0 1px 0 rgba(0,0,0,.2),0 0 0 .1em #fff inset;margin:0 .15em;padding:.2em .5em;vertical-align:middle;position:relative;top:-.1em;white-space:nowrap}
+kbd{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;display:inline-block;color:rgba(0,0,0,.8);font-size:.65em;line-height:1.45;background:#f7f7f7;border:1px solid #ccc;-webkit-border-radius:3px;border-radius:3px;-webkit-box-shadow:0 1px 0 rgba(0,0,0,.2),0 0 0 .1em white inset;box-shadow:0 1px 0 rgba(0,0,0,.2),0 0 0 .1em #fff inset;margin:0 .15em;padding:.2em .5em;vertical-align:middle;position:relative;top:-.1em;white-space:nowrap}
 .keyseq kbd:first-child{margin-left:0}
 .keyseq kbd:last-child{margin-right:0}
 .menuseq,.menuref{color:#000}
@@ -155,9 +158,9 @@ p a>code:hover{color:rgba(0,0,0,.9)}
 #content{margin-top:1.25em}
 #content::before{content:none}
 #header>h1:first-child{color:rgba(0,0,0,.85);margin-top:2.25rem;margin-bottom:0}
-#header>h1:first-child+#toc{margin-top:8px;border-top:1px solid #ddddd8}
-#header>h1:only-child,body.toc2 #header>h1:nth-last-child(2){border-bottom:1px solid #ddddd8;padding-bottom:8px}
-#header .details{border-bottom:1px solid #ddddd8;line-height:1.45;padding-top:.25em;padding-bottom:.25em;padding-left:.25em;color:rgba(0,0,0,.6);display:-ms-flexbox;display:-webkit-flex;display:flex;-ms-flex-flow:row wrap;-webkit-flex-flow:row wrap;flex-flow:row wrap}
+#header>h1:first-child+#toc{margin-top:8px;border-top:1px solid #dddddf}
+#header>h1:only-child,body.toc2 #header>h1:nth-last-child(2){border-bottom:1px solid #dddddf;padding-bottom:8px}
+#header .details{border-bottom:1px solid #dddddf;line-height:1.45;padding-top:.25em;padding-bottom:.25em;padding-left:.25em;color:rgba(0,0,0,.6);display:-ms-flexbox;display:-webkit-flex;display:flex;-ms-flex-flow:row wrap;-webkit-flex-flow:row wrap;flex-flow:row wrap}
 #header .details span:first-child{margin-left:-.125em}
 #header .details span.email a{color:rgba(0,0,0,.85)}
 #header .details br{display:none}
@@ -166,8 +169,8 @@ p a>code:hover{color:rgba(0,0,0,.9)}
 #header .details br+span#revremark::before{content:"\00a0|\00a0"}
 #header #revnumber{text-transform:capitalize}
 #header #revnumber::after{content:"\00a0"}
-#content>h1:first-child:not([class]){color:rgba(0,0,0,.85);border-bottom:1px solid #ddddd8;padding-bottom:8px;margin-top:0;padding-top:1rem;margin-bottom:1.25rem}
-#toc{border-bottom:1px solid #efefed;padding-bottom:.5em}
+#content>h1:first-child:not([class]){color:rgba(0,0,0,.85);border-bottom:1px solid #dddddf;padding-bottom:8px;margin-top:0;padding-top:1rem;margin-bottom:1.25rem}
+#toc{border-bottom:1px solid #e7e7e9;padding-bottom:.5em}
 #toc>ul{margin-left:.125em}
 #toc ul.sectlevel0>li>a{font-style:italic}
 #toc ul.sectlevel0 ul.sectlevel1{margin:.5em 0}
@@ -178,13 +181,13 @@ p a>code:hover{color:rgba(0,0,0,.9)}
 #toctitle{color:#7a2518;font-size:1.2em}
 @media screen and (min-width:768px){#toctitle{font-size:1.375em}
 body.toc2{padding-left:15em;padding-right:0}
-#toc.toc2{margin-top:0!important;background-color:#f8f8f7;position:fixed;width:15em;left:0;top:0;border-right:1px solid #efefed;border-top-width:0!important;border-bottom-width:0!important;z-index:1000;padding:1.25em 1em;height:100%;overflow:auto}
+#toc.toc2{margin-top:0!important;background:#f8f8f7;position:fixed;width:15em;left:0;top:0;border-right:1px solid #e7e7e9;border-top-width:0!important;border-bottom-width:0!important;z-index:1000;padding:1.25em 1em;height:100%;overflow:auto}
 #toc.toc2 #toctitle{margin-top:0;margin-bottom:.8rem;font-size:1.2em}
 #toc.toc2>ul{font-size:.9em;margin-bottom:0}
 #toc.toc2 ul ul{margin-left:0;padding-left:1em}
 #toc.toc2 ul.sectlevel0 ul.sectlevel1{padding-left:0;margin-top:.5em;margin-bottom:.5em}
 body.toc2.toc-right{padding-left:0;padding-right:15em}
-body.toc2.toc-right #toc.toc2{border-right-width:0;border-left:1px solid #efefed;left:auto;right:0}}
+body.toc2.toc-right #toc.toc2{border-right-width:0;border-left:1px solid #e7e7e9;left:auto;right:0}}
 @media screen and (min-width:1280px){body.toc2{padding-left:20em;padding-right:0}
 #toc.toc2{width:20em}
 #toc.toc2 #toctitle{font-size:1.375em}
@@ -194,20 +197,21 @@ body.toc2.toc-right{padding-left:0;padding-right:20em}}
 #content #toc{border-style:solid;border-width:1px;border-color:#e0e0dc;margin-bottom:1.25em;padding:1.25em;background:#f8f8f7;-webkit-border-radius:4px;border-radius:4px}
 #content #toc>:first-child{margin-top:0}
 #content #toc>:last-child{margin-bottom:0}
-#footer{max-width:100%;background-color:rgba(0,0,0,.8);padding:1.25em}
+#footer{max-width:100%;background:rgba(0,0,0,.8);padding:1.25em}
 #footer-text{color:rgba(255,255,255,.8);line-height:1.44}
 #content{margin-bottom:.625em}
 .sect1{padding-bottom:.625em}
 @media screen and (min-width:768px){#content{margin-bottom:1.25em}
 .sect1{padding-bottom:1.25em}}
 .sect1:last-child{padding-bottom:0}
-.sect1+.sect1{border-top:1px solid #efefed}
+.sect1+.sect1{border-top:1px solid #e7e7e9}
 #content h1>a.anchor,h2>a.anchor,h3>a.anchor,#toctitle>a.anchor,.sidebarblock>.content>.title>a.anchor,h4>a.anchor,h5>a.anchor,h6>a.anchor{position:absolute;z-index:1001;width:1.5ex;margin-left:-1.5ex;display:block;text-decoration:none!important;visibility:hidden;text-align:center;font-weight:400}
 #content h1>a.anchor::before,h2>a.anchor::before,h3>a.anchor::before,#toctitle>a.anchor::before,.sidebarblock>.content>.title>a.anchor::before,h4>a.anchor::before,h5>a.anchor::before,h6>a.anchor::before{content:"\00A7";font-size:.85em;display:block;padding-top:.1em}
 #content h1:hover>a.anchor,#content h1>a.anchor:hover,h2:hover>a.anchor,h2>a.anchor:hover,h3:hover>a.anchor,#toctitle:hover>a.anchor,.sidebarblock>.content>.title:hover>a.anchor,h3>a.anchor:hover,#toctitle>a.anchor:hover,.sidebarblock>.content>.title>a.anchor:hover,h4:hover>a.anchor,h4>a.anchor:hover,h5:hover>a.anchor,h5>a.anchor:hover,h6:hover>a.anchor,h6>a.anchor:hover{visibility:visible}
 #content h1>a.link,h2>a.link,h3>a.link,#toctitle>a.link,.sidebarblock>.content>.title>a.link,h4>a.link,h5>a.link,h6>a.link{color:#ba3925;text-decoration:none}
 #content h1>a.link:hover,h2>a.link:hover,h3>a.link:hover,#toctitle>a.link:hover,.sidebarblock>.content>.title>a.link:hover,h4>a.link:hover,h5>a.link:hover,h6>a.link:hover{color:#a53221}
-.audioblock,.imageblock,.literalblock,.listingblock,.stemblock,.videoblock{margin-bottom:1.25em}
+details,.audioblock,.imageblock,.literalblock,.listingblock,.stemblock,.videoblock{margin-bottom:1.25em}
+details>summary:first-of-type{cursor:pointer;display:list-item;outline:none;margin-bottom:.75em}
 .admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{text-rendering:optimizeLegibility;text-align:left;font-family:"Noto Serif","DejaVu Serif",serif;font-size:1rem;font-style:italic}
 table.tableblock.fit-content>caption.title{white-space:nowrap;width:0}
 .paragraph.lead>p,#preamble>.sectionbody>[class="paragraph"]:first-of-type p{font-size:1.21875em;line-height:1.6;color:rgba(0,0,0,.85)}
@@ -216,47 +220,47 @@ table.tableblock #preamble>.sectionbody>[class="paragraph"]:first-of-type p{font
 .admonitionblock>table td.icon{text-align:center;width:80px}
 .admonitionblock>table td.icon img{max-width:none}
 .admonitionblock>table td.icon .title{font-weight:bold;font-family:"Open Sans","DejaVu Sans",sans-serif;text-transform:uppercase}
-.admonitionblock>table td.content{padding-left:1.125em;padding-right:1.25em;border-left:1px solid #ddddd8;color:rgba(0,0,0,.6)}
+.admonitionblock>table td.content{padding-left:1.125em;padding-right:1.25em;border-left:1px solid #dddddf;color:rgba(0,0,0,.6)}
 .admonitionblock>table td.content>:last-child>:last-child{margin-bottom:0}
 .exampleblock>.content{border-style:solid;border-width:1px;border-color:#e6e6e6;margin-bottom:1.25em;padding:1.25em;background:#fff;-webkit-border-radius:4px;border-radius:4px}
 .exampleblock>.content>:first-child{margin-top:0}
 .exampleblock>.content>:last-child{margin-bottom:0}
-.sidebarblock{border-style:solid;border-width:1px;border-color:#e0e0dc;margin-bottom:1.25em;padding:1.25em;background:#f8f8f7;-webkit-border-radius:4px;border-radius:4px}
+.sidebarblock{border-style:solid;border-width:1px;border-color:#dbdbd6;margin-bottom:1.25em;padding:1.25em;background:#f3f3f2;-webkit-border-radius:4px;border-radius:4px}
 .sidebarblock>:first-child{margin-top:0}
 .sidebarblock>:last-child{margin-bottom:0}
 .sidebarblock>.content>.title{color:#7a2518;margin-top:0;text-align:center}
 .exampleblock>.content>:last-child>:last-child,.exampleblock>.content .olist>ol>li:last-child>:last-child,.exampleblock>.content .ulist>ul>li:last-child>:last-child,.exampleblock>.content .qlist>ol>li:last-child>:last-child,.sidebarblock>.content>:last-child>:last-child,.sidebarblock>.content .olist>ol>li:last-child>:last-child,.sidebarblock>.content .ulist>ul>li:last-child>:last-child,.sidebarblock>.content .qlist>ol>li:last-child>:last-child{margin-bottom:0}
-.literalblock pre,.listingblock pre:not(.highlight),.listingblock pre[class="highlight"],.listingblock pre[class^="highlight "],.listingblock pre.CodeRay,.listingblock pre.prettyprint{background:#f7f7f8}
-.sidebarblock .literalblock pre,.sidebarblock .listingblock pre:not(.highlight),.sidebarblock .listingblock pre[class="highlight"],.sidebarblock .listingblock pre[class^="highlight "],.sidebarblock .listingblock pre.CodeRay,.sidebarblock .listingblock pre.prettyprint{background:#f2f1f1}
-.literalblock pre,.literalblock pre[class],.listingblock pre,.listingblock pre[class]{-webkit-border-radius:4px;border-radius:4px;word-wrap:break-word;padding:1em;font-size:.8125em}
-.literalblock pre.nowrap,.literalblock pre[class].nowrap,.listingblock pre.nowrap,.listingblock pre[class].nowrap{overflow-x:auto;white-space:pre;word-wrap:normal}
-@media screen and (min-width:768px){.literalblock pre,.literalblock pre[class],.listingblock pre,.listingblock pre[class]{font-size:.90625em}}
-@media screen and (min-width:1280px){.literalblock pre,.literalblock pre[class],.listingblock pre,.listingblock pre[class]{font-size:1em}}
-.literalblock.output pre{color:#f7f7f8;background-color:rgba(0,0,0,.9)}
+.literalblock pre,.listingblock>.content>pre{-webkit-border-radius:4px;border-radius:4px;word-wrap:break-word;overflow-x:auto;padding:1em;font-size:.8125em}
+@media screen and (min-width:768px){.literalblock pre,.listingblock>.content>pre{font-size:.90625em}}
+@media screen and (min-width:1280px){.literalblock pre,.listingblock>.content>pre{font-size:1em}}
+.literalblock.output pre{color:#f7f7f8;background:rgba(0,0,0,.9)}
+.listingblock>.content>pre:not(.highlight),.listingblock>.content>pre[class="highlight"],.listingblock>.content>pre[class^="highlight "]{background:#f7f7f8}
+.listingblock>.content{position:relative}
+.listingblock code[data-lang]::before{display:none;content:attr(data-lang);position:absolute;font-size:.75em;top:.425rem;right:.5rem;line-height:1;text-transform:uppercase;color:inherit;opacity:.5}
+.listingblock:hover code[data-lang]::before{display:block}
+.listingblock.terminal pre .command::before{content:attr(data-prompt);padding-right:.5em;color:inherit;opacity:.5}
+.listingblock.terminal pre .command:not([data-prompt])::before{content:"$"}
 .listingblock pre.highlightjs{padding:0}
 .listingblock pre.highlightjs>code{padding:1em;-webkit-border-radius:4px;border-radius:4px}
 .listingblock pre.prettyprint{border-width:0}
-.listingblock>.content{position:relative}
-.listingblock code[data-lang]::before{display:none;content:attr(data-lang);position:absolute;font-size:.75em;top:.425rem;right:.5rem;line-height:1;text-transform:uppercase;color:#999}
-.listingblock:hover code[data-lang]::before{display:block}
-.listingblock.terminal pre .command::before{content:attr(data-prompt);padding-right:.5em;color:#999}
-.listingblock.terminal pre .command:not([data-prompt])::before{content:"$"}
-table.pyhltable{border-collapse:separate;border:0;margin-bottom:0;background:none}
-table.pyhltable td{vertical-align:top;padding-top:0;padding-bottom:0;line-height:1.45}
-table.pyhltable td.code{padding-left:.75em;padding-right:0}
-pre.pygments .lineno,table.pyhltable td:not(.code){color:#999;padding-left:0;padding-right:.5em;border-right:1px solid #ddddd8}
-pre.pygments .lineno{display:inline-block;margin-right:.25em}
-table.pyhltable .linenodiv{background:none!important;padding-right:0!important}
+.prettyprint{background:#f7f7f8}
+pre.prettyprint .linenums{line-height:1.45;margin-left:2em}
+pre.prettyprint li{background:none;list-style-type:inherit;padding-left:0}
+pre.prettyprint li code[data-lang]::before{opacity:1}
+pre.prettyprint li:not(:first-child) code[data-lang]::before{display:none}
+table.linenotable{border-collapse:separate;border:0;margin-bottom:0;background:none}
+table.linenotable td[class]{color:inherit;vertical-align:top;padding:0;line-height:inherit;white-space:normal}
+table.linenotable td.code{padding-left:.75em}
+table.linenotable td.linenos{border-right:1px solid currentColor;opacity:.35;padding-right:.5em}
+pre.pygments .lineno{border-right:1px solid currentColor;opacity:.35;display:inline-block;margin-right:.75em}
+pre.pygments .lineno::before{content:"";margin-right:-.125em}
 .quoteblock{margin:0 1em 1.25em 1.5em;display:table}
 .quoteblock>.title{margin-left:-1.5em;margin-bottom:.75em}
-.quoteblock blockquote,.quoteblock blockquote p{color:rgba(0,0,0,.85);font-size:1.15rem;line-height:1.75;word-spacing:.1em;letter-spacing:0;font-style:italic;text-align:justify}
+.quoteblock blockquote,.quoteblock p{color:rgba(0,0,0,.85);font-size:1.15rem;line-height:1.75;word-spacing:.1em;letter-spacing:0;font-style:italic;text-align:justify}
 .quoteblock blockquote{margin:0;padding:0;border:0}
 .quoteblock blockquote::before{content:"\201c";float:left;font-size:2.75em;font-weight:bold;line-height:.6em;margin-left:-.6em;color:#7a2518;text-shadow:0 1px 2px rgba(0,0,0,.1)}
 .quoteblock blockquote>.paragraph:last-child p{margin-bottom:0}
-.quoteblock .attribution{margin-top:.5em;margin-right:.5ex;text-align:right}
-.quoteblock .quoteblock{margin-left:0;margin-right:0;padding:.5em 0;border-left:3px solid rgba(0,0,0,.6)}
-.quoteblock .quoteblock blockquote{padding:0 0 0 .75em}
-.quoteblock .quoteblock blockquote::before{display:none}
+.quoteblock .attribution{margin-top:.75em;margin-right:.5ex;text-align:right}
 .verseblock{margin:0 1em 1.25em}
 .verseblock pre{font-family:"Open Sans","DejaVu Sans",sans;font-size:1.15rem;color:rgba(0,0,0,.85);font-weight:300;text-rendering:optimizeLegibility}
 .verseblock pre strong{font-weight:400}
@@ -264,10 +268,13 @@ table.pyhltable .linenodiv{background:none!important;padding-right:0!important}
 .quoteblock .attribution,.verseblock .attribution{font-size:.9375em;line-height:1.45;font-style:italic}
 .quoteblock .attribution br,.verseblock .attribution br{display:none}
 .quoteblock .attribution cite,.verseblock .attribution cite{display:block;letter-spacing:-.025em;color:rgba(0,0,0,.6)}
+.quoteblock.abstract blockquote::before,.quoteblock.excerpt blockquote::before,.quoteblock .quoteblock blockquote::before{display:none}
+.quoteblock.abstract blockquote,.quoteblock.abstract p,.quoteblock.excerpt blockquote,.quoteblock.excerpt p,.quoteblock .quoteblock blockquote,.quoteblock .quoteblock p{line-height:1.6;word-spacing:0}
 .quoteblock.abstract{margin:0 1em 1.25em;display:block}
 .quoteblock.abstract>.title{margin:0 0 .375em;font-size:1.15em;text-align:center}
-.quoteblock.abstract blockquote,.quoteblock.abstract blockquote p{word-spacing:0;line-height:1.6}
-.quoteblock.abstract blockquote::before,.quoteblock.abstract p::before{display:none}
+.quoteblock.excerpt,.quoteblock .quoteblock{margin:0 0 1.25em;padding:0 0 .25em 1em;border-left:.25em solid #dddddf}
+.quoteblock.excerpt blockquote,.quoteblock.excerpt p,.quoteblock .quoteblock blockquote,.quoteblock .quoteblock p{color:inherit;font-size:1.0625rem}
+.quoteblock.excerpt .attribution,.quoteblock .quoteblock .attribution{color:inherit;text-align:left;margin-right:0}
 table.tableblock{max-width:100%;border-collapse:separate}
 p.tableblock:last-child{margin-bottom:0}
 td.tableblock>.content{margin-bottom:-1.25em}
@@ -282,8 +289,7 @@ table.grid-all>tbody>tr:last-child>.tableblock,table.grid-all>thead:last-child>t
 table.frame-all{border-width:1px}
 table.frame-sides{border-width:0 1px}
 table.frame-topbot,table.frame-ends{border-width:1px 0}
-table.stripes-all tr,table.stripes-odd tr:nth-of-type(odd){background:#f8f8f7}
-table.stripes-none tr,table.stripes-odd tr:nth-of-type(even){background:none}
+table.stripes-all tr,table.stripes-odd tr:nth-of-type(odd),table.stripes-even tr:nth-of-type(even),table.stripes-hover tr:hover{background:#f8f8f7}
 th.halign-left,td.halign-left{text-align:left}
 th.halign-right,td.halign-right{text-align:right}
 th.halign-center,td.halign-center{text-align:center}
@@ -295,7 +301,6 @@ tbody tr th{display:table-cell;line-height:1.6;background:#f7f8f7}
 tbody tr th,tbody tr th p,tfoot tr th,tfoot tr th p{color:rgba(0,0,0,.8);font-weight:bold}
 p.tableblock>code:only-child{background:none;padding:0}
 p.tableblock{font-size:1em}
-td>div.verse{white-space:pre}
 ol{margin-left:1.75em}
 ul li ol{margin-left:1.5em}
 dl dd{margin-left:1.125em}
@@ -326,8 +331,8 @@ td.hdlist1{font-weight:bold;padding-bottom:1.25em}
 .colist td:not([class]):first-child img{max-width:none}
 .colist td:not([class]):last-child{padding:.25em 0}
 .thumb,.th{line-height:0;display:inline-block;border:solid 4px #fff;-webkit-box-shadow:0 0 0 1px #ddd;box-shadow:0 0 0 1px #ddd}
-.imageblock.left,.imageblock[style*="float: left"]{margin:.25em .625em 1.25em 0}
-.imageblock.right,.imageblock[style*="float: right"]{margin:.25em 0 1.25em .625em}
+.imageblock.left{margin:.25em .625em 1.25em 0}
+.imageblock.right{margin:.25em 0 1.25em .625em}
 .imageblock>.title{margin-bottom:0}
 .imageblock.thumb,.imageblock.th{border-width:6px}
 .imageblock.thumb>.title,.imageblock.th>.title{padding:0 .125em}
@@ -354,37 +359,37 @@ div.unbreakable{page-break-inside:avoid}
 .overline{text-decoration:overline}
 .line-through{text-decoration:line-through}
 .aqua{color:#00bfbf}
-.aqua-background{background-color:#00fafa}
+.aqua-background{background:#00fafa}
 .black{color:#000}
-.black-background{background-color:#000}
+.black-background{background:#000}
 .blue{color:#0000bf}
-.blue-background{background-color:#0000fa}
+.blue-background{background:#0000fa}
 .fuchsia{color:#bf00bf}
-.fuchsia-background{background-color:#fa00fa}
+.fuchsia-background{background:#fa00fa}
 .gray{color:#606060}
-.gray-background{background-color:#7d7d7d}
+.gray-background{background:#7d7d7d}
 .green{color:#006000}
-.green-background{background-color:#007d00}
+.green-background{background:#007d00}
 .lime{color:#00bf00}
-.lime-background{background-color:#00fa00}
+.lime-background{background:#00fa00}
 .maroon{color:#600000}
-.maroon-background{background-color:#7d0000}
+.maroon-background{background:#7d0000}
 .navy{color:#000060}
-.navy-background{background-color:#00007d}
+.navy-background{background:#00007d}
 .olive{color:#606000}
-.olive-background{background-color:#7d7d00}
+.olive-background{background:#7d7d00}
 .purple{color:#600060}
-.purple-background{background-color:#7d007d}
+.purple-background{background:#7d007d}
 .red{color:#bf0000}
-.red-background{background-color:#fa0000}
+.red-background{background:#fa0000}
 .silver{color:#909090}
-.silver-background{background-color:#bcbcbc}
+.silver-background{background:#bcbcbc}
 .teal{color:#006060}
-.teal-background{background-color:#007d7d}
+.teal-background{background:#007d7d}
 .white{color:#bfbfbf}
-.white-background{background-color:#fafafa}
+.white-background{background:#fafafa}
 .yellow{color:#bfbf00}
-.yellow-background{background-color:#fafa00}
+.yellow-background{background:#fafa00}
 span.icon>.fa{cursor:default}
 a span.icon>.fa{cursor:inherit}
 .admonitionblock td.icon [class^="fa icon-"]{font-size:2.5em;text-shadow:1px 1px 2px rgba(0,0,0,.5);cursor:default}
@@ -393,7 +398,7 @@ a span.icon>.fa{cursor:inherit}
 .admonitionblock td.icon .icon-warning::before{content:"\f071";color:#bf6900}
 .admonitionblock td.icon .icon-caution::before{content:"\f06d";color:#bf3400}
 .admonitionblock td.icon .icon-important::before{content:"\f06a";color:#bf0000}
-.conum[data-value]{display:inline-block;color:#fff!important;background-color:rgba(0,0,0,.8);-webkit-border-radius:100px;border-radius:100px;text-align:center;font-size:.75em;width:1.67em;height:1.67em;line-height:1.67em;font-family:"Open Sans","DejaVu Sans",sans-serif;font-style:normal;font-weight:bold}
+.conum[data-value]{display:inline-block;color:#fff!important;background:rgba(0,0,0,.8);-webkit-border-radius:100px;border-radius:100px;text-align:center;font-size:.75em;width:1.67em;height:1.67em;line-height:1.67em;font-family:"Open Sans","DejaVu Sans",sans-serif;font-style:normal;font-weight:bold}
 .conum[data-value] *{color:#fff!important}
 .conum[data-value]+b{display:none}
 .conum[data-value]::after{content:attr(data-value)}
@@ -406,7 +411,7 @@ p strong,td.content strong,div.footnote strong{letter-spacing:-.005em}
 p,blockquote,dt,td.content,span.alt{font-size:1.0625rem}
 p{margin-bottom:1.25rem}
 .sidebarblock p,.sidebarblock dt,.sidebarblock td.content,p.tableblock{font-size:1em}
-.exampleblock>.content{background-color:#fffef7;border-color:#e0e0dc;-webkit-box-shadow:0 1px 4px #e0e0dc;box-shadow:0 1px 4px #e0e0dc}
+.exampleblock>.content{background:#fffef7;border-color:#e0e0dc;-webkit-box-shadow:0 1px 4px #e0e0dc;box-shadow:0 1px 4px #e0e0dc}
 .print-only{display:none!important}
 @page{margin:1.25cm .75cm}
 @media print{*{-webkit-box-shadow:none!important;box-shadow:none!important;text-shadow:none!important}
@@ -421,7 +426,7 @@ svg{max-width:100%}
 p,blockquote,dt,td.content{font-size:1em;orphans:3;widows:3}
 h2,h3,#toctitle,.sidebarblock>.content>.title{page-break-after:avoid}
 #toc,.sidebarblock,.exampleblock>.content{background:none!important}
-#toc{border-bottom:1px solid #ddddd8!important;padding-bottom:0!important}
+#toc{border-bottom:1px solid #dddddf!important;padding-bottom:0!important}
 body.book #header{text-align:center}
 body.book #header>h1:first-child{border:0!important;margin:2.5em 0 1em}
 body.book #header .details{border:0!important;display:block;padding:0!important}
@@ -444,77 +449,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 @media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
 </style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<style>
-.listingblock .pygments .hll { background-color: #ffffcc }
-.listingblock .pygments, .listingblock .pygments code { background: #f8f8f8; }
-.listingblock .pygments .tok-c { color: #408080; font-style: italic } /* Comment */
-.listingblock .pygments .tok-err { border: 1px solid #FF0000 } /* Error */
-.listingblock .pygments .tok-k { color: #008000; font-weight: bold } /* Keyword */
-.listingblock .pygments .tok-o { color: #666666 } /* Operator */
-.listingblock .pygments .tok-ch { color: #408080; font-style: italic } /* Comment.Hashbang */
-.listingblock .pygments .tok-cm { color: #408080; font-style: italic } /* Comment.Multiline */
-.listingblock .pygments .tok-cp { color: #BC7A00 } /* Comment.Preproc */
-.listingblock .pygments .tok-cpf { color: #408080; font-style: italic } /* Comment.PreprocFile */
-.listingblock .pygments .tok-c1 { color: #408080; font-style: italic } /* Comment.Single */
-.listingblock .pygments .tok-cs { color: #408080; font-style: italic } /* Comment.Special */
-.listingblock .pygments .tok-gd { color: #A00000 } /* Generic.Deleted */
-.listingblock .pygments .tok-ge { font-style: italic } /* Generic.Emph */
-.listingblock .pygments .tok-gr { color: #FF0000 } /* Generic.Error */
-.listingblock .pygments .tok-gh { color: #000080; font-weight: bold } /* Generic.Heading */
-.listingblock .pygments .tok-gi { color: #00A000 } /* Generic.Inserted */
-.listingblock .pygments .tok-go { color: #888888 } /* Generic.Output */
-.listingblock .pygments .tok-gp { color: #000080; font-weight: bold } /* Generic.Prompt */
-.listingblock .pygments .tok-gs { font-weight: bold } /* Generic.Strong */
-.listingblock .pygments .tok-gu { color: #800080; font-weight: bold } /* Generic.Subheading */
-.listingblock .pygments .tok-gt { color: #0044DD } /* Generic.Traceback */
-.listingblock .pygments .tok-kc { color: #008000; font-weight: bold } /* Keyword.Constant */
-.listingblock .pygments .tok-kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
-.listingblock .pygments .tok-kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
-.listingblock .pygments .tok-kp { color: #008000 } /* Keyword.Pseudo */
-.listingblock .pygments .tok-kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
-.listingblock .pygments .tok-kt { color: #B00040 } /* Keyword.Type */
-.listingblock .pygments .tok-m { color: #666666 } /* Literal.Number */
-.listingblock .pygments .tok-s { color: #BA2121 } /* Literal.String */
-.listingblock .pygments .tok-na { color: #7D9029 } /* Name.Attribute */
-.listingblock .pygments .tok-nb { color: #008000 } /* Name.Builtin */
-.listingblock .pygments .tok-nc { color: #0000FF; font-weight: bold } /* Name.Class */
-.listingblock .pygments .tok-no { color: #880000 } /* Name.Constant */
-.listingblock .pygments .tok-nd { color: #AA22FF } /* Name.Decorator */
-.listingblock .pygments .tok-ni { color: #999999; font-weight: bold } /* Name.Entity */
-.listingblock .pygments .tok-ne { color: #D2413A; font-weight: bold } /* Name.Exception */
-.listingblock .pygments .tok-nf { color: #0000FF } /* Name.Function */
-.listingblock .pygments .tok-nl { color: #A0A000 } /* Name.Label */
-.listingblock .pygments .tok-nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
-.listingblock .pygments .tok-nt { color: #008000; font-weight: bold } /* Name.Tag */
-.listingblock .pygments .tok-nv { color: #19177C } /* Name.Variable */
-.listingblock .pygments .tok-ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
-.listingblock .pygments .tok-w { color: #bbbbbb } /* Text.Whitespace */
-.listingblock .pygments .tok-mb { color: #666666 } /* Literal.Number.Bin */
-.listingblock .pygments .tok-mf { color: #666666 } /* Literal.Number.Float */
-.listingblock .pygments .tok-mh { color: #666666 } /* Literal.Number.Hex */
-.listingblock .pygments .tok-mi { color: #666666 } /* Literal.Number.Integer */
-.listingblock .pygments .tok-mo { color: #666666 } /* Literal.Number.Oct */
-.listingblock .pygments .tok-sa { color: #BA2121 } /* Literal.String.Affix */
-.listingblock .pygments .tok-sb { color: #BA2121 } /* Literal.String.Backtick */
-.listingblock .pygments .tok-sc { color: #BA2121 } /* Literal.String.Char */
-.listingblock .pygments .tok-dl { color: #BA2121 } /* Literal.String.Delimiter */
-.listingblock .pygments .tok-sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
-.listingblock .pygments .tok-s2 { color: #BA2121 } /* Literal.String.Double */
-.listingblock .pygments .tok-se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
-.listingblock .pygments .tok-sh { color: #BA2121 } /* Literal.String.Heredoc */
-.listingblock .pygments .tok-si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
-.listingblock .pygments .tok-sx { color: #008000 } /* Literal.String.Other */
-.listingblock .pygments .tok-sr { color: #BB6688 } /* Literal.String.Regex */
-.listingblock .pygments .tok-s1 { color: #BA2121 } /* Literal.String.Single */
-.listingblock .pygments .tok-ss { color: #19177C } /* Literal.String.Symbol */
-.listingblock .pygments .tok-bp { color: #008000 } /* Name.Builtin.Pseudo */
-.listingblock .pygments .tok-fm { color: #0000FF } /* Name.Function.Magic */
-.listingblock .pygments .tok-vc { color: #19177C } /* Name.Variable.Class */
-.listingblock .pygments .tok-vg { color: #19177C } /* Name.Variable.Global */
-.listingblock .pygments .tok-vi { color: #19177C } /* Name.Variable.Instance */
-.listingblock .pygments .tok-vm { color: #19177C } /* Name.Variable.Magic */
-.listingblock .pygments .tok-il { color: #666666 } /* Literal.Number.Integer.Long */
-</style>
 </head>
 <body class="book toc2 toc-left">
 <div id="header">
@@ -528,37 +462,37 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toc" class="toc2">
 <div id="toctitle">Съдържание</div>
 <ul class="sectlevel1">
-<li><a href="#_Увод">1. Увод</a>
+<li><a href="#_увод">1. Увод</a>
 <ul class="sectlevel2">
-<li><a href="#_Какво_е_perl_6">1.1. Какво е Perl 6</a></li>
-<li><a href="#_Понятия">1.2. Понятия</a></li>
-<li><a href="#_Инсталиране_на_Пърл_6">1.3. Инсталиране на Пърл 6</a></li>
-<li><a href="#_Изпълнение_на_код_написан_на_perl_6">1.4. Изпълнение на код, написан на Perl 6</a></li>
-<li><a href="#_Редактори">1.5. Редактори</a></li>
-<li><a href="#_Здравей_Свят">1.6. Здравей, Свят!</a></li>
-<li><a href="#_Преглед_на_синтаксиса">1.7. Преглед на синтаксиса</a></li>
+<li><a href="#_какво_е_perl_6">1.1. Какво е Perl 6</a></li>
+<li><a href="#_понятия">1.2. Понятия</a></li>
+<li><a href="#_инсталиране_на_пърл_6">1.3. Инсталиране на Пърл 6</a></li>
+<li><a href="#_изпълнение_на_код_написан_на_perl_6">1.4. Изпълнение на код, написан на Perl 6</a></li>
+<li><a href="#_редактори">1.5. Редактори</a></li>
+<li><a href="#_здравей_свят">1.6. Здравей, Свят!</a></li>
+<li><a href="#_преглед_на_синтаксиса">1.7. Преглед на синтаксиса</a></li>
 </ul>
 </li>
-<li><a href="#_Оператори">2. Оператори</a>
+<li><a href="#_оператори">2. Оператори</a>
 <ul class="sectlevel2">
-<li><a href="#_Често_използувани_оператори">2.1. Често използувани оператори</a></li>
-<li><a href="#_Обърнати_Оператори">2.2. Обърнати Оператори</a></li>
-<li><a href="#_Съкращаващи_Оператори">2.3. Съкращаващи Оператори</a></li>
+<li><a href="#_често_използувани_оператори">2.1. Често използувани оператори</a></li>
+<li><a href="#_обърнати_оператори">2.2. Обърнати Оператори</a></li>
+<li><a href="#_съкращаващи_оператори">2.3. Съкращаващи Оператори</a></li>
 </ul>
 </li>
-<li><a href="#_Променливи">3. Променливи</a>
+<li><a href="#_променливи">3. Променливи</a>
 <ul class="sectlevel2">
-<li><a href="#_Скалари">3.1. Скалари</a></li>
-<li><a href="#_Масиви">3.2. Масиви</a></li>
-<li><a href="#_Хешове">3.3. Хешове</a></li>
-<li><a href="#_Типове">3.4. Типове</a></li>
-<li><a href="#_Самонаблюдение">3.5. Самонаблюдение</a></li>
-<li><a href="#_Видимост">3.6. Видимост</a></li>
-<li><a href="#_Присвояване_и_Обвързване">3.7. Присвояване и Обвързване</a></li>
+<li><a href="#_скалари">3.1. Скалари</a></li>
+<li><a href="#_масиви">3.2. Масиви</a></li>
+<li><a href="#_хешове">3.3. Хешове</a></li>
+<li><a href="#_типове">3.4. Типове</a></li>
+<li><a href="#_самонаблюдение">3.5. Самонаблюдение</a></li>
+<li><a href="#_видимост">3.6. Видимост</a></li>
+<li><a href="#_присвояване_и_обвързване">3.7. Присвояване и Обвързване</a></li>
 </ul>
 </li>
-<li><a href="#_Функции_и_мутатори">4. Функции и мутатори</a></li>
-<li><a href="#_Цикли_и_условия">5. Цикли и условия</a>
+<li><a href="#_функции_и_мутатори">4. Функции и мутатори</a></li>
+<li><a href="#_цикли_и_условия">5. Цикли и условия</a>
 <ul class="sectlevel2">
 <li><a href="#_if">5.1. if</a></li>
 <li><a href="#_unless">5.2. unless</a></li>
@@ -570,82 +504,82 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="#_io">6. I/O</a>
 <ul class="sectlevel2">
-<li><a href="#_Основни_действия_в_терминал">6.1. Основни действия в терминал</a></li>
-<li><a href="#_Изпълнение_на_външни_команди">6.2. Изпълнение на външни команди</a></li>
-<li><a href="#_Писане_в_и_четене_от_файлове">6.3. Писане в и четене от файлове</a></li>
-<li><a href="#_Работа_с_файлове_и_папки">6.4. Работа с файлове и папки</a></li>
+<li><a href="#_основни_действия_в_терминал">6.1. Основни действия в терминал</a></li>
+<li><a href="#_изпълнение_на_външни_команди">6.2. Изпълнение на външни команди</a></li>
+<li><a href="#_писане_в_и_четене_от_файлове">6.3. Писане в и четене от файлове</a></li>
+<li><a href="#_работа_с_файлове_и_папки">6.4. Работа с файлове и папки</a></li>
 </ul>
 </li>
-<li><a href="#_Подпрограми">7. Подпрограми</a>
+<li><a href="#_подпрограми">7. Подпрограми</a>
 <ul class="sectlevel2">
-<li><a href="#_Създаване">7.1. Създаване</a></li>
-<li><a href="#_Списък_с_параметри">7.2. Списък с параметри</a></li>
-<li><a href="#_Многократност">7.3. Многократност</a></li>
-<li><a href="#_Незадължителни_и_подразбиращи_се_параметри">7.4. Незадължителни и подразбиращи се параметри</a></li>
-<li><a href="#_Връщане_на_стойности">7.5. Връщане на стойности</a></li>
+<li><a href="#_създаване">7.1. Създаване</a></li>
+<li><a href="#_списък_с_параметри">7.2. Списък с параметри</a></li>
+<li><a href="#_многократност">7.3. Многократност</a></li>
+<li><a href="#_незадължителни_и_подразбиращи_се_параметри">7.4. Незадължителни и подразбиращи се параметри</a></li>
+<li><a href="#_връщане_на_стойности">7.5. Връщане на стойности</a></li>
 </ul>
 </li>
-<li><a href="#_Функционално_Програмиране">8. Функционално Програмиране</a>
+<li><a href="#_функционално_програмиране">8. Функционално Програмиране</a>
 <ul class="sectlevel2">
-<li><a href="#_Функциите_са_граждани_първа_класа">8.1. Функциите са граждани първа класа</a></li>
-<li><a href="#_Безименни_функции">8.2. Безименни функции</a></li>
-<li><a href="#_Верижност_chaining">8.3. Верижност (Chaining)</a></li>
-<li><a href="#_Оператор_за_подаване">8.4. Оператор за подаване</a></li>
-<li><a href="#_Свръх_оператор">8.5. Свръх-оператор</a></li>
-<li><a href="#_Сливания">8.6. Сливания</a></li>
-<li><a href="#_Мързеливи_списъци">8.7. Мързеливи списъци</a></li>
-<li><a href="#_Затваряния">8.8. Затваряния</a></li>
+<li><a href="#_функциите_са_граждани_първа_класа">8.1. Функциите са граждани първа класа</a></li>
+<li><a href="#_безименни_функции">8.2. Безименни функции</a></li>
+<li><a href="#_верижност_chaining">8.3. Верижност (Chaining)</a></li>
+<li><a href="#_оператор_за_подаване">8.4. Оператор за подаване</a></li>
+<li><a href="#_свръх_оператор">8.5. Свръх-оператор</a></li>
+<li><a href="#_сливания">8.6. Сливания</a></li>
+<li><a href="#_мързеливи_списъци">8.7. Мързеливи списъци</a></li>
+<li><a href="#_затваряния">8.8. Затваряния</a></li>
 </ul>
 </li>
-<li><a href="#_Класове_и_обекти">9. Класове и обекти</a>
+<li><a href="#_класове_и_обекти">9. Класове и обекти</a>
 <ul class="sectlevel2">
-<li><a href="#_Въведение">9.1. Въведение</a></li>
-<li><a href="#_Капсулиране">9.2. Капсулиране</a></li>
-<li><a href="#_Именувани_и_позиционни_параметри">9.3. Именувани и позиционни параметри</a></li>
-<li><a href="#_Методи">9.4. Методи</a></li>
-<li><a href="#_Атрибути_на_клас">9.5. Атрибути на клас</a></li>
-<li><a href="#_Тип_на_достъпа">9.6. Тип на достъпа</a></li>
-<li><a href="#_Наследяване">9.7. Наследяване</a></li>
-<li><a href="#_Множествено_наследяване">9.8. Множествено наследяване</a></li>
-<li><a href="#_Роли">9.9. Роли</a></li>
-<li><a href="#_Самонаблюдение_2">9.10. Самонаблюдение</a></li>
+<li><a href="#_въведение">9.1. Въведение</a></li>
+<li><a href="#_капсулиране">9.2. Капсулиране</a></li>
+<li><a href="#_именувани_и_позиционни_параметри">9.3. Именувани и позиционни параметри</a></li>
+<li><a href="#_методи">9.4. Методи</a></li>
+<li><a href="#_атрибути_на_клас">9.5. Атрибути на клас</a></li>
+<li><a href="#_тип_на_достъпа">9.6. Тип на достъпа</a></li>
+<li><a href="#_наследяване">9.7. Наследяване</a></li>
+<li><a href="#_множествено_наследяване">9.8. Множествено наследяване</a></li>
+<li><a href="#_роли">9.9. Роли</a></li>
+<li><a href="#_самонаблюдение_2">9.10. Самонаблюдение</a></li>
 </ul>
 </li>
-<li><a href="#_Обработка_на_Изключения">10. Обработка на Изключения</a>
+<li><a href="#_обработка_на_изключения">10. Обработка на Изключения</a>
 <ul class="sectlevel2">
-<li><a href="#_Прихващане_на_Изключения">10.1. Прихващане на Изключения</a></li>
-<li><a href="#_Хвърляне_на_Изключения">10.2. Хвърляне на Изключения</a></li>
+<li><a href="#_прихващане_на_изключения">10.1. Прихващане на Изключения</a></li>
+<li><a href="#_хвърляне_на_изключения">10.2. Хвърляне на Изключения</a></li>
 </ul>
 </li>
-<li><a href="#_Изрази_за_съвпадения">11. Изрази за съвпадения</a>
+<li><a href="#_изрази_за_съвпадения">11. Изрази за съвпадения</a>
 <ul class="sectlevel2">
-<li><a href="#_Обявяване_на_шаблон">11.1. Обявяване на шаблон</a></li>
-<li><a href="#_Намиране_съвпадения_на_знаци">11.2. Намиране съвпадения на знаци</a></li>
-<li><a href="#_Намиране_на_знаци_по_категории">11.3. Намиране на знаци по категории</a></li>
-<li><a href="#_Уникод_свойства">11.4. Уникод-свойства</a></li>
-<li><a href="#_Заместващи_знаци">11.5. Заместващи знаци</a></li>
-<li><a href="#_Количествени_указатели">11.6. Количествени указатели</a></li>
-<li><a href="#_Резултати_от_съвпадението">11.7. Резултати от съвпадението</a></li>
-<li><a href="#_Пример">11.8. Пример</a></li>
+<li><a href="#_обявяване_на_шаблон">11.1. Обявяване на шаблон</a></li>
+<li><a href="#_намиране_съвпадения_на_знаци">11.2. Намиране съвпадения на знаци</a></li>
+<li><a href="#_намиране_на_знаци_по_категории">11.3. Намиране на знаци по категории</a></li>
+<li><a href="#_уникод_свойства">11.4. Уникод-свойства</a></li>
+<li><a href="#_заместващи_знаци">11.5. Заместващи знаци</a></li>
+<li><a href="#_количествени_указатели">11.6. Количествени указатели</a></li>
+<li><a href="#_резултати_от_съвпадението">11.7. Резултати от съвпадението</a></li>
+<li><a href="#_пример">11.8. Пример</a></li>
 </ul>
 </li>
-<li><a href="#_Модули_в_Пърл_6">12. Модули в Пърл 6</a>
+<li><a href="#_модули_в_пърл_6">12. Модули в Пърл 6</a>
 <ul class="sectlevel2">
-<li><a href="#_Използване_на_модули">12.1. Използване на модули</a></li>
+<li><a href="#_използване_на_модули">12.1. Използване на модули</a></li>
 </ul>
 </li>
-<li><a href="#_Уникод">13. Уникод</a>
+<li><a href="#_уникод">13. Уникод</a>
 <ul class="sectlevel2">
-<li><a href="#_Използване_на_Уникод">13.1. Използване на Уникод</a></li>
+<li><a href="#_използване_на_уникод">13.1. Използване на Уникод</a></li>
 </ul>
 </li>
-<li><a href="#_Успоредност_Съгласуваност_и_Неедновременност">14. Успоредност, Съгласуваност и Неедновременност</a>
+<li><a href="#_успоредност_съгласуваност_и_неедновременност">14. Успоредност, Съгласуваност и Неедновременност</a>
 <ul class="sectlevel2">
-<li><a href="#_Успоредност_parallelism">14.1. Успоредност (Parallelism)</a></li>
-<li><a href="#_Съгласуваност_и_Неедновременност_concurrency_and_asynchrony">14.2. Съгласуваност и Неедновременност (Concurrency and Asynchrony)</a></li>
+<li><a href="#_успоредност_parallelism">14.1. Успоредност (Parallelism)</a></li>
+<li><a href="#_съгласуваност_и_неедновременност_concurrency_and_asynchrony">14.2. Съгласуваност и Неедновременност (Concurrency and Asynchrony)</a></li>
 </ul>
 </li>
-<li><a href="#_Общността">15. Общността</a></li>
+<li><a href="#_общността">15. Общността</a></li>
 </ul>
 </div>
 </div>
@@ -739,10 +673,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect1">
-<h2 id="_Увод">1. Увод</h2>
+<h2 id="_увод">1. Увод</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_Какво_е_perl_6">1.1. Какво е Perl 6</h3>
+<h3 id="_какво_е_perl_6">1.1. Какво е Perl 6</h3>
 <div class="paragraph">
 <p>Perl 6 е език от високо ниво, с общо предназначение и постепенна типизация на променливите.
 Perl 6 е многопарадигмен. Той поддържа процедурно, обектно-ориентирано и функционално програмиране.</p>
@@ -761,7 +695,7 @@ There is more than one way to do it.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_Понятия">1.2. Понятия</h3>
+<h3 id="_понятия">1.2. Понятия</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -784,7 +718,7 @@ There is more than one way to do it.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_Инсталиране_на_Пърл_6">1.3. Инсталиране на Пърл 6</h3>
+<h3 id="_инсталиране_на_пърл_6">1.3. Инсталиране на Пърл 6</h3>
 <div class="olist arabic">
 <div class="title">Линукс</div>
 <ol class="arabic">
@@ -855,7 +789,7 @@ x86_64 в името.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_Изпълнение_на_код_написан_на_perl_6">1.4. Изпълнение на код, написан на Perl 6</h3>
+<h3 id="_изпълнение_на_код_написан_на_perl_6">1.4. Изпълнение на код, написан на Perl 6</h3>
 <div class="paragraph">
 <p>Можете да изпълнявате код на Пърл 6, като използувате директно неговата
 интерактивна конзола - REPL (Read-Eval-Print Loop). За да направите това,
@@ -916,7 +850,7 @@ filename.pl6</code> и натиснете  [Enter]. За разлика от и�
 </div>
 </div>
 <div class="sect2">
-<h3 id="_Редактори">1.5. Редактори</h3>
+<h3 id="_редактори">1.5. Редактори</h3>
 <div class="paragraph">
 <p>Тъй като през повечето време ще записваме програмите си във файлове, ни е нужен
 приличен текстов редактор, който разпознава синтаксиса на Пърл 6.</p>
@@ -937,7 +871,7 @@ filename.pl6</code> и натиснете  [Enter]. За разлика от и�
 </div>
 </div>
 <div class="sect2">
-<h3 id="_Здравей_Свят">1.6. Здравей, Свят!</h3>
+<h3 id="_здравей_свят">1.6. Здравей, Свят!</h3>
 <div class="paragraph">
 <p>Ще започнем с ритуала <code>hello world</code>.</p>
 </div>
@@ -956,7 +890,7 @@ filename.pl6</code> и натиснете  [Enter]. За разлика от и�
 </div>
 </div>
 <div class="sect2">
-<h3 id="_Преглед_на_синтаксиса">1.7. Преглед на синтаксиса</h3>
+<h3 id="_преглед_на_синтаксиса">1.7. Преглед на синтаксиса</h3>
 <div class="paragraph">
 <p>Пърл 6 е <strong>свободна форма</strong>: Свободни сте (през повечето време) да използувате
 колкото ви е угодно празни пространства (за разлика от Питон - бел. прев.).</p>
@@ -1028,7 +962,7 @@ filename.pl6</code> и натиснете  [Enter]. За разлика от и�
 </tbody>
 </table>
 <div class="sect3">
-<h4 id="_Идентификатори_Имена">1.7.1. Идентификатори (Имена)</h4>
+<h4 id="_идентификатори_имена">1.7.1. Идентификатори (Имена)</h4>
 <div class="paragraph">
 <p>Идентификаторите представляват имена, дадени на членовете.</p>
 </div>
@@ -1112,7 +1046,7 @@ filename.pl6</code> и натиснете  [Enter]. За разлика от и�
 </div>
 </div>
 <div class="sect3">
-<h4 id="_Коментари">1.7.2. Коментари</h4>
+<h4 id="_коментари">1.7.2. Коментари</h4>
 <div class="paragraph">
 <p>Коментарът е текст, който се пропуска от компилатора, и се ползва като бележка или пояснение.</p>
 </div>
@@ -1153,7 +1087,7 @@ filename.pl6</code> и натиснете  [Enter]. За разлика от и�
 </div>
 </div>
 <div class="sect3">
-<h4 id="_Кавички">1.7.3. Кавички</h4>
+<h4 id="_кавички">1.7.3. Кавички</h4>
 <div class="paragraph">
 <p>Низовете се ограждат с двойни или единични кавички.</p>
 </div>
@@ -1185,10 +1119,10 @@ filename.pl6</code> и натиснете  [Enter]. За разлика от и�
 </div>
 </div>
 <div class="sect1">
-<h2 id="_Оператори">2. Оператори</h2>
+<h2 id="_оператори">2. Оператори</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_Често_използувани_оператори">2.1. Често използувани оператори</h3>
+<h3 id="_често_използувани_оператори">2.1. Често използувани оператори</h3>
 <div class="paragraph">
 <p>Следващата таблица изрежда най-често използуваните оператори.</p>
 </div>
@@ -1539,7 +1473,7 @@ filename.pl6</code> и натиснете  [Enter]. За разлика от и�
 </table>
 </div>
 <div class="sect2">
-<h3 id="_Обърнати_Оператори">2.2. Обърнати Оператори</h3>
+<h3 id="_обърнати_оператори">2.2. Обърнати Оператори</h3>
 <div class="paragraph">
 <p>Добавяне на <code>R</code> преди който и да е оператор ще обърне операндите му.</p>
 </div>
@@ -1575,7 +1509,7 @@ filename.pl6</code> и натиснете  [Enter]. За разлика от и�
 </table>
 </div>
 <div class="sect2">
-<h3 id="_Съкращаващи_Оператори">2.3. Съкращаващи Оператори</h3>
+<h3 id="_съкращаващи_оператори">2.3. Съкращаващи Оператори</h3>
 <div class="paragraph">
 <p>Операторите за съкращения се прилагат върху списък от стойности.
 Съставят се, като операторът се огради със <code>[]</code></p>
@@ -1627,7 +1561,7 @@ filename.pl6</code> и натиснете  [Enter]. За разлика от и�
 </div>
 </div>
 <div class="sect1">
-<h2 id="_Променливи">3. Променливи</h2>
+<h2 id="_променливи">3. Променливи</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Променливите в Пърл 6 биват три типа - Скалари, Масиви и Хешове.</p>
@@ -1650,7 +1584,7 @@ filename.pl6</code> и натиснете  [Enter]. За разлика от и�
 </ul>
 </div>
 <div class="sect2">
-<h3 id="_Скалари">3.1. Скалари</h3>
+<h3 id="_скалари">3.1. Скалари</h3>
 <div class="paragraph">
 <p>Скаларът (Scalar) съдържа единична стойност или указател (reference).</p>
 </div>
@@ -1697,9 +1631,9 @@ filename.pl6</code> и натиснете  [Enter]. За разлика от и�
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>ПЕРКО НАУМОВ
-12
-вомуаН окреП</pre>
+<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-n">ПЕРКО</span> <span class="tok-n">НАУМОВ</span>
+<span class="tok-mi">12</span>
+<span class="tok-n">вомуаН</span> <span class="tok-n">окреП</span></code></pre>
 </div>
 </div>
 <div class="admonitionblock note">
@@ -1724,7 +1658,7 @@ filename.pl6</code> и натиснете  [Enter]. За разлика от и�
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>True</pre>
+<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-nb">True</span></code></pre>
 </div>
 </div>
 <div class="admonitionblock note">
@@ -1751,9 +1685,9 @@ filename.pl6</code> и натиснете  [Enter]. За разлика от и�
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>23
-10
-(23 10)</pre>
+<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-mi">23</span>
+<span class="tok-mi">10</span>
+(<span class="tok-mi">23</span> <span class="tok-mi">10</span>)</code></pre>
 </div>
 </div>
 <div class="admonitionblock note">
@@ -1771,7 +1705,7 @@ filename.pl6</code> и натиснете  [Enter]. За разлика от и�
 </div>
 </div>
 <div class="sect2">
-<h3 id="_Масиви">3.2. Масиви</h3>
+<h3 id="_масиви">3.2. Масиви</h3>
 <div class="paragraph">
 <p>Масивите (Arrays) са списъци, които съдържат множество стойности.</p>
 </div>
@@ -1815,14 +1749,14 @@ filename.pl6</code> и натиснете  [Enter]. За разлика от и�
 <div class="listingblock">
 <div class="title"><code>Изход</code></div>
 <div class="content">
-<pre>В зоологическата градина има 3 животни.
-Животните са: camel vicuña llama
-Аз ще осиновя една сова
-Сега в градината ми има: camel vicuña llama owl
-The first animal we adopted was the camel
-Unfortunately the owl got away and we're left with: camel vicuña llama
-We're closing the zoo and keeping one animal only
-We're going to let go: vicuña llama and keep the camel</pre>
+<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-n">В</span> <span class="tok-n">зоологическата</span> <span class="tok-n">градина</span> <span class="tok-n">има</span> <span class="tok-mi">3</span> <span class="tok-n">животни</span>.
+<span class="tok-n">Животните</span> <span class="tok-n">са:</span> <span class="tok-n">camel</span> <span class="tok-n">vicuña</span> <span class="tok-n">llama</span>
+<span class="tok-n">Аз</span> <span class="tok-n">ще</span> <span class="tok-n">осиновя</span> <span class="tok-n">една</span> <span class="tok-n">сова</span>
+<span class="tok-n">Сега</span> <span class="tok-n">в</span> <span class="tok-n">градината</span> <span class="tok-n">ми</span> <span class="tok-n">има:</span> <span class="tok-n">camel</span> <span class="tok-n">vicuña</span> <span class="tok-n">llama</span> <span class="tok-n">owl</span>
+<span class="tok-n">The</span> <span class="tok-nb">first</span> <span class="tok-n">animal</span> <span class="tok-n">we</span> <span class="tok-n">adopted</span> <span class="tok-n">was</span> <span class="tok-n">the</span> <span class="tok-n">camel</span>
+<span class="tok-n">Unfortunately</span> <span class="tok-n">the</span> <span class="tok-n">owl</span> <span class="tok-n">got</span> <span class="tok-n">away</span> <span class="tok-o">and</span> <span class="tok-n">we&#39;re</span> <span class="tok-n">left</span> <span class="tok-n">with:</span> <span class="tok-n">camel</span> <span class="tok-n">vicuña</span> <span class="tok-n">llama</span>
+<span class="tok-n">We&#39;re</span> <span class="tok-n">closing</span> <span class="tok-n">the</span> <span class="tok-n">zoo</span> <span class="tok-o">and</span> <span class="tok-n">keeping</span> <span class="tok-nb">one</span> <span class="tok-n">animal</span> <span class="tok-k">only</span>
+<span class="tok-n">We&#39;re</span> <span class="tok-n">going</span> <span class="tok-nb">to</span> <span class="tok-k">let</span> <span class="tok-n">go:</span> <span class="tok-n">vicuña</span> <span class="tok-n">llama</span> <span class="tok-o">and</span> <span class="tok-n">keep</span> <span class="tok-n">the</span> <span class="tok-n">camel</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1834,7 +1768,7 @@ We're going to let go: vicuña llama and keep the camel</pre>
 <code>.splice(a,b)</code> ще премахне <code>b</code> елемента като започне от позиция <code>a</code>.</p>
 </div>
 <div class="sect3">
-<h4 id="_Масиви_с_предопределен_размер">3.2.1. Масиви с предопределен размер</h4>
+<h4 id="_масиви_с_предопределен_размер">3.2.1. Масиви с предопределен размер</h4>
 <div class="paragraph">
 <p>Обикновено масив се обявява по следния начин:</p>
 </div>
@@ -1886,12 +1820,12 @@ We're going to let go: vicuña llama and keep the camel</pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>Стойност 3 (четвърта стойност) е извън обхвата на масива (стойностите могат да са най-много три - от 0 до 2)</pre>
+<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-n">Стойност</span> <span class="tok-mi">3</span> (<span class="tok-n">четвърта</span> <span class="tok-n">стойност</span>) <span class="tok-n">е</span> <span class="tok-n">извън</span> <span class="tok-n">обхвата</span> <span class="tok-n">на</span> <span class="tok-n">масива</span> (<span class="tok-n">стойностите</span> <span class="tok-n">могат</span> <span class="tok-n">да</span> <span class="tok-n">са</span> <span class="tok-n">най-много</span> <span class="tok-n">три</span> - <span class="tok-n">от</span> <span class="tok-mi">0</span> <span class="tok-n">до</span> <span class="tok-mi">2</span>)</code></pre>
 </div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_Многомерни_масиви">3.2.2. Многомерни масиви</h4>
+<h4 id="_многомерни_масиви">3.2.2. Многомерни масиви</h4>
 <div class="paragraph">
 <p>Масивите, които видяхме до тук, са едномерни. За щастие, можем да създаваме и
 многомерни масиви в Пърл 6.</p>
@@ -1922,15 +1856,15 @@ We're going to let go: vicuña llama and keep the camel</pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>[[1 x] [2 y] [3 z]]</pre>
+<pre class="pygments highlight"><code data-lang="perl6"><span></span>[[<span class="tok-mi">1</span> <span class="tok-o">x</span>] [<span class="tok-mi">2</span> <span class="tok-n">y</span>] [<span class="tok-mi">3</span> <span class="tok-n">z</span>]]</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title">Нагледно представяне на масива:</div>
 <div class="content">
-<pre>[1 x]
-[2 y]
-[3 z]</pre>
+<pre class="pygments highlight"><code data-lang="perl6"><span></span>[<span class="tok-mi">1</span> <span class="tok-o">x</span>]
+[<span class="tok-mi">2</span> <span class="tok-n">y</span>]
+[<span class="tok-mi">3</span> <span class="tok-n">z</span>]</code></pre>
 </div>
 </div>
 <div class="admonitionblock note">
@@ -1949,7 +1883,7 @@ We're going to let go: vicuña llama and keep the camel</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_Хешове">3.3. Хешове</h3>
+<h3 id="_хешове">3.3. Хешове</h3>
 <div class="listingblock">
 <div class="title">Хешът (Hash) е набор от двойки Ключ/Стойност.</div>
 <div class="content">
@@ -1981,10 +1915,10 @@ We're going to let go: vicuña llama and keep the camel</pre>
 <div class="listingblock">
 <div class="title"><code>Изход</code></div>
 <div class="content">
-<pre>(France Paris Germany Berlin UK London)
-(France Germany UK)
-(Paris Berlin London)
-The capital of France is: Paris</pre>
+<pre class="pygments highlight"><code data-lang="perl6"><span></span>(<span class="tok-n">France</span> <span class="tok-n">Paris</span> <span class="tok-n">Germany</span> <span class="tok-n">Berlin</span> <span class="tok-n">UK</span> <span class="tok-n">London</span>)
+(<span class="tok-n">France</span> <span class="tok-n">Germany</span> <span class="tok-n">UK</span>)
+(<span class="tok-n">Paris</span> <span class="tok-n">Berlin</span> <span class="tok-n">London</span>)
+<span class="tok-n">The</span> <span class="tok-n">capital</span> <span class="tok-k">of</span> <span class="tok-n">France</span> <span class="tok-n">is:</span> <span class="tok-n">Paris</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2009,7 +1943,7 @@ The capital of France is: Paris</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_Типове">3.4. Типове</h3>
+<h3 id="_типове">3.4. Типове</h3>
 <div class="paragraph">
 <p>В примерите досега не задавахме типа стойност, който да съдържа променливата.</p>
 </div>
@@ -2154,7 +2088,7 @@ The capital of France is: Paris</pre>
 </table>
 </div>
 <div class="sect2">
-<h3 id="_Самонаблюдение">3.5. Самонаблюдение</h3>
+<h3 id="_самонаблюдение">3.5. Самонаблюдение</h3>
 <div class="paragraph">
 <p>Самонаблюдение (Introspection) е действието по взимане на информация за даден обект, например какъв е типът му.<br>
 В един от предишните примери използувахме <code>.WHAT</code>, за да върнем типа на променливата.</p>
@@ -2183,7 +2117,7 @@ The capital of France is: Paris</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_Видимост">3.6. Видимост</h3>
+<h3 id="_видимост">3.6. Видимост</h3>
 <div class="paragraph">
 <p>Преди да използувате променлива за първи път, трябва да я обявите.</p>
 </div>
@@ -2229,7 +2163,7 @@ The capital of France is: Paris</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_Присвояване_и_Обвързване">3.7. Присвояване и Обвързване</h3>
+<h3 id="_присвояване_и_обвързване">3.7. Присвояване и Обвързване</h3>
 <div class="paragraph">
 <p>В предишните примери видяхме как да <strong>присвояваме</strong> стойности на променливи.<br>
 <strong>Присвояването</strong> се прави с помощта на оператора <code>=</code>.</p>
@@ -2255,8 +2189,8 @@ The capital of France is: Paris</pre>
 <div class="listingblock">
 <div class="title"><code>Изход</code></div>
 <div class="content">
-<pre>123
-999</pre>
+<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-mi">123</span>
+<span class="tok-mi">999</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2275,9 +2209,9 @@ The capital of France is: Paris</pre>
 <div class="listingblock">
 <div class="title"><code>Изход</code></div>
 <div class="content">
-<pre>123
-Cannot assign to an immutable value
-Не може да се присвои към непроменяема стойност</pre>
+<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-mi">123</span>
+<span class="tok-n">Cannot</span> <span class="tok-n">assign</span> <span class="tok-nb">to</span> <span class="tok-n">an</span> <span class="tok-n">immutable</span> <span class="tok-nb">value</span>
+<span class="tok-n">Не</span> <span class="tok-n">може</span> <span class="tok-n">да</span> <span class="tok-n">се</span> <span class="tok-n">присвои</span> <span class="tok-n">към</span> <span class="tok-n">непроменяема</span> <span class="tok-n">стойност</span></code></pre>
 </div>
 </div>
 <div class="listingblock">
@@ -2295,8 +2229,8 @@ Cannot assign to an immutable value
 <div class="listingblock">
 <div class="title"><code>Изход</code></div>
 <div class="content">
-<pre>7
-8</pre>
+<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-mi">7</span>
+<span class="tok-mi">8</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2319,7 +2253,7 @@ Cannot assign to an immutable value
 </div>
 </div>
 <div class="sect1">
-<h2 id="_Функции_и_мутатори">4. Функции и мутатори</h2>
+<h2 id="_функции_и_мутатори">4. Функции и мутатори</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Важно е да се прави разлика между функции и мутатори.<br>
@@ -2329,7 +2263,7 @@ Cannot assign to an immutable value
 <div class="listingblock">
 <div class="title"><code>Скрипт</code></div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><table class="pyhltable"><tr><td class="linenos"><div class="linenodiv"> 1
+<pre class="pygments highlight"><code data-lang="perl6"><table class="linenotable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
  4
@@ -2338,7 +2272,7 @@ Cannot assign to an immutable value
  7
  8
  9
-10</div></td><td class="code"><span></span><span class="tok-k">my</span> <span class="tok-nv">@числа</span> = [<span class="tok-mi">7</span>,<span class="tok-mi">2</span>,<span class="tok-mi">4</span>,<span class="tok-mi">9</span>,<span class="tok-mi">11</span>,<span class="tok-mi">3</span>];
+10</pre></div></td><td class="code"><pre><span></span><span class="tok-k">my</span> <span class="tok-nv">@числа</span> = [<span class="tok-mi">7</span>,<span class="tok-mi">2</span>,<span class="tok-mi">4</span>,<span class="tok-mi">9</span>,<span class="tok-mi">11</span>,<span class="tok-mi">3</span>];
 
 <span class="tok-nv">@числа</span>.<span class="tok-nb">push</span>(<span class="tok-mi">99</span>);
 <span class="tok-nb">say</span> <span class="tok-nv">@числа</span>;      <span class="tok-c1">#1</span>
@@ -2348,16 +2282,16 @@ Cannot assign to an immutable value
 
 <span class="tok-nv">@числа</span>.=<span class="tok-nb">sort</span>;
 <span class="tok-nb">say</span> <span class="tok-nv">@числа</span>;      <span class="tok-c1">#4</span>
-</td></tr></table></code></pre>
+</pre></td></tr></table></code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title"><code>Изход</code></div>
 <div class="content">
-<pre>[7 2 4 9 11 3 99] #1
-(2 3 4 7 9 11 99) #2
-[7 2 4 9 11 3 99] #3
-[2 3 4 7 9 11 99] #4</pre>
+<pre class="pygments highlight"><code data-lang="perl6"><span></span>[<span class="tok-mi">7</span> <span class="tok-mi">2</span> <span class="tok-mi">4</span> <span class="tok-mi">9</span> <span class="tok-mi">11</span> <span class="tok-mi">3</span> <span class="tok-mi">99</span>] <span class="tok-c1">#1</span>
+(<span class="tok-mi">2</span> <span class="tok-mi">3</span> <span class="tok-mi">4</span> <span class="tok-mi">7</span> <span class="tok-mi">9</span> <span class="tok-mi">11</span> <span class="tok-mi">99</span>) <span class="tok-c1">#2</span>
+[<span class="tok-mi">7</span> <span class="tok-mi">2</span> <span class="tok-mi">4</span> <span class="tok-mi">9</span> <span class="tok-mi">11</span> <span class="tok-mi">3</span> <span class="tok-mi">99</span>] <span class="tok-c1">#3</span>
+[<span class="tok-mi">2</span> <span class="tok-mi">3</span> <span class="tok-mi">4</span> <span class="tok-mi">7</span> <span class="tok-mi">9</span> <span class="tok-mi">11</span> <span class="tok-mi">99</span>] <span class="tok-c1">#4</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2383,7 +2317,7 @@ Cannot assign to an immutable value
 </div>
 </div>
 <div class="sect1">
-<h2 id="_Цикли_и_условия">5. Цикли и условия</h2>
+<h2 id="_цикли_и_условия">5. Цикли и условия</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Пърл 6 има много изрази за условия и цикли.</p>
@@ -2612,7 +2546,7 @@ Cannot assign to an immutable value
 <p>В Пърл 6 най-често използуваните <em>входно-изходни</em> интерфейси са <em>терминалът</em> и <em>файловете</em>.</p>
 </div>
 <div class="sect2">
-<h3 id="_Основни_действия_в_терминал">6.1. Основни действия в терминал</h3>
+<h3 id="_основни_действия_в_терминал">6.1. Основни действия в терминал</h3>
 <div class="sect3">
 <h4 id="_say">6.1.1. say</h4>
 <div class="paragraph">
@@ -2675,7 +2609,7 @@ Cannot assign to an immutable value
 </div>
 </div>
 <div class="sect2">
-<h3 id="_Изпълнение_на_външни_команди">6.2. Изпълнение на външни команди</h3>
+<h3 id="_изпълнение_на_външни_команди">6.2. Изпълнение на външни команди</h3>
 <div class="paragraph">
 <p>Две подпрограми могат да се използуват за извикване на външни команди:</p>
 </div>
@@ -2716,7 +2650,7 @@ Cannot assign to an immutable value
 </div>
 </div>
 <div class="sect2">
-<h3 id="_Писане_в_и_четене_от_файлове">6.3. Писане в и четене от файлове</h3>
+<h3 id="_писане_в_и_четене_от_файлове">6.3. Писане в и четене от файлове</h3>
 <div class="sect3">
 <h4 id="_slurp">6.3.1. slurp</h4>
 <div class="paragraph">
@@ -2728,10 +2662,10 @@ Cannot assign to an immutable value
 <div class="listingblock">
 <div class="title">datafile.txt</div>
 <div class="content">
-<pre>John 9
-Johnnie 7
-Jane 8
-Joanna 7</pre>
+<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-n">John</span> <span class="tok-mi">9</span>
+<span class="tok-n">Johnnie</span> <span class="tok-mi">7</span>
+<span class="tok-n">Jane</span> <span class="tok-mi">8</span>
+<span class="tok-n">Joanna</span> <span class="tok-mi">7</span></code></pre>
 </div>
 </div>
 <div class="listingblock">
@@ -2763,7 +2697,7 @@ Joanna 7</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_Работа_с_файлове_и_папки">6.4. Работа с файлове и папки</h3>
+<h3 id="_работа_с_файлове_и_папки">6.4. Работа с файлове и папки</h3>
 <div class="paragraph">
 <p>Perl 6 може да покаже списък от папки и файлове без помощта на системни команди (например като
 използвате <code>ls</code>).</p>
@@ -2841,10 +2775,10 @@ Joanna 7</pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_Подпрограми">7. Подпрограми</h2>
+<h2 id="_подпрограми">7. Подпрограми</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_Създаване">7.1. Създаване</h3>
+<h3 id="_създаване">7.1. Създаване</h3>
 <div class="paragraph">
 <p><strong>Подпрограмите</strong> (наричани също <strong>функции</strong>) са начин да се събере накуп набор от
 действия (функционалност) и да се използва по-късно.<br></p>
@@ -2869,7 +2803,7 @@ Joanna 7</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_Списък_с_параметри">7.2. Списък с параметри</h3>
+<h3 id="_списък_с_параметри">7.2. Списък с параметри</h3>
 <div class="paragraph">
 <p>Подпрограмите могат да изискват входни данни. Тези данни се
 предоставят чрез подаване на <strong>параметри</strong>. Една подпрограма може да няма
@@ -2892,7 +2826,7 @@ Joanna 7</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_Многократност">7.3. Многократност</h3>
+<h3 id="_многократност">7.3. Многократност</h3>
 <div class="paragraph">
 <p>Може да създадете няколко подпрограми с едно и също име, но различен списък от параметри
 (многократно). Когато подпрограмата бъде извикана, средата за изпълнение ще реши коя от тях да
@@ -2930,7 +2864,7 @@ Joanna 7</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_Незадължителни_и_подразбиращи_се_параметри">7.4. Незадължителни и подразбиращи се параметри</h3>
+<h3 id="_незадължителни_и_подразбиращи_се_параметри">7.4. Незадължителни и подразбиращи се параметри</h3>
 <div class="paragraph">
 <p>Ако сте създали подпрограма, приемаща един параметър и я извикате, без да ѝ
 подавате нищо, изпълнението ще се провали.</p>
@@ -2977,7 +2911,7 @@ Joanna 7</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_Връщане_на_стойности">7.5. Връщане на стойности</h3>
+<h3 id="_връщане_на_стойности">7.5. Връщане на стойности</h3>
 <div class="paragraph">
 <p>Всички подпрограми дотук <strong>правят нещо</strong>, показват някакъв текст в терминала.</p>
 </div>
@@ -3012,7 +2946,7 @@ Joanna 7</pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_Ограничаване_на_връщаните_стойности">7.5.1. Ограничаване на връщаните стойности</h4>
+<h4 id="_ограничаване_на_връщаните_стойности">7.5.1. Ограничаване на връщаните стойности</h4>
 <div class="paragraph">
 <p>В един от предишните примери видяхме, че можем да зададем определен тип на
 приемания параметър. Същото може да бъде направено с връщаната стойност.</p>
@@ -3043,7 +2977,7 @@ Joanna 7</pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>Type check failed for return value; expected Int but got Rat (1.44)</pre>
+<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-n">Type</span> <span class="tok-n">check</span> <span class="tok-n">failed</span> <span class="tok-k">for</span> <span class="tok-k">return</span> <span class="tok-nb">value</span>; <span class="tok-n">expected</span> <span class="tok-nb">Int</span> <span class="tok-k">but</span> <span class="tok-n">got</span> <span class="tok-nb">Rat</span> (<span class="tok-mf">1.44</span>)</code></pre>
 </div>
 </div>
 <div class="admonitionblock tip">
@@ -3099,13 +3033,13 @@ Joanna 7</pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_Функционално_Програмиране">8. Функционално Програмиране</h2>
+<h2 id="_функционално_програмиране">8. Функционално Програмиране</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>В тази глава ще разгледаме част от възможностите на езика, които улесняват функционалното програмиране.</p>
 </div>
 <div class="sect2">
-<h3 id="_Функциите_са_граждани_първа_класа">8.1. Функциите са граждани първа класа</h3>
+<h3 id="_функциите_са_граждани_първа_класа">8.1. Функциите са граждани първа класа</h3>
 <div class="paragraph">
 <p>Функциите/подпрограмите са граждани първа класа:</p>
 </div>
@@ -3139,7 +3073,7 @@ Joanna 7</pre>
 <div class="listingblock">
 <div class="title">Изход</div>
 <div class="content">
-<pre>(1 4 9 16 25)</pre>
+<pre class="pygments highlight"><code data-lang="perl6"><span></span>(<span class="tok-mi">1</span> <span class="tok-mi">4</span> <span class="tok-mi">9</span> <span class="tok-mi">16</span> <span class="tok-mi">25</span>)</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -3153,7 +3087,7 @@ Joanna 7</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_Безименни_функции">8.2. Безименни функции</h3>
+<h3 id="_безименни_функции">8.2. Безименни функции</h3>
 <div class="paragraph">
 <p><strong>Безименната функция</strong> се нарича още <strong>ламбда</strong>.<br>
 Безименната функция не е обвързана с идентификатор (тя няма име).</p>
@@ -3185,7 +3119,7 @@ Joanna 7</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_Верижност_chaining">8.3. Верижност (Chaining)</h3>
+<h3 id="_верижност_chaining">8.3. Верижност (Chaining)</h3>
 <div class="paragraph">
 <p>В Пърл 6 методите могат да бъдат извиквани верижно, така че да не се налага да
 подавате изхода от един метод на друг.</p>
@@ -3233,7 +3167,7 @@ Joanna 7</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_Оператор_за_подаване">8.4. Оператор за подаване</h3>
+<h3 id="_оператор_за_подаване">8.4. Оператор за подаване</h3>
 <div class="paragraph">
 <p><strong>Операторът за подаване</strong>, наричан <em>тръба</em> в някои езици за програмиране,
 представя още по-добре верижното извикване.</p>
@@ -3252,10 +3186,10 @@ Joanna 7</pre>
 <div class="listingblock">
 <div class="title">Обяснение</div>
 <div class="content">
-<pre>Тръгваме от `@array`, след което връщаме списък с неповторими елементи
-                      после ги подреждаме,
-                      обръщаме реда им
-                      и накрая съхраняваме изхода във @final-array</pre>
+<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-n">Тръгваме</span> <span class="tok-n">от</span> `<span class="tok-nv">@array</span>`, <span class="tok-n">след</span> <span class="tok-n">което</span> <span class="tok-n">връщаме</span> <span class="tok-n">списък</span> <span class="tok-n">с</span> <span class="tok-n">неповторими</span> <span class="tok-n">елементи</span>
+                      <span class="tok-n">после</span> <span class="tok-n">ги</span> <span class="tok-n">подреждаме</span>,
+                      <span class="tok-n">обръщаме</span> <span class="tok-n">реда</span> <span class="tok-n">им</span>
+                      <span class="tok-n">и</span> <span class="tok-n">накрая</span> <span class="tok-n">съхраняваме</span> <span class="tok-n">изхода</span> <span class="tok-n">във</span> <span class="tok-nv">@final-array</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -3280,7 +3214,7 @@ Joanna 7</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_Свръх_оператор">8.5. Свръх-оператор</h3>
+<h3 id="_свръх_оператор">8.5. Свръх-оператор</h3>
 <div class="paragraph">
 <p><strong>Свръх-операторът</strong> (hyper operator) <code>&gt;&gt;.</code> ще извика даден метод върху всички елементи от един
 списък и ще върне списък с резултатите.</p>
@@ -3324,7 +3258,7 @@ Joanna 7</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_Сливания">8.6. Сливания</h3>
+<h3 id="_сливания">8.6. Сливания</h3>
 <div class="paragraph">
 <p><strong>Сливането</strong> (junction) е логическо съпоставяне на стойности.</p>
 </div>
@@ -3345,7 +3279,7 @@ Joanna 7</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_Мързеливи_списъци">8.7. Мързеливи списъци</h3>
+<h3 id="_мързеливи_списъци">8.7. Мързеливи списъци</h3>
 <div class="paragraph">
 <p><strong>Мързелив списък</strong> е този, който е изчислен мързеливо.<br>
 Мързеливо означава отлагане на изчислението на даден израз до момента, когато е
@@ -3459,7 +3393,7 @@ Joanna 7</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_Затваряния">8.8. Затваряния</h3>
+<h3 id="_затваряния">8.8. Затваряния</h3>
 <div class="paragraph">
 <p>Всички съставени от код обекти в Пърл 6 са <strong>затваряния</strong> (closures). Това
 означава, че те могат да се обръщат към лексикални (частни) променливи от
@@ -3540,14 +3474,14 @@ Joanna 7</pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_Класове_и_обекти">9. Класове и обекти</h2>
+<h2 id="_класове_и_обекти">9. Класове и обекти</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>В предишната глава научихме как Пърл 6 улеснява функционалното програмиране.
 В тази глава ще разгледаме обектно-ориентираното програмиране в Пърл 6.</p>
 </div>
 <div class="sect2">
-<h3 id="_Въведение">9.1. Въведение</h3>
+<h3 id="_въведение">9.1. Въведение</h3>
 <div class="paragraph">
 <p><em>Обектно-ориентираното</em> програмиране е една от широко използуваните парадигми
 напоследък.  <strong>Обектът</strong> е набор от променливи и подпрограми, събрани заедно.
@@ -3624,7 +3558,7 @@ Joanna 7</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_Капсулиране">9.2. Капсулиране</h3>
+<h3 id="_капсулиране">9.2. Капсулиране</h3>
 <div class="paragraph">
 <p>Капсулирането (Encapsulation) е понятие в обектно-ориентираното програмиране,
 което групира набор от данни и методи заедно. Данните (атрибути) трябва да са
@@ -3702,7 +3636,7 @@ Joanna 7</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_Именувани_и_позиционни_параметри">9.3. Именувани и позиционни параметри</h3>
+<h3 id="_именувани_и_позиционни_параметри">9.3. Именувани и позиционни параметри</h3>
 <div class="paragraph">
 <p>В Пърл 6 всички класове наследяват готов конструктор <code>.new()</code>.<br>
 Той може да бъде използуван за създаване на обекти, като му се подават параметри.<br>
@@ -3743,9 +3677,9 @@ Joanna 7</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_Методи">9.4. Методи</h3>
+<h3 id="_методи">9.4. Методи</h3>
 <div class="sect3">
-<h4 id="_Въведение_2">9.4.1. Въведение</h4>
+<h4 id="_въведение_2">9.4.1. Въведение</h4>
 <div class="paragraph">
 <p>Методите са <em>подпрограмите</em> на обекта.<br>
 Както подпрограмите, те са средство за събиране на функционалност на едно
@@ -3812,7 +3746,7 @@ Joanna 7</pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_Частни_методи">9.4.2. Частни методи</h4>
+<h4 id="_частни_методи">9.4.2. Частни методи</h4>
 <div class="paragraph">
 <p>Обикновено методите могат да се извикват от външното обкръжение на класа.</p>
 </div>
@@ -3843,7 +3777,7 @@ Joanna 7</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_Атрибути_на_клас">9.5. Атрибути на клас</h3>
+<h3 id="_атрибути_на_клас">9.5. Атрибути на клас</h3>
 <div class="paragraph">
 <p><strong>Клас-атрибутите</strong> са такива, които принадлежат на класа, а не на обекта, създаден от него.<br>
 На тях могат да им се дават стойности при обявяването им.<br>
@@ -3868,7 +3802,7 @@ Joanna 7</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_Тип_на_достъпа">9.6. Тип на достъпа</h3>
+<h3 id="_тип_на_достъпа">9.6. Тип на достъпа</h3>
 <div class="paragraph">
 <p>Дотук във всички примери използувахме атрибутите само за да <strong>вземем</strong> информация за обектите.</p>
 </div>
@@ -3895,9 +3829,9 @@ Joanna 7</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_Наследяване">9.7. Наследяване</h3>
+<h3 id="_наследяване">9.7. Наследяване</h3>
 <div class="sect3">
-<h4 id="_Въведение_3">9.7.1. Въведение</h4>
+<h4 id="_въведение_3">9.7.1. Въведение</h4>
 <div class="paragraph">
 <p><strong>Наследяването</strong>  е друго понятие в обектно-ориентираното програмиране.</p>
 </div>
@@ -3959,7 +3893,7 @@ Joanna 7</pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_Презаписване">9.7.2. Презаписване</h4>
+<h4 id="_презаписване">9.7.2. Презаписване</h4>
 <div class="paragraph">
 <p>Класовете наследяват всички атрибути и методи от родителските класове. Има
 случаи обаче, когато искаме някой метод в дъщерния клас да има различно от наследеното
@@ -4026,7 +3960,7 @@ Joanna 7</pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_Подметоди">9.7.3. Подметоди</h4>
+<h4 id="_подметоди">9.7.3. Подметоди</h4>
 <div class="paragraph">
 <p><strong>Подметодите</strong> са такива методи, които не се наследяват от дъщерните класове.<br>
 Те са достъпни само в класа, в който са създадени.<br>
@@ -4035,7 +3969,7 @@ Joanna 7</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_Множествено_наследяване">9.8. Множествено наследяване</h3>
+<h3 id="_множествено_наследяване">9.8. Множествено наследяване</h3>
 <div class="paragraph">
 <p>Пърл 6 поддържа множествено наследяване. Един клас може да наследява
 множество класове.</p>
@@ -4075,12 +4009,12 @@ Joanna 7</pre>
 <div class="listingblock">
 <div class="title"><code>Изход</code></div>
 <div class="content">
-<pre>Actual sales:
-[10 9 11 8 7 10]
-Forecast sales:
-[9 8 10 7 6 9]
-Actual vs Forecast:
-[10 9 11 8 7 10]</pre>
+<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-n">Actual</span> <span class="tok-n">sales:</span>
+[<span class="tok-mi">10</span> <span class="tok-mi">9</span> <span class="tok-mi">11</span> <span class="tok-mi">8</span> <span class="tok-mi">7</span> <span class="tok-mi">10</span>]
+<span class="tok-n">Forecast</span> <span class="tok-n">sales:</span>
+[<span class="tok-mi">9</span> <span class="tok-mi">8</span> <span class="tok-mi">10</span> <span class="tok-mi">7</span> <span class="tok-mi">6</span> <span class="tok-mi">9</span>]
+<span class="tok-n">Actual</span> <span class="tok-n">vs</span> <span class="tok-n">Forecast:</span>
+[<span class="tok-mi">10</span> <span class="tok-mi">9</span> <span class="tok-mi">11</span> <span class="tok-mi">8</span> <span class="tok-mi">7</span> <span class="tok-mi">10</span>]</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -4139,18 +4073,18 @@ Actual vs Forecast:
 <div class="listingblock">
 <div class="title"><code>Изход</code></div>
 <div class="content">
-<pre>Actual sales:
-[10 9 11 8 7 10]
-Forecast sales:
-[9 8 10 7 6 9]
-Actual vs Forecast:
-[10 9 11 8 7 10]
-[9 8 10 7 6 9]</pre>
+<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-n">Actual</span> <span class="tok-n">sales:</span>
+[<span class="tok-mi">10</span> <span class="tok-mi">9</span> <span class="tok-mi">11</span> <span class="tok-mi">8</span> <span class="tok-mi">7</span> <span class="tok-mi">10</span>]
+<span class="tok-n">Forecast</span> <span class="tok-n">sales:</span>
+[<span class="tok-mi">9</span> <span class="tok-mi">8</span> <span class="tok-mi">10</span> <span class="tok-mi">7</span> <span class="tok-mi">6</span> <span class="tok-mi">9</span>]
+<span class="tok-n">Actual</span> <span class="tok-n">vs</span> <span class="tok-n">Forecast:</span>
+[<span class="tok-mi">10</span> <span class="tok-mi">9</span> <span class="tok-mi">11</span> <span class="tok-mi">8</span> <span class="tok-mi">7</span> <span class="tok-mi">10</span>]
+[<span class="tok-mi">9</span> <span class="tok-mi">8</span> <span class="tok-mi">10</span> <span class="tok-mi">7</span> <span class="tok-mi">6</span> <span class="tok-mi">9</span>]</code></pre>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_Роли">9.9. Роли</h3>
+<h3 id="_роли">9.9. Роли</h3>
 <div class="paragraph">
 <p><strong>Ролите</strong> са донякъде подобни на класовете, понеже също се състоят от методи и атрибути.</p>
 </div>
@@ -4239,10 +4173,10 @@ Actual vs Forecast:
 <div class="listingblock">
 <div class="title"><code>Изход</code></div>
 <div class="content">
-<pre>===SORRY!===
-Method 'plot' must be resolved by class combo-chart because it exists in multiple roles (line-chart, bar-chart)
-(Методът плот трябва да бъде "разрешен" в класа combo-chart, защото съществува
-в повече от една роля (line-chart, bar-chart))</pre>
+<pre class="pygments highlight"><code data-lang="perl6"><span></span>===<span class="tok-n">SORRY</span>!===
+<span class="tok-nb">Method</span> <span class="tok-s">&#39;plot&#39;</span> <span class="tok-n">must</span> <span class="tok-n">be</span> <span class="tok-n">resolved</span> <span class="tok-nb">by</span> <span class="tok-k">class</span> <span class="tok-n">combo-chart</span> <span class="tok-n">because</span> <span class="tok-n">it</span> <span class="tok-nb">exists</span> <span class="tok-n">in</span> <span class="tok-n">multiple</span> <span class="tok-n">roles</span> (<span class="tok-n">line-chart</span>, <span class="tok-n">bar-chart</span>)
+(<span class="tok-n">Методът</span> <span class="tok-n">плот</span> <span class="tok-n">трябва</span> <span class="tok-n">да</span> <span class="tok-n">бъде</span> <span class="tok-s">&quot;разрешен&quot;</span> <span class="tok-n">в</span> <span class="tok-n">класа</span> <span class="tok-n">combo-chart</span>, <span class="tok-n">защото</span> <span class="tok-n">съществува</span>
+<span class="tok-n">в</span> <span class="tok-n">повече</span> <span class="tok-n">от</span> <span class="tok-n">една</span> <span class="tok-n">роля</span> (<span class="tok-n">line-chart</span>, <span class="tok-n">bar-chart</span>))</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -4257,7 +4191,7 @@ Method 'plot' must be resolved by class combo-chart because it exists in multipl
 </div>
 </div>
 <div class="sect2">
-<h3 id="_Самонаблюдение_2">9.10. Самонаблюдение</h3>
+<h3 id="_самонаблюдение_2">9.10. Самонаблюдение</h3>
 <div class="paragraph">
 <p><strong>Самонаблюдение</strong> (Introspection) е действието, при което вземаме информация за
 свойствата на един обект. Такива са неговите атрибути, методи или тип.</p>
@@ -4344,10 +4278,10 @@ Method 'plot' must be resolved by class combo-chart because it exists in multipl
 </div>
 </div>
 <div class="sect1">
-<h2 id="_Обработка_на_Изключения">10. Обработка на Изключения</h2>
+<h2 id="_обработка_на_изключения">10. Обработка на Изключения</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_Прихващане_на_Изключения">10.1. Прихващане на Изключения</h3>
+<h3 id="_прихващане_на_изключения">10.1. Прихващане на Изключения</h3>
 <div class="paragraph">
 <p><strong>Изключенията</strong> (Exceptions) представляват специално поведение, което се случва по време на изпълнение, когато нещо се обърка.<br>
 Казваме, че програмата ни <em>хвърля</em> изключение.</p>
@@ -4366,8 +4300,8 @@ Method 'plot' must be resolved by class combo-chart because it exists in multipl
 <div class="listingblock">
 <div class="title"><code>Изход</code></div>
 <div class="content">
-<pre>Hello Joanna
-How are you doing today?</pre>
+<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-n">Hello</span> <span class="tok-n">Joanna</span>
+<span class="tok-n">How</span> <span class="tok-n">are</span> <span class="tok-n">you</span> <span class="tok-n">doing</span> <span class="tok-n">today</span>?</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -4384,10 +4318,10 @@ How are you doing today?</pre>
 <div class="listingblock">
 <div class="title"><code>Изход</code></div>
 <div class="content">
-<pre>Type check failed in assignment to $name; expected Str but got Int
-   in block &lt;unit&gt; at exceptions.pl6:2
-(Проверката за типа на $name е неуспешна; очакваше се Str, но се оказа Int в
-блок &lt;unit&gt; в exceptions.pl6:2)</pre>
+<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-n">Type</span> <span class="tok-n">check</span> <span class="tok-n">failed</span> <span class="tok-n">in</span> <span class="tok-n">assignment</span> <span class="tok-nb">to</span> <span class="tok-nv">$name</span>; <span class="tok-n">expected</span> <span class="tok-nb">Str</span> <span class="tok-k">but</span> <span class="tok-n">got</span> <span class="tok-nb">Int</span>
+   <span class="tok-n">in</span> <span class="tok-n">block</span> <span class="tok-s">&lt;unit&gt;</span> <span class="tok-n">at</span> <span class="tok-n">exceptions</span>.<span class="tok-n">pl6:2</span>
+(<span class="tok-n">Проверката</span> <span class="tok-n">за</span> <span class="tok-n">типа</span> <span class="tok-n">на</span> <span class="tok-nv">$name</span> <span class="tok-n">е</span> <span class="tok-n">неуспешна</span>; <span class="tok-n">очакваше</span> <span class="tok-n">се</span> <span class="tok-nb">Str</span>, <span class="tok-n">но</span> <span class="tok-n">се</span> <span class="tok-n">оказа</span> <span class="tok-nb">Int</span> <span class="tok-n">в</span>
+<span class="tok-n">блок</span> <span class="tok-s">&lt;unit&gt;</span> <span class="tok-n">в</span> <span class="tok-n">exceptions</span>.<span class="tok-n">pl6:2</span>)</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -4417,8 +4351,8 @@ How are you doing today?</pre>
 <div class="listingblock">
 <div class="title"><code>Изход</code></div>
 <div class="content">
-<pre>Can you tell us your name again, we couldn't find it in the register.
-How are you doing today?</pre>
+<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-n">Can</span> <span class="tok-n">you</span> <span class="tok-n">tell</span> <span class="tok-n">us</span> <span class="tok-n">your</span> <span class="tok-nb">name</span> <span class="tok-n">again</span>, <span class="tok-n">we</span> <span class="tok-n">couldn&#39;t</span> <span class="tok-n">find</span> <span class="tok-n">it</span> <span class="tok-n">in</span> <span class="tok-n">the</span> <span class="tok-n">register</span>.
+<span class="tok-n">How</span> <span class="tok-n">are</span> <span class="tok-n">you</span> <span class="tok-n">doing</span> <span class="tok-n">today</span>?</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -4460,7 +4394,7 @@ How are you doing today?</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_Хвърляне_на_Изключения">10.2. Хвърляне на Изключения</h3>
+<h3 id="_хвърляне_на_изключения">10.2. Хвърляне на Изключения</h3>
 <div class="paragraph">
 <p>Пърл 6 ви дава възможност и изрично да хвърляте изключения.
 Могат да бъдат хвърляни два типа изключения:</p>
@@ -4519,7 +4453,7 @@ How are you doing today?</pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_Изрази_за_съвпадения">11. Изрази за съвпадения</h2>
+<h2 id="_изрази_за_съвпадения">11. Изрази за съвпадения</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Изразът за съвпадение или просто съвпадение (regular expression, <em>regex</em>) е
@@ -4552,7 +4486,7 @@ How are you doing today?</pre>
 В думата "просветление" се търси съвпадение със "свет" <code>m/ свет /</code></p>
 </div>
 <div class="sect2">
-<h3 id="_Обявяване_на_шаблон">11.1. Обявяване на шаблон</h3>
+<h3 id="_обявяване_на_шаблон">11.1. Обявяване на шаблон</h3>
 <div class="paragraph">
 <p>Шаблонът за търсене на съвпадение може да бъде обявен както следва:</p>
 </div>
@@ -4574,7 +4508,7 @@ How are you doing today?</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_Намиране_съвпадения_на_знаци">11.2. Намиране съвпадения на знаци</h3>
+<h3 id="_намиране_съвпадения_на_знаци">11.2. Намиране съвпадения на знаци</h3>
 <div class="paragraph">
 <p>Буквено-цифровите знаци и знакът за подчертаване <code>_</code> се пишат по обичайния начин. Всички
 други символи трябва да се избягват с обратно наклонена черта или да се
@@ -4606,7 +4540,7 @@ How are you doing today?</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_Намиране_на_знаци_по_категории">11.3. Намиране на знаци по категории</h3>
+<h3 id="_намиране_на_знаци_по_категории">11.3. Намиране на знаци по категории</h3>
 <div class="paragraph">
 <p>Знаците могат да бъдат групирани в категории, а ние можем да търсим съвпадение
 по тях. Можем също така да търсим по обратното значение на категорията (всичко
@@ -4686,7 +4620,7 @@ How are you doing today?</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_Уникод_свойства">11.4. Уникод-свойства</h3>
+<h3 id="_уникод_свойства">11.4. Уникод-свойства</h3>
 <div class="paragraph">
 <p>Да се намира съвпадение чрез категории от знаци е удобно. Въпреки това,
 по-систематичен подход би бил да се използуват уникод-свойства.
@@ -4713,7 +4647,7 @@ How are you doing today?</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_Заместващи_знаци">11.5. Заместващи знаци</h3>
+<h3 id="_заместващи_знаци">11.5. Заместващи знаци</h3>
 <div class="paragraph">
 <p>При търсене на съвпадения могат да се ползуват и заместващи знаци.</p>
 </div>
@@ -4737,7 +4671,7 @@ How are you doing today?</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_Количествени_указатели">11.6. Количествени указатели</h3>
+<h3 id="_количествени_указатели">11.6. Количествени указатели</h3>
 <div class="paragraph">
 <p>Количествените указатели се поставят след знак и указват колко пъти
 се очаква появата на знака в текста.</p>
@@ -4815,7 +4749,7 @@ How are you doing today?</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_Резултати_от_съвпадението">11.7. Резултати от съвпадението</h3>
+<h3 id="_резултати_от_съвпадението">11.7. Резултати от съвпадението</h3>
 <div class="paragraph">
 <p>Когато се намери съвпадение на търсенето в някакъв текст, резултатът се
 съхранява в специалната променлива <code>$/</code>.</p>
@@ -4835,11 +4769,11 @@ How are you doing today?</pre>
 <div class="listingblock">
 <div class="title">Изход</div>
 <div class="content">
-<pre>The match is: Perl 6
-The string before the match is: Rakudo is a
-The string after the match is: compiler
-The matching string starts at position: 12
-The matching string ends at position: 18</pre>
+<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-n">The</span> <span class="tok-n">match</span> <span class="tok-n">is:</span> <span class="tok-n">Perl</span> <span class="tok-mi">6</span>
+<span class="tok-n">The</span> <span class="tok-n">string</span> <span class="tok-o">before</span> <span class="tok-n">the</span> <span class="tok-n">match</span> <span class="tok-n">is:</span> <span class="tok-n">Rakudo</span> <span class="tok-k">is</span> <span class="tok-n">a</span>
+<span class="tok-n">The</span> <span class="tok-n">string</span> <span class="tok-o">after</span> <span class="tok-n">the</span> <span class="tok-n">match</span> <span class="tok-n">is:</span> <span class="tok-n">compiler</span>
+<span class="tok-n">The</span> <span class="tok-n">matching</span> <span class="tok-n">string</span> <span class="tok-n">starts</span> <span class="tok-n">at</span> <span class="tok-n">position:</span> <span class="tok-mi">12</span>
+<span class="tok-n">The</span> <span class="tok-n">matching</span> <span class="tok-n">string</span> <span class="tok-n">ends</span> <span class="tok-n">at</span> <span class="tok-n">position:</span> <span class="tok-mi">18</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -4873,7 +4807,7 @@ Perl 6/</code> указваме празните пространства да �
 </div>
 </div>
 <div class="sect2">
-<h3 id="_Пример">11.8. Пример</h3>
+<h3 id="_пример">11.8. Пример</h3>
 <div class="paragraph">
 <p>Нека проверим дали един адрес за електронна поща е валиден.<br>
 За целите на примера ще приемем, че адресът се състои от:<br>
@@ -4983,7 +4917,7 @@ Perl 6/</code> указваме празните пространства да �
 </div>
 </div>
 <div class="sect1">
-<h2 id="_Модули_в_Пърл_6">12. Модули в Пърл 6</h2>
+<h2 id="_модули_в_пърл_6">12. Модули в Пърл 6</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Пърл 6 е език с общо предназначение. Той е подходящ за всякакви задачи:
@@ -5017,7 +4951,7 @@ Perl 6/</code> указваме празните пространства да �
 </table>
 </div>
 <div class="sect2">
-<h3 id="_Използване_на_модули">12.1. Използване на модули</h3>
+<h3 id="_използване_на_модули">12.1. Използване на модули</h3>
 <div class="paragraph">
 <p>MD5 е хеш-функция от криптографията, която връща 128-битова стойност.<br>
 MD5 има много приложения, едно от които е криптиране на пароли, съхранявани в
@@ -5065,7 +4999,7 @@ MD5 има много приложения, едно от които е крип
 </div>
 </div>
 <div class="sect1">
-<h2 id="_Уникод">13. Уникод</h2>
+<h2 id="_уникод">13. Уникод</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Уникод е стандарт за кодиране и представяне на текст на почти всички писмени
@@ -5078,7 +5012,7 @@ UTF-8 е таблица със знаци, която може да кодира
 <strong>Точка на кода</strong>: Число (пореден номер), присвоено на знака.</p>
 </div>
 <div class="sect2">
-<h3 id="_Използване_на_Уникод">13.1. Използване на Уникод</h3>
+<h3 id="_използване_на_уникод">13.1. Използване на Уникод</h3>
 <div class="listingblock">
 <div class="title">Да видим как можем да изобразяваме знаци чрез Уникод.</div>
 <div class="content">
@@ -5144,9 +5078,9 @@ UTF-8 е таблица със знаци, която може да кодира
 <div class="listingblock">
 <div class="title"><code>Изход</code></div>
 <div class="content">
-<pre>NFC:0x&lt;00e1&gt;
-NFD:0x&lt;0061 0301&gt;
-LATIN SMALL LETTER A WITH ACUTE</pre>
+<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-n">NFC:0x</span><span class="tok-s">&lt;00e1&gt;</span>
+<span class="tok-n">NFD:0x</span><span class="tok-s">&lt;0061 0301&gt;</span>
+<span class="tok-n">LATIN</span> <span class="tok-n">SMALL</span> <span class="tok-n">LETTER</span> <span class="tok-n">A</span> <span class="tok-n">WITH</span> <span class="tok-n">ACUTE</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -5173,10 +5107,10 @@ LATIN SMALL LETTER A WITH ACUTE</pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_Успоредност_Съгласуваност_и_Неедновременност">14. Успоредност, Съгласуваност и Неедновременност</h2>
+<h2 id="_успоредност_съгласуваност_и_неедновременност">14. Успоредност, Съгласуваност и Неедновременност</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_Успоредност_parallelism">14.1. Успоредност (Parallelism)</h3>
+<h3 id="_успоредност_parallelism">14.1. Успоредност (Parallelism)</h3>
 <div class="paragraph">
 <p>В общия случай всички задачи в една програма се изпълняват последователно.
 Това може да си е съвсем наред, освен ако не отнема много време.</p>
@@ -5199,7 +5133,7 @@ LATIN SMALL LETTER A WITH ACUTE</pre>
 <p>Да започнем с второто.</p>
 </div>
 <div class="sect3">
-<h4 id="_Успоредност_на_Данните">14.1.1. Успоредност на Данните</h4>
+<h4 id="_успоредност_на_данните">14.1.1. Успоредност на Данните</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">@array</span> = (<span class="tok-mi">0</span><span class="tok-o">..</span><span class="tok-mi">50000</span>);                     <span class="tok-c1"># Създаваме елементи в масива</span>
@@ -5263,7 +5197,7 @@ LATIN SMALL LETTER A WITH ACUTE</pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_Успоредност_на_задачите">14.1.2. Успоредност на задачите</h4>
+<h4 id="_успоредност_на_задачите">14.1.2. Успоредност на задачите</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">@array1</span> = (<span class="tok-mi">0</span><span class="tok-o">..</span><span class="tok-mi">49999</span>);
@@ -5348,7 +5282,7 @@ LATIN SMALL LETTER A WITH ACUTE</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_Съгласуваност_и_Неедновременност_concurrency_and_asynchrony">14.2. Съгласуваност и Неедновременност (Concurrency and Asynchrony)</h3>
+<h3 id="_съгласуваност_и_неедновременност_concurrency_and_asynchrony">14.2. Съгласуваност и Неедновременност (Concurrency and Asynchrony)</h3>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -5367,7 +5301,7 @@ LATIN SMALL LETTER A WITH ACUTE</pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_Общността">15. Общността</h2>
+<h2 id="_общността">15. Общността</h2>
 <div class="sectionbody">
 <div class="ulist">
 <ul>
@@ -5390,8 +5324,79 @@ LATIN SMALL LETTER A WITH ACUTE</pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-11-12 22:20:49 STD
+Last updated 2019-03-31 01:17:26 +0300
 </div>
 </div>
+<style>
+pre.pygments .hll { background-color: #ffffcc }
+pre.pygments  { background: #f8f8f8; }
+pre.pygments .tok-c { color: #408080; font-style: italic } /* Comment */
+pre.pygments .tok-err { border: 1px solid #FF0000 } /* Error */
+pre.pygments .tok-k { color: #008000; font-weight: bold } /* Keyword */
+pre.pygments .tok-o { color: #666666 } /* Operator */
+pre.pygments .tok-ch { color: #408080; font-style: italic } /* Comment.Hashbang */
+pre.pygments .tok-cm { color: #408080; font-style: italic } /* Comment.Multiline */
+pre.pygments .tok-cp { color: #BC7A00 } /* Comment.Preproc */
+pre.pygments .tok-cpf { color: #408080; font-style: italic } /* Comment.PreprocFile */
+pre.pygments .tok-c1 { color: #408080; font-style: italic } /* Comment.Single */
+pre.pygments .tok-cs { color: #408080; font-style: italic } /* Comment.Special */
+pre.pygments .tok-gd { color: #A00000 } /* Generic.Deleted */
+pre.pygments .tok-ge { font-style: italic } /* Generic.Emph */
+pre.pygments .tok-gr { color: #FF0000 } /* Generic.Error */
+pre.pygments .tok-gh { color: #000080; font-weight: bold } /* Generic.Heading */
+pre.pygments .tok-gi { color: #00A000 } /* Generic.Inserted */
+pre.pygments .tok-go { color: #888888 } /* Generic.Output */
+pre.pygments .tok-gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+pre.pygments .tok-gs { font-weight: bold } /* Generic.Strong */
+pre.pygments .tok-gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+pre.pygments .tok-gt { color: #0044DD } /* Generic.Traceback */
+pre.pygments .tok-kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+pre.pygments .tok-kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+pre.pygments .tok-kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+pre.pygments .tok-kp { color: #008000 } /* Keyword.Pseudo */
+pre.pygments .tok-kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+pre.pygments .tok-kt { color: #B00040 } /* Keyword.Type */
+pre.pygments .tok-m { color: #666666 } /* Literal.Number */
+pre.pygments .tok-s { color: #BA2121 } /* Literal.String */
+pre.pygments .tok-na { color: #7D9029 } /* Name.Attribute */
+pre.pygments .tok-nb { color: #008000 } /* Name.Builtin */
+pre.pygments .tok-nc { color: #0000FF; font-weight: bold } /* Name.Class */
+pre.pygments .tok-no { color: #880000 } /* Name.Constant */
+pre.pygments .tok-nd { color: #AA22FF } /* Name.Decorator */
+pre.pygments .tok-ni { color: #999999; font-weight: bold } /* Name.Entity */
+pre.pygments .tok-ne { color: #D2413A; font-weight: bold } /* Name.Exception */
+pre.pygments .tok-nf { color: #0000FF } /* Name.Function */
+pre.pygments .tok-nl { color: #A0A000 } /* Name.Label */
+pre.pygments .tok-nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+pre.pygments .tok-nt { color: #008000; font-weight: bold } /* Name.Tag */
+pre.pygments .tok-nv { color: #19177C } /* Name.Variable */
+pre.pygments .tok-ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
+pre.pygments .tok-w { color: #bbbbbb } /* Text.Whitespace */
+pre.pygments .tok-mb { color: #666666 } /* Literal.Number.Bin */
+pre.pygments .tok-mf { color: #666666 } /* Literal.Number.Float */
+pre.pygments .tok-mh { color: #666666 } /* Literal.Number.Hex */
+pre.pygments .tok-mi { color: #666666 } /* Literal.Number.Integer */
+pre.pygments .tok-mo { color: #666666 } /* Literal.Number.Oct */
+pre.pygments .tok-sa { color: #BA2121 } /* Literal.String.Affix */
+pre.pygments .tok-sb { color: #BA2121 } /* Literal.String.Backtick */
+pre.pygments .tok-sc { color: #BA2121 } /* Literal.String.Char */
+pre.pygments .tok-dl { color: #BA2121 } /* Literal.String.Delimiter */
+pre.pygments .tok-sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+pre.pygments .tok-s2 { color: #BA2121 } /* Literal.String.Double */
+pre.pygments .tok-se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
+pre.pygments .tok-sh { color: #BA2121 } /* Literal.String.Heredoc */
+pre.pygments .tok-si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
+pre.pygments .tok-sx { color: #008000 } /* Literal.String.Other */
+pre.pygments .tok-sr { color: #BB6688 } /* Literal.String.Regex */
+pre.pygments .tok-s1 { color: #BA2121 } /* Literal.String.Single */
+pre.pygments .tok-ss { color: #19177C } /* Literal.String.Symbol */
+pre.pygments .tok-bp { color: #008000 } /* Name.Builtin.Pseudo */
+pre.pygments .tok-fm { color: #0000FF } /* Name.Function.Magic */
+pre.pygments .tok-vc { color: #19177C } /* Name.Variable.Class */
+pre.pygments .tok-vg { color: #19177C } /* Name.Variable.Global */
+pre.pygments .tok-vi { color: #19177C } /* Name.Variable.Instance */
+pre.pygments .tok-vm { color: #19177C } /* Name.Variable.Magic */
+pre.pygments .tok-il { color: #666666 } /* Literal.Number.Integer.Long */
+</style>
 </body>
 </html>
