@@ -66,9 +66,9 @@ Perl6はマルチパラダイム言語です。手続き型、オブジェクト
 .Linux
 Rakudo Starをインストールするには、次のコマンドをターミナルで実行してください:
 ----
-wget https://rakudo.perl6.org/downloads/star/rakudo-star-2018.10.tar.gz
-tar xfz rakudo-star-2018.10.tar.gz
-cd rakudo-star-2018.10
+wget https://rakudo.perl6.org/downloads/star/rakudo-star-2019.03.tar.gz
+tar xfz rakudo-star-2019.03.tar.gz
+cd rakudo-star-2019.03
 perl Configure.pl --gen-moar --make-install --prefix ~/rakudo
 ----
 
