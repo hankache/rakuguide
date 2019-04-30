@@ -334,11 +334,11 @@ say "Salut $nom";                #Salut François Pinon
 
 .2+| ++ | Préfixé | Incrémentation | my $var = 2; ++$var;  | Incrémente la variable de 1 et retourne le résultat `3`
 
-<m| Suffixé <d| Incrémentation <m| my $var = 2; $var++;  <| Retourne la variable `2` et puis l'incrémente
+| Suffixé <d| Incrémentation <m| my $var = 2; $var++;  <| Retourne la variable `2` et puis l'incrémente
 
 .2+|\--| Préfixé | Décrémentation | my $var = 2; --$var;  | Décrémente la variable de 1 et retourne le résultat `1`
 
-<m| Suffixé <d| Décrémentation <m| my $var = 2; $var--;  <| Retourne la variable `2` et puis la décrémente
+| Suffixé <d| Décrémentation <m| my $var = 2; $var--;  <| Retourne la variable `2` et puis la décrémente
 
 .3+| + .3+| Préfixé .3+| Force l'opérande a une valeur numérique | +"3"  | 3
 
@@ -614,7 +614,7 @@ La capitale de la France est: Paris
 ----
 
 .Explication
-`.push: (clef => 'valeur')` ajoute une nouvelle paire clef/valeur. +
+`.push: (clef \=> 'valeur')` ajoute une nouvelle paire clef/valeur. +
 `.kv` renvoie la liste contenant toutes les clefs et valeurs. +
 `.keys` renvoie une liste des clefs. +
 `.values` renvoie une liste des valeurs. +
@@ -1605,9 +1605,9 @@ Il peut être utilisé pour créer des objets en leur fournissant des arguments.
 Le constructeur par défaut ne peut se voir fournir que des *arguments nommés*. +
 Si vous regardez l'exemple ci-dessus, vous voyez que les arguments passés à `.new()` sont définis par leur noms:
 
-* nom => 'François'
+* nom \=> 'François'
 
-* age => 23
+* age \=> 23
 
 Et si je ne veux pas passer le nom de chaque attribut à chaque fois que je crée un nouvel objet? +
 Je dois alors créer un autre constructeur qui accepte les *arguments positionnels*.

@@ -374,11 +374,11 @@ The below table lists the most commonly used operators.
 
 .2+| ++ | Prefix | Increment | my $var = 2; ++$var;  | Increment the variable by 1 and return the result `3`
 
-<m| Postfix <d| Increment <m| my $var = 2; $var++;  <| Return the variable `2` and then increment it
+| Postfix <d| Increment <m| my $var = 2; $var++;  <| Return the variable `2` and then increment it
 
 .2+|\--| Prefix | Decrement | my $var = 2; --$var;  | Decrement the variable by 1 and return the result `1`
 
-<m| Postfix <d| Decrement <m| my $var = 2; $var--;  <| Return the variable `2` and then decrement it
+| Postfix <d| Decrement <m| my $var = 2; $var--;  <| Return the variable `2` and then decrement it
 
 .3+| + .3+| Prefix .3+| Coerce the operand to a numeric value | +"3"  | 3
 
@@ -687,7 +687,7 @@ The capital of France is: Paris
 ----
 
 .Explanation
-`.push: (key => 'Value')` adds a new key/value pair. +
+`.push: (key \=> 'Value')` adds a new key/value pair. +
 `.kv` returns a list containing all keys and values. +
 `.keys` returns a list that contains all keys. +
 `.values` returns a list that contains all values. +
@@ -1832,9 +1832,9 @@ It can be used to create objects by providing it with arguments. +
 The default constructor can only be provided with *named arguments*. +
 In our example above, notice that the arguments supplied to `.new()` are defined by name:
 
-* name => 'John'
+* name \=> 'John'
 
-* age => 23
+* age \=> 23
 
 
 What if I do not want to supply the name of each attribute each time I want to create an object? +

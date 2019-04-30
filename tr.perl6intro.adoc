@@ -326,11 +326,11 @@ Aşağıdaki tabloda sık kullanılan operatörler listelenmiştir.
 
 .2+| ++ | Önek(Prefix) | Arttırma | my $var = 2; ++$var;  | Değeri 1 arttırır ve sonucu `3` olarak döner
 
-<m| Sonek(Postfix) <d| Arttırma <m| my $var = 2; $var++;  <| `2` sonucunu döner ve değeri 1 arttırır
+| Sonek(Postfix) <d| Arttırma <m| my $var = 2; $var++;  <| `2` sonucunu döner ve değeri 1 arttırır
 
 .2+|\--| Prefix | Azaltma | my $var = 2; --$var;  | Değeri 1 azaltır ve sonucu `1` olarak döner
 
-<m| Postfix <d| Azaltma <m| my $var = 2; $var--;  <| `2` sonucunu döner ve değeri 1 azaltır
+| Postfix <d| Azaltma <m| my $var = 2; $var--;  <| `2` sonucunu döner ve değeri 1 azaltır
 
 .3+| + .3+| Prefix .3+| İşlenen değeri numerik sonuca zorlar | +"3"  | 3
 
@@ -634,7 +634,7 @@ The capital of France is: Paris
 ----
 
 .Açıklama
-`.push: (anahtar => 'Değer')` yeni bir anahtar değer çifti ekler. +
+`.push: (anahtar \=> 'Değer')` yeni bir anahtar değer çifti ekler. +
 `.kv` tüm anahtar ve değerlerin bir listesini döndürür. +
 `.keys` tüm anahtarların listesini döndürür. +
 `.values` tüm değerlerin listesini döndürür. +
@@ -1734,9 +1734,9 @@ Yeni nesneler oluşturmak için kullanılabilir. +
 Varsayılan _constructor_ yalnızca parametreler ile kullanılabilir. +
 Yukarıdaki örneğimizde, `.new()` verilen parametreler ile tanımlanmıştır bu parametreler değişkenler için konum göstermiştir:
 
-* name => 'John'
+* name \=> 'John'
 
-* age => 23
+* age \=> 23
 
 Peki konum göstermeden kullanmak isteseydik?
 Bunun için yeni bir yapıcı metot şu şekilde tanımlanabilir.

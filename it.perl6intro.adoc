@@ -357,11 +357,11 @@ Nella tabella qui sotto vediamo gli operatori più comunemente usati.
 
 .2+| ++ | Prefisso | Incremento | my $var = 2; ++$var;  | PRIMA incrementa di 1 la variabile e ritorna il risultato `3`
 
-<m| Postfisso <d| Incremento <m| my $var = 2; $var++;  <| Ritorna la variabile `2` e POI la incrementa
+| Postfisso <d| Incremento <m| my $var = 2; $var++;  <| Ritorna la variabile `2` e POI la incrementa
 
 .2+|\--| Prefisso | Decremento | my $var = 2; --$var;  | PRIMA decrementa la variabile di 1 e ritorna il risultato `1`
 
-<m| Postfisso <d| Decremento <m| my $var = 2; $var--;  <| Ritorna la variabile `2` e POI la decrementa
+| Postfisso <d| Decremento <m| my $var = 2; $var--;  <| Ritorna la variabile `2` e POI la decrementa
 
 .3+| + .3+| Prefisso .3+| Forza l'operando ad un valore numerico | +"3"  | 3
 
@@ -673,7 +673,7 @@ La capitale della Francia è: Parigi
 ----
 
 .Spiegazione
-`.push: (chiave => 'valore')` aggiunge una nuova coppia chiave/valore. +
+`.push: (chiave \=> 'valore')` aggiunge una nuova coppia chiave/valore. +
 `.kv` ritorna una lista contenente tutte le chiavi ed i valori. +
 `.keys` ritorna una lista contenente tutte le chiavi. +
 `.values` ritorna una lista contenente tutti i valori. +
@@ -1805,9 +1805,9 @@ Esso può essere usato per creare oggetti passandogli degli argomenti. +
 Il costruttore base accetta solamente *argomenti nominali*. +
 Nel nostro esempio qui sopra, nota che gli argomenti passati al costruttore sono definiti tramite un nome di riferimento:
 
-* nome => 'Giovanni'
+* nome \=> 'Giovanni'
 
-* anni => 23
+* anni \=> 23
 
 Che accade se io non voglio fornire il nome di ciascun attributo ogni volta che voglio creare un oggetto?
 Ho bisogno di creare un diverso costrutto, il quale accetti *argomenti posizionali*.

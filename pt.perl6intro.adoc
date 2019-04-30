@@ -353,11 +353,11 @@ A tabela abaixo lista os operadores mais usados.
 
 .2+| ++ | Prefix | Incremento | my $var = 2; ++$var;  | Incrementa em 1 o valor da variável e retorna o resultado (no caso, `3`)
 
-<m| Postfix <d| Incremento <m| my $var = 2; $var++;  <| Retorna a variável (no caso, `2`) e só então incrementa seu valor
+| Postfix <d| Incremento <m| my $var = 2; $var++;  <| Retorna a variável (no caso, `2`) e só então incrementa seu valor
 
 .2+|\--| Prefix | Decremento | my $var = 2; --$var;  | Decrementa em 1 o valor da variável e retorna o resultado (no caso, `1`)
 
-<m| Postfix <d| Decremento <m| my $var = 2; $var--;  <| Retorna a variável (no caso, `2`) e só então decrementa seu valor
+| Postfix <d| Decremento <m| my $var = 2; $var--;  <| Retorna a variável (no caso, `2`) e só então decrementa seu valor
 
 .3+| + .3+| Prefix .3+| Força o operando para um valor numérico | +"3"  | 3
 
@@ -667,7 +667,7 @@ A capital da França é: Paris
 ----
 
 .Explicação
-`.push: (chave => 'Valor')` adiciona um novo par chave/valor. +
+`.push: (chave \=> 'Valor')` adiciona um novo par chave/valor. +
 `.kv` retorna uma lista contendo todas as chaves e valores. +
 `.keys` retorna uma lista contendo todas as chaves. +
 `.values` retorna uma lista contendo todos os valores. +
@@ -1765,9 +1765,9 @@ Ele pode ser usado para criar objetos chamando-o com alguns argumentos. +
 O construtor padrão só aceita *argumentos por nome*. +
 Considerando o exemplo acima, repare que todos os argumentos passados para `.new()` são definidos pelo próprio nome:
 
-* nome => 'João'
+* nome \=> 'João'
 
-* idade => 23
+* idade \=> 23
 
 
 E se não quiséssemos passar o nome de cada atributo ao criar um novo objeto? +
