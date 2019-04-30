@@ -311,7 +311,7 @@ say "Hello $name";   # Hello John Doe
 
 | >= | 中缀 | 大于等于 | 9 >= 7  | True
 
-.3+| +<=>+ .3+| Infix .3+| 数值比较 | 1 +<=>+ 1.0 | Same
+.3+| +<=>+ .3+| 中缀 .3+| 数值比较 | 1 +<=>+ 1.0 | Same
 
 <| 1 +<=>+ 2 <| Less
 
@@ -321,21 +321,21 @@ say "Hello $name";   # Hello John Doe
 
 | ne | 中缀 | 字符串不等 | "John" ne "Jane"  | True
 
-| lt | Infix | 字符串小于 | "a" lt "b" | True
+| lt | 中缀 | 字符串小于 | "a" lt "b" | True
 
-| gt | Infix | 字符串大于 | "a" gt "b" | False
+| gt | 中缀 | 字符串大于 | "a" gt "b" | False
 
-| le | Infix | 字符串小于等于 | "a" le "a" | True
+| le | 中缀 | 字符串小于等于 | "a" le "a" | True
 
-| ge | Infix | 字符串大于等于 | "a" ge "b" | False
+| ge | 中缀 | 字符串大于等于 | "a" ge "b" | False
 
-.3+| leg .3+| Infix .3+| 字符串比较 | "a" leg "a" | Same
+.3+| leg .3+| 中缀 .3+| 字符串比较 | "a" leg "a" | Same
 
 <| "a" leg "b" <| Less
 
 <| "c" leg "b" <| More
 
-.2+| cmp .2+| Infix .2+| 智能比较 | "a" cmp "b" | Less
+.2+| cmp .2+| 中缀 .2+| 智能比较 | "a" cmp "b" | Less
 
 <| 3.5 cmp 2.6 <| More
 
@@ -361,11 +361,11 @@ say "Hello $name";   # Hello John Doe
 
 .2+| ++ | 前缀 | 递增 | my $var = 2; ++$var;  | 递增变量然后返回变量值 `3`
 
-<m| 后缀 <d| 递增 <m| my $var = 2; $var++;  <| 返回变量值 `2` 然后递增变量
+| 后缀 <d| 递增 <m| my $var = 2; $var++;  <| 返回变量值 `2` 然后递增变量
 
 .2+|\--| 前缀 | 递减 | my $var = 2; --$var;  | 递减变量然后返回变量值 `1`
 
-<m| 后缀 <d| 递减 <m| my $var = 2; $var--;  <| 返回变量值 `2` 然后递减变量
+| 后缀 <d| 递减 <m| my $var = 2; $var--;  <| 返回变量值 `2` 然后递减变量
 
 .3+| + .3+| 前缀 .3+| 强制转变为数值 | +"3"  | 3
 
@@ -531,28 +531,28 @@ TIP: 波浪符 `~` 可用于列表中字符串的连接。
 .`脚本`
 ----
 my @animals = 'camel','vicuña','llama';
-say "The zoo contains " ~ @animals.elems ~ " animals";
-say "The animals are: " ~ @animals;
-say "I will adopt an owl for the zoo";
+say "动物园容纳了 " ~ @animals.elems ~ " 只动物";
+say "这些动物是: " ~ @animals;
+say "动物园收养了一只 owl";
 @animals.push("owl");
-say "Now my zoo has: " ~ @animals;
-say "The first animal we adopted was the " ~ @animals[0];
+say "现在动物园有: " ~ @animals;
+say "动物园收养的第一只动物是 " ~ @animals[0];
 @animals.pop;
-say "Unfortunately the owl got away and we're left with: " ~ @animals;
-say "We're closing the zoo and keeping one animal only";
-say "We're going to let go: " ~ @animals.splice(1,2) ~ " and keep the " ~ @animals;
+say "不幸的是， owl 走了，还剩下: " ~ @animals;
+say "我们要关闭动物园，只留下一只动物";
+say "我们要放走: " ~ @animals.splice(1,2) ~ " ，只剩下 " ~ @animals;
 ----
 
 .`输出`
 ----
-The zoo contains 3 animals
-The animals are: camel vicuña llama
-I will adopt an owl for the zoo
-Now my zoo has: camel vicuña llama owl
-The first animal we adopted was the camel
-Unfortunately the owl got away and we're left with: camel vicuña llama
-We're closing the zoo and keeping one animal only
-We're going to let go: vicuña llama and keep the camel
+动物园容纳了 3 只动物
+这些动物是: camel vicuña llama
+动物园收养了一只 owl
+现在动物园有: camel vicuña llama owl
+动物园收养的第一只动物是 camel
+不幸的是， owl 走了，还剩下: camel vicuña llama
+我们要关闭动物园，只留下一只动物
+我们要放走: vicuña llama ，只剩下 camel
 ----
 
 .说明
@@ -598,7 +598,7 @@ my @array[3];
 ----
 
 ----
-第一维的索引值 3 超出了范围（必须是0..2)
+Index 3 for dimension 1 out of range (must be 0..2) 第一维的索引值 3 超出了范围（必须是0..2)
 ----
 
 ==== 多维数组
@@ -712,7 +712,7 @@ say $var;
 say $var.WHAT;
 ----
 
-运行会失败并返回报错信息: `Type check failed in assignment to $var; expected Int but got Str`
+运行会失败并返回报错信息: `Type check failed in assignment to $var; expected Int but got Str 赋值给$var时类型检查失败，预期Int但是得到Str`
 
 这是因为我们预先指定变量类型为(Int),当将(Str)赋值给它的时候就导致了运行失败。
 
@@ -856,7 +856,7 @@ say $var;
 ----
 
 我们不能改变 *绑定* 到变量上的值 +
-*绑定* 通过 `：=` 操作符实现。
+*绑定* 通过 `:=` 操作符实现。
 
 [source,perl6]
 .绑定
@@ -870,7 +870,7 @@ say $var;
 .`输出`
 ----
 123
-Cannot assign to an immutable value
+Cannot assign to an immutable value 不允许赋值到一个不可变值
 ----
 
 [source,perl6]
@@ -968,15 +968,15 @@ say 'Welcome' if $age > 18;
 
 [source,perl6]
 ----
-# run the same code for different values of the variable
-my $number-of-seats = 9;
+# 为变量不同的值运行相同的代码
+my $座位数 = 9;
 
-if $number-of-seats <= 5 {
-  say 'I am a sedan'
-} elsif $number-of-seats <= 7 {
-  say 'I am 7 seater'
+if $座位数 <= 5 {
+  say '我是小轿车'
+} elsif $座位数 <= 7 {
+  say '我是七座车'
 } else {
-  say 'I am a van'
+  say '我是面包车'
 }
 ----
 
@@ -1072,7 +1072,7 @@ given $var {
 
 在成功匹配后，匹配就会停止。
 
-如果在匹配成功后运行的代码块中加了 `proceed`，那么就要在下一个成功匹配后才停止匹配。
+如果在匹配成功后运行的代码块中加了 `proceed`，那么就要在下一次成功匹配后才停止匹配。
 
 [source,perl6]
 ----
@@ -1393,7 +1393,7 @@ say "1.2 squared is equal to " ~ squared(1.2);
 如果子例程不能提供符合类型要求的返回值，程序就会报错。
 
 ----
-Type check failed for return value; expected Int but got Rat (1.44)
+Type check failed for return value; expected Int but got Rat (1.44) 返回值类型检查失败，预期Int但是得到Rat（1.44）
 ----
 
 [TIP]
@@ -1512,7 +1512,7 @@ say @final-array;
 === Feed 操作符
 *feed 操作符*, 在有些函数式编程语言中也叫 _管道_, 然而它是链式方法的一个更好的可视化产出。
 [source,perl6]
-.Forward Feed
+.正向流（Forward Feed）
 ----
 my @array = <7 8 9 0 1 2 4 3 5 6>;
 @array ==> unique()
@@ -1533,7 +1533,7 @@ say @final-array;
 
 
 [source,perl6]
-.Backward Feed
+.反向流（Backward Feed）
 ----
 my @array = <7 8 9 0 1 2 4 3 5 6>;
 my @final-array-v2 <== reverse()
@@ -1545,7 +1545,7 @@ say @final-array-v2;
 
 .解释
 
-向后流就像向前流一样, 但是是以反转的顺序写的。 +
+正向流就像反向流一样, 但是是以反转的顺序写的。 +
 
 方法的流动方向是自下而上。
 
@@ -1743,16 +1743,13 @@ _面向对象_ 编程是当今广泛使用的范式之一。 +
 [source,perl6]
 ----
 class Human {
-    has $name;
-    has $age;
-    has $sex;
-    has $nationality;
+  has $.name;
+  has $.age;
+  has $.sex;
+  has $.nationality;
 }
 
-my $john = Human.new(name => 'John',
-                     age  => 23,
-                     sex  => 'M'
-                     nationality => 'American')
+my $john = Human.new(name => 'John', age => 23, sex => 'M', nationality => 'American');
 say $john;
 ----
 
@@ -1796,7 +1793,7 @@ say sayvar;
 
 `sayvar` 是一个存取器。它让我们通过不直接访问这个变量来访问这个变量。
 在 Perl 6 中使用  *twigils* 使得封装很便利。 +
-Twigils 是第二 _符号_。它们存在于符号和属性名之间。 +
+Twigils 是第二 _符号_ 。它们存在于符号和属性名之间。 +
 有两个 twigils 用在类中:
 
 * `!` 用于显式地声明属性是私有的
@@ -1818,7 +1815,7 @@ my $john = Human.new(name => 'John', age => 23, sex => 'M', nationality => 'Amer
 say $john;
 ----
 给脚本追加这样的的语句: `say $john.age`; +
-它会返回这样的错误: `Method 'age' not found for invocant of class 'Human'`。 +
+它会返回这样的错误: `Method 'age' not found for invocant of class 'Human' 在类'Human'中没有找到请求的方法'age'`。 +
 原因是 `$!age` 是私有的并且只能用于对象内部。 尝试在对象外部访问它会返回一个错误。
 
 现在用 `has $.age` 代替 `$!age` 并看看 `say $john.age;` 的结果是什么。
@@ -1831,9 +1828,9 @@ say $john;
 
 如果你考虑上面的例子, 你会看到所有提供给 `.new` 方法的参数都是按名字定义的:
 
-* name => 'John'
+* name \=> 'John'
 
-* age     => 23
+* age  \=> 23
 
 假如我不想在每次创建新对象的时候为每个属性提供一个名字呢? +
 那么我需要创建另外一个接收 *位置参数* 的构造函数。
@@ -2181,7 +2178,7 @@ say "实际 vs 预测:";
 $actual-vs-forecast.plot;
 ----
 
-.`输出`
+.`输出`（译注，截至2019.4.30，这段代码在实现中的输出与预期不一致，参见 https://github.com/hankache/perl6intro/issues/192 ）
 
 ----
 实际的销售:
@@ -2277,7 +2274,7 @@ $actual-vs-forecast.plot;
 
 ----
 ===SORRY!===
-Method 'plot' must be resolved by class combo-chart because it exists in multiple roles (line-chart, bar-chart)
+Method 'plot' must be resolved by class combo-chart because it exists in multiple roles (line-chart, bar-chart) 类'combo-chart'的方法'plot'必须被解决，因为存在多个roles（line-chart, bar-chart）
 ----
 
 .解释
@@ -2405,13 +2402,13 @@ How are you doing today?
 my Str $name;
 $name = 123;
 say "Hello " ~ $name;
-say "How are you doing today?"
+say "今天过得怎么样？"
 ----
 
 .`输出`
 
 ----
-Type check failed in assignment to $name; expected Str but got Int
+Type check failed in assignment to $name; expected Str but got Int 赋值给$name时类型检查失败，预期Str但是得到Int
    in block <unit> at exceptions.pl6:2
 ----
 
@@ -2427,28 +2424,28 @@ try {
   say "Hello " ~ $name;
   CATCH {
     default {
-      say "Can you tell us your name again, we couldn't find it in the register.";
+      say "请再说一次你的名字，我们在记录中找不到它。";
     }
   }
 }
-say "How are you doing today?";
+say "今天过得怎么样？";
 ----
 
 .`输出`
 
 ----
-Can you tell us your name again, we couldn't find it in the register.
-How are you doing today?
+请再说一次你的名字，我们在记录中找不到它。
+今天过得怎么样？
 ----
 
-异常处理是使用 `try-catch` block 完成的。
+异常处理是使用 `try-catch` 块完成的。
 
 [source,perl6]
 ----
 try {
-  # code goes in here
-  # 如果有东西出错, 脚本会进入到下面的 CATCH block 中
-  # 如果什么错误也没有, 那么 CATCH block 会被忽略
+  # 代码在这里运行
+  # 如果有东西出错, 脚本会进入到下面的 CATCH 块中
+  # 如果什么错误也没有, 那么 CATCH 块会被忽略
   CATCH {
     default {
       # 只有抛出异常时, 这儿的代码才会被求值
@@ -2457,20 +2454,20 @@ try {
 }
 ----
 
-`CATCH` block 能像定义 `given` block 那样定义。
+`CATCH` 块能像定义 `given` 块那样定义。
 这意味着我们能捕获并处理各种不同类型的异常。
 
 [source,perl6]
 ----
 try {
-  #code goes in here
-  #if anything goes wrong, the script will enter the below CATCH block
-  #if nothing goes wrong the CATCH block will be ignored
+  # 代码在这里运行
+  # 如果有东西出错, 脚本会进入到下面的 CATCH 块中
+  # 如果什么错误也没有, 那么 CATCH 块会被忽略
   CATCH {
-    when X::AdHoc { #do something if an exception of type X::AdHoc is thrown }
-    when X::IO { #do something if an exception of type X::IO is thrown }
-    when X::OS { #do something if an exception of type X::OS is thrown }
-    default { #do something if an exception is thrown and doesn't belong to the above types }
+    when X::AdHoc { # 当异常 X::AdHoc 被抛出时要执行的操作 }
+    when X::IO { # 当异常 X::IO 被抛出时要执行的操作}
+    when X::OS { # 当异常 X::OS 被抛出时要执行的操作 }
+    default { # 当异常类型不属于上述任何一种时要执行的操作}
   }
 }
 ----
@@ -2480,28 +2477,28 @@ try {
 Perl  6 也允许你显式地抛出异常。 +
 有两种类型的异常可以抛出:
 
-* ad-hoc 异常
+* 特设异常（ad-hoc exceptions）
 
-* 类型异常
+* 类型化异常（typed exceptions）
 
 [source,perl6]
-.ad-hoc
+.特设
 ----
 my Int $age = 21;
 die "Error !";
 ----
 
 [source,perl6]
-.typed
+.类型化
 ----
 my Int $age = 21;
 X::AdHoc.new(payload => 'Error !').throw;
 ----
 
-使用 `die` 子例程后面跟着异常消息来抛出 Ad-hoc 异常。
+使用 `die` 子例程后面跟着异常消息来抛出特设异常。
 
-Typed 异常是对象, 因此上面的例子中使用了 `.new()` 构造函数。 +
-所有类型化的异常都是从类 `X` 开始, 下面是一些例子: +
+类型化异常是对象, 因此上面的例子中使用了 `.new()` 构造函数。 +
+所有类型化异常都是从类 `X` 开始, 下面是一些例子: +
 `X::AdHoc` 是最简单的异常类型 +
 `X::IO` 跟 IO 错误有关。 +
 `X::OS` 跟 OS 错误有关。 +
@@ -2513,19 +2510,20 @@ NOTE: 查看异常类型和相关方法的完整列表请到  [http://doc.perl6.
 
 == 正则表达式
 
-正则表达式, 或 _regex_ 是一个用于模式匹配的字符序列。
+正则表达式（regular expression）, 或 _regex_ 是一个用于模式匹配的字符序列。
+（译注，regular expression和regex都是“正则表达式”，在本文中，后者通常可以理解为“Perl6专用正则表达式”。）
 
 理解它最简单的一种方式是把它看作模式。
 [source,perl6]
 ----
 if 'enlightenment' ~~ m/ light / {
-    say "enlightenment contains the word light";
+    say "enlightenment 包含单词 light";
 }
 ----
 
 在这个例子中, 智能匹配操作符 `~~` 用于检查一个字符串(enlightenment)是否包含一个单词(light)。 +
 
-"Enlightenment"  与正则表达式 `m/ light /` 匹配。
+"Enlightenment" 与regex `m/ light /` 匹配。
 
 === Regex 定义
 
@@ -2540,14 +2538,14 @@ if 'enlightenment' ~~ m/ light / {
 除非显式地指定, 否则空白是无关紧要的, `m/light/` 和 `m/ light /` 是相同的。
 
 === 匹配字符
-字母数字字符和下划线 `_` 在正则表达式中是按原样写出的。 +
+字母数字字符和下划线 `_` 在表达式中是按原样写出的。 +
 所有其它字符必须使用反斜线或用引号围起来以转义。
 
 [source,perl6]
 .反斜线
 ----
 if 'Temperature: 13' ~~ m/ \: / {
-    say "The string provided contains a colon :";
+    say "提供的字符串包含冒号 :";
 }
 ----
 
@@ -2555,7 +2553,7 @@ if 'Temperature: 13' ~~ m/ \: / {
 .单引号
 ----
 if 'Age = 13' ~~ m/ '=' / {
-    say "The string provided contains an equal character = ";
+    say "提供的字符串包含等号 = ";
 }
 ----
 
@@ -2563,19 +2561,19 @@ if 'Age = 13' ~~ m/ '=' / {
 .双引号
 ----
 if 'name@company.com' ~~ m/ "@" / {
-    say "This is a valid email address because it contains an @ character";
+    say "这是一个有效的电子邮件地址，因为它包含 @ 字符";
 }
 ----
 
 === 匹配字符类
-字符可以分类，我们可以匹配他们。 +
-我们也可以匹配该类别的反面（除了它的所有东西）:
+字符可以分类，我们可以用类别匹配字符。 +
+也可以匹配该类别的反面（除此之外的所有内容）:
 
 |===
 
-| *Category* | *Regex* | *Inverse* | *Regex*
+| *类别* | *Regex* | *反类别* | *Regex*
 
-| 单词字符 (字母, 数字 或 下划线) | \w | 除了单词字符之外的任意字符 | \W
+| 单词字符 (字母数字下划线) | \w | 除了单词字符之外的任意字符 | \W
 
 | 数字 | \d | 除了数字之外的任意字符 | \D
 
@@ -2585,23 +2583,23 @@ if 'name@company.com' ~~ m/ "@" / {
 
 | 垂直空白 | \v | 除了垂直空白之外的任意字符 | \V
 
-| Tab | \t | 除了 Tab 之外的任意字符 | \T
+| 制表符空白（Tab） | \t | 除了制表符空白之外的任意字符 | \T
 
-| 换行 | \n | 除了换行之外的任意字符 | \N
+| 换行符 | \n | 除了换行符之外的任意字符 | \N
 
 |===
 
 [source,perl6]
 ----
 if "John123" ~~ / \d / {
-  say "This is not a valid name, numbers are not allowed";
+  say "这不是有效名称，不允许使用数字";
 } else {
-  say "This is a valid name"
+  say "这是个有效名称"
 }
 if "John-Doe" ~~ / \s / {
-  say "This string contains whitespace";
+  say "这个字符串包含空白";
 } else {
-  say "This string doesn't contain whitespace"
+  say "这个字符串不包含空白"
 }
 ----
 
@@ -2614,43 +2612,43 @@ Unicode 属性闭合在 `<: >` 中。
 [source,perl6]
 ----
 if "Devanagari Numbers १२३" ~~ / <:N> / {
-  say "Contains a number";
+  say "包含数字";
 } else {
-  say "Doesn't contain a number"
+  say "不包含数字"
 }
 
 if "Привет, Иван." ~~ / <:Lu> / {
-  say "Contains an uppercase letter";
+  say "包含大写字母";
 } else {
-  say "Doesn't contain an upper case letter"
+  say "不包含大写字母"
 }
 
 if "John-Doe" ~~ / <:Pd> / {
-  say "Contains a dash";
+  say "包含破折号";
 } else {
-  say "Doesn't contain a dash"
+  say "不包含破折号"
 }
 ----
 
 === 通配符
-通配符也可以用在正则表达式中。
+通配符也可以用在 regex 中。
 
 点 `.` 意味着任何单个字符。
 
 [source,perl6]
 ----
 if 'abc' ~~ m/ a.c / {
-    say "Match";
+    say "匹配";
 }
 
 if 'a2c' ~~ m/ a.c / {
-    say "Match";
+    say "匹配";
 }
 
 if 'ac' ~~ m/ a.c / {
-    say "Match";
+    say "匹配";
   } else {
-    say "No Match";
+    say "不匹配";
 }
 ----
 
@@ -2663,15 +2661,15 @@ if 'ac' ~~ m/ a.c / {
 [source,perl6]
 ----
 if 'ac' ~~ m/ a?c / {
-    say "Match";
+    say "匹配";
   } else {
-    say "No Match";
+    say "不匹配";
 }
 
 if 'c' ~~ m/ a?c / {
-    say "Match";
+    say "匹配";
   } else {
-    say "No Match";
+    say "不匹配";
 }
 ----
 
@@ -2680,27 +2678,27 @@ if 'c' ~~ m/ a?c / {
 [source,perl6]
 ----
 if 'az' ~~ m/ a*z / {
-    say "Match";
+    say "匹配";
   } else {
-    say "No Match";
+    say "不匹配";
 }
 
 if 'aaz' ~~ m/ a*z / {
-    say "Match";
+    say "匹配";
   } else {
-    say "No Match";
+    say "不匹配";
 }
 
 if 'aaaaaaaaaaz' ~~ m/ a*z / {
-    say "Match";
+    say "匹配";
   } else {
-    say "No Match";
+    say "不匹配";
 }
 
 if 'z' ~~ m/ a*z / {
-    say "Match";
+    say "匹配";
   } else {
-    say "No Match";
+    say "不匹配";
 }
 ----
 
@@ -2709,54 +2707,54 @@ if 'z' ~~ m/ a*z / {
 [source,perl6]
 ----
 if 'az' ~~ m/ a+z / {
-    say "Match";
+    say "匹配";
   } else {
-    say "No Match";
+    say "不匹配";
 }
 
 if 'aaz' ~~ m/ a+z / {
-    say "Match";
+    say "匹配";
   } else {
-    say "No Match";
+    say "不匹配";
 }
 
 if 'aaaaaaaaaaz' ~~ m/ a+z / {
-    say "Match";
+    say "匹配";
   } else {
-    say "No Match";
+    say "不匹配";
 }
 
 if 'z' ~~ m/ a+z / {
-    say "Match";
+    say "匹配";
   } else {
-    say "No Match";
+    say "不匹配";
 }
 ----
 
 === 匹配结果
 
-当匹配字符串的正则表达式成功时,
+当匹配字符串的regex成功时,
 匹配结果被存储在一个特殊的变量 `$/` 中。
 
 [source,perl6]
 .脚本
 ----
 if 'Rakudo is a Perl 6 compiler' ~~ m/:s Perl 6/ {
-    say "The match is: " ~ $/;
-    say "The string before the match is: " ~ $/.prematch;
-    say "The string after the match is: " ~ $/.postmatch;
-    say "The matching string starts at position: " ~ $/.from;
-    say "The matching string ends at position: " ~ $/.to;
+    say "匹配的内容是：" ~ $/;
+    say "匹配之前的字符串：" ~ $/.prematch;
+    say "匹配之后的字符串：" ~ $/.postmatch;
+    say "匹配从字符串此处开始：" ~ $/.from;
+    say "匹配从字符串此处结束：" ~ $/.to;
 }
 ----
 
 .输出
 ----
-The match is: Perl 6
-The string before the match is: Rakudo is a
-The string after the match is:  compiler
-The matching string starts at position: 12
-The matching string ends at position: 18
+匹配的内容是：Perl 6
+匹配之前的字符串：Rakudo is a
+匹配之后的字符串： compiler
+匹配从字符串此处开始：12
+匹配从字符串此处结束：18
 ----
 
 .解释
@@ -2769,10 +2767,10 @@ The matching string ends at position: 18
 `.from` 返回匹配的开始位置 +
 `.to` 返回匹配的结束位置 +
 
-TIP: 默认地空白在 regex 中是无关紧要的。 +
-如果我们想在 regex 中包含空白, 我们必须显式地这样做。 +
-regex `m/:s Perl 6/` 中的 `:s` 强制考虑空白并且不会被删除。
-二选一, 我们能把 regex 写为 `m/Perl\s6/` 并使用 `\s` 占位符。
+TIP: 默认地，空白符在 regex 中会被忽略。 +
+如果想在 regex 中包含空白, 我们必须显式地这样做。 +
+regex `m/:s Perl 6/` 中的 `:s` 用于强制匹配空白符。
+另外, 可以把 regex 写为 `m/Perl\s6/` ，使用 `\s` 代表空白符。
 如果 regex 中包含的空白不止一个, 使用 `:s` 比使用 `\s` 更高效。
 
 
@@ -2781,74 +2779,74 @@ regex `m/:s Perl 6/` 中的 `:s` 强制考虑空白并且不会被删除。
 
 让我们检查一个邮件是否合法。 +
 我们假设一个合法的电子邮件地址的形式如下: +
-first name [dot] last name [at] company [dot] (com/org/net)
+名 [点] 姓 [at] 公司名 [点] (com/org/net)
 
 WARNING:  这个例子中用于电子邮件检测的 regex 不是很准确。 +
 它的核心意图是用来解释 Perl 6 中的 regex 的功能的。 +
 不要在生产中原样使用它。
 
 [source,perl6]
-.Script
+.脚本
 ----
 my $email = 'john.doe@perl6.org';
 my $regex = / <:L>+\.<:L>+\@<:L+:N>+\.<:L>+ /;
 
 if $email ~~ $regex {
-  say $/ ~ " is a valid email";
+  say $/ ~ " 是一个合法的Email地址";
 } else {
-  say "This is not a valid email";
+  say "这不是合法的Email地址";
 }
 ----
 
 .输出
 
-`john.doe@perl6.org is a valid email`
+`john.doe@perl6.org 是一个合法的Email地址`
 
 .解释
 
 `<:L>`  匹配单个字符 +
 `<:L>+` 匹配单个字符或更多字符 +
-`\.`  匹配单个点号字符 +
-`\@`  匹配单个  [at] 符号 +
+`\.`  匹配单个 . 符号 +
+`\@`  匹配单个 @ 符号 +
 `<:L+:N>` 匹配一个字母或数字 +
 `<:L+:N>+` 匹配多个字母或数字 +
 
 其中的 regex 可以分解成如下:
 
-* *first name* `<:L>+`
+* *名* `<:L>+`
 
-* *[dot]* `\.`
+* *[点]* `\.`
 
-* *last name* `<:L>+`
+* *姓* `<:L>+`
 
 * *[at]* `\@`
 
-* *company name* `<:L+:N>+`
+* *公司名* `<:L+:N>+`
 
-* *[dot]* `\.`
+* *[点]* `\.`
 
 * *com/org/net* `<:L>+`
 
 [source,perl6]
-.可选地, 一个 regex 可以被分解成多个具名 regexes。
+.可选地, 一个 regex 可以被分解成多个具名 regex 。
 ----
 my $email = 'john.doe@perl6.org';
-my regex many-letters { <:L>+ };
-my regex dot { \. };
+my regex 多个字符 { <:L>+ };
+my regex 点 { \. };
 my regex at { \@ };
-my regex many-letters-numbers { <:L+:N>+ };
+my regex 多个字符数字 { <:L+:N>+ };
 
-if $email ~~ / <many-letters> <dot> <many-letters> <at> <many-letters-numbers> <dot> <many-letters> / {
-  say $/ ~ " is a valid email";
+if $email ~~ / <多个字符> <点> <多个字符> <at> <多个字符数字> <点> <多个字符> / {
+  say $/ ~ " 是一个合法的Email地址";
 } else {
-  say "This is not a valid email";
+  say "这不是合法的Email地址";
 }
 ----
 
-具名 regex 是使用 `my regex regex-name { regex definition }` 定义的。 +
-具名 regex 可以使用 `<regex-name>` 来调用。
+具名 regex 是使用 `my regex 表达式名 { regex 定义 }` 定义的。 +
+具名 regex 可以使用 `<表达式名>` 来调用。
 
-NOTE: 更多关于 regexes 的东西, 查看 http://doc.perl6.org/language/regexes
+NOTE: 更多关于 regex 的内容, 查看 http://doc.perl6.org/language/regexes
 
 == Perl 6 模块
 Perl 6是通用编程语言。 它可以用于处理众多任务，包括：
@@ -2896,12 +2894,12 @@ WARNING: 实际上，MD5 哈希是不够的，因为它容易进行字典攻击�
 
 == Unicode
 
-Unicode 是编码并表现文本的标准, 它满足了世界上的大部分系统。 +
+Unicode 是编码并表现文本的标准, 它涵盖了世界上大多数书写系统。 +
 UTF-8 是能够以Unicode编码所有可能的字符或代码点的字符编码。
 
 字符的定义是通过: +
 
-*字素*: 可见的表示 +
+*字素*: 视觉表示 +
 *代码点*: 赋值给字符的数字 +
 *代码点名称*: 字符的名称
 
@@ -3047,9 +3045,9 @@ say ('a','b','c','D','E','F').collate; # (a b c D E F)
 ==== 数据并行化
 [source,perl6]
 ----
-my @array = (0..50000);                     # Array population
-my @result = @array.map({ is-prime $_ });   # call is-prime for each array element
-say now - INIT now;                         # Output the time it took for the script to complete
+my @array = (0..50000);                     # 数组总体
+my @result = @array.map({ is-prime $_ });   # 为每个数组元素调用 is-prime（判断是否为质数）
+say now - INIT now;                         # 输出脚本完成花费的时间
 ----
 
 .考虑上面的例子:
@@ -3061,9 +3059,9 @@ say now - INIT now;                         # Output the time it took for the sc
 .幸运的是, 我们能同时在多个数组元素身上调用 `is-prime` 函数:
 [source,perl6]
 ----
-my @array = (0..50000);                         # Array population
-my @result = @array.race.map({ is-prime $_ });  # call is-prime for each array element
-say now - INIT now;                             # Output the time it took to complete
+my @array = (0..50000);                         # 数组总体
+my @result = @array.race.map({ is-prime $_ });  # 为每个数组元素调用 is-prime（判断是否为质数）
+say now - INIT now;                             # 输出完成所花费的时间
 ----
 
 注意表达式中使用的 `race`。这个方法会使数组元素能够并行地迭代。
