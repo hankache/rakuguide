@@ -321,11 +321,11 @@ Onderstaande tabel toont de meest voorkomende operatoren.
 
 .2+| ++ | Prefix | Verhoging | my $var = 2; ++$var;  | Verhoog de variabele met `1` en geef de verhoogde waarde terug: `3`
 
-<m| Postfix <d| Verhoging <m| my $var = 2; $var++;  <| Geef de waarde van de variabele terug (`2`) en verhoog de variabele dan met `1`
+| Postfix <d| Verhoging <m| my $var = 2; $var++;  <| Geef de waarde van de variabele terug (`2`) en verhoog de variabele dan met `1`
 
 .2+|\--| Prefix | Verlaging | my $var = 2; --$var;  | Verlaag de variabele met `1` en geef de verlaagde waarde terug: `1`
 
-<m| Postfix <d| Verlaging <m| my $var = 2; $var--;  <| Geef de waarde van de variabele terug (`2`) en verlaag die dan met `1`
+| Postfix <d| Verlaging <m| my $var = 2; $var--;  <| Geef de waarde van de variabele terug (`2`) en verlaag die dan met `1`
 
 .3+| + .3+| Prefix .3+| Forceer naar de numerieke waarde | +"3"  | 3
 
@@ -644,7 +644,7 @@ De hoofdstad van Frankrijk is: Parijs
 ----
 
 .Uitleg
-`.push: (naam => 'Waarde')` voegt een nieuwe naam/waarde paar toe. +
+`.push: (naam \=> 'Waarde')` voegt een nieuwe naam/waarde paar toe. +
 `.kv` geeft een lijst met alle namen en waarden terug. +
 `.keys` geeft een lijst met alle namen terug. +
 `.values` geeft een lijst met alle waarden terug. +
@@ -1739,9 +1739,9 @@ Het kan worden gebruikt om objecten aan te maken door het argumenten te geven. +
 De default constructeur accepteert alleen *argumenten op naam*. +
 Als je bovenstaande voorbeelden bekijkt, dan zul je zien dat alle argumenten die we aan `.new()` hebben gegeven, op naam zijn:
 
-* naam => 'Jan'
+* naam \=> 'Jan'
 
-* leeftijd => 23
+* leeftijd \=> 23
 
 Wat als ik niet telkens de naam van elk attribuut wil meegeven als ik een nieuw object wil maken? +
 In dat geval moeten we een andere constructeur maken die *argumenten op positie* accepteert.

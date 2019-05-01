@@ -320,11 +320,11 @@ La siguiente tabla muestra los operadores más utilizados.
 
 .2+| ++ | Prefijo | Incremento | my $var = 2; ++$var;  | Incrementa la variable por 1 y devuelve `3` como resultado
 
-<m| Sufijo <d| Incremento <m| my $var = 2; $var++;  <| Devuelve la variable `2` y después la incrementa
+| Sufijo <d| Incremento <m| my $var = 2; $var++;  <| Devuelve la variable `2` y después la incrementa
 
 .2+|\--| Prefijo | Decremento | my $var = 2; --$var;  | Decrementa la variable en 1 y devuelve `1` como resultado
 
-<m| Sufijo <d| Decremento <m| my $var = 2; $var--;  <| Devuelve la variable `2` y después la decrementa
+| Sufijo <d| Decremento <m| my $var = 2; $var--;  <| Devuelve la variable `2` y después la decrementa
 
 .3+| + .3+| Prefijo .3+| Fuerza el operando a un valor numérico | +"3"  | 3
 
@@ -631,7 +631,7 @@ La capital de Francia es: París
 ----
 
 .Explicación
-`.push: (Clave => 'Valor')` agrega un nuevo par clave/valor. +
+`.push: (Clave \=> 'Valor')` agrega un nuevo par clave/valor. +
 `.kv` devuelve una lista con todas las claves y valores. +
 `.keys` devuelve una lista con todas las claves. +
 `.values` devuelve una lista con todos los valores. +
@@ -1768,9 +1768,9 @@ En Perl 6 todas las clases heredan un constructor `.new()` por defecto que puede
 El constructor por defecto solo acepta *argumentos con nombre*. +
 Como puedes ver en el ejemplo que vimos antes, los argumentos que tiene `.new()` están definidos con un nombre:
 
-* nombre => 'Juan'
+* nombre \=> 'Juan'
 
-* edad => 23
+* edad \=> 23
 
 ¿Puedo ahorrarme el nombre de cada atributo al crear un objeto? Sí, pero necesito crear otro constructor que acepte *argumentos posicionales*.
 

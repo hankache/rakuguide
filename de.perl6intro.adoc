@@ -309,11 +309,11 @@ Diese Tabelle zeigt die am Häufigsten verwendten Operatoren.
 
 .2+| ++ | Prefix | Inkrementierung | my $var = 2; ++$var;  | Inkrementiere die Variable um 1 und gebe das Resultat aus `3`
 
-<m| Postfix <d| Inkrementierung <m| my $var = 2; $var++;  <| Gebe den Inhalt der Variable aus `2` und inkrementiere dann um eins
+| Postfix <d| Inkrementierung <m| my $var = 2; $var++;  <| Gebe den Inhalt der Variable aus `2` und inkrementiere dann um eins
 
 .2+|\--| Prefix | Dekrementierung | my $var = 2; --$var;  | Dekrementiere die Variable um 1 und gebe das Resultat aus `1`
 
-<m| Postfix <d| Dekrementierung <m| my $var = 2; $var--;  <| Gebe den Inhalt der Variable aus `2` und dekrementiere dann um eins
+| Postfix <d| Dekrementierung <m| my $var = 2; $var--;  <| Gebe den Inhalt der Variable aus `2` und dekrementiere dann um eins
 
 .3+| + .3+| Prefix .3+| Verwandle den Operanden in einen numerischen Wert | +"3"  | 3
 
@@ -585,7 +585,7 @@ Die Hauptstadt von Frankreich ist: Paris
 ----
 
 .Erklärung
-`.push: (key => 'Value')` fügt ein weiteres Schlüssel-Wert-Paar (key/value pair) hinzu. +
+`.push: (key \=> 'Value')` fügt ein weiteres Schlüssel-Wert-Paar (key/value pair) hinzu. +
 `.kv` gibt eine Liste mit allen Schlüsseln und Werten aus. +
 `.keys` gibt eine Liste mit allen Schlüsseln aus. +
 `.values` gibt eine Liste mit allen Werten aus. +
@@ -1581,9 +1581,9 @@ Dieser kann verwendet werden, Objekte zu erstellen, indem er mit Argumenten ausg
 Er kann aber ausschließtlich mit *benannten Argumenten* verwendet werden. +
 Im obigen Beispiel ist zu erkennen, dass alle `.new()` mitgegebenen Argumente benannt waren:
 
-* name => 'Hans'
+* name \=> 'Hans'
 
-* alter => 23
+* alter \=> 23
 
 
 Aber was, wenn nicht jedesmal die Namen aller Attribute mit übergeben werden sollen, wenn ein neues Objekt erstellt werden soll? +

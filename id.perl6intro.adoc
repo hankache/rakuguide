@@ -331,11 +331,11 @@ Dibawah ini adalah tabel dari Operator yang umum dipakai.
 
 .2+| ++ | Prefix | Increment (kenaikan / tambahan) | my $var = 2; ++$var;  | menambah variable + 1 dan mengembalikan nilai `3`
 
-<m| Postfix <d| Increment <m| my $var = 2; $var++;  <| mengembalikan nilai variabel `2` kemudian menambah variabel + 1
+| Postfix <d| Increment <m| my $var = 2; $var++;  <| mengembalikan nilai variabel `2` kemudian menambah variabel + 1
 
 .2+|\--| Prefix | Decrement | my $var = 2; --$var;  | mengurangi nilai variabel - 1 dan mengembalikan nilai menjadi `1`
 
-<m| Postfix <d| Decrement <m| my $var = 2; $var--;  <| mengembalikan nilai variabel `2` kemudian  then mengurangi variabel -1
+| Postfix <d| Decrement <m| my $var = 2; $var--;  <| mengembalikan nilai variabel `2` kemudian  then mengurangi variabel -1
 
 .3+| + .3+| Prefix .3+| merubah nilai menjadi nilai numerik | +"3"  | 3
 
@@ -644,7 +644,7 @@ Ibukota dari Perancis adalah: Paris
 ----
 
 .Penjelasan
-`.push: (katakunci => 'nilai')` menambahkan pasangan kata kunci dan nilainya. +
+`.push: (katakunci \=> 'nilai')` menambahkan pasangan kata kunci dan nilainya. +
 `.kv` mengembalikan daftar nilai seluruh pasangan kata kunci dan nilainya. +
 `.keys` mengembalikan daftar nilai seluruh kata kunci saja. +
 `.values` mengembalikan daftar nilai seluruh nilai dari kata kunci saja. +
@@ -1795,9 +1795,9 @@ Konstruktor tersebut dapat digunakan untuk membuat objek dengan memberikan argum
 Defaultnya, argumen pada konstruktor hanya dapat diberikan dengan *named arguments*. +
 Dalam contoh diatas, perhatikan argumen yang diberikan ke `.new()` didefinisikan dengan penamaan:
 
-* nama => 'John'
+* nama \=> 'John'
 
-* umur => 23
+* umur \=> 23
 
 
 Bagaimana jika kita tidak ingin memberikan nama dari tiap atribut setiap kali kita ingin mebuat objek? +
