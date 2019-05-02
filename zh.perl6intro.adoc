@@ -2511,7 +2511,7 @@ NOTE: 查看异常类型和相关方法的完整列表请到  [http://doc.perl6.
 == 正则表达式
 
 正则表达式（regular expression）, 或 _regex_ 是一个用于模式匹配的字符序列。
-（译注，regular expression和regex都是“正则表达式”，在本文中，后者通常可以理解为“Perl6专用正则表达式”。）
+（译注，regular expression和regex都是“正则表达式”，一般来说后者是前者的缩写。本文中的regex包含是“Perl6专属”的用法，与其他语言中的正则表达式甚至Perl5的regex不完全一致，故不翻译，以示区分。）
 
 理解它最简单的一种方式是把它看作模式。
 [source,perl6]
@@ -2831,12 +2831,12 @@ if $email ~~ $regex {
 .可选地, 一个 regex 可以被分解成多个具名 regex 。
 ----
 my $email = 'john.doe@perl6.org';
-my regex 多个字符 { <:L>+ };
+my regex 多个字母 { <:L>+ };
 my regex 点 { \. };
 my regex at { \@ };
-my regex 多个字符数字 { <:L+:N>+ };
+my regex 多个字母与数字 { <:L+:N>+ };
 
-if $email ~~ / <多个字符> <点> <多个字符> <at> <多个字符数字> <点> <多个字符> / {
+if $email ~~ / <多个字母> <点> <多个字母> <at> <多个字母与数字> <点> <多个字母> / {
   say $/ ~ " 是一个合法的Email地址";
 } else {
   say "这不是合法的Email地址";
