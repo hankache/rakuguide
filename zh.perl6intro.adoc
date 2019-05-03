@@ -1402,7 +1402,7 @@ Type check failed for return value; expected Int but got Rat (1.44) 返回值类
 
 之前的例子中，我们指定了返回值必须为 `Int`。 +
 还可以进一步严格指定返回值 `Int` 是已定义（defined）或未定义（undefined）的： +
-`\--> Int:D` 和 `\--> Int:U`
+`-\-> Int:D` 和 `-\-> Int:U`
 
 使用类型限制是一个好的习惯。 +
 以下是将前面的例子修改后的结果，其中使用 `:D` 强制返回已定义的 `Int`。
