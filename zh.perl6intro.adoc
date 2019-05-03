@@ -303,13 +303,13 @@ say "Hello $name";   # Hello John Doe
 
 | != | 中缀 | 数值不等 | 9 != 7  | True
 
-| < | 中缀 | 小于 | 9 < 7  | False
+| < | 中缀 | 数值小于 | 9 < 7  | False
 
-| > | 中缀 | 大于 | 9 > 7  | True
+| > | 中缀 | 数值大于 | 9 > 7  | True
 
-| \<= | 中缀 | 小于等于 | 7 \<= 7  | True
+| \<= | 中缀 | 数值小于等于 | 7 \<= 7  | True
 
-| >= | 中缀 | 大于等于 | 9 >= 7  | True
+| >= | 中缀 | 数值大于等于 | 9 >= 7  | True
 
 .3+| +<=>+ .3+| 中缀 .3+| 数值比较 | 1 +<=>+ 1.0 | Same
 
@@ -393,15 +393,15 @@ say "Hello $name";   # Hello John Doe
 
 | ! | 前缀 | 强制转换为布尔值并返回相反数 | !4 | False
 
-| .. | 中缀 | Range 构造函数 |  0..5  | 创建 0 到 5 的整数列
+| .. | 中缀 | Range 构造函数 |  0..5  | 创建区间 [0,5] footnote:intervals[维基百科：区间 https://zh.wikipedia.org/zh-cn/%E5%8D%80%E9%96%93#%E5%9A%B4%E6%A0%BC%E5%AE%9A%E7%BE%A9]
 
-| ..^ | 中缀 | Range 构造函数 |  0..^5  | 创建 0 到 4 的整数列
+| ..^ | 中缀 | Range 构造函数 |  0..^5  | 创建区间 [0,5) footnote:intervals[]
 
-| ^.. | 中缀 | Range 构造函数 |  0^..5  | 创建 1 到 5 的整数列
+| ^.. | 中缀 | Range 构造函数 |  0^..5  | 创建区间 (0,5] footnote:intervals[]
 
-| \^..^ | 中缀 | Range 构造函数 |  0\^..^5  | 创建 1 到 4 的整数列
+| \^..^ | 中缀 | Range 构造函数 |  0\^..^5  | 创建区间 (0,5) footnote:intervals[]
 
-| ^ | 前缀 | Range 构造函数 |  ^5  | 等价于0..^5，创建 0 到 4 的整数列
+| ^ | 前缀 | Range 构造函数 |  ^5  | 等价于0..^5，创建区间 [0,5) footnote:intervals[]
 
 | ... | 中缀 | 惰性列表构造函数 |  0...9999  |  只有接到请求时才返回元素
 
@@ -1401,11 +1401,11 @@ Type check failed for return value; expected Int but got Rat (1.44) 返回值类
 类型限制不仅可以控制返回值的类型，还可以控制返回值的定义状态。
 
 之前的例子中，我们指定了返回值必须为 `Int`。 +
-我们可以指定返回值 `Int` 需要被严格定义或者不用定义： +
-`--> Int:D` 和 `--> Int:U`
+还可以进一步严格指定返回值 `Int` 是已定义（defined）或未定义（undefined）的： +
+`-\-> Int:D` 和 `-\-> Int:U`
 
 使用类型限制是一个好的习惯。 +
-以下是将前面的例子修改后的结果，其中使用 `:D` 强制返回有定义的 `Int`。
+以下是将前面的例子修改后的结果，其中使用 `:D` 强制返回已定义的 `Int`。
 
 [source,perl6]
 ----
@@ -2274,7 +2274,7 @@ $actual-vs-forecast.plot;
 
 ----
 ===SORRY!===
-Method 'plot' must be resolved by class combo-chart because it exists in multiple roles (line-chart, bar-chart) 类'combo-chart'的方法'plot'必须被解决，因为存在多个roles（line-chart, bar-chart）
+Method 'plot' must be resolved by class combo-chart because it exists in multiple roles (line-chart, bar-chart) 类'combo-chart'的方法'plot'必须被决定，因为存在多个role（line-chart, bar-chart）
 ----
 
 .解释
@@ -2504,14 +2504,14 @@ X::AdHoc.new(payload => 'Error !').throw;
 `X::OS` 跟 OS 错误有关。 +
 `X::Str::Numeric` 跟把字符串强制转换为数字有关。
 
-NOTE: 查看异常类型和相关方法的完整列表请到  [http://doc.perl6.org/type.html](http://doc.perl6.org/type.html)
+NOTE: 查看异常类型和相关方法的完整列表请到  https://docs.perl6.org/type-exceptions.html
 
 
 
 == 正则表达式
 
-正则表达式（regular expression）, 或 _regex_ 是一个用于模式匹配的字符序列。
-（译注，regular expression和regex都是“正则表达式”，在本文中，后者通常可以理解为“Perl6专用正则表达式”。）
+正则表达式（regular expression）, 或 _regex_ 是一个用于模式匹配的字符序列。 +
+（译注，regular expression和regex都是“正则表达式”，后者是前者的缩写。本文中的regex同时也是Perl6的类名，它包含“Perl6专属”的用法，与其他语言甚至Perl5中的正则语法不完全一致，故不翻译，以示区分。）
 
 理解它最简单的一种方式是把它看作模式。
 [source,perl6]
@@ -2804,12 +2804,12 @@ if $email ~~ $regex {
 
 .解释
 
-`<:L>`  匹配单个字符 +
-`<:L>+` 匹配单个字符或更多字符 +
+`<:L>`  匹配一个字母 +
+`<:L>+` 匹配至少一个字母 +
 `\.`  匹配单个 . 符号 +
 `\@`  匹配单个 @ 符号 +
 `<:L+:N>` 匹配一个字母或数字 +
-`<:L+:N>+` 匹配多个字母或数字 +
+`<:L+:N>+` 匹配至少一个字母或数字 +
 
 其中的 regex 可以分解成如下:
 
@@ -2831,12 +2831,12 @@ if $email ~~ $regex {
 .可选地, 一个 regex 可以被分解成多个具名 regex 。
 ----
 my $email = 'john.doe@perl6.org';
-my regex 多个字符 { <:L>+ };
+my regex 多个字母 { <:L>+ };
 my regex 点 { \. };
 my regex at { \@ };
-my regex 多个字符数字 { <:L+:N>+ };
+my regex 多个字母与数字 { <:L+:N>+ };
 
-if $email ~~ / <多个字符> <点> <多个字符> <at> <多个字符数字> <点> <多个字符> / {
+if $email ~~ / <多个字母> <点> <多个字母> <at> <多个字母与数字> <点> <多个字母> / {
   say $/ ~ " 是一个合法的Email地址";
 } else {
   say "这不是合法的Email地址";
@@ -2846,7 +2846,7 @@ if $email ~~ / <多个字符> <点> <多个字符> <at> <多个字符数字> <�
 具名 regex 是使用 `my regex 表达式名 { regex 定义 }` 定义的。 +
 具名 regex 可以使用 `<表达式名>` 来调用。
 
-NOTE: 更多关于 regex 的内容, 查看 http://doc.perl6.org/language/regexes
+NOTE: 更多关于 regex 的内容, 查看 https://docs.perl6.org/language/regexes
 
 == Perl 6 模块
 Perl 6是通用编程语言。 它可以用于处理众多任务，包括：
@@ -2889,8 +2889,8 @@ say $hashed-password;
 为了运行创建哈希的 `md5_hex()` 函数, 我们需要加载需要的模块。 +
 `use` 关键字用于在脚本中加载模块。
 
-WARNING: 实际上，MD5 哈希是不够的，因为它容易进行字典攻击。 +
-它应该加盐。link:https://en.wikipedia.org/wiki/Salt_(cryptography)[https://en.wikipedia.org/wiki/Salt_(cryptography)].
+WARNING: 实际上，MD5 哈希是不够的，因为它容易被字典攻击。 +
+它应该加盐。link:https://zh.wikipedia.org/wiki/%E7%9B%90_(%E5%AF%86%E7%A0%81%E5%AD%A6)[维基百科：盐 (密码学)]
 
 == Unicode
 
@@ -3153,7 +3153,7 @@ WARNING: 并行总是添加线程开销。如果开销抵消不了运算速度�
 
 === 并发和异步
 
-NOTE: 关于并发和异步编程的更多信息, 请查看  http://doc.perl6.org/language/concurrency
+NOTE: 关于并发和异步编程的更多信息, 请查看  https://docs.perl6.org/language/concurrency
 
 == Native Calling 接口
 Perl 6 可以让我们通过 Native Calling 接口来使用 C 库。
