@@ -1263,7 +1263,7 @@ mais, pour des raisons de cohérence et de lisibilité, il est recommandé de ch
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>Incrémente la variable de 1 et retourne le résultat <code>3</code></code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>Suffixé</code></p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>Suffixé</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Incrémentation</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>my $var = 2; $var++;</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>Retourne la variable <code>2</code> et puis l&#8217;incrémente</code></p></td>
@@ -1276,7 +1276,7 @@ mais, pour des raisons de cohérence et de lisibilité, il est recommandé de ch
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>Décrémente la variable de 1 et retourne le résultat <code>1</code></code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>Suffixé</code></p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>Suffixé</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Décrémentation</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>my $var = 2; $var--;</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>Retourne la variable <code>2</code> et puis la décrémente</code></p></td>
@@ -1744,7 +1744,7 @@ Pour la référence complète des tableaux: <a href="https://docs.perl6.org/type
 </div>
 <div class="paragraph">
 <div class="title">Explication</div>
-<p><code>.push: (clef &#8658; 'valeur')</code> ajoute une nouvelle paire clef/valeur.<br>
+<p><code>.push: (clef =&gt; 'valeur')</code> ajoute une nouvelle paire clef/valeur.<br>
 <code>.kv</code> renvoie la liste contenant toutes les clefs et valeurs.<br>
 <code>.keys</code> renvoie une liste des clefs.<br>
 <code>.values</code> renvoie une liste des valeurs.<br>
@@ -3173,10 +3173,10 @@ Si vous regardez l&#8217;exemple ci-dessus, vous voyez que les arguments passés
 <div class="ulist">
 <ul>
 <li>
-<p>nom &#8658; 'François'</p>
+<p>nom =&gt; 'François'</p>
 </li>
 <li>
-<p>age &#8658; 23</p>
+<p>age =&gt; 23</p>
 </li>
 </ul>
 </div>
@@ -4752,7 +4752,7 @@ Pour plus de détails sur la concurrence et la programmation asynchrone, voir <a
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2019-03-31 01:17:26 +0300
+Last updated 2019-05-04 12:13:58 +0300
 </div>
 </div>
 <style>

@@ -1390,7 +1390,7 @@ cases whitespace carries meaning.</p>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>Increment the variable by 1 and return the result <code>3</code></code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>Postfix</code></p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>Postfix</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Increment</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>my $var = 2; $var++;</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>Return the variable <code>2</code> and then increment it</code></p></td>
@@ -1403,7 +1403,7 @@ cases whitespace carries meaning.</p>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>Decrement the variable by 1 and return the result <code>1</code></code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>Postfix</code></p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>Postfix</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Decrement</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>my $var = 2; $var--;</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>Return the variable <code>2</code> and then decrement it</code></p></td>
@@ -1953,7 +1953,7 @@ For the complete Array reference, see <a href="https://docs.perl6.org/type/Array
 </div>
 <div class="paragraph">
 <div class="title">Explanation</div>
-<p><code>.push: (key &#8658; 'Value')</code> adds a new key/value pair.<br>
+<p><code>.push: (key =&gt; 'Value')</code> adds a new key/value pair.<br>
 <code>.kv</code> returns a list containing all keys and values.<br>
 <code>.keys</code> returns a list that contains all keys.<br>
 <code>.values</code> returns a list that contains all values.<br>
@@ -3583,10 +3583,10 @@ In our example above, notice that the arguments supplied to <code>.new()</code> 
 <div class="ulist">
 <ul>
 <li>
-<p>name &#8658; 'John'</p>
+<p>name =&gt; 'John'</p>
 </li>
 <li>
-<p>age &#8658; 23</p>
+<p>age =&gt; 23</p>
 </li>
 </ul>
 </div>
@@ -5575,7 +5575,7 @@ For more info on the Native Calling Interface, see <a href="https://docs.perl6.o
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2019-03-31 01:17:26 +0300
+Last updated 2019-05-04 12:13:58 +0300
 </div>
 </div>
 <style>

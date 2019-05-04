@@ -1227,7 +1227,7 @@ Das läßt sich mit einem der folgenden Kommandos nachholen:</p>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>Inkrementiere die Variable um 1 und gebe das Resultat aus <code>3</code></code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>Postfix</code></p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>Postfix</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Inkrementierung</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>my $var = 2; $var++;</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>Gebe den Inhalt der Variable aus <code>2</code> und inkrementiere dann um eins</code></p></td>
@@ -1240,7 +1240,7 @@ Das läßt sich mit einem der folgenden Kommandos nachholen:</p>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>Dekrementiere die Variable um 1 und gebe das Resultat aus <code>1</code></code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>Postfix</code></p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>Postfix</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Dekrementierung</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>my $var = 2; $var--;</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>Gebe den Inhalt der Variable aus <code>2</code> und dekrementiere dann um eins</code></p></td>
@@ -1705,7 +1705,7 @@ Für die vollständige Referenz zu Arrays, siehe <a href="http://doc.perl6.org/t
 </div>
 <div class="paragraph">
 <div class="title">Erklärung</div>
-<p><code>.push: (key &#8658; 'Value')</code> fügt ein weiteres Schlüssel-Wert-Paar (key/value pair) hinzu.<br>
+<p><code>.push: (key =&gt; 'Value')</code> fügt ein weiteres Schlüssel-Wert-Paar (key/value pair) hinzu.<br>
 <code>.kv</code> gibt eine Liste mit allen Schlüsseln und Werten aus.<br>
 <code>.keys</code> gibt eine Liste mit allen Schlüsseln aus.<br>
 <code>.values</code> gibt eine Liste mit allen Werten aus.<br>
@@ -3126,10 +3126,10 @@ Im obigen Beispiel ist zu erkennen, dass alle <code>.new()</code> mitgegebenen A
 <div class="ulist">
 <ul>
 <li>
-<p>name &#8658; 'Hans'</p>
+<p>name =&gt; 'Hans'</p>
 </li>
 <li>
-<p>alter &#8658; 23</p>
+<p>alter =&gt; 23</p>
 </li>
 </ul>
 </div>
@@ -4707,7 +4707,7 @@ Für mehr Information über Parallele Programmierung und Ungleichzeitigkeit, sie
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2019-03-31 01:17:26 +0300
+Last updated 2019-05-04 12:13:58 +0300
 </div>
 </div>
 <style>

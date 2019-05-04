@@ -1331,7 +1331,7 @@ Emacs e Padre richiederanno invece l&#8217;installaizone di package addizionali.
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>PRIMA incrementa di 1 la variabile e ritorna il risultato <code>3</code></code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>Postfisso</code></p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>Postfisso</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Incremento</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>my $var = 2; $var++;</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>Ritorna la variabile <code>2</code> e POI la incrementa</code></p></td>
@@ -1344,7 +1344,7 @@ Emacs e Padre richiederanno invece l&#8217;installaizone di package addizionali.
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>PRIMA decrementa la variabile di 1 e ritorna il risultato <code>1</code></code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>Postfisso</code></p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>Postfisso</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Decremento</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>my $var = 2; $var--;</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>Ritorna la variabile <code>2</code> e POI la decrementa</code></p></td>
@@ -1897,7 +1897,7 @@ Per avere una guida completa sugli array vedi qui <a href="https://docs.perl6.or
 </div>
 <div class="paragraph">
 <div class="title">Spiegazione</div>
-<p><code>.push: (chiave &#8658; 'valore')</code> aggiunge una nuova coppia chiave/valore.<br>
+<p><code>.push: (chiave =&gt; 'valore')</code> aggiunge una nuova coppia chiave/valore.<br>
 <code>.kv</code> ritorna una lista contenente tutte le chiavi ed i valori.<br>
 <code>.keys</code> ritorna una lista contenente tutte le chiavi.<br>
 <code>.values</code> ritorna una lista contenente tutti i valori.<br>
@@ -3513,10 +3513,10 @@ Nel nostro esempio qui sopra, nota che gli argomenti passati al costruttore sono
 <div class="ulist">
 <ul>
 <li>
-<p>nome &#8658; 'Giovanni'</p>
+<p>nome =&gt; 'Giovanni'</p>
 </li>
 <li>
-<p>anni &#8658; 23</p>
+<p>anni =&gt; 23</p>
 </li>
 </ul>
 </div>
@@ -5419,7 +5419,7 @@ Per avere più informazioni sull&#8217;interfaccia chiamante nativa vedi qui <a 
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2019-03-31 01:17:26 +0300
+Last updated 2019-05-04 12:13:58 +0300
 </div>
 </div>
 <style>

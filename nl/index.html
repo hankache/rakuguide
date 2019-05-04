@@ -1266,7 +1266,7 @@ Voer het volgende commando uit om deze functionaliteit te installeren:</p>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>Verhoog de variabele met <code>1</code> en geef de verhoogde waarde terug: <code>3</code></code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>Postfix</code></p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>Postfix</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Verhoging</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>my $var = 2; $var++;</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>Geef de waarde van de variabele terug (<code>2</code>) en verhoog de variabele dan met <code>1</code></code></p></td>
@@ -1279,7 +1279,7 @@ Voer het volgende commando uit om deze functionaliteit te installeren:</p>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>Verlaag de variabele met <code>1</code> en geef de verlaagde waarde terug: <code>1</code></code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>Postfix</code></p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>Postfix</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Verlaging</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>my $var = 2; $var--;</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>Geef de waarde van de variabele terug (<code>2</code>) en verlaag die dan met <code>1</code></code></p></td>
@@ -1841,7 +1841,7 @@ Zie <a href="https://docs.perl6.org/type/Array" class="bare">https://docs.perl6.
 </div>
 <div class="paragraph">
 <div class="title">Uitleg</div>
-<p><code>.push: (naam &#8658; 'Waarde')</code> voegt een nieuwe naam/waarde paar toe.<br>
+<p><code>.push: (naam =&gt; 'Waarde')</code> voegt een nieuwe naam/waarde paar toe.<br>
 <code>.kv</code> geeft een lijst met alle namen en waarden terug.<br>
 <code>.keys</code> geeft een lijst met alle namen terug.<br>
 <code>.values</code> geeft een lijst met alle waarden terug.<br>
@@ -3407,10 +3407,10 @@ Als je bovenstaande voorbeelden bekijkt, dan zul je zien dat alle argumenten die
 <div class="ulist">
 <ul>
 <li>
-<p>naam &#8658; 'Jan'</p>
+<p>naam =&gt; 'Jan'</p>
 </li>
 <li>
-<p>leeftijd &#8658; 23</p>
+<p>leeftijd =&gt; 23</p>
 </li>
 </ul>
 </div>
@@ -5024,7 +5024,7 @@ Zie <a href="https://docs.perl6.org/language/concurrency" class="bare">https://d
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2019-03-31 01:17:26 +0300
+Last updated 2019-05-04 12:13:58 +0300
 </div>
 </div>
 <style>
