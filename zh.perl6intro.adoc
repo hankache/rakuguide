@@ -72,7 +72,7 @@ Perl 6 是通过该规范测试套件的实现。
 .Linux
 . 安装 Rakudo Star: 在终端中运行：
 ----
-wget https://rakudo.perl6.org/downloads/star/rakudo-star-2019.03.tar.gz
+wget https://rakudostar.com/files/star/rakudo-star-2019.03.tar.gz
 tar xfz rakudo-star-2019.03.tar.gz
 cd rakudo-star-2019.03
 perl Configure.pl --gen-moar --make-install --prefix ~/rakudo
