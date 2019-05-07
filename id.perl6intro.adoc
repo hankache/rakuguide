@@ -76,10 +76,10 @@ Ada 4 pilihan metode instalasi yang tersedia:
 * Lakukan langkah-langkah yang sama sesuai cara instalasi Linux
 * Instalasi dengan program link:https://brew.sh[homebrew]: `brew install rakudo-star`
 * Instalasi dengan program link:https://www.macports.org[MacPorts]: `sudo port install rakudo`
-* Unduh program installer terakhir (dengan file ekstensien .dmg) dari https://rakudo.perl6.org/downloads/star/
+* Unduh program installer terakhir (dengan file ekstensien .dmg) dari https://rakudostar.com/files/star
 
 .Windows
-. Unduh program installer terakhir (dengan file ekstensien .msi, pilih sesuai arsitektur sistem) dari https://rakudo.perl6.org/downloads/star/
+. Unduh program installer terakhir (dengan file ekstensien .msi, pilih sesuai arsitektur sistem) dari https://rakudostar.com/files/star
 . Setelah instalasi, pastikan `C:\rakudo\bin` terdeklarasi di PATH(variabel yang dipakai dilingkungan sistem operasi)
 . Tes dengan menjalankan perintah `perl6 -v` dicommand line prompt untuk verifikasi versi.
 

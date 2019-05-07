@@ -77,10 +77,10 @@ Quatre solutions possibles :
 
 * Installez avec MacPorts: `sudo port install rakudo`
 
-* Téléchargez l'installateur (fichier avec l'extension .dmg) depuis https://rakudo.org/latest/star/macos
+* Téléchargez l'installateur (fichier avec l'extension .dmg) depuis https://rakudostar.com/latest/star/macos
 
 .Windows
-. Téléchargez l'installeur le plus récent (fichier avec une extension .MSI) de https://rakudo.org/files/star +
+. Téléchargez l'installeur le plus récent (fichier avec une extension .MSI) de https://rakudostar.com/files/star +
 Si votre système possède une architecture 32 bits, téléchargez le fichier x86. S'il possède une architecture 64 bits, téléchargez le fichier x86_64..
 . Après l'installation, ajoutez `C:\rakudo\bin` à votre PATH.
 

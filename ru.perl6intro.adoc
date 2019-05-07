@@ -93,11 +93,11 @@ perl Configure.pl --gen-moar --make-install --prefix ~/rakudo
 * Следуйте тем же шагам, что указаны для установки на Linux.
 * Установить с помощью homebrew: `brew install rakudo-star`
 * Установить с помощью MacPorts: `sudo port install rakudo`
-* Загрузите последний установщик (файл с расширением .dmg) с https://rakudo.org/latest/star/macos
+* Загрузите последний установщик (файл с расширением .dmg) с https://rakudostar.com/latest/star/macos
 
 .Windows
-. Для 64-битной архитектуры: скачайте установщик (файл с расширением .msi) с https://rakudo.org/latest/star/win64 +
-Для 32-битной архитектуры: скачайте установщик (файл с расширением .msi) с https://rakudo.org/latest/star/win32
+. Для 64-битной архитектуры: скачайте установщик (файл с расширением .msi) с https://rakudostar.com/latest/star/win64 +
+Для 32-битной архитектуры: скачайте установщик (файл с расширением .msi) с https://rakudostar.com/latest/star/win32
 . После установки убедитесь, что `C:\rakudo\bin` добавлен в переменную PATH.
 
 .Docker

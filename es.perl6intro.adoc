@@ -76,13 +76,13 @@ Tienes cuatro opciones:
 * Realizar la instalación con homebrew: `brew install rakudo-star`
 * Realizar la instalación con MacPorts: `sudo port install rakudo`
 * Descargar el último instalador (archivo con extensión .dmg) desde
-https://rakudo.org/latest/star/macos
+https://rakudostar.com/latest/star/macos
 
 .Windows
 . Para arquitectura 64-bit: descarga el instalador más reciente (.msi) desde
-https://rakudo.org/latest/star/win64 +
+https://rakudostar.com/latest/star/win64 +
 Para arquitectura 32-bit: descarga el instalador más reciente (.msi) desde
-https://rakudo.org/latest/star/win32
+https://rakudostar.com/latest/star/win32
 . Finalizada la instalación, comprueba que C:\rakudo\bin figura en el PATH del sistema.
 
 .Docker

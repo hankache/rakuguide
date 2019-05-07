@@ -73,11 +73,11 @@ MacOS kent vier mogelijkheden:
 * Volg dezelfde stappen als voor Linux
 * Installeer met homebrew: `brew install rakudo-star`
 * Installeer met MacPorts: `sudo port install rakudo`
-* Download de meest recente installer (bestand met .dmg extensie) van https://rakudo.org/latest/star/macos
+* Download de meest recente installer (bestand met .dmg extensie) van https://rakudostar.com/latest/star/macos
 
 .Windows
-. Voor 64-bit systemen: Download de meest recente installer (bestand met .msi extensie) van https://rakudo.org/latest/star/win64 +
-Voor 32-bit systemen: Download de meest recente installer (bestand met .msi extensie) van https://rakudo.org/latest/star/win32
+. Voor 64-bit systemen: Download de meest recente installer (bestand met .msi extensie) van https://rakudostar.com/latest/star/win64 +
+Voor 32-bit systemen: Download de meest recente installer (bestand met .msi extensie) van https://rakudostar.com/latest/star/win32
 . Zorg ervoor dat `C:\rakudo\bin` in je PATH is na het installeren.
 
 .Docker

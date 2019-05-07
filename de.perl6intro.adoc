@@ -74,7 +74,7 @@ ODER +
 Mit homebrew installieren: `brew install rakudo-star`
 
 .Windows
-. Den neusten Installer downloaden (Datei mit der Extension .MSI) auf http://rakudo.org/downloads/star/ +
+. Den neusten Installer downloaden (Datei mit der Extension .MSI) auf https://rakudostar.com/files/star +
 Bei einem 32-Bit-System, die x86-Datei und bei einem 64-Bit-System die x86_64-Datei verwenden.
 . Nach der Installation C:\rakudo\bin dem PATH hinzufügen.
 
