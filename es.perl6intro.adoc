@@ -1313,7 +1313,7 @@ sub cuadrado ($x) {
 say "7 al cuadrado es igual a " ~ cuadrado(7);
 ----
 
-Para conseguir una claridad adecuada, puede ser una buena idea especificar de forma _explícita_ qué es lo que queremos devolver.
+Para dejarlo más claro sería una buena idea especificar de forma _explícita_ qué es lo que queremos devolver.
 Esto se realiza mediante la palabra clave `return`.
 [source,perl6]
 ----
@@ -1435,7 +1435,7 @@ say $cuadrado(9);
 ----
 
 === Encadenamiento
-En Perl 6 los métodos pueden encadenarse de forma que no es requisito pasar el resultado de un método como argumento de otro método.
+En Perl 6 los métodos pueden encadenarse, de forma que el resultado de un método pasa como argumento a otro método.
 
 Un ejemplo: dado un array, necesitamos los valores únicos de ese array ordenados de mayor a menor.
 
@@ -1653,7 +1653,7 @@ En este ejemplo hemos definido la subrutina `crear-saludo($momento)` aceptando e
 `crear-saludo` es una fábrica de subrutinas, y en este ejemplo hemos creado dos subrutinas nuevas, una para decir `Buenas Tardes` y otra para decir `Buenas Noches`.
 
 `$tardes` y `$noches` también son clausuras. Ambas comparten la misma definición del cuerpo de la subrutina pero alojan entornos distintos. +
-En el entorno de `$tardes` el `$momento` es `Tardes` y en el entorno de `$noches` el `$momento` es `Tardes`.
+En el entorno de `$tardes` el `$momento` es `Tardes` y en el entorno de `$noches` el `$momento` es `Noches`.
 
 == Clases y Objetos
 En el apartado anterior hemos visto cómo utilizar la Programación Funcional en Perl 6 y en el siguiente apartado veremos cómo utilizar Perl 6 en la Programación Orientada a Objetos.
