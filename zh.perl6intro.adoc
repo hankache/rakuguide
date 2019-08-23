@@ -447,9 +447,9 @@ Perl 6 中的变量分为 3 类：标量、数组和哈希。
 
 变量名以 *魔符* (sigil) 开头以区分不同类型。
 
-* `$` 用于标量 (scalars)
-* `@` 用于数组 (arrays)
-* `%` 用于哈希 (hashes)
+* `$` 用于标量 (scalar)
+* `@` 用于数组 (array)
+* `%` 用于哈希 (hash)
 
 === 标量
 标量用于存储一项数据或引用。
@@ -1731,8 +1731,8 @@ _面向对象_ 编程是当今广泛使用的范式之一。 +
 
 |===
 
-| 房间里有 4 个 people   | *对象* => 4 人
-| 这 4 个人是 human    | *类* => Human
+| 房间里有 4 个人   | *对象* => 4 people
+| 这 4 个人是人类    | *类* => Human
 | 它们有不同的名字,年纪,性别和国籍 | *属性* => name,age,sex,nationality
 
 |===
@@ -1792,9 +1792,9 @@ say sayvar;
 ----
 
 `sayvar` 是一个存取器。它让我们通过不直接访问这个变量来访问这个变量。
-在 Perl 6 中使用  *twigils* 使得封装很便利。 +
-Twigils 是第二 _符号_ 。它们存在于符号和属性名之间。 +
-有两个 twigils 用在类中:
+在 Perl 6 中使用  *twigil* 使得封装很便利。 +
+twigil 是次级的 _魔符(sigil)_ ，用于魔符和属性名之间。 +
+有两种 twigil 可用于类中:
 
 * `!` 用于显式地声明属性是私有的
 * `.` 用于为属性自动生成存取器
@@ -2014,7 +2014,7 @@ class Employee is Human {
 `is` 关键字定义了继承。 +
 按面向对象的说法, Employee 是 Human 的 *孩子*, 而 Human 是 Employee 的 *父亲*。
 
-所有的子类继承了父类的属性和方法, 所以没有必要重新它们。
+所有的子类继承了父类的属性和方法, 所以没有必要重新定义它们。
 
 ==== 重写
 
@@ -2076,9 +2076,9 @@ $jane.introduce-yourself;
 
 根据对象所属的类, 会调用正确的方法。
 
-==== Submethods
+==== Submethod
 
-*Submethods* 是一种子类继承不到的方法。 +
+*submethod* 是一种子类继承不到的方法。 +
 它们只能从所声明的类中访问。 +
 它们使用 `submethod` 关键字定义。
 
@@ -2190,12 +2190,12 @@ $actual-vs-forecast.plot;
 [9 8 10 7 6 9]
 ----
 
-===  Roles
+===  Role
 
-*Roles* 在它们是属性和方法的集合这个意义上和类有点类似。
-Roles 使用关键字 `role` 声明, 而想实现该 role 的类可以使用 `does` 关键字。
+*role* 也是属性和方法的集合，在这个意义上它和类（class）有些相似。
+role 使用关键字 `role` 声明, 而想实现该 role 的类可以使用 `does` 关键字。
 
-.使用 roles 重写多重继承的例子
+.使用 role 重写多重继承的例子
 [source,perl6]
 ----
 role bar-chart {
@@ -2234,7 +2234,7 @@ $actual-vs-forecast.plot;
 
 运行上面的脚本你会看到结果是一样的。
 
-现在你问问自己, 如果 roles 表现得像类的话那么它们的用途是什么呢? +
+现在你问问自己, 如果 role 表现得像类的话那么它们的用途是什么呢? +
 
 要回答你的问题, 修改第一个用于展示多重继承的脚本,  这个脚本中我们 _忘记_ 重写 `plot` 方法了。
 
@@ -2274,15 +2274,16 @@ $actual-vs-forecast.plot;
 
 ----
 ===SORRY!===
-Method 'plot' must be resolved by class combo-chart because it exists in multiple roles (line-chart, bar-chart) 类'combo-chart'的方法'plot'必须被决定，因为存在多个role（line-chart, bar-chart）
+Method 'plot' must be resolved by class combo-chart because it exists in multiple roles (line-chart, bar-chart) 
+类'combo-chart'的方法'plot'必须被决定，因为存在多个role（line-chart, bar-chart）
 ----
 
 .解释
 
-如果多个 roles 被应用到同一个类中, 会出现冲突并抛出一个编译时错误。 +
+如果多个 role 被应用到同一个类中, 会出现冲突并抛出一个编译时错误。 +
 这是比多重继承更安全的方法, 其中冲突不被认为是错误并且简单地在运行时解决。
 
-Roles 会提醒你有冲突。
+role 会提醒你有冲突。
 
 [source,perl6]
 ----
@@ -2828,7 +2829,7 @@ if $email ~~ $regex {
 * *com/org/net* `<:L>+`
 
 [source,perl6]
-.可选地, 一个 regex 可以被分解成多个具名 regex 。
+.可选的, 一个 regex 可以被分解成多个具名 regex  。
 ----
 my $email = 'john.doe@perl6.org';
 my regex 多个字母 { <:L>+ };
