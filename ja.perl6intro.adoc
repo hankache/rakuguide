@@ -80,10 +80,10 @@ perl Configure.pl --gen-moar --make-install --prefix ~/rakudo
 * Linuxにおけるインストール手順と同じステップを踏む
 * homebrewによるインストール: `brew install rakudo-star`
 * MacPortsによるインストール: `sudo port install rakudo`
-* 次のURLから最新のインストーラー(.dmg拡張子のついたファイル)をダウンロードする https://rakudostar.com/files/star
+* 次のURLから最新のインストーラー(.dmg拡張子のついたファイル)をダウンロードする https://rakudo.perl6.org/downloads/star/
 
 .Windows
-. 次のURLから最新のインストーラー(.msi拡張子のついたファイル)をダウンロードしてください https://rakudostar.com/files/star +
+. 次のURLから最新のインストーラー(.msi拡張子のついたファイル)をダウンロードしてください https://rakudo.perl6.org/downloads/star/ +
 もし32bit版のWindowsを使っているのであれば、x86向けのファイルをダウンロードしてください。そうではなく64bit版のWindowsを使っているのであれば、x86_64向けのファイルをダウンロードしてください。
 . インストール後 `C:\rakudo\bin` がPATH変数に含まれていることを確認してください。
 

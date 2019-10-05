@@ -79,10 +79,10 @@ Quatro opções estão disponíveis:
 * Siga os mesmos passos listados para instalar no Linux
 * Instale com o homebrew: `brew install rakudo-star`
 * Instale com o MacPorts: `sudo port install rakudo`
-* Baixe o instalador (arquivo com extensão .dmg) mais recente em https://rakudostar.com/files/star
+* Baixe o instalador (arquivo com extensão .dmg) mais recente em http://rakudo.org/downloads/star/
 
 .Windows
-. Baixe a última versão do instalador (arquivo com extensão .msi) em https://rakudostar.com/files/star +
+. Baixe a última versão do instalador (arquivo com extensão .msi) em http://rakudo.org/downloads/star/ +
 Se o seu sistema for 32 bits, baixe o arquivo x86; se for 64 bits, baixe o arquivo x86_64.
 . Após a instalação, certifique-se que `C:\rakudo\bin` está na sua variável PATH
 

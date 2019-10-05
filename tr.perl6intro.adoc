@@ -89,10 +89,10 @@ Dört seçenek mevcuttur:
 * Linux'a yüklemek için gereken adımları takip edin.
 * Homebrew ile kurulum için: `brew install rakudo-star`
 * MacPorts ile kurulum için: `sudo port install rakudo`
-* Son çıkan kurulum dosyasını(.dmg) indirmek için: https://rakudostar.com/files/star adresini ziyaret edin.
+* Son çıkan kurulum dosyasını(.dmg) indirmek için: https://rakudo.perl6.org/downloads/star/ adresini ziyaret edin.
 
 .Windows
-* Son kurulum dosyasını(.msi) indirin, eğer sisteminiz 32-bit ise x86 dosyasını, 64-bit ise x86_64 dosyasını: https://rakudostar.com/files/star adresini ziyaret edin.
+* Son kurulum dosyasını(.msi) indirin, eğer sisteminiz 32-bit ise x86 dosyasını, 64-bit ise x86_64 dosyasını: http://rakudo.org/how-to-get-rakudo/ adresini ziyaret edin.
 * Eğer kurulum sırasında PATH’e ekleme seçeneğini seçmediyseniz, kurulum sonrasında C:\rakudo\bin yolunu PATH’e eklemeniz gerekir.
 
 .Docker
