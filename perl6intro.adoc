@@ -1182,7 +1182,7 @@ shell "ls";
 shell "dir";
 ----
 `echo` and `ls` are common shell keywords on Linux: +
-`echo` prints text to the terminal (the equivalent of `print` in Perl 6) +
+`echo` prints text to the terminal (the equivalent of `say` in Perl 6) +
 `ls` lists all files and folders in the current directory
 
 `dir` is the equivalent of `ls` on Windows.
