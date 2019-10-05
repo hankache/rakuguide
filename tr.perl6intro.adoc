@@ -76,7 +76,7 @@ Perl 6 prosedürel, nesne yönelimli ve fonksiyonel programlamayı destekler. _(
 
 Rakudo Star kurulumu için komutları takip edin:
 ----
-wget https://rakudostar.com/files/star/rakudo-star-2019.03.tar.gz
+wget https://rakudo.perl6.org/downloads/star/rakudo-star-2019.03.tar.gz
 tar xfz rakudo-star-2019.03.tar.gz
 cd rakudo-star-2019.03
 perl Configure.pl --gen-moar --make-install --prefix ~/rakudo

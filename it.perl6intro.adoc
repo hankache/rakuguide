@@ -80,7 +80,7 @@ Le implementazioni che passano la test suite di specifica sono considerate Perl 
 
 Per installare Rakudo Star, lancia questi comandi dal tuo terminale:
 ----
-wget https://rakudostar.com/files/star/rakudo-star-2019.03.tar.gz
+wget https://rakudo.perl6.org/downloads/star/rakudo-star-2019.03.tar.gz
 tar xfz rakudo-star-2019.03.tar.gz
 cd rakudo-star-2019.03
 perl Configure.pl --gen-moar --make-install --prefix ~/rakudo

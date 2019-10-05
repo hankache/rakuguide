@@ -60,7 +60,7 @@ Een implementatie van Perl 6 die al deze tests succesvol kan uitvoeren, mag zich
 .Linux
 Voer de volgende commando's uit in een Terminal venster om Rakudo Star te installeren:
 ----
-wget https://rakudostar.com/files/star/rakudo-star-2019.03.tar.gz
+wget https://rakudo.perl6.org/downloads/star/rakudo-star-2019.03.tar.gz
 tar xfz rakudo-star-2019.03.tar.gz
 cd rakudo-star-2019.03
 perl Configure.pl --gen-moar --make-install --prefix ~/rakudo
