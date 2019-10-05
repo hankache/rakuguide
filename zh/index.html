@@ -15,7 +15,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 2.0.3">
+<meta name="generator" content="Asciidoctor 2.0.10">
 <meta name="description" content="Perl 6 入门">
 <meta name="keywords" content="perl6, perl 6, 入门, perl6intro, perl 6 入门, perl 6 指南, perl 6 intro">
 <meta name="author" content="Naoum Hankache, ohmycloud, wenjie1991">
@@ -23,12 +23,11 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /* Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
-/* Uncomment @import statement when using as custom stylesheet */
+/* Uncomment @import statement to use as custom stylesheet */
 /*@import "https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700";*/
 article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section{display:block}
-audio,canvas,video{display:inline-block}
+audio,video{display:inline-block}
 audio:not([controls]){display:none;height:0}
-script{display:none!important}
 html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}
 a{background:none}
 a:focus{outline:thin dotted}
@@ -233,8 +232,8 @@ table.tableblock #preamble>.sectionbody>[class="paragraph"]:first-of-type p{font
 .literalblock pre,.listingblock>.content>pre{-webkit-border-radius:4px;border-radius:4px;word-wrap:break-word;overflow-x:auto;padding:1em;font-size:.8125em}
 @media screen and (min-width:768px){.literalblock pre,.listingblock>.content>pre{font-size:.90625em}}
 @media screen and (min-width:1280px){.literalblock pre,.listingblock>.content>pre{font-size:1em}}
+.literalblock pre,.listingblock>.content>pre:not(.highlight),.listingblock>.content>pre[class="highlight"],.listingblock>.content>pre[class^="highlight "]{background:#f7f7f8}
 .literalblock.output pre{color:#f7f7f8;background:rgba(0,0,0,.9)}
-.listingblock>.content>pre:not(.highlight),.listingblock>.content>pre[class="highlight"],.listingblock>.content>pre[class^="highlight "]{background:#f7f7f8}
 .listingblock>.content{position:relative}
 .listingblock code[data-lang]::before{display:none;content:attr(data-lang);position:absolute;font-size:.75em;top:.425rem;right:.5rem;line-height:1;text-transform:uppercase;color:inherit;opacity:.5}
 .listingblock:hover code[data-lang]::before{display:block}
@@ -255,7 +254,7 @@ table.linenotable td.linenos{border-right:1px solid currentColor;opacity:.35;pad
 pre.pygments .lineno{border-right:1px solid currentColor;opacity:.35;display:inline-block;margin-right:.75em}
 pre.pygments .lineno::before{content:"";margin-right:-.125em}
 .quoteblock{margin:0 1em 1.25em 1.5em;display:table}
-.quoteblock>.title{margin-left:-1.5em;margin-bottom:.75em}
+.quoteblock:not(.excerpt)>.title{margin-left:-1.5em;margin-bottom:.75em}
 .quoteblock blockquote,.quoteblock p{color:rgba(0,0,0,.85);font-size:1.15rem;line-height:1.75;word-spacing:.1em;letter-spacing:0;font-style:italic;text-align:justify}
 .quoteblock blockquote{margin:0;padding:0;border:0}
 .quoteblock blockquote::before{content:"\201c";float:left;font-size:2.75em;font-weight:bold;line-height:.6em;margin-left:-.6em;color:#7a2518;text-shadow:0 1px 2px rgba(0,0,0,.1)}
@@ -272,12 +271,14 @@ pre.pygments .lineno::before{content:"";margin-right:-.125em}
 .quoteblock.abstract blockquote,.quoteblock.abstract p,.quoteblock.excerpt blockquote,.quoteblock.excerpt p,.quoteblock .quoteblock blockquote,.quoteblock .quoteblock p{line-height:1.6;word-spacing:0}
 .quoteblock.abstract{margin:0 1em 1.25em;display:block}
 .quoteblock.abstract>.title{margin:0 0 .375em;font-size:1.15em;text-align:center}
-.quoteblock.excerpt,.quoteblock .quoteblock{margin:0 0 1.25em;padding:0 0 .25em 1em;border-left:.25em solid #dddddf}
+.quoteblock.excerpt>blockquote,.quoteblock .quoteblock{padding:0 0 .25em 1em;border-left:.25em solid #dddddf}
+.quoteblock.excerpt,.quoteblock .quoteblock{margin-left:0}
 .quoteblock.excerpt blockquote,.quoteblock.excerpt p,.quoteblock .quoteblock blockquote,.quoteblock .quoteblock p{color:inherit;font-size:1.0625rem}
 .quoteblock.excerpt .attribution,.quoteblock .quoteblock .attribution{color:inherit;text-align:left;margin-right:0}
 table.tableblock{max-width:100%;border-collapse:separate}
 p.tableblock:last-child{margin-bottom:0}
-td.tableblock>.content{margin-bottom:-1.25em}
+td.tableblock>.content>:last-child{margin-bottom:-1.25em}
+td.tableblock>.content>:last-child.sidebarblock{margin-bottom:0}
 table.tableblock,th.tableblock,td.tableblock{border:0 solid #dedede}
 table.grid-all>thead>tr>.tableblock,table.grid-all>tbody>tr>.tableblock{border-width:0 1px 1px 0}
 table.grid-all>tfoot>tr>.tableblock{border-width:1px 1px 0 0}
@@ -528,7 +529,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_链式调用">8.3. 链式调用</a></li>
 <li><a href="#_feed_操作符">8.4. Feed 操作符</a></li>
 <li><a href="#_hyper_操作符">8.5. Hyper 操作符</a></li>
-<li><a href="#_junctions">8.6. Junctions</a></li>
+<li><a href="#_junction">8.6. Junction</a></li>
 <li><a href="#_惰性列表">8.7. 惰性列表</a></li>
 <li><a href="#_闭包">8.8. 闭包</a></li>
 </ul>
@@ -543,7 +544,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_访问类型">9.6. 访问类型</a></li>
 <li><a href="#_继承">9.7. 继承</a></li>
 <li><a href="#_多重继承">9.8. 多重继承</a></li>
-<li><a href="#_roles">9.9. Roles</a></li>
+<li><a href="#_role">9.9. Role</a></li>
 <li><a href="#_内省">9.10. 内省</a></li>
 </ul>
 </li>
@@ -732,7 +733,7 @@ Perl 6 是通过该规范测试套件的实现。</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-n">wget</span> <span class="tok-n">https:</span>//<span class="tok-n">rakudostar</span>.<span class="tok-n">com</span><span class="tok-o">/</span><span class="tok-n">files</span><span class="tok-o">/</span><span class="tok-n">star</span><span class="tok-o">/</span><span class="tok-n">rakudo-star-2019</span><span class="tok-mf">.03</span>.<span class="tok-n">tar</span>.<span class="tok-n">gz</span>
+<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-n">wget</span> <span class="tok-n">https:</span>//<span class="tok-n">rakudo</span>.<span class="tok-n">perl6</span>.<span class="tok-n">org</span><span class="tok-o">/</span><span class="tok-n">downloads</span><span class="tok-o">/</span><span class="tok-n">star</span><span class="tok-o">/</span><span class="tok-n">rakudo-star-2019</span><span class="tok-mf">.03</span>.<span class="tok-n">tar</span>.<span class="tok-n">gz</span>
 <span class="tok-n">tar</span> <span class="tok-n">xfz</span> <span class="tok-n">rakudo-star-2019</span><span class="tok-mf">.03</span>.<span class="tok-n">tar</span>.<span class="tok-n">gz</span>
 <span class="tok-n">cd</span> <span class="tok-n">rakudo-star-2019</span><span class="tok-mf">.03</span>
 <span class="tok-nb">perl</span> <span class="tok-n">Configure</span>.<span class="tok-n">pl</span> --<span class="tok-n">gen-moar</span> --<span class="tok-n">make-install</span> --<span class="tok-n">prefix</span> ~/<span class="tok-n">rakudo</span></code></pre>
@@ -757,7 +758,7 @@ Perl 6 是通过该规范测试套件的实现。</p>
 <p>使用 MacPorts 安装: <code>sudo port install rakudo</code></p>
 </li>
 <li>
-<p>从 <a href="https://rakudostar.com/latest/star/macos" class="bare">https://rakudostar.com/latest/star/macos</a> 下载最新的安装器(.dmg 后缀的文件)</p>
+<p>从 <a href="https://rakudo.org/latest/star/macos" class="bare">https://rakudo.org/latest/star/macos</a> 下载最新的安装器(.dmg 后缀的文件)</p>
 </li>
 </ul>
 </div>
@@ -768,7 +769,7 @@ Perl 6 是通过该规范测试套件的实现。</p>
 <p>从 或 下载最新的安装器(.msi 后缀的文件)<br></p>
 </li>
 <li>
-<p>如果你的系统架构是 64-bit, 可以从 <a href="https://rakudostar.com/latest/star/win64" class="bare">https://rakudostar.com/latest/star/win64</a> 下载最新的安装器(.msi 后缀的文件); 如果是 32-bit, 则从 <a href="https://rakudostar.com/latest/star/win32" class="bare">https://rakudostar.com/latest/star/win32</a> 下载最新的安装器(.msi 后缀的文件）。</p>
+<p>如果你的系统架构是 64-bit, 可以从 <a href="https://rakudo.org/latest/star/win64" class="bare">https://rakudo.org/latest/star/win64</a> 下载最新的安装器(.msi 后缀的文件); 如果是 32-bit, 则从 <a href="https://rakudo.org/latest/star/win32" class="bare">https://rakudo.org/latest/star/win32</a> 下载最新的安装器(.msi 后缀的文件）。</p>
 </li>
 <li>
 <p>安装完成后，确保 <code>C:\rakudo\bin</code> 在 PATH 中。</p>
@@ -957,7 +958,7 @@ REPL 将会打印出该行的返回值。然后你可以输入另外的行, 或�
 <p>它们可以包含数字 (除了第一个字符)。</p>
 </li>
 <li>
-<p>它们可以包含破折号或撇号(除了第一个和最后一个字符), 前提是每个短划线或撇号的右侧有一个字母字符。</p>
+<p>它们可以包含破折号或撇号(除了第一个和最后一个字符), 前提是每个破折号或撇号的右侧有一个字母字符。</p>
 </li>
 </ul>
 </div>
@@ -1504,10 +1505,10 @@ REPL 将会打印出该行的返回值。然后你可以输入另外的行, 或�
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>等价于0..^5，创建区间 [0,5) <sup class="footnoteref">[<a class="footnote" href="#_footnotedef_1" title="View footnote.">1</a>]</sup></code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>&#8230;&#8203;</code></p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>...</code></p></td>
 <td class="tableblock halign-center valign-middle"><p class="tableblock"><code>中缀</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">惰性列表构造函数</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>0&#8230;&#8203;9999</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>0...9999</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>只有接到请求时才返回元素</code></p></td>
 </tr>
 <tr>
@@ -1623,13 +1624,13 @@ REPL 将会打印出该行的返回值。然后你可以输入另外的行, 或�
 <div class="ulist">
 <ul>
 <li>
-<p><code>$</code> 用于标量 (scalars)</p>
+<p><code>$</code> 用于标量 (scalar)</p>
 </li>
 <li>
-<p><code>@</code> 用于数组 (arrays)</p>
+<p><code>@</code> 用于数组 (array)</p>
 </li>
 <li>
-<p><code>%</code> 用于哈希 (hashes)</p>
+<p><code>%</code> 用于哈希 (hash)</p>
 </li>
 </ul>
 </div>
@@ -3189,8 +3190,8 @@ Windows 下使用 <code>/</code> 或 <code>\\</code> 来定义目录<br>
 <pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">@array</span> = <span class="tok-s">&lt;0 1 2 3 4 5 6 7 8 9 10&gt;</span>;
 <span class="tok-k">sub</span> <span class="tok-n">is-even</span>(<span class="tok-nv">$var</span>) { <span class="tok-nv">$var</span> %% <span class="tok-mi">2</span> };
 
-<span class="tok-nb">say</span> <span class="tok-nv">@array</span>».<span class="tok-n">is-prime</span>;
-<span class="tok-nb">say</span> <span class="tok-nv">@array</span>».<span class="tok-nv">&amp;is-even</span>;</code></pre>
+<span class="tok-nb">say</span> <span class="tok-nv">@array</span>&gt;&gt;.<span class="tok-n">is-prime</span>;
+<span class="tok-nb">say</span> <span class="tok-nv">@array</span>&gt;&gt;.<span class="tok-nv">&amp;is-even</span>;</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -3218,12 +3219,12 @@ Perl 6 会保证结果的顺序与原始值的顺序相同。<br>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_junctions">8.6. Junctions</h3>
+<h3 id="_junction">8.6. Junction</h3>
 <div class="paragraph">
 <p><strong>junction</strong> 是值的逻辑叠加。</p>
 </div>
 <div class="paragraph">
-<p>在下面的例子中 <code>1|2|3</code> 是一个 junction。</p>
+<p>在下面的例子中 <code>1|2|3</code> 是一个junction。</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -3233,8 +3234,10 @@ Perl 6 会保证结果的顺序与原始值的顺序相同。<br>
 }</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>junctions 的使用常常触发 <strong>自动线程化</strong>; 每个 junction 元素都执行该操作, 并且所有的结果被组合到一个新的 junction 中并返回。</p>
+<div class="literalblock">
+<div class="content">
+<pre>junction 的使用常常触发 **自动线程化**; 每个 junction 元素都执行该操作, 并且所有的结果被组合到一个新的 junction 中并返回。</pre>
+</div>
 </div>
 </div>
 <div class="sect2">
@@ -3260,7 +3263,7 @@ Perl 6 会保证结果的顺序与原始值的顺序相同。<br>
 </ul>
 </div>
 <div class="paragraph">
-<p>我们使用中缀操作符 <code>&#8230;&#8203;</code> 来创建惰性列表。<br>
+<p>我们使用中缀操作符 <code>...</code> 来创建惰性列表。<br>
 惰性列表具有 <strong>初始元素</strong>, <strong>生成器</strong> 和 <strong>结束点</strong>。</p>
 </div>
 <div class="listingblock">
@@ -3328,8 +3331,8 @@ Perl 6 会保证结果的顺序与原始值的顺序相同。<br>
 <p>如果在上面的例子中我们使用的结束点是 10 而非 12, 那么生成器就不会停止。生成器会 <em>跳过</em> 那个结束点。</p>
 </div>
 <div class="paragraph">
-<p>你可以使用 <code>0 &#8230;&#8203;^ * &gt; 10</code> 代替 <code>0 &#8230;&#8203; 10</code>。<br>
-你可以把它读作: 从 0 直到第一个大于 10(不包括它)的值。</p>
+<p>你可以使用 <code>0 ...^ * &gt; 10</code> 代替 <code>0 ... 10</code>。<br>
+你可以把它读作: 从 0 直到第一个大于 10 的值（不包含该值）。</p>
 </div>
 <div class="listingblock">
 <div class="title">这不会使生成器停止</div>
@@ -3452,11 +3455,11 @@ Perl 6 会保证结果的顺序与原始值的顺序相同。<br>
 </colgroup>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">房间里有 4 个 people</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>对象</strong> &#8658; 4 人</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">房间里有 4 个人</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>对象</strong> &#8658; 4 people</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">这 4 个人是 human</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">这 4 个人是人类</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>类</strong> &#8658; Human</p></td>
 </tr>
 <tr>
@@ -3531,9 +3534,9 @@ Perl 6 会保证结果的顺序与原始值的顺序相同。<br>
 </div>
 <div class="paragraph">
 <p><code>sayvar</code> 是一个存取器。它让我们通过不直接访问这个变量来访问这个变量。
-在 Perl 6 中使用  <strong>twigils</strong> 使得封装很便利。<br>
-Twigils 是第二 <em>符号</em> 。它们存在于符号和属性名之间。<br>
-有两个 twigils 用在类中:</p>
+在 Perl 6 中使用  <strong>twigil</strong> 使得封装很便利。<br>
+twigil 是次级的 <em>魔符(sigil)</em> ，用于魔符和属性名之间。<br>
+有两种 twigil 可用于类中:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -3815,7 +3818,7 @@ Employees 拥有 4  个属性: name, age, company 和 salary。</p>
 按面向对象的说法, Employee 是 Human 的 <strong>孩子</strong>, 而 Human 是 Employee 的 <strong>父亲</strong>。</p>
 </div>
 <div class="paragraph">
-<p>所有的子类继承了父类的属性和方法, 所以没有必要重新它们。</p>
+<p>所有的子类继承了父类的属性和方法, 所以没有必要重新定义它们。</p>
 </div>
 </div>
 <div class="sect3">
@@ -3884,9 +3887,9 @@ Employees 拥有 4  个属性: name, age, company 和 salary。</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_submethods">9.7.3. Submethods</h4>
+<h4 id="_submethod">9.7.3. Submethod</h4>
 <div class="paragraph">
-<p><strong>Submethods</strong> 是一种子类继承不到的方法。<br>
+<p><strong>submethod</strong> 是一种子类继承不到的方法。<br>
 它们只能从所声明的类中访问。<br>
 它们使用 <code>submethod</code> 关键字定义。</p>
 </div>
@@ -4004,13 +4007,13 @@ Employees 拥有 4  个属性: name, age, company 和 salary。</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_roles">9.9. Roles</h3>
+<h3 id="_role">9.9. Role</h3>
 <div class="paragraph">
-<p><strong>Roles</strong> 在它们是属性和方法的集合这个意义上和类有点类似。
-Roles 使用关键字 <code>role</code> 声明, 而想实现该 role 的类可以使用 <code>does</code> 关键字。</p>
+<p><strong>role</strong> 也是属性和方法的集合，在这个意义上它和类（class）有些相似。
+role 使用关键字 <code>role</code> 声明, 而想实现该 role 的类可以使用 <code>does</code> 关键字。</p>
 </div>
 <div class="listingblock">
-<div class="title">使用 roles 重写多重继承的例子</div>
+<div class="title">使用 role 重写多重继承的例子</div>
 <div class="content">
 <pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">role</span> <span class="tok-n">bar-chart</span> {
   <span class="tok-k">has</span> <span class="tok-nb">Int</span> <span class="tok-nv">@.bar-values</span>;
@@ -4050,7 +4053,7 @@ Roles 使用关键字 <code>role</code> 声明, 而想实现该 role 的类可�
 <p>运行上面的脚本你会看到结果是一样的。</p>
 </div>
 <div class="paragraph">
-<p>现在你问问自己, 如果 roles 表现得像类的话那么它们的用途是什么呢?<br></p>
+<p>现在你问问自己, 如果 role 表现得像类的话那么它们的用途是什么呢?<br></p>
 </div>
 <div class="paragraph">
 <p>要回答你的问题, 修改第一个用于展示多重继承的脚本,  这个脚本中我们 <em>忘记</em> 重写 <code>plot</code> 方法了。</p>
@@ -4091,16 +4094,17 @@ Roles 使用关键字 <code>role</code> 声明, 而想实现该 role 的类可�
 <div class="title"><code>输出</code></div>
 <div class="content">
 <pre class="pygments highlight"><code data-lang="perl6"><span></span>===<span class="tok-n">SORRY</span>!===
-<span class="tok-nb">Method</span> <span class="tok-s">&#39;plot&#39;</span> <span class="tok-n">must</span> <span class="tok-n">be</span> <span class="tok-n">resolved</span> <span class="tok-nb">by</span> <span class="tok-k">class</span> <span class="tok-n">combo-chart</span> <span class="tok-n">because</span> <span class="tok-n">it</span> <span class="tok-nb">exists</span> <span class="tok-n">in</span> <span class="tok-n">multiple</span> <span class="tok-n">roles</span> (<span class="tok-n">line-chart</span>, <span class="tok-n">bar-chart</span>) <span class="tok-n">类&#39;combo-chart&#39;的方法&#39;plot&#39;必须被决定</span>，<span class="tok-n">因为存在多个role</span>（<span class="tok-n">line-chart</span>, <span class="tok-n">bar-chart</span>）</code></pre>
+<span class="tok-nb">Method</span> <span class="tok-s">&#39;plot&#39;</span> <span class="tok-n">must</span> <span class="tok-n">be</span> <span class="tok-n">resolved</span> <span class="tok-nb">by</span> <span class="tok-k">class</span> <span class="tok-n">combo-chart</span> <span class="tok-n">because</span> <span class="tok-n">it</span> <span class="tok-nb">exists</span> <span class="tok-n">in</span> <span class="tok-n">multiple</span> <span class="tok-n">roles</span> (<span class="tok-n">line-chart</span>, <span class="tok-n">bar-chart</span>)
+<span class="tok-n">类&#39;combo-chart&#39;的方法&#39;plot&#39;必须被决定</span>，<span class="tok-n">因为存在多个role</span>（<span class="tok-n">line-chart</span>, <span class="tok-n">bar-chart</span>）</code></pre>
 </div>
 </div>
 <div class="paragraph">
 <div class="title">解释</div>
-<p>如果多个 roles 被应用到同一个类中, 会出现冲突并抛出一个编译时错误。<br>
+<p>如果多个 role 被应用到同一个类中, 会出现冲突并抛出一个编译时错误。<br>
 这是比多重继承更安全的方法, 其中冲突不被认为是错误并且简单地在运行时解决。</p>
 </div>
 <div class="paragraph">
-<p>Roles 会提醒你有冲突。</p>
+<p>role 会提醒你有冲突。</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -4813,7 +4817,7 @@ regex <code>m/:s Perl 6/</code> 中的 <code>:s</code> 用于强制匹配空白�
 </ul>
 </div>
 <div class="listingblock">
-<div class="title">可选地, 一个 regex 可以被分解成多个具名 regex 。</div>
+<div class="title">可选的, 一个 regex 可以被分解成多个具名 regex  。</div>
 <div class="content">
 <pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">$email</span> = <span class="tok-s">&#39;john.doe@perl6.org&#39;</span>;
 <span class="tok-k">my</span> <span class="tok-k">regex</span><span class="tok-n"> 多个字母</span> {<span class="tok-sr"> &lt;:L&gt;+ </span>};
@@ -5602,7 +5606,7 @@ UTF-8 是能够以Unicode编码所有可能的字符或代码点的字符编码�
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2019-05-07 11:58:24 +0300
+Last updated 2019-10-05 14:57:36 +0300
 </div>
 </div>
 <style>

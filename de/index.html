@@ -15,7 +15,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 2.0.3">
+<meta name="generator" content="Asciidoctor 2.0.10">
 <meta name="description" content="Eine allgemeine Einführung in Perl 6">
 <meta name="keywords" content="perl6, perl 6, Einführung, perl6intro, perl 6 Einführung, perl 6 Tutorial, perl 6 intro">
 <meta name="author" content="Naoum Hankache, Sören Laird Sörries">
@@ -23,12 +23,11 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /* Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
-/* Uncomment @import statement when using as custom stylesheet */
+/* Uncomment @import statement to use as custom stylesheet */
 /*@import "https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700";*/
 article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section{display:block}
-audio,canvas,video{display:inline-block}
+audio,video{display:inline-block}
 audio:not([controls]){display:none;height:0}
-script{display:none!important}
 html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}
 a{background:none}
 a:focus{outline:thin dotted}
@@ -233,8 +232,8 @@ table.tableblock #preamble>.sectionbody>[class="paragraph"]:first-of-type p{font
 .literalblock pre,.listingblock>.content>pre{-webkit-border-radius:4px;border-radius:4px;word-wrap:break-word;overflow-x:auto;padding:1em;font-size:.8125em}
 @media screen and (min-width:768px){.literalblock pre,.listingblock>.content>pre{font-size:.90625em}}
 @media screen and (min-width:1280px){.literalblock pre,.listingblock>.content>pre{font-size:1em}}
+.literalblock pre,.listingblock>.content>pre:not(.highlight),.listingblock>.content>pre[class="highlight"],.listingblock>.content>pre[class^="highlight "]{background:#f7f7f8}
 .literalblock.output pre{color:#f7f7f8;background:rgba(0,0,0,.9)}
-.listingblock>.content>pre:not(.highlight),.listingblock>.content>pre[class="highlight"],.listingblock>.content>pre[class^="highlight "]{background:#f7f7f8}
 .listingblock>.content{position:relative}
 .listingblock code[data-lang]::before{display:none;content:attr(data-lang);position:absolute;font-size:.75em;top:.425rem;right:.5rem;line-height:1;text-transform:uppercase;color:inherit;opacity:.5}
 .listingblock:hover code[data-lang]::before{display:block}
@@ -255,7 +254,7 @@ table.linenotable td.linenos{border-right:1px solid currentColor;opacity:.35;pad
 pre.pygments .lineno{border-right:1px solid currentColor;opacity:.35;display:inline-block;margin-right:.75em}
 pre.pygments .lineno::before{content:"";margin-right:-.125em}
 .quoteblock{margin:0 1em 1.25em 1.5em;display:table}
-.quoteblock>.title{margin-left:-1.5em;margin-bottom:.75em}
+.quoteblock:not(.excerpt)>.title{margin-left:-1.5em;margin-bottom:.75em}
 .quoteblock blockquote,.quoteblock p{color:rgba(0,0,0,.85);font-size:1.15rem;line-height:1.75;word-spacing:.1em;letter-spacing:0;font-style:italic;text-align:justify}
 .quoteblock blockquote{margin:0;padding:0;border:0}
 .quoteblock blockquote::before{content:"\201c";float:left;font-size:2.75em;font-weight:bold;line-height:.6em;margin-left:-.6em;color:#7a2518;text-shadow:0 1px 2px rgba(0,0,0,.1)}
@@ -272,12 +271,14 @@ pre.pygments .lineno::before{content:"";margin-right:-.125em}
 .quoteblock.abstract blockquote,.quoteblock.abstract p,.quoteblock.excerpt blockquote,.quoteblock.excerpt p,.quoteblock .quoteblock blockquote,.quoteblock .quoteblock p{line-height:1.6;word-spacing:0}
 .quoteblock.abstract{margin:0 1em 1.25em;display:block}
 .quoteblock.abstract>.title{margin:0 0 .375em;font-size:1.15em;text-align:center}
-.quoteblock.excerpt,.quoteblock .quoteblock{margin:0 0 1.25em;padding:0 0 .25em 1em;border-left:.25em solid #dddddf}
+.quoteblock.excerpt>blockquote,.quoteblock .quoteblock{padding:0 0 .25em 1em;border-left:.25em solid #dddddf}
+.quoteblock.excerpt,.quoteblock .quoteblock{margin-left:0}
 .quoteblock.excerpt blockquote,.quoteblock.excerpt p,.quoteblock .quoteblock blockquote,.quoteblock .quoteblock p{color:inherit;font-size:1.0625rem}
 .quoteblock.excerpt .attribution,.quoteblock .quoteblock .attribution{color:inherit;text-align:left;margin-right:0}
 table.tableblock{max-width:100%;border-collapse:separate}
 p.tableblock:last-child{margin-bottom:0}
-td.tableblock>.content{margin-bottom:-1.25em}
+td.tableblock>.content>:last-child{margin-bottom:-1.25em}
+td.tableblock>.content>:last-child.sidebarblock{margin-bottom:0}
 table.tableblock,th.tableblock,td.tableblock{border:0 solid #dedede}
 table.grid-all>thead>tr>.tableblock,table.grid-all>tbody>tr>.tableblock{border-width:0 1px 1px 0}
 table.grid-all>tfoot>tr>.tableblock{border-width:1px 1px 0 0}
@@ -681,7 +682,7 @@ Perl 6 ist multi-paradigmatisch. Es unterstützt prozedurales, objektorientierte
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-n">wget</span> <span class="tok-n">https:</span>//<span class="tok-n">rakudostar</span>.<span class="tok-n">com</span><span class="tok-o">/</span><span class="tok-n">files</span><span class="tok-o">/</span><span class="tok-n">star</span><span class="tok-o">/</span><span class="tok-n">rakudo-star-2019</span><span class="tok-mf">.03</span>.<span class="tok-n">tar</span>.<span class="tok-n">gz</span>
+<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-n">wget</span> <span class="tok-n">https:</span>//<span class="tok-n">rakudo</span>.<span class="tok-n">perl6</span>.<span class="tok-n">org</span><span class="tok-o">/</span><span class="tok-n">downloads</span><span class="tok-o">/</span><span class="tok-n">star</span><span class="tok-o">/</span><span class="tok-n">rakudo-star-2019</span><span class="tok-mf">.03</span>.<span class="tok-n">tar</span>.<span class="tok-n">gz</span>
 <span class="tok-n">tar</span> <span class="tok-n">xfz</span> <span class="tok-n">rakudo-star-2019</span><span class="tok-mf">.03</span>.<span class="tok-n">tar</span>.<span class="tok-n">gz</span>
 <span class="tok-n">cd</span> <span class="tok-n">rakudo-star-2019</span><span class="tok-mf">.03</span>
 <span class="tok-nb">perl</span> <span class="tok-n">Configure</span>.<span class="tok-n">pl</span> --<span class="tok-n">gen-moar</span> --<span class="tok-n">make-install</span> --<span class="tok-n">prefix</span> ~/<span class="tok-n">rakudo</span></code></pre>
@@ -700,7 +701,7 @@ Mit homebrew installieren: <code>brew install rakudo-star</code></p>
 <div class="title">Windows</div>
 <ol class="arabic">
 <li>
-<p>Den neusten Installer downloaden (Datei mit der Extension .MSI) auf <a href="https://rakudostar.com/files/star" class="bare">https://rakudostar.com/files/star</a><br>
+<p>Den neusten Installer downloaden (Datei mit der Extension .MSI) auf <a href="http://rakudo.org/downloads/star/" class="bare">http://rakudo.org/downloads/star/</a><br>
 Bei einem 32-Bit-System, die x86-Datei und bei einem 64-Bit-System die x86_64-Datei verwenden.</p>
 </li>
 <li>
@@ -4707,7 +4708,7 @@ Für mehr Information über Parallele Programmierung und Ungleichzeitigkeit, sie
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2019-05-07 11:58:24 +0300
+Last updated 2019-10-05 14:57:36 +0300
 </div>
 </div>
 <style>
