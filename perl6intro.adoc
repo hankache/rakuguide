@@ -3293,13 +3293,13 @@ NOTE: For more info on the Native Calling Interface, see https://docs.perl6.org/
 
 == The Community
 
-* link:irc://irc.freenode.net/#perl6[#perl6] IRC channel. Much discussion happens on IRC. This should be your go to place for any enquiry: https://perl6.org/community/irc
+* link:irc://irc.freenode.net/#raku[#raku] IRC channel. Much discussion happens on IRC. This should be your go to place for any enquiry: https://perl6.org/community/irc
 
-* link:https://p6weekly.wordpress.com[p6weekly] a weekly overview of changes in and around Raku.
+* link:https://rakudoweekly.blog[Raku do Weekly] a weekly overview of changes in and around Rakudo.
 
 * link:http://pl6anet.org[pl6anet] blog aggregator. Stay tuned by reading blog posts that focus on Raku.
 
-* link:https://www.reddit.com/r/perl6/[/r/perl6] subscribe to the Raku subreddit.
+* link:https://www.reddit.com/r/rakulang/[/r/rakulang] subscribe to the Raku subreddit.
 
 * link:https://twitter.com/perl6org[@perl6org] follow the community on twitter.
 
