@@ -3302,5 +3302,3 @@ NOTE: For more info on the Native Calling Interface, see https://docs.perl6.org/
 * link:https://www.reddit.com/r/rakulang/[/r/rakulang] subscribe to the Raku subreddit.
 
 * link:https://twitter.com/perl6org[@perl6org] follow the community on twitter.
-
-* link:https://alerts.perl6.org[P6lert] alerts from Raku Core Developers. Keep up to date with important changes.
