@@ -63,7 +63,6 @@ Raku is multi-paradigmatic. It supports Procedural, Object Oriented, and Functio
 
 .Raku motto:
 * TMTOWTDI (Pronounced Tim Toady): There is more than one way to do it.
-* Easy things should stay easy, hard things should get easier, and impossible things should get hard.
 
 === Jargon
 * *Raku*: Is a language specification with a test suite.
