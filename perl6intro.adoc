@@ -68,7 +68,6 @@ Raku is multi-paradigmatic. It supports Procedural, Object Oriented, and Functio
 * *Raku*: Is a language specification with a test suite.
 Implementations that pass the specification test suite are considered Raku.
 * *Rakudo*: Is a compiler for Raku.
-* *Rakudobrew*: Is an installation manager for Rakudo.
 * *Zef*: Is a Raku module installer.
 * *Rakudo Star*: Is a bundle that includes Rakudo, Zef, a collection of Raku modules, and documentation.
 
