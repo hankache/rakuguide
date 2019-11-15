@@ -14,7 +14,7 @@
 :lang: en
 
 
-This document is intended to give you a quick overview of the Raku programming language.
+This document is intended to give you a quick overview of the Raku programming language. +
 For those new to Raku, it should get you up and running.
 
 Some sections of this document refer to other (more complete and accurate) parts of the https://docs.raku.org[Raku documentation].
