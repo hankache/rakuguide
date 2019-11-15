@@ -17,7 +17,7 @@
 This document is intended to give you a quick overview of the Raku programming language.
 For those new to Raku, it should get you up and running.
 
-Some sections of this document refer to other (more complete and accurate) parts of the http://docs.perl6.org[Perl 6 documentation].
+Some sections of this document refer to other (more complete and accurate) parts of the https://docs.raku.org[Raku documentation].
 You should read them if you need more information on a specific subject.
 
 Throughout this document, you will find examples for most discussed topics.
@@ -453,7 +453,7 @@ They are formed by surrounding the operator with brackets `[]`
 
 |===
 
-NOTE: For the complete list of operators, including their precedence, go to https://docs.perl6.org/language/operators
+NOTE: For the complete list of operators, including their precedence, go to https://docs.raku.org/language/operators
 
 == Variables
 Raku variables are classified into 3 categories: Scalars, Arrays and Hashes.
@@ -495,7 +495,7 @@ JOHN DOE
 eoD nhoJ
 ----
 
-NOTE: For the complete list of methods applicable to Strings, see https://docs.perl6.org/type/Str
+NOTE: For the complete list of methods applicable to Strings, see https://docs.raku.org/type/Str
 
 [source,perl6]
 .Integer
@@ -508,7 +508,7 @@ say $age.is-prime;
 True
 ----
 
-NOTE: For the complete list of methods applicable to Integers, see https://docs.perl6.org/type/Int
+NOTE: For the complete list of methods applicable to Integers, see https://docs.raku.org/type/Int
 
 [source,perl6]
 .Rational Number
@@ -525,7 +525,7 @@ say $age.nude;
 (23 10)
 ----
 
-NOTE: For the complete list of methods applicable to Rational Numbers, see https://docs.perl6.org/type/Rat
+NOTE: For the complete list of methods applicable to Rational Numbers, see https://docs.raku.org/type/Rat
 
 === Arrays
 Arrays are lists containing multiple values.
@@ -649,7 +649,7 @@ say @tbl
 [3 z]
 ----
 
-NOTE: For the complete Array reference, see https://docs.perl6.org/type/Array
+NOTE: For the complete Array reference, see https://docs.raku.org/type/Array
 
 === Hashes
 [source,perl6]
@@ -693,7 +693,7 @@ The capital of France is: Paris
 `.values` returns a list that contains all values. +
 We can access a specific value in the hash by specifying its key `%hash<key>`
 
-NOTE: For the complete Hash reference, see https://docs.perl6.org/type/Hash
+NOTE: For the complete Hash reference, see https://docs.raku.org/type/Hash
 
 === Types
 In the previous examples, we did not specify what type of values the variables should hold.
@@ -904,7 +904,7 @@ say $a;
 Binding variables is bi-directional. +
 `$a := $b` and `$b := $a` have the same effect.
 
-NOTE: For more info on variables, see https://docs.perl6.org/language/variables
+NOTE: For more info on variables, see https://docs.raku.org/language/variables
 
 == Functions and mutators
 
@@ -1110,7 +1110,7 @@ loop (my $i = 0; $i < 5; $i++) {
 }
 ----
 
-NOTE: For more info on loops and conditions, see https://docs.perl6.org/language/control
+NOTE: For more info on loops and conditions, see https://docs.raku.org/language/control
 
 == I/O
 In Raku, two of the most common _Input/Output_ interfaces are the _Terminal_ and _Files_.
@@ -1266,7 +1266,7 @@ WARNING: Windows users can use `/` or `\\` to define directories +
 `C:\\rakudo\\bin` +
 `C:/rakudo/bin` +
 
-NOTE: For more info on I/O, see https://docs.perl6.org/type/IO
+NOTE: For more info on I/O, see https://docs.raku.org/type/IO
 
 == Subroutines
 === Definition
@@ -1427,7 +1427,7 @@ say "1.2 squared is equal to " ~ squared(1.2);
 ----
 ====
 
-NOTE: For more info on subroutines and functions, see https://docs.perl6.org/language/functions
+NOTE: For more info on subroutines and functions, see https://docs.raku.org/language/functions
 
 == Functional Programming
 In this chapter we will take a look at some of the features that facilitate Functional Programming.
@@ -2328,8 +2328,8 @@ It evaluates to _True_ if the object is created from the class it is being compa
 --
 For more info on Object Oriented Programming in Raku, see:
 
-* https://docs.perl6.org/language/classtut
-* https://docs.perl6.org/language/objects
+* https://docs.raku.org/language/classtut
+* https://docs.raku.org/language/objects
 --
 == Exception Handling
 
@@ -2459,7 +2459,7 @@ All typed exceptions descend from class `X` , below are a few examples: +
 `X::OS` is related to OS errors +
 `X::Str::Numeric` related to trying to coerce a string to a number
 
-NOTE: For a complete list of exception types and their associated methods, go to https://docs.perl6.org/type-exceptions.html
+NOTE: For a complete list of exception types and their associated methods, go to https://docs.raku.org/type-exceptions.html
 
 
 == Regular Expressions
@@ -2778,7 +2778,7 @@ if $email ~~ / <many-letters> <dot> <many-letters> <at> <many-letters-numbers> <
 A named regex is defined using the following syntax: `my regex regex-name { regex definition }` +
 A named regex can be called using the following syntax: `<regex-name>`
 
-NOTE: For more info on regexes, see https://docs.perl6.org/language/regexes
+NOTE: For more info on regexes, see https://docs.raku.org/language/regexes
 
 == Raku Modules
 Raku is a general purpose programming language. It can be used to tackle a multitude of tasks including:
@@ -2794,7 +2794,7 @@ To install a specific module, type the below command in your terminal:
 
 `zef install "module name"`
 
-NOTE: The Raku modules directory can be found on: https://modules.perl6.org/
+NOTE: The Raku modules directory can be found on: https://modules.raku.org/
 
 === Using Modules
 MD5 is a cryptographic hash function that produces a 128-bit hash value. +
@@ -3081,7 +3081,7 @@ WARNING: Parallelism always adds a threading overhead. If that overhead is not o
 This is why, using `race`, `hyper`, `start` and `await` for fairly simple scripts can actually slow them down.
 
 === Concurrency and Asynchrony
-NOTE: For more info on Concurrency and Asynchronous Programming, see https://docs.perl6.org/language/concurrency
+NOTE: For more info on Concurrency and Asynchronous Programming, see https://docs.raku.org/language/concurrency
 
 == Native Calling Interface
 
@@ -3289,13 +3289,14 @@ Luckily Raku provides many types that map to their respective C counterpart.
 
 |===
 
-NOTE: For more info on the Native Calling Interface, see https://docs.perl6.org/language/nativecall
+NOTE: For more info on the Native Calling Interface, see https://docs.raku.org/language/nativecall
 
 == The Community
 
-* link:irc://irc.freenode.net/#raku[#raku] IRC channel. Much discussion happens on IRC. This should be your go to place for any enquiry: https://perl6.org/community/irc
+* link:irc://irc.freenode.net/#raku[#raku] IRC channel. Much discussion happens on IRC. +
+This should be your go to place for any enquiry: https://raku.org/community/irc
 
-* link:https://rakudoweekly.blog[Raku do Weekly] a weekly overview of changes in and around Rakudo.
+* link:https://rakudoweekly.blog[Rakudo Weekly] a weekly overview of changes in and around Rakudo.
 
 * link:http://pl6anet.org[pl6anet] blog aggregator. Stay tuned by reading blog posts that focus on Raku.
 
