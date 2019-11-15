@@ -1,4 +1,4 @@
-= Raku Introduction
+= Raku Guide
 :description: A general introduction to Raku
 :Author: Naoum Hankache
 :keywords: perl6, perl 6, introduction, perl6intro, perl 6 introduction, perl 6 tutorial, perl 6 intro, raku, raku introduction, raku guide, raku tutorial
@@ -32,28 +32,28 @@ To view a copy of this license, visit
 .Contribution
 If you would like to contribute to this document, head over to:
 
-* https://github.com/hankache/perl6intro
+* https://github.com/hankache/rakuguide
 
 .Feedback
 All feedback is welcomed:
 naoum@hankache.com
 
 If you liked this work, _Star_ the repository on
-link:https://github.com/hankache/perl6intro[Github].
+link:https://github.com/hankache/rakuguide[Github].
 
 .Translations
-* Bulgarian: https://perl6intro.com/bg
-* Chinese: https://perl6intro.com/zh
-* Dutch: https://perl6intro.com/nl
-* French: https://perl6intro.com/fr
-* German: https://perl6intro.com/de
-* Indonesian: https://perl6intro.com/id
-* Italian https://perl6intro.com/it
-* Japanese: https://perl6intro.com/ja
-* Portuguese: https://perl6intro.com/pt
-* Spanish: https://perl6intro.com/es
-* Turkish: https://perl6intro.com/tr
-* Russian: https://perl6intro.com/ru
+* Bulgarian: https://raku.guide/bg
+* Chinese: https://raku.guide/zh
+* Dutch: https://raku.guide/nl
+* French: https://raku.guide/fr
+* German: https://raku.guide/de
+* Indonesian: https://raku.guide/id
+* Italian https://raku.guide/it
+* Japanese: https://raku.guide/ja
+* Portuguese: https://raku.guide/pt
+* Spanish: https://raku.guide/es
+* Turkish: https://raku.guide/tr
+* Russian: https://raku.guide/ru
 
 :sectnums:
 == Introduction
