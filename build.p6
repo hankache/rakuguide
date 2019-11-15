@@ -21,7 +21,7 @@ my $favicon-rest = q:to/END/;
 END
 
 sub clone() {
-  shell 'git clone --branch master https://github.com/hankache/perl6intro.git Src';
+  shell 'git clone --branch master https://github.com/hankache/rakuguide.git Src';
 }
 
 sub clean-up() {

@@ -596,7 +596,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>This document is intended to give you a quick overview of the Raku programming language.
+<p>This document is intended to give you a quick overview of the Raku programming language.<br>
 For those new to Raku, it should get you up and running.</p>
 </div>
 <div class="paragraph">
@@ -697,9 +697,6 @@ Raku is multi-paradigmatic. It supports Procedural, Object Oriented, and Functio
 <li>
 <p>TMTOWTDI (Pronounced Tim Toady): There is more than one way to do it.</p>
 </li>
-<li>
-<p>Easy things should stay easy, hard things should get easier, and impossible things should get hard.</p>
-</li>
 </ul>
 </div>
 </div>
@@ -713,9 +710,6 @@ Implementations that pass the specification test suite are considered Raku.</p>
 </li>
 <li>
 <p><strong>Rakudo</strong>: Is a compiler for Raku.</p>
-</li>
-<li>
-<p><strong>Rakudobrew</strong>: Is an installation manager for Rakudo.</p>
 </li>
 <li>
 <p><strong>Zef</strong>: Is a Raku module installer.</p>
@@ -799,8 +793,8 @@ and hit [Enter] to leave the REPL.</p>
 </div>
 <div class="paragraph">
 <p>Alternatively, write your code in a file, save it and run it.
-It is recommended that Raku scripts have a  <code>.p6</code> file name extension.
-Run the file by typing <code>perl6 filename.p6</code> into the terminal window
+It is recommended that Raku scripts have a  <code>.raku</code> file name extension.
+Run the file by typing <code>perl6 filename.raku</code> into the terminal window
 and hitting [Enter]. Unlike the REPL, this will not automatically print
 the result of each line: the code must contain a statement like <code>say</code>
 to print output.</p>
@@ -2742,17 +2736,17 @@ All shell meta characters are interpreted by the shell, including pipes, redirec
 <p>You can also check if a path exists; if it is a file; or a directory:</p>
 </div>
 <div class="paragraph">
-<p>In the directory where you will be running the below script, create an empty folder <code>folder123</code> and an empty p6 file <code>script123.p6</code></p>
+<p>In the directory where you will be running the below script, create an empty folder <code>folder123</code> and an empty p6 file <code>script123.raku</code></p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-nb">say</span> <span class="tok-s">&quot;script123.p6&quot;</span>.<span class="tok-nb">IO</span>.<span class="tok-nb">e</span>;
+<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-nb">say</span> <span class="tok-s">&quot;script123.raku&quot;</span>.<span class="tok-nb">IO</span>.<span class="tok-nb">e</span>;
 <span class="tok-nb">say</span> <span class="tok-s">&quot;folder123&quot;</span>.<span class="tok-nb">IO</span>.<span class="tok-nb">e</span>;
 
-<span class="tok-nb">say</span> <span class="tok-s">&quot;script123.p6&quot;</span>.<span class="tok-nb">IO</span>.<span class="tok-n">d</span>;
+<span class="tok-nb">say</span> <span class="tok-s">&quot;script123.raku&quot;</span>.<span class="tok-nb">IO</span>.<span class="tok-n">d</span>;
 <span class="tok-nb">say</span> <span class="tok-s">&quot;folder123&quot;</span>.<span class="tok-nb">IO</span>.<span class="tok-n">d</span>;
 
-<span class="tok-nb">say</span> <span class="tok-s">&quot;script123.p6&quot;</span>.<span class="tok-nb">IO</span>.<span class="tok-n">f</span>;
+<span class="tok-nb">say</span> <span class="tok-s">&quot;script123.raku&quot;</span>.<span class="tok-nb">IO</span>.<span class="tok-n">f</span>;
 <span class="tok-nb">say</span> <span class="tok-s">&quot;folder123&quot;</span>.<span class="tok-nb">IO</span>.<span class="tok-n">f</span>;</code></pre>
 </div>
 </div>
@@ -4234,7 +4228,7 @@ We say that exceptions are <em>thrown</em>.</p>
 <div class="title"><code>Output</code></div>
 <div class="content">
 <pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-n">Type</span> <span class="tok-n">check</span> <span class="tok-n">failed</span> <span class="tok-n">in</span> <span class="tok-n">assignment</span> <span class="tok-nb">to</span> <span class="tok-nv">$name</span>; <span class="tok-n">expected</span> <span class="tok-nb">Str</span> <span class="tok-k">but</span> <span class="tok-n">got</span> <span class="tok-nb">Int</span>
-   <span class="tok-n">in</span> <span class="tok-n">block</span> <span class="tok-s">&lt;unit&gt;</span> <span class="tok-n">at</span> <span class="tok-n">exceptions</span>.<span class="tok-n">p6:2</span></code></pre>
+   <span class="tok-n">in</span> <span class="tok-n">block</span> <span class="tok-s">&lt;unit&gt;</span> <span class="tok-n">at</span> <span class="tok-n">exceptions</span>.<span class="tok-n">raku:2</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -5304,7 +5298,7 @@ This function prints on the terminal <code>Hello from C</code>. It doesn&#8217;t
 file that contains the below code and run it.</p>
 </div>
 <div class="listingblock">
-<div class="title">ncitest.p6</div>
+<div class="title">ncitest.raku</div>
 <div class="content">
 <pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">use</span> <span class="tok-n">NativeCall</span>;
 
@@ -5344,7 +5338,7 @@ To do so, we use the <code>is symbol</code> trait.</p>
 instead of <code>hellofromc</code></p>
 </div>
 <div class="listingblock">
-<div class="title">ncitest.p6</div>
+<div class="title">ncitest.raku</div>
 <div class="content">
 <pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">use</span> <span class="tok-n">NativeCall</span>;
 
@@ -5377,7 +5371,7 @@ Notice how we modified both C and Raku code to accept a string (<code>char*</cod
 </div>
 </div>
 <div class="listingblock">
-<div class="title">ncitest.p6</div>
+<div class="title">ncitest.raku</div>
 <div class="content">
 <pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">use</span> <span class="tok-n">NativeCall</span>;
 
@@ -5404,7 +5398,7 @@ Compile the C library and run the Raku script.</p>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">ncitest.p6</div>
+<div class="title">ncitest.raku</div>
 <div class="content">
 <pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">use</span> <span class="tok-n">NativeCall</span>;
 
@@ -5574,7 +5568,7 @@ This should be your go to place for any enquiry: <a href="https://raku.org/commu
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2019-11-15 16:58:31 +0200
+Last updated 2019-11-15 18:09:44 +0200
 </div>
 </div>
 <style>
