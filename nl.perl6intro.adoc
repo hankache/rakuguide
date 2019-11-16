@@ -2960,10 +2960,10 @@ NOTE: Zie https://docs.raku.org/language/concurrency voor meer informatie over a
 
 == De Community
 
-* link:irc://irc.freenode.net/#perl6[#perl6] IRC kanaal. Veel discussies vinden plaats op IRC. Mocht je vragen hebben die relatief snel een antwoord nodig hebben, dan kun je het beste naar  https://raku.org/community/irc gaan
+* link:irc://irc.freenode.net/#raku[#raku] IRC kanaal. Veel discussies vinden plaats op IRC. Mocht je vragen hebben die relatief snel een antwoord nodig hebben, dan kun je het beste naar  https://raku.org/community/irc gaan
 
 * link:https://rakudoweekly.blog[Rakudo Weekly] een wekelijks overzicht van veranderingen in en rond Raku
 
 * link:http://pl6anet.org[pl6anet] is een blog aggregator. Hier kun je blog posts over Raku lezen
 
-* link:https://www.reddit.com/r/perl6/[/r/perl6] ook op reddit kun je over Raku lezen
+* link:https://www.reddit.com/r/rakulang/[/r/rakulang] ook op reddit kun je over Raku lezen
