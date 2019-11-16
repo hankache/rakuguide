@@ -1887,7 +1887,7 @@ method !ikbenprivé {
     #code waar het over gaat
 }
 
-method ikbenprivé {
+method ikbenpubliek {
   self!ikbenprivé;
   #doe extra dingen
 }
@@ -1920,7 +1920,7 @@ say Mens.aantal;
 In alle voorbeelden die we tot nu toe hebben gezien, hebben we accessors alleen maar gebruikt om informatie uit een object te halen.
 
 Maar wat nu als we de waarde van een attribuut willen veranderen? +
-In dat geval moeten we die attribuut als _lees/schrijf_ markeren met de sleutelwoorden `is rw` (read/write)
+In dat geval moeten we die attribuut als _lees/schrijf_ markeren met de sleutelwoorden `is rw` (read/write).
 [source,perl6]
 ----
 class Mens {
@@ -1933,11 +1933,11 @@ say $jan.leeftijd;
 $jan.leeftijd = 23;
 say $jan.leeftijd;
 ----
-Als je bij de definitie niets aangeeft, wordt een attribuut als _alleen lezen_ gedefinieerd, maar je kunt ook expliciet `is readonly` aangeven
+Als je bij de definitie niets aangeeft, wordt een attribuut als _alleen lezen_ gedefinieerd, maar je kunt ook expliciet `is readonly` aangeven.
 
 === Overerving
 ==== Inleiding
-*Overerving* is een ander concept van object georiënteerd programmeren.
+*Overerving* is een concept van het object georiënteerd programmeren.
 
 Wanneer men klassen aan het definiëren is, komt men er snel genoeg achter dat sommige attributen/methoden in vele klassen voorkomen. +
 Moeten we dus maar code gaan dupliceren? +
@@ -1964,7 +1964,7 @@ class Werknemer {
 ----
 Hoewel bovenstaande code technisch gezien correct is, is het qua concept van lage kwaliteit.
 
-Een beter manier om zoiets te schrijven is als volgt:
+Een betere manier om zoiets te schrijven is:
 [source,perl6]
 ----
 class Mens {
@@ -1980,7 +1980,7 @@ class Werknemer is Mens {
 Het `is` sleutelwoord definieert de overerving. +
 In het taalgebruik van object georiënteerd programmeren, zeggen we dat Werknemer een *kind* is van Mens, en dat Mens de *ouder* is van Werknemer.
 
-Alle kinderklassen erven de attributen en methoden van de ouderklasse, zodat het niet nodig is om deze overnieuw te definiëren.
+Alle kinderklassen erven de attributen en methoden van de ouderklasse, zodat het niet nodig is om deze opnieuw te definiëren.
 
 ==== Overnemen
 Klassen erven alle attributen en methoden van hun ouderklas. +
