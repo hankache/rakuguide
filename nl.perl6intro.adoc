@@ -57,7 +57,7 @@ Een implementatie van Raku die al deze tests succesvol kan uitvoeren, mag zich e
 .Linux
 Voer de volgende commando's uit in een Terminal venster om Rakudo Star te installeren:
 ----
-wget https://rakudo.perl6.org/downloads/star/rakudo-star-2019.03.tar.gz
+wget https://rakudo.raku.org/downloads/star/rakudo-star-2019.03.tar.gz
 tar xfz rakudo-star-2019.03.tar.gz
 cd rakudo-star-2019.03
 perl Configure.pl --gen-moar --make-install --prefix ~/rakudo
@@ -421,7 +421,7 @@ Je maakt een herleidingsoperator door vierkante haken om de operator te plaatsen
 
 |===
 
-NOTE: Voor een compleet overzicht van operatoren, inclusief hun prioriteit, ga dan naar https://docs.perl6.org/language/operators
+NOTE: Voor een compleet overzicht van operatoren, inclusief hun prioriteit, ga dan naar https://docs.raku.org/language/operators
 
 == Variabelen
 Raku variabelen kunnen worden geclassificeerd in 3 categorieën: Scalars, Arrays en Hashes.
@@ -463,7 +463,7 @@ JAN JANSEN
 nesnaJ naJ
 ----
 
-NOTE: Bekijk https://docs.perl6.org/type/Str voor de complete lijst van methoden die men op een string kan uitvoeren.
+NOTE: Bekijk https://docs.raku.org/type/Str voor de complete lijst van methoden die men op een string kan uitvoeren.
 
 [source,perl6]
 .Integer
@@ -476,7 +476,7 @@ say $leeftijd.is-prime;
 True
 ----
 
-NOTE: Bekijk https://docs.perl6.org/type/Int voor de complete lijst van methoden die men op een geheel getal (integer) kan uitvoeren.
+NOTE: Bekijk https://docs.raku.org/type/Int voor de complete lijst van methoden die men op een geheel getal (integer) kan uitvoeren.
 
 [source,perl6]
 .Rational Number
@@ -493,15 +493,15 @@ say $leeftijd.nude;
 (23 10)
 ----
 
-NOTE: Bekijk https://docs.perl6.org/type/Rat voor de complete lijst van methoden die men op een rationeel getal kan uitvoeren.
+NOTE: Bekijk https://docs.raku.org/type/Rat voor de complete lijst van methoden die men op een rationeel getal kan uitvoeren.
 
 === Arrays
 Arrays bestaan uit een lijst van scalar variabelen.
 
 [source,perl6]
 ----
-my @animals = 'camel','llama','owl';
-say @animals;
+my @dieren = 'kameel','lama','uil';
+say @dieren;
 ----
 
 Vele operaties kunnen op arrays uitgevoerd worden, zoals getoond in onderstaand voorbeeld:
@@ -511,17 +511,17 @@ TIP: De tilde `~` wordt gebruikt om strings aan elkaar te plakken.
 [source,perl6]
 .`Script`
 ----
-my @animals = 'kameel','vicuña','lama';
-say "De dierentuin heeft " ~ @animals.elems ~ " dieren";
-say "De dieren zijn: " ~ @animals;
+my @dieren = 'kameel','vicuña','lama';
+say "De dierentuin heeft " ~ @dieren.elems ~ " dieren";
+say "De dieren zijn: " ~ @dieren;
 say "Ik ga een uil adopteren voor de dierentuin";
-@animals.push("owl");
-say "Nu heeft mijn dierentuin: " ~ @animals;
-say "Het eerste dier dat we adopteerden was de " ~ @animals[0];
-@animals.pop;
-say "Helaas is de uil ontsnapt, dus hebben we nu alleen nog: " ~ @animals;
+@dieren.push("owl");
+say "Nu heeft mijn dierentuin: " ~ @dieren;
+say "Het eerste dier dat we adopteerden was de " ~ @dieren[0];
+@dieren.pop;
+say "Helaas is de uil ontsnapt, dus hebben we nu alleen nog: " ~ @dieren;
 say "We gaan de dierention sluiten en houden nog maar één dier over";
-say "We laten de " ~ @animals.splice(1,2) ~ " gaan en houden de " ~ @animals;
+say "We laten de " ~ @dieren.splice(1,2) ~ " gaan en houden de " ~ @dieren;
 ----
 
 .`Uitvoer`
@@ -539,7 +539,7 @@ We laten de vicuña llama gaan en houden de kameel
 .Uitleg
 `.elems` geeft het aantal elementen in een array. +
 `.push()` voegt een element toe aan een array. +
-We kunnen een specifiek element van een array bekijken door de positie aan te geven `@animals[0]`. +
+We kunnen een specifiek element van een array bekijken door de positie aan te geven `@dieren[0]`. +
 `.pop` verwijdert het laatste element van het array. +
 `.splice(a,b)` verwijdert `b` elementen vanaf positie `a`.
 
@@ -617,13 +617,13 @@ say @tbl
 [3 z]
 ----
 
-NOTE: Zie https://docs.perl6.org/type/Array voor volledige informatie over arrays.
+NOTE: Zie https://docs.raku.org/type/Array voor volledige informatie over arrays.
 
 === Hashes
 [source,perl6]
 .Een Hash is een verzameling van naam/waarde paren (key/value pairs)
 ----
-my %hoofdsteden = ('VK','Londen','Duitsland','Berlijn');
+my %hoofdsteden = 'VK','Londen','Duitsland','Berlijn';
 say %hoofdsteden;
 ----
 
@@ -635,7 +635,7 @@ say %hoofdsteden;
 [source,perl6]
 .Een andere manier om een hash te vullen:
 ----
-my %hoofdsteden = (VK => 'Londen', Duitsland => 'Berlijn');
+my %hoofdsteden = VK => 'Londen', Duitsland => 'Berlijn';
 say %hoofdsteden;
 ----
 
@@ -648,7 +648,7 @@ Dit zijn een aantal van de methoden die men op een hash kan uitvoeren:
 [source,perl6]
 .`Script`
 ----
-my %hoofdsteden = (VK => 'Londen', Duitsland => 'Berlijn');
+my %hoofdsteden = VK => 'Londen', Duitsland => 'Berlijn';
 %hoofdsteden.push: (Frankrijk => 'Parijs');
 say %hoofdsteden.kv;
 say %hoofdsteden.keys;
@@ -671,7 +671,7 @@ De hoofdstad van Frankrijk is: Parijs
 `.values` geeft een lijst met alle waarden terug. +
 De waarde behorende bij een gegeven naam kun je opvragen door die naam te specificeren `%hash<naam>`
 
-NOTE: Zie https://docs.perl6.org/type/Hash voor alle informatie over hashes.
+NOTE: Zie https://docs.raku.org/type/Hash voor alle informatie over hashes.
 
 === Types
 In de voorafgaande voorbeelden hebben we niet het type van de waarde aangegeven die in een variabele opgeslagen kan worden.
@@ -703,7 +703,7 @@ say $var;
 say $var.WHAT;
 ----
 
-Het zal fout gaan en terug komen met dit foutbericht: `Type check failed in assignment to $var; expected Int but got Str`
+Dit zal fout gaan en terug komen met het foutbericht: `Type check failed in assignment to $var; expected Int but got Str`
 
 Wat hier gebeurde is dat we van te voren hadden aangegeven dat de variabele alleen maar (Int) mag accepteren.
 Toen we probeerden om er een string (Str) aan toe te wijzen, was dat niet mogelijk en ging het fout.
@@ -794,7 +794,7 @@ Met `my` geeft men de variabele een *statisch* bereik (ook wel *lexicaal* bereik
 In andere woorden, de variabele zal alleen maar toegankelijk zijn in het gebied (scope) waarin het was gedefinieerd.
 
 Zo'n gebied (scope) wordt in Raku begrensd door `{ }`.
-Een variabele zal alleen toegankelijk zijn in een Raku script als er geen gebiedsbegrenzing gevonden wordt.
+Een variabele zal toegankelijk zijn in het gehele Raku script als er geen gebiedsbegrenzing gevonden wordt.
 
 [source,perl6]
 ----
@@ -883,7 +883,7 @@ say $a;
 Het verbinden van variabelen werkt twee kanten op, zoals je al gezien hebt. +
 `$a := $b` en `$b := $a` hebben hetzelfde effect.
 
-NOTE: Zie https://docs.perl6.org/language/variables voor meer informatie over variabelen.
+NOTE: Zie https://docs.raku.org/language/variables voor meer informatie over variabelen.
 
 == Functies en mutators
 
@@ -902,7 +902,7 @@ say @nummers;      #1
 say @nummers.sort; #2
 say @nummers;      #3
 
-@nummers.=sort;
+@nummers .= sort;
 say @nummers;      #4
 ----
 
@@ -1034,7 +1034,7 @@ Met het `for` commando kun je over een aantal waarden repeteren.
 
 [source,perl6]
 ----
-my @array = [1,2,3];
+my @array = 1,2,3;
 
 for @array -> $array-item {
     say $array-item * 100
@@ -1089,7 +1089,7 @@ loop (my $i = 0; $i < 5; $i++) {
 }
 ----
 
-NOTE: Zie https://docs.perl6.org/language/control voor meer informatie over conditionele- en lusconstructies.
+NOTE: Zie https://docs.raku.org/language/control voor meer informatie over conditionele- en lusconstructies.
 
 == I/O
 De twee meest voorkomende manieren van _Invoer/Uitvoer_ zijn _Terminal_ en _Bestanden_.
@@ -1245,7 +1245,7 @@ WARNING: Gebruikers van Windows kunnen zowel de `/` als de `\\` gebruiken om dir
 `C:\\rakudo\\bin` +
 `C:/rakudo/bin` +
 
-NOTE: Zie https://docs.perl6.org/type/IO voor meer informatie over invoer en uitvoer.
+NOTE: Zie https://docs.raku.org/type/IO voor meer informatie over invoer en uitvoer.
 
 == Subroutines
 === Definitie
@@ -1406,7 +1406,7 @@ say "1.2 gekwadrateerd is gelijk aan " ~ kwadrateer(1.2);
 ----
 ====
 
-NOTE: Zie https://docs.perl6.org/language/functions voor meer informatie over subroutines en functies.
+NOTE: Zie https://docs.raku.org/language/functions voor meer informatie over subroutines en functies.
 
 == Functioneel Programmeren
 In dit hoofdstuk gaan we kijken naar een aantal functionaliteiten die men kan gebruiken voor Functioneel Programmeren.
@@ -2257,8 +2257,8 @@ Het geeft de waarde _True_ als het object is aangemaakt met de gegeven klasse, o
 --
 Voor meer informatie over Object Georiënteerd Programmeren in Raku, bekijk dan:
 
-* https://docs.perl6.org/language/classtut
-* https://docs.perl6.org/language/objects
+* https://docs.raku.org/language/classtut
+* https://docs.raku.org/language/objects
 --
 == Exception Handling
 
@@ -2388,7 +2388,7 @@ Alle getypeerde exceptions erven van de klasse `X` , hieronder zie je een paar v
 `X::OS` is gerelateerd aan OS fouten +
 `X::Str::Numeric` wordt geworpen bij een fout in het veranderen van een string naar een getal.
 
-NOTE: Zie https://docs.perl6.org/type-exceptions.html voor een complete lijst van exception types en de daarbij behorende methoden.
+NOTE: Zie https://docs.raku.org/type-exceptions.html voor een complete lijst van exception types en de daarbij behorende methoden.
 
 
 == Reguliere Expressies
@@ -2648,7 +2648,7 @@ Gebruik deze regex niet in deze vorm in productie.
 [source,perl6]
 .Script
 ----
-my $email = 'jan.met@perl6.org';
+my $email = 'jan.met@raku.org';
 my $regex = / <:L>+ \. <:L>+ \@<:L+:N>+ \. <:L>+ /;
 
 if $email ~~ $regex {
@@ -2659,7 +2659,7 @@ if $email ~~ $regex {
 ----
 
 .Uitvoer
-`jan.met@perl6.org is een gevalideerd emailadres`
+`jan.met@raku.org is een gevalideerd emailadres`
 
 .Uitleg
 `<:L>` accepteert een enkele letter +
@@ -2688,7 +2688,7 @@ De regex kan als volgt uit elkaar worden gehaald:
 [source,perl6]
 .We kunnen een regex ook in aparte regexen op naam opdelen
 ----
-my $email = 'jan.met@perl6.org';
+my $email = 'jan.met@raku.org';
 my regex veel-letters { <:L>+ };
 my regex punt { \. };
 my regex bij { \@ };
@@ -2704,7 +2704,7 @@ if $email ~~ / <veel-letters> <punt> <veel-letters> <bij> <veel-letters-nummers>
 Een regex op naam wordt als volgt gedefinieerd: `my regex regex-naam { regex definitie }` +
 Een regex op naam kan als volgt worden aangeroepen: `<regex-naam>`
 
-NOTE: Zie https://docs.perl6.org/language/regexes voor meer informatie over regexen.
+NOTE: Zie https://docs.raku.org/language/regexes voor meer informatie over regexen.
 
 == Raku Modules
 Raku is een algemeen toepasbare programmeertaal.  Het kan worden gebruikt om vele taken uit te voeren, zoals:
@@ -2720,7 +2720,7 @@ Om een specifieke module te installeren moet men onderstaand commando in een ter
 
 `zef install "module name"`
 
-NOTE: Een overzicht van beschikbare Raku modules is te vinden op: https://modules.perl6.org/
+NOTE: Een overzicht van beschikbare Raku modules is te vinden op: https://modules.raku.org/
 
 === Gebruiken van Modules
 MD5 is een cryptografische functie die een unieke 128bit waarde (hash) produceert. +
@@ -2956,11 +2956,11 @@ WARNING: Parallelisme voegt altijd extra overhead toe.  Als die overhead relatie
 Dat is de reden waarom het gebruik van `race`, `hyper` en `start` in tamelijk simpele scripts een reden van vertraging kan zijn.
 
 === Gelijktijdigheid en Asynchroniciteit
-NOTE: Zie https://docs.perl6.org/language/concurrency voor meer informatie over asynchroon programmeren in Raku
+NOTE: Zie https://docs.raku.org/language/concurrency voor meer informatie over asynchroon programmeren in Raku
 
 == De Community
 
-* link:irc://irc.freenode.net/#perl6[#perl6] IRC kanaal. Veel discussies vinden plaats op IRC. Mocht je vragen hebben die relatief snel een antwoord nodig hebben, dan kun je het beste naar  https://perl6.org/community/irc gaan
+* link:irc://irc.freenode.net/#perl6[#perl6] IRC kanaal. Veel discussies vinden plaats op IRC. Mocht je vragen hebben die relatief snel een antwoord nodig hebben, dan kun je het beste naar  https://raku.org/community/irc gaan
 
 * link:https://rakudoweekly.blog[Rakudo Weekly] een wekelijks overzicht van veranderingen in en rond Raku
 
