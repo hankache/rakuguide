@@ -1107,7 +1107,7 @@ say 'Hallo meneer.';
 zullen op 2 aparte lijnen worden getoond.
 
 ==== print
-Aan de andere kant doet `print` precies hetzelfde, maar het voegt geen regeleinde toe.
+Aan de andere kant doet `print` precies hetzelfde, maar het voegt _geen_ regeleinde toe.
 
 Probeer eens om de `say` door een `print` te vervangen en vergelijk de resultaten.
 
@@ -1161,7 +1161,7 @@ shell "ls";
 shell "dir";
 ----
 `echo` en `ls` zijn veel voorkomende commando's op Linux/OS X: +
-`echo` drukt de argumenten af (het equivalent van `print` in Raku) +
+`echo` drukt de argumenten af (het equivalent van `say` in Raku) +
 `ls` laat alle bestanden en directories zien in de huidige directory
 
 `dir` is het equivalent van `ls` bij Windows.
@@ -1206,8 +1206,8 @@ Raku kan de inhoud van een directory ook direct tonen zonder dat er externe comm
 
 [source,perl6]
 ----
-say dir;              #Laat bestanden/directories uit de huidige directory zien
-say dir "/Documents"; #Laat bestanden/directories zien van de gegeven directory
+say dir;              # Laat bestanden/directories uit de huidige directory zien
+say dir "/Documents"; # Laat bestanden/directories zien van de gegeven directory
 ----
 
 Tevens kun je ook nieuwe directories aanmaken en verwijderen.
@@ -1347,7 +1347,7 @@ sub kwadrateer ($x) {
 say "7 gekwadrateerd is gelijk aan " ~ kwadrateer(7);
 ----
 
-Zodra je programma groter wordt, is het wellicht een goed idee om _expliciet_ aan te geven wat we terug willen geven.
+Voor de duidelijkheid is het wellicht een goed idee om _expliciet_ aan te geven wat we terug willen geven.
 Dit kunnen we doen met het `return` sleutelwoord.
 [source,perl6]
 .Expliciete teruggave
@@ -1361,19 +1361,10 @@ say "7 gekwadrateerd is gelijk aan " ~ kwadrateer(7);
 In een van de vorige voorbeelden hebben we gezien dat we parameters kunnen beperken tot een bepaald type.
 Hetzelfde kan worden gedaan met waarden die we teruggeven.
 
-Om de teruggeven waarde te beperken tot een bepaald type kunnen we of de `returns` eigenschap gebruiken, of de pijlnotatie `-\->` in de signatuur gebruiken.
+Om de teruggeven waarde te beperken tot een bepaald type, kunnen we de pijlnotatie `-\->` in de signatuur gebruiken.
 
 [source,perl6]
-.Gebruik van de returns eigenschap
-----
-sub kwadrateer ($x) returns Int {
-    return $x ** 2;
-}
-say "1.2 gekwadrateerd is gelijk aan " ~ kwadrateer(1.2);
-----
-
-[source,perl6]
-.Gebruik van de pijlnotatie
+.Beperken van mogelijke waarden
 ----
 sub kwadrateer ($x --> Int) {
     return $x ** 2;
@@ -1445,9 +1436,6 @@ Het resultaat is dat alle elementen van het array zijn gekwadrateerd.
 
 Merk op dat als we een subroutine als argument willen doorgeven, we een `&` voor de naam moeten zetten.
 
-=== Closure
-Alle code objecten in Raku zijn zogenaamde `closures`, hetgeen betekent dat ze kunnen refereren aan lokale variabelen die zichtbaar zijn buiten het directe eigen bereik.
-
 === Anonieme Functies
 Een *anonieme functie* wordt ook wel een *lambda* genoemd. +
 Een anonieme functie is niet bekend onder een naam (want die heeft het niet).
@@ -1456,7 +1444,7 @@ Laten we het `map` voorbeeld herschrijven met een anonieme functie
 [source,perl6]
 ----
 my @array = <1 2 3 4 5>;
-say map(-> $x {$x ** 2},@array);
+say map(-> $x { $x ** 2 },@array);
 ----
 Merk op dat in plaats van een subroutine te declareren en het door middel van de naam als argument aan `map` door te geven, we het direct in de aanroep definiëren. +
 De anonieme subroutine `\-> $x { $x ** 2 }` kan niet als zodanig worden aangeroepen want het heeft geen naam.
@@ -1555,7 +1543,7 @@ Dit is erg practisch want daardoor hoeven we geen `for` lus te schrijven om over
 
 WARNING: Raku garandeert dat de volgorde van de resultaten hetzelfde is als de volgorde van de originele waarden. +
 Maar er is *geen garantie* dat Raku de methoden in de zelfde volgorde of in dezelfde thread zal uitvoeren. +
-Men moet dus voorzichtig zijn bij het aanroepen van methoden met neveneffecten, zoals `say` (waarbij het neveneffect het tonen van de waarden is).
+Men moet dus voorzichtig zijn bij het aanroepen van methoden met neveneffecten, zoals `say` of `print` (waarbij het neveneffect het tonen van de waarden is).
 
 === Juncties
 Een *junctie* is een logische superpositie van waarden.
@@ -1644,6 +1632,57 @@ my $luielijst = (0, { $_ + 3 } ...^ * > 10);
 say $luielijst;
 ----
 ====
+
+=== Closures
+Alle code objecten in Raku zijn zogenaamde `closures`, hetgeen betekent dat ze kunnen refereren aan lokale variabelen die zichtbaar zijn buiten het directe eigen bereik.
+
+[source,perl6]
+----
+sub maak-begroeting {
+    my $naam = "John Jansen";
+    sub begroeting {
+      say "Goede morgen $naam";
+    };
+    return &begroeting;
+}
+my $groeter = maak-begroeting;
+$groeter();
+----
+
+Indien je het bovenstaande programmaatje uitvoert, dan zal het `Goede morgen John Jansen` op het scherm tonen. +
+Dit is een tamelijk simpel voorbeeld.  Het interessante aan dit voorbeeld is dat de `begroeting` (binnenste) subroutine teruggegeven were door de buitenste subroutine voordat het uitgevoerd werd.
+
+`$groeter` is nu een *closure* geworden.
+
+Een *closure* is een speciaal soort object dat twee zaken combineert:
+
+* Een subroutine
+
+* De omgeving waarin deze subroutine werd aangemaakt.
+
+Die omgeving bestaat uit elke lokale variabele die "zichtbaar" (in-scope) was op het moment dat de closure werd aangemaakt.
+In dit geval, `$groeter` is een closure waarin zich zowel de `begroeting` subroutine bevat als ook de `John Jansen` string die bestond toen de closure werd aangemaakt.
+
+Laten we eens naar een interessanter voorbeeld kijken:
+[source,perl6]
+----
+sub groeter-generator($periode) {
+  return sub ($naam) {
+    return "Goede $periode $naam"
+  }
+}
+my $smorgens = groeter-generator("morgen");
+my $savonds  = groeter-generator("avond");
+
+say $smorgens("John");
+say $savonds("Jane");
+----
+In dit voorbeeld hebben we een subroutine `groeter-generator($periode)` gemaakt die één enkel argument `$periode` verwacht, en een nieuwe subroutine teruggeeft.  Deze subroutine verwacht één enkel argument `$naam` waarmee de begroeting wordt geconstrueerd die wordt teruggegeven.
+
+In feite is `groeter-generator` een subroutine fabriek.  In dit voorbeeld gebruiken we deze `groeter-generator` om twee nieuwe subroutines aan te maken.  De ene zegt `Goede morgen`, en de andere zegt `Goede avond`.
+
+`$smorgens` en `$savonds` zijn allebei closures.  Ze delen dezelfde subroutine definitie, maar hebben verschillende omgevingen. +
+In de omgeving van `$smorgens` heeft `$periode` de waarde `morgen`.  In de omgeving van `$savonds` heeft `$periode` de waarde `avond`.
 
 == Klassen en Objecten
 In het vorige hoofdstuk hebben we geleerd hoe Raku het gemakkelijker maakt om Functioneel te Programmeren. +
