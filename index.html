@@ -1912,14 +1912,14 @@ For the complete Array reference, see <a href="https://docs.raku.org/type/Array"
 <div class="listingblock">
 <div class="title">A Hash is a set of Key/Value pairs.</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">%capitals</span> = (<span class="tok-s">&#39;UK&#39;</span>,<span class="tok-s">&#39;London&#39;</span>,<span class="tok-s">&#39;Germany&#39;</span>,<span class="tok-s">&#39;Berlin&#39;</span>);
+<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">%capitals</span> = <span class="tok-s">&#39;UK&#39;</span>,<span class="tok-s">&#39;London&#39;</span>,<span class="tok-s">&#39;Germany&#39;</span>,<span class="tok-s">&#39;Berlin&#39;</span>;
 <span class="tok-nb">say</span> <span class="tok-nv">%capitals</span>;</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title">Another succinct way of filling the hash:</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">%capitals</span> = (<span class="tok-n">UK</span> =&gt; <span class="tok-s">&#39;London&#39;</span>, <span class="tok-n">Germany</span> =&gt; <span class="tok-s">&#39;Berlin&#39;</span>);
+<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">%capitals</span> = <span class="tok-n">UK</span> =&gt; <span class="tok-s">&#39;London&#39;</span>, <span class="tok-n">Germany</span> =&gt; <span class="tok-s">&#39;Berlin&#39;</span>;
 <span class="tok-nb">say</span> <span class="tok-nv">%capitals</span>;</code></pre>
 </div>
 </div>
@@ -1929,7 +1929,7 @@ For the complete Array reference, see <a href="https://docs.raku.org/type/Array"
 <div class="listingblock">
 <div class="title"><code>Script</code></div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">%capitals</span> = (<span class="tok-n">UK</span> =&gt; <span class="tok-s">&#39;London&#39;</span>, <span class="tok-n">Germany</span> =&gt; <span class="tok-s">&#39;Berlin&#39;</span>);
+<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">%capitals</span> = <span class="tok-n">UK</span> =&gt; <span class="tok-s">&#39;London&#39;</span>, <span class="tok-n">Germany</span> =&gt; <span class="tok-s">&#39;Berlin&#39;</span>;
 <span class="tok-nv">%capitals</span>.<span class="tok-n">push:</span> (<span class="tok-n">France</span> =&gt; <span class="tok-s">&#39;Paris&#39;</span>);
 <span class="tok-nb">say</span> <span class="tok-nv">%capitals</span>.<span class="tok-nb">kv</span>;
 <span class="tok-nb">say</span> <span class="tok-nv">%capitals</span>.<span class="tok-nb">keys</span>;
@@ -2036,11 +2036,11 @@ When we tried to assign an (Str) to it, it failed.</p>
 <span class="tok-nb">say</span> <span class="tok-nv">@multilingual</span>;
 <span class="tok-nb">say</span> <span class="tok-nv">@multilingual</span>.<span class="tok-nb">WHAT</span>;
 
-<span class="tok-k">my</span> <span class="tok-nb">Str</span> <span class="tok-nv">%capitals</span> = (<span class="tok-n">UK</span> =&gt; <span class="tok-s">&#39;London&#39;</span>, <span class="tok-n">Germany</span> =&gt; <span class="tok-s">&#39;Berlin&#39;</span>);
+<span class="tok-k">my</span> <span class="tok-nb">Str</span> <span class="tok-nv">%capitals</span> = <span class="tok-n">UK</span> =&gt; <span class="tok-s">&#39;London&#39;</span>, <span class="tok-n">Germany</span> =&gt; <span class="tok-s">&#39;Berlin&#39;</span>;
 <span class="tok-nb">say</span> <span class="tok-nv">%capitals</span>;
 <span class="tok-nb">say</span> <span class="tok-nv">%capitals</span>.<span class="tok-nb">WHAT</span>;
 
-<span class="tok-k">my</span> <span class="tok-nb">Int</span> <span class="tok-nv">%country-codes</span> = (<span class="tok-n">UK</span> =&gt; <span class="tok-mi">44</span>, <span class="tok-n">Germany</span> =&gt; <span class="tok-mi">49</span>);
+<span class="tok-k">my</span> <span class="tok-nb">Int</span> <span class="tok-nv">%country-codes</span> = <span class="tok-n">UK</span> =&gt; <span class="tok-mi">44</span>, <span class="tok-n">Germany</span> =&gt; <span class="tok-mi">49</span>;
 <span class="tok-nb">say</span> <span class="tok-nv">%country-codes</span>;
 <span class="tok-nb">say</span> <span class="tok-nv">%country-codes</span>.<span class="tok-nb">WHAT</span>;</code></pre>
 </div>
@@ -2473,7 +2473,7 @@ Even if the code and the condition have been inverted, the condition is always e
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">@array</span> = [<span class="tok-mi">1</span>,<span class="tok-mi">2</span>,<span class="tok-mi">3</span>];
+<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">@array</span> = <span class="tok-mi">1</span>,<span class="tok-mi">2</span>,<span class="tok-mi">3</span>;
 
 <span class="tok-k">for</span> <span class="tok-nv">@array</span> -&gt; <span class="tok-nv">$array-item</span> {
   <span class="tok-nb">say</span> <span class="tok-nv">$array-item</span> * <span class="tok-mi">100</span>
@@ -2934,19 +2934,10 @@ This can be done using the <code>return</code> keyword.</p>
 The same can be done with return values.</p>
 </div>
 <div class="paragraph">
-<p>To restrict the return value to a certain type, we either use the <code>returns</code> trait or the arrow notation <code>--&gt;</code> in the signature.</p>
+<p>To restrict the return value to a certain type, we use the arrow notation <code>--&gt;</code> in the signature.</p>
 </div>
 <div class="listingblock">
-<div class="title">Using the returns trait</div>
-<div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">sub</span> <span class="tok-n">squared</span> (<span class="tok-nv">$x</span>) <span class="tok-k">returns</span> <span class="tok-nb">Int</span> {
-  <span class="tok-k">return</span> <span class="tok-nv">$x</span> ** <span class="tok-mi">2</span>;
-}
-<span class="tok-nb">say</span> <span class="tok-s">&quot;1.2 squared is equal to &quot;</span> ~ <span class="tok-n">squared</span>(<span class="tok-mf">1.2</span>);</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">Using the arrow</div>
+<div class="title">Indicating return type</div>
 <div class="content">
 <pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">sub</span> <span class="tok-n">squared</span> (<span class="tok-nv">$x</span> --&gt; <span class="tok-nb">Int</span>) {
   <span class="tok-k">return</span> <span class="tok-nv">$x</span> ** <span class="tok-mi">2</span>;
@@ -5085,7 +5076,7 @@ At this stage, it is important to note that parallelism can mean one of two thin
 <h4 id="_data_parallelism">14.1.1. Data Parallelism</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">@array</span> = (<span class="tok-mi">0</span><span class="tok-o">..</span><span class="tok-mi">50000</span>);                     <span class="tok-c1"># Array population</span>
+<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">@array</span> = <span class="tok-mi">0</span><span class="tok-o">..</span><span class="tok-mi">50000</span>;                       <span class="tok-c1"># Array population</span>
 <span class="tok-k">my</span> <span class="tok-nv">@result</span> = <span class="tok-nv">@array</span>.<span class="tok-nb">map</span>({ <span class="tok-n">is-prime</span> <span class="tok-nv">$_</span> });   <span class="tok-c1"># call is-prime for each array element</span>
 <span class="tok-nb">say</span> <span class="tok-n">now</span> - <span class="tok-k">INIT</span> <span class="tok-n">now</span>;                         <span class="tok-c1"># Output the time it took for the script to complete</span></code></pre>
 </div>
@@ -5099,7 +5090,7 @@ The <code>is-prime</code> subroutine is being called for each array element sequ
 <div class="listingblock">
 <div class="title">Fortunately we can call <code>is-prime</code> on multiple array elements at the same time:</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">@array</span> = (<span class="tok-mi">0</span><span class="tok-o">..</span><span class="tok-mi">50000</span>);                         <span class="tok-c1"># Array population</span>
+<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">@array</span> = <span class="tok-mi">0</span><span class="tok-o">..</span><span class="tok-mi">50000</span>;                           <span class="tok-c1"># Array population</span>
 <span class="tok-k">my</span> <span class="tok-nv">@result</span> = <span class="tok-nv">@array</span>.<span class="tok-n">race</span>.<span class="tok-nb">map</span>({ <span class="tok-n">is-prime</span> <span class="tok-nv">$_</span> });  <span class="tok-c1"># call is-prime for each array element</span>
 <span class="tok-nb">say</span> <span class="tok-n">now</span> - <span class="tok-k">INIT</span> <span class="tok-n">now</span>;                             <span class="tok-c1"># Output the time it took to complete</span></code></pre>
 </div>
@@ -5124,7 +5115,7 @@ This method will enable parallel iteration of the array elements.</p>
 <div class="listingblock">
 <div class="title">race</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">@array</span> = (<span class="tok-mi">1</span><span class="tok-o">..</span><span class="tok-mi">1000</span>);
+<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">@array</span> = <span class="tok-mi">1</span><span class="tok-o">..</span><span class="tok-mi">1000</span>;
 <span class="tok-k">my</span> <span class="tok-nv">@result</span> = <span class="tok-nv">@array</span>.<span class="tok-n">race</span>.<span class="tok-nb">map</span>( {<span class="tok-nv">$_</span> + <span class="tok-mi">1</span>} );
 .<span class="tok-nb">say</span> <span class="tok-k">for</span> <span class="tok-nv">@result</span>;</code></pre>
 </div>
@@ -5132,7 +5123,7 @@ This method will enable parallel iteration of the array elements.</p>
 <div class="listingblock">
 <div class="title">hyper</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">@array</span> = (<span class="tok-mi">1</span><span class="tok-o">..</span><span class="tok-mi">1000</span>);
+<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">@array</span> = <span class="tok-mi">1</span><span class="tok-o">..</span><span class="tok-mi">1000</span>;
 <span class="tok-k">my</span> <span class="tok-nv">@result</span> = <span class="tok-nv">@array</span>.<span class="tok-nb">hyper</span>.<span class="tok-nb">map</span>( {<span class="tok-nv">$_</span> + <span class="tok-mi">1</span>} );
 .<span class="tok-nb">say</span> <span class="tok-k">for</span> <span class="tok-nv">@result</span>;</code></pre>
 </div>
@@ -5149,8 +5140,8 @@ This method will enable parallel iteration of the array elements.</p>
 <h4 id="_task_parallelism">14.1.2. Task Parallelism</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">@array1</span> = (<span class="tok-mi">0</span><span class="tok-o">..</span><span class="tok-mi">49999</span>);
-<span class="tok-k">my</span> <span class="tok-nv">@array2</span> = (<span class="tok-mi">2</span><span class="tok-o">..</span><span class="tok-mi">50001</span>);
+<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">@array1</span> = <span class="tok-mi">0</span><span class="tok-o">..</span><span class="tok-mi">49999</span>;
+<span class="tok-k">my</span> <span class="tok-nv">@array2</span> = <span class="tok-mi">2</span><span class="tok-o">..</span><span class="tok-mi">50001</span>;
 
 <span class="tok-k">my</span> <span class="tok-nv">@result1</span> = <span class="tok-nv">@array1</span>.<span class="tok-nb">map</span>( {<span class="tok-n">is-prime</span>(<span class="tok-nv">$_</span> + <span class="tok-mi">1</span>)} );
 <span class="tok-k">my</span> <span class="tok-nv">@result2</span> = <span class="tok-nv">@array2</span>.<span class="tok-nb">map</span>( {<span class="tok-n">is-prime</span>(<span class="tok-nv">$_</span> - <span class="tok-mi">1</span>)} );
@@ -5184,8 +5175,8 @@ and then evaluates <code>@array2.map( {is-prime($_ - 1)} )</code></p>
 <div class="listingblock">
 <div class="title">Why not do both in parallel?</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">@array1</span> = (<span class="tok-mi">0</span><span class="tok-o">..</span><span class="tok-mi">49999</span>);
-<span class="tok-k">my</span> <span class="tok-nv">@array2</span> = (<span class="tok-mi">2</span><span class="tok-o">..</span><span class="tok-mi">50001</span>);
+<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">@array1</span> = <span class="tok-mi">0</span><span class="tok-o">..</span><span class="tok-mi">49999</span>;
+<span class="tok-k">my</span> <span class="tok-nv">@array2</span> = <span class="tok-mi">2</span><span class="tok-o">..</span><span class="tok-mi">50001</span>;
 
 <span class="tok-k">my</span> <span class="tok-nv">$promise1</span> = <span class="tok-n">start</span> <span class="tok-nv">@array1</span>.<span class="tok-nb">map</span>( {<span class="tok-n">is-prime</span>(<span class="tok-nv">$_</span> + <span class="tok-mi">1</span>)} ).<span class="tok-nb">eager</span>;
 <span class="tok-k">my</span> <span class="tok-nv">$promise2</span> = <span class="tok-n">start</span> <span class="tok-nv">@array2</span>.<span class="tok-nb">map</span>( {<span class="tok-n">is-prime</span>(<span class="tok-nv">$_</span> - <span class="tok-mi">1</span>)} ).<span class="tok-nb">eager</span>;
@@ -5568,7 +5559,7 @@ This should be your go to place for any enquiry: <a href="https://raku.org/commu
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2019-11-17 09:40:26 +0200
+Last updated 2019-11-17 09:50:26 +0200
 </div>
 </div>
 <style>
