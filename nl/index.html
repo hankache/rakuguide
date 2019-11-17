@@ -16,10 +16,10 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.10">
-<meta name="description" content="Een algemene inleiding van Perl 6">
-<meta name="keywords" content="perl6, perl 6, inleiding, perl6intro, perl 6 inleiding, perl 6 tutorial, perl 6 intro">
+<meta name="description" content="Een algemene inleiding van Raku">
+<meta name="keywords" content="perl6, perl 6, inleiding, perl6intro, perl 6 inleiding, perl 6 tutorial, perl 6 intro, raku, raku inleiding, raku tutorial">
 <meta name="author" content="Naoum Hankache, Elizabeth Mattijsen">
-<title>Perl 6 Inleiding</title>
+<title>Raku Inleiding</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /* Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -453,7 +453,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="book toc2 toc-left">
 <div id="header">
-<h1>Perl 6 Inleiding</h1>
+<h1>Raku Inleiding</h1>
 <div class="details">
 <span id="author" class="author">Naoum Hankache</span><br>
 <span id="email" class="email"><a href="mailto:naoum@hankache.com">naoum@hankache.com</a></span><br>
@@ -465,10 +465,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <ul class="sectlevel1">
 <li><a href="#_inleiding">1. Inleiding</a>
 <ul class="sectlevel2">
-<li><a href="#_wat_is_perl_6">1.1. Wat is Perl 6</a></li>
+<li><a href="#_wat_is_raku">1.1. Wat is Raku</a></li>
 <li><a href="#_jargon">1.2. Jargon</a></li>
-<li><a href="#_installeren_van_perl_6">1.3. Installeren van Perl 6</a></li>
-<li><a href="#_uitvoeren_van_perl_6_code">1.4. Uitvoeren van Perl 6 code</a></li>
+<li><a href="#_installeren_van_raku">1.3. Installeren van Raku</a></li>
+<li><a href="#_uitvoeren_van_raku_code">1.4. Uitvoeren van Raku code</a></li>
 <li><a href="#_bewerkingsprogrammas_editors">1.5. Bewerkingsprogramma&#8217;s (Editors)</a></li>
 <li><a href="#_hello_world">1.6. Hello World!</a></li>
 <li><a href="#_syntax_overview">1.7. Syntax overview</a></li>
@@ -523,13 +523,13 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_functioneel_programmeren">8. Functioneel Programmeren</a>
 <ul class="sectlevel2">
 <li><a href="#_functies_zijn_ook_objecten">8.1. Functies zijn ook objecten.</a></li>
-<li><a href="#_closure">8.2. Closure</a></li>
-<li><a href="#_anonieme_functies">8.3. Anonieme Functies</a></li>
-<li><a href="#_aankoppelen">8.4. Aankoppelen</a></li>
-<li><a href="#_aanvoer_operator">8.5. Aanvoer Operator</a></li>
-<li><a href="#_hyper_operator">8.6. Hyper Operator</a></li>
-<li><a href="#_juncties">8.7. Juncties</a></li>
-<li><a href="#_luie_lijsten">8.8. Luie Lijsten</a></li>
+<li><a href="#_anonieme_functies">8.2. Anonieme Functies</a></li>
+<li><a href="#_aankoppelen">8.3. Aankoppelen</a></li>
+<li><a href="#_aanvoer_operator">8.4. Aanvoer Operator</a></li>
+<li><a href="#_hyper_operator">8.5. Hyper Operator</a></li>
+<li><a href="#_juncties">8.6. Juncties</a></li>
+<li><a href="#_luie_lijsten">8.7. Luie Lijsten</a></li>
+<li><a href="#_closures">8.8. Closures</a></li>
 </ul>
 </li>
 <li><a href="#_klassen_en_objecten">9. Klassen en Objecten</a>
@@ -564,7 +564,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_voorbeeld">11.8. Voorbeeld</a></li>
 </ul>
 </li>
-<li><a href="#_perl_6_modules">12. Perl 6 Modules</a>
+<li><a href="#_raku_modules">12. Raku Modules</a>
 <ul class="sectlevel2">
 <li><a href="#_gebruiken_van_modules">12.1. Gebruiken van Modules</a></li>
 </ul>
@@ -588,21 +588,20 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Dit document is bedoeld om je een kort overzicht te geven van de Perl 6 programmeertaal.
-Het is zo opgezet dat je snel leert iets met Perl 6 te kunnen doen.</p>
+<p>Dit document is bedoeld om je een kort overzicht te geven van de Raku programmeertaal.  Het is zo opgezet dat je snel leert iets met Raku te kunnen doen.</p>
 </div>
 <div class="paragraph">
-<p>Sommige onderdelen van dit document verwijzen aan (completere en preciezere) delen van de (Engelstalige) <a href="https://docs.perl6.org">Perl 6 documentatie</a>.
-Als je meer informatie over een bepaald onderwerp nodig hebt, is dat de beste plaats om die te vinden.</p>
+<p>Sommige onderdelen van dit document verwijzen naar (completere en preciezere) delen van de (Engelstalige) <a href="https://docs.raku.org">Raku documentatie</a>.  Als je meer informatie over een bepaald onderwerp nodig hebt, is dat de beste plaats om die te vinden.</p>
 </div>
 <div class="paragraph">
-<p>Je zult voorbeelden vinden bij de meeste onderwerpen in dit document.
-Neem de tijd om ze allemaal uit te proberen om ze beter te begrijpen.</p>
+<p>Je zult voorbeelden vinden bij de meeste onderwerpen in dit document.  Neem de tijd om ze allemaal uit te proberen om ze beter te begrijpen.</p>
 </div>
 <div class="paragraph">
 <div class="title">Licentie</div>
-<p>De inhoud is gelicenseerd met de Creative Commons Attribution-ShareAlike 4.0 International License.
-Om deze in te zien, ga naar</p>
+<p>De inhoud is gelicenseerd met de Creative Commons Attribution-ShareAlike 4.0 International License.</p>
+</div>
+<div class="paragraph">
+<p>Om deze in te zien, ga naar</p>
 </div>
 <div class="ulist">
 <ul>
@@ -618,13 +617,13 @@ Om deze in te zien, ga naar</p>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="https://github.com/hankache/perl6intro" class="bare">https://github.com/hankache/perl6intro</a></p>
+<p><a href="https://github.com/hankache/rakuguide" class="bare">https://github.com/hankache/rakuguide</a></p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
 <div class="title">Feedback</div>
-<p>Alle feedback is welkom:</p>
+<p>Alle commentaar is welkom:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -632,7 +631,7 @@ Om deze in te zien, ga naar</p>
 <p><a href="mailto:naoum@hankache.com">naoum@hankache.com</a> - Engels</p>
 </li>
 <li>
-<p><a href="mailto:perl6intro@liz.nl">perl6intro@liz.nl</a> - Nederlands</p>
+<p><a href="mailto:rakuguide@liz.nl">rakuguide@liz.nl</a> - Nederlands</p>
 </li>
 </ul>
 </div>
@@ -642,19 +641,17 @@ Om deze in te zien, ga naar</p>
 <h2 id="_inleiding">1. Inleiding</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_wat_is_perl_6">1.1. Wat is Perl 6</h3>
+<h3 id="_wat_is_raku">1.1. Wat is Raku</h3>
 <div class="paragraph">
-<p>Perl 6 is een hogere programmeertaal voor algemeen gebruik met graduele typering.
-In Perl 6 kan met diverse paradigma&#8217;s geprogrammeerd worden.  Ondersteund worden onder andere procedureel, object-georiënteerd en functioneel programmeren.</p>
+<p>Raku is een hogere programmeertaal voor algemeen gebruik met graduele typering.
+In Raku kan met diverse paradigma&#8217;s geprogrammeerd worden.  Ondersteund worden
+onder andere procedureel, object-georiënteerd en functioneel programmeren.</p>
 </div>
 <div class="ulist">
-<div class="title">Perl 6 motto:</div>
+<div class="title">Raku motto:</div>
 <ul>
 <li>
 <p>TIMTOWTDI (uitgesproken "Timtoodi", oftewel "TimToady" in het Engels): There Is More Than One Way To Do It. (Er is meer dan één manier om het te doen)</p>
-</li>
-<li>
-<p>Gemakkelijke dingen moeten gemakkelijk blijven, moeilijke dingen moeten gemakkelijker worden en onmogelijke dingen moeten slechts moeilijk zijn.</p>
 </li>
 </ul>
 </div>
@@ -664,40 +661,37 @@ In Perl 6 kan met diverse paradigma&#8217;s geprogrammeerd worden.  Ondersteund 
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Perl 6</strong>: Is een taalspecificatie met een verzameling tests.
-Een implementatie van Perl 6 die al deze tests succesvol kan uitvoeren, mag zich een "Perl 6" implementatie noemen.</p>
+<p><strong>Raku</strong>: Is een taalspecificatie met een verzameling tests.
+Een implementatie van Raku die al deze tests succesvol kan uitvoeren, mag zich een implementatie "Raku" noemen.</p>
 </li>
 <li>
-<p><strong>Rakudo</strong>: Is een compiler voor Perl 6.</p>
+<p><strong>Rakudo</strong>: Is een compiler voor Raku.</p>
 </li>
 <li>
-<p><strong>Rakudobrew</strong>: Is een installatie-manager van Perl 6.</p>
+<p><strong>Zef</strong>: Is een installatie-programma voor Raku modules.</p>
 </li>
 <li>
-<p><strong>Zef</strong>: Is een installatie-programma voor modules.</p>
-</li>
-<li>
-<p><strong>Rakudo Star</strong>: Is een bundel software waarin zich Rakudo, zef, documentatie en een verzameling van Perl 6 modules bevindt.</p>
+<p><strong>Rakudo Star</strong>: Is een bundel software waarin zich Rakudo, zef, documentatie en een verzameling van Raku modules bevindt.</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_installeren_van_perl_6">1.3. Installeren van Perl 6</h3>
+<h3 id="_installeren_van_raku">1.3. Installeren van Raku</h3>
 <div class="paragraph">
 <div class="title">Linux</div>
 <p>Voer de volgende commando&#8217;s uit in een Terminal venster om Rakudo Star te installeren:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-n">wget</span> <span class="tok-n">https:</span>//<span class="tok-n">rakudo</span>.<span class="tok-n">perl6</span>.<span class="tok-n">org</span><span class="tok-o">/</span><span class="tok-n">downloads</span><span class="tok-o">/</span><span class="tok-n">star</span><span class="tok-o">/</span><span class="tok-n">rakudo-star-2019</span><span class="tok-mf">.03</span>.<span class="tok-n">tar</span>.<span class="tok-n">gz</span>
+<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-n">wget</span> <span class="tok-n">https:</span>//<span class="tok-n">rakudo</span>.<span class="tok-n">raku</span>.<span class="tok-n">org</span><span class="tok-o">/</span><span class="tok-n">downloads</span><span class="tok-o">/</span><span class="tok-n">star</span><span class="tok-o">/</span><span class="tok-n">rakudo-star-2019</span><span class="tok-mf">.03</span>.<span class="tok-n">tar</span>.<span class="tok-n">gz</span>
 <span class="tok-n">tar</span> <span class="tok-n">xfz</span> <span class="tok-n">rakudo-star-2019</span><span class="tok-mf">.03</span>.<span class="tok-n">tar</span>.<span class="tok-n">gz</span>
 <span class="tok-n">cd</span> <span class="tok-n">rakudo-star-2019</span><span class="tok-mf">.03</span>
 <span class="tok-nb">perl</span> <span class="tok-n">Configure</span>.<span class="tok-n">pl</span> --<span class="tok-n">gen-moar</span> --<span class="tok-n">make-install</span> --<span class="tok-n">prefix</span> ~/<span class="tok-n">rakudo</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Zie <a href="https://rakudo.org/how-to-get-rakudo/#Installing-Rakud-Star-Linux" class="bare">https://rakudo.org/how-to-get-rakudo/#Installing-Rakud-Star-Linux</a> voor meer opties.</p>
+<p>Zie <a href="https://rakudo.org/how-to-get-rakudo/#Installing-Rakudo-Star-Linux" class="bare">https://rakudo.org/how-to-get-rakudo/#Installing-Rakudo-Star-Linux</a> voor meer opties.</p>
 </div>
 <div class="paragraph">
 <div class="title">MacOS</div>
@@ -744,16 +738,16 @@ Voor 32-bit systemen: Download de meest recente installer (bestand met .msi exte
 </div>
 </div>
 <div class="sect2">
-<h3 id="_uitvoeren_van_perl_6_code">1.4. Uitvoeren van Perl 6 code</h3>
+<h3 id="_uitvoeren_van_raku_code">1.4. Uitvoeren van Raku code</h3>
 <div class="paragraph">
-<p>Je kunt eenvoudig Perl 6 code uitvoeren in de REPL (Read-Eval-Print-Loop, oftewel een lees, evalueer, print, lus).
+<p>Je kunt eenvoudig Raku code uitvoeren in de REPL (Read-Eval-Print-Loop, oftewel een lees, evalueer, print, lus).
 Open daarvoor een terminalvenster, type <code>perl6</code> en druk op [Enter].  Er verschijnt dan een <code>&gt;</code> prompt.
 Vervolgens kun je een regel code intypen en weer op [Enter] drukken.  De REPL zal dan de uiteindelijke waarde van die code laten zien op het scherm.  Je kunt dan weer een regel code intypen, of <code>exit</code> intypen en op [Enter] drukken om de REPL te verlaten.</p>
 </div>
 <div class="paragraph">
 <p>Je kunt je code natuurlijk ook opslaan in een bestand, dat je daarna gaat uitvoeren.
-We raden aan om een Perl 6 script de extensie <code>.pl6</code> te geven, zodat het later te herkennen is als Perl 6 bestand.
-Voer het bestand uit door <code>perl6 bestandsnaam.pl6</code> in het terminal venster in te typen en op [Enter] te drukken.  Anders dan bij de REPL zal die niet automatisch het resultaat van elke regel laten zien: daarvoor moet je een opdracht als <code>say</code> in je programma plaatsen om iets te tonen.</p>
+We raden aan om een Raku script de extensie <code>.raku</code> te geven, zodat het later te herkennen is als Raku bestand.
+Voer het bestand uit door <code>perl6 bestandsnaam.raku</code> in het terminal venster in te typen en op [Enter] te drukken.  Anders dan bij de REPL zal die niet automatisch het resultaat van elke regel laten zien: daarvoor moet je een opdracht als <code>say</code> in je programma plaatsen om iets te tonen.</p>
 </div>
 <div class="paragraph">
 <p>De REPL wordt meestal gebruikt om een specifiek stukje code uit te proberen, meestal niet meer dan één enkele regel.  Voor programma&#8217;s die uit meer dan één regel bestaan, wordt het aangeraden om die regels in een bestand op te slaan en dan dat bestand uit te voeren.</p>
@@ -793,11 +787,11 @@ Voer het volgende commando uit om deze functionaliteit te installeren:</p>
 <div class="sect2">
 <h3 id="_bewerkingsprogrammas_editors">1.5. Bewerkingsprogramma&#8217;s (Editors)</h3>
 <div class="paragraph">
-<p>Aangezien je het grootste deel van je tijd Perl 6 programma&#8217;s in bestanden aan het opslaan bent, is het handig om een goede editor te hebben die Perl 6 syntax herkent.</p>
+<p>Aangezien je het grootste deel van je tijd Raku programma&#8217;s in bestanden aan het opslaan bent, is het handig om een goede editor te hebben die Raku syntax herkent.</p>
 </div>
 <div class="paragraph">
-<p>Ik gebruik <a href="https://atom.io/">Atom</a> en raadt het gebruik daarvan ook aan.  Het is een moderne tekst-editor die standaard uitgeleverd wordt met Perl 6 syntax-markeerder.
-<a href="https://atom.io/packages/language-perl6fe">Perl6-fe</a> is een alternatieve Perl 6 syntax-markeerder voor Atom, afgeleid van het origineel, maar met vele bug-fixes en toevoegingen.</p>
+<p>Ik gebruik <a href="https://atom.io/">Atom</a> en raadt het gebruik daarvan ook aan.  Het is een moderne tekst-editor die standaard uitgeleverd wordt met Raku syntax-markeerder.
+<a href="https://atom.io/packages/language-perl6fe">Perl6-fe</a> is een alternatieve Raku syntax-markeerder voor Atom, afgeleid van het origineel, maar met vele bug-fixes en toevoegingen.</p>
 </div>
 <div class="paragraph">
 <p>Andere mensen in de gemeenschap gebruiken ook <a href="https://www.vim.org/">Vim</a>, <a href="https://www.gnu.org/software/emacs/">Emacs</a> of <a href="http://padre.perlide.org/">Padre</a>.</p>
@@ -828,7 +822,7 @@ Voer het volgende commando uit om deze functionaliteit te installeren:</p>
 <div class="sect2">
 <h3 id="_syntax_overview">1.7. Syntax overview</h3>
 <div class="paragraph">
-<p>Perl 6 kent weinig beperkingen: over het algemeen kun je zoveel spaties (witruimte) gebruiken als je zelf wilt.</p>
+<p>Raku kent weinig beperkingen: over het algemeen kun je zoveel spaties (witruimte) gebruiken als je zelf wilt.  In een aantal gevallen is de witruimte <strong>wel</strong> van belang.</p>
 </div>
 <div class="paragraph">
 <p>Opdrachten bestaan over het algemeen uit een regel code die beëindigd wordt door een punt-komma:
@@ -871,7 +865,7 @@ Voer het volgende commando uit om deze functionaliteit te installeren:</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Prefix</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Voor de term</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Voor een term</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>++1</code></p></td>
 </tr>
 <tr>
@@ -997,7 +991,7 @@ Voer het volgende commando uit om deze functionaliteit te installeren:</p>
 </div>
 </li>
 <li>
-<p>Ingebed (embedded):</p>
+<p>Als onderdeel van een regel (embedded):</p>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-nb">say</span> <span class="tok-cm">#`(Dit is een ingebed commentaar)</span> <span class="tok-s">&quot;Hallo wereld.&quot;</span></code></pre>
@@ -1161,7 +1155,7 @@ Voer het volgende commando uit om deze functionaliteit te installeren:</p>
 <tr>
 <td class="tableblock halign-center valign-middle"><p class="tableblock"><code>!=</code></p></td>
 <td class="tableblock halign-center valign-middle"><p class="tableblock"><code>Infix</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Numeriek ongelijk</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Numeriek niet gelijk</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>9 != 7</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>True</code></p></td>
 </tr>
@@ -1194,6 +1188,21 @@ Voer het volgende commando uit om deze functionaliteit te installeren:</p>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>True</code></p></td>
 </tr>
 <tr>
+<td class="tableblock halign-center valign-middle" rowspan="3"><p class="tableblock"><code>&lt;=&gt;</code></p></td>
+<td class="tableblock halign-center valign-middle" rowspan="3"><p class="tableblock"><code>Infix</code></p></td>
+<td class="tableblock halign-left valign-middle" rowspan="3"><p class="tableblock">Numeriek meer/minder/gelijk</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>1 &lt;=&gt; 1.0</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>Same</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>1 &lt;=&gt; 2</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>Less</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>3 &lt;=&gt; 2</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>More</code></p></td>
+</tr>
+<tr>
 <td class="tableblock halign-center valign-middle"><p class="tableblock"><code>eq</code></p></td>
 <td class="tableblock halign-center valign-middle"><p class="tableblock"><code>Infix</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">String gelijk</p></td>
@@ -1203,9 +1212,63 @@ Voer het volgende commando uit om deze functionaliteit te installeren:</p>
 <tr>
 <td class="tableblock halign-center valign-middle"><p class="tableblock"><code>ne</code></p></td>
 <td class="tableblock halign-center valign-middle"><p class="tableblock"><code>Infix</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">String ongelijk</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">String niet gelijk</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>"Jan" ne "Jolanda"</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>True</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>lt</code></p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>Infix</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">String kleiner dan</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>"a" lt "b"</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>True</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>gt</code></p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>Infix</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">String groter dan</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>"a" gt "b"</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>False</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>le</code></p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>Infix</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">String kleiner dan of gelijk</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>"a" le "a"</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>True</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>ge</code></p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>Infix</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">String groter dan of gelijk</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>"a" ge "b"</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>False</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-middle" rowspan="3"><p class="tableblock"><code>leg</code></p></td>
+<td class="tableblock halign-center valign-middle" rowspan="3"><p class="tableblock"><code>Infix</code></p></td>
+<td class="tableblock halign-left valign-middle" rowspan="3"><p class="tableblock">String meer/minder/gelijk</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>"a" leg "a"</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>Same</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>"a" leg "b"</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>Less</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>"c" leg "b"</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>More</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-middle" rowspan="2"><p class="tableblock"><code>cmp</code></p></td>
+<td class="tableblock halign-center valign-middle" rowspan="2"><p class="tableblock"><code>Infix</code></p></td>
+<td class="tableblock halign-left valign-middle" rowspan="2"><p class="tableblock">Slimme meer/minder/gelijk</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>"a" cmp "b"</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>Less</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>3.5 cmp 2.6</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>More</code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-center valign-middle"><p class="tableblock"><code>=</code></p></td>
@@ -1248,11 +1311,11 @@ Voer het volgende commando uit om deze functionaliteit te installeren:</p>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>True</code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>"Perl 6" ~~ "Perl 6"</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>"Raku" ~~ "Raku"</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>True</code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>"Perl 6" ~~ Str</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>"Raku" ~~ Str</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>True</code></p></td>
 </tr>
 <tr>
@@ -1318,7 +1381,7 @@ Voer het volgende commando uit om deze functionaliteit te installeren:</p>
 <tr>
 <td class="tableblock halign-center valign-middle" rowspan="6"><p class="tableblock"><code>?</code></p></td>
 <td class="tableblock halign-center valign-middle" rowspan="6"><p class="tableblock"><code>Prefix</code></p></td>
-<td class="tableblock halign-left valign-middle" rowspan="6"><p class="tableblock">Forceer naar de boolean waarde</p></td>
+<td class="tableblock halign-left valign-middle" rowspan="6"><p class="tableblock">Forceer naar de logische waarde</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>?0</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>False</code></p></td>
 </tr>
@@ -1345,7 +1408,7 @@ Voer het volgende commando uit om deze functionaliteit te installeren:</p>
 <tr>
 <td class="tableblock halign-center valign-middle"><p class="tableblock"><code>!</code></p></td>
 <td class="tableblock halign-center valign-middle"><p class="tableblock"><code>Prefix</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Forceer naar de tegenovergestelde boolean waarde</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Forceer naar het tegenovergestelde van de logische waarde</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>!4</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>False</code></p></td>
 </tr>
@@ -1484,7 +1547,7 @@ Je maakt een herleidingsoperator door vierkante haken om de operator te plaatsen
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Voor een compleet overzicht van operatoren, inclusief hun prioriteit, ga dan naar <a href="https://docs.perl6.org/language/operators" class="bare">https://docs.perl6.org/language/operators</a>
+Voor een compleet overzicht van operatoren, inclusief hun prioriteit, ga dan naar <a href="https://docs.raku.org/language/operators" class="bare">https://docs.raku.org/language/operators</a>
 </td>
 </tr>
 </table>
@@ -1496,7 +1559,7 @@ Voor een compleet overzicht van operatoren, inclusief hun prioriteit, ga dan naa
 <h2 id="_variabelen">3. Variabelen</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Perl 6 variabelen kunnen worden geclassificeerd in 3 categorieën: Scalars, Arrays en Hashes.</p>
+<p>Raku variabelen kunnen worden geclassificeerd in 3 categorieën: Scalars, Arrays en Hashes.</p>
 </div>
 <div class="paragraph">
 <p>Een <strong>sigil</strong> is een karakter dat als prefix gebruikt wordt om aan te geven in welke categorie een variabele hoort.</p>
@@ -1556,7 +1619,7 @@ Voor een compleet overzicht van operatoren, inclusief hun prioriteit, ga dan naa
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Bekijk <a href="https://docs.perl6.org/type/Str" class="bare">https://docs.perl6.org/type/Str</a> voor de complete lijst van methoden die men op een string kan uitvoeren.
+Bekijk <a href="https://docs.raku.org/type/Str" class="bare">https://docs.raku.org/type/Str</a> voor de complete lijst van methoden die men op een string kan uitvoeren.
 </td>
 </tr>
 </table>
@@ -1580,7 +1643,7 @@ Bekijk <a href="https://docs.perl6.org/type/Str" class="bare">https://docs.perl6
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Bekijk <a href="https://docs.perl6.org/type/Int" class="bare">https://docs.perl6.org/type/Int</a> voor de complete lijst van methoden die men op een geheel getal (integer) kan uitvoeren.
+Bekijk <a href="https://docs.raku.org/type/Int" class="bare">https://docs.raku.org/type/Int</a> voor de complete lijst van methoden die men op een geheel getal (integer) kan uitvoeren.
 </td>
 </tr>
 </table>
@@ -1608,7 +1671,7 @@ Bekijk <a href="https://docs.perl6.org/type/Int" class="bare">https://docs.perl6
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Bekijk <a href="https://docs.perl6.org/type/Rat" class="bare">https://docs.perl6.org/type/Rat</a> voor de complete lijst van methoden die men op een rationeel getal kan uitvoeren.
+Bekijk <a href="https://docs.raku.org/type/Rat" class="bare">https://docs.raku.org/type/Rat</a> voor de complete lijst van methoden die men op een rationeel getal kan uitvoeren.
 </td>
 </tr>
 </table>
@@ -1621,8 +1684,8 @@ Bekijk <a href="https://docs.perl6.org/type/Rat" class="bare">https://docs.perl6
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">@animals</span> = <span class="tok-s">&#39;camel&#39;</span>,<span class="tok-s">&#39;llama&#39;</span>,<span class="tok-s">&#39;owl&#39;</span>;
-<span class="tok-nb">say</span> <span class="tok-nv">@animals</span>;</code></pre>
+<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">@dieren</span> = <span class="tok-s">&#39;kameel&#39;</span>,<span class="tok-s">&#39;lama&#39;</span>,<span class="tok-s">&#39;uil&#39;</span>;
+<span class="tok-nb">say</span> <span class="tok-nv">@dieren</span>;</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1643,17 +1706,17 @@ De tilde <code>~</code> wordt gebruikt om strings aan elkaar te plakken.
 <div class="listingblock">
 <div class="title"><code>Script</code></div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">@animals</span> = <span class="tok-s">&#39;kameel&#39;</span>,<span class="tok-s">&#39;vicuña&#39;</span>,<span class="tok-s">&#39;lama&#39;</span>;
-<span class="tok-nb">say</span> <span class="tok-s">&quot;De dierentuin heeft &quot;</span> ~ <span class="tok-nv">@animals</span>.<span class="tok-nb">elems</span> ~ <span class="tok-s">&quot; dieren&quot;</span>;
-<span class="tok-nb">say</span> <span class="tok-s">&quot;De dieren zijn: &quot;</span> ~ <span class="tok-nv">@animals</span>;
+<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">@dieren</span> = <span class="tok-s">&#39;kameel&#39;</span>,<span class="tok-s">&#39;vicuña&#39;</span>,<span class="tok-s">&#39;lama&#39;</span>;
+<span class="tok-nb">say</span> <span class="tok-s">&quot;De dierentuin heeft &quot;</span> ~ <span class="tok-nv">@dieren</span>.<span class="tok-nb">elems</span> ~ <span class="tok-s">&quot; dieren&quot;</span>;
+<span class="tok-nb">say</span> <span class="tok-s">&quot;De dieren zijn: &quot;</span> ~ <span class="tok-nv">@dieren</span>;
 <span class="tok-nb">say</span> <span class="tok-s">&quot;Ik ga een uil adopteren voor de dierentuin&quot;</span>;
-<span class="tok-nv">@animals</span>.<span class="tok-nb">push</span>(<span class="tok-s">&quot;owl&quot;</span>);
-<span class="tok-nb">say</span> <span class="tok-s">&quot;Nu heeft mijn dierentuin: &quot;</span> ~ <span class="tok-nv">@animals</span>;
-<span class="tok-nb">say</span> <span class="tok-s">&quot;Het eerste dier dat we adopteerden was de &quot;</span> ~ <span class="tok-nv">@animals</span>[<span class="tok-mi">0</span>];
-<span class="tok-nv">@animals</span>.<span class="tok-nb">pop</span>;
-<span class="tok-nb">say</span> <span class="tok-s">&quot;Helaas is de uil ontsnapt, dus hebben we nu alleen nog: &quot;</span> ~ <span class="tok-nv">@animals</span>;
+<span class="tok-nv">@dieren</span>.<span class="tok-nb">push</span>(<span class="tok-s">&quot;owl&quot;</span>);
+<span class="tok-nb">say</span> <span class="tok-s">&quot;Nu heeft mijn dierentuin: &quot;</span> ~ <span class="tok-nv">@dieren</span>;
+<span class="tok-nb">say</span> <span class="tok-s">&quot;Het eerste dier dat we adopteerden was de &quot;</span> ~ <span class="tok-nv">@dieren</span>[<span class="tok-mi">0</span>];
+<span class="tok-nv">@dieren</span>.<span class="tok-nb">pop</span>;
+<span class="tok-nb">say</span> <span class="tok-s">&quot;Helaas is de uil ontsnapt, dus hebben we nu alleen nog: &quot;</span> ~ <span class="tok-nv">@dieren</span>;
 <span class="tok-nb">say</span> <span class="tok-s">&quot;We gaan de dierention sluiten en houden nog maar één dier over&quot;</span>;
-<span class="tok-nb">say</span> <span class="tok-s">&quot;We laten de &quot;</span> ~ <span class="tok-nv">@animals</span>.<span class="tok-nb">splice</span>(<span class="tok-mi">1</span>,<span class="tok-mi">2</span>) ~ <span class="tok-s">&quot; gaan en houden de &quot;</span> ~ <span class="tok-nv">@animals</span>;</code></pre>
+<span class="tok-nb">say</span> <span class="tok-s">&quot;We laten de &quot;</span> ~ <span class="tok-nv">@dieren</span>.<span class="tok-nb">splice</span>(<span class="tok-mi">1</span>,<span class="tok-mi">2</span>) ~ <span class="tok-s">&quot; gaan en houden de &quot;</span> ~ <span class="tok-nv">@dieren</span>;</code></pre>
 </div>
 </div>
 <div class="listingblock">
@@ -1673,7 +1736,7 @@ De tilde <code>~</code> wordt gebruikt om strings aan elkaar te plakken.
 <div class="title">Uitleg</div>
 <p><code>.elems</code> geeft het aantal elementen in een array.<br>
 <code>.push()</code> voegt een element toe aan een array.<br>
-We kunnen een specifiek element van een array bekijken door de positie aan te geven <code>@animals[0]</code>.<br>
+We kunnen een specifiek element van een array bekijken door de positie aan te geven <code>@dieren[0]</code>.<br>
 <code>.pop</code> verwijdert het laatste element van het array.<br>
 <code>.splice(a,b)</code> verwijdert <code>b</code> elementen vanaf positie <code>a</code>.</p>
 </div>
@@ -1736,7 +1799,7 @@ Dit soort arrays verbieden toegang tot niet-bestaande elementen.</p>
 <h4 id="_multidimensionele_arrays">3.2.2. Multidimensionele arrays</h4>
 <div class="paragraph">
 <p>De arrays die we tot nu toe gezien hebben, hadden maar één dimensie.<br>
-We kunnen echter ook arrays met meer dan één dimensie in Perl 6 specificeren.</p>
+We kunnen echter ook arrays met meer dan één dimensie in Raku specificeren.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1782,7 +1845,7 @@ De eerste dimensie kan maximaal 3 waarden hebben, en de tweede dimensie maximaal
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Zie <a href="https://docs.perl6.org/type/Array" class="bare">https://docs.perl6.org/type/Array</a> voor volledige informatie over arrays.
+Zie <a href="https://docs.raku.org/type/Array" class="bare">https://docs.raku.org/type/Array</a> voor volledige informatie over arrays.
 </td>
 </tr>
 </table>
@@ -1794,7 +1857,7 @@ Zie <a href="https://docs.perl6.org/type/Array" class="bare">https://docs.perl6.
 <div class="listingblock">
 <div class="title">Een Hash is een verzameling van naam/waarde paren (key/value pairs)</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">%hoofdsteden</span> = (<span class="tok-s">&#39;VK&#39;</span>,<span class="tok-s">&#39;Londen&#39;</span>,<span class="tok-s">&#39;Duitsland&#39;</span>,<span class="tok-s">&#39;Berlijn&#39;</span>);
+<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">%hoofdsteden</span> = <span class="tok-s">&#39;VK&#39;</span>,<span class="tok-s">&#39;Londen&#39;</span>,<span class="tok-s">&#39;Duitsland&#39;</span>,<span class="tok-s">&#39;Berlijn&#39;</span>;
 <span class="tok-nb">say</span> <span class="tok-nv">%hoofdsteden</span>;</code></pre>
 </div>
 </div>
@@ -1807,7 +1870,7 @@ Zie <a href="https://docs.perl6.org/type/Array" class="bare">https://docs.perl6.
 <div class="listingblock">
 <div class="title">Een andere manier om een hash te vullen:</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">%hoofdsteden</span> = (<span class="tok-n">VK</span> =&gt; <span class="tok-s">&#39;Londen&#39;</span>, <span class="tok-n">Duitsland</span> =&gt; <span class="tok-s">&#39;Berlijn&#39;</span>);
+<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">%hoofdsteden</span> = <span class="tok-n">VK</span> =&gt; <span class="tok-s">&#39;Londen&#39;</span>, <span class="tok-n">Duitsland</span> =&gt; <span class="tok-s">&#39;Berlijn&#39;</span>;
 <span class="tok-nb">say</span> <span class="tok-nv">%hoofdsteden</span>;</code></pre>
 </div>
 </div>
@@ -1823,7 +1886,7 @@ Zie <a href="https://docs.perl6.org/type/Array" class="bare">https://docs.perl6.
 <div class="listingblock">
 <div class="title"><code>Script</code></div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">%hoofdsteden</span> = (<span class="tok-n">VK</span> =&gt; <span class="tok-s">&#39;Londen&#39;</span>, <span class="tok-n">Duitsland</span> =&gt; <span class="tok-s">&#39;Berlijn&#39;</span>);
+<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">%hoofdsteden</span> = <span class="tok-n">VK</span> =&gt; <span class="tok-s">&#39;Londen&#39;</span>, <span class="tok-n">Duitsland</span> =&gt; <span class="tok-s">&#39;Berlijn&#39;</span>;
 <span class="tok-nv">%hoofdsteden</span>.<span class="tok-n">push:</span> (<span class="tok-n">Frankrijk</span> =&gt; <span class="tok-s">&#39;Parijs&#39;</span>);
 <span class="tok-nb">say</span> <span class="tok-nv">%hoofdsteden</span>.<span class="tok-nb">kv</span>;
 <span class="tok-nb">say</span> <span class="tok-nv">%hoofdsteden</span>.<span class="tok-nb">keys</span>;
@@ -1855,7 +1918,7 @@ De waarde behorende bij een gegeven naam kun je opvragen door die naam te specif
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Zie <a href="https://docs.perl6.org/type/Hash" class="bare">https://docs.perl6.org/type/Hash</a> voor alle informatie over hashes.
+Zie <a href="https://docs.raku.org/type/Hash" class="bare">https://docs.raku.org/type/Hash</a> voor alle informatie over hashes.
 </td>
 </tr>
 </table>
@@ -1907,7 +1970,7 @@ Merk op dat we <code>Int</code> voor de naam van de variabele hebben geplaatst.<
 </div>
 </div>
 <div class="paragraph">
-<p>Het zal fout gaan en terug komen met dit foutbericht: <code>Type check failed in assignment to $var; expected Int but got Str</code></p>
+<p>Dit zal fout gaan en terug komen met het foutbericht: <code>Type check failed in assignment to $var; expected Int but got Str</code></p>
 </div>
 <div class="paragraph">
 <p>Wat hier gebeurde is dat we van te voren hadden aangegeven dat de variabele alleen maar (Int) mag accepteren.
@@ -1917,7 +1980,7 @@ Toen we probeerden om er een string (Str) aan toe te wijzen, was dat niet mogeli
 <p>Deze stijl van programmeren wordt "statische typering" (static typing) genoemd.  Statisch omdat het type van variabelen wordt gedefinieerd voordat er aan wordt toegewezen, en deze later niet kan worden veranderd.</p>
 </div>
 <div class="paragraph">
-<p>Perl 6 wordt aangeduid met "graduele typering": het laat namelijk zowel <strong>statische</strong> als <strong>dynamische</strong> typering toe.</p>
+<p>Raku wordt aangeduid met "graduele typering": het laat namelijk zowel <strong>statische</strong> als <strong>dynamische</strong> typering toe.</p>
 </div>
 <div class="listingblock">
 <div class="title">Arrays en hashes kunnen ook statisch getypeerd worden:</div>
@@ -1959,7 +2022,7 @@ Toen we probeerden om er een string (Str) aan toe te wijzen, was dat niet mogeli
 </tr>
 <tr>
 <td class="tableblock halign-center valign-middle"><p class="tableblock"><code>Mu</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>De ultieme basis van de Perl 6 typen hierarchie</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>De ultieme basis van de Raku typen hierarchie</code></p></td>
 <td class="tableblock halign-left valign-middle"></td>
 <td class="tableblock halign-left valign-middle"></td>
 </tr>
@@ -2037,7 +2100,7 @@ Om de waarde uit een variabele te verwijderen, kun je de waarde <code>Nil</code>
 <p>Voordat men een variabele voor de eerste keer kan gebruiken, moet deze worden gedefinieerd.</p>
 </div>
 <div class="paragraph">
-<p>Dit kan op diverse manieren in Perl 6, <code>my</code> is wat we tot nu toe in de bovenstaande voorbeelden hebben gebruikt.</p>
+<p>Dit kan op diverse manieren in Raku, <code>my</code> is wat we tot nu toe in de bovenstaande voorbeelden hebben gebruikt.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2049,8 +2112,8 @@ Om de waarde uit een variabele te verwijderen, kun je de waarde <code>Nil</code>
 In andere woorden, de variabele zal alleen maar toegankelijk zijn in het gebied (scope) waarin het was gedefinieerd.</p>
 </div>
 <div class="paragraph">
-<p>Zo&#8217;n gebied (scope) wordt in Perl 6 begrensd door <code>{ }</code>.
-Een variabele zal alleen toegankelijk zijn in een Perl 6 script als er geen gebiedsbegrenzing gevonden wordt.</p>
+<p>Zo&#8217;n gebied (scope) wordt in Raku begrensd door <code>{ }</code>.
+Een variabele zal toegankelijk zijn in het gehele Raku script als er geen gebiedsbegrenzing gevonden wordt.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2156,7 +2219,7 @@ Een variabele zal alleen toegankelijk zijn in een Perl 6 script als er geen gebi
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Zie <a href="https://docs.perl6.org/language/variables" class="bare">https://docs.perl6.org/language/variables</a> voor meer informatie over variabelen.
+Zie <a href="https://docs.raku.org/language/variables" class="bare">https://docs.raku.org/language/variables</a> voor meer informatie over variabelen.
 </td>
 </tr>
 </table>
@@ -2192,7 +2255,7 @@ Mutators veranderen de toestand van een object <strong>wel</strong>.</p>
 <span class="tok-nb">say</span> <span class="tok-nv">@nummers</span>.<span class="tok-nb">sort</span>; <span class="tok-c1">#2</span>
 <span class="tok-nb">say</span> <span class="tok-nv">@nummers</span>;      <span class="tok-c1">#3</span>
 
-<span class="tok-nv">@nummers</span>.=<span class="tok-nb">sort</span>;
+<span class="tok-nv">@nummers</span> .= <span class="tok-nb">sort</span>;
 <span class="tok-nb">say</span> <span class="tok-nv">@nummers</span>;      <span class="tok-c1">#4</span>
 </pre></td></tr></table></code></pre>
 </div>
@@ -2232,7 +2295,7 @@ Mutators veranderen de toestand van een object <strong>wel</strong>.</p>
 <h2 id="_lussen_en_condities">5. Lussen en condities</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Perl 6 heeft een veelheid aan conditionele- en lusconstructies.</p>
+<p>Raku heeft een veelheid aan conditionele- en lusconstructies.</p>
 </div>
 <div class="sect2">
 <h3 id="_if">5.1. if</h3>
@@ -2249,7 +2312,7 @@ Mutators veranderen de toestand van een object <strong>wel</strong>.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>In Perl 6 kunnen we de volgorde van de code en de conditie omkeren.<br>
+<p>In Raku kunnen we de volgorde van de code en de conditie omkeren.<br>
 Maar zelfs als de volgorde is omgekeerd, zal de conditie altijd eerst worden uitgevoerd.</p>
 </div>
 <div class="listingblock">
@@ -2317,7 +2380,7 @@ Maar zelfs als de volgorde is omgekeerd, zal de conditie altijd eerst worden uit
 </div>
 </div>
 <div class="paragraph">
-<p>Ontkenning (negation) wordt in Perl 6 gedaan met <code>!</code> of <code>not</code>.</p>
+<p>Ontkenning (negation) wordt in Raku gedaan met <code>!</code> of <code>not</code>.</p>
 </div>
 <div class="paragraph">
 <p><code>unless (conditie)</code> kan worden gebruikt in plaats van <code>if not (conditie)</code>.</p>
@@ -2367,7 +2430,7 @@ Je kunt <code>with</code> en <code>orwith</code> zien als een soort <code>if</co
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">@array</span> = [<span class="tok-mi">1</span>,<span class="tok-mi">2</span>,<span class="tok-mi">3</span>];
+<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">@array</span> = <span class="tok-mi">1</span>,<span class="tok-mi">2</span>,<span class="tok-mi">3</span>;
 
 <span class="tok-k">for</span> <span class="tok-nv">@array</span> -&gt; <span class="tok-nv">$array-item</span> {
     <span class="tok-nb">say</span> <span class="tok-nv">$array-item</span> * <span class="tok-mi">100</span>
@@ -2381,7 +2444,7 @@ Je kunt <code>with</code> en <code>orwith</code> zien als een soort <code>if</co
 <div class="sect2">
 <h3 id="_given">5.5. given</h3>
 <div class="paragraph">
-<p><code>given</code> is het Perl 6 equivalent van het <code>switch</code> commando in andere programmeertalen, maar het is veel krachtiger.</p>
+<p><code>given</code> is het Raku equivalent van het <code>switch</code> commando in andere programmeertalen, maar het is veel krachtiger.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2399,7 +2462,7 @@ Je kunt <code>with</code> en <code>orwith</code> zien als een soort <code>if</co
 <p>Het testen van condities stops zodra een conditie van een <code>when</code> waar is geweest.</p>
 </div>
 <div class="paragraph">
-<p>Met <code>proceed</code> kun je in Perl 6 aangeven dat je door wilt gaan met testen van condities nadat een conditie waar was.</p>
+<p>Met <code>proceed</code> kun je in Raku aangeven dat je door wilt gaan met testen van condities nadat een conditie waar was.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2423,7 +2486,7 @@ Je kunt <code>with</code> en <code>orwith</code> zien als een soort <code>if</co
 <p>In feite is <code>loop</code> precies zoals <code>for</code> lussen geschreven worden in de familie C-programmeertalen.</p>
 </div>
 <div class="paragraph">
-<p>Perl 6 hoort bij de familie C-programmeertalen.</p>
+<p>Raku hoort bij de familie C-programmeertalen.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2439,7 +2502,7 @@ Je kunt <code>with</code> en <code>orwith</code> zien als een soort <code>if</co
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Zie <a href="https://docs.perl6.org/language/control" class="bare">https://docs.perl6.org/language/control</a> voor meer informatie over conditionele- en lusconstructies.
+Zie <a href="https://docs.raku.org/language/control" class="bare">https://docs.raku.org/language/control</a> voor meer informatie over conditionele- en lusconstructies.
 </td>
 </tr>
 </table>
@@ -2473,7 +2536,7 @@ Zie <a href="https://docs.perl6.org/language/control" class="bare">https://docs.
 <div class="sect3">
 <h4 id="_print">6.1.2. print</h4>
 <div class="paragraph">
-<p>Aan de andere kant doet <code>print</code> precies hetzelfde, maar het voegt geen regeleinde toe.</p>
+<p>Aan de andere kant doet <code>print</code> precies hetzelfde, maar het voegt <em>geen</em> regeleinde toe.</p>
 </div>
 <div class="paragraph">
 <p>Probeer eens om de <code>say</code> door een <code>print</code> te vervangen en vergelijk de resultaten.</p>
@@ -2491,7 +2554,7 @@ Zie <a href="https://docs.perl6.org/language/control" class="bare">https://docs.
 <span class="tok-nb">say</span> <span class="tok-s">&quot;Hoi, hoe heet je?&quot;</span>;
 <span class="tok-nv">$naam</span> = <span class="tok-n">get</span>;
 
-<span class="tok-nb">say</span> <span class="tok-s">&quot;Welkom bij Perl 6, beste $naam&quot;</span>;</code></pre>
+<span class="tok-nb">say</span> <span class="tok-s">&quot;Welkom bij Raku, beste $naam&quot;</span>;</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2511,7 +2574,7 @@ Vervolgens zal het je begroeten.</p>
 <div class="content">
 <pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">$naam</span> = <span class="tok-n">prompt</span> <span class="tok-s">&quot;Hoi, hoe heet je? &quot;</span>;
 
-<span class="tok-nb">say</span> <span class="tok-s">&quot;Welkom bij Perl 6, beste $naam&quot;</span>;</code></pre>
+<span class="tok-nb">say</span> <span class="tok-s">&quot;Welkom bij Raku, beste $naam&quot;</span>;</code></pre>
 </div>
 </div>
 </div>
@@ -2548,7 +2611,7 @@ Alle meta-karakters worden geïnterpreteerd door de shell, inclusief z.g. "pipes
 </div>
 <div class="paragraph">
 <p><code>echo</code> en <code>ls</code> zijn veel voorkomende commando&#8217;s op Linux/OS X:<br>
-<code>echo</code> drukt de argumenten af (het equivalent van <code>print</code> in Perl 6)<br>
+<code>echo</code> drukt de argumenten af (het equivalent van <code>say</code> in Raku)<br>
 <code>ls</code> laat alle bestanden en directories zien in de huidige directory</p>
 </div>
 <div class="paragraph">
@@ -2604,12 +2667,12 @@ Alle meta-karakters worden geïnterpreteerd door de shell, inclusief z.g. "pipes
 <div class="sect2">
 <h3 id="_werken_met_bestanden_en_directories">6.4. Werken met bestanden en directories</h3>
 <div class="paragraph">
-<p>Perl 6 kan de inhoud van een directory ook direct tonen zonder dat er externe commando&#8217;s voor hoeven te worden uitgevoerd, net zoals in een van de vorige voorbeelden.</p>
+<p>Raku kan de inhoud van een directory ook direct tonen zonder dat er externe commando&#8217;s voor hoeven te worden uitgevoerd, net zoals in een van de vorige voorbeelden.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-nb">say</span> <span class="tok-n">dir</span>;              <span class="tok-c1">#Laat bestanden/directories uit de huidige directory zien</span>
-<span class="tok-nb">say</span> <span class="tok-n">dir</span> <span class="tok-s">&quot;/Documents&quot;</span>; <span class="tok-c1">#Laat bestanden/directories zien van de gegeven directory</span></code></pre>
+<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-nb">say</span> <span class="tok-n">dir</span>;              <span class="tok-c1"># Laat bestanden/directories uit de huidige directory zien</span>
+<span class="tok-nb">say</span> <span class="tok-n">dir</span> <span class="tok-s">&quot;/Documents&quot;</span>; <span class="tok-c1"># Laat bestanden/directories zien van de gegeven directory</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2669,7 +2732,7 @@ Gebruikers van Windows kunnen zowel de <code>/</code> als de <code>\\</code> geb
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Zie <a href="https://docs.perl6.org/type/IO" class="bare">https://docs.perl6.org/type/IO</a> voor meer informatie over invoer en uitvoer.
+Zie <a href="https://docs.raku.org/type/IO" class="bare">https://docs.raku.org/type/IO</a> voor meer informatie over invoer en uitvoer.
 </td>
 </tr>
 </table>
@@ -2751,7 +2814,7 @@ Dit soort subroutines wordt op dezelfde manier gedefinieerd als normale subrouti
 <p>Als een subroutine is gedefinieerd om een argument te accepteren en we roepen het aan zonder dat benodigde argument, dan zal er een fout optreden.</p>
 </div>
 <div class="paragraph">
-<p>Als alternatief biedt Perl 6 de mogelijk om subroutines te definiëren met:</p>
+<p>Als alternatief biedt Raku de mogelijk om subroutines te definiëren met:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -2811,7 +2874,7 @@ Dit wordt aangegeven door een waarde toe te wijzen aan de parameter in de defini
 </div>
 </div>
 <div class="paragraph">
-<p>Zodra je programma groter wordt, is het wellicht een goed idee om <em>expliciet</em> aan te geven wat we terug willen geven.
+<p>Voor de duidelijkheid is het wellicht een goed idee om <em>expliciet</em> aan te geven wat we terug willen geven.
 Dit kunnen we doen met het <code>return</code> sleutelwoord.</p>
 </div>
 <div class="listingblock">
@@ -2830,19 +2893,10 @@ Dit kunnen we doen met het <code>return</code> sleutelwoord.</p>
 Hetzelfde kan worden gedaan met waarden die we teruggeven.</p>
 </div>
 <div class="paragraph">
-<p>Om de teruggeven waarde te beperken tot een bepaald type kunnen we of de <code>returns</code> eigenschap gebruiken, of de pijlnotatie <code>--&gt;</code> in de signatuur gebruiken.</p>
+<p>Om de teruggeven waarde te beperken tot een bepaald type, kunnen we de pijlnotatie <code>--&gt;</code> in de signatuur gebruiken.</p>
 </div>
 <div class="listingblock">
-<div class="title">Gebruik van de returns eigenschap</div>
-<div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">sub</span> <span class="tok-n">kwadrateer</span> (<span class="tok-nv">$x</span>) <span class="tok-k">returns</span> <span class="tok-nb">Int</span> {
-    <span class="tok-k">return</span> <span class="tok-nv">$x</span> ** <span class="tok-mi">2</span>;
-}
-<span class="tok-nb">say</span> <span class="tok-s">&quot;1.2 gekwadrateerd is gelijk aan &quot;</span> ~ <span class="tok-n">kwadrateer</span>(<span class="tok-mf">1.2</span>);</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">Gebruik van de pijlnotatie</div>
+<div class="title">Beperken van mogelijke waarden</div>
 <div class="content">
 <pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">sub</span> <span class="tok-n">kwadrateer</span> (<span class="tok-nv">$x</span> --&gt; <span class="tok-nb">Int</span>) {
     <span class="tok-k">return</span> <span class="tok-nv">$x</span> ** <span class="tok-mi">2</span>;
@@ -2896,7 +2950,7 @@ Hieronder is een aangepaste versie van het vorige voorbeeld die <code>:D</code> 
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Zie <a href="https://docs.perl6.org/language/functions" class="bare">https://docs.perl6.org/language/functions</a> voor meer informatie over subroutines en functies.
+Zie <a href="https://docs.raku.org/language/functions" class="bare">https://docs.raku.org/language/functions</a> voor meer informatie over subroutines en functies.
 </td>
 </tr>
 </table>
@@ -2960,13 +3014,7 @@ Het resultaat is dat alle elementen van het array zijn gekwadrateerd.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_closure">8.2. Closure</h3>
-<div class="paragraph">
-<p>Alle code objecten in Perl 6 zijn zogenaamde <code>closures</code>, hetgeen betekent dat ze kunnen refereren aan lokale variabelen die zichtbaar zijn buiten het directe eigen bereik.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_anonieme_functies">8.3. Anonieme Functies</h3>
+<h3 id="_anonieme_functies">8.2. Anonieme Functies</h3>
 <div class="paragraph">
 <p>Een <strong>anonieme functie</strong> wordt ook wel een <strong>lambda</strong> genoemd.<br>
 Een anonieme functie is niet bekend onder een naam (want die heeft het niet).</p>
@@ -2977,7 +3025,7 @@ Een anonieme functie is niet bekend onder een naam (want die heeft het niet).</p
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">@array</span> = <span class="tok-s">&lt;1 2 3 4 5&gt;</span>;
-<span class="tok-nb">say</span> <span class="tok-nb">map</span>(-&gt; <span class="tok-nv">$x</span> {<span class="tok-nv">$x</span> ** <span class="tok-mi">2</span>},<span class="tok-nv">@array</span>);</code></pre>
+<span class="tok-nb">say</span> <span class="tok-nb">map</span>(-&gt; <span class="tok-nv">$x</span> { <span class="tok-nv">$x</span> ** <span class="tok-mi">2</span> },<span class="tok-nv">@array</span>);</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2985,7 +3033,7 @@ Een anonieme functie is niet bekend onder een naam (want die heeft het niet).</p
 De anonieme subroutine <code>-&gt; $x { $x ** 2 }</code> kan niet als zodanig worden aangeroepen want het heeft geen naam.</p>
 </div>
 <div class="paragraph">
-<p>In Perl 6 noemen we deze notatie een <strong>pointy block</strong>.</p>
+<p>In Raku noemen we deze notatie een <strong>pointy block</strong>.</p>
 </div>
 <div class="listingblock">
 <div class="title">Een pointy block kan ook aan een variabele worden toegekend:</div>
@@ -2998,9 +3046,9 @@ De anonieme subroutine <code>-&gt; $x { $x ** 2 }</code> kan niet als zodanig wo
 </div>
 </div>
 <div class="sect2">
-<h3 id="_aankoppelen">8.4. Aankoppelen</h3>
+<h3 id="_aankoppelen">8.3. Aankoppelen</h3>
 <div class="paragraph">
-<p>In Perl 6 kun je methoden aan elkaar koppelen, zodat je niet langer het resultaat van de aanroep van de ene subroutine als een argument aan een andere hoeft te geven.</p>
+<p>In Raku kun je methoden aan elkaar koppelen, zodat je niet langer het resultaat van de aanroep van de ene subroutine als een argument aan een andere hoeft te geven.</p>
 </div>
 <div class="paragraph">
 <p>Laten we het geval bekijken waarbij we een array met waarden kregen.
@@ -3020,7 +3068,7 @@ Je wordt gevraagd om alle unieke (maar een keer voorkomende) waarden uit het arr
 <p>Eerst roepen we de <code>unique</code> functie aan op <code>@array</code>.  Het resultaat daarvan geven we als argument aan <code>sort</code> en dan geven we het resultaat daarvan door aan <code>reverse</code>.</p>
 </div>
 <div class="paragraph">
-<p>In tegenstelling tot bovenstaand voorbeeld mag je methodes aan elkaar koppelen in Perl 6.<br>
+<p>In tegenstelling tot bovenstaand voorbeeld mag je methodes aan elkaar koppelen in Raku.<br>
 Bovenstaand voorbeeld kan dus als volgt worden geschreven, waarbij we gebruik maken van het <strong>aankoppelen van methoden</strong> (method chaining):</p>
 </div>
 <div class="listingblock">
@@ -3035,7 +3083,7 @@ Bovenstaand voorbeeld kan dus als volgt worden geschreven, waarbij we gebruik ma
 </div>
 </div>
 <div class="sect2">
-<h3 id="_aanvoer_operator">8.5. Aanvoer Operator</h3>
+<h3 id="_aanvoer_operator">8.4. Aanvoer Operator</h3>
 <div class="paragraph">
 <p>De <strong>aanvoer operator</strong>, ook wel <em>pipe</em> genoemd in sommige functioneel programmeertalen, geeft een nog beter visualisatie van het aankoppelen van methoden.</p>
 </div>
@@ -3080,7 +3128,7 @@ De volgorde van de aanroepen van de methoden is van achteren naar voren.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_hyper_operator">8.6. Hyper Operator</h3>
+<h3 id="_hyper_operator">8.5. Hyper Operator</h3>
 <div class="paragraph">
 <p>De <strong>hyper operator</strong> <code>&gt;&gt;.</code> roept de methode aan op elke element van een lijst en geeft een lijst terug met het resultaat van die aanroepen.</p>
 </div>
@@ -3094,7 +3142,7 @@ De volgorde van de aanroepen van de methoden is van achteren naar voren.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Met de hyper operator kunnen we methoden aanroepen die standaard al in Perl 6 zijn gedefinieerd, zoals <code>is-prime</code> dat ons vertelt of een getal een priemgetal is of niet.<br>
+<p>Met de hyper operator kunnen we methoden aanroepen die standaard al in Raku zijn gedefinieerd, zoals <code>is-prime</code> dat ons vertelt of een getal een priemgetal is of niet.<br>
 Daarnaast kun je nieuwe subroutines definiëren en ze aanroepen met de hyper operator.  In dat geval moeten we een <code>&amp;</code> voor de naam plaatsen, bijvoorbeeld <code>is-even</code></p>
 </div>
 <div class="paragraph">
@@ -3107,16 +3155,16 @@ Daarnaast kun je nieuwe subroutines definiëren en ze aanroepen met de hyper ope
 <i class="fa icon-warning" title="Warning"></i>
 </td>
 <td class="content">
-Perl 6 garandeert dat de volgorde van de resultaten hetzelfde is als de volgorde van de originele waarden.<br>
-Maar er is <strong>geen garantie</strong> dat Perl 6 de methoden in de zelfde volgorde of in dezelfde thread zal uitvoeren.<br>
-Men moet dus voorzichtig zijn bij het aanroepen van methoden met neveneffecten, zoals <code>say</code> (waarbij het neveneffect het tonen van de waarden is).
+Raku garandeert dat de volgorde van de resultaten hetzelfde is als de volgorde van de originele waarden.<br>
+Maar er is <strong>geen garantie</strong> dat Raku de methoden in de zelfde volgorde of in dezelfde thread zal uitvoeren.<br>
+Men moet dus voorzichtig zijn bij het aanroepen van methoden met neveneffecten, zoals <code>say</code> of <code>print</code> (waarbij het neveneffect het tonen van de waarden is).
 </td>
 </tr>
 </table>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_juncties">8.7. Juncties</h3>
+<h3 id="_juncties">8.6. Juncties</h3>
 <div class="paragraph">
 <p>Een <strong>junctie</strong> is een logische superpositie van waarden.</p>
 </div>
@@ -3137,7 +3185,7 @@ een opdracht wordt voor elk element van de junctie uitgevoerd en de resultaten d
 </div>
 </div>
 <div class="sect2">
-<h3 id="_luie_lijsten">8.8. Luie Lijsten</h3>
+<h3 id="_luie_lijsten">8.7. Luie Lijsten</h3>
 <div class="paragraph">
 <p>Een <strong>luie lijst</strong> is een lijst die lamlendig wordt geëvalueerd.<br>
 Lamlendig evalueren stelt de evaluatie van een expressie uit totdat deze echt nodig is en probeert herhaalde evaluaties te voorkomen door resultaten op te slaan.</p>
@@ -3192,7 +3240,7 @@ In andere woorden, deze luie lijst zal de volgende waarden teruggeven (als daaro
 </div>
 <div class="paragraph">
 <p>De startelementen zijn 0 en 2 en het eindpunt is 10.
-Er is geen generator aangegeven, maar door de aangegeven startelementen kan Perl 6 deduceren dat de generator (+2) is<br>
+Er is geen generator aangegeven, maar door de aangegeven startelementen kan Raku deduceren dat de generator (+2) is<br>
 Deze luie lijst zal de volgende waarden teruggeven (als daarom wordt gevraagd): (0, 2, 4, 6, 8, 10)</p>
 </div>
 <div class="listingblock">
@@ -3241,14 +3289,84 @@ Je kunt dat lezen als: vanaf 0 tot de eerste waarde die groter is dan 10 (maar s
 </table>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_closures">8.8. Closures</h3>
+<div class="paragraph">
+<p>Alle code objecten in Raku zijn zogenaamde <code>closures</code>, hetgeen betekent dat ze kunnen refereren aan lokale variabelen die zichtbaar zijn buiten het directe eigen bereik.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">sub</span> <span class="tok-n">maak-begroeting</span> {
+    <span class="tok-k">my</span> <span class="tok-nv">$naam</span> = <span class="tok-s">&quot;John Jansen&quot;</span>;
+    <span class="tok-k">sub</span> <span class="tok-n">begroeting</span> {
+      <span class="tok-nb">say</span> <span class="tok-s">&quot;Goede morgen $naam&quot;</span>;
+    };
+    <span class="tok-k">return</span> <span class="tok-nv">&amp;begroeting</span>;
+}
+<span class="tok-k">my</span> <span class="tok-nv">$groeter</span> = <span class="tok-n">maak-begroeting</span>;
+<span class="tok-nv">$groeter</span>();</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Indien je het bovenstaande programmaatje uitvoert, dan zal het <code>Goede morgen John Jansen</code> op het scherm tonen.<br>
+Dit is een tamelijk simpel voorbeeld.  Het interessante aan dit voorbeeld is dat de <code>begroeting</code> (binnenste) subroutine teruggegeven were door de buitenste subroutine voordat het uitgevoerd werd.</p>
+</div>
+<div class="paragraph">
+<p><code>$groeter</code> is nu een <strong>closure</strong> geworden.</p>
+</div>
+<div class="paragraph">
+<p>Een <strong>closure</strong> is een speciaal soort object dat twee zaken combineert:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Een subroutine</p>
+</li>
+<li>
+<p>De omgeving waarin deze subroutine werd aangemaakt.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Die omgeving bestaat uit elke lokale variabele die "zichtbaar" (in-scope) was op het moment dat de closure werd aangemaakt.
+In dit geval, <code>$groeter</code> is een closure waarin zich zowel de <code>begroeting</code> subroutine bevat als ook de <code>John Jansen</code> string die bestond toen de closure werd aangemaakt.</p>
+</div>
+<div class="paragraph">
+<p>Laten we eens naar een interessanter voorbeeld kijken:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">sub</span> <span class="tok-n">groeter-generator</span>(<span class="tok-nv">$periode</span>) {
+  <span class="tok-k">return</span> <span class="tok-k">sub</span> (<span class="tok-nv">$naam</span>) {
+    <span class="tok-k">return</span> <span class="tok-s">&quot;Goede $periode $naam&quot;</span>
+  }
+}
+<span class="tok-k">my</span> <span class="tok-nv">$smorgens</span> = <span class="tok-n">groeter-generator</span>(<span class="tok-s">&quot;morgen&quot;</span>);
+<span class="tok-k">my</span> <span class="tok-nv">$savonds</span>  = <span class="tok-n">groeter-generator</span>(<span class="tok-s">&quot;avond&quot;</span>);
+
+<span class="tok-nb">say</span> <span class="tok-nv">$smorgens</span>(<span class="tok-s">&quot;John&quot;</span>);
+<span class="tok-nb">say</span> <span class="tok-nv">$savonds</span>(<span class="tok-s">&quot;Jane&quot;</span>);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In dit voorbeeld hebben we een subroutine <code>groeter-generator($periode)</code> gemaakt die één enkel argument <code>$periode</code> verwacht, en een nieuwe subroutine teruggeeft.  Deze subroutine verwacht één enkel argument <code>$naam</code> waarmee de begroeting wordt geconstrueerd die wordt teruggegeven.</p>
+</div>
+<div class="paragraph">
+<p>In feite is <code>groeter-generator</code> een subroutine fabriek.  In dit voorbeeld gebruiken we deze <code>groeter-generator</code> om twee nieuwe subroutines aan te maken.  De ene zegt <code>Goede morgen</code>, en de andere zegt <code>Goede avond</code>.</p>
+</div>
+<div class="paragraph">
+<p><code>$smorgens</code> en <code>$savonds</code> zijn allebei closures.  Ze delen dezelfde subroutine definitie, maar hebben verschillende omgevingen.<br>
+In de omgeving van <code>$smorgens</code> heeft <code>$periode</code> de waarde <code>morgen</code>.  In de omgeving van <code>$savonds</code> heeft <code>$periode</code> de waarde <code>avond</code>.</p>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="_klassen_en_objecten">9. Klassen en Objecten</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>In het vorige hoofdstuk hebben we geleerd hoe Perl 6 het gemakkelijker maakt om Functioneel te Programmeren.<br>
-In dit hoofdstuk gaan we kijken naar het object georiënteerd programmeren in Perl 6.</p>
+<p>In het vorige hoofdstuk hebben we geleerd hoe Raku het gemakkelijker maakt om Functioneel te Programmeren.<br>
+In dit hoofdstuk gaan we kijken naar het object georiënteerd programmeren in Raku.</p>
 </div>
 <div class="sect2">
 <h3 id="_inleiding_2">9.1. Inleiding</h3>
@@ -3354,7 +3472,7 @@ Om toegang te verlenen aan de attributen vanaf buiten het object, gebruiken we m
 <p>De subroutine <code>geef-var</code> kan men als een accessor beschouwen.  Het maakt het mogelijk om aan de waarde van de variabele te komen zonder er direct toegang daarvoor nodig te hebben.</p>
 </div>
 <div class="paragraph">
-<p>Inkapseling wordt in Perl 6 mogelijk gemaakt door middel van zogenaamde <strong>twigils</strong>.<br>
+<p>Inkapseling wordt in Raku mogelijk gemaakt door middel van zogenaamde <strong>twigils</strong>.<br>
 Twigils zijn secondaire <em>sigils</em>.  Ze worden tussen de sigil en de naam van het attribuut geplaatst.<br>
 Bij klassen kunnen twee sigils worden gebruikt:</p>
 </div>
@@ -3520,7 +3638,7 @@ Privé methoden moeten worden aangeroepen met een <code>!</code> in plaats van m
     <span class="tok-c1">#code waar het over gaat</span>
 }
 
-<span class="tok-k">method</span> <span class="tok-n">ikbenprivé</span> {
+<span class="tok-k">method</span> <span class="tok-n">ikbenpubliek</span> {
   <span class="tok-k">self</span><span class="tok-o">!</span><span class="tok-n">ikbenprivé</span>;
   <span class="tok-c1">#doe extra dingen</span>
 }</code></pre>
@@ -3560,7 +3678,7 @@ Zij worden aangeroepen op de klasse zelf in plaats van op haar objecten.</p>
 </div>
 <div class="paragraph">
 <p>Maar wat nu als we de waarde van een attribuut willen veranderen?<br>
-In dat geval moeten we die attribuut als <em>lees/schrijf</em> markeren met de sleutelwoorden <code>is rw</code> (read/write)</p>
+In dat geval moeten we die attribuut als <em>lees/schrijf</em> markeren met de sleutelwoorden <code>is rw</code> (read/write).</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -3576,7 +3694,7 @@ In dat geval moeten we die attribuut als <em>lees/schrijf</em> markeren met de s
 </div>
 </div>
 <div class="paragraph">
-<p>Als je bij de definitie niets aangeeft, wordt een attribuut als <em>alleen lezen</em> gedefinieerd, maar je kunt ook expliciet <code>is readonly</code> aangeven</p>
+<p>Als je bij de definitie niets aangeeft, wordt een attribuut als <em>alleen lezen</em> gedefinieerd, maar je kunt ook expliciet <code>is readonly</code> aangeven.</p>
 </div>
 </div>
 <div class="sect2">
@@ -3584,7 +3702,7 @@ In dat geval moeten we die attribuut als <em>lees/schrijf</em> markeren met de s
 <div class="sect3">
 <h4 id="_inleiding_4">9.7.1. Inleiding</h4>
 <div class="paragraph">
-<p><strong>Overerving</strong> is een ander concept van object georiënteerd programmeren.</p>
+<p><strong>Overerving</strong> is een concept van het object georiënteerd programmeren.</p>
 </div>
 <div class="paragraph">
 <p>Wanneer men klassen aan het definiëren is, komt men er snel genoeg achter dat sommige attributen/methoden in vele klassen voorkomen.<br>
@@ -3618,7 +3736,7 @@ Werknemers hebben 4 attributen: naam, leeftijd, bedrijf en salaris</p>
 <p>Hoewel bovenstaande code technisch gezien correct is, is het qua concept van lage kwaliteit.</p>
 </div>
 <div class="paragraph">
-<p>Een beter manier om zoiets te schrijven is als volgt:</p>
+<p>Een betere manier om zoiets te schrijven is:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -3638,7 +3756,7 @@ Werknemers hebben 4 attributen: naam, leeftijd, bedrijf en salaris</p>
 In het taalgebruik van object georiënteerd programmeren, zeggen we dat Werknemer een <strong>kind</strong> is van Mens, en dat Mens de <strong>ouder</strong> is van Werknemer.</p>
 </div>
 <div class="paragraph">
-<p>Alle kinderklassen erven de attributen en methoden van de ouderklasse, zodat het niet nodig is om deze overnieuw te definiëren.</p>
+<p>Alle kinderklassen erven de attributen en methoden van de ouderklasse, zodat het niet nodig is om deze opnieuw te definiëren.</p>
 </div>
 </div>
 <div class="sect3">
@@ -3718,7 +3836,7 @@ Ze worden gedefinieerd met het <code>submethod</code> sleutelwoord.</p>
 <div class="sect2">
 <h3 id="_meervoudige_overerving">9.8. Meervoudige Overerving</h3>
 <div class="paragraph">
-<p>Meervoudige overerving is toegestaan in Perl 6.  Een klasse kan van meer dan één andere klasse erven.</p>
+<p>Meervoudige overerving is toegestaan in Raku.  Een klasse kan van meer dan één andere klasse erven.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -3772,7 +3890,7 @@ Je hebt waarschijnlijk gemerkt dat het aanroepen van de methode <code>plot</code
 Slechts één reeks van waarden werd getoond.<br>
 Waarom gebeurde dit?<br>
 <code>combo-diagram</code> erft van <code>lijndiagram</code> en <code>staafdiagram</code> en beide hebben ze een methode die <code>plot</code> heet.
-Als we die methode op <code>combo-diagram</code> aanroepen zal Perl 6 dit conflict proberen op te lossen door één van de geërfde methoden aan te roepen.</p>
+Als we die methode op <code>combo-diagram</code> aanroepen zal Raku dit conflict proberen op te lossen door één van de geërfde methoden aan te roepen.</p>
 </div>
 <div class="paragraph">
 <div class="title">Correctie</div>
@@ -3998,15 +4116,15 @@ Het geeft de waarde <em>True</em> als het object is aangemaakt met de gegeven kl
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Voor meer informatie over Object Georiënteerd Programmeren in Perl 6, bekijk dan:</p>
+<p>Voor meer informatie over Object Georiënteerd Programmeren in Raku, bekijk dan:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="https://docs.perl6.org/language/classtut" class="bare">https://docs.perl6.org/language/classtut</a></p>
+<p><a href="https://docs.raku.org/language/classtut" class="bare">https://docs.raku.org/language/classtut</a></p>
 </li>
 <li>
-<p><a href="https://docs.perl6.org/language/objects" class="bare">https://docs.perl6.org/language/objects</a></p>
+<p><a href="https://docs.raku.org/language/objects" class="bare">https://docs.raku.org/language/objects</a></p>
 </li>
 </ul>
 </div>
@@ -4130,7 +4248,7 @@ Dat betekent dat we verschillende soorten van exceptions kunnen <em>opvangen</em
 <div class="sect2">
 <h3 id="_het_werpen_van_exceptions">10.2. Het Werpen Van Exceptions</h3>
 <div class="paragraph">
-<p>Naast het vangen van exceptions, laat Perl 6 het ook toe om een exception expliciet te werpen.<br>
+<p>Naast het vangen van exceptions, laat Raku het ook toe om een exception expliciet te werpen.<br>
 Man kan twee soorten van exceptions werpen:</p>
 </div>
 <div class="ulist">
@@ -4175,7 +4293,7 @@ Alle getypeerde exceptions erven van de klasse <code>X</code> , hieronder zie je
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Zie <a href="https://docs.perl6.org/type-exceptions.html" class="bare">https://docs.perl6.org/type-exceptions.html</a> voor een complete lijst van exception types en de daarbij behorende methoden.
+Zie <a href="https://docs.raku.org/type-exceptions.html" class="bare">https://docs.raku.org/type-exceptions.html</a> voor een complete lijst van exception types en de daarbij behorende methoden.
 </td>
 </tr>
 </table>
@@ -4469,7 +4587,7 @@ Unicode eigenschappen worden omgeven door <code>&lt;: &gt;</code></p>
 <div class="listingblock">
 <div class="title">Script</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">if</span> <span class="tok-s">&#39;Rakudo is een Perl 6 compiler&#39;</span> ~~ <span class="tok-sr">m/:s Perl 6/</span> {
+<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">if</span> <span class="tok-s">&#39;Rakudo is een Raku compiler&#39;</span> ~~ <span class="tok-sr">m/:s Raku/</span> {
     <span class="tok-nb">say</span> <span class="tok-s">&quot;Het resultaat is: &quot;</span> ~ <span class="tok-vg">$/</span>;
     <span class="tok-nb">say</span> <span class="tok-s">&quot;De string vóór de gevonden string is: &quot;</span> ~ <span class="tok-vg">$/</span>.<span class="tok-n">prematch</span>;
     <span class="tok-nb">say</span> <span class="tok-s">&quot;De string achter de gevonden string is: &quot;</span> ~ <span class="tok-vg">$/</span>.<span class="tok-n">postmatch</span>;
@@ -4481,7 +4599,7 @@ Unicode eigenschappen worden omgeven door <code>&lt;: &gt;</code></p>
 <div class="listingblock">
 <div class="title">Uitvoer</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-n">Het</span> <span class="tok-n">resultaat</span> <span class="tok-n">is:</span> ｢<span class="tok-n">Perl</span> <span class="tok-mi">6</span>｣
+<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-n">Het</span> <span class="tok-n">resultaat</span> <span class="tok-n">is:</span> ｢<span class="tok-n">Raku</span>｣
 <span class="tok-n">De</span> <span class="tok-n">string</span> <span class="tok-n">vóór</span> <span class="tok-n">de</span> <span class="tok-n">gevonden</span> <span class="tok-n">string</span> <span class="tok-n">is:</span> <span class="tok-n">Rakudo</span> <span class="tok-k">is</span> <span class="tok-n">een</span>
 <span class="tok-n">De</span> <span class="tok-n">string</span> <span class="tok-n">achter</span> <span class="tok-n">de</span> <span class="tok-n">gevonden</span> <span class="tok-n">string</span> <span class="tok-n">is:</span> <span class="tok-n">compiler</span>
 <span class="tok-n">De</span> <span class="tok-n">gevonden</span> <span class="tok-n">string</span> <span class="tok-n">begint</span> <span class="tok-n">op</span> <span class="tok-n">positie:</span> <span class="tok-mi">14</span>
@@ -4506,7 +4624,7 @@ Deze methoden kunnen worden aangeroepen op een <em>Match Object</em>:<br>
 <td class="content">
 Witruimte heeft per default geen betekening in een regex.<br>
 Als we willen vergelijken met een regex die witruimte bevat, dan moeten we dat expliciet aangeven.<br>
-De <code>:s</code> in de regex <code>m/:s Perl 6/</code> geeft aan dat witruimte niet moet worden genegeerd.<br>
+De <code>:s</code> in de regex <code>m/:s Raku/</code> geeft aan dat witruimte niet moet worden genegeerd.<br>
 We zouden de regex ook kunnen hebben schrijven als <code>m/ Perl \s 6 /</code> waarbij we <code>\s</code> als een teken voor witruimte hebben gebruikt, zoals we eerder hebben gezien.<br>
 Als een regex meer dan één witruimte bevat, dan is het gebruik van <code>:s</code> gemakkelijker in plaats van <code>\s</code> te specificeren voor elke witruimte.
 </td>
@@ -4529,7 +4647,7 @@ voornaam [punt] achternaam [bij] bedrijfsnaam [punt] top-niveau (e.g. nl)</p>
 </td>
 <td class="content">
 De regex die in dit voorbeeld wordt gebruikt voor het valideren van een emailadres is niet erg accuraat.<br>
-Het is alleen bedoeld om de functionaliteit van een regex in Perl 6 te tonen.<br>
+Het is alleen bedoeld om de functionaliteit van een regex in Raku te tonen.<br>
 Gebruik deze regex niet in deze vorm in productie.
 </td>
 </tr>
@@ -4538,7 +4656,7 @@ Gebruik deze regex niet in deze vorm in productie.
 <div class="listingblock">
 <div class="title">Script</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">$email</span> = <span class="tok-s">&#39;jan.met@perl6.org&#39;</span>;
+<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">$email</span> = <span class="tok-s">&#39;jan.met@raku.org&#39;</span>;
 <span class="tok-k">my</span> <span class="tok-nv">$regex</span> =<span class="tok-sr"> / &lt;:L&gt;+ \. &lt;:L&gt;+ \@&lt;:L+:N&gt;+ \. &lt;:L&gt;+ /</span>;
 
 <span class="tok-k">if</span> <span class="tok-nv">$email</span> ~~ <span class="tok-nv">$regex</span> {
@@ -4550,7 +4668,7 @@ Gebruik deze regex niet in deze vorm in productie.
 </div>
 <div class="paragraph">
 <div class="title">Uitvoer</div>
-<p><code>jan.met@perl6.org is een gevalideerd emailadres</code></p>
+<p><code>jan.met@raku.org is een gevalideerd emailadres</code></p>
 </div>
 <div class="paragraph">
 <div class="title">Uitleg</div>
@@ -4592,7 +4710,7 @@ Gebruik deze regex niet in deze vorm in productie.
 <div class="listingblock">
 <div class="title">We kunnen een regex ook in aparte regexen op naam opdelen</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">$email</span> = <span class="tok-s">&#39;jan.met@perl6.org&#39;</span>;
+<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">$email</span> = <span class="tok-s">&#39;jan.met@raku.org&#39;</span>;
 <span class="tok-k">my</span> <span class="tok-k">regex</span><span class="tok-n"> veel-letters</span> {<span class="tok-sr"> &lt;:L&gt;+ </span>};
 <span class="tok-k">my</span> <span class="tok-k">regex</span><span class="tok-n"> punt</span> {<span class="tok-sr"> \. </span>};
 <span class="tok-k">my</span> <span class="tok-k">regex</span><span class="tok-n"> bij</span> {<span class="tok-sr"> \@ </span>};
@@ -4616,7 +4734,7 @@ Een regex op naam kan als volgt worden aangeroepen: <code>&lt;regex-naam&gt;</co
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Zie <a href="https://docs.perl6.org/language/regexes" class="bare">https://docs.perl6.org/language/regexes</a> voor meer informatie over regexen.
+Zie <a href="https://docs.raku.org/language/regexes" class="bare">https://docs.raku.org/language/regexes</a> voor meer informatie over regexen.
 </td>
 </tr>
 </table>
@@ -4625,17 +4743,17 @@ Zie <a href="https://docs.perl6.org/language/regexes" class="bare">https://docs.
 </div>
 </div>
 <div class="sect1">
-<h2 id="_perl_6_modules">12. Perl 6 Modules</h2>
+<h2 id="_raku_modules">12. Raku Modules</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Perl 6 is een algemeen toepasbare programmeertaal.  Het kan worden gebruikt om vele taken uit te voeren, zoals:
+<p>Raku is een algemeen toepasbare programmeertaal.  Het kan worden gebruikt om vele taken uit te voeren, zoals:
 manipulatie van tekst, plaatjes, web, databases, netwerkprotocollen, etc.</p>
 </div>
 <div class="paragraph">
 <p>Herbruikbaarheid is een erg belangrijke eigenschap waardoor programmeurs niet telkens het wiel opnieuw hoeven uit te vinden als ze aan een nieuwe taak beginnen.</p>
 </div>
 <div class="paragraph">
-<p>Perl 6 maakt het mogelijk om <strong>modules</strong> aan te maken en die te distribueren.  Elke module is een bundel van functionaliteit die kan worden gebruikt zodra deze is geïnstalleerd.</p>
+<p>Raku maakt het mogelijk om <strong>modules</strong> aan te maken en die te distribueren.  Elke module is een bundel van functionaliteit die kan worden gebruikt zodra deze is geïnstalleerd.</p>
 </div>
 <div class="paragraph">
 <p><em>Zef</em> is een programma om modules te beheren dat deel is van Rakudo Star.</p>
@@ -4653,7 +4771,7 @@ manipulatie van tekst, plaatjes, web, databases, netwerkprotocollen, etc.</p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Een overzicht van beschikbare Perl 6 modules is te vinden op: <a href="https://modules.perl6.org/" class="bare">https://modules.perl6.org/</a>
+Een overzicht van beschikbare Raku modules is te vinden op: <a href="https://modules.raku.org/" class="bare">https://modules.raku.org/</a>
 </td>
 </tr>
 </table>
@@ -4670,7 +4788,7 @@ Het idee daarachter is dat in het geval dat een database wordt gestolen, de dief
 <p>Laat ons een script schrijven dat een MD5 hash van een wachtwoord maakt voordat het in een database wordt opgeslagen.</p>
 </div>
 <div class="paragraph">
-<p>Gelukkig is er al een Perl 6 module geimplementeerd voor het MD5 algoritme.  Laten we het eerst installeren:<br>
+<p>Gelukkig is er al een Raku module geimplementeerd voor het MD5 algoritme.  Laten we het eerst installeren:<br>
 <code>zef install Digest::MD5</code></p>
 </div>
 <div class="paragraph">
@@ -4822,7 +4940,7 @@ UTF-8 is een manier van het coderen in Unicode van alle mogelijke karakters (ook
 Dit hoeft niet noodzakelijkerwijs een probleem te zijn tenzij wat je probeert te doen een hoop tijd vergt.</p>
 </div>
 <div class="paragraph">
-<p>Natuurlijk heeft Perl 6 een aantal mogelijkheden die het mogelijk maken om delen van een programma parallel uit te laten voeren.<br>
+<p>Natuurlijk heeft Raku een aantal mogelijkheden die het mogelijk maken om delen van een programma parallel uit te laten voeren.<br>
 Op dit moment is het belangrijk om op te merken dat parallelisme twee dingen kan betekenen:</p>
 </div>
 <div class="ulist">
@@ -4993,7 +5111,7 @@ Dat is de reden waarom het gebruik van <code>race</code>, <code>hyper</code> en 
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Zie <a href="https://docs.perl6.org/language/concurrency" class="bare">https://docs.perl6.org/language/concurrency</a> voor meer informatie over asynchroon programmeren in Perl 6
+Zie <a href="https://docs.raku.org/language/concurrency" class="bare">https://docs.raku.org/language/concurrency</a> voor meer informatie over asynchroon programmeren in Raku
 </td>
 </tr>
 </table>
@@ -5007,16 +5125,16 @@ Zie <a href="https://docs.perl6.org/language/concurrency" class="bare">https://d
 <div class="ulist">
 <ul>
 <li>
-<p><a href="irc://irc.freenode.net/#perl6">#perl6</a> IRC kanaal. Veel discussies vinden plaats op IRC. Mocht je vragen hebben die relatief snel een antwoord nodig hebben, dan kun je het beste naar  <a href="https://perl6.org/community/irc" class="bare">https://perl6.org/community/irc</a> gaan</p>
+<p><a href="irc://irc.freenode.net/#raku">#raku</a> IRC kanaal. Veel discussies vinden plaats op IRC. Mocht je vragen hebben die relatief snel een antwoord nodig hebben, dan kun je het beste naar  <a href="https://raku.org/community/irc" class="bare">https://raku.org/community/irc</a> gaan</p>
 </li>
 <li>
-<p><a href="https://p6weekly.wordpress.com">p6weekly</a> een wekelijks overzicht van veranderingen in en rond Perl 6</p>
+<p><a href="https://rakudoweekly.blog">Rakudo Weekly</a> een wekelijks overzicht van veranderingen in en rond Raku</p>
 </li>
 <li>
-<p><a href="http://pl6anet.org">pl6anet</a> is een blog aggregator. Hier kun je blog posts over Perl 6 lezen</p>
+<p><a href="http://pl6anet.org">pl6anet</a> is een blog aggregator. Hier kun je blog posts over Raku lezen</p>
 </li>
 <li>
-<p><a href="https://www.reddit.com/r/perl6/">/r/perl6</a> ook op reddit kun je over Perl 6 lezen</p>
+<p><a href="https://www.reddit.com/r/rakulang/">/r/rakulang</a> ook op reddit kun je over Raku lezen</p>
 </li>
 </ul>
 </div>
@@ -5025,7 +5143,7 @@ Zie <a href="https://docs.perl6.org/language/concurrency" class="bare">https://d
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2019-11-15 18:09:44 +0200
+Last updated 2019-11-17 09:40:26 +0200
 </div>
 </div>
 <style>
