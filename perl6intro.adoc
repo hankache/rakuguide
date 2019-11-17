@@ -3211,7 +3211,7 @@ int add (int a, int b) {
 use NativeCall;
 
 constant LIBPATH = "$*CWD/ncitest";
-sub add(int32,int32) returns int32 is native(LIBPATH) { * }
+sub add(int32,int32 --> int32) is native(LIBPATH) { * }
 
 say add(2,3);
 ----
