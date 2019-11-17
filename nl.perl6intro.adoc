@@ -1,5 +1,5 @@
 = Raku Inleiding
-Naoum Hankache <naoum@hankache.com>; Elizabeth Mattijsen <perl6intro@liz.nl>
+Naoum Hankache <naoum@hankache.com>; Elizabeth Mattijsen <rakuguide@liz.nl>
 :description: Een algemene inleiding van Raku
 :keywords: perl6, perl 6, inleiding, perl6intro, perl 6 inleiding, perl 6 tutorial, perl 6 intro, raku, raku inleiding, raku tutorial
 :Revision: 1.0
