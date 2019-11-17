@@ -1223,17 +1223,17 @@ rmdir "nieuwdir";
 
 Je kunt ook kijken of een specifieke naam bestaat, en of het een bestand of een directory is:
 
-Maak in de directory waar je dit script gaat uitvoeren een lege directory `dir123` en een leeg bestand genaamd `script123.pl6`
+Maak in de directory waar je dit script gaat uitvoeren een lege directory `dir123` en een leeg bestand genaamd `script123.raku`
 
 [source,perl6]
 ----
-say "script123.pl6".IO.e;
+say "script123.raku".IO.e;
 say "dir123".IO.e;
 
-say "script123.pl6".IO.d;
+say "script123.raku".IO.d;
 say "dir123".IO.d;
 
-say "script123.pl6".IO.f;
+say "script123.raku".IO.f;
 say "dir123".IO.f;
 ----
 
@@ -1639,7 +1639,7 @@ Alle code objecten in Raku zijn zogenaamde `closures`, hetgeen betekent dat ze k
 [source,perl6]
 ----
 sub maak-begroeting {
-    my $naam = "John Jansen";
+    my $naam = "Jan Jansen";
     sub begroeting {
       say "Goede morgen $naam";
     };
@@ -1649,7 +1649,7 @@ my $groeter = maak-begroeting;
 $groeter();
 ----
 
-Indien je het bovenstaande programmaatje uitvoert, dan zal het `Goede morgen John Jansen` op het scherm tonen. +
+Indien je het bovenstaande programmaatje uitvoert, dan zal het `Goede morgen Jan Jansen` op het scherm tonen. +
 Dit is een tamelijk simpel voorbeeld.  Het interessante aan dit voorbeeld is dat de `begroeting` (binnenste) subroutine teruggegeven were door de buitenste subroutine voordat het uitgevoerd werd.
 
 `$groeter` is nu een *closure* geworden.
@@ -1661,7 +1661,7 @@ Een *closure* is een speciaal soort object dat twee zaken combineert:
 * De omgeving waarin deze subroutine werd aangemaakt.
 
 Die omgeving bestaat uit elke lokale variabele die "zichtbaar" (in-scope) was op het moment dat de closure werd aangemaakt.
-In dit geval, `$groeter` is een closure waarin zich zowel de `begroeting` subroutine bevat als ook de `John Jansen` string die bestond toen de closure werd aangemaakt.
+In dit geval, `$groeter` is een closure waarin zich zowel de `begroeting` subroutine bevat als ook de `Jan Jansen` string die bestond toen de closure werd aangemaakt.
 
 Laten we eens naar een interessanter voorbeeld kijken:
 [source,perl6]
@@ -1674,7 +1674,7 @@ sub groeter-generator($periode) {
 my $smorgens = groeter-generator("morgen");
 my $savonds  = groeter-generator("avond");
 
-say $smorgens("John");
+say $smorgens("Jan");
 say $savonds("Jane");
 ----
 In dit voorbeeld hebben we een subroutine `groeter-generator($periode)` gemaakt die één enkel argument `$periode` verwacht, en een nieuwe subroutine teruggeeft.  Deze subroutine verwacht één enkel argument `$naam` waarmee de begroeting wordt geconstrueerd die wordt teruggegeven.
@@ -2334,7 +2334,7 @@ say "Hoe gaat het?"
 .`Uitvoer`
 ----
 Type check failed in assignment to $naam; expected Str but got Int
-   in block <unit> at bestandsnaam.pl6:2
+   in block <unit> at bestandsnaam.raku:2
 ----
 
 Je zou hebben moeten zien dat zodra er een fout optreedt (in dit geval het toewijzen van een getal aan een string variabele) het programma stopt en de regels code na de fout niet worden uitgevoerd, zelfs als deze wel juist zijn.
@@ -2367,12 +2367,12 @@ Exception handling wordt gedaan door middel van een `try-catch` block.
 [source,perl6]
 ----
 try {
-    #voer hier de code in
-    #als er iets fout gaat, zal de code in het CATCH block uitgevoerd worden
-    #als alles goed gaat, wordt de code in het CATCH block genegeerd
+    # voer hier de code in
+    # als er iets fout gaat, zal de code in het CATCH block uitgevoerd worden
+    # als alles goed gaat, wordt de code in het CATCH block genegeerd
     CATCH {
         default {
-            #deze code zal alleen uitgevoerd worden als een exception is geworpen
+            # deze code zal alleen uitgevoerd worden als een exception is geworpen
         }
     }
 }
@@ -2384,14 +2384,14 @@ Dat betekent dat we verschillende soorten van exceptions kunnen _opvangen_ en af
 [source,perl6]
 ----
 try {
-    #voer hier de code in
-    #als er iets fout gaat, zal de code in het CATCH block uitgevoerd worden
-    #als alles goed gaat, wordt de code in het CATCH block genegeerd
+    # voer hier de code in
+    # als er iets fout gaat, zal de code in het CATCH block uitgevoerd worden
+    # als alles goed gaat, wordt de code in het CATCH block genegeerd
     CATCH {
-        when X::AdHoc { #doe iets als een exception van het type X::AdHoc is geworpen }
-        when X::IO { #doe iets als een exception van het type X::IO is geworpen }
-        when X::OS { #doe iets als een exception van het type X::OS is geworpen }
-        default { #doe iets als een ander soort exception is geworpen }
+        when X::AdHoc { # doe iets als een exception van het type X::AdHoc is geworpen }
+        when X::IO { # doe iets als een exception van het type X::IO is geworpen }
+        when X::OS { # doe iets als een exception van het type X::OS is geworpen }
+        default { # doe iets als een ander soort exception is geworpen }
     }
 }
 ----
@@ -2643,22 +2643,22 @@ Elke keer wanneer het vergelijken van een string met een regex succesvol is, wor
 [source,perl6]
 .Script
 ----
-if 'Rakudo is een Raku compiler' ~~ m/:s Raku/ {
+if 'Rakudo is een Raku compiler waarmee...' ~~ m/:s Raku compiler / {
     say "Het resultaat is: " ~ $/;
     say "De string vóór de gevonden string is: " ~ $/.prematch;
     say "De string achter de gevonden string is: " ~ $/.postmatch;
     say "De gevonden string begint op positie: " ~ $/.from;
-    say "De gevonden string eindigt op positie: " ~ $/.to;
+    say "De gevonden string eindigt één positie voor: " ~ $/.to;
 }
 ----
 
 .Uitvoer
 ----
-Het resultaat is: ｢Raku｣
+Het resultaat is: ｢Raku-compiler｣
 De string vóór de gevonden string is: Rakudo is een
-De string achter de gevonden string is: compiler
+De string achter de gevonden string is:  waarmee...
 De gevonden string begint op positie: 14
-De gevonden string eindigt op positie: 20
+De gevonden string eindigt één positie voor: 27
 ----
 
 .Uitleg
@@ -2667,12 +2667,12 @@ Deze methoden kunnen worden aangeroepen op een _Match Object_: +
 `.prematch` geeft de string vóór de gevonden string terug. +
 `.postmatch` geeft de string na de gevonden string terug. +
 `.from` geeft de positie van het eerste karakter van de gevonden string terug. +
-`.to` geeft de positie van het laatste karakter van de gevonden string terug. +
+`.to` geeft de positie nà het laatste karakter van de gevonden string terug. +
 
 TIP: Witruimte heeft per default geen betekening in een regex. +
 Als we willen vergelijken met een regex die witruimte bevat, dan moeten we dat expliciet aangeven. +
 De `:s` in de regex `m/:s Raku/` geeft aan dat witruimte niet moet worden genegeerd. +
-We zouden de regex ook kunnen hebben schrijven als `m/ Perl \s 6 /` waarbij we `\s` als een teken voor witruimte hebben gebruikt, zoals we eerder hebben gezien. +
+We zouden de regex ook kunnen hebben schrijven als `m/ Raku \s compiler /` waarbij we `\s` als een teken voor witruimte hebben gebruikt, zoals we eerder hebben gezien. +
 Als een regex meer dan één witruimte bevat, dan is het gebruik van `:s` gemakkelijker in plaats van `\s` te specificeren voor elke witruimte.
 
 === Voorbeeld
@@ -2691,14 +2691,14 @@ my $email = 'jan.met@raku.org';
 my $regex = / <:L>+ \. <:L>+ \@<:L+:N>+ \. <:L>+ /;
 
 if $email ~~ $regex {
-    say $/ ~ " is een gevalideerd emailadres";
+    say $/ ~ " lijkt een valide emailadres";
 } else {
     say "Dit emailadres kon niet gevalideerd worden";
 }
 ----
 
 .Uitvoer
-`jan.met@raku.org is een gevalideerd emailadres`
+`jan.met@raku.org lijkt een valide emailadres`
 
 .Uitleg
 `<:L>` accepteert een enkele letter +
@@ -2734,7 +2734,7 @@ my regex bij { \@ };
 my regex veel-letters-cijfers { <:L+:N>+ };
 
 if $email ~~ / <veel-letters> <punt> <veel-letters> <bij> <veel-letters-nummers> <dot> <veel-letters> / {
-    say $/ ~ " is een gevalideerd emailadres";
+    say $/ ~ " lijkt een valide emailadres";
 } else {
     say "Dit emailadres kon niet gevalideerd worden";
 }
@@ -2753,7 +2753,7 @@ Herbruikbaarheid is een erg belangrijke eigenschap waardoor programmeurs niet te
 
 Raku maakt het mogelijk om *modules* aan te maken en die te distribueren.  Elke module is een bundel van functionaliteit die kan worden gebruikt zodra deze is geïnstalleerd.
 
-_Zef_ is een programma om modules te beheren dat deel is van Rakudo Star.
+_Zef_ is een programma om modules te beheren dat deel uitmaakt van Rakudo Star.
 
 Om een specifieke module te installeren moet men onderstaand commando in een terminalvenster intypen:
 
@@ -2763,8 +2763,8 @@ NOTE: Een overzicht van beschikbare Raku modules is te vinden op: https://module
 
 === Gebruiken van Modules
 MD5 is een cryptografische functie die een unieke 128bit waarde (hash) produceert. +
-MD5 heeft een grote variëteit van applicaties waarvan het opslaan van wachtwoorden in een database er een is.
-Zodra een nieuwe gebruiker zich registreerd worden de inloggegevens niet als platte tekst opgeslagen, maar als een _hash_.
+MD5 heeft een grote variëteit van applicaties waarvan het opslaan van wachtwoorden in een database er één is.
+Zodra een nieuwe gebruiker zich registreert, worden de inloggegevens niet als platte tekst opgeslagen, maar als een _hash_.
 Het idee daarachter is dat in het geval dat een database wordt gestolen, de dief dan niet zal kunnen weten wat de wachtwoorden zijn.
 
 Laat ons een script schrijven dat een MD5 hash van een wachtwoord maakt voordat het in een database wordt opgeslagen.
@@ -2870,6 +2870,54 @@ my $var = 2 + ⅒;
 say $var;
 ----
 
+=== Operaties bekend met Unicode
+
+==== Numbers
+
+Arabische cijfers zijn de tien cijfers:  0, 1, 2, 3, 4, 5, 6, 7, 8, 9.
+Deze verzameling van cijfers wordt wereldwijd het meest gebruikt.
+
+In sommige delen van de wereld worden soms andere verzamelingen van cijfers gebruikt.
+
+Je hoeft niets speciaals te doen om cijfers uit deze andere verzamelingen te ondersteunen: alle methodes en operatoren werken zoals te verwachten valt.
+
+[source,perl6]
+----
+say (٤,٥,٦,1,2,3).sort; # (1 2 3 4 5 6)
+say 1 + ٩;              # 10
+----
+
+==== Strings
+Indien we de algemene string operatoren gebruiken, kan het zijn dat we niet altijd het gewenste resultaat bereiken, met name bij het vergelijken en sorteren.
+
+===== Vergelijking
+
+[source,perl6]
+----
+say 'a' cmp 'B'; # More
+----
+Dit voorbeeld toont that `a` groter is dan `B`.  De reden hiervoor is dat de numerieke waarde van het "code point" van een onderkast `a` hoger is dan de numerieke waarde van "code point" van een bovenkast `B`.
+
+Hoewel dit technisch gezien juist is, is het waarschijnlijk niet waar we op uit waren.
+
+Gelukkig heeft Raku methoden en operator die het link:http://unicode.org/reports/tr10/[Unicode Collation Algorithm] implementeren. +
+Eén daarvan is `unicmp` dat zich net zo gedraagt als `cmp`, maar kijkt naar de unicode-eigenschappen.
+
+[source,perl6]
+----
+say 'a' unicmp 'B'; # Less
+----
+Zoals je kunt zien geeft het gebruik van de `unicmp` operator het resultaat dat `a` kleiner is dan `B`.
+
+===== Sorteren
+De `sort` methode sorteert op basis van "code points".  Raku geeft je ook een `collate` methode die sorteert volgens het link:http://unicode.org/reports/tr10/[Unicode Collation Algorithm].
+
+[source,perl6]
+----
+say ('a','b','c','D','E','F').sort;    # (D E F a b c)
+say ('a','b','c','D','E','F').collate; # (a b c D E F)
+----
+
 == Parallelisme, Gelijktijdigheid en Asynchroniciteit
 
 === Parallelisme
@@ -2888,9 +2936,9 @@ Laten we beginnen met de laatste.
 ==== Data Parallelisme
 [source,perl6]
 ----
-my @array = (0..50000);                      #vullen van het Array
-my @resultaat = @array.map({ is-prime $_ }); #roep is-prime aan op elk element van het Array
-say now - INIT now;                          #laat de tijd zien die het script nodig had om te voltooien
+my @array = 0..50000;                        # vullen van het Array
+my @resultaat = @array.map({ is-prime $_ }); # roep is-prime aan op elk element van het Array
+say now - INIT now;                          # laat de tijd zien die het script nodig had om te voltooien
 ----
 
 .Laten we naar bovenstaand voorbeeld kijken:
@@ -2901,9 +2949,9 @@ De `is-prime` subroutine wordt voor elk element van het array achter elkaar aang
 .Gelukkig kunnen we `is-prime` tegelijkertijd op meer dan één array element aanroepen:
 [source,perl6]
 ----
-my @array = (0..50000);                           #vullen van het Array
-my @resultaat = @array.race.map({ is-prime $_ }); #roep is-prime aan op elk element van het Array
-say now - INIT now;                               #laat de tijd zien die het script nodig had om te voltooien
+my @array = 0..50000;                             # vullen van het Array
+my @resultaat = @array.race.map({ is-prime $_ }); # roep is-prime aan op elk element van het Array
+say now - INIT now;                               # laat de tijd zien die het script nodig had om te voltooien
 ----
 
 Merk op dat we `race` in deze expressie hebben gebruikt.
@@ -2918,7 +2966,7 @@ Nadat je beide voorbeelden (met en zonder `race`) hebt uitgevoerd, vergelijk dan
 [source,perl6]
 .race
 ----
-my @array = (1..1000);
+my @array = 1..1000;
 my @resultaat = @array.race.map( {$_ + 1} );
 .say for @resultaat;
 ----
@@ -2926,7 +2974,7 @@ my @resultaat = @array.race.map( {$_ + 1} );
 [source,perl6]
 .hyper
 ----
-my @array = (1..1000);
+my @array = 1..1000;
 my @resultaat = @array.hyper.map( {$_ + 1} );
 .say for @resultaat;
 ----
@@ -2997,12 +3045,213 @@ Dat is de reden waarom het gebruik van `race`, `hyper` en `start` in tamelijk si
 === Gelijktijdigheid en Asynchroniciteit
 NOTE: Zie https://docs.raku.org/language/concurrency voor meer informatie over asynchroon programmeren in Raku
 
+== Aanroepen van C-bibliotheken
+
+Raku geeft je de mogelijkheid om C-bibliotheken in je programma te gebruiken door middel van de "Native Calling Interface".
+
+`NativeCall` is a standaard module die altijd met Raku wordt meegeleverd en die je een hoop functionaliteit biedt die het gemakkelijker maakt om programma's die in C geschreven zijn met programma's die in Raku geschreven zijn, samen te laten werken.
+
+=== Aanroepen van een functie
+
+Bekijk hier het C-programma dat een functie definieert met de naam `hallovanc`.
+Deze functie drukt de string `Hallo van C` af op het scherm.  Het ontvangt geen parameters, en het geeft ook geen enkele waarde terug.
+
+[source,c]
+.ncitest.c
+----
+#include <stdio.h>
+
+void hallovanc () {
+  printf("Hallo van C\n");
+}
+----
+
+Afhankelijk van het Operating System dat je gebruikt, moet je de volgende commando's uitvoeren om een bibliotheek te maken van bovenstaand C programma.
+ 
+.Op Linux:
+----
+gcc -c -fpic ncitest.c
+gcc -shared -o libncitest.so ncitest.o
+----
+
+.Op Windows:
+----
+gcc -c ncitest.c
+gcc -shared -o ncitest.dll ncitest.o
+----
+
+.Op MacOS:
+----
+gcc -dynamiclib -o libncitest.dylib ncitest.c
+----
+
+Maak vervolgens een bestand aan met het volgende Raku programma, in dezelfde directory waar je de C-bibliotheek hebt gecompileerd.  En voer dat programma dan uit.
+
+[source,perl6]
+.ncitest.raku
+----
+use NativeCall;
+
+constant LIBPATH = "$*CWD/ncitest";
+sub hallovanc() is native(LIBPATH) { * }
+
+hallovanc();
+----
+
+.Uitleg:
+Ten eerste gaven we aan dat we de `NativeCall` module wilden gebruiken. +
+Vervolgens maakten we een constante `LIBPATH` aan waarin de locatie van de C-bibliotheek staat. +
+Merk op dat `$*CWD` de huidige directory aangeeft.
+Vervolgens maakten we een nieuwe Raku subroutine `hallovanc` die als een verpakking functioneert van de functie met dezelfde naam in de C-bibliotheek die aangegeven wordt door `LIBPATH`. +
+Dit alles wordt gedaan door het gebruik van de `is native` eigenschap. +
+Tot slot roepen we de Raku subroutine aan.
+
+Uiteindelijk komt het er op neer dat we een subroutine hebben gedefinieerd met de `is native` eigenschap, en het aangeven van de naam van de C-bibliotheek.
+
+=== Andere naam geven aan de functie
+
+Zojuist hebben we gezien dat we een simpele C-functie kunnen aanroepen door deze te verpakken in een Raku subroutine met dezelfde naam door het gebruik van de `is native` eigenschap.
+
+In sommige gevallen willen we dat name van de Raku subroutine anders is. +
+Dat kun je doen door het gebruik van de `is symbol` eigenschap.
+
+Laten we bovenstaand Raku programma aanpassen en de Raku subroutine de naam `hallo` geven in plaats van `hallovanc`.
+
+[source,perl6]
+.ncitest.raku
+----
+use NativeCall;
+
+constant LIBPATH = "$*CWD/ncitest";
+sub hallo() is native(LIBPATH) is symbol('hallovanc') { * }
+
+hallo();
+----
+
+.Uitleg:
+In de situatie waarin de Raku subroutine een andere naam heeft als de naam van de functie aan de C-kant, kun je de `is symbol` eigenschap gebruiken met de naam van de C-functie.
+
+=== Doorgeven van argumenten
+
+Compileer deze aangepaste C-bibliotheek en voer dan het onderstaande Raku programma uit. +
+Merk op dat we zowel de C-bibliotheek als het Raku programma zo hebben aangepast dat ze beide een string verwachten (`char*` in C, en `Str` in Raku).
+ 
+[source,c]
+.ncitest.c
+----
+#include <stdio.h>
+
+void hallovanc (char* naam) {
+  printf("Hallo, %s! Dit is C!\n", naam);
+}
+----
+
+[source,perl6]
+.ncitest.raku
+----
+use NativeCall;
+
+constant LIBPATH = "$*CWD/ncitest";
+sub hallo(Str) is native(LIBPATH) is symbol('hallovanc') { * }
+
+hallo('Jane');
+----
+
+=== Teruggeven van waarden
+
+Laten we dit nog eens doen zodat het resultaat wordt teruggegeven van een simpele berekening die twee gehele getallen optelt. +
+Compileer de C-bibliotheek en voer het Raku programma uit.
+
+[source,c]
+.ncitest.c
+----
+int telop (int a, int b) {
+  return (a + b);
+}
+----
+
+[source,perl6]
+.ncitest.raku
+----
+use NativeCall;
+
+constant LIBPATH = "$*CWD/ncitest";
+sub telop(int32,int32 --> int32) is native(LIBPATH) { * }
+
+say telop(2,3);
+----
+
+Merk op dat zowel de C-functie als de Raku subroutine nu 2 gehele getallen verwachten (`int` in C, en `int32` in Raku).
+
+=== Types
+
+Je zult je wellicht hebben afgevraagd waarom we `int32` hebben gebruikt in plaats van `Int` in dit laatste voorbeeld. +
+Sommige Raku typen, zoals `Int`, `Rat`, etc.,  kunnen _niet_ worden gebruikt om waarden naar een C-functie te sturen, of waarden van een C-functie terug te ontvangen. +
+Men moet in Raku dezelfde typen gebruiken als die in C worden gebruikt.
+
+Gelukkigerwijze bestaan er vele types in Raku die overeenkomen met types zoals die in C worden gebruikt.
+
+[cols="^.^,^.^",options="header"]
+|===
+
+| C Type | Raku Type
+
+| `char` .2+| `int8`
+
+| `int8_t`
+
+| `short` .2+| `int16`
+
+| `int16_t`
+
+| `int` .2+| `int32`
+
+| `int32_t`
+
+| `int64_t` | `int64`
+
+| `unsigned char` .2+| `uint8`
+
+| `uint8_t`
+
+| `unsigned short` .2+| `uint16`
+
+| `uint16_t`
+
+| `unsigned int` .2+| `uint32`
+
+| `uint32_t`
+
+| `uint64_t` | `uint64`
+
+| `long` | `long`
+
+| `long long` | `longlong`
+
+| `float` | `num32`
+
+| `double` | `num64`
+
+| `size_t` | `size_t`
+
+| `bool` | `bool`
+
+| `char*` (String) | `Str`
+
+| Arrays: Bijvoorbeeld `int*` (Array van int) and `double*` (Array van double) | `CArray`: Bijvoorbeel `CArray[int32]` en `CArray[num64]`
+
+|===
+
+NOTE: Voor meer informatie over de Native Calling Interface, zie https://docs.raku.org/language/nativecall
+
 == De Community
 
 * link:irc://irc.freenode.net/#raku[#raku] IRC kanaal. Veel discussies vinden plaats op IRC. Mocht je vragen hebben die relatief snel een antwoord nodig hebben, dan kun je het beste naar  https://raku.org/community/irc gaan
+
+* link:https://stackoverflow.com/questions/tagged/raku is een plaats waar vragen over Raku meer diepgaand beantwoord worden.
 
 * link:https://rakudoweekly.blog[Rakudo Weekly] een wekelijks overzicht van veranderingen in en rond Raku
 
 * link:http://pl6anet.org[pl6anet] is een blog aggregator. Hier kun je blog posts over Raku lezen
 
-* link:https://www.reddit.com/r/rakulang/[/r/rakulang] ook op reddit kun je over Raku lezen
+* link:https://www.reddit.com/r/rakulang/[/r/rakulang] ook op Reddit kun je over Raku lezen
