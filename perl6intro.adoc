@@ -1242,7 +1242,7 @@ rmdir "newfolder";
 
 You can also check if a path exists; if it is a file; or a directory:
 
-In the directory where you will be running the below script, create an empty folder `folder123` and an empty p6 file `script123.raku`
+In the directory where you will be running the below script, create an empty folder `folder123` and an empty raku file `script123.raku`
 
 [source,perl6]
 ----
