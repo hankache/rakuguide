@@ -5394,7 +5394,7 @@ Compile the C library and run the Raku script.</p>
 <pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">use</span> <span class="tok-n">NativeCall</span>;
 
 <span class="tok-k">constant</span> <span class="tok-n">LIBPATH</span> = <span class="tok-s">&quot;$*CWD/ncitest&quot;</span>;
-<span class="tok-k">sub</span> <span class="tok-n">add</span>(<span class="tok-nb">int32</span>,<span class="tok-nb">int32</span>) <span class="tok-k">returns</span> <span class="tok-nb">int32</span> <span class="tok-k">is</span> <span class="tok-n">native</span>(<span class="tok-n">LIBPATH</span>) { * }
+<span class="tok-k">sub</span> <span class="tok-n">add</span>(<span class="tok-nb">int32</span>,<span class="tok-nb">int32</span> --&gt; <span class="tok-nb">int32</span>) <span class="tok-k">is</span> <span class="tok-n">native</span>(<span class="tok-n">LIBPATH</span>) { * }
 
 <span class="tok-nb">say</span> <span class="tok-n">add</span>(<span class="tok-mi">2</span>,<span class="tok-mi">3</span>);</code></pre>
 </div>
@@ -5532,7 +5532,10 @@ For more info on the Native Calling Interface, see <a href="https://docs.raku.or
 <ul>
 <li>
 <p><a href="irc://irc.freenode.net/#raku">#raku</a> IRC channel. Much discussion happens on IRC.<br>
-This should be your go to place for any enquiry: <a href="https://raku.org/community/irc" class="bare">https://raku.org/community/irc</a></p>
+This should be your go to place for any enquiry for which you want an immediate answer: <a href="https://raku.org/community/irc" class="bare">https://raku.org/community/irc</a></p>
+</li>
+<li>
+<p><a href="https://stackoverflow.com/questions/tagged/raku">StackOverflow Raku questions</a> is a place where questions about Raku can be answered more in-depth.</p>
 </li>
 <li>
 <p><a href="https://rakudoweekly.blog">Rakudo Weekly</a> a weekly overview of changes in and around Rakudo.</p>
@@ -5559,7 +5562,7 @@ This should be your go to place for any enquiry: <a href="https://raku.org/commu
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2019-11-17 10:48:44 +0200
+Last updated 2019-11-17 17:41:02 +0200
 </div>
 </div>
 <style>

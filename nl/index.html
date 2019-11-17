@@ -458,7 +458,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <span id="author" class="author">Naoum Hankache</span><br>
 <span id="email" class="email"><a href="mailto:naoum@hankache.com">naoum@hankache.com</a></span><br>
 <span id="author2" class="author">Elizabeth Mattijsen</span><br>
-<span id="email2" class="email"><a href="mailto:perl6intro@liz.nl">perl6intro@liz.nl</a></span><br>
+<span id="email2" class="email"><a href="mailto:rakuguide@liz.nl">rakuguide@liz.nl</a></span><br>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
@@ -572,6 +572,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_unicode">13. Unicode</a>
 <ul class="sectlevel2">
 <li><a href="#_het_gebruik_van_unicode">13.1. Het gebruik van Unicode</a></li>
+<li><a href="#_operaties_bekend_met_unicode">13.2. Operaties bekend met Unicode</a></li>
 </ul>
 </li>
 <li><a href="#_parallelisme_gelijktijdigheid_en_asynchroniciteit">14. Parallelisme, Gelijktijdigheid en Asynchroniciteit</a>
@@ -580,7 +581,16 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_gelijktijdigheid_en_asynchroniciteit">14.2. Gelijktijdigheid en Asynchroniciteit</a></li>
 </ul>
 </li>
-<li><a href="#_de_community">15. De Community</a></li>
+<li><a href="#_aanroepen_van_c_bibliotheken">15. Aanroepen van C-bibliotheken</a>
+<ul class="sectlevel2">
+<li><a href="#_aanroepen_van_een_functie">15.1. Aanroepen van een functie</a></li>
+<li><a href="#_andere_naam_geven_aan_de_functie">15.2. Andere naam geven aan de functie</a></li>
+<li><a href="#_doorgeven_van_argumenten">15.3. Doorgeven van argumenten</a></li>
+<li><a href="#_teruggeven_van_waarden_2">15.4. Teruggeven van waarden</a></li>
+<li><a href="#_types_2">15.5. Types</a></li>
+</ul>
+</li>
+<li><a href="#_de_community">16. De Community</a></li>
 </ul>
 </div>
 </div>
@@ -2692,17 +2702,17 @@ Alle meta-karakters worden geïnterpreteerd door de shell, inclusief z.g. "pipes
 <p>Je kunt ook kijken of een specifieke naam bestaat, en of het een bestand of een directory is:</p>
 </div>
 <div class="paragraph">
-<p>Maak in de directory waar je dit script gaat uitvoeren een lege directory <code>dir123</code> en een leeg bestand genaamd <code>script123.pl6</code></p>
+<p>Maak in de directory waar je dit script gaat uitvoeren een lege directory <code>dir123</code> en een leeg bestand genaamd <code>script123.raku</code></p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-nb">say</span> <span class="tok-s">&quot;script123.pl6&quot;</span>.<span class="tok-nb">IO</span>.<span class="tok-nb">e</span>;
+<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-nb">say</span> <span class="tok-s">&quot;script123.raku&quot;</span>.<span class="tok-nb">IO</span>.<span class="tok-nb">e</span>;
 <span class="tok-nb">say</span> <span class="tok-s">&quot;dir123&quot;</span>.<span class="tok-nb">IO</span>.<span class="tok-nb">e</span>;
 
-<span class="tok-nb">say</span> <span class="tok-s">&quot;script123.pl6&quot;</span>.<span class="tok-nb">IO</span>.<span class="tok-n">d</span>;
+<span class="tok-nb">say</span> <span class="tok-s">&quot;script123.raku&quot;</span>.<span class="tok-nb">IO</span>.<span class="tok-n">d</span>;
 <span class="tok-nb">say</span> <span class="tok-s">&quot;dir123&quot;</span>.<span class="tok-nb">IO</span>.<span class="tok-n">d</span>;
 
-<span class="tok-nb">say</span> <span class="tok-s">&quot;script123.pl6&quot;</span>.<span class="tok-nb">IO</span>.<span class="tok-n">f</span>;
+<span class="tok-nb">say</span> <span class="tok-s">&quot;script123.raku&quot;</span>.<span class="tok-nb">IO</span>.<span class="tok-n">f</span>;
 <span class="tok-nb">say</span> <span class="tok-s">&quot;dir123&quot;</span>.<span class="tok-nb">IO</span>.<span class="tok-n">f</span>;</code></pre>
 </div>
 </div>
@@ -3297,7 +3307,7 @@ Je kunt dat lezen als: vanaf 0 tot de eerste waarde die groter is dan 10 (maar s
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">sub</span> <span class="tok-n">maak-begroeting</span> {
-    <span class="tok-k">my</span> <span class="tok-nv">$naam</span> = <span class="tok-s">&quot;John Jansen&quot;</span>;
+    <span class="tok-k">my</span> <span class="tok-nv">$naam</span> = <span class="tok-s">&quot;Jan Jansen&quot;</span>;
     <span class="tok-k">sub</span> <span class="tok-n">begroeting</span> {
       <span class="tok-nb">say</span> <span class="tok-s">&quot;Goede morgen $naam&quot;</span>;
     };
@@ -3308,7 +3318,7 @@ Je kunt dat lezen als: vanaf 0 tot de eerste waarde die groter is dan 10 (maar s
 </div>
 </div>
 <div class="paragraph">
-<p>Indien je het bovenstaande programmaatje uitvoert, dan zal het <code>Goede morgen John Jansen</code> op het scherm tonen.<br>
+<p>Indien je het bovenstaande programmaatje uitvoert, dan zal het <code>Goede morgen Jan Jansen</code> op het scherm tonen.<br>
 Dit is een tamelijk simpel voorbeeld.  Het interessante aan dit voorbeeld is dat de <code>begroeting</code> (binnenste) subroutine teruggegeven were door de buitenste subroutine voordat het uitgevoerd werd.</p>
 </div>
 <div class="paragraph">
@@ -3329,7 +3339,7 @@ Dit is een tamelijk simpel voorbeeld.  Het interessante aan dit voorbeeld is dat
 </div>
 <div class="paragraph">
 <p>Die omgeving bestaat uit elke lokale variabele die "zichtbaar" (in-scope) was op het moment dat de closure werd aangemaakt.
-In dit geval, <code>$groeter</code> is een closure waarin zich zowel de <code>begroeting</code> subroutine bevat als ook de <code>John Jansen</code> string die bestond toen de closure werd aangemaakt.</p>
+In dit geval, <code>$groeter</code> is een closure waarin zich zowel de <code>begroeting</code> subroutine bevat als ook de <code>Jan Jansen</code> string die bestond toen de closure werd aangemaakt.</p>
 </div>
 <div class="paragraph">
 <p>Laten we eens naar een interessanter voorbeeld kijken:</p>
@@ -3344,7 +3354,7 @@ In dit geval, <code>$groeter</code> is een closure waarin zich zowel de <code>be
 <span class="tok-k">my</span> <span class="tok-nv">$smorgens</span> = <span class="tok-n">groeter-generator</span>(<span class="tok-s">&quot;morgen&quot;</span>);
 <span class="tok-k">my</span> <span class="tok-nv">$savonds</span>  = <span class="tok-n">groeter-generator</span>(<span class="tok-s">&quot;avond&quot;</span>);
 
-<span class="tok-nb">say</span> <span class="tok-nv">$smorgens</span>(<span class="tok-s">&quot;John&quot;</span>);
+<span class="tok-nb">say</span> <span class="tok-nv">$smorgens</span>(<span class="tok-s">&quot;Jan&quot;</span>);
 <span class="tok-nb">say</span> <span class="tok-nv">$savonds</span>(<span class="tok-s">&quot;Jane&quot;</span>);</code></pre>
 </div>
 </div>
@@ -4177,7 +4187,7 @@ We zeggen dat exceptions worden <em>geworpen</em> (thrown).</p>
 <div class="title"><code>Uitvoer</code></div>
 <div class="content">
 <pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-n">Type</span> <span class="tok-n">check</span> <span class="tok-n">failed</span> <span class="tok-n">in</span> <span class="tok-n">assignment</span> <span class="tok-nb">to</span> <span class="tok-nv">$naam</span>; <span class="tok-n">expected</span> <span class="tok-nb">Str</span> <span class="tok-k">but</span> <span class="tok-n">got</span> <span class="tok-nb">Int</span>
-   <span class="tok-n">in</span> <span class="tok-n">block</span> <span class="tok-s">&lt;unit&gt;</span> <span class="tok-n">at</span> <span class="tok-n">bestandsnaam</span>.<span class="tok-n">pl6:2</span></code></pre>
+   <span class="tok-n">in</span> <span class="tok-n">block</span> <span class="tok-s">&lt;unit&gt;</span> <span class="tok-n">at</span> <span class="tok-n">bestandsnaam</span>.<span class="tok-n">raku:2</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -4214,12 +4224,12 @@ We zeggen dat exceptions worden <em>geworpen</em> (thrown).</p>
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">try</span> {
-    <span class="tok-c1">#voer hier de code in</span>
-    <span class="tok-c1">#als er iets fout gaat, zal de code in het CATCH block uitgevoerd worden</span>
-    <span class="tok-c1">#als alles goed gaat, wordt de code in het CATCH block genegeerd</span>
+    <span class="tok-c1"># voer hier de code in</span>
+    <span class="tok-c1"># als er iets fout gaat, zal de code in het CATCH block uitgevoerd worden</span>
+    <span class="tok-c1"># als alles goed gaat, wordt de code in het CATCH block genegeerd</span>
     <span class="tok-k">CATCH</span> {
         <span class="tok-k">default</span> {
-            <span class="tok-c1">#deze code zal alleen uitgevoerd worden als een exception is geworpen</span>
+            <span class="tok-c1"># deze code zal alleen uitgevoerd worden als een exception is geworpen</span>
         }
     }
 }</code></pre>
@@ -4232,14 +4242,14 @@ Dat betekent dat we verschillende soorten van exceptions kunnen <em>opvangen</em
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">try</span> {
-    <span class="tok-c1">#voer hier de code in</span>
-    <span class="tok-c1">#als er iets fout gaat, zal de code in het CATCH block uitgevoerd worden</span>
-    <span class="tok-c1">#als alles goed gaat, wordt de code in het CATCH block genegeerd</span>
+    <span class="tok-c1"># voer hier de code in</span>
+    <span class="tok-c1"># als er iets fout gaat, zal de code in het CATCH block uitgevoerd worden</span>
+    <span class="tok-c1"># als alles goed gaat, wordt de code in het CATCH block genegeerd</span>
     <span class="tok-k">CATCH</span> {
-        <span class="tok-k">when</span> <span class="tok-o">X</span>::<span class="tok-n">AdHoc</span> { <span class="tok-c1">#doe iets als een exception van het type X::AdHoc is geworpen }</span>
-        <span class="tok-k">when</span> <span class="tok-o">X</span>::<span class="tok-n">IO</span> { <span class="tok-c1">#doe iets als een exception van het type X::IO is geworpen }</span>
-        <span class="tok-k">when</span> <span class="tok-o">X</span>::<span class="tok-n">OS</span> { <span class="tok-c1">#doe iets als een exception van het type X::OS is geworpen }</span>
-        <span class="tok-k">default</span> { <span class="tok-c1">#doe iets als een ander soort exception is geworpen }</span>
+        <span class="tok-k">when</span> <span class="tok-o">X</span>::<span class="tok-n">AdHoc</span> { <span class="tok-c1"># doe iets als een exception van het type X::AdHoc is geworpen }</span>
+        <span class="tok-k">when</span> <span class="tok-o">X</span>::<span class="tok-n">IO</span> { <span class="tok-c1"># doe iets als een exception van het type X::IO is geworpen }</span>
+        <span class="tok-k">when</span> <span class="tok-o">X</span>::<span class="tok-n">OS</span> { <span class="tok-c1"># doe iets als een exception van het type X::OS is geworpen }</span>
+        <span class="tok-k">default</span> { <span class="tok-c1"># doe iets als een ander soort exception is geworpen }</span>
     }
 }</code></pre>
 </div>
@@ -4587,23 +4597,23 @@ Unicode eigenschappen worden omgeven door <code>&lt;: &gt;</code></p>
 <div class="listingblock">
 <div class="title">Script</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">if</span> <span class="tok-s">&#39;Rakudo is een Raku compiler&#39;</span> ~~ <span class="tok-sr">m/:s Raku/</span> {
+<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">if</span> <span class="tok-s">&#39;Rakudo is een Raku compiler waarmee...&#39;</span> ~~ <span class="tok-sr">m/:s Raku compiler /</span> {
     <span class="tok-nb">say</span> <span class="tok-s">&quot;Het resultaat is: &quot;</span> ~ <span class="tok-vg">$/</span>;
     <span class="tok-nb">say</span> <span class="tok-s">&quot;De string vóór de gevonden string is: &quot;</span> ~ <span class="tok-vg">$/</span>.<span class="tok-n">prematch</span>;
     <span class="tok-nb">say</span> <span class="tok-s">&quot;De string achter de gevonden string is: &quot;</span> ~ <span class="tok-vg">$/</span>.<span class="tok-n">postmatch</span>;
     <span class="tok-nb">say</span> <span class="tok-s">&quot;De gevonden string begint op positie: &quot;</span> ~ <span class="tok-vg">$/</span>.<span class="tok-nb">from</span>;
-    <span class="tok-nb">say</span> <span class="tok-s">&quot;De gevonden string eindigt op positie: &quot;</span> ~ <span class="tok-vg">$/</span>.<span class="tok-nb">to</span>;
+    <span class="tok-nb">say</span> <span class="tok-s">&quot;De gevonden string eindigt één positie voor: &quot;</span> ~ <span class="tok-vg">$/</span>.<span class="tok-nb">to</span>;
 }</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title">Uitvoer</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-n">Het</span> <span class="tok-n">resultaat</span> <span class="tok-n">is:</span> ｢<span class="tok-n">Raku</span>｣
+<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-n">Het</span> <span class="tok-n">resultaat</span> <span class="tok-n">is:</span> ｢<span class="tok-n">Raku-compiler</span>｣
 <span class="tok-n">De</span> <span class="tok-n">string</span> <span class="tok-n">vóór</span> <span class="tok-n">de</span> <span class="tok-n">gevonden</span> <span class="tok-n">string</span> <span class="tok-n">is:</span> <span class="tok-n">Rakudo</span> <span class="tok-k">is</span> <span class="tok-n">een</span>
-<span class="tok-n">De</span> <span class="tok-n">string</span> <span class="tok-n">achter</span> <span class="tok-n">de</span> <span class="tok-n">gevonden</span> <span class="tok-n">string</span> <span class="tok-n">is:</span> <span class="tok-n">compiler</span>
+<span class="tok-n">De</span> <span class="tok-n">string</span> <span class="tok-n">achter</span> <span class="tok-n">de</span> <span class="tok-n">gevonden</span> <span class="tok-n">string</span> <span class="tok-n">is:</span>  <span class="tok-n">waarmee</span>...
 <span class="tok-n">De</span> <span class="tok-n">gevonden</span> <span class="tok-n">string</span> <span class="tok-n">begint</span> <span class="tok-n">op</span> <span class="tok-n">positie:</span> <span class="tok-mi">14</span>
-<span class="tok-n">De</span> <span class="tok-n">gevonden</span> <span class="tok-n">string</span> <span class="tok-n">eindigt</span> <span class="tok-n">op</span> <span class="tok-n">positie:</span> <span class="tok-mi">20</span></code></pre>
+<span class="tok-n">De</span> <span class="tok-n">gevonden</span> <span class="tok-n">string</span> <span class="tok-n">eindigt</span> <span class="tok-n">één</span> <span class="tok-n">positie</span> <span class="tok-n">voor:</span> <span class="tok-mi">27</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -4613,7 +4623,7 @@ Deze methoden kunnen worden aangeroepen op een <em>Match Object</em>:<br>
 <code>.prematch</code> geeft de string vóór de gevonden string terug.<br>
 <code>.postmatch</code> geeft de string na de gevonden string terug.<br>
 <code>.from</code> geeft de positie van het eerste karakter van de gevonden string terug.<br>
-<code>.to</code> geeft de positie van het laatste karakter van de gevonden string terug.<br></p>
+<code>.to</code> geeft de positie nà het laatste karakter van de gevonden string terug.<br></p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -4625,7 +4635,7 @@ Deze methoden kunnen worden aangeroepen op een <em>Match Object</em>:<br>
 Witruimte heeft per default geen betekening in een regex.<br>
 Als we willen vergelijken met een regex die witruimte bevat, dan moeten we dat expliciet aangeven.<br>
 De <code>:s</code> in de regex <code>m/:s Raku/</code> geeft aan dat witruimte niet moet worden genegeerd.<br>
-We zouden de regex ook kunnen hebben schrijven als <code>m/ Perl \s 6 /</code> waarbij we <code>\s</code> als een teken voor witruimte hebben gebruikt, zoals we eerder hebben gezien.<br>
+We zouden de regex ook kunnen hebben schrijven als <code>m/ Raku \s compiler /</code> waarbij we <code>\s</code> als een teken voor witruimte hebben gebruikt, zoals we eerder hebben gezien.<br>
 Als een regex meer dan één witruimte bevat, dan is het gebruik van <code>:s</code> gemakkelijker in plaats van <code>\s</code> te specificeren voor elke witruimte.
 </td>
 </tr>
@@ -4660,7 +4670,7 @@ Gebruik deze regex niet in deze vorm in productie.
 <span class="tok-k">my</span> <span class="tok-nv">$regex</span> =<span class="tok-sr"> / &lt;:L&gt;+ \. &lt;:L&gt;+ \@&lt;:L+:N&gt;+ \. &lt;:L&gt;+ /</span>;
 
 <span class="tok-k">if</span> <span class="tok-nv">$email</span> ~~ <span class="tok-nv">$regex</span> {
-    <span class="tok-nb">say</span> <span class="tok-vg">$/</span> ~ <span class="tok-s">&quot; is een gevalideerd emailadres&quot;</span>;
+    <span class="tok-nb">say</span> <span class="tok-vg">$/</span> ~ <span class="tok-s">&quot; lijkt een valide emailadres&quot;</span>;
 } <span class="tok-k">else</span> {
     <span class="tok-nb">say</span> <span class="tok-s">&quot;Dit emailadres kon niet gevalideerd worden&quot;</span>;
 }</code></pre>
@@ -4668,7 +4678,7 @@ Gebruik deze regex niet in deze vorm in productie.
 </div>
 <div class="paragraph">
 <div class="title">Uitvoer</div>
-<p><code>jan.met@raku.org is een gevalideerd emailadres</code></p>
+<p><code>jan.met@raku.org lijkt een valide emailadres</code></p>
 </div>
 <div class="paragraph">
 <div class="title">Uitleg</div>
@@ -4717,7 +4727,7 @@ Gebruik deze regex niet in deze vorm in productie.
 <span class="tok-k">my</span> <span class="tok-k">regex</span><span class="tok-n"> veel-letters-cijfers</span> {<span class="tok-sr"> &lt;:L+:N&gt;+ </span>};
 
 <span class="tok-k">if</span> <span class="tok-nv">$email</span> ~~<span class="tok-sr"> / &lt;veel-letters&gt; &lt;punt&gt; &lt;veel-letters&gt; &lt;bij&gt; &lt;veel-letters-nummers&gt; &lt;dot&gt; &lt;veel-letters&gt; /</span> {
-    <span class="tok-nb">say</span> <span class="tok-vg">$/</span> ~ <span class="tok-s">&quot; is een gevalideerd emailadres&quot;</span>;
+    <span class="tok-nb">say</span> <span class="tok-vg">$/</span> ~ <span class="tok-s">&quot; lijkt een valide emailadres&quot;</span>;
 } <span class="tok-k">else</span> {
     <span class="tok-nb">say</span> <span class="tok-s">&quot;Dit emailadres kon niet gevalideerd worden&quot;</span>;
 }</code></pre>
@@ -4756,7 +4766,7 @@ manipulatie van tekst, plaatjes, web, databases, netwerkprotocollen, etc.</p>
 <p>Raku maakt het mogelijk om <strong>modules</strong> aan te maken en die te distribueren.  Elke module is een bundel van functionaliteit die kan worden gebruikt zodra deze is geïnstalleerd.</p>
 </div>
 <div class="paragraph">
-<p><em>Zef</em> is een programma om modules te beheren dat deel is van Rakudo Star.</p>
+<p><em>Zef</em> is een programma om modules te beheren dat deel uitmaakt van Rakudo Star.</p>
 </div>
 <div class="paragraph">
 <p>Om een specifieke module te installeren moet men onderstaand commando in een terminalvenster intypen:</p>
@@ -4780,8 +4790,8 @@ Een overzicht van beschikbare Raku modules is te vinden op: <a href="https://mod
 <h3 id="_gebruiken_van_modules">12.1. Gebruiken van Modules</h3>
 <div class="paragraph">
 <p>MD5 is een cryptografische functie die een unieke 128bit waarde (hash) produceert.<br>
-MD5 heeft een grote variëteit van applicaties waarvan het opslaan van wachtwoorden in een database er een is.
-Zodra een nieuwe gebruiker zich registreerd worden de inloggegevens niet als platte tekst opgeslagen, maar als een <em>hash</em>.
+MD5 heeft een grote variëteit van applicaties waarvan het opslaan van wachtwoorden in een database er één is.
+Zodra een nieuwe gebruiker zich registreert, worden de inloggegevens niet als platte tekst opgeslagen, maar als een <em>hash</em>.
 Het idee daarachter is dat in het geval dat een database wordt gestolen, de dief dan niet zal kunnen weten wat de wachtwoorden zijn.</p>
 </div>
 <div class="paragraph">
@@ -4928,6 +4938,72 @@ UTF-8 is een manier van het coderen in Unicode van alle mogelijke karakters (ook
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_operaties_bekend_met_unicode">13.2. Operaties bekend met Unicode</h3>
+<div class="sect3">
+<h4 id="_numbers">13.2.1. Numbers</h4>
+<div class="paragraph">
+<p>Arabische cijfers zijn de tien cijfers:  0, 1, 2, 3, 4, 5, 6, 7, 8, 9.
+Deze verzameling van cijfers wordt wereldwijd het meest gebruikt.</p>
+</div>
+<div class="paragraph">
+<p>In sommige delen van de wereld worden soms andere verzamelingen van cijfers gebruikt.</p>
+</div>
+<div class="paragraph">
+<p>Je hoeft niets speciaals te doen om cijfers uit deze andere verzamelingen te ondersteunen: alle methodes en operatoren werken zoals te verwachten valt.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-nb">say</span> (<span class="tok-mi">٤</span>,<span class="tok-mi">٥</span>,<span class="tok-mi">٦</span>,<span class="tok-mi">1</span>,<span class="tok-mi">2</span>,<span class="tok-mi">3</span>).<span class="tok-nb">sort</span>; <span class="tok-c1"># (1 2 3 4 5 6)</span>
+<span class="tok-nb">say</span> <span class="tok-mi">1</span> + <span class="tok-mi">٩</span>;              <span class="tok-c1"># 10</span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_strings">13.2.2. Strings</h4>
+<div class="paragraph">
+<p>Indien we de algemene string operatoren gebruiken, kan het zijn dat we niet altijd het gewenste resultaat bereiken, met name bij het vergelijken en sorteren.</p>
+</div>
+<div class="sect4">
+<h5 id="_vergelijking">Vergelijking</h5>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-nb">say</span> <span class="tok-s">&#39;a&#39;</span> <span class="tok-o">cmp</span> <span class="tok-s">&#39;B&#39;</span>; <span class="tok-c1"># More</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Dit voorbeeld toont that <code>a</code> groter is dan <code>B</code>.  De reden hiervoor is dat de numerieke waarde van het "code point" van een onderkast <code>a</code> hoger is dan de numerieke waarde van "code point" van een bovenkast <code>B</code>.</p>
+</div>
+<div class="paragraph">
+<p>Hoewel dit technisch gezien juist is, is het waarschijnlijk niet waar we op uit waren.</p>
+</div>
+<div class="paragraph">
+<p>Gelukkig heeft Raku methoden en operator die het <a href="http://unicode.org/reports/tr10/">Unicode Collation Algorithm</a> implementeren.<br>
+Eén daarvan is <code>unicmp</code> dat zich net zo gedraagt als <code>cmp</code>, maar kijkt naar de unicode-eigenschappen.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-nb">say</span> <span class="tok-s">&#39;a&#39;</span> <span class="tok-n">unicmp</span> <span class="tok-s">&#39;B&#39;</span>; <span class="tok-c1"># Less</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Zoals je kunt zien geeft het gebruik van de <code>unicmp</code> operator het resultaat dat <code>a</code> kleiner is dan <code>B</code>.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_sorteren">Sorteren</h5>
+<div class="paragraph">
+<p>De <code>sort</code> methode sorteert op basis van "code points".  Raku geeft je ook een <code>collate</code> methode die sorteert volgens het <a href="http://unicode.org/reports/tr10/">Unicode Collation Algorithm</a>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-nb">say</span> (<span class="tok-s">&#39;a&#39;</span>,<span class="tok-s">&#39;b&#39;</span>,<span class="tok-s">&#39;c&#39;</span>,<span class="tok-s">&#39;D&#39;</span>,<span class="tok-s">&#39;E&#39;</span>,<span class="tok-s">&#39;F&#39;</span>).<span class="tok-nb">sort</span>;    <span class="tok-c1"># (D E F a b c)</span>
+<span class="tok-nb">say</span> (<span class="tok-s">&#39;a&#39;</span>,<span class="tok-s">&#39;b&#39;</span>,<span class="tok-s">&#39;c&#39;</span>,<span class="tok-s">&#39;D&#39;</span>,<span class="tok-s">&#39;E&#39;</span>,<span class="tok-s">&#39;F&#39;</span>).<span class="tok-n">collate</span>; <span class="tok-c1"># (a b c D E F)</span></code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -4960,9 +5036,9 @@ Op dit moment is het belangrijk om op te merken dat parallelisme twee dingen kan
 <h4 id="_data_parallelisme">14.1.1. Data Parallelisme</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">@array</span> = (<span class="tok-mi">0</span><span class="tok-o">..</span><span class="tok-mi">50000</span>);                      <span class="tok-c1">#vullen van het Array</span>
-<span class="tok-k">my</span> <span class="tok-nv">@resultaat</span> = <span class="tok-nv">@array</span>.<span class="tok-nb">map</span>({ <span class="tok-n">is-prime</span> <span class="tok-nv">$_</span> }); <span class="tok-c1">#roep is-prime aan op elk element van het Array</span>
-<span class="tok-nb">say</span> <span class="tok-n">now</span> - <span class="tok-k">INIT</span> <span class="tok-n">now</span>;                          <span class="tok-c1">#laat de tijd zien die het script nodig had om te voltooien</span></code></pre>
+<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">@array</span> = <span class="tok-mi">0</span><span class="tok-o">..</span><span class="tok-mi">50000</span>;                        <span class="tok-c1"># vullen van het Array</span>
+<span class="tok-k">my</span> <span class="tok-nv">@resultaat</span> = <span class="tok-nv">@array</span>.<span class="tok-nb">map</span>({ <span class="tok-n">is-prime</span> <span class="tok-nv">$_</span> }); <span class="tok-c1"># roep is-prime aan op elk element van het Array</span>
+<span class="tok-nb">say</span> <span class="tok-n">now</span> - <span class="tok-k">INIT</span> <span class="tok-n">now</span>;                          <span class="tok-c1"># laat de tijd zien die het script nodig had om te voltooien</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -4974,9 +5050,9 @@ De <code>is-prime</code> subroutine wordt voor elk element van het array achter 
 <div class="listingblock">
 <div class="title">Gelukkig kunnen we <code>is-prime</code> tegelijkertijd op meer dan één array element aanroepen:</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">@array</span> = (<span class="tok-mi">0</span><span class="tok-o">..</span><span class="tok-mi">50000</span>);                           <span class="tok-c1">#vullen van het Array</span>
-<span class="tok-k">my</span> <span class="tok-nv">@resultaat</span> = <span class="tok-nv">@array</span>.<span class="tok-n">race</span>.<span class="tok-nb">map</span>({ <span class="tok-n">is-prime</span> <span class="tok-nv">$_</span> }); <span class="tok-c1">#roep is-prime aan op elk element van het Array</span>
-<span class="tok-nb">say</span> <span class="tok-n">now</span> - <span class="tok-k">INIT</span> <span class="tok-n">now</span>;                               <span class="tok-c1">#laat de tijd zien die het script nodig had om te voltooien</span></code></pre>
+<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">@array</span> = <span class="tok-mi">0</span><span class="tok-o">..</span><span class="tok-mi">50000</span>;                             <span class="tok-c1"># vullen van het Array</span>
+<span class="tok-k">my</span> <span class="tok-nv">@resultaat</span> = <span class="tok-nv">@array</span>.<span class="tok-n">race</span>.<span class="tok-nb">map</span>({ <span class="tok-n">is-prime</span> <span class="tok-nv">$_</span> }); <span class="tok-c1"># roep is-prime aan op elk element van het Array</span>
+<span class="tok-nb">say</span> <span class="tok-n">now</span> - <span class="tok-k">INIT</span> <span class="tok-n">now</span>;                               <span class="tok-c1"># laat de tijd zien die het script nodig had om te voltooien</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -4999,7 +5075,7 @@ Deze methode maakt het mogelijk om in parallel over de array elementen te gaan.<
 <div class="listingblock">
 <div class="title">race</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">@array</span> = (<span class="tok-mi">1</span><span class="tok-o">..</span><span class="tok-mi">1000</span>);
+<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">@array</span> = <span class="tok-mi">1</span><span class="tok-o">..</span><span class="tok-mi">1000</span>;
 <span class="tok-k">my</span> <span class="tok-nv">@resultaat</span> = <span class="tok-nv">@array</span>.<span class="tok-n">race</span>.<span class="tok-nb">map</span>( {<span class="tok-nv">$_</span> + <span class="tok-mi">1</span>} );
 .<span class="tok-nb">say</span> <span class="tok-k">for</span> <span class="tok-nv">@resultaat</span>;</code></pre>
 </div>
@@ -5007,7 +5083,7 @@ Deze methode maakt het mogelijk om in parallel over de array elementen te gaan.<
 <div class="listingblock">
 <div class="title">hyper</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">@array</span> = (<span class="tok-mi">1</span><span class="tok-o">..</span><span class="tok-mi">1000</span>);
+<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">@array</span> = <span class="tok-mi">1</span><span class="tok-o">..</span><span class="tok-mi">1000</span>;
 <span class="tok-k">my</span> <span class="tok-nv">@resultaat</span> = <span class="tok-nv">@array</span>.<span class="tok-nb">hyper</span>.<span class="tok-nb">map</span>( {<span class="tok-nv">$_</span> + <span class="tok-mi">1</span>} );
 .<span class="tok-nb">say</span> <span class="tok-k">for</span> <span class="tok-nv">@resultaat</span>;</code></pre>
 </div>
@@ -5120,12 +5196,296 @@ Zie <a href="https://docs.raku.org/language/concurrency" class="bare">https://do
 </div>
 </div>
 <div class="sect1">
-<h2 id="_de_community">15. De Community</h2>
+<h2 id="_aanroepen_van_c_bibliotheken">15. Aanroepen van C-bibliotheken</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Raku geeft je de mogelijkheid om C-bibliotheken in je programma te gebruiken door middel van de "Native Calling Interface".</p>
+</div>
+<div class="paragraph">
+<p><code>NativeCall</code> is a standaard module die altijd met Raku wordt meegeleverd en die je een hoop functionaliteit biedt die het gemakkelijker maakt om programma&#8217;s die in C geschreven zijn met programma&#8217;s die in Raku geschreven zijn, samen te laten werken.</p>
+</div>
+<div class="sect2">
+<h3 id="_aanroepen_van_een_functie">15.1. Aanroepen van een functie</h3>
+<div class="paragraph">
+<p>Bekijk hier het C-programma dat een functie definieert met de naam <code>hallovanc</code>.
+Deze functie drukt de string <code>Hallo van C</code> af op het scherm.  Het ontvangt geen parameters, en het geeft ook geen enkele waarde terug.</p>
+</div>
+<div class="listingblock">
+<div class="title">ncitest.c</div>
+<div class="content">
+<pre class="pygments highlight"><code data-lang="c"><span></span><span class="tok-cp">#include</span> <span class="tok-cpf">&lt;stdio.h&gt;</span><span class="tok-cp"></span>
+
+<span class="tok-kt">void</span> <span class="tok-nf">hallovanc</span> <span class="tok-p">()</span> <span class="tok-p">{</span>
+  <span class="tok-n">printf</span><span class="tok-p">(</span><span class="tok-s">&quot;Hallo van C</span><span class="tok-se">\n</span><span class="tok-s">&quot;</span><span class="tok-p">);</span>
+<span class="tok-p">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Afhankelijk van het Operating System dat je gebruikt, moet je de volgende commando&#8217;s uitvoeren om een bibliotheek te maken van bovenstaand C programma.</p>
+</div>
+<div class="listingblock">
+<div class="title">Op Linux:</div>
+<div class="content">
+<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-n">gcc</span> -<span class="tok-n">c</span> -<span class="tok-n">fpic</span> <span class="tok-n">ncitest</span>.<span class="tok-n">c</span>
+<span class="tok-n">gcc</span> -<span class="tok-n">shared</span> -<span class="tok-n">o</span> <span class="tok-n">libncitest</span>.<span class="tok-o">so</span> <span class="tok-n">ncitest</span>.<span class="tok-n">o</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Op Windows:</div>
+<div class="content">
+<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-n">gcc</span> -<span class="tok-n">c</span> <span class="tok-n">ncitest</span>.<span class="tok-n">c</span>
+<span class="tok-n">gcc</span> -<span class="tok-n">shared</span> -<span class="tok-n">o</span> <span class="tok-n">ncitest</span>.<span class="tok-n">dll</span> <span class="tok-n">ncitest</span>.<span class="tok-n">o</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Op MacOS:</div>
+<div class="content">
+<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-n">gcc</span> -<span class="tok-n">dynamiclib</span> -<span class="tok-n">o</span> <span class="tok-n">libncitest</span>.<span class="tok-n">dylib</span> <span class="tok-n">ncitest</span>.<span class="tok-n">c</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Maak vervolgens een bestand aan met het volgende Raku programma, in dezelfde directory waar je de C-bibliotheek hebt gecompileerd.  En voer dat programma dan uit.</p>
+</div>
+<div class="listingblock">
+<div class="title">ncitest.raku</div>
+<div class="content">
+<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">use</span> <span class="tok-n">NativeCall</span>;
+
+<span class="tok-k">constant</span> <span class="tok-n">LIBPATH</span> = <span class="tok-s">&quot;$*CWD/ncitest&quot;</span>;
+<span class="tok-k">sub</span> <span class="tok-n">hallovanc</span>() <span class="tok-k">is</span> <span class="tok-n">native</span>(<span class="tok-n">LIBPATH</span>) { * }
+
+<span class="tok-n">hallovanc</span>();</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<div class="title">Uitleg:</div>
+<p>Ten eerste gaven we aan dat we de <code>NativeCall</code> module wilden gebruiken.<br>
+Vervolgens maakten we een constante <code>LIBPATH</code> aan waarin de locatie van de C-bibliotheek staat.<br>
+Merk op dat <code>$*CWD</code> de huidige directory aangeeft.
+Vervolgens maakten we een nieuwe Raku subroutine <code>hallovanc</code> die als een verpakking functioneert van de functie met dezelfde naam in de C-bibliotheek die aangegeven wordt door <code>LIBPATH</code>.<br>
+Dit alles wordt gedaan door het gebruik van de <code>is native</code> eigenschap.<br>
+Tot slot roepen we de Raku subroutine aan.</p>
+</div>
+<div class="paragraph">
+<p>Uiteindelijk komt het er op neer dat we een subroutine hebben gedefinieerd met de <code>is native</code> eigenschap, en het aangeven van de naam van de C-bibliotheek.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_andere_naam_geven_aan_de_functie">15.2. Andere naam geven aan de functie</h3>
+<div class="paragraph">
+<p>Zojuist hebben we gezien dat we een simpele C-functie kunnen aanroepen door deze te verpakken in een Raku subroutine met dezelfde naam door het gebruik van de <code>is native</code> eigenschap.</p>
+</div>
+<div class="paragraph">
+<p>In sommige gevallen willen we dat name van de Raku subroutine anders is.<br>
+Dat kun je doen door het gebruik van de <code>is symbol</code> eigenschap.</p>
+</div>
+<div class="paragraph">
+<p>Laten we bovenstaand Raku programma aanpassen en de Raku subroutine de naam <code>hallo</code> geven in plaats van <code>hallovanc</code>.</p>
+</div>
+<div class="listingblock">
+<div class="title">ncitest.raku</div>
+<div class="content">
+<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">use</span> <span class="tok-n">NativeCall</span>;
+
+<span class="tok-k">constant</span> <span class="tok-n">LIBPATH</span> = <span class="tok-s">&quot;$*CWD/ncitest&quot;</span>;
+<span class="tok-k">sub</span> <span class="tok-n">hallo</span>() <span class="tok-k">is</span> <span class="tok-n">native</span>(<span class="tok-n">LIBPATH</span>) <span class="tok-k">is</span> <span class="tok-n">symbol</span>(<span class="tok-s">&#39;hallovanc&#39;</span>) { * }
+
+<span class="tok-n">hallo</span>();</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<div class="title">Uitleg:</div>
+<p>In de situatie waarin de Raku subroutine een andere naam heeft als de naam van de functie aan de C-kant, kun je de <code>is symbol</code> eigenschap gebruiken met de naam van de C-functie.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_doorgeven_van_argumenten">15.3. Doorgeven van argumenten</h3>
+<div class="paragraph">
+<p>Compileer deze aangepaste C-bibliotheek en voer dan het onderstaande Raku programma uit.<br>
+Merk op dat we zowel de C-bibliotheek als het Raku programma zo hebben aangepast dat ze beide een string verwachten (<code>char*</code> in C, en <code>Str</code> in Raku).</p>
+</div>
+<div class="listingblock">
+<div class="title">ncitest.c</div>
+<div class="content">
+<pre class="pygments highlight"><code data-lang="c"><span></span><span class="tok-cp">#include</span> <span class="tok-cpf">&lt;stdio.h&gt;</span><span class="tok-cp"></span>
+
+<span class="tok-kt">void</span> <span class="tok-nf">hallovanc</span> <span class="tok-p">(</span><span class="tok-kt">char</span><span class="tok-o">*</span> <span class="tok-n">naam</span><span class="tok-p">)</span> <span class="tok-p">{</span>
+  <span class="tok-n">printf</span><span class="tok-p">(</span><span class="tok-s">&quot;Hallo, %s! Dit is C!</span><span class="tok-se">\n</span><span class="tok-s">&quot;</span><span class="tok-p">,</span> <span class="tok-n">naam</span><span class="tok-p">);</span>
+<span class="tok-p">}</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">ncitest.raku</div>
+<div class="content">
+<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">use</span> <span class="tok-n">NativeCall</span>;
+
+<span class="tok-k">constant</span> <span class="tok-n">LIBPATH</span> = <span class="tok-s">&quot;$*CWD/ncitest&quot;</span>;
+<span class="tok-k">sub</span> <span class="tok-n">hallo</span>(<span class="tok-nb">Str</span>) <span class="tok-k">is</span> <span class="tok-n">native</span>(<span class="tok-n">LIBPATH</span>) <span class="tok-k">is</span> <span class="tok-n">symbol</span>(<span class="tok-s">&#39;hallovanc&#39;</span>) { * }
+
+<span class="tok-n">hallo</span>(<span class="tok-s">&#39;Jane&#39;</span>);</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_teruggeven_van_waarden_2">15.4. Teruggeven van waarden</h3>
+<div class="paragraph">
+<p>Laten we dit nog eens doen zodat het resultaat wordt teruggegeven van een simpele berekening die twee gehele getallen optelt.<br>
+Compileer de C-bibliotheek en voer het Raku programma uit.</p>
+</div>
+<div class="listingblock">
+<div class="title">ncitest.c</div>
+<div class="content">
+<pre class="pygments highlight"><code data-lang="c"><span></span><span class="tok-kt">int</span> <span class="tok-nf">telop</span> <span class="tok-p">(</span><span class="tok-kt">int</span> <span class="tok-n">a</span><span class="tok-p">,</span> <span class="tok-kt">int</span> <span class="tok-n">b</span><span class="tok-p">)</span> <span class="tok-p">{</span>
+  <span class="tok-k">return</span> <span class="tok-p">(</span><span class="tok-n">a</span> <span class="tok-o">+</span> <span class="tok-n">b</span><span class="tok-p">);</span>
+<span class="tok-p">}</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">ncitest.raku</div>
+<div class="content">
+<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">use</span> <span class="tok-n">NativeCall</span>;
+
+<span class="tok-k">constant</span> <span class="tok-n">LIBPATH</span> = <span class="tok-s">&quot;$*CWD/ncitest&quot;</span>;
+<span class="tok-k">sub</span> <span class="tok-n">telop</span>(<span class="tok-nb">int32</span>,<span class="tok-nb">int32</span> --&gt; <span class="tok-nb">int32</span>) <span class="tok-k">is</span> <span class="tok-n">native</span>(<span class="tok-n">LIBPATH</span>) { * }
+
+<span class="tok-nb">say</span> <span class="tok-n">telop</span>(<span class="tok-mi">2</span>,<span class="tok-mi">3</span>);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Merk op dat zowel de C-functie als de Raku subroutine nu 2 gehele getallen verwachten (<code>int</code> in C, en <code>int32</code> in Raku).</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_types_2">15.5. Types</h3>
+<div class="paragraph">
+<p>Je zult je wellicht hebben afgevraagd waarom we <code>int32</code> hebben gebruikt in plaats van <code>Int</code> in dit laatste voorbeeld.<br>
+Sommige Raku typen, zoals <code>Int</code>, <code>Rat</code>, etc.,  kunnen <em>niet</em> worden gebruikt om waarden naar een C-functie te sturen, of waarden van een C-functie terug te ontvangen.<br>
+Men moet in Raku dezelfde typen gebruiken als die in C worden gebruikt.</p>
+</div>
+<div class="paragraph">
+<p>Gelukkigerwijze bestaan er vele types in Raku die overeenkomen met types zoals die in C worden gebruikt.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-middle">C Type</th>
+<th class="tableblock halign-center valign-middle">Raku Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>char</code></p></td>
+<td class="tableblock halign-center valign-middle" rowspan="2"><p class="tableblock"><code>int8</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>int8_t</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>short</code></p></td>
+<td class="tableblock halign-center valign-middle" rowspan="2"><p class="tableblock"><code>int16</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>int16_t</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>int</code></p></td>
+<td class="tableblock halign-center valign-middle" rowspan="2"><p class="tableblock"><code>int32</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>int32_t</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>int64_t</code></p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>int64</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>unsigned char</code></p></td>
+<td class="tableblock halign-center valign-middle" rowspan="2"><p class="tableblock"><code>uint8</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>uint8_t</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>unsigned short</code></p></td>
+<td class="tableblock halign-center valign-middle" rowspan="2"><p class="tableblock"><code>uint16</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>uint16_t</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>unsigned int</code></p></td>
+<td class="tableblock halign-center valign-middle" rowspan="2"><p class="tableblock"><code>uint32</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>uint32_t</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>uint64_t</code></p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>uint64</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>long</code></p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>long</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>long long</code></p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>longlong</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>float</code></p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>num32</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>double</code></p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>num64</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>size_t</code></p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>size_t</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>bool</code></p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>bool</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>char*</code> (String)</p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>Str</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-middle"><p class="tableblock">Arrays: Bijvoorbeeld <code>int*</code> (Array van int) and <code>double*</code> (Array van double)</p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>CArray</code>: Bijvoorbeel <code>CArray[int32]</code> en <code>CArray[num64]</code></p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Voor meer informatie over de Native Calling Interface, zie <a href="https://docs.raku.org/language/nativecall" class="bare">https://docs.raku.org/language/nativecall</a>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_de_community">16. De Community</h2>
 <div class="sectionbody">
 <div class="ulist">
 <ul>
 <li>
 <p><a href="irc://irc.freenode.net/#raku">#raku</a> IRC kanaal. Veel discussies vinden plaats op IRC. Mocht je vragen hebben die relatief snel een antwoord nodig hebben, dan kun je het beste naar  <a href="https://raku.org/community/irc" class="bare">https://raku.org/community/irc</a> gaan</p>
+</li>
+<li>
+<p>link:https://stackoverflow.com/questions/tagged/raku is een plaats waar vragen over Raku meer diepgaand beantwoord worden.</p>
 </li>
 <li>
 <p><a href="https://rakudoweekly.blog">Rakudo Weekly</a> een wekelijks overzicht van veranderingen in en rond Raku</p>
@@ -5134,7 +5494,7 @@ Zie <a href="https://docs.raku.org/language/concurrency" class="bare">https://do
 <p><a href="http://pl6anet.org">pl6anet</a> is een blog aggregator. Hier kun je blog posts over Raku lezen</p>
 </li>
 <li>
-<p><a href="https://www.reddit.com/r/rakulang/">/r/rakulang</a> ook op reddit kun je over Raku lezen</p>
+<p><a href="https://www.reddit.com/r/rakulang/">/r/rakulang</a> ook op Reddit kun je over Raku lezen</p>
 </li>
 </ul>
 </div>
@@ -5143,7 +5503,7 @@ Zie <a href="https://docs.raku.org/language/concurrency" class="bare">https://do
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2019-11-17 10:48:44 +0200
+Last updated 2019-11-17 17:41:02 +0200
 </div>
 </div>
 <style>
