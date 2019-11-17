@@ -1379,19 +1379,10 @@ say "7 squared is equal to " ~ squared(7);
 In one of the previous examples, we saw how we can restrict the accepted argument to be of a certain type.
 The same can be done with return values.
 
-To restrict the return value to a certain type, we either use the `returns` trait or the arrow notation `-\->` in the signature.
+To restrict the return value to a certain type, we use the arrow notation `-\->` in the signature.
 
 [source,perl6]
-.Using the returns trait
-----
-sub squared ($x) returns Int {
-  return $x ** 2;
-}
-say "1.2 squared is equal to " ~ squared(1.2);
-----
-
-[source,perl6]
-.Using the arrow
+.Indicating return type
 ----
 sub squared ($x --> Int) {
   return $x ** 2;
