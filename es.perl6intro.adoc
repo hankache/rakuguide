@@ -93,7 +93,7 @@ https://rakudo.org/latest/star/win32
 
 Puedes ejecutar código Raku mediante REPL (Read-Eval-Print Loop). Para ello, abre un terminal, introduce `perl6` y pulsa [Enter]. Aparecerá el prompt `>`. Ahora introduce una línea de código, pulsa [Enter] y aparecerá una línea nueva con el resultado. Puedes introducir otra línea o `exit` y pulsar [Enter] para salir al sistema.
 
-También puedes escribir tu código en un archivo de texto, guardarlo y ejecutarlo. Es recomendable que los scripts de Raku tengan la extensión `.p6`. Ejecuta el archivo de esta forma: `perl6 nombre-archivo.p6` desde un terminal y pulsa [Enter]. La ejecución suele mostrar el resultado de sentencias como `say` para visualizar por la salida estándar contenidos de texto con un salto de línea al final .
+También puedes escribir tu código en un archivo de texto, guardarlo y ejecutarlo. Es recomendable que los scripts de Raku tengan la extensión `.raku`. Ejecuta el archivo de esta forma: `perl6 nombre-archivo.raku` desde un terminal y pulsa [Enter]. La ejecución suele mostrar el resultado de sentencias como `say` para visualizar por la salida estándar contenidos de texto con un salto de línea al final .
 
 REPL normalmente se utiliza para probar trozos pequeños de código, como una línea. En el caso de programas con más de una línea de código es recomendable guardarlos en un archivo y ejecutarlos como hemos visto.
 
@@ -1188,17 +1188,17 @@ rmdir "carpeta-nueva";
 
 También puedes comprobar si una ruta existe y si es un archivo o una carpeta:
 
-Crea una carpeta vacía llamada `carpeta123`, un archivo vacío llamado `script123.p6` y el siguiente script:
+Crea una carpeta vacía llamada `carpeta123`, un archivo vacío llamado `script123.raku` y el siguiente script:
 
 [source,perl6]
 ----
-say "script123.p6".IO.e;
+say "script123.raku".IO.e;
 say "carpeta123".IO.e;
 
-say "script123.p6".IO.d;
+say "script123.raku".IO.d;
 say "carpeta123".IO.d;
 
-say "script123.p6".IO.f;
+say "script123.raku".IO.f;
 say "carpeta123".IO.f;
 ----
 
@@ -2291,7 +2291,7 @@ say "¿Qué haces hoy?"
 .`Salida`
 ----
 Type check failed in assignment to $nombre; expected Str but got Int
-  in block <unit> at exceptions.p6 line 2
+  in block <unit> at exceptions.raku line 2
 ----
 Debes tener en cuenta que cuando se produce un error (en este caso, debido a la asignación de un número a una variable de texto) el programa se interrumpirá y no evaluará cualquier otra línea de código.
 
@@ -2988,7 +2988,7 @@ gcc -dynamiclib -o libncitest.dylib ncitest.c
 En la misma carpeta donde has compilado la librería en C, crea un nuevo archivo de Raku que contenga el siguiente código y ejecútalo.
 
 [source,perl6]
-.ncitest.p6
+.ncitest.raku
 ----
 use NativeCall;
 
@@ -3018,7 +3018,7 @@ Para hacerlo utilizamos `is symbol`.
 Vamos a modificar el script de Raku que hemos visto de forma que la función de Raku se llame `hola` en lugar de `holadesdec`.
 
 [source,perl6]
-.ncitest.p6
+.ncitest.raku
 ----
 use NativeCall;
 
@@ -3046,7 +3046,7 @@ void holadesdec (char* nombre) {
 ----
 
 [source,perl6]
-.ncitest.p6
+.ncitest.raku
 ----
 use NativeCall;
 
@@ -3070,7 +3070,7 @@ int suma (int a, int b) {
 ----
 
 [source,perl6]
-.ncitest.p6
+.ncitest.raku
 ----
 use NativeCall;
 
