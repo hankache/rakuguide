@@ -14,7 +14,7 @@ Naoum Hankache <naoum@hankache.com>; Ramiro Encinas <ramiro.encinas@gmail.com>
 :lang: es
 
 
-Este documento es una guía rápida del lenguaje de programación Raku.
+Este documento es una guía rápida del lenguaje de programación Raku. +
 Para los novatos en Raku sería un punto de partida y puesta en marcha.
 
 Algunas partes de este documento hacen referencia a otras partes (más completas y precisas) de la https://docs.raku.org[Documentación de Raku].
@@ -47,13 +47,11 @@ Raku es multiparadigma y soporta programación Procedimental, Orientada a Objeto
 
 .El lema de Raku:
 * TMTOWTDI (Pronunciado como Tim Toady): There is more than one way to do it (Hay más de una forma para hacer algo).
-* Las cosas fáciles deben permanecer fáciles, las cosas difíciles deberían ser fáciles y las cosas imposibles deberían ser difíciles.
 
 === Jerga
 * *Raku*: Es una especificación con un banco de pruebas.
 Las implementaciones que pasan el banco de pruebas de la especificación se consideran Raku.
 * *Rakudo*: Es un compilador para Raku.
-* *Rakudobrew*: Es un script de Perl5 para instalar Rakudo desde su código fuente.
 * *Zef*: Es un instalador de módulos de Raku.
 * *Rakudo Star*: Es un paquete que incluye Rakudo, Zef, una colección de módulos de Raku y documentación.
 
