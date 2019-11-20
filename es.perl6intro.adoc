@@ -1,4 +1,4 @@
-= Introducción a Raku
+= Guía de Raku
 Naoum Hankache <naoum@hankache.com>; Ramiro Encinas <ramiro.encinas@gmail.com>
 :description: Una introducción general a Raku
 :keywords: perl6, perl 6, introducción, perl6intro, introducción a perl 6, tutorial de perl 6, perl 6 intro, raku, introducción a raku, guía de raku, tutorial de raku
@@ -17,7 +17,7 @@ Naoum Hankache <naoum@hankache.com>; Ramiro Encinas <ramiro.encinas@gmail.com>
 Este documento es una guía rápida del lenguaje de programación Raku.
 Para los novatos en Raku sería un punto de partida y puesta en marcha.
 
-Algunas partes de este documento hacen referencia a otras partes (más completas y precisas) de la http://docs.perl6.org[Documentación de Perl 6].
+Algunas partes de este documento hacen referencia a otras partes (más completas y precisas) de la https://docs.raku.org[Documentación de Raku].
 Consulta la documentación si necesitas más información sobre algo concreto.
 
 A lo largo de este documento encontrarás ejemplos de los temas más comentados.
@@ -31,13 +31,13 @@ Este trabajo está bajo la licencia Creative Commons Attribution-ShareAlike 4.0 
 .Colaboración
 Puedes colaborar en este documento en:
 
-* https://github.com/hankache/perl6intro
+* https://github.com/hankache/rakuguide
 
 .Sugerencias y comentarios
 * naoum@hankache.com
 * ramiro.encinas@gmail.com
 
-Si te gusta este trabajo clica en _Star_ del link:https://github.com/hankache/perl6intro[repositorio de Github].
+Si te gusta este trabajo clica en _Star_ del link:https://github.com/hankache/rakuguide[repositorio de Github].
 
 :sectnums:
 == Introducción
@@ -398,7 +398,7 @@ La reducción de operadores se utiliza en listas de valores. Se forman encerrand
 
 |===
 
-NOTE: En https://docs.perl6.org/language/operators tienes una lista completa de los operadores, incluyendo su precedencia.
+NOTE: En https://docs.raku.org/language/operators tienes una lista completa de los operadores, incluyendo su precedencia.
 
 == Variables
 Las variables en Raku se reparten en tres categorías: Escalares, Arrays y Hashes.
@@ -440,7 +440,7 @@ JUAN DE DIOS
 soiD eD nauJ
 ----
 
-NOTE: Consulta https://docs.perl6.org/type/Str para ver la lista completa de métodos de texto.
+NOTE: Consulta https://docs.raku.org/type/Str para ver la lista completa de métodos de texto.
 
 [source,perl6]
 .Enteros
@@ -453,7 +453,7 @@ say $edad.is-prime;
 True
 ----
 
-NOTE: Consulta https://docs.perl6.org/type/Int para ver la lista completa de métodos de enteros.
+NOTE: Consulta https://docs.raku.org/type/Int para ver la lista completa de métodos de enteros.
 
 [source,perl6]
 .Números Racionales
@@ -470,7 +470,7 @@ say $edad.nude;
 (23 10)
 ----
 
-NOTE: Consulta https://docs.perl6.org/type/Rat para ver la lista completa de métodos de números racionales.
+NOTE: Consulta https://docs.raku.org/type/Rat para ver la lista completa de métodos de números racionales.
 
 === Arrays
 Los Arrays son listas que contienen varios valores.
@@ -594,7 +594,7 @@ say @tbl
 [3 z]
 ----
 
-NOTE: Consulta https://docs.perl6.org/type/Array para tener la referencia completa sobre Arrays.
+NOTE: Consulta https://docs.raku.org/type/Array para tener la referencia completa sobre Arrays.
 
 === Hashes
 [source,perl6]
@@ -637,7 +637,7 @@ La capital de Francia es: París
 `.values` devuelve una lista con todos los valores. +
 Podemos acceder a un valor concreto del hash indicando su clave `%hash<clave>`
 
-NOTE: Consulta https://docs.perl6.org/type/Hash para una referencia completa sobre hashes.
+NOTE: Consulta https://docs.raku.org/type/Hash para una referencia completa sobre hashes.
 
 === Tipos
 En los ejemplos anteriores no hemos especificado el tipo de valor que debería contener cada variable.
@@ -849,7 +849,7 @@ say $a;
 Como has visto, la vinculación de variables es bidireccional. +
 `$a := $b` y `$b := $a` tienen el mismo efecto.
 
-NOTE: En https://docs.perl6.org/language/variables tienes más información sobre variables.
+NOTE: En https://docs.raku.org/language/variables tienes más información sobre variables.
 
 == Funciones y mutadores
 
@@ -1053,7 +1053,7 @@ loop (my $i = 0; $i < 5; $i++) {
 }
 ----
 
-NOTE: En https://docs.perl6.org/language/control tienes más información sobre bucles y condiciones
+NOTE: En https://docs.raku.org/language/control tienes más información sobre bucles y condiciones
 
 == I/O
 En Raku, las dos interfaces más utilizadas de _Entrada/Salida_ son el _Terminal_ y los _Ficheros_.
@@ -1212,7 +1212,7 @@ WARNING: en Windows puedes utilizar `/` o `\\` para separar carpetas anidadas +
 `C:\\rakudo\\bin` +
 `C:/rakudo/bin` +
 
-NOTE: En https://docs.perl6.org/type/IO tienes más información sobre E/S.
+NOTE: En https://docs.raku.org/type/IO tienes más información sobre E/S.
 
 == Subrutinas
 === Definición
@@ -1372,7 +1372,7 @@ say "1.2 al cuadrado es igual a " ~ cuadrado(1.2);
 ----
 ====
 
-NOTE: En https://docs.perl6.org/language/functions encontrarás más información sobre subrutinas y funciones.
+NOTE: En https://docs.raku.org/language/functions encontrarás más información sobre subrutinas y funciones.
 
 == Programación Funcional
 En este apartado veremos algunas características que facilitan la Programación Funcional.
@@ -2251,8 +2251,8 @@ La introspeción proporciona la siguiente información:
 --
 Consulta:
 
-* https://docs.perl6.org/language/classtut
-* https://docs.perl6.org/language/objects
+* https://docs.raku.org/language/classtut
+* https://docs.raku.org/language/objects
 
 para obtener más información sobre Programación Orientada a Objetos en Raku.
 --
@@ -2381,7 +2381,7 @@ Todas las excepciones por tipo pertenecen a la clase `X`. Estos son algunos ejem
 `X::OS` errores relacionados con el Sistema Operativo +
 `X::Str::Numeric` errores relacionados con la conversión de una cadena de texto a un valor numérico
 
-NOTE: Tienes una lista completa de tipos de excepciones y sus métodos asociados en https://docs.perl6.org/type-exceptions.html
+NOTE: Tienes una lista completa de tipos de excepciones y sus métodos asociados en https://docs.raku.org/type-exceptions.html
 
 
 == Expresiones Regulares
@@ -2693,7 +2693,7 @@ if $email ~~ / <varias-letras> <punto> <varias-letras> <arroba> <varias-letras-n
 Una regex con nombre se define de la siguiente forma: `my regex nombre-regex { definición de la regex }` +
 Para utilizar una regex, la invocamos con su nombre de esta forma: `<nombre-regex>`
 
-NOTE: En https://docs.perl6.org/language/regexes tienes más información sobre regex.
+NOTE: En https://docs.raku.org/language/regexes tienes más información sobre regex.
 
 == Módulos en Raku
 Raku es un lenguaje de programación de propósito general. Puede utilizarse para llevar a cabo multitud de tareas, incluyendo:
@@ -2709,7 +2709,7 @@ Para instalar un módulo concreto, utiliza el siguiente comando en el terminal:
 
 `zef install "nombre del módulo"`
 
-NOTE: Puedes encontrar el directorio de módulos de Raku en: https://modules.perl6.org/
+NOTE: Puedes encontrar el directorio de módulos de Raku en: https://modules.raku.org/
 
 === Utilizando Módulos
 MD5 es una función de cifrado de tipo hash que produce un valor hash de 128-bit. +
@@ -2943,7 +2943,7 @@ WARNING: El paralelismo siempre añade una sobrecarga multihilo. Si esta sobreca
 Debido a esto, el uso de `race`, `hyper`, `start` y `await` en scripts muy simples podría ralentizarlos.
 
 === Concurrencia y Asincronía
-NOTE: En https://docs.perl6.org/language/concurrency tienes más información sobre Concurrencia y Programación Asíncrona.
+NOTE: En https://docs.raku.org/language/concurrency tienes más información sobre Concurrencia y Programación Asíncrona.
 
 == Interfaz de Llamadas Nativas
 
@@ -3141,7 +3141,7 @@ Por fortuna, Raku proporciona muchos tipos que se corresponden con los de C.
 
 |===
 
-NOTE: En https://docs.perl6.org/language/nativecall tienes más información sobre la Interfaz de Llamadas Nativas.
+NOTE: En https://docs.raku.org/language/nativecall tienes más información sobre la Interfaz de Llamadas Nativas.
 
 == La Comunidad
 * En el canal de IRC link:irc://irc.freenode.net/#raku[#raku] se concentra la mayor parte del debate sobre Raku. En: https://perl6.org/community/irc puedes indicar cualquier duda.
