@@ -3144,12 +3144,14 @@ Por fortuna, Raku proporciona muchos tipos que se corresponden con los de C.
 NOTE: En https://docs.perl6.org/language/nativecall tienes más información sobre la Interfaz de Llamadas Nativas.
 
 == La Comunidad
-* En el canal de IRC link:irc://irc.freenode.net/#perl6[#perl6] se concentra la mayor parte del debate sobre Raku. En: https://perl6.org/community/irc puedes indicar cualquier duda.
+* En el canal de IRC link:irc://irc.freenode.net/#raku[#raku] se concentra la mayor parte del debate sobre Raku. En: https://perl6.org/community/irc puedes indicar cualquier duda.
 
-* Resumen de los link:https://p6weekly.wordpress.com[cambios semanales en Raku].
+* Resumen de las link:https://rakudoweekly.blog[noticias semanales sobre Raku].
 
 * Mantente al día con los blogs que tratan de Raku en link:http://pl6anet.org[pl6anet].
 
-* Suscríbete en el apartado de Raku de Reddit clicando en link:https://www.reddit.com/r/perl6/[/r/perl6].
+* Suscríbete en el apartado de Raku de Reddit clicando en link:https://www.reddit.com/r/rakulang/[/r/rakulang].
+
+* Sigue a la comunidad en Twitter: link:https://twitter.com/perl6org[@perl6org].
 
 * Alertas de los desarrolladores de Raku, para mantenerse al día con los cambios importantes link:https://alerts.perl6.org[P6lert]
