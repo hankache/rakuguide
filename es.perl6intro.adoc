@@ -3146,12 +3146,12 @@ NOTE: En https://docs.perl6.org/language/nativecall tienes más información sob
 == La Comunidad
 * En el canal de IRC link:irc://irc.freenode.net/#raku[#raku] se concentra la mayor parte del debate sobre Raku. En: https://perl6.org/community/irc puedes indicar cualquier duda.
 
-* Resumen de las link:https://rakudoweekly.blog[noticias semanales sobre Raku].
+* Si tienes alguna consulta y necesitas respuestas en profundidad indícalas en link:https://stackoverflow.com/questions/tagged/raku[StackOverflow Raku questions].
+
+* Echa un vistazo semanal de las novedades de Raku en link:https://rakudoweekly.blog[Rakudo Weekly].
 
 * Mantente al día con los blogs que tratan de Raku en link:http://pl6anet.org[pl6anet].
 
-* Suscríbete en el apartado de Raku de Reddit clicando en link:https://www.reddit.com/r/rakulang/[/r/rakulang].
+* Suscríbete en el apartado de Raku de Reddit en link:https://www.reddit.com/r/rakulang/[/r/rakulang].
 
 * Sigue a la comunidad en Twitter: link:https://twitter.com/perl6org[@perl6org].
-
-* Alertas de los desarrolladores de Raku, para mantenerse al día con los cambios importantes link:https://alerts.perl6.org[P6lert]
