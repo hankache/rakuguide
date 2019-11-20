@@ -61,7 +61,7 @@ Perl 6 ist multi-paradigmatisch. Es unterstützt prozedurales, objektorientierte
 
 Um Rakudo-Star zu installieren, führe diese Kommandos in einem Terminalfenster aus:
 ----
-wget https://rakudostar.com/files/star/rakudo-star-2019.03.tar.gz
+wget https://rakudo.perl6.org/downloads/star/rakudo-star-2019.03.tar.gz
 tar xfz rakudo-star-2019.03.tar.gz
 cd rakudo-star-2019.03
 perl Configure.pl --gen-moar --make-install --prefix ~/rakudo
@@ -74,7 +74,7 @@ ODER +
 Mit homebrew installieren: `brew install rakudo-star`
 
 .Windows
-. Den neusten Installer downloaden (Datei mit der Extension .MSI) auf https://rakudostar.com/files/star +
+. Den neusten Installer downloaden (Datei mit der Extension .MSI) auf http://rakudo.org/downloads/star/ +
 Bei einem 32-Bit-System, die x86-Datei und bei einem 64-Bit-System die x86_64-Datei verwenden.
 . Nach der Installation C:\rakudo\bin dem PATH hinzufügen.
 

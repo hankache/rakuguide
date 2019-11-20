@@ -1,7 +1,7 @@
-= Perl6入門
+= Raku 入門
 Naoum Hankache <naoum@hankache.com>; Itsuki Toyota <titsuki@cpan.org>
-:description: Perl 6 入門
-:keywords: perl6, perl 6, introduction, イントロダクション, perl6intro, perl 6 introduction, perl 6 tutorial, perl 6 intro, perl 6 入門, perl 6 イントロダクション, perl 6 イントロ
+:description: Raku 入門
+:keywords: perl6, perl 6, introduction, イントロダクション, perl6intro, perl 6 introduction, perl 6 tutorial, perl 6 intro, perl 6 入門, perl 6 イントロダクション, perl 6 イントロ, raku イントロダクション, raku ガイド, raku チュートリアル, raku 入門
 :Revision: 1.0
 :icons: font
 :source-highlighter: pygments
@@ -13,10 +13,10 @@ Naoum Hankache <naoum@hankache.com>; Itsuki Toyota <titsuki@cpan.org>
 :doctype: book
 :lang: ja
 
-この文書はプログラミング言語Perl6 の全体像を素早くつかんでもらうことを目的として書かれたものです。
-まだPerl6を触ったことのない読者の方々が、ここからPerl6をはじめてもらうことを狙いとしています。
+この文書はプログラミング言語Rakuの全体像を素早くつかんでもらうことを目的として書かれたものです。 +
+まだRakuを触ったことのない読者の方々が、ここからRakuをはじめてもらうことを狙いとしています。
 
-この文書のいくつかの節では http://docs.perl6.org[Perl6の公式文書] における(もっと完成されていて正確な)箇所を参照しています。
+この文書のいくつかの節では https://docs.raku.org[Rakuの公式文書] における(もっと完成されていて正確な)箇所を参照しています。
 
 特定の事項に関してもっと情報がほしいのであればそれらの箇所を読んでみることをおすすめします。
 
@@ -32,7 +32,7 @@ To view a copy of this license, visit
 .貢献
 もしこの文書に貢献したいのなら次のURLへ向かってください:
 
-* https://github.com/hankache/perl6intro
+* https://github.com/hankache/rakuguide
 
 .フィードバック
 フィードバックは大歓迎です！:
@@ -41,32 +41,30 @@ To view a copy of this license, visit
 
 * titsuki@cpan.org
 
-もし、このPerl6入門を気に入ったのなら、 _Star_ を押していただければ幸いです。
-link:https://github.com/hankache/perl6intro[Github].
+もし、このRaku入門を気に入ったのなら、 _Star_ を押していただければ幸いです。
+link:https://github.com/hankache/rakuguide[Github].
 
 :sectnums:
 == イントロダクション
-=== Perl 6 とは
-Perl6は高水準、汎用、漸進的型付けの言語です。
-Perl6はマルチパラダイム言語です。手続き型、オブジェクト指向、関数型プログラミングをサポートしています。
+=== Raku とは
+Rakuは高水準、汎用、漸進的型付けの言語です。
+Rakuはマルチパラダイム言語です。手続き型、オブジェクト指向、関数型プログラミングをサポートしています。
 
-.Perl 6 のモットー:
+.Raku のモットー:
 * TMTOWTDI (ティムトゥディ と発音します): やり方はひとつじゃない
-* 簡単なことは簡単なまま、難しいことは簡単に、不可能なことは解けるように。
 
 === 専門用語
-* *Perl 6*: はテストスイートもあわせての言語の仕様です。
-仕様に基づいたテストスイートを通るような実装はPerl6と考えられます。
-* *Rakudo* : はPerl6のためのコンパイラです。
-* *Rakudobrew* : はRakudoのためのインストール管理ツールです。
-* *Zef* : はPerl6のモジュールのインストーラーです。
-* *Rakudo Star*: はRakudo, Zef, Perl6のモジュールのコレクション, 文書を含んだバンドルソフトです。
+* *Raku* : はテストスイートもあわせての言語の仕様です。
+仕様に基づいたテストスイートを通るような実装はRakuと考えられます。
+* *Rakudo* : はRakuのためのコンパイラです。
+* *Zef* : はRakuのモジュールのインストーラーです。
+* *Rakudo Star*: はRakudo, Zef, Rakuのモジュールのコレクション, 文書を含んだバンドルソフトです。
 
-=== Perl6のインストール
+=== Rakuのインストール
 .Linux
 Rakudo Starをインストールするには、次のコマンドをターミナルで実行してください:
 ----
-wget https://rakudostar.com/files/star/rakudo-star-2019.03.tar.gz
+wget https://rakudo.perl6.org/downloads/star/rakudo-star-2019.03.tar.gz
 tar xfz rakudo-star-2019.03.tar.gz
 cd rakudo-star-2019.03
 perl Configure.pl --gen-moar --make-install --prefix ~/rakudo
@@ -80,10 +78,10 @@ perl Configure.pl --gen-moar --make-install --prefix ~/rakudo
 * Linuxにおけるインストール手順と同じステップを踏む
 * homebrewによるインストール: `brew install rakudo-star`
 * MacPortsによるインストール: `sudo port install rakudo`
-* 次のURLから最新のインストーラー(.dmg拡張子のついたファイル)をダウンロードする https://rakudostar.com/files/star
+* 次のURLから最新のインストーラー(.dmg拡張子のついたファイル)をダウンロードする https://rakudo.perl6.org/downloads/star/
 
 .Windows
-. 次のURLから最新のインストーラー(.msi拡張子のついたファイル)をダウンロードしてください https://rakudostar.com/files/star +
+. 次のURLから最新のインストーラー(.msi拡張子のついたファイル)をダウンロードしてください https://rakudo.perl6.org/downloads/star/ +
 もし32bit版のWindowsを使っているのであれば、x86向けのファイルをダウンロードしてください。そうではなく64bit版のWindowsを使っているのであれば、x86_64向けのファイルをダウンロードしてください。
 . インストール後 `C:\rakudo\bin` がPATH変数に含まれていることを確認してください。
 
@@ -91,9 +89,9 @@ perl Configure.pl --gen-moar --make-install --prefix ~/rakudo
 . 次のコマンドで公式のDockerイメージを入手してください `docker pull rakudo-star`
 . イメージを含んだコンテナを実行するために次のコマンドを打ってください `docker run -it rakudo-star`
 
-=== Perl6のコードを実行する
+=== Rakuのコードを実行する
 
-Perl6のコードの実行はREPL (Read-Eval-Print Loop)を用いることによって行うことができます。
+Rakuのコードの実行はREPL (Read-Eval-Print Loop)を用いることによって行うことができます。
 この実行を行うために、ターミナルを開き、ターミナルの窓に向かって `perl6` と打ち、[Enter]ボタンを押してください。
 そうすると、コマンドプロンプトから `>` が表示されるはずです。
 次に、コードの行を打って[Enter]を押してください。
@@ -101,8 +99,8 @@ REPL はこの行の値を出力するでしょう。
 そうしたら、次のコードの行を打つか、 `exit` と打った後[Enter]を押すことでREPLを去るか、どちらでも選ぶことができます。
 
 あるいは、ファイルの中にコードを書いて、保存して実行してください。
-Perl6のスクリプトは `.p6` 拡張子を持つことが推奨されています。
-ターミナルの窓に対して `perl6 filename.p6` と打ち、[Enter]を押してください。
+Rakuのスクリプトは `.raku` 拡張子を持つことが推奨されています。
+ターミナルの窓に対して `perl6 filename.raku` と打ち、[Enter]を押してください。
 REPLとは違って、それぞれの行の結果が自動的に出力されるでしょう。: 出力を行うには、 `say` のような命令が含まれている必要があります。
 
 REPLは多くの場合、特定のコードを実行するために用いられ、そのコードは一般的には一行です。
@@ -124,15 +122,15 @@ Rakudo StarはREPLを使い倒すためのラインエディタをバンドル�
 --
 
 === エディタ
-ほとんどの場合、Perl6のプログラムを書いて保存することになります。
-そのため、Perl6の文法を認識できるまともなテキストエディタを持っているべきです。
+ほとんどの場合、Rakuのプログラムを書いて保存することになります。
+そのため、Rakuの文法を認識できるまともなテキストエディタを持っているべきです。
 
 私が個人的に使っていておすすめのエディタは https://atom.io/[Atom] です。
-モダンなテキストエディタであり、革新的なPerl6のシンタックスハイライティング機能を持っています。
+モダンなテキストエディタであり、革新的なRakuのシンタックスハイライティング機能を持っています。
 別の選択肢として、 https://atom.io/packages/language-perl6[Perl 6 FE] というAtomのためのシンタックスハイライターがあります。
 オリジナルのパッケージから派生したものですが、多くのバグフィックスと追加機能を含んでいます。
 
-http://www.vim.org/[Vim], https://www.gnu.org/software/emacs/[Emacs], http://padre.perlide.org/[Padre] もまた、Perl6コミュニティの他の人々によって使われています。
+http://www.vim.org/[Vim], https://www.gnu.org/software/emacs/[Emacs], http://padre.perlide.org/[Padre] もまた、Rakuコミュニティの他の人々によって使われています。
 
 最近のバージョンのVimは、はじめから革新的なシンタックスハイライティング機能を持っています。
 EmacsとPadreは追加のパッケージのインストールが必要になるでしょう。
@@ -149,7 +147,7 @@ say 'こんにちは世界';
 'こんにちは世界'.say;
 
 === 文法の概要
-Perl 6 は *自由形式*: ほとんどの場合、空白文字をどれだけの量つかっても良いです。ただし、空白文字が意味を持つ場合もあります。
+Raku は *自由形式*: ほとんどの場合、空白文字をどれだけの量つかっても良いです。ただし、空白文字が意味を持つ場合もあります。
 
 *命令文* は一般的にはコードの論理的な行です。最後にセミコロンがついている必要があります:
 `say "Hello" if True;`
@@ -354,9 +352,9 @@ say "Hello $name";   # Hello John Doe
 
 <| 2 ~~ Int <| True
 
-<| "Perl 6" ~~ "Perl 6" <| True
+<| "Raku" ~~ "Raku" <| True
 
-<| "Perl 6" ~~ Str <| True
+<| "Raku" ~~ Str <| True
 
 <| "enlightenment" ~~ /light/ <| ｢light｣
 
@@ -441,10 +439,10 @@ say "Hello $name";   # Hello John Doe
 
 |===
 
-NOTE: もしその演算の優先順位を含んだ、演算子のすべてのリストを知りたいのであれば、次のURLを参照することをすすめます https://docs.perl6.org/language/operators
+NOTE: もしその演算の優先順位を含んだ、演算子のすべてのリストを知りたいのであれば、次のURLを参照することをすすめます https://docs.raku.org/language/operators
 
 == 変数
-Perl6の変数は三つのカテゴリに分類されます: スカラ、配列、ハッシュです。
+Rakuの変数は三つのカテゴリに分類されます: スカラ、配列、ハッシュです。
 
 *シジル* (ラテン語で印という意味) は変数を分類するときに使われる接頭辞です。
 
@@ -483,7 +481,7 @@ JOHN DOE
 eoD nhoJ
 ----
 
-NOTE: もし文字列に対して適用できるすべてのメソッドのリストを知りたいのであれば、次のURLを参照することをすすめます https://docs.perl6.org/type/Str
+NOTE: もし文字列に対して適用できるすべてのメソッドのリストを知りたいのであれば、次のURLを参照することをすすめます https://docs.raku.org/type/Str
 
 [source,perl6]
 .整数
@@ -496,7 +494,7 @@ say $age.is-prime;
 True
 ----
 
-NOTE: もし整数に対して適用できるすべてのメソッドのリストを知りたいのであれば、次のURLを参照することをすすめます https://docs.perl6.org/type/Int
+NOTE: もし整数に対して適用できるすべてのメソッドのリストを知りたいのであれば、次のURLを参照することをすすめます https://docs.raku.org/type/Int
 
 [source,perl6]
 .有理数
@@ -513,7 +511,7 @@ say $age.nude;
 (23 10)
 ----
 
-NOTE: もし有理数に対して適用できるすべてのメソッドのリストを知りたいのであれば、次のURLを参照することをすすめます https://docs.perl6.org/type/Rat
+NOTE: もし有理数に対して適用できるすべてのメソッドのリストを知りたいのであれば、次のURLを参照することをすすめます https://docs.raku.org/type/Rat
 
 === 配列
 配列は複数の値を含んだリストです。
@@ -604,7 +602,7 @@ Index 3 for dimension 1 out of range (must be 0..2)
 
 ==== 多次元配列
 今まで見てきた配列は一次元配列でした。 +
-幸運なことに、Perl6では多次元配列を定義することができます。
+幸運なことに、Rakuでは多次元配列を定義することができます。
 
 [source,perl6]
 my @tbl[3;2];
@@ -637,20 +635,20 @@ say @tbl
 [3 z]
 ----
 
-NOTE: もし配列に関するすべての情報を知りたいのであれば、次のURLを参照することをすすめます https://docs.perl6.org/type/Array
+NOTE: もし配列に関するすべての情報を知りたいのであれば、次のURLを参照することをすすめます https://docs.raku.org/type/Array
 
 === ハッシュ
 [source,perl6]
 .ハッシュはキー/値のペアの集合です。
 ----
-my %capitals = ('UK','London','Germany','Berlin');
+my %capitals = 'UK','London','Germany','Berlin';
 say %capitals;
 ----
 
 [source,perl6]
 .ハッシュに対して要素を入れるための別の簡潔な方法:
 ----
-my %capitals = (UK => 'London', Germany => 'Berlin');
+my %capitals = UK => 'London', Germany => 'Berlin';
 say %capitals;
 ----
 
@@ -658,7 +656,7 @@ say %capitals;
 [source,perl6]
 .`スクリプト`
 ----
-my %capitals = (UK => 'London', Germany => 'Berlin');
+my %capitals = UK => 'London', Germany => 'Berlin';
 %capitals.push: (France => 'Paris');
 say %capitals.kv;
 say %capitals.keys;
@@ -681,7 +679,7 @@ The capital of France is: Paris
 `.values` はすべての値を含んだリストを返します。 +
 キーを指定することでハッシュの中の特定の値にアクセスすることができます。`%hash<key>`
 
-NOTE: もしハッシュに関するすべての情報を知りたいのであれば、次のURLを参照することをすすめます https://docs.perl6.org/type/Hash
+NOTE: もしハッシュに関するすべての情報を知りたいのであれば、次のURLを参照することをすすめます https://docs.raku.org/type/Hash
 
 === 型
 今までの例では、変数が保持しているべき値の型について指定してはいませんでした。
@@ -722,7 +720,7 @@ say $var.WHAT;
 このプログラミングのスタイルは静的型付けとよばれています。
 変数の型は代入の前に定義され、変えることができないという意味で静的なのです。
 
-Perl6は *漸進的型付け* に分類されます; *静的* 型付けと *動的* 型付けの両方を使うことができるのです。
+Rakuは *漸進的型付け* に分類されます; *静的* 型付けと *動的* 型付けの両方を使うことができるのです。
 
 .配列とハッシュもまた静的型付けを行うことができます:
 [source,perl6]
@@ -735,11 +733,11 @@ my Str @multilingual = "Hello","Salut","Hallo","您好","안녕하세요","こ�
 say @multilingual;
 say @multilingual.WHAT;
 
-my Str %capitals = (UK => 'London', Germany => 'Berlin');
+my Str %capitals = UK => 'London', Germany => 'Berlin';
 say %capitals;
 say %capitals.WHAT;
 
-my Int %country-codes = (UK => 44, Germany => 49);
+my Int %country-codes = UK => 44, Germany => 49;
 say %country-codes;
 say %country-codes.WHAT;
 ----
@@ -752,7 +750,7 @@ say %country-codes.WHAT;
 
 | *型* | *説明* | *例* | *結果*
 
-| Mu | Perl6の型階層のルート | |
+| Mu | Rakuの型階層のルート | |
 
 | Any | 新しいクラスやほとんどの組み込みのクラスのためのデフォルトの基底クラス | |
 
@@ -797,7 +795,7 @@ say $var2.WHAT;   # (Any)
 === スコーピング
 初めに変数を使う前に、宣言されている必要があります。
 
-様々な宣言子がPerl6では使われています。今までのところ、使ってきたのは `my` です。
+様々な宣言子がRakuでは使われています。今までのところ、使ってきたのは `my` です。
 
 [source,perl6]
 my $var=1;
@@ -806,8 +804,8 @@ my $var=1;
 つまり、その変数はそれが宣言されたのと同じブロックの中でしかアクセスできなくなります。
 
 
-Perl6のブロックは `{ }` で囲まれます。
-もしブロックがみつからないのなら、その変数はPerl6のスクリプト全体で使える状態になっています。
+Rakuのブロックは `{ }` で囲まれます。
+もしブロックがみつからないのなら、その変数はRakuのスクリプト全体で使える状態になっています。
 
 [source,perl6]
 ----
@@ -895,7 +893,7 @@ say $a;
 束縛変数は双方向性をもっています。 +
 `$a := $b` と `$b := $a` は同じ効果を持っています。
 
-NOTE: もし変数に関する情報をもっと知りたいのであれば、次のURLを参照することをすすめます https://docs.perl6.org/type/variables
+NOTE: もし変数に関する情報をもっと知りたいのであれば、次のURLを参照することをすすめます https://docs.raku.org/type/variables
 
 == 関数とミューテータ
 
@@ -938,7 +936,7 @@ say @numbers;      #4
 関数にミューテータとしてふるまうように強制するために `.` のかわりに `.=` を使っています。(#4) (スクリプトの9行目)
 
 == ループと条件文
-Perl6は多数の条件文とループ構文を持っています。
+Rakuは多数の条件文とループ構文を持っています。
 
 === if
 条件が満たされた時、つまり式が `True` と評価された時だけコードが実行されます。
@@ -952,7 +950,7 @@ if $age > 18 {
 }
 ----
 
-Perl6では、コードと条件は反転することができます。 +
+Rakuでは、コードと条件は反転することができます。 +
 コードと条件が反転されていたとしても、いつも先に条件が評価されます。
 
 [source,perl6]
@@ -1005,7 +1003,7 @@ unless $clean-shoes {
 }
 ----
 
-Perl6での否定は `!` か `not` を使って行われます。
+Rakuでの否定は `!` か `not` を使って行われます。
 
 `unless (condition)` は `if not (condition)` のかわりに用いられます。
 
@@ -1045,7 +1043,7 @@ with $var {
 
 [source,perl6]
 ----
-my @array = [1,2,3];
+my @array = 1,2,3;
 
 for @array -> $array-item {
   say $array-item * 100
@@ -1056,7 +1054,7 @@ for @array -> $array-item {
 
 === given
 
-`given` は他の言語においてswitch命令と呼ばれているものと等価なPerl6の命令です。
+`given` は他の言語においてswitch命令と呼ばれているものと等価なRakuの命令です。
 しかし、他の言語よりも強力です。
 
 [source,perl6]
@@ -1073,7 +1071,7 @@ given $var {
 
 条件が満たされると、条件が満たされるかどうか調べる処理は止まります。
 
-別の選択肢として、 `proceed` を使うと、Perl6は条件が満たされた後も、この調べる処理の実行を続けます。
+別の選択肢として、 `proceed` を使うと、Rakuは条件が満たされた後も、この調べる処理の実行を続けます。
 [source,perl6]
 ----
 my $var = 42;
@@ -1092,7 +1090,7 @@ given $var {
 
 実際に、 `loop` はC言語族において書かれる `for` と同じです。
 
-Perl6はC言語族の一員なのです。
+RakuはC言語族の一員なのです。
 
 [source,perl6]
 ----
@@ -1101,10 +1099,10 @@ loop (my $i = 0; $i < 5; $i++) {
 }
 ----
 
-NOTE: もしループ構文と条件文に関する情報をもっと知りたいのであれば、次のURLを参照することをすすめます https://docs.perl6.org/language/control
+NOTE: もしループ構文と条件文に関する情報をもっと知りたいのであれば、次のURLを参照することをすすめます https://docs.raku.org/language/control
 
 == I/O
-Perl6において、二つの最も一般的な _入力/出力_ のインタフェースは _ターミナル_ と _ファイル_ です。
+Rakuにおいて、二つの最も一般的な _入力/出力_ のインタフェースは _ターミナル_ と _ファイル_ です。
 
 === ターミナルを用いた基本的なI/O
 
@@ -1133,7 +1131,7 @@ my $name;
 say "Hi, what's your name?";
 $name = get;
 
-say "Dear $name welcome to Perl 6";
+say "Dear $name welcome to Raku";
 ----
 
 上記のコードが実行されると、ターミナルは、あなたが名前を入力するのを待つようになります。名前を打って [Enter] を押しましょう。
@@ -1148,7 +1146,7 @@ say "Dear $name welcome to Perl 6";
 ----
 my $name = prompt "Hi, what's your name? ";
 
-say "Dear $name welcome to Perl 6";
+say "Dear $name welcome to Raku";
 ----
 
 === シェルコマンドの実行
@@ -1173,7 +1171,7 @@ shell "ls";
 shell "dir";
 ----
 `echo` と `ls` はLinuxにおける一般的なシェルのキーワードです。: +
-`echo` はターミナルにテキストを出力します。 (Perl6における `print` と等価です。) +
+`echo` はターミナルにテキストを出力します。 (Rakuにおける `say` と等価です。) +
 `ls` はカレントディレクトリのすべてのファイルとフォルダを表示します。
 
 `dir` はWindowsにおける `ls` と等価なキーワードです。
@@ -1214,7 +1212,7 @@ spurt "newdatafile.txt", $newdata;
 このファイルは新しいスコアを含んでいるでしょう。
 
 === ファイルとディレクトリの操作
-Perl6はシェルコマンドに頼らなくてもディレクトリの内容を表示することができます( シェルコマンドの例としては `ls` が挙げられます )。
+Rakuはシェルコマンドに頼らなくてもディレクトリの内容を表示することができます( シェルコマンドの例としては `ls` が挙げられます )。
 
 [source,perl6]
 ----
@@ -1235,17 +1233,17 @@ rmdir "newfolder";
 
 ファイルかディレクトリであれば、パスが存在するかどうか確かめることもできます。:
 
-下記のスクリプトを実行するディレクトリで、 `folder123` という空のフォルダと `script123.p6` という空のp6ファイルを生成してください。
+下記のスクリプトを実行するディレクトリで、 `folder123` という空のフォルダと `script123.raku` という空のrakuファイルを生成してください。
 
 [source,perl6]
 ----
-say "script123.p6".IO.e;
+say "script123.raku".IO.e;
 say "folder123".IO.e;
 
-say "script123.p6".IO.d;
+say "script123.raku".IO.d;
 say "folder123".IO.d;
 
-say "script123.p6".IO.f;
+say "script123.raku".IO.f;
 say "folder123".IO.f;
 ----
 
@@ -1257,7 +1255,7 @@ WARNING: Windowsのユーザーはディレクトリを定義するために `/`
 `C:\\rakudo\\bin` +
 `C:/rakudo/bin` +
 
-NOTE: もしI/Oに関する情報をもっと知りたいのであれば、次のURLを参照することをすすめます https://docs.perl6.org/type/IO
+NOTE: もしI/Oに関する情報をもっと知りたいのであれば、次のURLを参照することをすすめます https://docs.raku.org/type/IO
 
 == サブルーチン
 === 定義
@@ -1314,7 +1312,7 @@ greet "Laura","Mrs.";
 === デフォルトパラメータとオプションパラメータ
 もしサブルーチンが一つの引数を受け取るように定義されていて、必要となる引数が与えられずに呼び出されたのなら、このサブルーチンの実行は失敗します。
 
-Perl6では次のような引数をともなったサブルーチンを定義することができます:
+Rakuでは次のような引数をともなったサブルーチンを定義することができます:
 
 * オプションパラメータ
 * デフォルトパラメータ
@@ -1373,19 +1371,10 @@ say "7 squared is equal to " ~ squared(7);
 以前の例の一つでは、どうやって引数の受け取る型をある型に制限するかについて見ました。
 同じことを返り値でも行うことができます。
 
-返り値をある型に制限するには、 `returns` トレイトを使うか、矢印記号 `-\->` をシグネチャで使ってください。
+返り値をある型に制限するには、矢印記号 `-\->` をシグネチャで使ってください。
 
 [source,perl6]
-.returns トレイトの使用
-----
-sub squared ($x) returns Int {
-  return $x ** 2;
-}
-say "1.2 squared is equal to " ~ squared(1.2);
-----
-
-[source,perl6]
-.矢印記号の使用
+.返り値の型を示す
 ----
 sub squared ($x --> Int) {
   return $x ** 2;
@@ -1419,7 +1408,7 @@ say "1.2 squared is equal to " ~ squared(1.2);
 ----
 ====
 
-NOTE: もしサブルーチンと関数に関する情報をもっと知りたいのであれば、次のURLを参照することをすすめます https://docs.perl6.org/language/functions
+NOTE: もしサブルーチンと関数に関する情報をもっと知りたいのであれば、次のURLを参照することをすすめます https://docs.raku.org/language/functions
 
 == 関数型プログラミング
 この章では関数型プログラミングを容易にしてくれるいくつかの機能を見ていこうと思います。
@@ -1472,7 +1461,7 @@ say map(-> $x {$x ** 2},@array);
 サブルーチンを宣言して `map` の引数として渡す代わりに、 `map` の中で直接定義していることに注意してください。 +
 無名関数の中で `\-> $x {$x ** 2}` のように定義しています。
 
-Perl6ではこのような使われ方の無名関数を *ポインティブロック* と呼びます。
+Rakuではこのような使われ方の無名関数を *ポインティブロック* と呼びます。
 
 [source,perl6]
 .ポインティブロックは関数を変数に代入するときにも使われます:
@@ -1484,7 +1473,7 @@ say $squared(9);
 ----
 
 === チェイン
-Perl6では、メソッドはチェインすることができます。メソッドの結果を引数としてほかのメソッドに渡す必要はありません。
+Rakuでは、メソッドはチェインすることができます。メソッドの結果を引数としてほかのメソッドに渡す必要はありません。
 
 例題: 配列が与えられているとして、値の重複が無いように降順にソートしてください。 +
 これはチェインを使わなかった場合の解答です:
@@ -1557,13 +1546,13 @@ say @array>>.is-prime;
 say @array>>.&is-even;
 ----
 
-ハイパー演算子を用いることでPerl6に組み込まれているメソッドを呼び出すこともできます。例えば、`is-prime` は数値が素数かそうでないかを判別する組み込みのメソッドです。
+ハイパー演算子を用いることでRakuに組み込まれているメソッドを呼び出すこともできます。例えば、`is-prime` は数値が素数かそうでないかを判別する組み込みのメソッドです。
 加えて、新しいサブルーチンを定義してハイパーオペレーターを使って呼び出すこともできます。この場合、 `&` をメソッドの先頭に追加しなければなりません。 例えば、`&is-even` といった具合です。
 
 配列に対して反復処理を行うための `for` によるループを書くことから脱却することができ、とても実用的です。
 
-WARNING: Perl6は元の値の並びと結果の値の並びが同じになることを保証します。 +
-ただし、 Perl6がもとの並びと同じ順番や同じスレッドで実際にメソッドを呼び出しているという *保証はない* です。
+WARNING: Rakuは元の値の並びと結果の値の並びが同じになることを保証します。 +
+ただし、 Rakuがもとの並びと同じ順番や同じスレッドで実際にメソッドを呼び出しているという *保証はない* です。
 そのため、副作用を持つメソッド、例えば `say` や `print` には注意してください。
 
 === ジャンクション
@@ -1619,7 +1608,7 @@ my $lazylist = (0,2 ... 10);
 say $lazylist;
 ----
 初期要素は0と2で終点は10です。
-ジェネレータは定義されていませんが、初期要素を使ってPerl6はジェネレータは(+2)であると演繹します。 +
+ジェネレータは定義されていませんが、初期要素を使ってRakuはジェネレータは(+2)であると演繹します。 +
 この遅延リストは(もし要求されれば)次のような要素を返します。(0, 2, 4, 6, 8, 10)
 
 [source,perl6]
@@ -1657,7 +1646,7 @@ say $lazylist;
 ====
 
 === クロージャ
-Perl6のすべてのCode型のオブジェクトはクロージャです。これは外のスコープのレキシカル変数を参照できるということを意味しています。
+RakuのすべてのCode型のオブジェクトはクロージャです。これは外のスコープのレキシカル変数を参照できるということを意味しています。
 
 [source,perl6]
 ----
@@ -1710,8 +1699,8 @@ say $evening("Jane");
 `$evening` の環境では `$period` は `Evening` です。
 
 == クラスとオブジェクト
-前章では、どうやってPerl6が関数型プログラミングを楽にしてくれるかについて学びました。 +
-この章ではPerl6におけるオブジェクト指向プログラミングについてみていきましょう。
+前章では、どうやってRakuが関数型プログラミングを楽にしてくれるかについて学びました。 +
+この章ではRakuにおけるオブジェクト指向プログラミングについてみていきましょう。
 
 === イントロダクション
 
@@ -1787,7 +1776,7 @@ say sayvar;
 ----
 `sayvar` メソッドはアクセッサです。変数に直接アクセスしなくても、変数の値にアクセスできるようにしてくれます。
 
-Perl6では *トゥイジル* の使用によって楽にカプセル化を行うことができます。 +
+Rakuでは *トゥイジル* の使用によって楽にカプセル化を行うことができます。 +
 トゥイジルは補助的な _シジル_ です。シジルと属性の名前の間に書きます。 +
 二つのトゥイジルがクラスでは使われます:
 
@@ -1817,7 +1806,7 @@ say $john;
 では、`has $!age` を `has $.age` に置き換えて、`say $john.age;` の結果を見てみましょう。
 
 === 名前付き引数と固定パラメータ
-Perl6では、すべてのクラスはデフォルトの `.new()` コンストラクタを継承しています。 +
+Rakuでは、すべてのクラスはデフォルトの `.new()` コンストラクタを継承しています。 +
 このコンストラクタは引数を与えてオブジェクトを生成することもできます。 +
 デフォルトのコンストラクタは *名前付き引数* のみ使用することができます。 +
 上記の例において、 `.new()` に与えられている引数がすべて名前付きであることに注目してください。
@@ -2071,7 +2060,7 @@ $jane.introduce-yourself;
  `submethod` キーワードを使って定義されます。
 
 === 多重継承
-Perl6では多重継承を行うことができます。あるクラスは複数の他のクラスから継承を行うことができます。
+Rakuでは多重継承を行うことができます。あるクラスは複数の他のクラスから継承を行うことができます。
 
 [source,perl6]
 ----
@@ -2123,7 +2112,7 @@ Actual vs Forecast:
 系列一つだけがプロットされました。 +
 なぜこんなことが起こったのでしょうか？ +
 `combo-chart` は `line-chart` と `bar-chart` を継承しており、両方とも `plot` と呼ばれるメソッドを持っています。
-`combo-chart` からこのメソッドが呼ばれるとき、Perl6の内部では継承されたメソッドのうちの一つだけを呼ぶことでコンフリクトを解消しているのです。
+`combo-chart` からこのメソッドが呼ばれるとき、Rakuの内部では継承されたメソッドのうちの一つだけを呼ぶことでコンフリクトを解消しているのです。
 
 .修正
 正しくふるまうようにするには、 `combo-chart` の中の `plot` メソッドをオーバーライドするべきでした。
@@ -2314,10 +2303,10 @@ if $jane ~~ Human {say 'Jane is a Human'};
 
 [NOTE]
 --
-もしPerl6におけるオブジェクト指向についてより深く知りたいのであれば、次のURLを参照することをすすめます
+もしRakuにおけるオブジェクト指向についてより深く知りたいのであれば、次のURLを参照することをすすめます
 
-* https://docs.perl6.org/language/classtut
-* https://docs.perl6.org/language/objects
+* https://docs.raku.org/language/classtut
+* https://docs.raku.org/language/objects
 --
 
 == 例外処理
@@ -2355,7 +2344,7 @@ say "How are you doing today?"
 .`出力`
 ----
 Type check failed in assignment to $name; expected Str but got Int
-   in block <unit> at exceptions.p6:2
+   in block <unit> at exceptions.raku:2
 ----
 
 エラーが発生したとき(この場合は文字列変数に数値を代入している)は必ずプログラムが停止し、ほかの行のコードは評価されないということに注目してください。
@@ -2418,7 +2407,7 @@ try {
 ----
 
 === 例外を投げる
-Perl6は明示的に例外を投げることができます。 +
+Rakuは明示的に例外を投げることができます。 +
 二つのタイプの例外を投げることができます:
 
 * アドホック例外
@@ -2448,7 +2437,7 @@ X::AdHoc.new(payload => 'Error !').throw;
 `X::OS` はOSエラーに関する例外です +
 `X::Str::Numeric` は文字列を数値にしようとすることに関する例外です
 
-NOTE: もし例外の型と、関連するメソッドのすべてのリストを知りたいのであれば、次のURLを参照することをすすめます https://docs.perl6.org/type.html
+NOTE: もし例外の型と、関連するメソッドのすべてのリストを知りたいのであれば、次のURLを参照することをすすめます https://docs.raku.org/type.html
 
 == 正規表現
 正規表現、または _regex_ はパターンマッチングのための文字のシーケンスです。
@@ -2703,7 +2692,7 @@ emailが正しいかどうか調べましょう。 +
 ファーストネーム [dot] ラストネーム [at] 会社名 [dot] (com/org/net)
 
 WARNING: この例で使われている正規表現はあまり正確ではありません。 +
-Perl6における正規表現の機能を説明することが唯一の目的です。
+Rakuにおける正規表現の機能を説明することが唯一の目的です。
 プロダクションでそのまま使わないでください。
 
 [source,perl6]
@@ -2765,15 +2754,15 @@ if $email ~~ / <many-letters> <dot> <many-letters> <at> <many-letters-numbers> <
 名前付き正規表現は次のような文法で定義されます: `my regex regex-name { regex definition }` +
 名前付き正規表現は次のような文法で呼び出されます: `<regex-name>`
 
-NOTE: もしもっと正規表現について知りたいのであれば、次のURLを参照するのをすすめます https://docs.perl6.org/language/regexes
+NOTE: もしもっと正規表現について知りたいのであれば、次のURLを参照するのをすすめます https://docs.raku.org/language/regexes
 
-== Perl6のモジュール
-Perl6は汎用プログラミング言語です。下記を含む多数のタスクに取り組むのに使うことができます。
+== Rakuのモジュール
+Rakuは汎用プログラミング言語です。下記を含む多数のタスクに取り組むのに使うことができます。
 テキスト操作、グラフィックス、ウェブ、データベース、ネットワークプロトコルなど。
 
 再利用性はとても重要な概念です、それによってプログラマは新しいタスクに取り組もうとするたびに車輪の再発明を行う必要がなくなります。
 
-Perl6はでは *モジュール* の作成と再配布ができます。それぞれのモジュールはインストールされれば再利用できる機能のパッケージです。
+Rakuはでは *モジュール* の作成と再配布ができます。それぞれのモジュールはインストールされれば再利用できる機能のパッケージです。
 
 _Zef_ はRakudo Starに付属しているモジュール管理ツールです。
 
@@ -2781,7 +2770,7 @@ _Zef_ はRakudo Starに付属しているモジュール管理ツールです。
 
 `zef install "モジュールの名前"`
 
-NOTE: Perl6のモジュールの一覧を見るには次のURLを参照してください: https://modules.perl6.org/
+NOTE: Rakuのモジュールの一覧を見るには次のURLを参照してください: https://modules.perl6.org/
 
 === モジュールの使用
 MD5は128ビットのハッシュ値を生成する暗号学的ハッシュ関数です。 +
@@ -2790,7 +2779,7 @@ MD5は、データベースに格納されているパスワードの暗号化�
 この背景にある根拠は、もしDBがハッキングの被害にあっていたとしても、攻撃者はパスワードが何であるかを知ることができないということです。
 
 
-幸運なことに、MD5アルゴリズムを実装する必要はありません。MD5アルゴリズムを実装したPerl6モジュールがすでにあります。 +
+幸運なことに、MD5アルゴリズムを実装する必要はありません。MD5アルゴリズムを実装したRakuモジュールがすでにあります。 +
 インストールしましょう: +
 `zef install Digest::MD5`
 
@@ -2925,7 +2914,7 @@ say 'a' cmp 'B'; # More
 
 技術的には正しい一方、ひょっとしたら求めていたものとは違うかもしれません。
 
-幸運なことにPerl 6は link:http://unicode.org/reports/tr10/[ユニコード照合アルゴリズム] を実装したメソッド/演算子を持っています。 +
+幸運なことにRakuは link:http://unicode.org/reports/tr10/[ユニコード照合アルゴリズム] を実装したメソッド/演算子を持っています。 +
 その一つが `unicmp` です。これは上記で示した `cmp` のようにふるまいますがこのアルゴリズムを使用する点が異なります。
 
 [source,perl6]
@@ -2936,7 +2925,7 @@ say 'a' unicmp 'B'; # Less
 見てわかる通り、 `unicmp` 演算子を使うことで `a` は `B` より小さいという期待通りの結果が得られました。
 
 ===== ソート
-符号位置を利用したソートにおいて `sort` メソッドの他の選択肢として、Perl 6は link:http://unicode.org/reports/tr10/[ユニコード照合アルゴリズム] を実装した `collate` メソッドを提供しています。
+符号位置を利用したソートにおいて `sort` メソッドの他の選択肢として、Rakuは link:http://unicode.org/reports/tr10/[ユニコード照合アルゴリズム] を実装した `collate` メソッドを提供しています。
 
 [source,perl6]
 ----
@@ -2950,7 +2939,7 @@ say ('a','b','c','D','E','F').collate; # (a b c D E F)
 一般的な状況では、プログラムのすべてのタスクは上から順に実行されます。 +
 もし、たくさんの時間がかかるようなことを行おうとしているのでないかぎりは問題にはなりません。
 
-ありがたいことに、Perl6には並列実行のための機能があります。 +
+ありがたいことに、Rakuには並列実行のための機能があります。 +
 現在のところ、次の二つの事柄のうちの一つを意味するということを頭にとどめておくことが重要です:
 
 * *タスクの並列処理*: 二つ(もしくはそれ以上)の独立した式が並列実行されます。
@@ -2961,7 +2950,7 @@ say ('a','b','c','D','E','F').collate; # (a b c D E F)
 ==== データの並列処理
 [source,perl6]
 ----
-my @array = (0..50000);                     # 配列の作成
+my @array = 0..50000;                     # 配列の作成
 my @result = @array.map({ is-prime $_ });   # それぞれの配列の要素に対して is-prime を呼ぶ
 say now - INIT now;                         # スクリプトの処理が完了するまでにかかる時間を出力
 ----
@@ -2974,7 +2963,7 @@ say now - INIT now;                         # スクリプトの処理が完了�
 .幸運なことに `is-prime` を複数の配列の要素に対して同時に呼び出すことができます:
 [source,perl6]
 ----
-my @array = (0..50000);                         # 配列の作成
+my @array = 0..50000;                         # 配列の作成
 my @result = @array.race.map({ is-prime $_ });  # それぞれの配列の要素に対して is-prime を呼ぶ
 say now - INIT now;                             # スクリプトの処理が完了するまでにかかる時間を出力
 ----
@@ -2991,7 +2980,7 @@ say now - INIT now;                             # スクリプトの処理が完
 [source,perl6]
 .race
 ----
-my @array = (1..1000);
+my @array = 1..1000;
 my @result = @array.race.map( {$_ + 1} );
 .say for @result;
 ----
@@ -2999,7 +2988,7 @@ my @result = @array.race.map( {$_ + 1} );
 [source,perl6]
 .hyper
 ----
-my @array = (1..1000);
+my @array = 1..1000;
 my @result = @array.hyper.map( {$_ + 1} );
 .say for @result;
 ----
@@ -3012,8 +3001,8 @@ my @result = @array.hyper.map( {$_ + 1} );
 
 [source,perl6]
 ----
-my @array1 = (0..49999);
-my @array2 = (2..50001);
+my @array1 = 0..49999;
+my @array2 = 2..50001;
 
 my @result1 = @array1.map( {is-prime($_ + 1)} );
 my @result2 = @array2.map( {is-prime($_ - 1)} );
@@ -3039,8 +3028,8 @@ say now - INIT now;
 .同時に実行してみたらどうでしょう？
 [source,perl6]
 ----
-my @array1 = (0..49999);
-my @array2 = (2..50001);
+my @array1 = 0..49999;
+my @array2 = 2..50001;
 
 my $promise1 = start @array1.map( {is-prime($_ + 1)} ).eager;
 my $promise2 = start @array2.map( {is-prime($_ - 1)} ).eager;
@@ -3068,13 +3057,13 @@ WARNING: 並列処理にはスレッディングのオーバーヘッドがあ�
 これが `race` 、 `hyper` 、 `start` 、 `await` をいたってシンプルなスクリプトに対して用いると実際には遅くなってしまう理由です。
 
 === 並行性と非同期性
-NOTE: 並行/非同期プログラミングについてもっと情報を知りたいのなら、次のURLを参照してください: https://docs.perl6.org/language/concurrency
+NOTE: 並行/非同期プログラミングについてもっと情報を知りたいのなら、次のURLを参照してください: https://docs.raku.org/language/concurrency
 
 == ネイティブコールインタフェース
 
-Perl 6ではネイティブコール (Native Call) インタフェースを用いて、Cのライブラリを使うことができます。
+Rakuではネイティブコール (Native Call) インタフェースを用いて、Cのライブラリを使うことができます。
 
-`NativeCall` はPerl 6と一緒に提供されている標準モジュールです
+`NativeCall` はRakuと一緒に提供されている標準モジュールです
 
 === 関数の呼び出し
 
@@ -3111,10 +3100,10 @@ gcc -shared -o ncitest.dll ncitest.o
 gcc -dynamiclib -o libncitest.dylib ncitest.c
 ----
 
-Cのライブラリをコンパイルしたのと同じディレクトリで、次のコードを含むPerl 6のファイルを作り、実行してください。
+Cのライブラリをコンパイルしたのと同じディレクトリで、次のコードを含むRakuのファイルを作り、実行してください。
 
 [source,perl6]
-.ncitest.p6
+.ncitest.raku
 ----
 use NativeCall;
 
@@ -3128,24 +3117,24 @@ hellofromc();
 まずはじめに、 `NativeCall` モジュールを使うということを宣言しました。 +
 次に、Cのライブラリへのパスを保持している定数 `LIBPATH` を作りました。 +
 `$*CWD` はカレントディレクトリを返すということに注意してください。 +
-それから、 `hellofromc()` という新しいPerl 6のサブルーチンを作りました。
+それから、 `hellofromc()` という新しいRakuのサブルーチンを作りました。
 このサブルーチンは、`LIBPATH` 下のCのライブラリの同じ名前を持った対応する関数のラッパーとしてふるまうでしょう。 +
 `is native` トレイトを用いることでこれを実現できます。 +
-さいごにPerl 6のサブルーチンを呼び出しました。 +
+さいごにRakuのサブルーチンを呼び出しました。 +
 
 突き詰めると、すべては `is native` を使用して、Cのライブラリと同じ名前を持つサブルーチンを宣言することに帰着します。
 
 === 関数の名前の変更
 
-前節では、`is native` トレイトを使って同じ名前を持ったPerl 6のサブルーチンでラップすることで、どのようにしてCの関数を呼び出せるかを見てきました。
+前節では、`is native` トレイトを使って同じ名前を持ったRakuのサブルーチンでラップすることで、どのようにしてCの関数を呼び出せるかを見てきました。
 
-場合によっては、Perl 6のサブルーチンの名前を変えたくなるかもしれません。 +
+場合によっては、Rakuのサブルーチンの名前を変えたくなるかもしれません。 +
 そうしたいときは、 `is symbol` トレイトを使います。
 
-上記のPerl 6のスクリプトを変更し、 Perl 6のサブルーチンの名前を `hellofromc` の代わりに `hello` と付けてみましょう。
+上記のRakuのスクリプトを変更し、 Rakuのサブルーチンの名前を `hellofromc` の代わりに `hello` と付けてみましょう。
 
 [source,perl6]
-.ncitest.p6
+.ncitest.raku
 ----
 use NativeCall;
 
@@ -3156,13 +3145,13 @@ hello();
 ----
 
 .説明:
-この場合Perl 6のサブルーチンはCの対応する関数と異なる名前を持っています。
+この場合RakuのサブルーチンはCの対応する関数と異なる名前を持っています。
 元のCの関数の名前を用いて `is symbol` トレイトを使うべきです。
 
 === 引数渡し
 
-次の改変されたCのライブラリをコンパイルし、その下のPerl 6のスクリプトを実行しましょう。 +
-どのようにしてCとPerl 6のコードの両方を、文字列を受け取るために改変したかについて注目してください。 (Cでは `char*` で、Perl 6では `Str` です)
+次の改変されたCのライブラリをコンパイルし、その下のRakuのスクリプトを実行しましょう。 +
+どのようにしてCとRakuのコードの両方を、文字列を受け取るために改変したかについて注目してください。 (Cでは `char*` で、Rakuでは `Str` です)
 
 [source,c]
 .ncitest.c
@@ -3175,7 +3164,7 @@ void hellofromc (char* name) {
 ----
 
 [source,perl6]
-.ncitest.p6
+.ncitest.raku
 ----
 use NativeCall;
 
@@ -3188,7 +3177,7 @@ hello('Jane');
 === 値の返却
 
 さっきと同じことをもう一度行い、ふたつの整数を受け取って足し合わせる単純な計算機を生成しましょう。 +
-CのライブラリをコンパイルしてPerl 6のスクリプトを実行してください。
+CのライブラリをコンパイルしてRakuのスクリプトを実行してください。
 
 [source,c]
 .ncitest.c
@@ -3199,7 +3188,7 @@ int add (int a, int b) {
 ----
 
 [source,perl6]
-.ncitest.p6
+.ncitest.raku
 ----
 use NativeCall;
 
@@ -3209,20 +3198,20 @@ sub add(int32,int32) returns int32 is native(LIBPATH) { * }
 say add(2,3);
 ----
 
-どのようにしてCとPerl 6の関数の両方がふたつの整数を受け取りひとつの整数を返しているかについて注目してください。 ( Cでは `int` でPerl 6では `int32` です)
+どのようにしてCとRakuの関数の両方がふたつの整数を受け取りひとつの整数を返しているかについて注目してください。 ( Cでは `int` でRakuでは `int32` です)
 
 === 型
 
-もしかしたら先ほどのPerl 6のスクリプトで `Int` ではなくて `int32` を使ったのはなぜなのか疑問に思ったかもしれません。 +
-`Int`, `Rat` などといったいくつかのPerl 6の型はCの関数からの値を通して受け取るときにそのままでは使うことができません。 +
-Perl 6で使う型はCの型と同じでなければなりません。
+もしかしたら先ほどのRakuのスクリプトで `Int` ではなくて `int32` を使ったのはなぜなのか疑問に思ったかもしれません。 +
+`Int`, `Rat` などといったいくつかのRakuの型はCの関数からの値を通して受け取るときにそのままでは使うことができません。 +
+Rakuで使う型はCの型と同じでなければなりません。
 
-幸運なことに、Perl 6はCでその型に相当する型と対応付けられた型を提供しています。
+幸運なことに、RakuはCでその型に相当する型と対応付けられた型を提供しています。
 
 [cols="^.^,^.^",options="header"]
 |===
 
-| Cの型 | Perl 6の型
+| Cの型 | Rakuの型
 
 | `char` .2+| `int8`
 
@@ -3270,18 +3259,16 @@ Perl 6で使う型はCの型と同じでなければなりません。
 
 |===
 
-NOTE: ネイティブコール インタフェースについてより詳しく知りたい方は、次のURLを参照してください https://docs.perl6.org/language/nativecall
+NOTE: ネイティブコール インタフェースについてより詳しく知りたい方は、次のURLを参照してください https://docs.raku.org/language/nativecall
 
 == コミュニティ
 
-* link:irc://irc.freenode.net/#perl6[#perl6] IRCチャンネルです。活発な議論が行われています。何でも気軽に質問してください: https://perl6.org/community/irc
+* link:irc://irc.freenode.net/#raku[#raku] IRCチャンネルです。活発な議論が行われています。何でも気軽に質問してください: https://raku.org/community/irc
 
-* link:https://p6weekly.wordpress.com[p6weekly] Perl6とその周辺の出来事について今週のダイジェストをお伝えします。
+* link:https://rakudoweekly.wordpress.com[rakudoweekly] Rakudoとその周辺の出来事について今週のダイジェストをお伝えします。
 
-* link:http://pl6anet.org[pl6anet] Perl6のブログを集約しています。Perl6にフォーカスしたブログ記事にこうご期待ください。
+* link:http://pl6anet.org[pl6anet] Rakuのブログを集約しています。Rakuにフォーカスしたブログ記事にこうご期待ください。
 
-* link:https://www.reddit.com/r/perl6/[/r/perl6] Perl6のsubredditを購読しましょう。
+* link:https://www.reddit.com/r/rakulang/[/r/rakulang] Rakuのsubredditを購読しましょう。
 
-* link:https://twitter.com/perl6org[@perl6org] twitterでのPerl6のコミュニティをフォローしましょう。
-
-* link:https://alerts.perl6.org[P6lert] Perl6のコアディベロッパーからのアラートです。重要な変更に対応し遅れないようにしましょう。
+* link:https://twitter.com/perl6org[@perl6org] twitterでコミュニティをフォローしましょう。

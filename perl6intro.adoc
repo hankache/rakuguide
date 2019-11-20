@@ -1,7 +1,7 @@
-= Perl 6 Introduction
-:description: A general introduction to Perl 6
+= Raku Guide
+:description: A general introduction to Raku
 :Author: Naoum Hankache
-:keywords: perl6, perl 6, introduction, perl6intro, perl 6 introduction, perl 6 tutorial, perl 6 intro
+:keywords: perl6, perl 6, introduction, perl6intro, perl 6 introduction, perl 6 tutorial, perl 6 intro, raku, raku introduction, raku guide, raku tutorial
 :Email: naoum@hankache.com
 :Revision: 1.0
 :icons: font
@@ -14,10 +14,10 @@
 :lang: en
 
 
-This document is intended to give you a quick overview of the Perl 6 programming language.
-For those new to Perl 6, it should get you up and running.
+This document is intended to give you a quick overview of the Raku programming language. +
+For those new to Raku, it should get you up and running.
 
-Some sections of this document refer to other (more complete and accurate) parts of the http://docs.perl6.org[Perl 6 documentation].
+Some sections of this document refer to other (more complete and accurate) parts of the https://docs.raku.org[Raku documentation].
 You should read them if you need more information on a specific subject.
 
 Throughout this document, you will find examples for most discussed topics.
@@ -32,53 +32,51 @@ To view a copy of this license, visit
 .Contribution
 If you would like to contribute to this document, head over to:
 
-* https://github.com/hankache/perl6intro
+* https://github.com/hankache/rakuguide
 
 .Feedback
 All feedback is welcomed:
 naoum@hankache.com
 
 If you liked this work, _Star_ the repository on
-link:https://github.com/hankache/perl6intro[Github].
+link:https://github.com/hankache/rakuguide[Github].
 
 .Translations
-* Bulgarian: https://perl6intro.com/bg
-* Chinese: https://perl6intro.com/zh
-* Dutch: https://perl6intro.com/nl
-* French: https://perl6intro.com/fr
-* German: https://perl6intro.com/de
-* Indonesian: https://perl6intro.com/id
-* Italian https://perl6intro.com/it
-* Japanese: https://perl6intro.com/ja
-* Portuguese: https://perl6intro.com/pt
-* Spanish: https://perl6intro.com/es
-* Turkish: https://perl6intro.com/tr
-* Russian: https://perl6intro.com/ru
+* Bulgarian: https://raku.guide/bg
+* Chinese: https://raku.guide/zh
+* Dutch: https://raku.guide/nl
+* French: https://raku.guide/fr
+* German: https://raku.guide/de
+* Indonesian: https://raku.guide/id
+* Italian https://raku.guide/it
+* Japanese: https://raku.guide/ja
+* Portuguese: https://raku.guide/pt
+* Spanish: https://raku.guide/es
+* Turkish: https://raku.guide/tr
+* Russian: https://raku.guide/ru
 
 :sectnums:
 == Introduction
-=== What is Perl 6
-Perl 6 is a high-level, general-purpose, gradually typed language.
-Perl 6 is multi-paradigmatic. It supports Procedural, Object Oriented, and Functional programming.
+=== What is Raku
+Raku is a high-level, general-purpose, gradually typed language.
+Raku is multi-paradigmatic. It supports Procedural, Object Oriented, and Functional programming.
 
-.Perl 6 motto:
+.Raku motto:
 * TMTOWTDI (Pronounced Tim Toady): There is more than one way to do it.
-* Easy things should stay easy, hard things should get easier, and impossible things should get hard.
 
 === Jargon
-* *Perl 6*: Is a language specification with a test suite.
-Implementations that pass the specification test suite are considered Perl 6.
-* *Rakudo*: Is a compiler for Perl 6.
-* *Rakudobrew*: Is an installation manager for Rakudo.
-* *Zef*: Is a Perl 6 module installer.
-* *Rakudo Star*: Is a bundle that includes Rakudo, Zef, a collection of Perl 6 modules, and documentation.
+* *Raku*: Is a language specification with a test suite.
+Implementations that pass the specification test suite are considered Raku.
+* *Rakudo*: Is a compiler for Raku.
+* *Zef*: Is a Raku module installer.
+* *Rakudo Star*: Is a bundle that includes Rakudo, Zef, a collection of Raku modules, and documentation.
 
-=== Installing Perl 6
+=== Installing Raku
 .Linux
 
 To install Rakudo Star, run the following commands from your terminal:
 ----
-wget https://rakudostar.com/files/star/rakudo-star-2019.03.tar.gz
+wget https://rakudo.perl6.org/downloads/star/rakudo-star-2019.03.tar.gz
 tar xfz rakudo-star-2019.03.tar.gz
 cd rakudo-star-2019.03
 perl Configure.pl --gen-moar --make-install --prefix ~/rakudo
@@ -91,20 +89,20 @@ Four options are available:
 * Follow the same steps listed for installing on Linux
 * Install with homebrew: `brew install rakudo-star`
 * Install with MacPorts: `sudo port install rakudo`
-* Get the latest installer (file with .dmg extension) from https://rakudostar.com/latest/star/macos
+* Get the latest installer (file with .dmg extension) from https://rakudo.org/latest/star/macos
 
 .Windows
-. For 64-bit architectures: Get the latest installer (file with .msi extension) from https://rakudostar.com/latest/star/win64 +
-For 32-bit architectures: Get the latest installer (file with .msi extension) from https://rakudostar.com/latest/star/win32
+. For 64-bit architectures: Get the latest installer (file with .msi extension) from https://rakudo.org/latest/star/win64 +
+For 32-bit architectures: Get the latest installer (file with .msi extension) from https://rakudo.org/latest/star/win32
 . After installation, make sure `C:\rakudo\bin` is in the PATH
 
 .Docker
 . Get the official Docker image `docker pull rakudo-star`
 . Then run a container with the image `docker run -it rakudo-star`
 
-=== Running Perl 6 code
+=== Running Raku code
 
-Running Perl 6 code can be done using the REPL (Read-Eval-Print Loop).
+Running Raku code can be done using the REPL (Read-Eval-Print Loop).
 To do this, open a terminal, type `perl6` into the terminal window,
 and hit [Enter].  This will cause a prompt of `>` to appear.
 Next, type a line of code and hit [Enter]. The REPL will print out
@@ -112,8 +110,8 @@ the value of the line.  You may then type another line, or type `exit`
 and hit [Enter] to leave the REPL.
 
 Alternatively, write your code in a file, save it and run it.
-It is recommended that Perl 6 scripts have a  `.p6` file name extension.
-Run the file by typing `perl6 filename.p6` into the terminal window
+It is recommended that Raku scripts have a  `.raku` file name extension.
+Run the file by typing `perl6 filename.raku` into the terminal window
 and hitting [Enter]. Unlike the REPL, this will not automatically print
 the result of each line: the code must contain a statement like `say`
 to print output.
@@ -138,11 +136,11 @@ Consider running the following command and you shall be all set:
 --
 
 === Editors
-Since most of the time we will be writing and storing our Perl 6 programs in files, we should have
-a decent text editor that recognizes Perl 6 syntax.
+Since most of the time we will be writing and storing our Raku programs in files, we should have
+a decent text editor that recognizes Raku syntax.
 
-I personally use and recommend https://atom.io/[Atom]. It is a modern text editor and comes with Perl 6 syntax highlighting out of the box.
-https://atom.io/packages/language-perl6[Perl 6 FE] is an alternative Perl 6 syntax highlighter for Atom, derived from the original package but with many bug fixes and additions.
+I personally use and recommend https://atom.io/[Atom]. It is a modern text editor and comes with Raku syntax highlighting out of the box.
+https://atom.io/packages/language-perl6[Perl 6 FE] is an alternative Raku syntax highlighter for Atom, derived from the original package but with many bug fixes and additions.
 
 Other people in the community also use http://www.vim.org/[Vim], https://www.gnu.org/software/emacs/[Emacs] or http://padre.perlide.org/[Padre].
 
@@ -161,7 +159,7 @@ that can also be written as:
 'hello world'.say;
 
 === Syntax overview
-Perl 6 is *free form*: Most of the time you are free to use any amount of whitespace, although in certain
+Raku is *free form*: Most of the time you are free to use any amount of whitespace, although in certain
 cases whitespace carries meaning.
 
 *Statements* are typically a logical line of code, they need to end with a semicolon:
@@ -366,9 +364,9 @@ The below table lists the most commonly used operators.
 
 <| 2 ~~ Int <| True
 
-<| "Perl 6" ~~ "Perl 6" <| True
+<| "Raku" ~~ "Raku" <| True
 
-<| "Perl 6" ~~ Str <| True
+<| "Raku" ~~ Str <| True
 
 <| "enlightenment" ~~ /light/ <| ｢light｣
 
@@ -453,10 +451,10 @@ They are formed by surrounding the operator with brackets `[]`
 
 |===
 
-NOTE: For the complete list of operators, including their precedence, go to https://docs.perl6.org/language/operators
+NOTE: For the complete list of operators, including their precedence, go to https://docs.raku.org/language/operators
 
 == Variables
-Perl 6 variables are classified into 3 categories: Scalars, Arrays and Hashes.
+Raku variables are classified into 3 categories: Scalars, Arrays and Hashes.
 
 A *sigil* (Sign in Latin) is a character that is used as a prefix to categorize variables.
 
@@ -495,7 +493,7 @@ JOHN DOE
 eoD nhoJ
 ----
 
-NOTE: For the complete list of methods applicable to Strings, see https://docs.perl6.org/type/Str
+NOTE: For the complete list of methods applicable to Strings, see https://docs.raku.org/type/Str
 
 [source,perl6]
 .Integer
@@ -508,7 +506,7 @@ say $age.is-prime;
 True
 ----
 
-NOTE: For the complete list of methods applicable to Integers, see https://docs.perl6.org/type/Int
+NOTE: For the complete list of methods applicable to Integers, see https://docs.raku.org/type/Int
 
 [source,perl6]
 .Rational Number
@@ -525,7 +523,7 @@ say $age.nude;
 (23 10)
 ----
 
-NOTE: For the complete list of methods applicable to Rational Numbers, see https://docs.perl6.org/type/Rat
+NOTE: For the complete list of methods applicable to Rational Numbers, see https://docs.raku.org/type/Rat
 
 === Arrays
 Arrays are lists containing multiple values.
@@ -616,7 +614,7 @@ Index 3 for dimension 1 out of range (must be 0..2)
 
 ==== Multidimensional arrays
 The arrays we saw until now are one-dimensional. +
-Fortunately, we can define multi-dimensional arrays in Perl 6.
+Fortunately, we can define multi-dimensional arrays in Raku.
 
 [source,perl6]
 my @tbl[3;2];
@@ -649,20 +647,20 @@ say @tbl
 [3 z]
 ----
 
-NOTE: For the complete Array reference, see https://docs.perl6.org/type/Array
+NOTE: For the complete Array reference, see https://docs.raku.org/type/Array
 
 === Hashes
 [source,perl6]
 .A Hash is a set of Key/Value pairs.
 ----
-my %capitals = ('UK','London','Germany','Berlin');
+my %capitals = 'UK','London','Germany','Berlin';
 say %capitals;
 ----
 
 [source,perl6]
 .Another succinct way of filling the hash:
 ----
-my %capitals = (UK => 'London', Germany => 'Berlin');
+my %capitals = UK => 'London', Germany => 'Berlin';
 say %capitals;
 ----
 
@@ -670,7 +668,7 @@ Some of the methods that can be called on hashes are:
 [source,perl6]
 .`Script`
 ----
-my %capitals = (UK => 'London', Germany => 'Berlin');
+my %capitals = UK => 'London', Germany => 'Berlin';
 %capitals.push: (France => 'Paris');
 say %capitals.kv;
 say %capitals.keys;
@@ -693,7 +691,7 @@ The capital of France is: Paris
 `.values` returns a list that contains all values. +
 We can access a specific value in the hash by specifying its key `%hash<key>`
 
-NOTE: For the complete Hash reference, see https://docs.perl6.org/type/Hash
+NOTE: For the complete Hash reference, see https://docs.raku.org/type/Hash
 
 === Types
 In the previous examples, we did not specify what type of values the variables should hold.
@@ -732,7 +730,7 @@ When we tried to assign an (Str) to it, it failed.
 
 This style of programming is called static typing. Static in the sense that variable types are defined before assignment and cannot change.
 
-Perl 6 is classified as *gradually typed*; it allows both *static* and *dynamic* typing.
+Raku is classified as *gradually typed*; it allows both *static* and *dynamic* typing.
 
 .Arrays and hashes can also be statically typed:
 [source,perl6]
@@ -745,11 +743,11 @@ my Str @multilingual = "Hello","Salut","Hallo","您好","안녕하세요","こ�
 say @multilingual;
 say @multilingual.WHAT;
 
-my Str %capitals = (UK => 'London', Germany => 'Berlin');
+my Str %capitals = UK => 'London', Germany => 'Berlin';
 say %capitals;
 say %capitals.WHAT;
 
-my Int %country-codes = (UK => 44, Germany => 49);
+my Int %country-codes = UK => 44, Germany => 49;
 say %country-codes;
 say %country-codes.WHAT;
 ----
@@ -762,7 +760,7 @@ You will most probably never use the first two but they are listed for informati
 
 | *Type* | *Description* | *Example* | *Result*
 
-| Mu | The root of the Perl 6 type hierarchy | |
+| Mu | The root of the Raku type hierarchy | |
 
 | Any | Default base class for new classes and for most built-in classes | |
 
@@ -807,7 +805,7 @@ To clear the value of a variable, assign `Nil` to it.
 === Scoping
 Before using a variable for the first time, it needs to be declared.
 
-Several declarators are used in Perl 6. We've been using `my`, so far.
+Several declarators are used in Raku. We've been using `my`, so far.
 
 [source,perl6]
 my $var=1;
@@ -815,8 +813,8 @@ my $var=1;
 The `my` declarator give the variable *lexical* scope.
 In other words, the variable will only be accessible in the same block it was declared.
 
-A block in Perl 6 is delimited by `{ }`.
-If no block is found, the variable will be available in the whole Perl 6 script.
+A block in Raku is delimited by `{ }`.
+If no block is found, the variable will be available in the whole Raku script.
 
 [source,perl6]
 ----
@@ -904,7 +902,7 @@ say $a;
 Binding variables is bi-directional. +
 `$a := $b` and `$b := $a` have the same effect.
 
-NOTE: For more info on variables, see https://docs.perl6.org/language/variables
+NOTE: For more info on variables, see https://docs.raku.org/language/variables
 
 == Functions and mutators
 
@@ -947,7 +945,7 @@ say @numbers;      #4
 In order to enforce a function to act as a mutator, we use `.=` instead of `.` (#4) (Line 9 of the script)
 
 == Loops and conditions
-Perl 6 has many conditional and looping constructs.
+Raku has many conditional and looping constructs.
 
 === if
 The code runs only if a condition has been met; i.e., an expression evaluates to `True`.
@@ -961,7 +959,7 @@ if $age > 18 {
 }
 ----
 
-In Perl 6, we can invert the code and the condition. +
+In Raku, we can invert the code and the condition. +
 Even if the code and the condition have been inverted, the condition is always evaluated first.
 
 [source,perl6]
@@ -1014,7 +1012,7 @@ unless $clean-shoes {
 }
 ----
 
-Negation in Perl 6 is done using either `!` or `not`.
+Negation in Raku is done using either `!` or `not`.
 
 `unless (condition)` is used instead of `if not (condition)`.
 
@@ -1054,7 +1052,7 @@ The `for` loop iterates over multiple values.
 
 [source,perl6]
 ----
-my @array = [1,2,3];
+my @array = 1,2,3;
 
 for @array -> $array-item {
   say $array-item * 100
@@ -1065,7 +1063,7 @@ Notice that we created an iteration variable `$array-item` and then performed th
 
 === given
 
-`given` is the Perl 6 equivalent of the switch statement in other languages,
+`given` is the Raku equivalent of the switch statement in other languages,
 but much more powerful.
 
 [source,perl6]
@@ -1082,7 +1080,7 @@ given $var {
 
 After a successful match, the matching process will stop.
 
-Alternatively `proceed` will instruct Perl 6 to continue matching even after a successful match.
+Alternatively `proceed` will instruct Raku to continue matching even after a successful match.
 [source,perl6]
 ----
 my $var = 42;
@@ -1101,7 +1099,7 @@ given $var {
 
 Actually, `loop` is how `for` loops are  written in C-family programming languages.
 
-Perl 6 belongs to the C-family languages.
+Raku belongs to the C-family languages.
 
 [source,perl6]
 ----
@@ -1110,10 +1108,10 @@ loop (my $i = 0; $i < 5; $i++) {
 }
 ----
 
-NOTE: For more info on loops and conditions, see https://docs.perl6.org/language/control
+NOTE: For more info on loops and conditions, see https://docs.raku.org/language/control
 
 == I/O
-In Perl 6, two of the most common _Input/Output_ interfaces are the _Terminal_ and _Files_.
+In Raku, two of the most common _Input/Output_ interfaces are the _Terminal_ and _Files_.
 
 === Basic I/O using the Terminal
 
@@ -1142,7 +1140,7 @@ my $name;
 say "Hi, what's your name?";
 $name = get;
 
-say "Dear $name welcome to Perl 6";
+say "Dear $name welcome to Raku";
 ----
 
 When the above code runs, the terminal will be waiting for you to input your name. Enter it and then hit [Enter].
@@ -1157,7 +1155,7 @@ The above example can be written like this:
 ----
 my $name = prompt "Hi, what's your name? ";
 
-say "Dear $name welcome to Perl 6";
+say "Dear $name welcome to Raku";
 ----
 
 === Running Shell Commands
@@ -1182,7 +1180,7 @@ shell "ls";
 shell "dir";
 ----
 `echo` and `ls` are common shell keywords on Linux: +
-`echo` prints text to the terminal (the equivalent of `print` in Perl 6) +
+`echo` prints text to the terminal (the equivalent of `say` in Raku) +
 `ls` lists all files and folders in the current directory
 
 `dir` is the equivalent of `ls` on Windows.
@@ -1223,7 +1221,7 @@ spurt "newdatafile.txt", $newdata;
 After running the above code, a new file named _newdatafile.txt_ will be created. It will contain the new scores.
 
 === Working with files and directories
-Perl 6 can list the contents of a directory without resorting to shell commands (by using `ls`, for example).
+Raku can list the contents of a directory without resorting to shell commands (by using `ls`, for example).
 
 [source,perl6]
 ----
@@ -1244,17 +1242,17 @@ rmdir "newfolder";
 
 You can also check if a path exists; if it is a file; or a directory:
 
-In the directory where you will be running the below script, create an empty folder `folder123` and an empty p6 file `script123.p6`
+In the directory where you will be running the below script, create an empty folder `folder123` and an empty raku file `script123.raku`
 
 [source,perl6]
 ----
-say "script123.p6".IO.e;
+say "script123.raku".IO.e;
 say "folder123".IO.e;
 
-say "script123.p6".IO.d;
+say "script123.raku".IO.d;
 say "folder123".IO.d;
 
-say "script123.p6".IO.f;
+say "script123.raku".IO.f;
 say "folder123".IO.f;
 ----
 
@@ -1266,7 +1264,7 @@ WARNING: Windows users can use `/` or `\\` to define directories +
 `C:\\rakudo\\bin` +
 `C:/rakudo/bin` +
 
-NOTE: For more info on I/O, see https://docs.perl6.org/type/IO
+NOTE: For more info on I/O, see https://docs.raku.org/type/IO
 
 == Subroutines
 === Definition
@@ -1322,7 +1320,7 @@ greet "Laura","Mrs.";
 === Default and Optional Parameters
 If a subroutine is defined to accept an argument, and we call it without providing it with the required argument, it will fail.
 
-Perl 6 provides us the ability to define subroutines with:
+Raku provides us the ability to define subroutines with:
 
 * Optional Parameters
 * Default Parameters
@@ -1381,19 +1379,10 @@ say "7 squared is equal to " ~ squared(7);
 In one of the previous examples, we saw how we can restrict the accepted argument to be of a certain type.
 The same can be done with return values.
 
-To restrict the return value to a certain type, we either use the `returns` trait or the arrow notation `-\->` in the signature.
+To restrict the return value to a certain type, we use the arrow notation `-\->` in the signature.
 
 [source,perl6]
-.Using the returns trait
-----
-sub squared ($x) returns Int {
-  return $x ** 2;
-}
-say "1.2 squared is equal to " ~ squared(1.2);
-----
-
-[source,perl6]
-.Using the arrow
+.Indicating return type
 ----
 sub squared ($x --> Int) {
   return $x ** 2;
@@ -1427,7 +1416,7 @@ say "1.2 squared is equal to " ~ squared(1.2);
 ----
 ====
 
-NOTE: For more info on subroutines and functions, see https://docs.perl6.org/language/functions
+NOTE: For more info on subroutines and functions, see https://docs.raku.org/language/functions
 
 == Functional Programming
 In this chapter we will take a look at some of the features that facilitate Functional Programming.
@@ -1479,7 +1468,7 @@ say map(-> $x {$x ** 2},@array);
 Notice that instead of declaring the squared subroutine and passing it as an argument to `map`, we defined
 it within the anonymous subroutine as `\-> $x {$x ** 2}`.
 
-In Perl 6 parlance, we call this notation a *pointy block*
+In Raku parlance, we call this notation a *pointy block*
 
 [source,perl6]
 .A pointy block may also be used to assign functions to variables:
@@ -1491,7 +1480,7 @@ say $squared(9);
 ----
 
 === Chaining
-In Perl 6, methods can be chained, so you're not required to pass the result of one method to another as an argument.
+In Raku, methods can be chained, so you're not required to pass the result of one method to another as an argument.
 
 To illustrate: Given an array, you may need to return the unique values of the array, sorted from biggest to smallest.
 
@@ -1567,13 +1556,13 @@ say @array>>.is-prime;
 say @array>>.&is-even;
 ----
 
-Using the hyper operator we can call methods already defined in Perl 6, e.g. `is-prime` that tells us if a number is prime or not. +
+Using the hyper operator we can call methods already defined in Raku, e.g. `is-prime` that tells us if a number is prime or not. +
 In addition we can define new subroutines and call them using the hyper operator. In this case we have to prepend `&` to the name of the method; e.g., `&is-even`.
 
 This is very practical as it relieves us from writing a `for` loop to iterate over each value.
 
-WARNING: Perl 6 guarantees that the order of the results is the same as that of the original list.
-However, there is *no guarantee* that Perl 6 will actually call the methods in list order or in the same thread. So, be careful with methods that have side-effects, such as `say` or `print`.
+WARNING: Raku guarantees that the order of the results is the same as that of the original list.
+However, there is *no guarantee* that Raku will actually call the methods in list order or in the same thread. So, be careful with methods that have side-effects, such as `say` or `print`.
 
 === Junctions
 A *junction* is a logical superposition of values.
@@ -1628,7 +1617,7 @@ my $lazylist = (0,2 ... 10);
 say $lazylist;
 ----
 The initial elements are 0 and 2 and the endpoint is 10.
-No generator was defined, but using the initial elements, Perl 6 will deduce that the generator is (+2) +
+No generator was defined, but using the initial elements, Raku will deduce that the generator is (+2) +
 This lazy list may return (if requested) the following elements (0, 2, 4, 6, 8, 10)
 
 [source,perl6]
@@ -1665,7 +1654,7 @@ say $lazylist;
 ====
 
 === Closures
-All code objects in Perl 6 are closures, which means they can reference lexical variables from an outer scope.
+All code objects in Raku are closures, which means they can reference lexical variables from an outer scope.
 
 [source,perl6]
 ----
@@ -1718,8 +1707,8 @@ one that says `Good Morning` and one that says `Good Evening`.
 In `$morning` 's environment `$period` is `Morning`. In `$evening` 's environment `$period` is `Evening`.
 
 == Classes & Objects
-In the previous chapter, we learned how Perl 6 facilitates Functional Programming. +
-In this chapter we will take a look at Object Oriented programming in Perl 6.
+In the previous chapter, we learned how Raku facilitates Functional Programming. +
+In this chapter we will take a look at Object Oriented programming in Raku.
 
 === Introduction
 
@@ -1797,7 +1786,7 @@ say sayvar;
 ----
 The method `sayvar` is an accessor. It lets us access the value of the variable without getting direct access to it.
 
-Encapsulation is facilitated in Perl 6 with the use of *twigils*. +
+Encapsulation is facilitated in Raku with the use of *twigils*. +
 Twigils are secondary _sigils_. They come between the sigil and the attribute name. +
 Two twigils are used in classes:
 
@@ -1827,7 +1816,7 @@ Trying to access it outside the object will return an error.
 Now replace `has $!age` with `has $.age` and observe the result of `say $john.age;`
 
 === Named vs. Positional Parameters
-In Perl 6, all classes inherit a default `.new()` constructor. +
+In Raku, all classes inherit a default `.new()` constructor. +
 It can be used to create objects by providing it with arguments. +
 The default constructor can only be provided with *named arguments*. +
 In our example above, notice that the arguments supplied to `.new()` are defined by name:
@@ -2082,7 +2071,7 @@ They are only accessible from the class they were declared in. +
 They are defined using the `submethod` keyword.
 
 === Multiple Inheritance
-Multiple inheritance is allowed in Perl 6. A class can inherit from multiple other classes.
+Multiple inheritance is allowed in Raku. A class can inherit from multiple other classes.
 
 [source,perl6]
 ----
@@ -2134,7 +2123,7 @@ You should have noticed that calling the method `plot` on the `combo-chart` didn
 Only one series was plotted. +
 Why did this happen? +
 `combo-chart` inherits from `line-chart` and `bar-chart`, and both of them have a method called `plot`.
-When we call that method on `combo-chart` Perl 6 internals will try to resolve the conflict by calling one of the inherited methods.
+When we call that method on `combo-chart` Raku internals will try to resolve the conflict by calling one of the inherited methods.
 
 .Correction
 In order to behave correctly, we should have overridden the method `plot` in the `combo-chart`.
@@ -2326,10 +2315,10 @@ It evaluates to _True_ if the object is created from the class it is being compa
 
 [NOTE]
 --
-For more info on Object Oriented Programming in Perl 6, see:
+For more info on Object Oriented Programming in Raku, see:
 
-* https://docs.perl6.org/language/classtut
-* https://docs.perl6.org/language/objects
+* https://docs.raku.org/language/classtut
+* https://docs.raku.org/language/objects
 --
 == Exception Handling
 
@@ -2366,7 +2355,7 @@ say "How are you doing today?"
 .`Output`
 ----
 Type check failed in assignment to $name; expected Str but got Int
-   in block <unit> at exceptions.p6:2
+   in block <unit> at exceptions.raku:2
 ----
 
 Notice that whenever an error occurs (in this case, assigning a number to a string variable) the program will stop and other lines of code will not be evaluated.
@@ -2429,7 +2418,7 @@ try {
 ----
 
 === Throwing Exceptions
-Perl 6 also allows you to explicitly throw exceptions. +
+Raku also allows you to explicitly throw exceptions. +
 Two types of exceptions can be thrown:
 
 * ad-hoc exceptions
@@ -2459,7 +2448,7 @@ All typed exceptions descend from class `X` , below are a few examples: +
 `X::OS` is related to OS errors +
 `X::Str::Numeric` related to trying to coerce a string to a number
 
-NOTE: For a complete list of exception types and their associated methods, go to https://docs.perl6.org/type-exceptions.html
+NOTE: For a complete list of exception types and their associated methods, go to https://docs.raku.org/type-exceptions.html
 
 
 == Regular Expressions
@@ -2716,7 +2705,7 @@ For the sake of this example we will assume that a valid email address has this 
 first name [dot] last name [at] company [dot] (com/org/net)
 
 WARNING: The regex used in this example for email validation is not very accurate. +
-Its sole purpose is to demonstrate regex functionality in Perl 6. +
+Its sole purpose is to demonstrate regex functionality in Raku. +
 Do not use it as-is in production.
 
 [source,perl6]
@@ -2778,15 +2767,15 @@ if $email ~~ / <many-letters> <dot> <many-letters> <at> <many-letters-numbers> <
 A named regex is defined using the following syntax: `my regex regex-name { regex definition }` +
 A named regex can be called using the following syntax: `<regex-name>`
 
-NOTE: For more info on regexes, see https://docs.perl6.org/language/regexes
+NOTE: For more info on regexes, see https://docs.raku.org/language/regexes
 
-== Perl 6 Modules
-Perl 6 is a general purpose programming language. It can be used to tackle a multitude of tasks including:
+== Raku Modules
+Raku is a general purpose programming language. It can be used to tackle a multitude of tasks including:
 text manipulation, graphics, web, databases, network protocols etc.
 
 Reusability is a very important concept whereby programmers don't have to reinvent the wheel each time they want to do a new task.
 
-Perl 6 allows the creation and redistribution of *modules*. Each module is a packaged set of functionality that can be reused once installed.
+Raku allows the creation and redistribution of *modules*. Each module is a packaged set of functionality that can be reused once installed.
 
 _Zef_ is a module management tool that comes with Rakudo Star.
 
@@ -2794,7 +2783,7 @@ To install a specific module, type the below command in your terminal:
 
 `zef install "module name"`
 
-NOTE: The Perl 6 modules directory can be found on: https://modules.perl6.org/
+NOTE: The Raku modules directory can be found on: https://modules.raku.org/
 
 === Using Modules
 MD5 is a cryptographic hash function that produces a 128-bit hash value. +
@@ -2802,7 +2791,7 @@ MD5 has a variety of applications, including the encryption of stored passwords 
 When a new user registers, their credentials are not stored as plain text but rather _hashed_.
 The rationale behind this is that if the DB gets compromised, the attacker will not be able to know what the passwords are.
 
-Luckily, you don't need to implement the MD5 algorithm yourself; there's a Perl 6 module already implemented.
+Luckily, you don't need to implement the MD5 algorithm yourself; there's a Raku module already implemented.
 
 Let's install it: +
 `zef install Digest::MD5`
@@ -2939,7 +2928,7 @@ code point of lowercase `a` is bigger than the code point of capital `B`.
 
 While technically correct, this is probably not what we were looking for.
 
-Luckily Perl 6 has methods/operators that implement the link:http://unicode.org/reports/tr10/[Unicode Collation Algorithm]. +
+Luckily Raku has methods/operators that implement the link:http://unicode.org/reports/tr10/[Unicode Collation Algorithm]. +
 One of them is `unicmp` that behaves like the above showcased `cmp` but is unicode-aware.
 [source,perl6]
 ----
@@ -2948,7 +2937,7 @@ say 'a' unicmp 'B'; # Less
 As you can see, using the `unicmp` operator now yields the expected result that `a` is smaller than `B`.
 
 ===== Sorting
-As an alternative to the `sort` method that sorts using code points, Perl 6 provides a `collate`
+As an alternative to the `sort` method that sorts using code points, Raku provides a `collate`
 method that implements the link:http://unicode.org/reports/tr10/[Unicode Collation Algorithm].
 [source,perl6]
 ----
@@ -2962,7 +2951,7 @@ say ('a','b','c','D','E','F').collate; # (a b c D E F)
 Under normal circumstances, all tasks in a program run sequentially. +
 This might not be a problem, unless what you're trying to do takes a lot of time.
 
-Thankfully, Perl 6 has features that will enable you to run things in parallel. +
+Thankfully, Raku has features that will enable you to run things in parallel. +
 At this stage, it is important to note that parallelism can mean one of two things:
 
 * *Task Parallelism*: Two (or more) independent expressions running in parallel.
@@ -2974,7 +2963,7 @@ Let's begin with the latter.
 ==== Data Parallelism
 [source,perl6]
 ----
-my @array = (0..50000);                     # Array population
+my @array = 0..50000;                       # Array population
 my @result = @array.map({ is-prime $_ });   # call is-prime for each array element
 say now - INIT now;                         # Output the time it took for the script to complete
 ----
@@ -2987,7 +2976,7 @@ The `is-prime` subroutine is being called for each array element sequentially: +
 .Fortunately we can call `is-prime` on multiple array elements at the same time:
 [source,perl6]
 ----
-my @array = (0..50000);                         # Array population
+my @array = 0..50000;                           # Array population
 my @result = @array.race.map({ is-prime $_ });  # call is-prime for each array element
 say now - INIT now;                             # Output the time it took to complete
 ----
@@ -3004,7 +2993,7 @@ After running both examples (with and without `race`), compare the time it took 
 [source,perl6]
 .race
 ----
-my @array = (1..1000);
+my @array = 1..1000;
 my @result = @array.race.map( {$_ + 1} );
 .say for @result;
 ----
@@ -3012,7 +3001,7 @@ my @result = @array.race.map( {$_ + 1} );
 [source,perl6]
 .hyper
 ----
-my @array = (1..1000);
+my @array = 1..1000;
 my @result = @array.hyper.map( {$_ + 1} );
 .say for @result;
 ----
@@ -3025,8 +3014,8 @@ If you run both examples, you should notice that one is sorted and the other is 
 
 [source,perl6]
 ----
-my @array1 = (0..49999);
-my @array2 = (2..50001);
+my @array1 = 0..49999;
+my @array2 = 2..50001;
 
 my @result1 = @array1.map( {is-prime($_ + 1)} );
 my @result2 = @array2.map( {is-prime($_ - 1)} );
@@ -3052,8 +3041,8 @@ Both operations applied to each array do not depend on each other.
 .Why not do both in parallel?
 [source,perl6]
 ----
-my @array1 = (0..49999);
-my @array2 = (2..50001);
+my @array1 = 0..49999;
+my @array2 = 2..50001;
 
 my $promise1 = start @array1.map( {is-prime($_ + 1)} ).eager;
 my $promise2 = start @array2.map( {is-prime($_ - 1)} ).eager;
@@ -3081,14 +3070,14 @@ WARNING: Parallelism always adds a threading overhead. If that overhead is not o
 This is why, using `race`, `hyper`, `start` and `await` for fairly simple scripts can actually slow them down.
 
 === Concurrency and Asynchrony
-NOTE: For more info on Concurrency and Asynchronous Programming, see https://docs.perl6.org/language/concurrency
+NOTE: For more info on Concurrency and Asynchronous Programming, see https://docs.raku.org/language/concurrency
 
 == Native Calling Interface
 
-Perl 6 gives us the ability to use C libraries, using the Native Calling Interface.
+Raku gives us the ability to use C libraries, using the Native Calling Interface.
 
-`NativeCall` is a standard module that ships with Perl 6 and offers a set of functionality to ease the job
-of interfacing Perl 6 and C.
+`NativeCall` is a standard module that ships with Raku and offers a set of functionality to ease the job
+of interfacing Raku and C.
 
 === Calling a function
 
@@ -3124,11 +3113,11 @@ gcc -shared -o ncitest.dll ncitest.o
 gcc -dynamiclib -o libncitest.dylib ncitest.c
 ----
 
-Within the same directory where you compiled your C library, create a new Perl 6
+Within the same directory where you compiled your C library, create a new Raku
 file that contains the below code and run it.
 
 [source,perl6]
-.ncitest.p6
+.ncitest.raku
 ----
 use NativeCall;
 
@@ -3142,27 +3131,27 @@ hellofromc();
 First of all we declared that we will be using the `NativeCall` module. +
 Then we created a constant `LIBPATH` that holds the path to the C library. +
 Notice that `$*CWD` returns the current working directory. +
-Then we created a new Perl 6 subroutine called `hellofromc()` that should act as a
+Then we created a new Raku subroutine called `hellofromc()` that should act as a
 wrapper to its counterpart C function having the same name and residing in the C
 library found in `LIBPATH`. +
 All of this was done by using the `is native` trait. +
-Finally we called our Perl 6 subroutine.
+Finally we called our Raku subroutine.
 
 In essence, it all boils down to declaring a subroutine with the trait `is native` and the name of the C library.
 
 === Renaming a function
 
 In the above part, we saw how we can call a very simple C function by wrapping
-it with a Perl 6 subroutine having the same name, using the `is native` trait.
+it with a Raku subroutine having the same name, using the `is native` trait.
 
-In some cases, we would want to change the name of the Perl 6 subroutine. +
+In some cases, we would want to change the name of the Raku subroutine. +
 To do so, we use the `is symbol` trait.
 
-Lets modify the above Perl 6 script and rename the Perl 6 subroutine `hello`
+Lets modify the above Raku script and rename the Raku subroutine `hello`
 instead of `hellofromc`
 
 [source,perl6]
-.ncitest.p6
+.ncitest.raku
 ----
 use NativeCall;
 
@@ -3173,13 +3162,13 @@ hello();
 ----
 
 .Explanation:
-In case the Perl 6 subroutine has a different name than its C counterpart, we
+In case the Raku subroutine has a different name than its C counterpart, we
 should use the `is symbol` trait with the name of the original C function.
 
 === Passing Arguments
 
-Compile the following modified C library and run the Perl 6 script found below again. +
-Notice how we modified both C and Perl 6 code to accept a string (`char*` in C and `Str` in Perl 6)
+Compile the following modified C library and run the Raku script found below again. +
+Notice how we modified both C and Raku code to accept a string (`char*` in C and `Str` in Raku)
 
 [source,c]
 .ncitest.c
@@ -3192,7 +3181,7 @@ void hellofromc (char* name) {
 ----
 
 [source,perl6]
-.ncitest.p6
+.ncitest.raku
 ----
 use NativeCall;
 
@@ -3206,7 +3195,7 @@ hello('Jane');
 
 Lets repeat the process one more time and create a simple calculator that takes
 2 integers and add them. +
-Compile the C library and run the Perl 6 script.
+Compile the C library and run the Raku script.
 
 [source,c]
 .ncitest.c
@@ -3217,31 +3206,31 @@ int add (int a, int b) {
 ----
 
 [source,perl6]
-.ncitest.p6
+.ncitest.raku
 ----
 use NativeCall;
 
 constant LIBPATH = "$*CWD/ncitest";
-sub add(int32,int32) returns int32 is native(LIBPATH) { * }
+sub add(int32,int32 --> int32) is native(LIBPATH) { * }
 
 say add(2,3);
 ----
 
-Notice how both C and Perl 6 functions accept two integers and return one
-(`int` in C and `int32` in Perl 6)
+Notice how both C and Raku functions accept two integers and return one
+(`int` in C and `int32` in Raku)
 
 === Types
 
-You might have asked yourself why did we use `int32` instead of `Int` in the latest Perl 6 script. +
-Some Perl 6 types like `Int`, `Rat` etc. can't be used as is to pass and receive values from a C function. +
-One must use in Perl 6 the same types as the ones in C.
+You might have asked yourself why did we use `int32` instead of `Int` in the latest Raku script. +
+Some Raku types like `Int`, `Rat` etc. can't be used as is to pass and receive values from a C function. +
+One must use in Raku the same types as the ones in C.
 
-Luckily Perl 6 provides many types that map to their respective C counterpart.
+Luckily Raku provides many types that map to their respective C counterpart.
 
 [cols="^.^,^.^",options="header"]
 |===
 
-| C Type | Perl 6 Type
+| C Type | Raku Type
 
 | `char` .2+| `int8`
 
@@ -3289,18 +3278,19 @@ Luckily Perl 6 provides many types that map to their respective C counterpart.
 
 |===
 
-NOTE: For more info on the Native Calling Interface, see https://docs.perl6.org/language/nativecall
+NOTE: For more info on the Native Calling Interface, see https://docs.raku.org/language/nativecall
 
 == The Community
 
-* link:irc://irc.freenode.net/#perl6[#perl6] IRC channel. Much discussion happens on IRC. This should be your go to place for any enquiry: https://perl6.org/community/irc
+* link:irc://irc.freenode.net/#raku[#raku] IRC channel. Much discussion happens on IRC. +
+This should be your go to place for any enquiry for which you want an immediate answer: https://raku.org/community/irc
 
-* link:https://p6weekly.wordpress.com[p6weekly] a weekly overview of changes in and around Perl 6.
+* link:https://stackoverflow.com/questions/tagged/raku[StackOverflow Raku questions] is a place where questions about Raku can be answered more in-depth.
 
-* link:http://pl6anet.org[pl6anet] blog aggregator. Stay tuned by reading blog posts that focus on Perl 6.
+* link:https://rakudoweekly.blog[Rakudo Weekly] a weekly overview of changes in and around Rakudo.
 
-* link:https://www.reddit.com/r/perl6/[/r/perl6] subscribe to the Perl 6 subreddit.
+* link:http://pl6anet.org[pl6anet] blog aggregator. Stay tuned by reading blog posts that focus on Raku.
+
+* link:https://www.reddit.com/r/rakulang/[/r/rakulang] subscribe to the Raku subreddit.
 
 * link:https://twitter.com/perl6org[@perl6org] follow the community on twitter.
-
-* link:https://alerts.perl6.org[P6lert] alerts from Perl 6 Core Developers. Keep up to date with important changes.
