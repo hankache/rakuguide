@@ -598,21 +598,21 @@ NOTE: Consulta https://docs.raku.org/type/Array para tener la referencia complet
 [source,perl6]
 .Un Hash es una colección de pares Clave/Valor.
 ----
-my %capitales = ('UK','Londres','Alemania','Berlín');
+my %capitales = 'UK','Londres','Alemania','Berlín';
 say %capitales;
 ----
 
 [source,perl6]
 .Otra forma de insertar valores en un hash:
 ----
-my %capitales = (UK => 'Londres', Alemania => 'Berlín');
+my %capitales = UK => 'Londres', Alemania => 'Berlín';
 say %capitales;
 ----
 Algunos de los métodos aplicables a los hashes son:
 [source,perl6]
 .`Script`
 ----
-my %capitales = (UK => 'Londres', Alemania => 'Berlín');
+my %capitales = UK => 'Londres', Alemania => 'Berlín';
 %capitales.push: (Francia => 'París');
 say %capitales.kv;
 say %capitales.keys;
@@ -686,11 +686,11 @@ my Str @multilengua = "Hello","Salut","Hallo","您好","안녕하세요","こん
 say @multilengua;
 say @multilengua.WHAT;
 
-my Str %capitales = (UK => 'London', Alemania => 'Berlín');
+my Str %capitales = UK => 'London', Alemania => 'Berlín';
 say %capitales;
 say %capitales.WHAT;
 
-my Int %código-país = (UK => 44, Alemania => 49);
+my Int %código-país = UK => 44, Alemania => 49;
 say %código-país;
 say %código-país.WHAT;
 ----
@@ -2834,7 +2834,7 @@ Comencemos con la última.
 ==== Paralelismo de Datos
 [source,perl6]
 ----
-my @array = (0..50000);                      # Creación del array
+my @array = 0..50000;                        # Creación del array
 my @resultado = @array.map({ is-prime $_ }); # Llama a is-prime por cada elemento del array
 say now - INIT now;                          # Visualiza el tiempo que toma el script hasta finalizar
 ----
@@ -2847,7 +2847,7 @@ La subrutina `is-prime` es llamada por cada elemento del array de forma secuenci
 .Afortunadamente podemos llamar a `is-prime` en múltiples elementos del array al mismo tiempo:
 [source,perl6]
 ----
-my @array = (0..50000);                           # Creación del array
+my @array = 0..50000;                             # Creación del array
 my @resultado = @array.race.map({ is-prime $_ }); # Llama a is-prime por cada elemento del array
 say now - INIT now;                               # Visualiza el tiempo que toma el script hasta finalizar
 ----
@@ -2864,7 +2864,7 @@ Después de ejecutar ambos ejemplos (con y sin `race`), compara los tiempos cons
 [source,perl6]
 .race
 ----
-my @array = (1..1000);
+my @array = 1..1000;
 my @resultado = @array.race.map( {$_ + 1} );
 .say for @resultado;
 ----
@@ -2872,7 +2872,7 @@ my @resultado = @array.race.map( {$_ + 1} );
 [source,perl6]
 .hyper
 ----
-my @array = (1..1000);
+my @array = 1..1000;
 my @resultado = @array.hyper.map( {$_ + 1} );
 .say for @resultado;
 ----
@@ -2885,8 +2885,8 @@ Si ejecutas ambos ejemplos verás que uno muestra los resultados ordenados y el 
 
 [source,perl6]
 ----
-my @array1 = (0..49999);
-my @array2 = (2..50001);
+my @array1 = 0..49999;
+my @array2 = 2..50001;
 
 my @resultado1 = @array1.map( {is-prime($_ + 1)} );
 my @resultado2 = @array2.map( {is-prime($_ - 1)} );
@@ -2912,8 +2912,8 @@ Ambas operaciones realizadas en cada array son independientes.
 .¿Por qué no hacer las dos en paralelo?
 [source,perl6]
 ----
-my @array1 = (0..49999);
-my @array2 = (2..50001);
+my @array1 = 0..49999;
+my @array2 = 2..50001;
 
 my $promesa1 = start @array1.map( {is-prime($_ + 1)} ).eager;
 my $promesa2 = start @array2.map( {is-prime($_ - 1)} ).eager;
