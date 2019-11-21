@@ -1324,19 +1324,10 @@ say "7 al cuadrado es igual a " ~ cuadrado(7);
 En uno de los ejemplos anteriores vimos cómo restringir el tipo del argumento aceptado.
 Lo mismo podemos hacer con los valores de retorno.
 
-Para restringir el valor de retorno a un tipo determinado podemos utilizar `returns` o la notación de flecha `-\->` en la signatura.
+Para restringir el valor de retorno a un tipo determinado utilizamos la notación de flecha `-\->` en la signatura.
 
 [source,perl6]
-.Utilizando returns
-----
-sub cuadrado ($x) returns Int {
-  return $x ** 2;
-}
-say "1.2 al cuadrado es igual a " ~ cuadrado(1.2);
-----
-
-[source,perl6]
-.Utilizando la notación de flecha
+.Utilizando el tipo de retorno
 ----
 sub cuadrado ($x --> Int) {
   return $x ** 2;
