@@ -2807,6 +2807,52 @@ my $var = 2 + ⅒;
 say $var;
 ----
 
+=== Operaciones contempladas con Unicode
+
+==== Números
+
+Los números arábigos son los diez dígitos: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9.
+Este conjunto de números es el más utilizado en el mundo.
+
+No obstante y en menor medida en diferentes lugares del mundo se utilizan otros conjuntos de números.
+
+Al utilizar otros conjuntos de números distintos de los números arábigos no hay que hacer nada especial; todos los métodos y operadores funcionarán como de costumbre.
+
+[source,perl6]
+----
+say (٤,٥,٦,1,2,3).sort; # (1 2 3 4 5 6)
+say 1 + ٩;              # 10
+----
+
+==== Strings
+Cuidado al utilizar operaciones génericas con texto pues no siempre obtendríamos lo resultados esperados, sobre todo al comparar u ordenar.
+
+===== Comparación
+
+[source,perl6]
+----
+say 'a' cmp 'B'; # Más
+----
+Este ejemplo dice que `a` es mayor a `B` porque el número de código de `a` es mayor que el número de código de `B`.
+
+Si bien la lógica anterior es técnicamente correcta, puede que no sea muy útil.
+
+Por suerte Raku tiene métodos y operadores que implementan el link:http://unicode.org/reports/tr10/[Algoritmo del conjunto ordenado de caracteres de Unicode]. +
+Uno de estos operadores es `unicmp`, funciona como el que hemos visto `cmp` pero contemplado por Unicode.
+[source,perl6]
+----
+say 'a' unicmp 'B'; # Menos
+----
+Como puedes ver el operador `unicmp` da el resultado esperado donde `a` es menor que `B`.
+
+===== Ordenación
+Como alternativa a `sort` para ordenar por números de código Raku incluye el método `collate` que implementa el link:http://unicode.org/reports/tr10/[Algoritmo del conjunto ordenado de caracteres de Unicode].
+[source,perl6]
+----
+say ('a','b','c','D','E','F').sort;    # (D E F a b c)
+say ('a','b','c','D','E','F').collate; # (a b c D E F)
+----
+
 == Paralelismo, Concurrencia y Asincronía
 
 === Paralelismo
