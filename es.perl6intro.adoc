@@ -995,7 +995,7 @@ Si la primera condición `with` no se cumple, puedes indicar una alternativa med
 
 [source,perl6]
 ----
-my @array = [1,2,3];
+my @array = 1,2,3;
 
 for @array -> $array-item {
   say $array-item * 100
