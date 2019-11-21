@@ -2824,7 +2824,7 @@ say (٤,٥,٦,1,2,3).sort; # (1 2 3 4 5 6)
 say 1 + ٩;              # 10
 ----
 
-==== Strings
+==== Texto
 Cuidado al utilizar operaciones génericas con texto pues no siempre obtendríamos lo resultados esperados, sobre todo al comparar u ordenar.
 
 ===== Comparación
@@ -2833,12 +2833,12 @@ Cuidado al utilizar operaciones génericas con texto pues no siempre obtendríam
 ----
 say 'a' cmp 'B'; # Más
 ----
-Este ejemplo dice que `a` es mayor a `B` porque el número de código de `a` es mayor que el número de código de `B`.
+Este ejemplo dice que `a` es mayor que `B` porque el número de código de `a` es mayor que el número de código de `B`.
 
-Si bien la lógica anterior es técnicamente correcta, puede que no sea muy útil.
+Si bien la lógica anterior es técnicamente correcta en la práctica no es muy útil.
 
 Por suerte Raku tiene métodos y operadores que implementan el link:http://unicode.org/reports/tr10/[Algoritmo del conjunto ordenado de caracteres de Unicode]. +
-Uno de estos operadores es `unicmp`, funciona como el que hemos visto `cmp` pero contemplado por Unicode.
+Uno de estos operadores es `unicmp`, funciona como `cmp` pero contemplado por Unicode.
 [source,perl6]
 ----
 say 'a' unicmp 'B'; # Menos
