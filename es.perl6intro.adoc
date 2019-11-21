@@ -3064,7 +3064,7 @@ int suma (int a, int b) {
 use NativeCall;
 
 constant LIBPATH = "$*CWD/ncitest";
-sub suma(int32,int32) returns int32 is native(LIBPATH) { * }
+sub suma(int32,int32 --> int32) is native(LIBPATH) { * }
 
 say suma(2,3);
 ----
