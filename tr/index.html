@@ -19,7 +19,7 @@
 <meta name="description" content="Perl 6'ya genel Giriş">
 <meta name="keywords" content="perl6, perl 6, giriş, perl6giriş, perl 6'ya giriş, perl 6 öğretici">
 <meta name="author" content="Naoum Hankache, Yalın Pala">
-<title>Perl 6&#8217;ya Giriş</title>
+<title>Raku Rehberi</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /* Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -453,7 +453,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="book toc2 toc-left">
 <div id="header">
-<h1>Perl 6&#8217;ya Giriş</h1>
+<h1>Raku Rehberi</h1>
 <div class="details">
 <span id="author" class="author">Naoum Hankache</span><br>
 <span id="email" class="email"><a href="mailto:naoum@hankache.com">naoum@hankache.com</a></span><br>
@@ -465,10 +465,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <ul class="sectlevel1">
 <li><a href="#_giriş">1. Giriş</a>
 <ul class="sectlevel2">
-<li><a href="#_perl_6_nedir">1.1. Perl 6 Nedir?</a></li>
+<li><a href="#_raku_nedir">1.1. Raku Nedir?</a></li>
 <li><a href="#_jargon">1.2. Jargon</a></li>
-<li><a href="#_perl_6_kurulumu">1.3. Perl 6 Kurulumu</a></li>
-<li><a href="#_perl_6_kodunun_çalıştırılması">1.4. Perl 6 Kodunun Çalıştırılması</a></li>
+<li><a href="#_raku_kurulumu">1.3. Raku Kurulumu</a></li>
+<li><a href="#_raku_kodunun_çalıştırılması">1.4. Raku Kodunun Çalıştırılması</a></li>
 <li><a href="#_editörler">1.5. Editörler</a></li>
 <li><a href="#_merhaba_dünya">1.6. Merhaba Dünya!</a></li>
 <li><a href="#_söz_dizimine_genel_bakış">1.7. Söz Dizimine Genel Bakış</a></li>
@@ -564,7 +564,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_örnek">11.8. Örnek</a></li>
 </ul>
 </li>
-<li><a href="#_perl_6_modülleri">12. Perl 6 Modülleri</a>
+<li><a href="#_raku_modülleri">12. Raku Modülleri</a>
 <ul class="sectlevel2">
 <li><a href="#_modüllerin_kullanımı">12.1. Modüllerin Kullanımı</a></li>
 </ul>
@@ -597,11 +597,11 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Bu belge, Perl 6 programlama dili hakkında genel bir bakış sunması amacıyla hazırlanmıştır.
+<p>Bu belge, Raku programlama dili hakkında genel bir bakış sunması amacıyla hazırlanmıştır.
 Yeni olanlar için hızlı bir başlangıç olacaktır.</p>
 </div>
 <div class="paragraph">
-<p>Bu belgenin bazı bölümleri <a href="http://docs.perl6.org">Perl 6 dökümantasyonu</a>'na değinmektedir.
+<p>Bu belgenin bazı bölümleri <a href="https://docs.raku.org/">Raku dökümantasyonu</a>'na değinmektedir.
 Belirli bir konuda daha fazla bilgiye ihtiyacınız varsa bunları okumalısınız.</p>
 </div>
 <div class="paragraph">
@@ -690,13 +690,13 @@ Bu lisansın bir kopyasını görüntülemek için aşağıdaki adresi ziyaret e
 <h2 id="_giriş">1. Giriş</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_perl_6_nedir">1.1. Perl 6 Nedir?</h3>
+<h3 id="_raku_nedir">1.1. Raku Nedir?</h3>
 <div class="paragraph">
-<p>Perl 6 yüksek seviyeli, genel amaçlı, kademeli yazılan(<em>gradually typed</em>) bir dildir.
-Perl 6 prosedürel, nesne yönelimli ve fonksiyonel programlamayı destekler. <em>(multi-paradigmatic)</em></p>
+<p>Raku yüksek seviyeli, genel amaçlı, kademeli yazılan(<em>gradually typed</em>) bir dildir.
+Raku prosedürel, nesne yönelimli ve fonksiyonel programlamayı destekler. <em>(multi-paradigmatic)</em></p>
 </div>
 <div class="ulist">
-<div class="title">Perl 6 mottoları:</div>
+<div class="title">Raku mottoları:</div>
 <ul>
 <li>
 <p>TMTOWTDI (Tim Toady şeklinde telaffuz edilir.): Bir şeyi yapmanın birden fazla yolu vardır. <em>-There is more than one way to do it.</em></p>
@@ -712,25 +712,25 @@ Perl 6 prosedürel, nesne yönelimli ve fonksiyonel programlamayı destekler. <e
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Perl 6</strong>: Perl programlama dili ailesinin bir üyesidir. Bir dil belirtimi ile test paketi içerir. Belirtim test paketini geçen uygulamalar Perl 6 olarak kabul edilir.</p>
+<p><strong>Raku</strong>: Perl programlama dili ailesinin bir üyesidir. Bir dil belirtimi ile test paketi içerir. Belirtim test paketini geçen uygulamalar Raku olarak kabul edilir.</p>
 </li>
 <li>
-<p><strong>Rakudo</strong>: Perl 6 derleyicisidir.</p>
+<p><strong>Rakudo</strong>: Raku derleyicisidir.</p>
 </li>
 <li>
 <p><strong>Rakudobrew</strong>: Rakudo kurulum yöneticisidir.</p>
 </li>
 <li>
-<p><strong>Zef</strong>: Perl 6 modül yöneticisidir.</p>
+<p><strong>Zef</strong>: Raku modül yöneticisidir.</p>
 </li>
 <li>
-<p><strong>Rakudo Star</strong>: Rakudo, Zef, Perl 6 modül koleksiyonu ve dökümantasyonu içeren pakettir.</p>
+<p><strong>Rakudo Star</strong>: Rakudo, Zef, Raku modül koleksiyonu ve dökümantasyonu içeren pakettir.</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_perl_6_kurulumu">1.3. Perl 6 Kurulumu</h3>
+<h3 id="_raku_kurulumu">1.3. Raku Kurulumu</h3>
 <div class="paragraph">
 <div class="title">Linux</div>
 <p>Rakudo Star kurulumu için komutları takip edin:</p>
@@ -790,13 +790,13 @@ Perl 6 prosedürel, nesne yönelimli ve fonksiyonel programlamayı destekler. <e
 </div>
 </div>
 <div class="sect2">
-<h3 id="_perl_6_kodunun_çalıştırılması">1.4. Perl 6 Kodunun Çalıştırılması</h3>
+<h3 id="_raku_kodunun_çalıştırılması">1.4. Raku Kodunun Çalıştırılması</h3>
 <div class="paragraph">
-<p>Perl 6&#8217;nın REPL(Read-Eval-Print Loop) üzerinden çalıştırılması için terminali açıp <code>perl6</code> yazmanız ve [Enter]'a basmanız yeterli.
+<p>Raku&#8217;nın REPL(Read-Eval-Print Loop) üzerinden çalıştırılması için terminali açıp <code>perl6</code> yazmanız ve [Enter]'a basmanız yeterli.
 Herşey yolunda giderse <code>&gt;</code> işareti ile terminalin sizden giriş beklediğini görmelisiniz. Eğer bir hatayla karşılaşırsanız kurulum bölümüne geri dönmelisiniz. REPL&#8217;dan çıkmak için <code>exit</code> yazmanız ve [Enter]'a basmanız şimdilik yeterli.</p>
 </div>
 <div class="paragraph">
-<p>Perl 6 kodunu çalıştırmanın alternatif bir yöntemi ise herhangi bir editörle yazdığımız kodu uzantısı <code>.pl6</code> olacak şekilde kaydederek terminale <code>perl6 dosyaismi.pl6</code> yazmanız ve [Enter]'a basmanızdır. Burada önemli olan nokta dosya ile aynı dizinde olmanızdır ve eğer kodunuz bir çıktı üretmiyorsa ekranda bir şey göremezsiniz.</p>
+<p>Raku kodunu çalıştırmanın alternatif bir yöntemi ise herhangi bir editörle yazdığımız kodu uzantısı <code>.pl6</code> olacak şekilde kaydederek terminale <code>perl6 dosyaismi.pl6</code> yazmanız ve [Enter]'a basmanızdır. Burada önemli olan nokta dosya ile aynı dizinde olmanızdır ve eğer kodunuz bir çıktı üretmiyorsa ekranda bir şey göremezsiniz.</p>
 </div>
 <div class="paragraph">
 <p>Farklı bir yöntem ise tek satırlık komutlardır. Tek satırlık kodlar çalıştırmak için <code>perl6 -e 'kodunuz'</code> şeklinde kullanılması gerekir.</p>
@@ -832,8 +832,8 @@ Herşey yolunda giderse <code>&gt;</code> işareti ile terminalin sizden giriş 
 <div class="sect2">
 <h3 id="_editörler">1.5. Editörler</h3>
 <div class="paragraph">
-<p>Çoğu zaman, Perl 6 programlarmızı dosyalara yazıp depolayacağımız için, Perl 6 sözdizimini tanıyan iyi bir metin editörüne sahip olmalıyız. Birçok alternatif bulunduğundan biz sadece ikisine değineceğiz.
-* Modern bir metin editörü olan <a href="https://atom.io">Atom</a> ve Perl 6 Language Highlighter <a href="https://atom.io/packages/language-perl6">Perl 6 FE</a> eklentisi.
+<p>Çoğu zaman, Raku programlarmızı dosyalara yazıp depolayacağımız için, Raku sözdizimini tanıyan iyi bir metin editörüne sahip olmalıyız. Birçok alternatif bulunduğundan biz sadece ikisine değineceğiz.
+* Modern bir metin editörü olan <a href="https://atom.io">Atom</a> ve Raku Language Highlighter <a href="https://atom.io/packages/language-perl6">Perl 6 FE</a> eklentisi.
 * Diğer editörlere <a href="http://www.vim.org/">Vim</a>, <a href="https://www.gnu.org/software/emacs/">Emacs</a> <a href="http://padre.perlide.org/">Padre</a> adreslerinden ulaşabilirsiniz.</p>
 </div>
 <div class="paragraph">
@@ -862,7 +862,7 @@ Herşey yolunda giderse <code>&gt;</code> işareti ile terminalin sizden giriş 
 <div class="sect2">
 <h3 id="_söz_dizimine_genel_bakış">1.7. Söz Dizimine Genel Bakış</h3>
 <div class="paragraph">
-<p>Perl 6 çoğu zaman düzensiz çalışmanıza izin verir.</p>
+<p>Raku çoğu zaman düzensiz çalışmanıza izin verir.</p>
 </div>
 <div class="paragraph">
 <p>Her bir ifade, genellikle mantıksal bir kod satırıdır ve noktalı virgülle bitmesi gerekir:
@@ -1285,11 +1285,11 @@ Herşey yolunda giderse <code>&gt;</code> işareti ile terminalin sizden giriş 
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>True</code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>"Perl 6" ~~ "Perl 6"</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>"Raku" ~~ "Raku"</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>True</code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>"Perl 6" ~~ Str</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>"Raku" ~~ Str</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>True</code></p></td>
 </tr>
 <tr>
@@ -1532,7 +1532,7 @@ Operatörler hakkında daha fazla bilgiye <a href="https://docs.perl6.org/langua
 <h2 id="_değişkenler">3. Değişkenler</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Perl 6’da değişkenler üç kategoriye ayrılır: Skalar değişkenler, Diziler ve Hashler.</p>
+<p>Raku’da değişkenler üç kategoriye ayrılır: Skalar değişkenler, Diziler ve Hashler.</p>
 </div>
 <div class="paragraph">
 <p>Değişkenlerin başın da, değişkenleri kategorize etmek için kullanılan karakterler vardır.</p>
@@ -1770,7 +1770,7 @@ Buna karşılık sabit boyutlu diziler de oluşturulabilir. Bu diziler tanımlan
 <h4 id="_çok_boyutlu_diziler">3.2.2. Çok Boyutlu Diziler</h4>
 <div class="paragraph">
 <p>Şimdiye kadar görüğümüz diziler tek boyutluydu.
-Perl 6 çok boyutlu diziler tanımlamamıza izin verir.</p>
+Raku çok boyutlu diziler tanımlamamıza izin verir.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1934,7 +1934,7 @@ Hashler hakkında daha fazla bilgiye <a href="https://docs.perl6.org/type/Hash" 
 <p>Bu programlama tarzına statik yazım denir. Değişkenin tipinin atama öncesi tanımlandığı ve değiştirilemeyeceği anlamına gelir.</p>
 </div>
 <div class="paragraph">
-<p>Perl 6 <strong>kadelemeli</strong> <em>-gradually typed</em> olarak yazılan bir dil olarak tanımlanmıştır; hem <strong>statik</strong> hem de <strong>dinamik</strong> yazıma izin verir.</p>
+<p>Raku <strong>kadelemeli</strong> <em>-gradually typed</em> olarak yazılan bir dil olarak tanımlanmıştır; hem <strong>statik</strong> hem de <strong>dinamik</strong> yazıma izin verir.</p>
 </div>
 <div class="listingblock">
 <div class="title">Diziler ve hashler statik olarak yazılabilir:</div>
@@ -1973,7 +1973,7 @@ Hashler hakkında daha fazla bilgiye <a href="https://docs.perl6.org/type/Hash" 
 </tr>
 <tr>
 <td class="tableblock halign-center valign-middle"><p class="tableblock"><code>Mu</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>Perl 6 tür hiyerarşisinin kökü</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>Raku tür hiyerarşisinin kökü</code></p></td>
 <td class="tableblock halign-left valign-middle"></td>
 <td class="tableblock halign-left valign-middle"></td>
 </tr>
@@ -2048,7 +2048,7 @@ Bir değişkenin tipini temizlemek için <code>Nil</code> ataması yapılır.</p
 <h3 id="_kapsam_scoping">3.6. Kapsam (<em>Scoping</em>)</h3>
 <div class="paragraph">
 <p>Kullanılmadan önce bir değişkenin tanımlanması gerekir.
-Perl 6&#8217;da birçok tanımlama kullanılmaktadır. Biz şuana kadar <code>my</code> kullanıyorduk.</p>
+Raku&#8217;da birçok tanımlama kullanılmaktadır. Biz şuana kadar <code>my</code> kullanıyorduk.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2059,8 +2059,8 @@ Perl 6&#8217;da birçok tanımlama kullanılmaktadır. Biz şuana kadar <code>my
 <p><code>my</code> bildirimi kapsamı verir. Başka bir deyişle <code>my</code> ile tanımlanan bir değişken yalnızca tanımladığı blokta erişilebilir olacaktır.</p>
 </div>
 <div class="paragraph">
-<p>Perl 6&#8217;da bir blok <code>{ }</code> ile sınırlandırılmış alandır.
-Eğer yazdığımız kodda blok blunmuyorsa, değişken Perl 6 betiğinin tamamında kullanılabilir olacaktır.</p>
+<p>Raku&#8217;da bir blok <code>{ }</code> ile sınırlandırılmış alandır.
+Eğer yazdığımız kodda blok blunmuyorsa, değişken Raku betiğinin tamamında kullanılabilir olacaktır.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2245,7 +2245,7 @@ Mutatörler nesnenin durumunu değiştirirler ve metotlar gibi düşünülebilir
 <h2 id="_döngüler_ve_koşullar">5. Döngüler ve Koşullar</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Perl 6 birçok döngü ve koşul yapısına sahiptir.</p>
+<p>Raku birçok döngü ve koşul yapısına sahiptir.</p>
 </div>
 <div class="sect2">
 <h3 id="_if">5.1. if</h3>
@@ -2319,7 +2319,7 @@ Mutatörler nesnenin durumunu değiştirirler ve metotlar gibi düşünülebilir
 </div>
 </div>
 <div class="paragraph">
-<p>Perl 6&#8217;da bir ifadeyi olumsuzlamak için <code>!</code> veya <code>not</code> kullanılır.</p>
+<p>Raku&#8217;da bir ifadeyi olumsuzlamak için <code>!</code> veya <code>not</code> kullanılır.</p>
 </div>
 <div class="paragraph">
 <p><code>unless (koşul)</code> yerine <code>if not (koşul)</code> kullanılabilir.</p>
@@ -2383,7 +2383,7 @@ Mutatörler nesnenin durumunu değiştirirler ve metotlar gibi düşünülebilir
 <div class="sect2">
 <h3 id="_given">5.5. given</h3>
 <div class="paragraph">
-<p>Diğer dillerdeki <code>switch</code> ifadesinin Perl 6&#8217;daki daha güçlü ifadesidir.</p>
+<p>Diğer dillerdeki <code>switch</code> ifadesinin Raku&#8217;daki daha güçlü ifadesidir.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2425,7 +2425,7 @@ Mutatörler nesnenin durumunu değiştirirler ve metotlar gibi düşünülebilir
 <p>Aslında <code>loop</code> C programlama dili ailesinde <code>for</code> döngüsü yazmaya benzer.</p>
 </div>
 <div class="paragraph">
-<p>Perl 6, C ailesi dillerindendir.</p>
+<p>Raku, C ailesi dillerindendir.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2453,7 +2453,7 @@ Döngüler ve koşullar hakkında daha fazla bilgiye <a href="https://docs.perl6
 <h2 id="_gç_io">6. G/Ç (<em>I/O</em>)</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Perl 6&#8217;da en yaygın <em>Girdi/Çıktı</em> arabirimlerinden ikisi <em>Terminal</em> ve <em>Dosyadır</em>.</p>
+<p>Raku&#8217;da en yaygın <em>Girdi/Çıktı</em> arabirimlerinden ikisi <em>Terminal</em> ve <em>Dosyadır</em>.</p>
 </div>
 <div class="sect2">
 <h3 id="_terminal_kullanarak_basit_gç">6.1. Terminal Kullanarak Basit G/Ç</h3>
@@ -2493,7 +2493,7 @@ Döngüler ve koşullar hakkında daha fazla bilgiye <a href="https://docs.perl6
 <span class="tok-nb">say</span> <span class="tok-s">&quot;Hi, what&#39;s your name?&quot;</span>;
 <span class="tok-nv">$name</span> = <span class="tok-n">get</span>;
 
-<span class="tok-nb">say</span> <span class="tok-s">&quot;Dear $name welcome to Perl 6&quot;</span>;</code></pre>
+<span class="tok-nb">say</span> <span class="tok-s">&quot;Dear $name welcome to Raku&quot;</span>;</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2512,7 +2512,7 @@ Döngüler ve koşullar hakkında daha fazla bilgiye <a href="https://docs.perl6
 <div class="content">
 <pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">$name</span> = <span class="tok-n">prompt</span> <span class="tok-s">&quot;Hi, what&#39;s your name? &quot;</span>;
 
-<span class="tok-nb">say</span> <span class="tok-s">&quot;Dear $name welcome to Perl 6&quot;</span>;</code></pre>
+<span class="tok-nb">say</span> <span class="tok-s">&quot;Dear $name welcome to Raku&quot;</span>;</code></pre>
 </div>
 </div>
 </div>
@@ -2548,7 +2548,7 @@ Döngüler ve koşullar hakkında daha fazla bilgiye <a href="https://docs.perl6
 </div>
 <div class="paragraph">
 <p><code>echo</code> ve <code>ls</code>, Linux kabuğu için ortak anahtar kelimelerdir.
-<code>echo</code> metni terminale yazdırır. (Perl 6’da print’in eşdeğeri)
+<code>echo</code> metni terminale yazdırır. (Raku’da print’in eşdeğeri)
 <code>ls</code> mevcut izindeki tüm dosya ve klasörleri listeler.</p>
 </div>
 <div class="paragraph">
@@ -2604,7 +2604,7 @@ Döngüler ve koşullar hakkında daha fazla bilgiye <a href="https://docs.perl6
 <div class="sect2">
 <h3 id="_dosya_ve_dizinler_ile_çalışmak">6.4. Dosya ve Dizinler ile Çalışmak</h3>
 <div class="paragraph">
-<p>Perl 6 kabuk komutlarına başvurmadan(örneğin <code>ls</code>) bir dizinin içeriğini listeleyebilir.</p>
+<p>Raku kabuk komutlarına başvurmadan(örneğin <code>ls</code>) bir dizinin içeriğini listeleyebilir.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2748,7 +2748,7 @@ Bu tür bir altprogram <code>sub</code> yerine <code>multi</code> anahtar sözc�
 <p>Altyordam, parametre alacak şekilde tanımlandıysa ve gerekli parametre verilmeden çalıştırılırsa hata döner.</p>
 </div>
 <div class="paragraph">
-<p>Perl 6 bize opsiyonel ve varsayılan parametreli olmak üzere iki altyordam tanımlama imkanı verir.</p>
+<p>Raku bize opsiyonel ve varsayılan parametreli olmak üzere iki altyordam tanımlama imkanı verir.</p>
 </div>
 <div class="paragraph">
 <p>Opsiyonel parametreleri belirtmek için sonuna <code>?</code> karakteri koyulur.</p>
@@ -2951,7 +2951,7 @@ Anonim fonksiyonların tanımlayıcısı(adı) yoktur.</p>
 <p>Altyordamı bildirmek ve <code>map</code> fonksiyonuna parametre olarak vermek yerine, anonim fonksiyon olarak tanımladık <code>-&gt; $x {$x ** 2}</code>.</p>
 </div>
 <div class="paragraph">
-<p>Perl 6 dilinde bu gösterimi <strong>sivri blok</strong> olarak adlandırıyoruz.</p>
+<p>Raku dilinde bu gösterimi <strong>sivri blok</strong> olarak adlandırıyoruz.</p>
 </div>
 <div class="paragraph">
 <p>Değişkenlere fonksiyon atamak için de sivri blok kullanılabilir:</p>
@@ -2968,7 +2968,7 @@ Anonim fonksiyonların tanımlayıcısı(adı) yoktur.</p>
 <div class="sect2">
 <h3 id="_zincirleme">8.3. Zincirleme</h3>
 <div class="paragraph">
-<p>Perl 6’da fonksiyonlar zincirlenebilir, bu sayede bir fonksiyonun sonucunu argüman olarak başka birine geçmeniz gerekmez.</p>
+<p>Raku’da fonksiyonlar zincirlenebilir, bu sayede bir fonksiyonun sonucunu argüman olarak başka birine geçmeniz gerekmez.</p>
 </div>
 <div class="paragraph">
 <p>Örnek vermek gerekirse: Bir dizi verildiğinde, dizinin büyükten küçüğe sıralı ve benzersiz değerlerini döndürmeniz gerekebilir.</p>
@@ -3257,8 +3257,8 @@ Birisi  <code>Good Morning</code> ve diğeri <code>Good Evening</code> diyor.</p
 <h2 id="_sınıflar_ve_nesneler">9. Sınıflar ve Nesneler</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Bir önceki bölümde Perl 6&#8217;nın Fonksiyonel Programlamayı nasıl kolaylaştırdığını öğrendik.<br>
-Bu bölümde, PErl 6&#8217;daki Nesne Yönelinli Programlamaya göz atacağız.</p>
+<p>Bir önceki bölümde Raku&#8217;nun Fonksiyonel Programlamayı nasıl kolaylaştırdığını öğrendik.<br>
+Bu bölümde, Raku&#8217;daki Nesne Yönelinli Programlamaya göz atacağız.</p>
 </div>
 <div class="sect2">
 <h3 id="_giriş_2">9.1. Giriş</h3>
@@ -3362,7 +3362,7 @@ Değişkenlere <strong>attributes(özellikler)</strong> denir ve altprogramlara 
 <p><code>sayvar</code> metodu erişimcidir. Değişkenin kendisine doğrudan erişmeden, değerine erişmemize izin verir.</p>
 </div>
 <div class="paragraph">
-<p>Perl 6 kapsülleme kullanımını kolaylaştırılmıştır:</p>
+<p>Raku kapsülleme kullanımını kolaylaştırılmıştır:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -3405,7 +3405,7 @@ Değişkenlere <strong>attributes(özellikler)</strong> denir ve altprogramlara 
 <div class="sect2">
 <h3 id="_yapıcı_metot">9.3. Yapıcı Metot</h3>
 <div class="paragraph">
-<p>Perl 6&#8217;da tüm sınıflar varsayılan olarak <code>.new()</code> <em>constructor</em>'ı vardır.<br>
+<p>Raku&#8217;da tüm sınıflar varsayılan olarak <code>.new()</code> <em>constructor</em>'ı vardır.<br>
 Yeni nesneler oluşturmak için kullanılabilir.<br>
 Varsayılan <em>constructor</em> yalnızca parametreler ile kullanılabilir.<br>
 Yukarıdaki örneğimizde, <code>.new()</code> verilen parametreler ile tanımlanmıştır bu parametreler değişkenler için konum göstermiştir:</p>
@@ -3716,7 +3716,7 @@ Tanımlamak için <code>submethod</code> anahtar kelimesi kullanılır.</p>
 <div class="sect2">
 <h3 id="_çoklu_miras">9.8. Çoklu Miras</h3>
 <div class="paragraph">
-<p>Perl 6&#8217;da çoklu kalıtıma izin verilir. Bir sınıf birden çok sınıftan miras alabilir.</p>
+<p>Raku&#8217;da çoklu kalıtıma izin verilir. Bir sınıf birden çok sınıftan miras alabilir.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -3770,7 +3770,7 @@ Bu yüzden onu <code>line-chart</code> ve <code>bar-chart</code> sınıflarını
 Sadece bir seri çizildi.<br>
 Bu neden oldu?<br>
 <code>combo-chart</code>, <code>line-chart</code> ve <code>bar-chart</code> sınıflarından miras alır ve her ikisinde de <code>plot</code> adlı bir yöntem bulunur.
-Perl 6, miras alınan metotlardan birini çağırarak çakışmayı çözmeye çalışacaktır.</p>
+Raku, miras alınan metotlardan birini çağırarak çakışmayı çözmeye çalışacaktır.</p>
 </div>
 <div class="paragraph">
 <div class="title">Düzeltme</div>
@@ -4121,7 +4121,7 @@ Bu birçok istisna türünü farklı şekillerde ele alıp tutabiliriz demektir.
 <div class="sect2">
 <h3 id="_i̇stisna_fırlatmathrowing_exceptions">10.2. İstisna Fırlatma(<em>Throwing Exceptions</em>)</h3>
 <div class="paragraph">
-<p>Perl 6 da açıkça istisnaları atmanızı sağlar.
+<p>Raku da açıkça istisnaları atmanızı sağlar.
 İstisna fırlatmanın iki türü vardır:</p>
 </div>
 <div class="ulist">
@@ -4460,7 +4460,7 @@ Unicode özellikleri <code>&lt;: &gt;</code> ile belirtilir.</p>
 <div class="listingblock">
 <div class="title">Betik</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">if</span> <span class="tok-s">&#39;Rakudo is a Perl 6 compiler&#39;</span> ~~ <span class="tok-sr">m/:s Perl 6/</span> {
+<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">if</span> <span class="tok-s">&#39;Rakudo is a Raku compiler&#39;</span> ~~ <span class="tok-sr">m/:s Raku/</span> {
     <span class="tok-nb">say</span> <span class="tok-s">&quot;The match is: &quot;</span> ~ <span class="tok-vg">$/</span>;
     <span class="tok-nb">say</span> <span class="tok-s">&quot;The string before the match is: &quot;</span> ~ <span class="tok-vg">$/</span>.<span class="tok-n">prematch</span>;
     <span class="tok-nb">say</span> <span class="tok-s">&quot;The string after the match is: &quot;</span> ~ <span class="tok-vg">$/</span>.<span class="tok-n">postmatch</span>;
@@ -4472,7 +4472,7 @@ Unicode özellikleri <code>&lt;: &gt;</code> ile belirtilir.</p>
 <div class="listingblock">
 <div class="title">Çıktı</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-n">The</span> <span class="tok-n">match</span> <span class="tok-n">is:</span> <span class="tok-n">Perl</span> <span class="tok-mi">6</span>
+<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-n">The</span> <span class="tok-n">match</span> <span class="tok-n">is:</span> <span class="tok-n">Raku</span>
 <span class="tok-n">The</span> <span class="tok-n">string</span> <span class="tok-o">before</span> <span class="tok-n">the</span> <span class="tok-n">match</span> <span class="tok-n">is:</span> <span class="tok-n">Rakudo</span> <span class="tok-k">is</span> <span class="tok-n">a</span>
 <span class="tok-n">The</span> <span class="tok-n">string</span> <span class="tok-o">after</span> <span class="tok-n">the</span> <span class="tok-n">match</span> <span class="tok-n">is:</span> <span class="tok-n">compiler</span>
 <span class="tok-n">The</span> <span class="tok-n">matching</span> <span class="tok-n">string</span> <span class="tok-n">starts</span> <span class="tok-n">at</span> <span class="tok-n">position:</span> <span class="tok-mi">12</span>
@@ -4497,7 +4497,7 @@ Aşağıdaki yöntemler eşleme nesnesi üzerinden çağırılabilir:
 <td class="content">
 Varsayılan olarak regex tanımındaki boşluklar yok sayılır.<br>
 Boşluk içeren bir regexle eşleştirme yapmak istersek bunu açıkça belirtmeliyiz.<br>
-<code>:s</code> regex içinde <code>m/:s Perl 6/</code> boşlukları hesaba katmaya zorlar.<br>
+<code>:s</code> regex içinde <code>m/:s Raku/</code> boşlukları hesaba katmaya zorlar.<br>
 Alternatif olarak regex&#8217;i şöyle yazmış olabiliriz: <code>m/ Perl\s6 /</code> ve <code>\s</code> kullanmış olabiliriz. Bu boşlukları temsil eder.<br>
 Bir regex tek boşluk içeriyorsa <code>\s</code> kullanmak iyi bir seçenektir.
 </td>
@@ -4520,7 +4520,7 @@ first name [dot] last name [at] company [dot] (com/org/net)</p>
 </td>
 <td class="content">
 Bu örnekte kullanılan e-posta doğrulaması pek doğru değildir.<br>
-Tek amacı Perl 6&#8217;da düzenli ifadelerin kullanımını göstermektir.<br>
+Tek amacı Raku&#8217;da düzenli ifadelerin kullanımını göstermektir.<br>
 Ürününüzde olduğu gibi kullanmayın.
 </td>
 </tr>
@@ -4616,17 +4616,17 @@ Düzenli ifadeler hakkında daha fazla bilgi için <a href="https://docs.perl6.o
 </div>
 </div>
 <div class="sect1">
-<h2 id="_perl_6_modülleri">12. Perl 6 Modülleri</h2>
+<h2 id="_raku_modülleri">12. Raku Modülleri</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Perl 6, genel amaçlı bir programlama dilidir. Aşağıdakiler dahil pek çok görevin üstesinden gelmek için kullanılabilir:
+<p>Raku, genel amaçlı bir programlama dilidir. Aşağıdakiler dahil pek çok görevin üstesinden gelmek için kullanılabilir:
 metin işlemem, grafik, web, veritabanı, ağ protokolleri vb.</p>
 </div>
 <div class="paragraph">
 <p>Tekrar kullanılabilirlik, programcıların her seferinde tekerleği yeniden icar etmelerini gerektirmeyen önemli bir kavramdır.</p>
 </div>
 <div class="paragraph">
-<p>Perl 6 tekrar kullanılabilir <strong>modüller</strong> yaratılmasına ve dağıtılmasına izin verir. Her bir modül, kurulduktan sonra tekrar tekrar kullanılabilen işlev kümesidir.</p>
+<p>Raku tekrar kullanılabilir <strong>modüller</strong> yaratılmasına ve dağıtılmasına izin verir. Her bir modül, kurulduktan sonra tekrar tekrar kullanılabilen işlev kümesidir.</p>
 </div>
 <div class="paragraph">
 <p><em>Zef</em> Rakudo Star paketiyle gelen modül yöneticisidir.</p>
@@ -4644,7 +4644,7 @@ metin işlemem, grafik, web, veritabanı, ağ protokolleri vb.</p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Perl 6 modül dizinine <a href="https://modules.perl6.org/" class="bare">https://modules.perl6.org/</a> adresinden ulaşabilirsiniz.
+Raku modül dizinine <a href="https://modules.perl6.org/" class="bare">https://modules.perl6.org/</a> adresinden ulaşabilirsiniz.
 </td>
 </tr>
 </table>
@@ -4658,7 +4658,7 @@ Yeni bir kullanıcı kayıt olduğunda, bilgileri düz metin olarak değil <em>h
 Bunun arkasındaki mantık veritabanının bir saldırıya maruz kaldığı durumda, saldırganın kullanıcı bilgilerini görüntüleyememesidir.</p>
 </div>
 <div class="paragraph">
-<p>MD5 algoritmasını kendiniz uygulamak zorunda değilsiniz, bunun için Perl 6 modülü kullanıma hazırdır.</p>
+<p>MD5 algoritmasını kendiniz uygulamak zorunda değilsiniz, bunun için Raku modülü kullanıma hazırdır.</p>
 </div>
 <div class="paragraph">
 <p>Öncelikle kuralım:<br>
@@ -4812,7 +4812,7 @@ UTF-8, 8-bitlik bir Unicode dönüşüm biçimidir. Unicode karakterlerini deği
 Yapmaya çalıştığınız şey çok zaman almazsa bu sorun olmayabilir.</p>
 </div>
 <div class="paragraph">
-<p>Neyse ki Perl 6, işleri paralel olarak yürütmenizi sağlayacak özelliklere sahiptir.<br>
+<p>Neyse ki Raku, işleri paralel olarak yürütmenizi sağlayacak özelliklere sahiptir.<br>
 Bu aşamada paralellik aşağıdaki şeylerden biri anlamına gelebilir:</p>
 </div>
 <div class="ulist">
@@ -4992,8 +4992,8 @@ Eşzamanlılık ve asenkron programlama hakkında bilgi için <a href="https://d
 <h2 id="_native_çağrı_arayüzü_native_calling_interface">15. Native Çağrı Arayüzü (<em>Native Calling Interface</em>)</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Perl 6 bize C kütüphanelerini kullanma imkanı verir, bunu <em>Native Calling Interface</em> kullanarak yaparız.
-<code>NativeCall</code>, Perl 6 ile gelen standart bir modüldür ve işi kolaylaştırmak için işlevsellik sunar.</p>
+<p>Raku bize C kütüphanelerini kullanma imkanı verir, bunu <em>Native Calling Interface</em> kullanarak yaparız.
+<code>NativeCall</code>, Raku ile gelen standart bir modüldür ve işi kolaylaştırmak için işlevsellik sunar.</p>
 </div>
 <div class="sect2">
 <h3 id="_bir_fonksiyon_çağırmak">15.1. Bir Fonksiyon Çağırmak</h3>
@@ -5029,7 +5029,7 @@ Bu fonksiyon ekrana <code>Hello from C</code> yazar. Parametre almaz ve geriye d
 </div>
 </div>
 <div class="paragraph">
-<p>C kütüphanemiz derlendiği dizinde oluşturulmuş oldu, şimdi bir Perl 6 dosyası oluşturalım ve aşağıdaki kodu yazarak çalıştıralım.</p>
+<p>C kütüphanemiz derlendiği dizinde oluşturulmuş oldu, şimdi bir Raku dosyası oluşturalım ve aşağıdaki kodu yazarak çalıştıralım.</p>
 </div>
 <div class="listingblock">
 <div class="title">ncitest.pl6</div>
@@ -5049,7 +5049,7 @@ Daha sonra C kütüphanemizin yolunu tutan <code>LIBPATH</code> adında bir sabi
 <code>$*CWD</code> geçerli çalışma dizinini döndürür.<br>
 Ardından adı <code>hellofromc</code> olan yeni bir altyordam oluşturduk, bu C fonksiyonuyla aynı adı taşıyan bir sarmalayıcı.<br>
 Bunu <code>is native</code> ile yaptık.<br>
-Son olarak Perl 6 altyordamımızı çağırdık.</p>
+Son olarak Raku altyordamımızı çağırdık.</p>
 </div>
 </div>
 <div class="sect2">
@@ -5058,11 +5058,11 @@ Son olarak Perl 6 altyordamımızı çağırdık.</p>
 <p>Yukarıdaki bölümde C kütüphanesinin <code>is native</code> kullanılarak nasıl çağırıldığını gördük.</p>
 </div>
 <div class="paragraph">
-<p>Bazı durumlarda Perl 6 altyordamının adını değiştirmek isteyebiliriz.<br>
+<p>Bazı durumlarda Raku altyordamının adını değiştirmek isteyebiliriz.<br>
 Bunu yapmak için <code>is symbol</code> özelliğini kullanırız.</p>
 </div>
 <div class="paragraph">
-<p>Yukarıdaki Perl 6 betiğini değiştirelim ve altyordamımızın adını <code>hellofromc</code> yerine <code>hello</code> yapalım.</p>
+<p>Yukarıdaki Raku betiğini değiştirelim ve altyordamımızın adını <code>hellofromc</code> yerine <code>hello</code> yapalım.</p>
 </div>
 <div class="listingblock">
 <div class="title">ncitest.pl6</div>
@@ -5077,14 +5077,14 @@ Bunu yapmak için <code>is symbol</code> özelliğini kullanırız.</p>
 </div>
 <div class="paragraph">
 <div class="title">Açıklama</div>
-<p>Perl 6 altyordamının C fonksiyonundan farklı bir adı varsa <code>is symbol</code> özelliği ile orjinal C fonksiyonunun ismi kullanılmalıdır.</p>
+<p>Raku altyordamının C fonksiyonundan farklı bir adı varsa <code>is symbol</code> özelliği ile orjinal C fonksiyonunun ismi kullanılmalıdır.</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_geçici_argümanlar">15.3. Geçici Argümanlar</h3>
 <div class="paragraph">
-<p>Aşağıda değiştirilmiş C kütüphanesini derleyin ve aşağıda bulunan Perl 6 betiğini çalıştırın.
-C&#8217;de <code>char*</code> Perl 6&#8217;da <code>Str</code></p>
+<p>Aşağıda değiştirilmiş C kütüphanesini derleyin ve aşağıda bulunan Raku betiğini çalıştırın.
+C&#8217;de <code>char*</code> Raku&#8217;da <code>Str</code></p>
 </div>
 <div class="listingblock">
 <div class="title">ncitest.c</div>
@@ -5112,7 +5112,7 @@ C&#8217;de <code>char*</code> Perl 6&#8217;da <code>Str</code></p>
 <h3 id="_dönüş_değeri_2">15.4. Dönüş Değeri</h3>
 <div class="paragraph">
 <p>2 tam sayı değerini parametre olarak alan ve toplamlarını döndüren basit bir hesap makinesi yapalım.
-C kütüphanesini derleyin ve Perl 6 betiğini çalıştırın.</p>
+C kütüphanesini derleyin ve Raku betiğini çalıştırın.</p>
 </div>
 <div class="listingblock">
 <div class="title">ncitest.c</div>
@@ -5134,18 +5134,18 @@ C kütüphanesini derleyin ve Perl 6 betiğini çalıştırın.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>C&#8217;de <code>int</code>, Perl 6&#8217;da <code>int32</code></p>
+<p>C&#8217;de <code>int</code>, Raku&#8217;da <code>int32</code></p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_tipler">15.5. Tipler</h3>
 <div class="paragraph">
-<p>Son Perl 6 betiğimizde neden <code>int</code> yerine <code>int32</code> kullanıldığını kendimize sorabiliriz.<br>
-<code>Int</code>, <code>Rat</code> gibi bazı Perl 6 veri tipleri, bir C fonksiyonunda parametre olarak veya dönüş tipi olarak kullanılamaz.<br>
-Kullanılabilmesi için Perl 6&#8217;da C&#8217;deki ile aynı tipte olması gerekir.</p>
+<p>Son Raku betiğimizde neden <code>int</code> yerine <code>int32</code> kullanıldığını kendimize sorabiliriz.<br>
+<code>Int</code>, <code>Rat</code> gibi bazı Raku veri tipleri, bir C fonksiyonunda parametre olarak veya dönüş tipi olarak kullanılamaz.<br>
+Kullanılabilmesi için Raku&#8217;da C&#8217;deki ile aynı tipte olması gerekir.</p>
 </div>
 <div class="paragraph">
-<p>Perl 6&#8217;da C ile eşleşen birçok veri tipi vardır.</p>
+<p>Raku&#8217;da C ile eşleşen birçok veri tipi vardır.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -5155,7 +5155,7 @@ Kullanılabilmesi için Perl 6&#8217;da C&#8217;deki ile aynı tipte olması ger
 <thead>
 <tr>
 <th class="tableblock halign-center valign-middle">C Tipi</th>
-<th class="tableblock halign-center valign-middle">Perl 6 Tipi</th>
+<th class="tableblock halign-center valign-middle">Raku Tipi</th>
 </tr>
 </thead>
 <tbody>
@@ -5282,7 +5282,7 @@ Kullanılabilmesi için Perl 6&#8217;da C&#8217;deki ile aynı tipte olması ger
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2019-11-17 17:41:02 +0200
+Last updated 2019-11-23 22:55:20 +0200
 </div>
 </div>
 <style>

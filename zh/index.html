@@ -16,10 +16,10 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.10">
-<meta name="description" content="Perl 6 入门">
-<meta name="keywords" content="perl6, perl 6, 入门, perl6intro, perl 6 入门, perl 6 指南, perl 6 intro">
+<meta name="description" content="Raku 入门">
+<meta name="keywords" content="perl6, Raku, 入门, perl6intro, Raku 入门, Raku 指南, Raku Intro, Raku Guide">
 <meta name="author" content="Naoum Hankache, ohmycloud, wenjie1991">
-<title>Perl 6 入门</title>
+<title>Raku 入门</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /* Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -453,7 +453,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="book toc2 toc-left">
 <div id="header">
-<h1>Perl 6 入门</h1>
+<h1>Raku 入门</h1>
 <div class="details">
 <span id="author" class="author">Naoum Hankache</span><br>
 <span id="email" class="email"><a href="mailto:naoum@hankache.com">naoum@hankache.com</a></span><br>
@@ -467,10 +467,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <ul class="sectlevel1">
 <li><a href="#_序言">1. 序言</a>
 <ul class="sectlevel2">
-<li><a href="#_什么是_perl_6">1.1. 什么是 Perl 6</a></li>
+<li><a href="#_什么是_raku">1.1. 什么是 Raku</a></li>
 <li><a href="#_术语">1.2. 术语</a></li>
-<li><a href="#_安装_perl_6">1.3. 安装 Perl 6</a></li>
-<li><a href="#_运行_perl_6_代码">1.4. 运行 Perl 6 代码</a></li>
+<li><a href="#_安装_raku">1.3. 安装 Raku</a></li>
+<li><a href="#_运行_raku_代码">1.4. 运行 Raku 代码</a></li>
 <li><a href="#_编辑器">1.5. 编辑器</a></li>
 <li><a href="#_hello_world">1.6. Hello World!</a></li>
 <li><a href="#_语法概要">1.7. 语法概要</a></li>
@@ -566,7 +566,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_例子">11.8. 例子</a></li>
 </ul>
 </li>
-<li><a href="#_perl_6_模块">12. Perl 6 模块</a>
+<li><a href="#_raku_模块">12. Raku 模块</a>
 <ul class="sectlevel2">
 <li><a href="#_使用模块">12.1. 使用模块</a></li>
 </ul>
@@ -600,11 +600,11 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>本文档旨在为您提供 Perl 6 编程语言的快速概述。
-它可以让 Perl 6 初学者快速上手。</p>
+<p>本文档旨在为您提供 Raku 编程语言的快速概述。
+它可以让 Raku 初学者快速上手。</p>
 </div>
 <div class="paragraph">
-<p>本文档的一部分章节涉及 <a href="http://docs.perl6.org">Perl 6文档</a> 的其他（更完整和准确）部分。
+<p>本文档的一部分章节涉及 <a href="http://docs.raku.org">Raku 文档</a>的其他（更完整和准确）部分。
 如果您需要有关特定主题的更多信息，您应该阅读它们。</p>
 </div>
 <div class="paragraph">
@@ -612,7 +612,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 为了更好地理解它们，请花时间再现所有的例子。</p>
 </div>
 <div class="paragraph">
-<div class="title">License</div>
+<div class="title">许可证</div>
 <p>本工作根据知识共享署名 - 授权4.0国际许可协议进行许可。
 要查看此许可证的副本，请访问</p>
 </div>
@@ -624,54 +624,63 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </ul>
 </div>
 <div class="paragraph">
-<div class="title">Contribution</div>
+<div class="title">贡献</div>
 <p>如果您想对此文档做贡献，请访问：</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="https://github.com/hankache/perl6intro" class="bare">https://github.com/hankache/perl6intro</a></p>
+<p><a href="https://github.com/hankache/rakuguide" class="bare">https://github.com/hankache/rakuguide</a></p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<div class="title">Feedback</div>
+<div class="title">意见反馈</div>
 <p>欢迎所有的反馈：
 <a href="mailto:naoum@hankache.com">naoum@hankache.com</a></p>
 </div>
 <div class="paragraph">
 <p>如果你喜欢这个工作， 欢迎在
-<a href="https://github.com/hankache/perl6intro">Github</a> 给这个仓库点赞。</p>
+<a href="https://github.com/hankache/rakuguide">Github</a> 给这个仓库点赞。</p>
 </div>
 <div class="ulist">
-<div class="title">Translations</div>
+<div class="title">翻译</div>
 <ul>
 <li>
-<p>Bulgarian: <a href="http://bg.perl6intro.com" class="bare">http://bg.perl6intro.com</a></p>
+<p>保加利亚语: <a href="https://raku.guide/bg" class="bare">https://raku.guide/bg</a></p>
 </li>
 <li>
-<p>Chinese: <a href="http://zh.perl6intro.com" class="bare">http://zh.perl6intro.com</a></p>
+<p>中文: <a href="https://raku.guide/zh" class="bare">https://raku.guide/zh</a></p>
 </li>
 <li>
-<p>Dutch: <a href="http://nl.perl6intro.com" class="bare">http://nl.perl6intro.com</a></p>
+<p>荷兰语: <a href="https://raku.guide/nl" class="bare">https://raku.guide/nl</a></p>
 </li>
 <li>
-<p>French: <a href="http://fr.perl6intro.com" class="bare">http://fr.perl6intro.com</a></p>
+<p>法语: <a href="https://raku.guide/fr" class="bare">https://raku.guide/fr</a></p>
 </li>
 <li>
-<p>German: <a href="http://de.perl6intro.com" class="bare">http://de.perl6intro.com</a></p>
+<p>德语: <a href="https://raku.guide/de" class="bare">https://raku.guide/de</a></p>
 </li>
 <li>
-<p>Italian <a href="http://it.perl6intro.com" class="bare">http://it.perl6intro.com</a></p>
+<p>印度尼西亚语: <a href="https://raku.guide/id" class="bare">https://raku.guide/id</a></p>
 </li>
 <li>
-<p>Japanese: <a href="http://ja.perl6intro.com" class="bare">http://ja.perl6intro.com</a></p>
+<p>意大利语 <a href="https://raku.guide/it" class="bare">https://raku.guide/it</a></p>
 </li>
 <li>
-<p>Portuguese: <a href="http://pt.perl6intro.com" class="bare">http://pt.perl6intro.com</a></p>
+<p>日语: <a href="https://raku.guide/ja" class="bare">https://raku.guide/ja</a></p>
 </li>
 <li>
-<p>Spanish: <a href="http://es.perl6intro.com" class="bare">http://es.perl6intro.com</a></p>
+<p>葡萄牙语: <a href="https://raku.guide/pt" class="bare">https://raku.guide/pt</a></p>
+</li>
+<li>
+<p>西班牙语: <a href="https://raku.guide/es" class="bare">https://raku.guide/es</a></p>
+</li>
+<li>
+<p>土耳其语: <a href="https://raku.guide/tr" class="bare">https://raku.guide/tr</a></p>
+</li>
+<li>
+<p>俄语: <a href="https://raku.guide/ru" class="bare">https://raku.guide/ru</a></p>
 </li>
 </ul>
 </div>
@@ -681,13 +690,13 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h2 id="_序言">1. 序言</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_什么是_perl_6">1.1. 什么是 Perl 6</h3>
+<h3 id="_什么是_raku">1.1. 什么是 Raku</h3>
 <div class="paragraph">
-<p>Perl 6 是一种高级的，通用的，渐进类型的语言。
-Perl 6 是多范式的。它支持过程式编程，面向对象编程和函数式编程。</p>
+<p>Raku 是一种高级的，通用的，渐进类型的语言。
+Raku 是多范式的。它支持过程式编程，面向对象编程和函数式编程。</p>
 </div>
 <div class="ulist">
-<div class="title">Perl 6 motto:</div>
+<div class="title">Raku motto:</div>
 <ul>
 <li>
 <p>TMTOWTDI (发音是 Tim Toady): 每个问题都有许多解决方式。</p>
@@ -703,26 +712,26 @@ Perl 6 是多范式的。它支持过程式编程，面向对象编程和函数�
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Perl 6</strong>: 带有测试套件的语言规范。
-Perl 6 是通过该规范测试套件的实现。</p>
+<p><strong>Raku</strong>: 带有测试套件的语言规范。
+Raku 是通过该规范测试套件的实现。</p>
 </li>
 <li>
-<p><strong>Rakudo</strong>: Perl 6 的编译器。</p>
+<p><strong>Rakudo</strong>: Raku 的编译器。</p>
 </li>
 <li>
 <p><strong>Rakudobrew</strong>: Rakudo 的安装管理器。</p>
 </li>
 <li>
-<p><strong>Zef</strong>: Perl 6 的模块安装程序。</p>
+<p><strong>Zef</strong>: Raku 的模块安装程序。</p>
 </li>
 <li>
-<p><strong>Rakudo Star</strong>: 是一个包含 Rakudo, Zef, 和经遴选的 Perl 6 模块与文档的分发包。</p>
+<p><strong>Rakudo Star</strong>: 是一个包含 Rakudo, Zef, 和经遴选的 Raku 模块与文档的分发包。</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_安装_perl_6">1.3. 安装 Perl 6</h3>
+<h3 id="_安装_raku">1.3. 安装 Raku</h3>
 <div class="olist arabic">
 <div class="title">Linux</div>
 <ol class="arabic">
@@ -789,15 +798,15 @@ Perl 6 是通过该规范测试套件的实现。</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_运行_perl_6_代码">1.4. 运行 Perl 6 代码</h3>
+<h3 id="_运行_raku_代码">1.4. 运行 Raku 代码</h3>
 <div class="paragraph">
-<p>运行 Perl 6 代码可以通过使用 REPL（Read-Eval-Print 循环)来实现。
+<p>运行 Raku 代码可以通过使用 REPL（Read-Eval-Print 循环)来实现。
 实现方法是，打开命令行终端，输入 <code>perl6</code> 后回车。这会导致命令提示符 <code>&gt;</code> 的出现。接着, 输入一行代码后回车。
 REPL 将会打印出该行的返回值。然后你可以输入另外的行, 或输入 <code>exit</code> 并回车以离开 REPL。</p>
 </div>
 <div class="paragraph">
-<p>或者，你可以在文件中编写你的代码，保存后再运行。建议 Perl 6 脚本文件的扩展名设定为 <code>.pl6</code>。
-运行该文件的代码时只需将 <code>perl6 filename.pl6</code> 输入到命令行终端后回车即可。
+<p>或者，你可以在文件中编写你的代码，保存后再运行。建议 Raku 脚本文件的扩展名设定为 <code>.raku</code>。
+运行该文件的代码时只需将 <code>perl6 filename.raku</code> 输入到命令行终端后回车即可。
 但不像 REPL, 这不会自动打印出每一行的结果：这里要求文件中的代码必须包含 <code>say</code> 那样的语句以打印输出。</p>
 </div>
 <div class="paragraph">
@@ -838,19 +847,19 @@ REPL 将会打印出该行的返回值。然后你可以输入另外的行, 或�
 <div class="sect2">
 <h3 id="_编辑器">1.5. 编辑器</h3>
 <div class="paragraph">
-<p>因为大多数情况下我们会在文件中编写并存储 Perl 6 程序，因此我们需要一个优雅的而且能识别 Perl 6 语法的文本编辑器。</p>
+<p>因为大多数情况下我们会在文件中编写并存储 Raku 程序，因此我们需要一个优雅的而且能识别 Raku 语法的文本编辑器。</p>
 </div>
 <div class="paragraph">
 <p>从个人角度来说，我推荐正在使用的 <a href="https://atom.io/">Atom</a>。
-这是一个时尚的文本编辑器，带有开箱即用的 Perl 6 语法高亮功能。
-<a href="https://atom.io/packages/language-perl6">Perl 6 FE</a> 是相对于 Atom 默认 Perl 6 语法高亮插件的另一种选择，也可以高亮 Perl 6 的语法，该软件来源于原始的包，
+这是一个时尚的文本编辑器，带有开箱即用的 Raku 语法高亮功能。
+<a href="https://atom.io/packages/language-perl6">Raku FE</a> 是相对于 Atom 默认 Raku 语法高亮插件的另一种选择，也可以高亮 Raku 的语法，该软件来源于原始的包，
 但存在很多 bug 需要修补和编辑。</p>
 </div>
 <div class="paragraph">
 <p>社区里的其他同伴也有使用 <a href="http://www.vim.org/">Vim</a> ， <a href="https://www.gnu.org/software/emacs/">Emacs</a> 和 <a href="http://padre.perlide.org/">Padre</a> 的。</p>
 </div>
 <div class="paragraph">
-<p>最新版本的 Vim 自带 Perl 6 语法高亮的功能，Emacs 和 Padre 则需要另行安装额外的包。</p>
+<p>最新版本的 Vim 自带 Raku 语法高亮的功能，Emacs 和 Padre 则需要另行安装额外的包。</p>
 </div>
 </div>
 <div class="sect2">
@@ -875,7 +884,7 @@ REPL 将会打印出该行的返回值。然后你可以输入另外的行, 或�
 <div class="sect2">
 <h3 id="_语法概要">1.7. 语法概要</h3>
 <div class="paragraph">
-<p>Perl 6 是 <strong>形式自由的</strong>, (大多数时候)你可以使用任意数量的空格。</p>
+<p>Raku 是 <strong>形式自由的</strong>, (大多数时候)你可以使用任意数量的空格。</p>
 </div>
 <div class="paragraph">
 <p><strong>语句</strong> 通常是一个逻辑代码行, 它们需要以一个分号结尾:
@@ -1368,11 +1377,11 @@ REPL 将会打印出该行的返回值。然后你可以输入另外的行, 或�
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>True</code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>"Perl 6" ~~ "Perl 6"</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>"Raku" ~~ "Raku"</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>True</code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>"Perl 6" ~~ Str</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>"Raku" ~~ Str</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>True</code></p></td>
 </tr>
 <tr>
@@ -1604,7 +1613,7 @@ REPL 将会打印出该行的返回值。然后你可以输入另外的行, 或�
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-可以到 <a href="https://docs.perl6.org/language/operators" class="bare">https://docs.perl6.org/language/operators</a> 查看完整的运算符列表和它们的优先级。
+可以到 <a href="https://docs.raku.org/language/operators" class="bare">https://docs.raku.org/language/operators</a> 查看完整的运算符列表和它们的优先级。
 </td>
 </tr>
 </table>
@@ -1616,7 +1625,7 @@ REPL 将会打印出该行的返回值。然后你可以输入另外的行, 或�
 <h2 id="_变量">3. 变量</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Perl 6 中的变量分为 3 类：标量、数组和哈希。</p>
+<p>Raku 中的变量分为 3 类：标量、数组和哈希。</p>
 </div>
 <div class="paragraph">
 <p>变量名以 <strong>魔符</strong> (sigil) 开头以区分不同类型。</p>
@@ -1676,7 +1685,7 @@ REPL 将会打印出该行的返回值。然后你可以输入另外的行, 或�
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-所有可应用于字符串的方法列表，请参照 <a href="https://docs.perl6.org/type/Str" class="bare">https://docs.perl6.org/type/Str</a>
+所有可应用于字符串的方法列表，请参照 <a href="https://docs.raku.org/type/Str" class="bare">https://docs.raku.org/type/Str</a>
 </td>
 </tr>
 </table>
@@ -1700,7 +1709,7 @@ REPL 将会打印出该行的返回值。然后你可以输入另外的行, 或�
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-所有可应用于整数的方法列表，请参照 <a href="https://docs.perl6.org/type/Int" class="bare">https://docs.perl6.org/type/Int</a>
+所有可应用于整数的方法列表，请参照 <a href="https://docs.raku.org/type/Int" class="bare">https://docs.raku.org/type/Int</a>
 </td>
 </tr>
 </table>
@@ -1728,7 +1737,7 @@ REPL 将会打印出该行的返回值。然后你可以输入另外的行, 或�
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-所有可应用于有理数的方法列表，请参照 <a href="https://docs.perl6.org/type/Rat" class="bare">https://docs.perl6.org/type/Rat</a>
+所有可应用于有理数的方法列表，请参照 <a href="https://docs.raku.org/type/Rat" class="bare">https://docs.raku.org/type/Rat</a>
 </td>
 </tr>
 </table>
@@ -1856,7 +1865,7 @@ REPL 将会打印出该行的返回值。然后你可以输入另外的行, 或�
 <h4 id="_多维数组">3.2.2. 多维数组</h4>
 <div class="paragraph">
 <p>到现在为止我们看到的数组还都是一维的。<br>
-幸运的是，我们在 Perl 6 中能定义多维数组。</p>
+幸运的是，我们在 Raku 中能定义多维数组。</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1902,7 +1911,7 @@ REPL 将会打印出该行的返回值。然后你可以输入另外的行, 或�
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-对于完整的数组参考资料，请参照 <a href="https://docs.perl6.org/type/Array" class="bare">https://docs.perl6.org/type/Array</a>
+对于完整的数组参考资料，请参照 <a href="https://docs.raku.org/type/Array" class="bare">https://docs.raku.org/type/Array</a>
 </td>
 </tr>
 </table>
@@ -1963,7 +1972,7 @@ REPL 将会打印出该行的返回值。然后你可以输入另外的行, 或�
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-完整的哈希参考资料，请参照 <a href="https://docs.perl6.org/type/Hash" class="bare">https://docs.perl6.org/type/Hash</a>
+完整的哈希参考资料，请参照 <a href="https://docs.raku.org/type/Hash" class="bare">https://docs.raku.org/type/Hash</a>
 </td>
 </tr>
 </table>
@@ -2024,7 +2033,7 @@ REPL 将会打印出该行的返回值。然后你可以输入另外的行, 或�
 <p>这种编程风格被称为静态类型编程。静态在这里是指变量类型在赋值前定义并且不能在更改。</p>
 </div>
 <div class="paragraph">
-<p>Perl 6 属于 <strong>渐进类型</strong> ;它同时支持 <strong>静态</strong> 和 <strong>动态</strong> 类型。</p>
+<p>Raku 属于 <strong>渐进类型</strong> ;它同时支持 <strong>静态</strong> 和 <strong>动态</strong> 类型。</p>
 </div>
 <div class="listingblock">
 <div class="title">数组和哈希同样可以为静态类型:</div>
@@ -2070,7 +2079,7 @@ REPL 将会打印出该行的返回值。然后你可以输入另外的行, 或�
 </tr>
 <tr>
 <td class="tableblock halign-center valign-middle"><p class="tableblock"><code>Mu</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>Perl 6 的基础类型</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>Raku 的基础类型</code></p></td>
 <td class="tableblock halign-left valign-middle"></td>
 <td class="tableblock halign-left valign-middle"></td>
 </tr>
@@ -2148,7 +2157,7 @@ REPL 将会打印出该行的返回值。然后你可以输入另外的行, 或�
 <p>在第一次使用变量之前，变量需要被声明。</p>
 </div>
 <div class="paragraph">
-<p>在 Perl 6 中可以使用使用多种声明方式。其中 <code>my</code> 已经在上述例子中使用到。</p>
+<p>在 Raku 中可以使用使用多种声明方式。其中 <code>my</code> 已经在上述例子中使用到。</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2160,8 +2169,8 @@ REPL 将会打印出该行的返回值。然后你可以输入另外的行, 或�
 换句话说，这个变量只能在它被定义的块中被访问。</p>
 </div>
 <div class="paragraph">
-<p>Perl 6 中块有 <code>{}</code> 界定。
-如果没有块存在，那么变量就在整个 Perl 6 脚本中可用。</p>
+<p>Raku 中块有 <code>{}</code> 界定。
+如果没有块存在，那么变量就在整个 Raku 脚本中可用。</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2267,7 +2276,7 @@ REPL 将会打印出该行的返回值。然后你可以输入另外的行, 或�
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-关于变量的更多信息，请参见 <a href="https://docs.perl6.org/language/variables" class="bare">https://docs.perl6.org/language/variables</a>
+关于变量的更多信息，请参见 <a href="https://docs.raku.org/language/variables" class="bare">https://docs.raku.org/language/variables</a>
 </td>
 </tr>
 </table>
@@ -2343,7 +2352,7 @@ REPL 将会打印出该行的返回值。然后你可以输入另外的行, 或�
 <h2 id="_循环和条件语句">5. 循环和条件语句</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Perl 6 有多种条件和循环结构。</p>
+<p>Raku 有多种条件和循环结构。</p>
 </div>
 <div class="sect2">
 <h3 id="_if">5.1. if</h3>
@@ -2360,7 +2369,7 @@ REPL 将会打印出该行的返回值。然后你可以输入另外的行, 或�
 </div>
 </div>
 <div class="paragraph">
-<p>在 Perl 6 中我们能倒装条件语句和待运行的代码。<br>
+<p>在 Raku 中我们能倒装条件语句和待运行的代码。<br>
 将待运行的代码和条件语句倒装后，条件语句总是优先被执行。</p>
 </div>
 <div class="listingblock">
@@ -2428,7 +2437,7 @@ REPL 将会打印出该行的返回值。然后你可以输入另外的行, 或�
 </div>
 </div>
 <div class="paragraph">
-<p><code>否</code> 运算在 Perl 6 中用 <code>！</code> 或 <code>not</code> 来实现。</p>
+<p><code>否</code> 运算在 Raku 中用 <code>！</code> 或 <code>not</code> 来实现。</p>
 </div>
 <div class="paragraph">
 <p><code>unless (条件)</code> 可以用来代替 <code>if not (条件)</code>。</p>
@@ -2493,7 +2502,7 @@ REPL 将会打印出该行的返回值。然后你可以输入另外的行, 或�
 <div class="sect2">
 <h3 id="_given">5.5. given</h3>
 <div class="paragraph">
-<p>在 Perl 6 中的 <code>given</code>  类似其他语言中的 switch，但是要更加地强大。</p>
+<p>在 Raku 中的 <code>given</code>  类似其他语言中的 switch，但是要更加地强大。</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2530,8 +2539,8 @@ REPL 将会打印出该行的返回值。然后你可以输入另外的行, 或�
 <h3 id="_loop">5.6. loop</h3>
 <div class="paragraph">
 <p><code>loop</code> 是进行 <code>for</code> 循环的另一种方式。<br>
-Perl 6 中 C 语言家族的 <code>for</code> 循环使用 <code>loop</code> 来表示。<br>
-Perl 6 是 C 语言家族中的一员。</p>
+Raku 中 C 语言家族的 <code>for</code> 循环使用 <code>loop</code> 来表示。<br>
+Raku 是 C 语言家族中的一员。</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2547,7 +2556,7 @@ Perl 6 是 C 语言家族中的一员。</p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-更多关于循环和条件语句的信息，参见 <a href="https://docs.perl6.org/language/control" class="bare">https://docs.perl6.org/language/control</a>
+更多关于循环和条件语句的信息，参见 <a href="https://docs.raku.org/language/control" class="bare">https://docs.raku.org/language/control</a>
 </td>
 </tr>
 </table>
@@ -2559,7 +2568,7 @@ Perl 6 是 C 语言家族中的一员。</p>
 <h2 id="_io">6. I/O</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>在 Perl 6 中，两个最常用的输入/输出的端口是终端和文件。</p>
+<p>在 Raku 中，两个最常用的输入/输出的端口是终端和文件。</p>
 </div>
 <div class="sect2">
 <h3 id="_在终端中基本的_io_操作">6.1. 在终端中基本的 I/O 操作</h3>
@@ -2599,7 +2608,7 @@ Perl 6 是 C 语言家族中的一员。</p>
 <span class="tok-nb">say</span> <span class="tok-s">&quot;Hi, what&#39;s your name?&quot;</span>;
 <span class="tok-nv">$name</span> = <span class="tok-n">get</span>;
 
-<span class="tok-nb">say</span> <span class="tok-s">&quot;Dear $name welcome to Perl 6&quot;</span>;</code></pre>
+<span class="tok-nb">say</span> <span class="tok-s">&quot;Dear $name welcome to Raku&quot;</span>;</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2619,7 +2628,7 @@ Perl 6 是 C 语言家族中的一员。</p>
 <div class="content">
 <pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">$name</span> = <span class="tok-n">prompt</span> <span class="tok-s">&quot;Hi, what&#39;s your name? &quot;</span>;
 
-<span class="tok-nb">say</span> <span class="tok-s">&quot;Dear $name welcome to Perl 6&quot;</span>;</code></pre>
+<span class="tok-nb">say</span> <span class="tok-s">&quot;Dear $name welcome to Raku&quot;</span>;</code></pre>
 </div>
 </div>
 </div>
@@ -2656,7 +2665,7 @@ Perl 6 是 C 语言家族中的一员。</p>
 </div>
 <div class="paragraph">
 <p><code>echo</code> 和 <code>ls</code> 是常用的 Linux shell 命令<br>
-<code>echo</code> 打印文本到终端（和 Perl 6 中的 <code>print</code> 相同<br>
+<code>echo</code> 打印文本到终端（和 Raku 中的 <code>print</code> 相同<br>
 <code>ls</code> 列出当前目录下所有的文件和文件夹。</p>
 </div>
 <div class="paragraph">
@@ -2712,7 +2721,7 @@ Perl 6 是 C 语言家族中的一员。</p>
 <div class="sect2">
 <h3 id="_文件和文件目录操作">6.4. 文件和文件目录操作</h3>
 <div class="paragraph">
-<p>在先前的例子中，Perl 6 能不使用 shell 命令的情况下列出一个目录下所有的内容。</p>
+<p>在先前的例子中，Raku 能不使用 shell 命令的情况下列出一个目录下所有的内容。</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2737,17 +2746,17 @@ Perl 6 是 C 语言家族中的一员。</p>
 <p>你还可以检查特定的路径是否存在：</p>
 </div>
 <div class="paragraph">
-<p>在你要运行以下脚本的目录中，建立一个叫 <code>folder123</code> 的空文件夹和一个文件 <code>script123.pl6</code></p>
+<p>在你要运行以下脚本的目录中，建立一个叫 <code>folder123</code> 的空文件夹和一个文件 <code>script123.raku</code></p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-nb">say</span> <span class="tok-s">&quot;script123.pl6&quot;</span>.<span class="tok-nb">IO</span>.<span class="tok-nb">e</span>;
+<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-nb">say</span> <span class="tok-s">&quot;script123.raku&quot;</span>.<span class="tok-nb">IO</span>.<span class="tok-nb">e</span>;
 <span class="tok-nb">say</span> <span class="tok-s">&quot;folder123&quot;</span>.<span class="tok-nb">IO</span>.<span class="tok-nb">e</span>;
 
-<span class="tok-nb">say</span> <span class="tok-s">&quot;script123.pl6&quot;</span>.<span class="tok-nb">IO</span>.<span class="tok-n">d</span>;
+<span class="tok-nb">say</span> <span class="tok-s">&quot;script123.raku&quot;</span>.<span class="tok-nb">IO</span>.<span class="tok-n">d</span>;
 <span class="tok-nb">say</span> <span class="tok-s">&quot;folder123&quot;</span>.<span class="tok-nb">IO</span>.<span class="tok-n">d</span>;
 
-<span class="tok-nb">say</span> <span class="tok-s">&quot;script123.pl6&quot;</span>.<span class="tok-nb">IO</span>.<span class="tok-n">f</span>;
+<span class="tok-nb">say</span> <span class="tok-s">&quot;script123.raku&quot;</span>.<span class="tok-nb">IO</span>.<span class="tok-n">f</span>;
 <span class="tok-nb">say</span> <span class="tok-s">&quot;folder123&quot;</span>.<span class="tok-nb">IO</span>.<span class="tok-n">f</span>;</code></pre>
 </div>
 </div>
@@ -2777,7 +2786,7 @@ Windows 下使用 <code>/</code> 或 <code>\\</code> 来定义目录<br>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-更多关于 I/O，详见 <a href="https://docs.perl6.org/type/IO" class="bare">https://docs.perl6.org/type/IO</a>
+更多关于 I/O，详见 <a href="https://docs.raku.org/type/IO" class="bare">https://docs.raku.org/type/IO</a>
 </td>
 </tr>
 </table>
@@ -2857,7 +2866,7 @@ Windows 下使用 <code>/</code> 或 <code>\\</code> 来定义目录<br>
 <p>如果一个子例程被定义需要一个参数，但是我们调用它的时候没有提供所需的参数，那么这个子例程就不能运行。</p>
 </div>
 <div class="paragraph">
-<p>不过 Perl 6 提供了：</p>
+<p>不过 Raku 提供了：</p>
 </div>
 <div class="ulist">
 <ul>
@@ -3002,7 +3011,7 @@ Windows 下使用 <code>/</code> 或 <code>\\</code> 来定义目录<br>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-关于更多子例程和函数的资料，详见 <a href="https://docs.perl6.org/language/functions" class="bare">https://docs.perl6.org/language/functions</a>
+关于更多子例程和函数的资料，详见 <a href="https://docs.raku.org/language/functions" class="bare">https://docs.raku.org/language/functions</a>
 </td>
 </tr>
 </table>
@@ -3085,7 +3094,7 @@ Windows 下使用 <code>/</code> 或 <code>\\</code> 来定义目录<br>
 匿名函数 <code>-&gt; $x {$x ** 2}</code> 没有句柄并且不能被调用。</p>
 </div>
 <div class="paragraph">
-<p>按照 Perl 6 的说法我们把这个标记叫做 <strong>pointy block</strong>。</p>
+<p>按照 Raku 的说法我们把这个标记叫做 <strong>pointy block</strong>。</p>
 </div>
 <div class="listingblock">
 <div class="title">pointy block 也能用于把函数赋值给变量:</div>
@@ -3100,7 +3109,7 @@ Windows 下使用 <code>/</code> 或 <code>\\</code> 来定义目录<br>
 <div class="sect2">
 <h3 id="_链式调用">8.3. 链式调用</h3>
 <div class="paragraph">
-<p>在 Perl 6中, 方法可以链接起来, 你不再需要把一个方法的结果作为参数传递给另外一个方法了。</p>
+<p>在 Raku中, 方法可以链接起来, 你不再需要把一个方法的结果作为参数传递给另外一个方法了。</p>
 </div>
 <div class="paragraph">
 <p>我们假设你有一个数组。你被要求返回该数组的唯一值, 并且按从大到小的顺序排序。</p>
@@ -3119,7 +3128,7 @@ Windows 下使用 <code>/</code> 或 <code>\\</code> 来定义目录<br>
 <p>首先我们在 <code>@array</code> 上调用 <code>unique</code> 函数, 然后我们把它的结果作为参数传递给 <code>sort</code> 函数, 再然后我们把结果传递给 <code>reverse</code> 函数。</p>
 </div>
 <div class="paragraph">
-<p>和上面的例子相比, Perl 6 允许链式方法。<br>
+<p>和上面的例子相比, Raku 允许链式方法。<br>
 上面的例子可以像下面这样写, 利用 <strong>方法链</strong> 的优点:</p>
 </div>
 <div class="listingblock">
@@ -3195,7 +3204,7 @@ Windows 下使用 <code>/</code> 或 <code>\\</code> 来定义目录<br>
 </div>
 </div>
 <div class="paragraph">
-<p>我们能通过使用 hyper 操作符，调用 Perl 6 中已经定义过的方法。例如 <code>is-prime</code> 告诉我们一个数字是否是质数。<br></p>
+<p>我们能通过使用 hyper 操作符，调用 Raku 中已经定义过的方法。例如 <code>is-prime</code> 告诉我们一个数字是否是质数。<br></p>
 </div>
 <div class="paragraph">
 <p>此外我们能定义新的子例程并使用 hyper 操作符调用它们。但是这时我们必须在方法的名字前面加上 <code>&amp;</code> 符号。例如 <code>&amp;is-even</code>。</p>
@@ -3210,8 +3219,8 @@ Windows 下使用 <code>/</code> 或 <code>\\</code> 来定义目录<br>
 <i class="fa icon-warning" title="Warning"></i>
 </td>
 <td class="content">
-Perl 6 会保证结果的顺序与原始值的顺序相同。<br>
-但是 <strong>不能保证</strong> Perl 6 会真正地在同一个顺序或在同一个线程中调用该方法。<br>
+Raku 会保证结果的顺序与原始值的顺序相同。<br>
+但是 <strong>不能保证</strong> Raku 会真正地在同一个顺序或在同一个线程中调用该方法。<br>
 因此，请注意具有副作用的方法，例如 <code>say</code> 或 <code>print</code>。
 </td>
 </tr>
@@ -3299,7 +3308,7 @@ Perl 6 会保证结果的顺序与原始值的顺序相同。<br>
 </div>
 </div>
 <div class="paragraph">
-<p>初始的元素是 0 和 2 而结束点是 10。虽然没有定义生成器, 但是使用了初始元素, Perl 6 会把生成器推断为 (+2)。<br></p>
+<p>初始的元素是 0 和 2 而结束点是 10。虽然没有定义生成器, 但是使用了初始元素, Raku 会把生成器推断为 (+2)。<br></p>
 </div>
 <div class="paragraph">
 <p>这个惰性列表可能返回(如果需要的话)下面的元素 (0, 2, 4, 6, 8, 10)。</p>
@@ -3356,7 +3365,7 @@ Perl 6 会保证结果的顺序与原始值的顺序相同。<br>
 <div class="sect2">
 <h3 id="_闭包">8.8. 闭包</h3>
 <div class="paragraph">
-<p>在 Perl 6 中所有的代码对象都是闭包, 这意味着它们能从外部作用域(outer scope)引用词法变量(lexical variables)。</p>
+<p>在 Raku 中所有的代码对象都是闭包, 这意味着它们能从外部作用域(outer scope)引用词法变量(lexical variables)。</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -3429,8 +3438,8 @@ Perl 6 会保证结果的顺序与原始值的顺序相同。<br>
 <h2 id="_类和对象">9. 类和对象</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>在上一章中我们学习了 Perl 6 中函数式编程的便利性。<br>
-在这一章中我们将看看 Perl 6 中的面向对象编程。</p>
+<p>在上一章中我们学习了 Raku 中函数式编程的便利性。<br>
+在这一章中我们将看看 Raku 中的面向对象编程。</p>
 </div>
 <div class="sect2">
 <h3 id="_介绍">9.1. 介绍</h3>
@@ -3534,7 +3543,7 @@ Perl 6 会保证结果的顺序与原始值的顺序相同。<br>
 </div>
 <div class="paragraph">
 <p><code>sayvar</code> 是一个存取器。它让我们通过不直接访问这个变量来访问这个变量。
-在 Perl 6 中使用  <strong>twigil</strong> 使得封装很便利。<br>
+在 Raku 中使用  <strong>twigil</strong> 使得封装很便利。<br>
 twigil 是次级的 <em>魔符(sigil)</em> ，用于魔符和属性名之间。<br>
 有两种 twigil 可用于类中:</p>
 </div>
@@ -3579,7 +3588,7 @@ twigil 是次级的 <em>魔符(sigil)</em> ，用于魔符和属性名之间。<
 <div class="sect2">
 <h3 id="_具名参数_vs_位置参数">9.3. 具名参数 vs. 位置参数</h3>
 <div class="paragraph">
-<p>在 Perl 6 中, 所有的类继承了一个默认的 <code>.new</code> 构造函数。<br>
+<p>在 Raku 中, 所有的类继承了一个默认的 <code>.new</code> 构造函数。<br>
 通过为他提供参数, 它能用于创建对象。<br>
 只能提供 <strong>具名参数</strong> 给默认的构造函数。<br></p>
 </div>
@@ -3898,7 +3907,7 @@ Employees 拥有 4  个属性: name, age, company 和 salary。</p>
 <div class="sect2">
 <h3 id="_多重继承">9.8. 多重继承</h3>
 <div class="paragraph">
-<p>在 Perl 6 中允许多重继承。一个类可以继承自多个其它的类。</p>
+<p>在 Raku 中允许多重继承。一个类可以继承自多个其它的类。</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -3951,7 +3960,7 @@ Employees 拥有 4  个属性: name, age, company 和 salary。</p>
 发生了什么事?<br></p>
 </div>
 <div class="paragraph">
-<p><code>combo-chart</code> 继承自 <code>line-chart</code> 和 <code>bar-chart</code>, 它们都有一个叫做 <code>plot</code> 的方法。当我们在 <code>combo-chart</code> 身上调用那个方法时, Perl 6 内部会尝试通过调用其所继承的方法之一来解决冲突。</p>
+<p><code>combo-chart</code> 继承自 <code>line-chart</code> 和 <code>bar-chart</code>, 它们都有一个叫做 <code>plot</code> 的方法。当我们在 <code>combo-chart</code> 身上调用那个方法时, Raku 内部会尝试通过调用其所继承的方法之一来解决冲突。</p>
 </div>
 <div class="paragraph">
 <div class="title">纠正</div>
@@ -4205,15 +4214,15 @@ role 使用关键字 <code>role</code> 声明, 而想实现该 role 的类可以
 </td>
 <td class="content">
 <div class="paragraph">
-<p>有关 Perl 6 中面向对象编程的更多信息，请参阅：</p>
+<p>有关 Raku 中面向对象编程的更多信息，请参阅：</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="https://docs.perl6.org/language/classtut" class="bare">https://docs.perl6.org/language/classtut</a></p>
+<p><a href="https://docs.raku.org/language/classtut" class="bare">https://docs.raku.org/language/classtut</a></p>
 </li>
 <li>
-<p><a href="https://docs.perl6.org/language/objects" class="bare">https://docs.perl6.org/language/objects</a></p>
+<p><a href="https://docs.raku.org/language/objects" class="bare">https://docs.raku.org/language/objects</a></p>
 </li>
 </ul>
 </div>
@@ -4266,7 +4275,7 @@ role 使用关键字 <code>role</code> 声明, 而想实现该 role 的类可以
 <div class="title"><code>输出</code></div>
 <div class="content">
 <pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-n">Type</span> <span class="tok-n">check</span> <span class="tok-n">failed</span> <span class="tok-n">in</span> <span class="tok-n">assignment</span> <span class="tok-nb">to</span> <span class="tok-nv">$name</span>; <span class="tok-n">expected</span> <span class="tok-nb">Str</span> <span class="tok-k">but</span> <span class="tok-n">got</span> <span class="tok-nb">Int</span> <span class="tok-n">赋值给</span><span class="tok-nv">$name时类型检查失败</span>，<span class="tok-n">预期Str但是得到Int</span>
-   <span class="tok-n">in</span> <span class="tok-n">block</span> <span class="tok-s">&lt;unit&gt;</span> <span class="tok-n">at</span> <span class="tok-n">exceptions</span>.<span class="tok-n">pl6:2</span></code></pre>
+   <span class="tok-n">in</span> <span class="tok-n">block</span> <span class="tok-s">&lt;unit&gt;</span> <span class="tok-n">at</span> <span class="tok-n">exceptions</span>.<span class="tok-n">raku:2</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -4382,7 +4391,7 @@ role 使用关键字 <code>role</code> 声明, 而想实现该 role 的类可以
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-查看异常类型和相关方法的完整列表请到  <a href="https://docs.perl6.org/type-exceptions.html" class="bare">https://docs.perl6.org/type-exceptions.html</a>
+查看异常类型和相关方法的完整列表请到  <a href="https://docs.raku.org/type-exceptions.html" class="bare">https://docs.raku.org/type-exceptions.html</a>
 </td>
 </tr>
 </table>
@@ -4694,7 +4703,7 @@ Unicode 属性闭合在 <code>&lt;: &gt;</code> 中。</p>
 <div class="listingblock">
 <div class="title">脚本</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">if</span> <span class="tok-s">&#39;Rakudo is a Perl 6 compiler&#39;</span> ~~ <span class="tok-sr">m/:s Perl 6/</span> {
+<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">if</span> <span class="tok-s">&#39;Rakudo is a Raku compiler&#39;</span> ~~ <span class="tok-sr">m/:s Raku/</span> {
     <span class="tok-nb">say</span> <span class="tok-s">&quot;匹配的内容是：&quot;</span> ~ <span class="tok-vg">$/</span>;
     <span class="tok-nb">say</span> <span class="tok-s">&quot;匹配之前的字符串：&quot;</span> ~ <span class="tok-vg">$/</span>.<span class="tok-n">prematch</span>;
     <span class="tok-nb">say</span> <span class="tok-s">&quot;匹配之后的字符串：&quot;</span> ~ <span class="tok-vg">$/</span>.<span class="tok-n">postmatch</span>;
@@ -4706,7 +4715,7 @@ Unicode 属性闭合在 <code>&lt;: &gt;</code> 中。</p>
 <div class="listingblock">
 <div class="title">输出</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-n">匹配的内容是</span>：<span class="tok-n">Perl</span> <span class="tok-mi">6</span>
+<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-n">匹配的内容是</span>：<span class="tok-n">Raku</span>
 <span class="tok-n">匹配之前的字符串</span>：<span class="tok-n">Rakudo</span> <span class="tok-k">is</span> <span class="tok-n">a</span>
 <span class="tok-n">匹配之后的字符串</span>： <span class="tok-n">compiler</span>
 <span class="tok-n">匹配从字符串此处开始</span>：<span class="tok-mi">12</span>
@@ -4733,7 +4742,7 @@ Unicode 属性闭合在 <code>&lt;: &gt;</code> 中。</p>
 <td class="content">
 默认地，空白符在 regex 中会被忽略。<br>
 如果想在 regex 中包含空白, 我们必须显式地这样做。<br>
-regex <code>m/:s Perl 6/</code> 中的 <code>:s</code> 用于强制匹配空白符。
+regex <code>m/:s Raku/</code> 中的 <code>:s</code> 用于强制匹配空白符。
 另外, 可以把 regex 写为 <code>m/Perl\s6/</code> ，使用 <code>\s</code> 代表空白符。
 如果 regex 中包含的空白不止一个, 使用 <code>:s</code> 比使用 <code>\s</code> 更高效。
 </td>
@@ -4756,7 +4765,7 @@ regex <code>m/:s Perl 6/</code> 中的 <code>:s</code> 用于强制匹配空白�
 </td>
 <td class="content">
 这个例子中用于电子邮件检测的 regex 不是很准确。<br>
-它的核心意图是用来解释 Perl 6 中的 regex 的功能的。<br>
+它的核心意图是用来解释 Raku 中的 regex 的功能的。<br>
 不要在生产中原样使用它。
 </td>
 </tr>
@@ -4843,7 +4852,7 @@ regex <code>m/:s Perl 6/</code> 中的 <code>:s</code> 用于强制匹配空白�
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-更多关于 regex 的内容, 查看 <a href="https://docs.perl6.org/language/regexes" class="bare">https://docs.perl6.org/language/regexes</a>
+更多关于 regex 的内容, 查看 <a href="https://docs.raku.org/language/regexes" class="bare">https://docs.raku.org/language/regexes</a>
 </td>
 </tr>
 </table>
@@ -4852,17 +4861,17 @@ regex <code>m/:s Perl 6/</code> 中的 <code>:s</code> 用于强制匹配空白�
 </div>
 </div>
 <div class="sect1">
-<h2 id="_perl_6_模块">12. Perl 6 模块</h2>
+<h2 id="_raku_模块">12. Raku 模块</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Perl 6是通用编程语言。 它可以用于处理众多任务，包括：
+<p>Raku是通用编程语言。 它可以用于处理众多任务，包括：
 文本处理，图形，网络，数据库，网络协议等。</p>
 </div>
 <div class="paragraph">
 <p>可重用性是一个非常重要的概念，程序员不必在每次他们想要执行新任务时重新发明轮子。</p>
 </div>
 <div class="paragraph">
-<p>Perl 6 允许创建和重新分发 <strong>modules</strong>。 每个模块是一组封装的功能，可以在安装后重复使用。</p>
+<p>Raku 允许创建和重新分发 <strong>modules</strong>。 每个模块是一组封装的功能，可以在安装后重复使用。</p>
 </div>
 <div class="paragraph">
 <p><em>Zef</em> 是 Rakudo Star 中自带的模块管理工具。</p>
@@ -4880,7 +4889,7 @@ regex <code>m/:s Perl 6/</code> 中的 <code>:s</code> 用于强制匹配空白�
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Perl 6 的模块目录可以在 <a href="https://modules.perl6.org/" class="bare">https://modules.perl6.org/</a> 中找到。
+Raku 的模块目录可以在 <a href="https://modules.raku.org/" class="bare">https://modules.raku.org/</a> 中找到。
 </td>
 </tr>
 </table>
@@ -4897,7 +4906,7 @@ MD5 有多种加密存储在数据库中的口令的应用程序。
 <p>比方说，你需要一个生成密码的MD5哈希以存储在数据库中备用的脚本。</p>
 </div>
 <div class="paragraph">
-<p>幸运的是， Perl 6 已经有一个能实现 MD5 算法的模块。我们来安装它:<br>
+<p>幸运的是， Raku 已经有一个能实现 MD5 算法的模块。我们来安装它:<br>
 <code>zef install Digest::MD5</code></p>
 </div>
 <div class="paragraph">
@@ -5079,7 +5088,7 @@ UTF-8 是能够以Unicode编码所有可能的字符或代码点的字符编码�
 <p>虽然这在技术上是对的，不过它可能不是我们所期待的。</p>
 </div>
 <div class="paragraph">
-<p>幸运的是 Perl 6 拥有一套应用了 <a href="http://unicode.org/reports/tr10/">Unicode 排序算法</a>的操作符。<br>
+<p>幸运的是 Raku 拥有一套应用了 <a href="http://unicode.org/reports/tr10/">Unicode 排序算法</a>的操作符。<br>
 <code>unicmp</code> 是其中一个，它的功能和上面的 <code>cmp</code> 相似，不过是 unicode 相关的。</p>
 </div>
 <div class="listingblock">
@@ -5094,7 +5103,7 @@ UTF-8 是能够以Unicode编码所有可能的字符或代码点的字符编码�
 <div class="sect4">
 <h5 id="_排序">排序</h5>
 <div class="paragraph">
-<p>Perl 6 提供了 <code>collate</code> 方法来替代代码点排序方法 <code>sort</code> 应用于 unicode，<code>collate</code> 应用了 <a href="http://unicode.org/reports/tr10/">Unicode 排序算法</a>。</p>
+<p>Raku 提供了 <code>collate</code> 方法来替代代码点排序方法 <code>sort</code> 应用于 unicode，<code>collate</code> 应用了 <a href="http://unicode.org/reports/tr10/">Unicode 排序算法</a>。</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -5117,7 +5126,7 @@ UTF-8 是能够以Unicode编码所有可能的字符或代码点的字符编码�
 这可能不是个事儿除非你正尝试去做的东西需要耗费很多时间。</p>
 </div>
 <div class="paragraph">
-<p>幸亏Perl 6 拥有能让你并行地运行的功能。<br>
+<p>幸亏Raku 拥有能让你并行地运行的功能。<br>
 此时, 需要注意到的是存在两类并行方式：</p>
 </div>
 <div class="ulist">
@@ -5287,7 +5296,7 @@ UTF-8 是能够以Unicode编码所有可能的字符或代码点的字符编码�
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-关于并发和异步编程的更多信息, 请查看  <a href="https://docs.perl6.org/language/concurrency" class="bare">https://docs.perl6.org/language/concurrency</a>
+关于并发和异步编程的更多信息, 请查看  <a href="https://docs.raku.org/language/concurrency" class="bare">https://docs.raku.org/language/concurrency</a>
 </td>
 </tr>
 </table>
@@ -5299,10 +5308,10 @@ UTF-8 是能够以Unicode编码所有可能的字符或代码点的字符编码�
 <h2 id="_native_calling_接口">15. Native Calling 接口</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Perl 6 可以让我们通过 Native Calling 接口来使用 C 库。</p>
+<p>Raku 可以让我们通过 Native Calling 接口来使用 C 库。</p>
 </div>
 <div class="paragraph">
-<p><code>NativeCall</code> 是 Perl 6 自带的标准模块，它提供了一系列功能方便了 Perl 6 和 C 的接口。</p>
+<p><code>NativeCall</code> 是 Raku 自带的标准模块，它提供了一系列功能方便了 Raku 和 C 的接口。</p>
 </div>
 <div class="sect2">
 <h3 id="_调用函数">15.1. 调用函数</h3>
@@ -5338,10 +5347,10 @@ UTF-8 是能够以Unicode编码所有可能的字符或代码点的字符编码�
 </div>
 </div>
 <div class="paragraph">
-<p>在你编译 C 库的路径下新建一个包含下面代码的 Perl 6 文件，并运行它。</p>
+<p>在你编译 C 库的路径下新建一个包含下面代码的 Raku 文件，并运行它。</p>
 </div>
 <div class="listingblock">
-<div class="title">ncitest.pl6</div>
+<div class="title">ncitest.raku</div>
 <div class="content">
 <pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">use</span> <span class="tok-n">NativeCall</span>;
 
@@ -5356,7 +5365,7 @@ UTF-8 是能够以Unicode编码所有可能的字符或代码点的字符编码�
 <p>首先，我们声明使用 <code>NativeCall</code> 模块。<br>
 接着，我们定义了一个常量 <code>LIBPATH</code> 来存储 C 库的路径。<br>
 其中 <code>$*CWD</code> 返回当前目录。<br>
-然后，我们定义一个新的 Perl 6 子例程 <code>hellofromc</code> 作为 C 库中名称同为 <code>hellofromc</code> 的 C 函数之包装函数。这个 C 库就是 <code>LIBPATH</code> 所对应的。<br>
+然后，我们定义一个新的 Raku 子例程 <code>hellofromc</code> 作为 C 库中名称同为 <code>hellofromc</code> 的 C 函数之包装函数。这个 C 库就是 <code>LIBPATH</code> 所对应的。<br>
 这些是通过使用 <code>is native</code> 特征实现的。<br>
 最后，调用我们的 Perl6 子例程。</p>
 </div>
@@ -5367,17 +5376,17 @@ UTF-8 是能够以Unicode编码所有可能的字符或代码点的字符编码�
 <div class="sect2">
 <h3 id="_函数重命名">15.2. 函数重命名</h3>
 <div class="paragraph">
-<p>上面的例子中，我们看到了如何通过 <code>is native</code> 特征使用同名 Perl 6 子例程来包装 C 函数从而调用它。</p>
+<p>上面的例子中，我们看到了如何通过 <code>is native</code> 特征使用同名 Raku 子例程来包装 C 函数从而调用它。</p>
 </div>
 <div class="paragraph">
-<p>有时我们希望更改 Perl 6 子例程的名称。<br>
+<p>有时我们希望更改 Raku 子例程的名称。<br>
 为此，我们需要使用 <code>is symbol</code> 特征。</p>
 </div>
 <div class="paragraph">
-<p>下面就来修改上面的 Perl 6 脚本，将 Perl 6 子例程 <code>hellofromc</code> 重命名为 <code>hello</code>。</p>
+<p>下面就来修改上面的 Raku 脚本，将 Raku 子例程 <code>hellofromc</code> 重命名为 <code>hello</code>。</p>
 </div>
 <div class="listingblock">
-<div class="title">ncitest.pl6</div>
+<div class="title">ncitest.raku</div>
 <div class="content">
 <pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">use</span> <span class="tok-n">NativeCall</span>;
 
@@ -5389,14 +5398,14 @@ UTF-8 是能够以Unicode编码所有可能的字符或代码点的字符编码�
 </div>
 <div class="paragraph">
 <div class="title">解释</div>
-<p>由于 Perl 6 子例程与对应的 C 函数不同名，我们在这里需要使用 <code>is symbol</code> 来提供原始的 C 函数名。</p>
+<p>由于 Raku 子例程与对应的 C 函数不同名，我们在这里需要使用 <code>is symbol</code> 来提供原始的 C 函数名。</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_参数传递">15.3. 参数传递</h3>
 <div class="paragraph">
-<p>编译下面更改过的的 C 库代码并运行 Perl 6 脚本。<br>
-注意我们是如何修改 C 和 Perl 6 代码来接收一个字符串参数（在 C 中是 <code>chr*</code>，在 Perl 6 中是 <code>Str</code>）</p>
+<p>编译下面更改过的的 C 库代码并运行 Raku 脚本。<br>
+注意我们是如何修改 C 和 Raku 代码来接收一个字符串参数（在 C 中是 <code>chr*</code>，在 Raku 中是 <code>Str</code>）</p>
 </div>
 <div class="listingblock">
 <div class="title">ncitest.c</div>
@@ -5409,7 +5418,7 @@ UTF-8 是能够以Unicode编码所有可能的字符或代码点的字符编码�
 </div>
 </div>
 <div class="listingblock">
-<div class="title">ncitest.pl6</div>
+<div class="title">ncitest.raku</div>
 <div class="content">
 <pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">use</span> <span class="tok-n">NativeCall</span>;
 
@@ -5424,7 +5433,7 @@ UTF-8 是能够以Unicode编码所有可能的字符或代码点的字符编码�
 <h3 id="_返回值_2">15.4. 返回值</h3>
 <div class="paragraph">
 <p>让我们再来定义一个简单的计算器，实现接收两个整数输入并返回它们之和。<br>
-编译下面的 C 库，并运行 Perl 6 脚本。</p>
+编译下面的 C 库，并运行 Raku 脚本。</p>
 </div>
 <div class="listingblock">
 <div class="title">ncitest.c</div>
@@ -5435,7 +5444,7 @@ UTF-8 是能够以Unicode编码所有可能的字符或代码点的字符编码�
 </div>
 </div>
 <div class="listingblock">
-<div class="title">ncitest.pl6</div>
+<div class="title">ncitest.raku</div>
 <div class="content">
 <pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">use</span> <span class="tok-n">NativeCall</span>;
 
@@ -5446,18 +5455,18 @@ UTF-8 是能够以Unicode编码所有可能的字符或代码点的字符编码�
 </div>
 </div>
 <div class="paragraph">
-<p>注意其中 C 和 Perl 6 函数如何接收两个整数并返回一个整数。（C 中的 <code>int</code> 和 Perl 6 中的 <code>int32</code>）</p>
+<p>注意其中 C 和 Raku 函数如何接收两个整数并返回一个整数。（C 中的 <code>int</code> 和 Raku 中的 <code>int32</code>）</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_类型_2">15.5. 类型</h3>
 <div class="paragraph">
-<p>你可能要问，为什么在最后的 Perl 6 脚本中我们要使用 <code>int32</code> 来代替 <code>Int</code> 。<br>
-因为在 Perl 6 中像 <code>Int</code>，<code>Rat</code> 等类型不能用来传递与接收 C 函数中的值。<br>
-所以必须在 Perl 6 中使用同 C 中类型相对应的类型。</p>
+<p>你可能要问，为什么在最后的 Raku 脚本中我们要使用 <code>int32</code> 来代替 <code>Int</code> 。<br>
+因为在 Raku 中像 <code>Int</code>，<code>Rat</code> 等类型不能用来传递与接收 C 函数中的值。<br>
+所以必须在 Raku 中使用同 C 中类型相对应的类型。</p>
 </div>
 <div class="paragraph">
-<p>幸运的是，Perl 6 提供了许多数据类型来对应 C 中的数据类型。</p>
+<p>幸运的是，Raku 提供了许多数据类型来对应 C 中的数据类型。</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -5467,7 +5476,7 @@ UTF-8 是能够以Unicode编码所有可能的字符或代码点的字符编码�
 <thead>
 <tr>
 <th class="tableblock halign-center valign-middle">C 类型</th>
-<th class="tableblock halign-center valign-middle">Perl 6 类型</th>
+<th class="tableblock halign-center valign-middle">Raku 类型</th>
 </tr>
 </thead>
 <tbody>
@@ -5562,7 +5571,7 @@ UTF-8 是能够以Unicode编码所有可能的字符或代码点的字符编码�
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-更多关于 Native Calling 接口, 详见 <a href="https://docs.perl6.org/language/nativecall" class="bare">https://docs.perl6.org/language/nativecall</a>
+更多关于 Native Calling 接口, 详见 <a href="https://docs.raku.org/language/nativecall" class="bare">https://docs.raku.org/language/nativecall</a>
 </td>
 </tr>
 </table>
@@ -5576,16 +5585,16 @@ UTF-8 是能够以Unicode编码所有可能的字符或代码点的字符编码�
 <div class="ulist">
 <ul>
 <li>
-<p><a href="irc://irc.freenode.net/#perl6">#perl6</a> IRC 频道. 很多讨论发生在频道中。你可以到 <a href="http://perl6.org/community/irc" class="bare">http://perl6.org/community/irc</a> 进行任何询问。</p>
+<p><a href="irc://irc.freenode.net/#raku">#raku</a> IRC 频道. 很多讨论发生在频道中。你可以到 <a href="http://raku.org/community/irc" class="bare">http://raku.org/community/irc</a> 进行任何询问。</p>
 </li>
 <li>
-<p><a href="https://p6weekly.wordpress.com">p6weekly</a> Perl 6 周边的变化和每周概述。</p>
+<p><a href="https://rakudoweekly.blog">Rakudo Weekly</a> Raku 周边的变化和每周概述。</p>
 </li>
 <li>
-<p><a href="http://pl6anet.org">pl6anet</a> 博客聚合器. 敬请阅读专注于 Perl 6 的博客文章。</p>
+<p><a href="http://pl6anet.org">pl6anet</a> 博客聚合器. 敬请阅读专注于 Raku 的博客文章。</p>
 </li>
 <li>
-<p><a href="https://www.reddit.com/r/perl6/">/r/perl6</a> 订阅 Perl 6 子版本。</p>
+<p><a href="https://www.reddit.com/r/rakulang/">/r/rakulang</a> 订阅 Raku 子版本。</p>
 </li>
 <li>
 <p><a href="https://twitter.com/perl6org">@perl6org</a> Perl6 社区推特</p>
@@ -5606,7 +5615,7 @@ UTF-8 是能够以Unicode编码所有可能的字符或代码点的字符编码�
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2019-11-17 17:41:02 +0200
+Last updated 2019-11-23 22:55:20 +0200
 </div>
 </div>
 <style>

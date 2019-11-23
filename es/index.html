@@ -16,10 +16,10 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.10">
-<meta name="description" content="Una introducción general a Perl 6">
-<meta name="keywords" content="perl6, perl 6, introducción, perl6intro, introducción a perl 6, tutorial de perl 6, perl 6 intro">
+<meta name="description" content="Una introducción general a Raku">
+<meta name="keywords" content="perl6, perl 6, introducción, perl6intro, introducción a perl 6, tutorial de perl 6, perl 6 intro, raku, introducción a raku, guía de raku, tutorial de raku">
 <meta name="author" content="Naoum Hankache, Ramiro Encinas">
-<title>Introducción a Perl 6</title>
+<title>Guía de Raku</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /* Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -453,7 +453,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="book toc2 toc-left">
 <div id="header">
-<h1>Introducción a Perl 6</h1>
+<h1>Guía de Raku</h1>
 <div class="details">
 <span id="author" class="author">Naoum Hankache</span><br>
 <span id="email" class="email"><a href="mailto:naoum@hankache.com">naoum@hankache.com</a></span><br>
@@ -465,10 +465,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <ul class="sectlevel1">
 <li><a href="#_introducción">1. Introducción</a>
 <ul class="sectlevel2">
-<li><a href="#_qué_es_perl_6">1.1. Qué es Perl 6</a></li>
+<li><a href="#_qué_es_raku">1.1. Qué es Raku</a></li>
 <li><a href="#_jerga">1.2. Jerga</a></li>
-<li><a href="#_instalación_de_perl_6">1.3. Instalación de Perl 6</a></li>
-<li><a href="#_ejecutando_código_en_perl_6">1.4. Ejecutando código en Perl 6</a></li>
+<li><a href="#_instalación_de_raku">1.3. Instalación de Raku</a></li>
+<li><a href="#_ejecutando_código_en_raku">1.4. Ejecutando código en Raku</a></li>
 <li><a href="#_editores">1.5. Editores</a></li>
 <li><a href="#_hola_mundo">1.6. ¡Hola Mundo!</a></li>
 <li><a href="#_sintaxis_general">1.7. Sintaxis general</a></li>
@@ -564,7 +564,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_ejemplo">11.8. Ejemplo</a></li>
 </ul>
 </li>
-<li><a href="#_módulos_en_perl_6">12. Módulos en Perl 6</a>
+<li><a href="#_módulos_en_raku">12. Módulos en Raku</a>
 <ul class="sectlevel2">
 <li><a href="#_utilizando_módulos">12.1. Utilizando Módulos</a></li>
 </ul>
@@ -572,6 +572,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_unicode">13. Unicode</a>
 <ul class="sectlevel2">
 <li><a href="#_utilizando_unicode">13.1. Utilizando Unicode</a></li>
+<li><a href="#_operaciones_contempladas_con_unicode">13.2. Operaciones contempladas con Unicode</a></li>
 </ul>
 </li>
 <li><a href="#_paralelismo_concurrencia_y_asincronía">14. Paralelismo, Concurrencia y Asincronía</a>
@@ -597,12 +598,12 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Este documento es una guía rápida del lenguaje de programación Perl 6.
-Para los novatos en Perl 6 sería un punto de partida y puesta en marcha.</p>
+<p>Este documento es una guía rápida del lenguaje de programación Raku.<br>
+Para los novatos en Raku sería un punto de partida y puesta en marcha.</p>
 </div>
 <div class="paragraph">
-<p>Algunas partes de este documento hacen referencia a otras partes (más completas y precisas) de la <a href="http://docs.perl6.org">Documentación de Perl 6</a>.
-Consulta la documentación de Perl 6 si necesitas más información sobre algo concreto.</p>
+<p>Algunas partes de este documento hacen referencia a otras partes (más completas y precisas) de la <a href="https://docs.raku.org">Documentación de Raku</a>.
+Consulta la documentación si necesitas más información sobre algo concreto.</p>
 </div>
 <div class="paragraph">
 <p>A lo largo de este documento encontrarás ejemplos de los temas más comentados.
@@ -626,7 +627,7 @@ Es conveniente que pruebes todos los ejemplos para entenderlos bien.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="https://github.com/hankache/perl6intro" class="bare">https://github.com/hankache/perl6intro</a></p>
+<p><a href="https://github.com/hankache/rakuguide" class="bare">https://github.com/hankache/rakuguide</a></p>
 </li>
 </ul>
 </div>
@@ -642,7 +643,7 @@ Es conveniente que pruebes todos los ejemplos para entenderlos bien.</p>
 </ul>
 </div>
 <div class="paragraph">
-<p>Si te gusta este trabajo clica en <em>Star</em> del <a href="https://github.com/hankache/perl6intro">repositorio de Github</a>.</p>
+<p>Si te gusta este trabajo clica en <em>Star</em> del <a href="https://github.com/hankache/rakuguide">repositorio de Github</a>.</p>
 </div>
 </div>
 </div>
@@ -650,19 +651,16 @@ Es conveniente que pruebes todos los ejemplos para entenderlos bien.</p>
 <h2 id="_introducción">1. Introducción</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_qué_es_perl_6">1.1. Qué es Perl 6</h3>
+<h3 id="_qué_es_raku">1.1. Qué es Raku</h3>
 <div class="paragraph">
-<p>Perl 6 es un lenguaje de alto nivel, de propósito general y de tipado gradual.
-Perl 6 es multiparadigma y soporta programación Procedimental, Orientada a Objetos y Funcional.</p>
+<p>Raku es un lenguaje de alto nivel, de propósito general y de tipado gradual.
+Raku es multiparadigma y soporta programación Procedimental, Orientada a Objetos y Funcional.</p>
 </div>
 <div class="ulist">
-<div class="title">El lema de Perl 6:</div>
+<div class="title">El lema de Raku:</div>
 <ul>
 <li>
 <p>TMTOWTDI (Pronunciado como Tim Toady): There is more than one way to do it (Hay más de una forma para hacer algo).</p>
-</li>
-<li>
-<p>Las cosas fáciles deben permanecer fáciles, las cosas difíciles deberían ser fáciles y las cosas imposibles deberían ser difíciles.</p>
 </li>
 </ul>
 </div>
@@ -672,26 +670,23 @@ Perl 6 es multiparadigma y soporta programación Procedimental, Orientada a Obje
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Perl 6</strong>: Es una especificación con un banco de pruebas.
-Las implementaciones que pasan el banco de pruebas de la especificación se consideran Perl 6.</p>
+<p><strong>Raku</strong>: Es una especificación con un banco de pruebas.
+Las implementaciones que pasan el banco de pruebas de la especificación se consideran Raku.</p>
 </li>
 <li>
-<p><strong>Rakudo</strong>: Es un compilador para Perl 6.</p>
+<p><strong>Rakudo</strong>: Es un compilador para Raku.</p>
 </li>
 <li>
-<p><strong>Rakudobrew</strong>: Es un script de Perl5 para instalar Rakudo desde su código fuente.</p>
+<p><strong>Zef</strong>: Es un instalador de módulos de Raku.</p>
 </li>
 <li>
-<p><strong>Zef</strong>: Es un instalador de módulos de Perl 6.</p>
-</li>
-<li>
-<p><strong>Rakudo Star</strong>: Es un paquete que incluye Rakudo, Zef, una colección de módulos de Perl 6 y documentación.</p>
+<p><strong>Rakudo Star</strong>: Es un paquete que incluye Rakudo, Zef, una colección de módulos de Raku y documentación.</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_instalación_de_perl_6">1.3. Instalación de Perl 6</h3>
+<h3 id="_instalación_de_raku">1.3. Instalación de Raku</h3>
 <div class="paragraph">
 <div class="title">Linux</div>
 <p>Instalación de Rakudo Star desde la línea de comandos:</p>
@@ -755,18 +750,18 @@ Para arquitectura 32-bit: descarga el instalador más reciente (.msi) desde
 </div>
 </div>
 <div class="sect2">
-<h3 id="_ejecutando_código_en_perl_6">1.4. Ejecutando código en Perl 6</h3>
+<h3 id="_ejecutando_código_en_raku">1.4. Ejecutando código en Raku</h3>
 <div class="paragraph">
-<p>Puedes ejecutar código Perl 6 mediante REPL (Read-Eval-Print Loop). Para ello, abre un terminal, introduce <code>perl6</code> y pulsa [Enter]. Aparecerá el prompt <code>&gt;</code>. Ahora introduce una línea de código, pulsa [Enter] y aparecerá una línea nueva con el resultado. Puedes introducir otra línea o <code>exit</code> y pulsar [Enter] para salir al sistema.</p>
+<p>Puedes ejecutar código Raku mediante REPL (Read-Eval-Print Loop). Para ello, abre un terminal, introduce <code>perl6</code> y pulsa [Enter]. Aparecerá el prompt <code>&gt;</code>. Ahora introduce una línea de código, pulsa [Enter] y aparecerá una línea nueva con el resultado. Puedes introducir otra línea o <code>exit</code> y pulsar [Enter] para salir al sistema.</p>
 </div>
 <div class="paragraph">
-<p>También puedes escribir tu código de Perl 6 en un archivo de texto, guardarlo y ejecutarlo. Es recomendable que el nombre de este archivo de texto tenga la extensión <code>.p6</code>. Ejecuta el archivo de esta forma: <code>perl6 nombre-archivo.p6</code> desde un terminal y pulsa [Enter]. La ejecución suele mostrar el resultado de sentencias como <code>say</code> para visualizar por la salida estándar contenidos de texto con un salto de línea al final .</p>
+<p>También puedes escribir tu código en un archivo de texto, guardarlo y ejecutarlo. Es recomendable que los scripts de Raku tengan la extensión <code>.raku</code>. Ejecuta el archivo de esta forma: <code>perl6 nombre-archivo.raku</code> desde un terminal y pulsa [Enter]. La ejecución suele mostrar el resultado de sentencias como <code>say</code> para visualizar por la salida estándar contenidos de texto con un salto de línea al final .</p>
 </div>
 <div class="paragraph">
 <p>REPL normalmente se utiliza para probar trozos pequeños de código, como una línea. En el caso de programas con más de una línea de código es recomendable guardarlos en un archivo y ejecutarlos como hemos visto.</p>
 </div>
 <div class="paragraph">
-<p>También puedes ejecutar una línea de código de forma "in-line" mediante el parámetro -e de la siguiente forma: <code>perl6 -e 'línea de código Perl 6'</code> y pulsando [Enter].</p>
+<p>También puedes ejecutar una línea de código de forma "in-line" mediante el parámetro -e de la siguiente forma: <code>perl6 -e 'línea de código'</code> y pulsando [Enter].</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -799,17 +794,17 @@ Para arquitectura 32-bit: descarga el instalador más reciente (.msi) desde
 <div class="sect2">
 <h3 id="_editores">1.5. Editores</h3>
 <div class="paragraph">
-<p>Como casi siempre vamos a guardar nuestros programas de Perl 6 en archivos, necesitamos un editor de textos decente que reconozca la sintaxis de Perl 6.</p>
+<p>Como casi siempre vamos a guardar nuestros programas de Raku en archivos, necesitamos un editor de textos decente que reconozca la sintaxis de Raku.</p>
 </div>
 <div class="paragraph">
-<p>Yo recomiendo y utilizo <a href="https://atom.io/">Atom</a>. Es un editor de textos moderno que reconoce y visualiza bien la sintaxis de Perl 6.
-<a href="https://atom.io/packages/language-perl6">Perl 6 FE</a> es un paquete de Atom con una visualización alternativa de la sintaxis de Perl 6. Deriva del paquete original, tiene muchas correcciones y más funcionalidades.</p>
+<p>Yo recomiendo y utilizo <a href="https://atom.io/">Atom</a>. Es un editor de textos moderno que reconoce y visualiza bien la sintaxis de Raku.
+<a href="https://atom.io/packages/language-perl6">Perl 6 FE</a> es un paquete de Atom con una visualización alternativa de la sintaxis de Raku, deriva del paquete original, tiene muchas correcciones y más funcionalidades.</p>
 </div>
 <div class="paragraph">
 <p>En la comunidad también se utiliza <a href="http://www.vim.org/">Vim</a>, <a href="https://www.gnu.org/software/emacs/">Emacs</a> o <a href="http://padre.perlide.org/">Padre</a>.</p>
 </div>
 <div class="paragraph">
-<p>Las últimas versiones de Vim incorporan la visualización de la sintaxis de Perl 6, mientras que Emacs y Padre necesitan instalar paquetes adicionales.</p>
+<p>Las últimas versiones de Vim permiten la visualización de la sintaxis mediante plug-ins; Emacs y Padre necesitan instalar paquetes adicionales.</p>
 </div>
 </div>
 <div class="sect2">
@@ -834,7 +829,7 @@ Para arquitectura 32-bit: descarga el instalador más reciente (.msi) desde
 <div class="sect2">
 <h3 id="_sintaxis_general">1.7. Sintaxis general</h3>
 <div class="paragraph">
-<p>Perl 6 tiene <strong>forma libre</strong>: generalmente los espacios en blanco carecen de significado salvo en ciertos casos.</p>
+<p>Raku tiene <strong>forma libre</strong>: generalmente los espacios en blanco carecen de significado salvo en ciertos casos.</p>
 </div>
 <div class="paragraph">
 <p><strong>Una Sentencia</strong> normalmente es una línea lógica de código que finaliza en punto y coma:
@@ -1254,11 +1249,11 @@ Para arquitectura 32-bit: descarga el instalador más reciente (.msi) desde
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>True</code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>"Perl 6" ~~ "Perl 6"</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>"Raku" ~~ "Raku"</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>True</code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>"Perl 6" ~~ Str</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>"Raku" ~~ Str</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>True</code></p></td>
 </tr>
 <tr>
@@ -1489,7 +1484,7 @@ Para arquitectura 32-bit: descarga el instalador más reciente (.msi) desde
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-En <a href="https://docs.perl6.org/language/operators" class="bare">https://docs.perl6.org/language/operators</a> tienes una lista completa de los operadores, incluyendo su precedencia.
+En <a href="https://docs.raku.org/language/operators" class="bare">https://docs.raku.org/language/operators</a> tienes una lista completa de los operadores, incluyendo su precedencia.
 </td>
 </tr>
 </table>
@@ -1501,7 +1496,7 @@ En <a href="https://docs.perl6.org/language/operators" class="bare">https://docs
 <h2 id="_variables">3. Variables</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Las variables en Perl 6 se reparten en tres categorías: Escalares, Arrays y Hashes.</p>
+<p>Las variables en Raku se reparten en tres categorías: Escalares, Arrays y Hashes.</p>
 </div>
 <div class="paragraph">
 <p>Un <strong>sigilo</strong> (Signo en Latín) es un carácter utilizado como prefijo para categorizar variables.</p>
@@ -1561,7 +1556,7 @@ En <a href="https://docs.perl6.org/language/operators" class="bare">https://docs
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Consulta <a href="https://docs.perl6.org/type/Str" class="bare">https://docs.perl6.org/type/Str</a> para ver la lista completa de métodos de texto.
+Consulta <a href="https://docs.raku.org/type/Str" class="bare">https://docs.raku.org/type/Str</a> para ver la lista completa de métodos de texto.
 </td>
 </tr>
 </table>
@@ -1585,7 +1580,7 @@ Consulta <a href="https://docs.perl6.org/type/Str" class="bare">https://docs.per
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Consulta <a href="https://docs.perl6.org/type/Int" class="bare">https://docs.perl6.org/type/Int</a> para ver la lista completa de métodos de enteros.
+Consulta <a href="https://docs.raku.org/type/Int" class="bare">https://docs.raku.org/type/Int</a> para ver la lista completa de métodos de enteros.
 </td>
 </tr>
 </table>
@@ -1613,7 +1608,7 @@ Consulta <a href="https://docs.perl6.org/type/Int" class="bare">https://docs.per
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Consulta <a href="https://docs.perl6.org/type/Rat" class="bare">https://docs.perl6.org/type/Rat</a> para ver la lista completa de métodos de números racionales.
+Consulta <a href="https://docs.raku.org/type/Rat" class="bare">https://docs.raku.org/type/Rat</a> para ver la lista completa de métodos de números racionales.
 </td>
 </tr>
 </table>
@@ -1741,7 +1736,7 @@ En estos arrays se define un tamaño fijo y no puede crecer más allá de este t
 <h4 id="_arrays_multidimensionales">3.2.2. Arrays multidimensionales</h4>
 <div class="paragraph">
 <p>Los arrays que hemos visto hasta ahora son de una dimensión.<br>
-Con Perl 6, podemos definir arrays de varias dimensiones.</p>
+Con Raku, podemos definir arrays de varias dimensiones.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1787,7 +1782,7 @@ La primera dimensión puede tener un máximo de 3 valores y la segunda dimensió
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Consulta <a href="https://docs.perl6.org/type/Array" class="bare">https://docs.perl6.org/type/Array</a> para tener la referencia completa sobre Arrays.
+Consulta <a href="https://docs.raku.org/type/Array" class="bare">https://docs.raku.org/type/Array</a> para tener la referencia completa sobre Arrays.
 </td>
 </tr>
 </table>
@@ -1799,14 +1794,14 @@ Consulta <a href="https://docs.perl6.org/type/Array" class="bare">https://docs.p
 <div class="listingblock">
 <div class="title">Un Hash es una colección de pares Clave/Valor.</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">%capitales</span> = (<span class="tok-s">&#39;UK&#39;</span>,<span class="tok-s">&#39;Londres&#39;</span>,<span class="tok-s">&#39;Alemania&#39;</span>,<span class="tok-s">&#39;Berlín&#39;</span>);
+<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">%capitales</span> = <span class="tok-s">&#39;UK&#39;</span>,<span class="tok-s">&#39;Londres&#39;</span>,<span class="tok-s">&#39;Alemania&#39;</span>,<span class="tok-s">&#39;Berlín&#39;</span>;
 <span class="tok-nb">say</span> <span class="tok-nv">%capitales</span>;</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title">Otra forma de insertar valores en un hash:</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">%capitales</span> = (<span class="tok-n">UK</span> =&gt; <span class="tok-s">&#39;Londres&#39;</span>, <span class="tok-n">Alemania</span> =&gt; <span class="tok-s">&#39;Berlín&#39;</span>);
+<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">%capitales</span> = <span class="tok-n">UK</span> =&gt; <span class="tok-s">&#39;Londres&#39;</span>, <span class="tok-n">Alemania</span> =&gt; <span class="tok-s">&#39;Berlín&#39;</span>;
 <span class="tok-nb">say</span> <span class="tok-nv">%capitales</span>;</code></pre>
 </div>
 </div>
@@ -1816,7 +1811,7 @@ Consulta <a href="https://docs.perl6.org/type/Array" class="bare">https://docs.p
 <div class="listingblock">
 <div class="title"><code>Script</code></div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">%capitales</span> = (<span class="tok-n">UK</span> =&gt; <span class="tok-s">&#39;Londres&#39;</span>, <span class="tok-n">Alemania</span> =&gt; <span class="tok-s">&#39;Berlín&#39;</span>);
+<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">%capitales</span> = <span class="tok-n">UK</span> =&gt; <span class="tok-s">&#39;Londres&#39;</span>, <span class="tok-n">Alemania</span> =&gt; <span class="tok-s">&#39;Berlín&#39;</span>;
 <span class="tok-nv">%capitales</span>.<span class="tok-n">push:</span> (<span class="tok-n">Francia</span> =&gt; <span class="tok-s">&#39;París&#39;</span>);
 <span class="tok-nb">say</span> <span class="tok-nv">%capitales</span>.<span class="tok-nb">kv</span>;
 <span class="tok-nb">say</span> <span class="tok-nv">%capitales</span>.<span class="tok-nb">keys</span>;
@@ -1848,7 +1843,7 @@ Podemos acceder a un valor concreto del hash indicando su clave <code>%hash&lt;c
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Consulta <a href="https://docs.perl6.org/type/Hash" class="bare">https://docs.perl6.org/type/Hash</a> para una referencia completa sobre hashes.
+Consulta <a href="https://docs.raku.org/type/Hash" class="bare">https://docs.raku.org/type/Hash</a> para una referencia completa sobre hashes.
 </td>
 </tr>
 </table>
@@ -1909,7 +1904,7 @@ Fíjate en el <code>Int</code> indicado antes de la variable.</p>
 <p>Este estilo de programación se caracteriza por ser de tipado estático. Estático en el sentido de que la variable se define con un tipo determinado antes de asignarla y este tipo no puede cambiarse después.</p>
 </div>
 <div class="paragraph">
-<p>Perl 6 es un lenguaje de <strong>tipado gradual</strong>; lo que permite tipado <strong>estático</strong> y <strong>dinámico</strong>.</p>
+<p>Raku es un lenguaje de <strong>tipado gradual</strong>; lo que permite tipado <strong>estático</strong> y <strong>dinámico</strong>.</p>
 </div>
 <div class="listingblock">
 <div class="title">Los arrays y hashes también pueden tener tipado estático:</div>
@@ -1922,11 +1917,11 @@ Fíjate en el <code>Int</code> indicado antes de la variable.</p>
 <span class="tok-nb">say</span> <span class="tok-nv">@multilengua</span>;
 <span class="tok-nb">say</span> <span class="tok-nv">@multilengua</span>.<span class="tok-nb">WHAT</span>;
 
-<span class="tok-k">my</span> <span class="tok-nb">Str</span> <span class="tok-nv">%capitales</span> = (<span class="tok-n">UK</span> =&gt; <span class="tok-s">&#39;London&#39;</span>, <span class="tok-n">Alemania</span> =&gt; <span class="tok-s">&#39;Berlín&#39;</span>);
+<span class="tok-k">my</span> <span class="tok-nb">Str</span> <span class="tok-nv">%capitales</span> = <span class="tok-n">UK</span> =&gt; <span class="tok-s">&#39;London&#39;</span>, <span class="tok-n">Alemania</span> =&gt; <span class="tok-s">&#39;Berlín&#39;</span>;
 <span class="tok-nb">say</span> <span class="tok-nv">%capitales</span>;
 <span class="tok-nb">say</span> <span class="tok-nv">%capitales</span>.<span class="tok-nb">WHAT</span>;
 
-<span class="tok-k">my</span> <span class="tok-nb">Int</span> <span class="tok-nv">%código-país</span> = (<span class="tok-n">UK</span> =&gt; <span class="tok-mi">44</span>, <span class="tok-n">Alemania</span> =&gt; <span class="tok-mi">49</span>);
+<span class="tok-k">my</span> <span class="tok-nb">Int</span> <span class="tok-nv">%código-país</span> = <span class="tok-n">UK</span> =&gt; <span class="tok-mi">44</span>, <span class="tok-n">Alemania</span> =&gt; <span class="tok-mi">49</span>;
 <span class="tok-nb">say</span> <span class="tok-nv">%código-país</span>;
 <span class="tok-nb">say</span> <span class="tok-nv">%código-país</span>.<span class="tok-nb">WHAT</span>;</code></pre>
 </div>
@@ -1951,7 +1946,7 @@ Fíjate en el <code>Int</code> indicado antes de la variable.</p>
 </tr>
 <tr>
 <td class="tableblock halign-center valign-middle"><p class="tableblock"><code>Mu</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>La raíz de la jerarquía de tipos de Perl 6</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>La raíz de la jerarquía de tipos de Raku</code></p></td>
 <td class="tableblock halign-left valign-middle"></td>
 <td class="tableblock halign-left valign-middle"></td>
 </tr>
@@ -2029,7 +2024,7 @@ Asigna <code>Nil</code> a una variable para eliminar su valor.</p>
 <p>Es necesario declarar una variable antes de utilizarla.</p>
 </div>
 <div class="paragraph">
-<p>Perl 6 dispone de varias formas de declaración, y de momento estamos utilizando <code>my</code>.</p>
+<p>Raku dispone de varias formas de declaración, y de momento estamos utilizando <code>my</code>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2041,7 +2036,7 @@ Asigna <code>Nil</code> a una variable para eliminar su valor.</p>
 Dicho de otro modo, la variable solo es accesible desde el mismo bloque donde es declarada.</p>
 </div>
 <div class="paragraph">
-<p>En Perl 6 un bloque está delimitado por <code>{ }</code>.</p>
+<p>En Raku un bloque está delimitado por <code>{ }</code>.</p>
 </div>
 <div class="paragraph">
 <p>En caso de no existir bloque, la variable estará disponible en el script entero.</p>
@@ -2152,7 +2147,7 @@ La <strong>asignación</strong> se realiza mediante el operador <code>=</code>.<
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-En <a href="https://docs.perl6.org/language/variables" class="bare">https://docs.perl6.org/language/variables</a> tienes más información sobre variables.
+En <a href="https://docs.raku.org/language/variables" class="bare">https://docs.raku.org/language/variables</a> tienes más información sobre variables.
 </td>
 </tr>
 </table>
@@ -2232,7 +2227,7 @@ En <a href="https://docs.perl6.org/language/variables" class="bare">https://docs
 <h2 id="_bucles_y_condiciones">5. Bucles y condiciones</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Perl 6 tiene muchos constructores de bucles y condiciones.</p>
+<p>Raku tiene muchos constructores de bucles y condiciones.</p>
 </div>
 <div class="sect2">
 <h3 id="_if">5.1. if</h3>
@@ -2249,7 +2244,7 @@ En <a href="https://docs.perl6.org/language/variables" class="bare">https://docs
 </div>
 </div>
 <div class="paragraph">
-<p>En Perl 6 podemos invertir el código y la condición, y aún así la condición siempre se evalúa primero.</p>
+<p>En Raku podemos invertir el código y la condición, y aún así la condición siempre se evalúa primero.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2316,7 +2311,7 @@ En <a href="https://docs.perl6.org/language/variables" class="bare">https://docs
 </div>
 </div>
 <div class="paragraph">
-<p>La negación en Perl 6 se realiza con <code>!</code> o con <code>not</code>.</p>
+<p>La negación en Raku se realiza con <code>!</code> o con <code>not</code>.</p>
 </div>
 <div class="paragraph">
 <p><code>unless (condición)</code> se utiliza en lugar de <code>if not (condición)</code>.</p>
@@ -2366,7 +2361,7 @@ En <a href="https://docs.perl6.org/language/variables" class="bare">https://docs
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">@array</span> = [<span class="tok-mi">1</span>,<span class="tok-mi">2</span>,<span class="tok-mi">3</span>];
+<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">@array</span> = <span class="tok-mi">1</span>,<span class="tok-mi">2</span>,<span class="tok-mi">3</span>;
 
 <span class="tok-k">for</span> <span class="tok-nv">@array</span> -&gt; <span class="tok-nv">$array-item</span> {
   <span class="tok-nb">say</span> <span class="tok-nv">$array-item</span> * <span class="tok-mi">100</span>
@@ -2380,7 +2375,7 @@ En <a href="https://docs.perl6.org/language/variables" class="bare">https://docs
 <div class="sect2">
 <h3 id="_given">5.5. given</h3>
 <div class="paragraph">
-<p>En Perl 6 <code>given</code> viene a ser <code>switch</code> en otros lenguajes, pero mucho más potente.</p>
+<p>En Raku <code>given</code> viene a ser <code>switch</code> en otros lenguajes, pero mucho más potente.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2422,7 +2417,7 @@ En <a href="https://docs.perl6.org/language/variables" class="bare">https://docs
 <p>Actualmente <code>loop</code> viene a ser el <code>for</code> utilizado en la familia de lenguajes de C.</p>
 </div>
 <div class="paragraph">
-<p>Perl 6 pertenece a la familia de lenguajes de C.</p>
+<p>Raku pertenece a la familia de lenguajes de C.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2438,7 +2433,7 @@ En <a href="https://docs.perl6.org/language/variables" class="bare">https://docs
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-En <a href="https://docs.perl6.org/language/control" class="bare">https://docs.perl6.org/language/control</a> tienes más información sobre bucles y condiciones
+En <a href="https://docs.raku.org/language/control" class="bare">https://docs.raku.org/language/control</a> tienes más información sobre bucles y condiciones
 </td>
 </tr>
 </table>
@@ -2450,7 +2445,7 @@ En <a href="https://docs.perl6.org/language/control" class="bare">https://docs.p
 <h2 id="_io">6. I/O</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>En Perl 6, las dos interfaces más utilizadas de <em>Entrada/Salida</em> son el <em>Terminal</em> y los <em>Ficheros</em>.</p>
+<p>En Raku, las dos interfaces más utilizadas de <em>Entrada/Salida</em> son el <em>Terminal</em> y los <em>Ficheros</em>.</p>
 </div>
 <div class="sect2">
 <h3 id="_es_básica_mediante_el_terminal">6.1. E/S básica mediante el Terminal</h3>
@@ -2490,7 +2485,7 @@ En <a href="https://docs.perl6.org/language/control" class="bare">https://docs.p
 <span class="tok-nb">say</span> <span class="tok-s">&quot;¡Hola!, ¿cual es tu nombre?&quot;</span>;
 <span class="tok-nv">$nombre</span> = <span class="tok-n">get</span>;
 
-<span class="tok-nb">say</span> <span class="tok-s">&quot;¿Que tal $nombre?, bienvenido a Perl 6&quot;</span>;</code></pre>
+<span class="tok-nb">say</span> <span class="tok-s">&quot;¿Que tal $nombre?, bienvenido a Raku&quot;</span>;</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2510,7 +2505,7 @@ Como resultado te dará la bienvenida.</p>
 <div class="content">
 <pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">$nombre</span> = <span class="tok-n">prompt</span> <span class="tok-s">&quot;¡Hola!, ¿cual es tu nombre? &quot;</span>;
 
-<span class="tok-nb">say</span> <span class="tok-s">&quot;¿Que tal $nombre?, bienvenido a Perl 6&quot;</span>;</code></pre>
+<span class="tok-nb">say</span> <span class="tok-s">&quot;¿Que tal $nombre?, bienvenido a Raku&quot;</span>;</code></pre>
 </div>
 </div>
 </div>
@@ -2547,7 +2542,7 @@ Todos los caracteres especiales los interpreta la shell, como pueden ser las tub
 </div>
 <div class="paragraph">
 <p><code>echo</code> y <code>ls</code> son palabras clave típicas de la shell de Linux:<br>
-<code>echo</code> visualiza texto en el terminal (es el equivalente a <code>print</code> en Perl 6)<br>
+<code>echo</code> visualiza texto en el terminal (es el equivalente a <code>say</code> en Raku)<br>
 <code>ls</code> muestra un listado de todos los archivos y carpetas del directorio actual</p>
 </div>
 <div class="paragraph">
@@ -2603,7 +2598,7 @@ Todos los caracteres especiales los interpreta la shell, como pueden ser las tub
 <div class="sect2">
 <h3 id="_manipulando_archivos_y_carpetas">6.4. Manipulando archivos y carpetas</h3>
 <div class="paragraph">
-<p>Perl 6 puede mostrar el contenido de una carpeta sin recurrir a los comandos de la shell (utilizando <code>ls</code> por ejemplo).</p>
+<p>Raku puede mostrar el contenido de una carpeta sin recurrir a los comandos de la shell (utilizando <code>ls</code> por ejemplo).</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2628,17 +2623,17 @@ Todos los caracteres especiales los interpreta la shell, como pueden ser las tub
 <p>También puedes comprobar si una ruta existe y si es un archivo o una carpeta:</p>
 </div>
 <div class="paragraph">
-<p>Crea una carpeta vacía llamada <code>carpeta123</code>, un archivo vacío llamado <code>script123.p6</code> y el siguiente script:</p>
+<p>Crea una carpeta vacía llamada <code>carpeta123</code>, un archivo vacío llamado <code>script123.raku</code> y el siguiente script:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-nb">say</span> <span class="tok-s">&quot;script123.p6&quot;</span>.<span class="tok-nb">IO</span>.<span class="tok-nb">e</span>;
+<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-nb">say</span> <span class="tok-s">&quot;script123.raku&quot;</span>.<span class="tok-nb">IO</span>.<span class="tok-nb">e</span>;
 <span class="tok-nb">say</span> <span class="tok-s">&quot;carpeta123&quot;</span>.<span class="tok-nb">IO</span>.<span class="tok-nb">e</span>;
 
-<span class="tok-nb">say</span> <span class="tok-s">&quot;script123.p6&quot;</span>.<span class="tok-nb">IO</span>.<span class="tok-n">d</span>;
+<span class="tok-nb">say</span> <span class="tok-s">&quot;script123.raku&quot;</span>.<span class="tok-nb">IO</span>.<span class="tok-n">d</span>;
 <span class="tok-nb">say</span> <span class="tok-s">&quot;carpeta123&quot;</span>.<span class="tok-nb">IO</span>.<span class="tok-n">d</span>;
 
-<span class="tok-nb">say</span> <span class="tok-s">&quot;script123.p6&quot;</span>.<span class="tok-nb">IO</span>.<span class="tok-n">f</span>;
+<span class="tok-nb">say</span> <span class="tok-s">&quot;script123.raku&quot;</span>.<span class="tok-nb">IO</span>.<span class="tok-n">f</span>;
 <span class="tok-nb">say</span> <span class="tok-s">&quot;carpeta123&quot;</span>.<span class="tok-nb">IO</span>.<span class="tok-n">f</span>;</code></pre>
 </div>
 </div>
@@ -2671,7 +2666,7 @@ en Windows puedes utilizar <code>/</code> o <code>\\</code> para separar carpeta
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-En <a href="https://docs.perl6.org/type/IO" class="bare">https://docs.perl6.org/type/IO</a> tienes más información sobre E/S.
+En <a href="https://docs.raku.org/type/IO" class="bare">https://docs.raku.org/type/IO</a> tienes más información sobre E/S.
 </td>
 </tr>
 </table>
@@ -2753,7 +2748,7 @@ Este tipo de subrutinas se definen de la misma forma que una subrutina normal pe
 <p>Tendremos un error si se define una subrutina para aceptar un argumento y éste no es proporcionado.</p>
 </div>
 <div class="paragraph">
-<p>Con Perl 6 podemos definir subrutinas con:</p>
+<p>Con Raku podemos definir subrutinas con:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -2830,19 +2825,10 @@ Esto se realiza mediante la palabra clave <code>return</code>.</p>
 Lo mismo podemos hacer con los valores de retorno.</p>
 </div>
 <div class="paragraph">
-<p>Para restringir el valor de retorno a un tipo determinado podemos utilizar <code>returns</code> o la notación de flecha <code>--&gt;</code> en la signatura.</p>
+<p>Para restringir el valor de retorno a un tipo determinado utilizamos la notación de flecha <code>--&gt;</code> en la signatura.</p>
 </div>
 <div class="listingblock">
-<div class="title">Utilizando returns</div>
-<div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">sub</span> <span class="tok-n">cuadrado</span> (<span class="tok-nv">$x</span>) <span class="tok-k">returns</span> <span class="tok-nb">Int</span> {
-  <span class="tok-k">return</span> <span class="tok-nv">$x</span> ** <span class="tok-mi">2</span>;
-}
-<span class="tok-nb">say</span> <span class="tok-s">&quot;1.2 al cuadrado es igual a &quot;</span> ~ <span class="tok-n">cuadrado</span>(<span class="tok-mf">1.2</span>);</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">Utilizando la notación de flecha</div>
+<div class="title">Utilizando el tipo de retorno</div>
 <div class="content">
 <pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">sub</span> <span class="tok-n">cuadrado</span> (<span class="tok-nv">$x</span> --&gt; <span class="tok-nb">Int</span>) {
   <span class="tok-k">return</span> <span class="tok-nv">$x</span> ** <span class="tok-mi">2</span>;
@@ -2898,7 +2884,7 @@ A continuación puedes ver la versión modificada del ejemplo anterior utilizand
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-En <a href="https://docs.perl6.org/language/functions" class="bare">https://docs.perl6.org/language/functions</a> encontrarás más información sobre subrutinas y funciones.
+En <a href="https://docs.raku.org/language/functions" class="bare">https://docs.raku.org/language/functions</a> encontrarás más información sobre subrutinas y funciones.
 </td>
 </tr>
 </table>
@@ -2980,7 +2966,7 @@ Una función anónima no está vinculada a un identificador (no tiene nombre).</
 <p>Observa que en lugar de declarar la subrutina <code>cuadrado</code> y pasarla a <code>map</code> como argumento, la definimos dentro de la función anónima como <code>-&gt; $x {$x ** 2}</code>.</p>
 </div>
 <div class="paragraph">
-<p>En la jerga de Perl 6 nos referimos a esta notación como <strong>punto de entrada al bloque</strong></p>
+<p>En la jerga de Raku nos referimos a esta notación como <strong>punto de entrada al bloque</strong></p>
 </div>
 <div class="listingblock">
 <div class="title">Un punto de entrada al bloque también puede utilizarse para asignar funciones a variables:</div>
@@ -2995,7 +2981,7 @@ Una función anónima no está vinculada a un identificador (no tiene nombre).</
 <div class="sect2">
 <h3 id="_encadenamiento">8.3. Encadenamiento</h3>
 <div class="paragraph">
-<p>En Perl 6 los métodos pueden encadenarse, de forma que el resultado de un método pasa como argumento a otro método.</p>
+<p>En Raku los métodos pueden encadenarse, de forma que el resultado de un método pasa como argumento a otro método.</p>
 </div>
 <div class="paragraph">
 <p>Un ejemplo: dado un array, necesitamos los valores únicos de ese array ordenados de mayor a menor.</p>
@@ -3087,7 +3073,7 @@ El flujo de las llamadas a los métodos es de abajo hacia arriba, esto es, desde
 </div>
 </div>
 <div class="paragraph">
-<p>Mediante el hiperoperador podemos utilizar todos los métodos ya definidos en Perl 6, por ej. <code>is-prime</code> que devuelve si un número es primo o no.<br>
+<p>Mediante el hiperoperador podemos utilizar todos los métodos ya definidos en Raku, por ej. <code>is-prime</code> que devuelve si un número es primo o no.<br>
 Además, podemos definir funciones nuevas y utilizarlas mediante el hiperoperador agregando el prefijo <code>&amp;</code> en el nombre del método, por ej. <code>&amp;es-par</code>.</p>
 </div>
 <div class="paragraph">
@@ -3100,8 +3086,8 @@ Además, podemos definir funciones nuevas y utilizarlas mediante el hiperoperado
 <i class="fa icon-warning" title="Warning"></i>
 </td>
 <td class="content">
-Perl 6 garantiza que el orden de los resultados sea el mismo que el de la lista original.
-Sin embargo, Perl 6 <strong>no garantiza</strong> la llamada a los métodos en el orden de la lista o en el mismo hilo. Por tanto, ten cuidado con los métodos que tengan efectos secundarios, como <code>say</code> o <code>print</code>.
+Raku garantiza que el orden de los resultados sea el mismo que el de la lista original.
+Sin embargo, Raku <strong>no garantiza</strong> la llamada a los métodos en el orden de la lista o en el mismo hilo. Por tanto, ten cuidado con los métodos que tengan efectos secundarios, como <code>say</code> o <code>print</code>.
 </td>
 </tr>
 </table>
@@ -3183,7 +3169,7 @@ Dicho de otra forma, esta lista perezosa puede devolver (si es requerida) los si
 </div>
 <div class="paragraph">
 <p>Los elementos iniciales son 0 y 2, y el punto final es 10.
-Aunque no hay un generador definido, Perl 6 utiliza los elementos iniciales para deducir que el generador es (+2)<br>
+Aunque no hay un generador definido, Raku utiliza los elementos iniciales para deducir que el generador es (+2)<br>
 Esta lista puede devolver (si es requerida) los siguientes elementos (0, 2, 4, 6, 8, 10)</p>
 </div>
 <div class="listingblock">
@@ -3234,7 +3220,7 @@ Esto lo puedes leer como: De 0 hasta el primer valor mayor a 10 (excluyendo a é
 <div class="sect2">
 <h3 id="_clausuras">8.8. Clausuras</h3>
 <div class="paragraph">
-<p>Todos los objetos de código en Perl 6 son clausuras, lo que significa que se pueden referenciar variables léxicamente definidas desde un ámbito externo.</p>
+<p>Todos los objetos de código en Raku son clausuras, lo que significa que se pueden referenciar variables léxicamente definidas desde un ámbito externo.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -3307,7 +3293,7 @@ En el entorno de <code>$tardes</code> el <code>$momento</code> es <code>Tardes</
 <h2 id="_clases_y_objetos">9. Clases y Objetos</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>En el apartado anterior hemos visto cómo utilizar la Programación Funcional en Perl 6 y en el siguiente apartado veremos cómo utilizar Perl 6 en la Programación Orientada a Objetos.</p>
+<p>En el apartado anterior hemos visto cómo utilizar la Programación Funcional en Raku y en el siguiente apartado veremos cómo utilizar Raku en la Programación Orientada a Objetos.</p>
 </div>
 <div class="sect2">
 <h3 id="_introducción_2">9.1. Introducción</h3>
@@ -3417,7 +3403,7 @@ Para acceder a los atributos de un objeto desde fuera de él utilizamos <strong>
 <p>El método <code>sayvar</code> es un método de acceso que nos permite acceder al valor de la variable sin acceder directamente a ella.</p>
 </div>
 <div class="paragraph">
-<p>Perl 6 realiza la encapsulación mediante <strong>twigils</strong> (sigilos secundarios) y se ubican entre el sigilo y el nombre del atributo.<br>
+<p>Raku realiza la encapsulación mediante <strong>twigils</strong> (sigilos secundarios) y se ubican entre el sigilo y el nombre del atributo.<br>
 En las clases se utilizan dos twigils:</p>
 </div>
 <div class="ulist">
@@ -3461,7 +3447,7 @@ debido a que <code>$!edad</code> es un atributo privado y solo puede utilizarse 
 <div class="sect2">
 <h3 id="_parámetros_posicionales_vs_parámetros_con_nombre">9.3. Parámetros Posicionales vs. Parámetros con nombre</h3>
 <div class="paragraph">
-<p>En Perl 6 todas las clases heredan un constructor <code>.new()</code> por defecto que puede utilizarse para crear objetos proporcionando argumentos.<br>
+<p>En Raku todas las clases heredan un constructor <code>.new()</code> por defecto que puede utilizarse para crear objetos proporcionando argumentos.<br>
 El constructor por defecto solo acepta <strong>argumentos con nombre</strong>.<br>
 Como puedes ver en el ejemplo que vimos antes, los argumentos que tiene <code>.new()</code> están definidos con un nombre:</p>
 </div>
@@ -3769,7 +3755,7 @@ Se definen utilizando la palabra clave <code>submethod</code>.</p>
 <div class="sect2">
 <h3 id="_herencia_múltiple">9.8. Herencia Múltiple</h3>
 <div class="paragraph">
-<p>Perl 6 permite la herencia múltiple. Una clase puede heredar de varias clases.</p>
+<p>Raku permite la herencia múltiple. Una clase puede heredar de varias clases.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -3822,7 +3808,7 @@ Te habrás dado cuenta que al llamar al método <code>dibujar</code> en <code>mu
 Solo se dibuja una serie.<br>
 ¿Qué ha ocurrido?<br>
 <code>multi-gráfica</code> hereda de <code>graf-líneas</code> y de <code>graf-barras</code> y ambas tienen un método llamado <code>dibujar</code>.
-Cuando llamamos a ese método desde <code>multi-gráfica</code> Perl 6 trata de resolver internamente el conflicto llamando a uno de los métodos heredados.</p>
+Cuando llamamos a ese método desde <code>multi-gráfica</code> Raku trata de resolver internamente el conflicto llamando a uno de los métodos heredados.</p>
 </div>
 <div class="paragraph">
 <div class="title">Correción</div>
@@ -4048,15 +4034,15 @@ Este enfoque es mucho más seguro que la herencia múltiple, donde los conflicto
 <div class="ulist">
 <ul>
 <li>
-<p><a href="https://docs.perl6.org/language/classtut" class="bare">https://docs.perl6.org/language/classtut</a></p>
+<p><a href="https://docs.raku.org/language/classtut" class="bare">https://docs.raku.org/language/classtut</a></p>
 </li>
 <li>
-<p><a href="https://docs.perl6.org/language/objects" class="bare">https://docs.perl6.org/language/objects</a></p>
+<p><a href="https://docs.raku.org/language/objects" class="bare">https://docs.raku.org/language/objects</a></p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>para obtener más información sobre Programación Orientada a Objetos en Perl6.</p>
+<p>para obtener más información sobre Programación Orientada a Objetos en Raku.</p>
 </div>
 </td>
 </tr>
@@ -4107,7 +4093,7 @@ Decimos que las excepciones son <em>lanzadas</em>.</p>
 <div class="title"><code>Salida</code></div>
 <div class="content">
 <pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-n">Type</span> <span class="tok-n">check</span> <span class="tok-n">failed</span> <span class="tok-n">in</span> <span class="tok-n">assignment</span> <span class="tok-nb">to</span> <span class="tok-nv">$nombre</span>; <span class="tok-n">expected</span> <span class="tok-nb">Str</span> <span class="tok-k">but</span> <span class="tok-n">got</span> <span class="tok-nb">Int</span>
-  <span class="tok-n">in</span> <span class="tok-n">block</span> <span class="tok-s">&lt;unit&gt;</span> <span class="tok-n">at</span> <span class="tok-n">exceptions</span>.<span class="tok-n">p6</span> <span class="tok-n">line</span> <span class="tok-mi">2</span></code></pre>
+  <span class="tok-n">in</span> <span class="tok-n">block</span> <span class="tok-s">&lt;unit&gt;</span> <span class="tok-n">at</span> <span class="tok-n">exceptions</span>.<span class="tok-n">raku</span> <span class="tok-n">line</span> <span class="tok-mi">2</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -4178,7 +4164,7 @@ Esto significa que podemos <em>capturar</em> y controlar distintos tipos de exce
 <div class="sect2">
 <h3 id="_lanzando_excepciones">10.2. Lanzando Excepciones</h3>
 <div class="paragraph">
-<p>Perl 6 también te permite lanzar excepciones de forma explícita.<br>
+<p>Raku también te permite lanzar excepciones de forma explícita.<br>
 Se pueden lanzar dos tipos de excepciones:</p>
 </div>
 <div class="ulist">
@@ -4223,7 +4209,7 @@ Todas las excepciones por tipo pertenecen a la clase <code>X</code>. Estos son a
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Tienes una lista completa de tipos de excepciones y sus métodos asociados en <a href="https://docs.perl6.org/type-exceptions.html" class="bare">https://docs.perl6.org/type-exceptions.html</a>
+Tienes una lista completa de tipos de excepciones y sus métodos asociados en <a href="https://docs.raku.org/type-exceptions.html" class="bare">https://docs.raku.org/type-exceptions.html</a>
 </td>
 </tr>
 </table>
@@ -4516,7 +4502,7 @@ Las propiedades Unicode se indican entre <code>&lt;: &gt;</code></p>
 <div class="listingblock">
 <div class="title">Script</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">if</span> <span class="tok-s">&#39;Rakudo es el compilador de Perl 6&#39;</span> ~~ <span class="tok-sr">m/:s Perl 6/</span> {
+<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">if</span> <span class="tok-s">&#39;Rakudo es el compilador de Raku&#39;</span> ~~ <span class="tok-sr">m/:s Raku/</span> {
     <span class="tok-nb">say</span> <span class="tok-s">&quot;El resultado es: &quot;</span> ~ <span class="tok-vg">$/</span>;
     <span class="tok-nb">say</span> <span class="tok-s">&quot;El texto antes del resultado es: &quot;</span> ~ <span class="tok-vg">$/</span>.<span class="tok-n">prematch</span>;
     <span class="tok-nb">say</span> <span class="tok-s">&quot;El texto después del resultado es: &quot;</span> ~ <span class="tok-vg">$/</span>.<span class="tok-n">postmatch</span>;
@@ -4528,7 +4514,7 @@ Las propiedades Unicode se indican entre <code>&lt;: &gt;</code></p>
 <div class="listingblock">
 <div class="title">Salida</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-n">El</span> <span class="tok-n">resultado</span> <span class="tok-n">es:</span> <span class="tok-n">Perl</span> <span class="tok-mi">6</span>
+<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-n">El</span> <span class="tok-n">resultado</span> <span class="tok-n">es:</span> <span class="tok-n">Raku</span>
 <span class="tok-n">El</span> <span class="tok-n">texto</span> <span class="tok-n">antes</span> <span class="tok-n">del</span> <span class="tok-n">resultado</span> <span class="tok-n">es:</span> <span class="tok-n">Rakudo</span> <span class="tok-n">es</span> <span class="tok-n">el</span> <span class="tok-n">compilador</span> <span class="tok-n">de</span>
 <span class="tok-n">El</span> <span class="tok-n">texto</span> <span class="tok-n">después</span> <span class="tok-n">del</span> <span class="tok-n">resultado</span> <span class="tok-n">es:</span>
 <span class="tok-n">La</span> <span class="tok-n">posición</span> <span class="tok-n">inicial</span> <span class="tok-n">del</span> <span class="tok-n">resultado</span> <span class="tok-n">es:</span> <span class="tok-mi">27</span>
@@ -4553,7 +4539,7 @@ El <em>Objeto de Coincidencia</em> tiene los siguientes métodos:<br>
 <td class="content">
 Por defecto, el espacio en blanco en una regex se ignora.<br>
 Si queremos tener en cuenta los espacios en blanco en una regex, tenemos que hacerlo de forma explícita.<br>
-El parámetro <code>:s</code> en la regex <code>m/:s Perl 6/</code> hace que la regex tenga en cuenta los espacios en blanco.<br>
+El parámetro <code>:s</code> en la regex <code>m/:s Raku/</code> hace que la regex tenga en cuenta los espacios en blanco.<br>
 Otra forma de hacerlo sería así: <code>m/ Perl\s6 /</code> donde <code>\s</code> representa el espacio en blanco.<br>
 Si la regex contiene más de un espacio en blanco, es mejor utilizar <code>:s</code> que utilizar <code>\s</code> para cada espacio en blanco.
 </td>
@@ -4575,7 +4561,7 @@ nombre [punto] apellido [arroba] compañía [punto] (com/org/net)</p>
 <i class="fa icon-warning" title="Warning"></i>
 </td>
 <td class="content">
-La regex que utilizaremos en este ejemplo para validar una dirección de email no es muy precisa, y como su propósito es demostrar el funcionamiento de las regex en Perl 6, conviene no utilizarla en producción.
+La regex que utilizaremos en este ejemplo para validar una dirección de email no es muy precisa, y como su propósito es demostrar el funcionamiento de las regex en Raku, conviene no utilizarla en producción.
 </td>
 </tr>
 </table>
@@ -4661,7 +4647,7 @@ Para utilizar una regex, la invocamos con su nombre de esta forma: <code>&lt;nom
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-En <a href="https://docs.perl6.org/language/regexes" class="bare">https://docs.perl6.org/language/regexes</a> tienes más información sobre regex.
+En <a href="https://docs.raku.org/language/regexes" class="bare">https://docs.raku.org/language/regexes</a> tienes más información sobre regex.
 </td>
 </tr>
 </table>
@@ -4670,17 +4656,17 @@ En <a href="https://docs.perl6.org/language/regexes" class="bare">https://docs.p
 </div>
 </div>
 <div class="sect1">
-<h2 id="_módulos_en_perl_6">12. Módulos en Perl 6</h2>
+<h2 id="_módulos_en_raku">12. Módulos en Raku</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Perl 6 es un lenguaje de programación de propósito general. Puede utilizarse para llevar a cabo multitud de tareas, incluyendo:
+<p>Raku es un lenguaje de programación de propósito general. Puede utilizarse para llevar a cabo multitud de tareas, incluyendo:
 manipulación de texto, gráficos, web, bases de datos, protocolos de red, etc.</p>
 </div>
 <div class="paragraph">
 <p>La reutilización es un concepto muy importante para que los programadores no tengan que reinventar la rueda cada vez que quieran llevar a cabo una nueva tarea.</p>
 </div>
 <div class="paragraph">
-<p>Perl 6 permite la creación y redistribución de <strong>módulos</strong>. Cada módulo es un paquete de funcionalidades que, una vez instalado, se puede reutilizar.</p>
+<p>Raku permite la creación y redistribución de <strong>módulos</strong>. Cada módulo es un paquete de funcionalidades que, una vez instalado, se puede reutilizar.</p>
 </div>
 <div class="paragraph">
 <p><em>Zef</em> es el gestor de módulos que incorpora Rakudo.</p>
@@ -4698,7 +4684,7 @@ manipulación de texto, gráficos, web, bases de datos, protocolos de red, etc.<
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Puedes encontrar el directorio de módulos de Perl 6 en: <a href="https://modules.perl6.org/" class="bare">https://modules.perl6.org/</a>
+Puedes encontrar el directorio de módulos de Raku en: <a href="https://modules.raku.org/" class="bare">https://modules.raku.org/</a>
 </td>
 </tr>
 </table>
@@ -4709,7 +4695,7 @@ Puedes encontrar el directorio de módulos de Perl 6 en: <a href="https://module
 <p>MD5 es una función de cifrado de tipo hash que produce un valor hash de 128-bit.<br>
 MD5 tiene muchas aplicaciones, incluyendo el cifrado de contraseñas guardadas en una base de datos.
 Cuando se registra un nuevo usuario sus credenciales no se guardan en texto plano, se guardan <em>cifradas</em>, de forma que si un atacante compromete la base de datos, este atacante no podría conocer las contraseñas.
-Por suerte, no necesitas implementar el algoritmo MD5, pues ya lo implementa un módulo de Perl 6.</p>
+Por suerte, no necesitas implementar el algoritmo MD5, pues ya lo implementa un módulo de Raku.</p>
 </div>
 <div class="paragraph">
 <p>Vamos a instalarlo:<br>
@@ -4852,6 +4838,72 @@ UTF-8 es una codificación de caracteres que puede codificar todos los caractere
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_operaciones_contempladas_con_unicode">13.2. Operaciones contempladas con Unicode</h3>
+<div class="sect3">
+<h4 id="_números">13.2.1. Números</h4>
+<div class="paragraph">
+<p>Los números arábigos son los diez dígitos: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9.
+Este conjunto de números es el más utilizado en el mundo.</p>
+</div>
+<div class="paragraph">
+<p>No obstante y en menor medida en diferentes lugares del mundo se utilizan otros conjuntos de números.</p>
+</div>
+<div class="paragraph">
+<p>Al utilizar otros conjuntos de números distintos de los números arábigos no hay que hacer nada especial; todos los métodos y operadores funcionarán como de costumbre.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-nb">say</span> (<span class="tok-mi">٤</span>,<span class="tok-mi">٥</span>,<span class="tok-mi">٦</span>,<span class="tok-mi">1</span>,<span class="tok-mi">2</span>,<span class="tok-mi">3</span>).<span class="tok-nb">sort</span>; <span class="tok-c1"># (1 2 3 4 5 6)</span>
+<span class="tok-nb">say</span> <span class="tok-mi">1</span> + <span class="tok-mi">٩</span>;              <span class="tok-c1"># 10</span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_texto">13.2.2. Texto</h4>
+<div class="paragraph">
+<p>Cuidado al utilizar operaciones génericas con texto pues no siempre obtendríamos lo resultados esperados, sobre todo al comparar u ordenar.</p>
+</div>
+<div class="sect4">
+<h5 id="_comparación">Comparación</h5>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-nb">say</span> <span class="tok-s">&#39;a&#39;</span> <span class="tok-o">cmp</span> <span class="tok-s">&#39;B&#39;</span>; <span class="tok-c1"># Más</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Este ejemplo dice que <code>a</code> es mayor que <code>B</code> porque el número de código de <code>a</code> es mayor que el número de código de <code>B</code>.</p>
+</div>
+<div class="paragraph">
+<p>Si bien la lógica anterior es técnicamente correcta en la práctica no es muy útil.</p>
+</div>
+<div class="paragraph">
+<p>Por suerte Raku tiene métodos y operadores que implementan el <a href="http://unicode.org/reports/tr10/">Algoritmo del conjunto ordenado de caracteres de Unicode</a>.<br>
+Uno de estos operadores es <code>unicmp</code>, funciona como <code>cmp</code> pero contemplado por Unicode.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-nb">say</span> <span class="tok-s">&#39;a&#39;</span> <span class="tok-n">unicmp</span> <span class="tok-s">&#39;B&#39;</span>; <span class="tok-c1"># Menos</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Como puedes ver el operador <code>unicmp</code> da el resultado esperado donde <code>a</code> es menor que <code>B</code>.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_ordenación">Ordenación</h5>
+<div class="paragraph">
+<p>Como alternativa a <code>sort</code> para ordenar por números de código Raku incluye el método <code>collate</code> que implementa el <a href="http://unicode.org/reports/tr10/">Algoritmo del conjunto ordenado de caracteres de Unicode</a>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-nb">say</span> (<span class="tok-s">&#39;a&#39;</span>,<span class="tok-s">&#39;b&#39;</span>,<span class="tok-s">&#39;c&#39;</span>,<span class="tok-s">&#39;D&#39;</span>,<span class="tok-s">&#39;E&#39;</span>,<span class="tok-s">&#39;F&#39;</span>).<span class="tok-nb">sort</span>;    <span class="tok-c1"># (D E F a b c)</span>
+<span class="tok-nb">say</span> (<span class="tok-s">&#39;a&#39;</span>,<span class="tok-s">&#39;b&#39;</span>,<span class="tok-s">&#39;c&#39;</span>,<span class="tok-s">&#39;D&#39;</span>,<span class="tok-s">&#39;E&#39;</span>,<span class="tok-s">&#39;F&#39;</span>).<span class="tok-n">collate</span>; <span class="tok-c1"># (a b c D E F)</span></code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -4864,7 +4916,7 @@ UTF-8 es una codificación de caracteres que puede codificar todos los caractere
 Esto no suele ser un problema, a menos que tarde demasiado tiempo.</p>
 </div>
 <div class="paragraph">
-<p>Perl 6 te permite hacer cosas en paralelo.<br>
+<p>Raku te permite hacer cosas en paralelo.<br>
 Llegados aquí, es importante saber que el paralelismo puede tener dos significados:</p>
 </div>
 <div class="ulist">
@@ -4884,7 +4936,7 @@ Llegados aquí, es importante saber que el paralelismo puede tener dos significa
 <h4 id="_paralelismo_de_datos">14.1.1. Paralelismo de Datos</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">@array</span> = (<span class="tok-mi">0</span><span class="tok-o">..</span><span class="tok-mi">50000</span>);                      <span class="tok-c1"># Creación del array</span>
+<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">@array</span> = <span class="tok-mi">0</span><span class="tok-o">..</span><span class="tok-mi">50000</span>;                        <span class="tok-c1"># Creación del array</span>
 <span class="tok-k">my</span> <span class="tok-nv">@resultado</span> = <span class="tok-nv">@array</span>.<span class="tok-nb">map</span>({ <span class="tok-n">is-prime</span> <span class="tok-nv">$_</span> }); <span class="tok-c1"># Llama a is-prime por cada elemento del array</span>
 <span class="tok-nb">say</span> <span class="tok-n">now</span> - <span class="tok-k">INIT</span> <span class="tok-n">now</span>;                          <span class="tok-c1"># Visualiza el tiempo que toma el script hasta finalizar</span></code></pre>
 </div>
@@ -4898,7 +4950,7 @@ La subrutina <code>is-prime</code> es llamada por cada elemento del array de for
 <div class="listingblock">
 <div class="title">Afortunadamente podemos llamar a <code>is-prime</code> en múltiples elementos del array al mismo tiempo:</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">@array</span> = (<span class="tok-mi">0</span><span class="tok-o">..</span><span class="tok-mi">50000</span>);                           <span class="tok-c1"># Creación del array</span>
+<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">@array</span> = <span class="tok-mi">0</span><span class="tok-o">..</span><span class="tok-mi">50000</span>;                             <span class="tok-c1"># Creación del array</span>
 <span class="tok-k">my</span> <span class="tok-nv">@resultado</span> = <span class="tok-nv">@array</span>.<span class="tok-n">race</span>.<span class="tok-nb">map</span>({ <span class="tok-n">is-prime</span> <span class="tok-nv">$_</span> }); <span class="tok-c1"># Llama a is-prime por cada elemento del array</span>
 <span class="tok-nb">say</span> <span class="tok-n">now</span> - <span class="tok-k">INIT</span> <span class="tok-n">now</span>;                               <span class="tok-c1"># Visualiza el tiempo que toma el script hasta finalizar</span></code></pre>
 </div>
@@ -4923,7 +4975,7 @@ Este método permite la iteración en paralelo de los elementos del array.</p>
 <div class="listingblock">
 <div class="title">race</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">@array</span> = (<span class="tok-mi">1</span><span class="tok-o">..</span><span class="tok-mi">1000</span>);
+<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">@array</span> = <span class="tok-mi">1</span><span class="tok-o">..</span><span class="tok-mi">1000</span>;
 <span class="tok-k">my</span> <span class="tok-nv">@resultado</span> = <span class="tok-nv">@array</span>.<span class="tok-n">race</span>.<span class="tok-nb">map</span>( {<span class="tok-nv">$_</span> + <span class="tok-mi">1</span>} );
 .<span class="tok-nb">say</span> <span class="tok-k">for</span> <span class="tok-nv">@resultado</span>;</code></pre>
 </div>
@@ -4931,7 +4983,7 @@ Este método permite la iteración en paralelo de los elementos del array.</p>
 <div class="listingblock">
 <div class="title">hyper</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">@array</span> = (<span class="tok-mi">1</span><span class="tok-o">..</span><span class="tok-mi">1000</span>);
+<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">@array</span> = <span class="tok-mi">1</span><span class="tok-o">..</span><span class="tok-mi">1000</span>;
 <span class="tok-k">my</span> <span class="tok-nv">@resultado</span> = <span class="tok-nv">@array</span>.<span class="tok-nb">hyper</span>.<span class="tok-nb">map</span>( {<span class="tok-nv">$_</span> + <span class="tok-mi">1</span>} );
 .<span class="tok-nb">say</span> <span class="tok-k">for</span> <span class="tok-nv">@resultado</span>;</code></pre>
 </div>
@@ -4948,8 +5000,8 @@ Este método permite la iteración en paralelo de los elementos del array.</p>
 <h4 id="_paralelismo_de_tareas">14.1.2. Paralelismo de Tareas</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">@array1</span> = (<span class="tok-mi">0</span><span class="tok-o">..</span><span class="tok-mi">49999</span>);
-<span class="tok-k">my</span> <span class="tok-nv">@array2</span> = (<span class="tok-mi">2</span><span class="tok-o">..</span><span class="tok-mi">50001</span>);
+<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">@array1</span> = <span class="tok-mi">0</span><span class="tok-o">..</span><span class="tok-mi">49999</span>;
+<span class="tok-k">my</span> <span class="tok-nv">@array2</span> = <span class="tok-mi">2</span><span class="tok-o">..</span><span class="tok-mi">50001</span>;
 
 <span class="tok-k">my</span> <span class="tok-nv">@resultado1</span> = <span class="tok-nv">@array1</span>.<span class="tok-nb">map</span>( {<span class="tok-n">is-prime</span>(<span class="tok-nv">$_</span> + <span class="tok-mi">1</span>)} );
 <span class="tok-k">my</span> <span class="tok-nv">@resultado2</span> = <span class="tok-nv">@array2</span>.<span class="tok-nb">map</span>( {<span class="tok-n">is-prime</span>(<span class="tok-nv">$_</span> - <span class="tok-mi">1</span>)} );
@@ -4983,8 +5035,8 @@ y después realiza <code>@array2.map( {is-prime($_ - 1)} )</code></p>
 <div class="listingblock">
 <div class="title">¿Por qué no hacer las dos en paralelo?</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">@array1</span> = (<span class="tok-mi">0</span><span class="tok-o">..</span><span class="tok-mi">49999</span>);
-<span class="tok-k">my</span> <span class="tok-nv">@array2</span> = (<span class="tok-mi">2</span><span class="tok-o">..</span><span class="tok-mi">50001</span>);
+<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">@array1</span> = <span class="tok-mi">0</span><span class="tok-o">..</span><span class="tok-mi">49999</span>;
+<span class="tok-k">my</span> <span class="tok-nv">@array2</span> = <span class="tok-mi">2</span><span class="tok-o">..</span><span class="tok-mi">50001</span>;
 
 <span class="tok-k">my</span> <span class="tok-nv">$promesa1</span> = <span class="tok-n">start</span> <span class="tok-nv">@array1</span>.<span class="tok-nb">map</span>( {<span class="tok-n">is-prime</span>(<span class="tok-nv">$_</span> + <span class="tok-mi">1</span>)} ).<span class="tok-nb">eager</span>;
 <span class="tok-k">my</span> <span class="tok-nv">$promesa2</span> = <span class="tok-n">start</span> <span class="tok-nv">@array2</span>.<span class="tok-nb">map</span>( {<span class="tok-n">is-prime</span>(<span class="tok-nv">$_</span> - <span class="tok-mi">1</span>)} ).<span class="tok-nb">eager</span>;
@@ -5035,7 +5087,7 @@ Debido a esto, el uso de <code>race</code>, <code>hyper</code>, <code>start</cod
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-En <a href="https://docs.perl6.org/language/concurrency" class="bare">https://docs.perl6.org/language/concurrency</a> tienes más información sobre Concurrencia y Programación Asíncrona.
+En <a href="https://docs.raku.org/language/concurrency" class="bare">https://docs.raku.org/language/concurrency</a> tienes más información sobre Concurrencia y Programación Asíncrona.
 </td>
 </tr>
 </table>
@@ -5047,10 +5099,10 @@ En <a href="https://docs.perl6.org/language/concurrency" class="bare">https://do
 <h2 id="_interfaz_de_llamadas_nativas">15. Interfaz de Llamadas Nativas</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Perl 6 nos permite utilizar librerías de C mediante la Interfaz de Llamadas Nativas (NativeCall).</p>
+<p>Raku nos permite utilizar librerías de C mediante la Interfaz de Llamadas Nativas (NativeCall).</p>
 </div>
 <div class="paragraph">
-<p><code>NativeCall</code> es un módulo estandar que viene incluido con Perl 6 y ofrece un conjunto de funcionalidades para facilitar el trabajo con la interfaz entre Perl 6 y C.</p>
+<p><code>NativeCall</code> es un módulo estandar que viene incluido con Raku y ofrece un conjunto de funcionalidades para facilitar el trabajo con la interfaz entre Raku y C.</p>
 </div>
 <div class="sect2">
 <h3 id="_llamada_a_una_función">15.1. Llamada a una función</h3>
@@ -5092,10 +5144,10 @@ Esta función visualiza <code>Hola desde C</code> en el terminal. No acepta argu
 </div>
 </div>
 <div class="paragraph">
-<p>En la misma carpeta donde has compilado la librería en C, crea un nuevo archivo de Perl 6 que contenga el siguiente código y ejecútalo.</p>
+<p>En la misma carpeta donde has compilado la librería en C, crea un nuevo archivo de Raku que contenga el siguiente código y ejecútalo.</p>
 </div>
 <div class="listingblock">
-<div class="title">ncitest.p6</div>
+<div class="title">ncitest.raku</div>
 <div class="content">
 <pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">use</span> <span class="tok-n">NativeCall</span>;
 
@@ -5110,9 +5162,9 @@ Esta función visualiza <code>Hola desde C</code> en el terminal. No acepta argu
 <p>Lo primero es declarar que vamos a utilizar el módulo <code>NativeCall</code>.<br>
 Después creamos la constante LIBPATH que contiene la ruta de la librería de C.<br>
 Como puedes ver, <code>$*CWD</code> contiene la ruta de la carpeta actual.<br>
-Después creamos una subrutina de Perl 6 denominada <code>holadesdec()</code> que se corresponde y tiene el mismo nombre que la función que reside en la librería de C, la cual se encuentra en <code>LIBPATH</code>.<br>
+Después creamos una subrutina de Raku denominada <code>holadesdec()</code> que se corresponde y tiene el mismo nombre que la función que reside en la librería de C, la cual se encuentra en <code>LIBPATH</code>.<br>
 Todo esto se hace utilizando <code>is native</code>.<br>
-Por último realizamos la llamada a la subrutina de Perl 6.</p>
+Por último realizamos la llamada a la subrutina de Raku.</p>
 </div>
 <div class="paragraph">
 <p>En esencia, todo se reduce a declarar una subrutina con <code>is native</code> y el nombre de la biblioteca de C.</p>
@@ -5121,17 +5173,17 @@ Por último realizamos la llamada a la subrutina de Perl 6.</p>
 <div class="sect2">
 <h3 id="_cambiando_el_nombre_a_una_función">15.2. Cambiando el nombre a una función</h3>
 <div class="paragraph">
-<p>Hemos visto cómo realizar una llamada a una función simple de C mediante una subrutina de Perl 6 con el mismo nombre y utilizando <code>is native</code>.</p>
+<p>Hemos visto cómo realizar una llamada a una función simple de C mediante una subrutina de Raku con el mismo nombre y utilizando <code>is native</code>.</p>
 </div>
 <div class="paragraph">
-<p>Es posible que en algunos casos necesitemos que el nombre de la función de Perl 6 sea distinto al de la función en C.<br>
+<p>Es posible que en algunos casos necesitemos que el nombre de la función de Raku sea distinto al de la función en C.<br>
 Para hacerlo utilizamos <code>is symbol</code>.</p>
 </div>
 <div class="paragraph">
-<p>Vamos a modificar el script de Perl 6 que hemos visto de forma que la función de Perl 6 se llame <code>hola</code> en lugar de <code>holadesdec</code>.</p>
+<p>Vamos a modificar el script de Raku que hemos visto de forma que la función de Raku se llame <code>hola</code> en lugar de <code>holadesdec</code>.</p>
 </div>
 <div class="listingblock">
-<div class="title">ncitest.p6</div>
+<div class="title">ncitest.raku</div>
 <div class="content">
 <pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">use</span> <span class="tok-n">NativeCall</span>;
 
@@ -5143,13 +5195,13 @@ Para hacerlo utilizamos <code>is symbol</code>.</p>
 </div>
 <div class="paragraph">
 <div class="title">Explicación:</div>
-<p>En caso de que la subrutina de Perl 6 tenga un nombre distinto al de la función de C correspondiente, utilizamos <code>is symbol</code> con el nombre de la función de C original.</p>
+<p>En caso de que la subrutina de Raku tenga un nombre distinto al de la función de C correspondiente, utilizamos <code>is symbol</code> con el nombre de la función de C original.</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_pasando_argumentos">15.3. Pasando Argumentos</h3>
 <div class="paragraph">
-<p>Vamos a modificar y compilar la librería de C y el script de Perl 6 de forma que acepten, en C un argumento de tipo <code>char*</code> y el mismo argumento en Perl 6 pero de tipo <code>Str</code>.</p>
+<p>Vamos a modificar y compilar la librería de C y el script de Raku de forma que acepten, en C un argumento de tipo <code>char*</code> y el mismo argumento en Raku pero de tipo <code>Str</code>.</p>
 </div>
 <div class="listingblock">
 <div class="title">ncitest.c</div>
@@ -5162,7 +5214,7 @@ Para hacerlo utilizamos <code>is symbol</code>.</p>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">ncitest.p6</div>
+<div class="title">ncitest.raku</div>
 <div class="content">
 <pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">use</span> <span class="tok-n">NativeCall</span>;
 
@@ -5177,7 +5229,7 @@ Para hacerlo utilizamos <code>is symbol</code>.</p>
 <h3 id="_valores_de_retorno_2">15.4. Valores de retorno</h3>
 <div class="paragraph">
 <p>Vamos a repetir el proceso una vez más para crear una calculadora simple que toma dos enteros, los suma, devuelve el resultado y lo visualiza.<br>
-Compilamos la librería de C y ejecutamos el script de Perl 6.</p>
+Compilamos la librería de C y ejecutamos el script de Raku.</p>
 </div>
 <div class="listingblock">
 <div class="title">ncitest.c</div>
@@ -5188,29 +5240,29 @@ Compilamos la librería de C y ejecutamos el script de Perl 6.</p>
 </div>
 </div>
 <div class="listingblock">
-<div class="title">ncitest.p6</div>
+<div class="title">ncitest.raku</div>
 <div class="content">
 <pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">use</span> <span class="tok-n">NativeCall</span>;
 
 <span class="tok-k">constant</span> <span class="tok-n">LIBPATH</span> = <span class="tok-s">&quot;$*CWD/ncitest&quot;</span>;
-<span class="tok-k">sub</span> <span class="tok-n">suma</span>(<span class="tok-nb">int32</span>,<span class="tok-nb">int32</span>) <span class="tok-k">returns</span> <span class="tok-nb">int32</span> <span class="tok-k">is</span> <span class="tok-n">native</span>(<span class="tok-n">LIBPATH</span>) { * }
+<span class="tok-k">sub</span> <span class="tok-n">suma</span>(<span class="tok-nb">int32</span>,<span class="tok-nb">int32</span> --&gt; <span class="tok-nb">int32</span>) <span class="tok-k">is</span> <span class="tok-n">native</span>(<span class="tok-n">LIBPATH</span>) { * }
 
 <span class="tok-nb">say</span> <span class="tok-n">suma</span>(<span class="tok-mi">2</span>,<span class="tok-mi">3</span>);</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Como puedes ver, ambas funciones aceptan dos enteros y devuelven uno (<code>int</code> en C y <code>int32</code> en Perl 6).</p>
+<p>Como puedes ver, ambas funciones aceptan dos enteros y devuelven uno (<code>int</code> en C y <code>int32</code> en Raku).</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_tipos_2">15.5. Tipos</h3>
 <div class="paragraph">
-<p>Te preguntarás por qué en el script de Perl 6 utilizamos <code>int32</code> en lugar de <code>int</code>.<br>
-En Perl 6 no pueden utilizarse algunos tipos como <code>Int</code>, <code>Rat</code>, etc. para pasarlos y recibirlos como valores de una función de C.<br>
-En Perl 6 hay que utilizar los mismos tipos que en C.</p>
+<p>Te preguntarás por qué en el script de Raku utilizamos <code>int32</code> en lugar de <code>int</code>.<br>
+En Raku no pueden utilizarse algunos tipos como <code>Int</code>, <code>Rat</code>, etc. para pasarlos y recibirlos como valores de una función de C.<br>
+En Raku hay que utilizar los mismos tipos que en C.</p>
 </div>
 <div class="paragraph">
-<p>Por fortuna, Perl 6 proporciona muchos tipos que se corresponden con los de C.</p>
+<p>Por fortuna, Raku proporciona muchos tipos que se corresponden con los de C.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -5220,7 +5272,7 @@ En Perl 6 hay que utilizar los mismos tipos que en C.</p>
 <thead>
 <tr>
 <th class="tableblock halign-center valign-middle">Tipo de C</th>
-<th class="tableblock halign-center valign-middle">Tipo de Perl 6</th>
+<th class="tableblock halign-center valign-middle">Tipo de Raku</th>
 </tr>
 </thead>
 <tbody>
@@ -5315,7 +5367,7 @@ En Perl 6 hay que utilizar los mismos tipos que en C.</p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-En <a href="https://docs.perl6.org/language/nativecall" class="bare">https://docs.perl6.org/language/nativecall</a> tienes más información sobre la Interfaz de Llamadas Nativas.
+En <a href="https://docs.raku.org/language/nativecall" class="bare">https://docs.raku.org/language/nativecall</a> tienes más información sobre la Interfaz de Llamadas Nativas.
 </td>
 </tr>
 </table>
@@ -5329,19 +5381,22 @@ En <a href="https://docs.perl6.org/language/nativecall" class="bare">https://doc
 <div class="ulist">
 <ul>
 <li>
-<p>En el canal de IRC <a href="irc://irc.freenode.net/#perl6">#perl6</a> encontrarás el lugar principal para hablar de Perl 6. Consulta: <a href="https://perl6.org/community/irc" class="bare">https://perl6.org/community/irc</a> si tienes dudas.</p>
+<p>En el canal de IRC <a href="irc://irc.freenode.net/#raku">#raku</a> se concentra la mayor parte del debate sobre Raku. En: <a href="https://perl6.org/community/irc" class="bare">https://perl6.org/community/irc</a> puedes indicar cualquier duda.</p>
 </li>
 <li>
-<p>Resumen de los <a href="https://p6weekly.wordpress.com">cambios semanales en Perl 6</a>.</p>
+<p>Si tienes alguna consulta y necesitas respuestas en profundidad indícalas en <a href="https://stackoverflow.com/questions/tagged/raku">StackOverflow Raku questions</a>.</p>
 </li>
 <li>
-<p>Mantente al día con los blogs que tratan de Perl 6 en <a href="http://pl6anet.org">pl6anet</a>.</p>
+<p>Echa un vistazo semanal de las novedades de Raku en <a href="https://rakudoweekly.blog">Rakudo Weekly</a>.</p>
 </li>
 <li>
-<p>Suscríbete en el apartado de Perl6 de Reddit clicando en <a href="https://www.reddit.com/r/perl6/">/r/perl6</a>.</p>
+<p>Mantente al día con los blogs que tratan de Raku en <a href="http://pl6anet.org">pl6anet</a>.</p>
 </li>
 <li>
-<p>Alertas de los desarrolladores de Perl 6, para mantenerse al día con los cambios importantes <a href="https://alerts.perl6.org">P6lert</a></p>
+<p>Suscríbete en el apartado de Raku de Reddit en <a href="https://www.reddit.com/r/rakulang/">/r/rakulang</a>.</p>
+</li>
+<li>
+<p>Sigue a la comunidad en Twitter: <a href="https://twitter.com/perl6org">@perl6org</a>.</p>
 </li>
 </ul>
 </div>
@@ -5356,7 +5411,7 @@ En <a href="https://docs.perl6.org/language/nativecall" class="bare">https://doc
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2019-11-17 17:41:02 +0200
+Last updated 2019-11-23 22:55:20 +0200
 </div>
 </div>
 <style>
