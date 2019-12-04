@@ -1,4 +1,4 @@
-= Perl 6'ya Giriş
+= Raku Rehberi
 Naoum Hankache <naoum@hankache.com>; Yalın Pala <yalinpala@protonmail.com>
 :description: Perl 6'ya genel Giriş
 :keywords: perl6, perl 6, giriş, perl6giriş, perl 6'ya giriş, perl 6 öğretici
@@ -13,10 +13,10 @@ Naoum Hankache <naoum@hankache.com>; Yalın Pala <yalinpala@protonmail.com>
 :lang: tr
 
 
-Bu belge, Perl 6 programlama dili hakkında genel bir bakış sunması amacıyla hazırlanmıştır.
+Bu belge, Raku programlama dili hakkında genel bir bakış sunması amacıyla hazırlanmıştır.
 Yeni olanlar için hızlı bir başlangıç olacaktır.
 
-Bu belgenin bazı bölümleri http://docs.perl6.org[Perl 6 dökümantasyonu]'na değinmektedir.
+Bu belgenin bazı bölümleri https://docs.raku.org/[Raku dökümantasyonu]'na değinmektedir.
 Belirli bir konuda daha fazla bilgiye ihtiyacınız varsa bunları okumalısınız.
 
 Belge boyunca tartışılan konuların örneklerini bulacaksınız.
@@ -56,31 +56,30 @@ link:https://github.com/hankache/perl6intro[Github].
 
 :sectnums:
 == Giriş
-=== Perl 6 Nedir?
-Perl 6 yüksek seviyeli, genel amaçlı, kademeli yazılan(_gradually typed_) bir dildir.
-Perl 6 prosedürel, nesne yönelimli ve fonksiyonel programlamayı destekler. _(multi-paradigmatic)_
+=== Raku Nedir?
+Raku yüksek seviyeli, genel amaçlı, kademeli yazılan(_gradually typed_) bir dildir.
+Raku prosedürel, nesne yönelimli ve fonksiyonel programlamayı destekler. _(multi-paradigmatic)_
 
-.Perl 6 mottoları:
+.Raku mottoları:
 * TMTOWTDI (Tim Toady şeklinde telaffuz edilir.): Bir şeyi yapmanın birden fazla yolu vardır. _-There is more than one way to do it._
 * Kolay şeyler kolay olmalı, zor şeyler kolaylaştırılmalı ve imkansız şeyler zorlanmalı. _-Easy things should stay easy, hard things should get easier, and impossible things should get hard._
 
 === Jargon
-* *Perl 6*: Perl programlama dili ailesinin bir üyesidir. Bir dil belirtimi ile test paketi içerir. Belirtim test paketini geçen uygulamalar Perl 6 olarak kabul edilir.
-* *Rakudo*: Perl 6 derleyicisidir.
+* *Raku*: Perl programlama dili ailesinin bir üyesidir. Bir dil belirtimi ile test paketi içerir. Belirtim test paketini geçen uygulamalar Raku olarak kabul edilir.
+* *Rakudo*: Raku derleyicisidir.
 * *Rakudobrew*: Rakudo kurulum yöneticisidir.
-* *Zef*: Perl 6 modül yöneticisidir.
-* *Rakudo Star*: Rakudo, Zef, Perl 6 modül koleksiyonu ve dökümantasyonu içeren pakettir.
+* *Zef*: Raku modül yöneticisidir.
+* *Rakudo Star*: Rakudo, Zef, Raku modül koleksiyonu ve dökümantasyonu içeren pakettir.
 
-=== Perl 6 Kurulumu
+=== Raku Kurulumu
 .Linux
 
 Rakudo Star kurulumu için komutları takip edin:
 ----
-wget https://rakudo.perl6.org/downloads/star/rakudo-star-2018.01.tar.gz
-tar xfz rakudo-star-2018.01.tar.gz
-cd rakudo-star-2018.01
-perl Configure.pl --gen-moar --prefix /opt/rakudo-star-2018.01
-make install
+wget https://rakudo.perl6.org/downloads/star/rakudo-star-2019.03.tar.gz
+tar xfz rakudo-star-2019.03.tar.gz
+cd rakudo-star-2019.03
+perl Configure.pl --gen-moar --make-install --prefix ~/rakudo
 ----
 Diğer ayarlar için http://rakudo.org/how-to-get-rakudo/#Installing-Rakudo-Star-Linux adresini ziyaret edebilirsiniz.
 
@@ -100,12 +99,12 @@ Dört seçenek mevcuttur:
 * Resmi Docker imajını edinin: `docker pull rakudo-star`
 * Konteynırı çalıştırmak için: `docker run -it rakudo-star`
 
-=== Perl 6 Kodunun Çalıştırılması
+=== Raku Kodunun Çalıştırılması
 
-Perl 6'nın REPL(Read-Eval-Print Loop) üzerinden çalıştırılması için terminali açıp `perl6` yazmanız ve [Enter]'a basmanız yeterli.
+Raku'nın REPL(Read-Eval-Print Loop) üzerinden çalıştırılması için terminali açıp `perl6` yazmanız ve [Enter]'a basmanız yeterli.
 Herşey yolunda giderse `>` işareti ile terminalin sizden giriş beklediğini görmelisiniz. Eğer bir hatayla karşılaşırsanız kurulum bölümüne geri dönmelisiniz. REPL'dan çıkmak için `exit` yazmanız ve [Enter]'a basmanız şimdilik yeterli.
 
-Perl 6 kodunu çalıştırmanın alternatif bir yöntemi ise herhangi bir editörle yazdığımız kodu uzantısı `.pl6` olacak şekilde kaydederek terminale `perl6 dosyaismi.pl6` yazmanız ve [Enter]'a basmanızdır. Burada önemli olan nokta dosya ile aynı dizinde olmanızdır ve eğer kodunuz bir çıktı üretmiyorsa ekranda bir şey göremezsiniz.
+Raku kodunu çalıştırmanın alternatif bir yöntemi ise herhangi bir editörle yazdığımız kodu uzantısı `.pl6` olacak şekilde kaydederek terminale `perl6 dosyaismi.pl6` yazmanız ve [Enter]'a basmanızdır. Burada önemli olan nokta dosya ile aynı dizinde olmanızdır ve eğer kodunuz bir çıktı üretmiyorsa ekranda bir şey göremezsiniz.
 
 Farklı bir yöntem ise tek satırlık komutlardır. Tek satırlık kodlar çalıştırmak için `perl6 -e 'kodunuz'` şeklinde kullanılması gerekir.
 
@@ -121,8 +120,8 @@ Bu durumda yardımcı olacak bir satır düzenleyicisi için:
 --
 
 === Editörler
-Çoğu zaman, Perl 6 programlarmızı dosyalara yazıp depolayacağımız için, Perl 6 sözdizimini tanıyan iyi bir metin editörüne sahip olmalıyız. Birçok alternatif bulunduğundan biz sadece ikisine değineceğiz.
-* Modern bir metin editörü olan https://atom.io[Atom] ve Perl 6 Language Highlighter https://atom.io/packages/language-perl6[Perl 6 FE] eklentisi.
+Çoğu zaman, Raku programlarmızı dosyalara yazıp depolayacağımız için, Raku sözdizimini tanıyan iyi bir metin editörüne sahip olmalıyız. Birçok alternatif bulunduğundan biz sadece ikisine değineceğiz.
+* Modern bir metin editörü olan https://atom.io[Atom] ve Raku Language Highlighter https://atom.io/packages/language-perl6[Perl 6 FE] eklentisi.
 * Diğer editörlere http://www.vim.org/[Vim], https://www.gnu.org/software/emacs/[Emacs] http://padre.perlide.org/[Padre] adreslerinden ulaşabilirsiniz.
 
 Bu editörlerden herhangi birisini kullanabilirsiniz.
@@ -140,7 +139,7 @@ Ayrıca şu şekilde de yazılabilir:
 'Merhaba Dünya'.say;
 
 === Söz Dizimine Genel Bakış
-Perl 6 çoğu zaman düzensiz çalışmanıza izin verir.
+Raku çoğu zaman düzensiz çalışmanıza izin verir.
 
 Her bir ifade, genellikle mantıksal bir kod satırıdır ve noktalı virgülle bitmesi gerekir:
 `say "Merhaba" if True;`
@@ -319,19 +318,19 @@ Aşağıdaki tabloda sık kullanılan operatörler listelenmiştir.
 
 <| 2 ~~ Int <| True
 
-<| "Perl 6" ~~ "Perl 6" <| True
+<| "Raku" ~~ "Raku" <| True
 
-<| "Perl 6" ~~ Str <| True
+<| "Raku" ~~ Str <| True
 
 <| "enlightenment" ~~ /light/ <| ｢light｣
 
 .2+| ++ | Önek(Prefix) | Arttırma | my $var = 2; ++$var;  | Değeri 1 arttırır ve sonucu `3` olarak döner
 
-<m| Sonek(Postfix) <d| Arttırma <m| my $var = 2; $var++;  <| `2` sonucunu döner ve değeri 1 arttırır
+| Sonek(Postfix) <d| Arttırma <m| my $var = 2; $var++;  <| `2` sonucunu döner ve değeri 1 arttırır
 
 .2+|\--| Prefix | Azaltma | my $var = 2; --$var;  | Değeri 1 azaltır ve sonucu `1` olarak döner
 
-<m| Postfix <d| Azaltma <m| my $var = 2; $var--;  <| `2` sonucunu döner ve değeri 1 azaltır
+| Postfix <d| Azaltma <m| my $var = 2; $var--;  <| `2` sonucunu döner ve değeri 1 azaltır
 
 .3+| + .3+| Prefix .3+| İşlenen değeri numerik sonuca zorlar | +"3"  | 3
 
@@ -409,7 +408,7 @@ Listelerle çalışırlar ve `[]` ile çevrelenirler.
 NOTE: Operatörler hakkında daha fazla bilgiye https://docs.perl6.org/language/operators adresinden ulaşabilirsiniz.
 
 == Değişkenler
-Perl 6’da değişkenler üç kategoriye ayrılır: Skalar değişkenler, Diziler ve Hashler.
+Raku’da değişkenler üç kategoriye ayrılır: Skalar değişkenler, Diziler ve Hashler.
 
 Değişkenlerin başın da, değişkenleri kategorize etmek için kullanılan karakterler vardır.
 
@@ -566,7 +565,7 @@ hatasını döndürecektir.
 
 ==== Çok Boyutlu Diziler
 Şimdiye kadar görüğümüz diziler tek boyutluydu.
-Perl 6 çok boyutlu diziler tanımlamamıza izin verir.
+Raku çok boyutlu diziler tanımlamamıza izin verir.
 
 [source,perl6]
 my @tbl[3;2];
@@ -635,7 +634,7 @@ The capital of France is: Paris
 ----
 
 .Açıklama
-`.push: (anahtar => 'Değer')` yeni bir anahtar değer çifti ekler. +
+`.push: (anahtar \=> 'Değer')` yeni bir anahtar değer çifti ekler. +
 `.kv` tüm anahtar ve değerlerin bir listesini döndürür. +
 `.keys` tüm anahtarların listesini döndürür. +
 `.values` tüm değerlerin listesini döndürür. +
@@ -678,7 +677,7 @@ Değişkenin tipinin (Int) olması gerektiğini söyledik ve bir (Str) atamaya �
 
 Bu programlama tarzına statik yazım denir. Değişkenin tipinin atama öncesi tanımlandığı ve değiştirilemeyeceği anlamına gelir.
 
-Perl 6 *kadelemeli* _-gradually typed_ olarak yazılan bir dil olarak tanımlanmıştır; hem *statik* hem de *dinamik* yazıma izin verir.
+Raku *kadelemeli* _-gradually typed_ olarak yazılan bir dil olarak tanımlanmıştır; hem *statik* hem de *dinamik* yazıma izin verir.
 
 .Diziler ve hashler statik olarak yazılabilir:
 [source,perl6]
@@ -707,7 +706,7 @@ say %country-codes.WHAT;
 
 | *Tip* | *Açıklama* | *Örnek* | *Sonuç*
 
-| Mu | Perl 6 tür hiyerarşisinin kökü | |
+| Mu | Raku tür hiyerarşisinin kökü | |
 
 | Any | Yeni sınıflar ve çoğu tanımlı sınıf için varsayılan taban sınıf | |
 
@@ -750,15 +749,15 @@ Bir değişkenin tipini temizlemek için `Nil` ataması yapılır.
 
 === Kapsam (_Scoping_)
 Kullanılmadan önce bir değişkenin tanımlanması gerekir.
-Perl 6'da birçok tanımlama kullanılmaktadır. Biz şuana kadar `my` kullanıyorduk.
+Raku'da birçok tanımlama kullanılmaktadır. Biz şuana kadar `my` kullanıyorduk.
 
 [source,perl6]
 my $var=1;
 
 `my` bildirimi kapsamı verir. Başka bir deyişle `my` ile tanımlanan bir değişken yalnızca tanımladığı blokta erişilebilir olacaktır.
 
-Perl 6'da bir blok `{ }` ile sınırlandırılmış alandır.
-Eğer yazdığımız kodda blok blunmuyorsa, değişken Perl 6 betiğinin tamamında kullanılabilir olacaktır.
+Raku'da bir blok `{ }` ile sınırlandırılmış alandır.
+Eğer yazdığımız kodda blok blunmuyorsa, değişken Raku betiğinin tamamında kullanılabilir olacaktır.
 
 
 [source,perl6]
@@ -890,7 +889,7 @@ say @numbers;      #4
 Bir fonksiyonun mutatör görevi görmesi için `.=` kullanın. (#4) (Betiğimizin 9. satırında)
 
 == Döngüler ve Koşullar
-Perl 6 birçok döngü ve koşul yapısına sahiptir.
+Raku birçok döngü ve koşul yapısına sahiptir.
 
 === if
 Kod ancak bir koşul sağlandığında çalışır. Yani bir ifadenin `True` olarak değerlendirilmesi gerekir.
@@ -947,7 +946,7 @@ unless $clean-shoes {
 }
 ----
 
-Perl 6'da bir ifadeyi olumsuzlamak için `!` veya `not` kullanılır.
+Raku'da bir ifadeyi olumsuzlamak için `!` veya `not` kullanılır.
 
 `unless (koşul)` yerine `if not (koşul)` kullanılabilir.
 
@@ -997,7 +996,7 @@ Bir yineleme değişkeni `$array-item` oluşturduğumuza ve her bir dizi eleman�
 
 === given
 
-Diğer dillerdeki `switch` ifadesinin Perl 6'daki daha güçlü ifadesidir.
+Diğer dillerdeki `switch` ifadesinin Raku'daki daha güçlü ifadesidir.
 
 [source,perl6]
 ----
@@ -1032,7 +1031,7 @@ given $var {
 
 Aslında `loop` C programlama dili ailesinde `for` döngüsü yazmaya benzer.
 
-Perl 6, C ailesi dillerindendir.
+Raku, C ailesi dillerindendir.
 
 [source,perl6]
 ----
@@ -1044,7 +1043,7 @@ loop (my $i = 0; $i < 5; $i++) {
 NOTE: Döngüler ve koşullar hakkında daha fazla bilgiye https://docs.perl6.org/language/control adresinden ulaşabilirsiniz.
 
 == G/Ç (_I/O_)
-Perl 6'da en yaygın _Girdi/Çıktı_ arabirimlerinden ikisi _Terminal_ ve _Dosyadır_.
+Raku'da en yaygın _Girdi/Çıktı_ arabirimlerinden ikisi _Terminal_ ve _Dosyadır_.
 
 === Terminal Kullanarak Basit G/Ç
 
@@ -1073,7 +1072,7 @@ my $name;
 say "Hi, what's your name?";
 $name = get;
 
-say "Dear $name welcome to Perl 6";
+say "Dear $name welcome to Raku";
 ----
 
 Yukarıdaki kod çalıştırıldığında terminal adınızı girmenizi bekliyor olacak. Adnınızı girin ve ardından [Enter] tuşuna basın.
@@ -1087,7 +1086,7 @@ Yukarıdaki kod şu şekilde yazılabilir:
 ----
 my $name = prompt "Hi, what's your name? ";
 
-say "Dear $name welcome to Perl 6";
+say "Dear $name welcome to Raku";
 ----
 
 === Kabuk Komutu Çalıştırmak
@@ -1111,7 +1110,7 @@ shell "ls";
 shell "dir";
 ----
 `echo` ve `ls`, Linux kabuğu için ortak anahtar kelimelerdir.
-`echo` metni terminale yazdırır. (Perl 6’da print’in eşdeğeri)
+`echo` metni terminale yazdırır. (Raku’da print’in eşdeğeri)
 `ls` mevcut izindeki tüm dosya ve klasörleri listeler.
 
 `dir` ise `ls`’in Windows ortamındaki eş değeridir.
@@ -1151,7 +1150,7 @@ spurt "newdatafile.txt", $newdata;
 Kod çalıştırıldıktan sonra _newdatafile.txt_ isminde yeni bir dosya oluşturur ve içine `$newdata` değişkeninin içeriğini yazar.
 
 === Dosya ve Dizinler ile Çalışmak
-Perl 6 kabuk komutlarına başvurmadan(örneğin `ls`) bir dizinin içeriğini listeleyebilir.
+Raku kabuk komutlarına başvurmadan(örneğin `ls`) bir dizinin içeriğini listeleyebilir.
 
 [source,perl6]
 ----
@@ -1250,7 +1249,7 @@ greet "Laura","Mrs.";
 === Varsayılan ve İsteğe Bağlı Parametreler
 Altyordam, parametre alacak şekilde tanımlandıysa ve gerekli parametre verilmeden çalıştırılırsa hata döner.
 
-Perl 6 bize opsiyonel ve varsayılan parametreli olmak üzere iki altyordam tanımlama imkanı verir.
+Raku bize opsiyonel ve varsayılan parametreli olmak üzere iki altyordam tanımlama imkanı verir.
 
 Opsiyonel parametreleri belirtmek için sonuna `?` karakteri koyulur.
 
@@ -1395,7 +1394,7 @@ say map(-> $x {$x ** 2},@array);
 ----
 Altyordamı bildirmek ve `map` fonksiyonuna parametre olarak vermek yerine, anonim fonksiyon olarak tanımladık `\-> $x {$x ** 2}`.
 
-Perl 6 dilinde bu gösterimi *sivri blok* olarak adlandırıyoruz.
+Raku dilinde bu gösterimi *sivri blok* olarak adlandırıyoruz.
 
 Değişkenlere fonksiyon atamak için de sivri blok kullanılabilir:
 
@@ -1408,7 +1407,7 @@ say $squared(9);
 ----
 
 === Zincirleme
-Perl 6’da fonksiyonlar zincirlenebilir, bu sayede bir fonksiyonun sonucunu argüman olarak başka birine geçmeniz gerekmez.
+Raku’da fonksiyonlar zincirlenebilir, bu sayede bir fonksiyonun sonucunu argüman olarak başka birine geçmeniz gerekmez.
 
 Örnek vermek gerekirse: Bir dizi verildiğinde, dizinin büyükten küçüğe sıralı ve benzersiz değerlerini döndürmeniz gerekebilir.
 
@@ -1625,8 +1624,8 @@ Birisi  `Good Morning` ve diğeri `Good Evening` diyor.
  `$morning` ortamında `$period` `Morning`'dir. `$evening` ortamında `$period` `Evening`'dir.
 
 == Sınıflar ve Nesneler
-Bir önceki bölümde Perl 6'nın Fonksiyonel Programlamayı nasıl kolaylaştırdığını öğrendik. +
-Bu bölümde, PErl 6'daki Nesne Yönelinli Programlamaya göz atacağız.
+Bir önceki bölümde Raku'nun Fonksiyonel Programlamayı nasıl kolaylaştırdığını öğrendik. +
+Bu bölümde, Raku'daki Nesne Yönelinli Programlamaya göz atacağız.
 
 === Giriş
 
@@ -1703,7 +1702,7 @@ say sayvar;
 
 `sayvar` metodu erişimcidir. Değişkenin kendisine doğrudan erişmeden, değerine erişmemize izin verir.
 
-Perl 6 kapsülleme kullanımını kolaylaştırılmıştır:
+Raku kapsülleme kullanımını kolaylaştırılmıştır:
 
 * `!` özelliğinin doğrudan dışarıdan erişilemez olduğunu belirtir.
 * `.` özellik için otomatik olarak erişimci oluşturulur.
@@ -1730,14 +1729,14 @@ Betiğe `say $john.age;` komutunu ekleyelim. +
 Şimdi `has $!age` yerine `has $.age` yazalım ve `say $john.age` ile tekrar çağıralım.
 
 === Yapıcı Metot
-Perl 6'da tüm sınıflar varsayılan olarak `.new()` _constructor_'ı vardır. +
+Raku'da tüm sınıflar varsayılan olarak `.new()` _constructor_'ı vardır. +
 Yeni nesneler oluşturmak için kullanılabilir. +
 Varsayılan _constructor_ yalnızca parametreler ile kullanılabilir. +
 Yukarıdaki örneğimizde, `.new()` verilen parametreler ile tanımlanmıştır bu parametreler değişkenler için konum göstermiştir:
 
-* name => 'John'
+* name \=> 'John'
 
-* age => 23
+* age \=> 23
 
 Peki konum göstermeden kullanmak isteseydik?
 Bunun için yeni bir yapıcı metot şu şekilde tanımlanabilir.
@@ -1977,7 +1976,7 @@ Onlara yalnızca tanımlandığı sınıftan erişilebilir. +
 Tanımlamak için `submethod` anahtar kelimesi kullanılır.
 
 === Çoklu Miras
-Perl 6'da çoklu kalıtıma izin verilir. Bir sınıf birden çok sınıftan miras alabilir.
+Raku'da çoklu kalıtıma izin verilir. Bir sınıf birden çok sınıftan miras alabilir.
 
 [source,perl6]
 ----
@@ -2029,7 +2028,7 @@ Bu yüzden onu `line-chart` ve `bar-chart` sınıflarının bir çocuğu olarak 
 Sadece bir seri çizildi. +
 Bu neden oldu? +
 `combo-chart`, `line-chart` ve `bar-chart` sınıflarından miras alır ve her ikisinde de `plot` adlı bir yöntem bulunur.
-Perl 6, miras alınan metotlardan birini çağırarak çakışmayı çözmeye çalışacaktır.
+Raku, miras alınan metotlardan birini çağırarak çakışmayı çözmeye çalışacaktır.
 
 .Düzeltme
 Doğru davranışı sağlamak için `combo-chart` üzerinde `plot` yöntemini geçersiz kıldık.
@@ -2323,7 +2322,7 @@ try {
 ----
 
 === İstisna Fırlatma(_Throwing Exceptions_)
-Perl 6 da açıkça istisnaları atmanızı sağlar.
+Raku da açıkça istisnaları atmanızı sağlar.
 İstisna fırlatmanın iki türü vardır:
 
 * ad-hoc(_Özel_) istisnalar
@@ -2569,7 +2568,7 @@ Bir string eşleştirme işlemi her regex'e karşı başarılı ise, eşeleme so
 [source,perl6]
 .Betik
 ----
-if 'Rakudo is a Perl 6 compiler' ~~ m/:s Perl 6/ {
+if 'Rakudo is a Raku compiler' ~~ m/:s Raku/ {
     say "The match is: " ~ $/;
     say "The string before the match is: " ~ $/.prematch;
     say "The string after the match is: " ~ $/.postmatch;
@@ -2580,7 +2579,7 @@ if 'Rakudo is a Perl 6 compiler' ~~ m/:s Perl 6/ {
 
 .Çıktı
 ----
-The match is: Perl 6
+The match is: Raku
 The string before the match is: Rakudo is a
 The string after the match is: compiler
 The matching string starts at position: 12
@@ -2597,7 +2596,7 @@ Aşağıdaki yöntemler eşleme nesnesi üzerinden çağırılabilir:
 
 TIP: Varsayılan olarak regex tanımındaki boşluklar yok sayılır. +
 Boşluk içeren bir regexle eşleştirme yapmak istersek bunu açıkça belirtmeliyiz. +
-`:s` regex içinde `m/:s Perl 6/` boşlukları hesaba katmaya zorlar. +
+`:s` regex içinde `m/:s Raku/` boşlukları hesaba katmaya zorlar. +
 Alternatif olarak regex'i şöyle yazmış olabiliriz: `m/ Perl\s6 /` ve `\s` kullanmış olabiliriz. Bu boşlukları temsil eder. +
 Bir regex tek boşluk içeriyorsa `\s` kullanmak iyi bir seçenektir.
 
@@ -2607,7 +2606,7 @@ Bir e-postanın geçerli olup olmadığını kontrol edelim. +
 first name [dot] last name [at] company [dot] (com/org/net)
 
 WARNING: Bu örnekte kullanılan e-posta doğrulaması pek doğru değildir. +
-Tek amacı Perl 6'da düzenli ifadelerin kullanımını göstermektir. +
+Tek amacı Raku'da düzenli ifadelerin kullanımını göstermektir. +
 Ürününüzde olduğu gibi kullanmayın.
 
 [source,perl6]
@@ -2671,13 +2670,13 @@ Adlandırılmış bir regex şöyle bir sözdizimini kullanarak çağrılabilir:
 
 NOTE: Düzenli ifadeler hakkında daha fazla bilgi için https://docs.perl6.org/language/regexes adresini ziyaret edebilirsiniz.
 
-== Perl 6 Modülleri
-Perl 6, genel amaçlı bir programlama dilidir. Aşağıdakiler dahil pek çok görevin üstesinden gelmek için kullanılabilir:
+== Raku Modülleri
+Raku, genel amaçlı bir programlama dilidir. Aşağıdakiler dahil pek çok görevin üstesinden gelmek için kullanılabilir:
 metin işlemem, grafik, web, veritabanı, ağ protokolleri vb.
 
 Tekrar kullanılabilirlik, programcıların her seferinde tekerleği yeniden icar etmelerini gerektirmeyen önemli bir kavramdır.
 
-Perl 6 tekrar kullanılabilir *modüller* yaratılmasına ve dağıtılmasına izin verir. Her bir modül, kurulduktan sonra tekrar tekrar kullanılabilen işlev kümesidir.
+Raku tekrar kullanılabilir *modüller* yaratılmasına ve dağıtılmasına izin verir. Her bir modül, kurulduktan sonra tekrar tekrar kullanılabilen işlev kümesidir.
 
 _Zef_ Rakudo Star paketiyle gelen modül yöneticisidir.
 
@@ -2685,7 +2684,7 @@ _Zef_ Rakudo Star paketiyle gelen modül yöneticisidir.
 
 `zef install "modül adı"`
 
-NOTE: Perl 6 modül dizinine https://modules.perl6.org/ adresinden ulaşabilirsiniz.
+NOTE: Raku modül dizinine https://modules.perl6.org/ adresinden ulaşabilirsiniz.
 
 === Modüllerin Kullanımı
 MD5, yaygın olarak kullanılan kriptografik özet fonksiyonudur. Girilen verinin boyutundan bağımsız olarak, 128-bit özet değer üretir. +
@@ -2693,7 +2692,7 @@ MD5, veritabanında saklanan parolaların şifrelenmesi de dahil olmak üzere ç
 Yeni bir kullanıcı kayıt olduğunda, bilgileri düz metin olarak değil _hashlenmiş_ olarak saklanır.
 Bunun arkasındaki mantık veritabanının bir saldırıya maruz kaldığı durumda, saldırganın kullanıcı bilgilerini görüntüleyememesidir.
 
-MD5 algoritmasını kendiniz uygulamak zorunda değilsiniz, bunun için Perl 6 modülü kullanıma hazırdır.
+MD5 algoritmasını kendiniz uygulamak zorunda değilsiniz, bunun için Raku modülü kullanıma hazırdır.
 
 Öncelikle kuralım: +
 `zef install Digest::MD5`
@@ -2801,7 +2800,7 @@ say $var;
 Normal koşullar altında bir programdaki tüm görevler sırayla çalışır. +
 Yapmaya çalıştığınız şey çok zaman almazsa bu sorun olmayabilir.
 
-Neyse ki Perl 6, işleri paralel olarak yürütmenizi sağlayacak özelliklere sahiptir. +
+Neyse ki Raku, işleri paralel olarak yürütmenizi sağlayacak özelliklere sahiptir. +
 Bu aşamada paralellik aşağıdaki şeylerden biri anlamına gelebilir:
 
 * *Görev Paralelliği* Paralel olarak çalışan iki (veya daha fazla) işlem.
@@ -2922,8 +2921,8 @@ NOTE: Eşzamanlılık ve asenkron programlama hakkında bilgi için https://docs
 
 == Native Çağrı Arayüzü (_Native Calling Interface_)
 
-Perl 6 bize C kütüphanelerini kullanma imkanı verir, bunu _Native Calling Interface_ kullanarak yaparız.
-`NativeCall`, Perl 6 ile gelen standart bir modüldür ve işi kolaylaştırmak için işlevsellik sunar.
+Raku bize C kütüphanelerini kullanma imkanı verir, bunu _Native Calling Interface_ kullanarak yaparız.
+`NativeCall`, Raku ile gelen standart bir modüldür ve işi kolaylaştırmak için işlevsellik sunar.
 
 === Bir Fonksiyon Çağırmak
 
@@ -2954,7 +2953,7 @@ gcc -c ncitest.c
 gcc -shared -o ncitest.dll ncitest.o
 ----
 
-C kütüphanemiz derlendiği dizinde oluşturulmuş oldu, şimdi bir Perl 6 dosyası oluşturalım ve aşağıdaki kodu yazarak çalıştıralım.
+C kütüphanemiz derlendiği dizinde oluşturulmuş oldu, şimdi bir Raku dosyası oluşturalım ve aşağıdaki kodu yazarak çalıştıralım.
 
 [source,perl6]
 .ncitest.pl6
@@ -2973,16 +2972,16 @@ Daha sonra C kütüphanemizin yolunu tutan `LIBPATH` adında bir sabit oluşturd
 `$*CWD` geçerli çalışma dizinini döndürür. +
 Ardından adı `hellofromc` olan yeni bir altyordam oluşturduk, bu C fonksiyonuyla aynı adı taşıyan bir sarmalayıcı. +
 Bunu `is native` ile yaptık. +
-Son olarak Perl 6 altyordamımızı çağırdık.
+Son olarak Raku altyordamımızı çağırdık.
 
 === Fonksiyonu Yeniden Adlandırma
 
 Yukarıdaki bölümde C kütüphanesinin `is native` kullanılarak nasıl çağırıldığını gördük.
 
-Bazı durumlarda Perl 6 altyordamının adını değiştirmek isteyebiliriz. +
+Bazı durumlarda Raku altyordamının adını değiştirmek isteyebiliriz. +
 Bunu yapmak için `is symbol` özelliğini kullanırız.
 
-Yukarıdaki Perl 6 betiğini değiştirelim ve altyordamımızın adını `hellofromc` yerine `hello` yapalım.
+Yukarıdaki Raku betiğini değiştirelim ve altyordamımızın adını `hellofromc` yerine `hello` yapalım.
 
 [source,perl6]
 .ncitest.pl6
@@ -2996,12 +2995,12 @@ hello();
 ----
 
 .Açıklama
-Perl 6 altyordamının C fonksiyonundan farklı bir adı varsa `is symbol` özelliği ile orjinal C fonksiyonunun ismi kullanılmalıdır.
+Raku altyordamının C fonksiyonundan farklı bir adı varsa `is symbol` özelliği ile orjinal C fonksiyonunun ismi kullanılmalıdır.
 
 === Geçici Argümanlar
 
-Aşağıda değiştirilmiş C kütüphanesini derleyin ve aşağıda bulunan Perl 6 betiğini çalıştırın.
-C'de `char*` Perl 6'da `Str`
+Aşağıda değiştirilmiş C kütüphanesini derleyin ve aşağıda bulunan Raku betiğini çalıştırın.
+C'de `char*` Raku'da `Str`
 
 [source,c]
 .ncitest.c
@@ -3027,7 +3026,7 @@ hello('Jane');
 === Dönüş Değeri
 
 2 tam sayı değerini parametre olarak alan ve toplamlarını döndüren basit bir hesap makinesi yapalım.
-C kütüphanesini derleyin ve Perl 6 betiğini çalıştırın.
+C kütüphanesini derleyin ve Raku betiğini çalıştırın.
 
 [source,c]
 .ncitest.c
@@ -3048,20 +3047,20 @@ sub add(int32,int32) returns int32 is native(LIBPATH) { * }
 say add(2,3);
 ----
 
-C'de `int`, Perl 6'da `int32`
+C'de `int`, Raku'da `int32`
 
 === Tipler
 
-Son Perl 6 betiğimizde neden `int` yerine `int32` kullanıldığını kendimize sorabiliriz. +
-`Int`, `Rat` gibi bazı Perl 6 veri tipleri, bir C fonksiyonunda parametre olarak veya dönüş tipi olarak kullanılamaz. +
-Kullanılabilmesi için Perl 6'da C'deki ile aynı tipte olması gerekir.
+Son Raku betiğimizde neden `int` yerine `int32` kullanıldığını kendimize sorabiliriz. +
+`Int`, `Rat` gibi bazı Raku veri tipleri, bir C fonksiyonunda parametre olarak veya dönüş tipi olarak kullanılamaz. +
+Kullanılabilmesi için Raku'da C'deki ile aynı tipte olması gerekir.
 
-Perl 6'da C ile eşleşen birçok veri tipi vardır.
+Raku'da C ile eşleşen birçok veri tipi vardır.
 
 [cols="^.^,^.^",options="header"]
 |===
 
-| C Tipi | Perl 6 Tipi
+| C Tipi | Raku Tipi
 
 | `char` .2+| `int8`
 

@@ -1,21 +1,23 @@
-# Perl 6 Introduction
+# Raku Guide
 
-This document is intended to give you a quick overview of the Perl 6 programming language.  
-For those who are new to Perl 6 it should get you up and running.
+This document is intended to give you a quick overview of the Raku programming language.  
+For those who are new to Raku it should get you up and running.
 
 ### Website
 For online reading navigate to:  
-* English: http://perl6intro.com
-* French: http://fr.perl6intro.com
-* German: http://de.perl6intro.com
-* Japanese: http://ja.perl6intro.com
-* Spanish: http://es.perl6intro.com
-* Portuguese: http://pt.perl6intro.com
-* Dutch: http://nl.perl6intro.com
-* Bulgarian: http://bg.perl6intro.com
-* Chinese: http://zh.perl6intro.com
-* Italian: http://it.perl6intro.com
-* Turkish: http://tr.perl6intro.com
+* English: https://raku.guide
+* French: https://raku.guide/fr
+* German: https://raku.guide/de
+* Japanese: https://raku.guide/ja
+* Spanish: https://raku.guide/es
+* Portuguese: https://raku.guide/pt
+* Dutch: https://raku.guide/nl
+* Bulgarian: https://raku.guide/bg
+* Chinese: https://raku.guide/zh
+* Italian: https://raku.guide/it
+* Turkish: https://raku.guide/tr
+* Indonesian: https://raku.guide/id
+* Russian: https://raku.guide/ru
 
 ### Building the document
 The document is written in asciidoc format and generated using
@@ -46,9 +48,9 @@ All feedback is welcomed:
 * Translations
 
 ### Translations
-If you wish to translate this document, always use the english version as your starting point.
+If you wish to translate this document, always use the English version as your starting point.
 If you are starting a new translation create a new file. For example, the French translation will be in fr.perl6intro.adoc, the Deutsch translation in de.perl6intro.adoc  
-If you want to modify a translated version, consider modifying the english version first. It is important that all translations be kept in sync.
+If you want to modify a translated version, consider modifying the English version first. It is important that all translations be kept in sync.
 
 ### Contributing
 Kindly prefix your commit title with the language it is targeting. For example, all commits targeting the English version would have a title that starts with [EN]. All commits targeting the Spanish translation have a title that starts with [ES].
@@ -65,9 +67,11 @@ Kindly prefix your commit title with the language it is targeting. For example, 
 * Chinese Translation: [wenjie1991](https://github.com/wenjie1991) and [ohmycloud](https://ohmycloud.github.io)
 * Italian Translation: [MarsMarsico](https://github.com/marsmarsico)
 * Turkish Translation: [Yalın Pala](https://github.com/yplog)
+* Indonesian Translation: [Heince Kurniawan](https://github.com/heince)
+* Russian Translation: [Alexander Kiryuhin](https://github.com/Altai-man)
 
-For the full list of contributors: https://github.com/hankache/perl6intro/graphs/contributors
+For the full list of contributors: https://github.com/hankache/rakuguide/graphs/contributors
 
 ### License
 Creative Commons Attribution-ShareAlike 4.0 International License.  
-To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/.
+To view a copy of this license, visit https://creativecommons.org/licenses/by-sa/4.0/.

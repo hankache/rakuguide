@@ -1,4 +1,4 @@
-= Perkenalan Bahasa Pemrograman Raku 
+= Perkenalan Bahasa Pemrograman Raku
 Naoum Hankache <naoum@hankache.com>; Heince Kurniawan <heince@cpan.org>
 :description: Pengenalan secara umum untuk bahasa pemrograman Raku
 :keywords: raku, raku, introduction, rakuintro, perkenalan raku, raku tutorial, raku intro
@@ -35,17 +35,16 @@ Apabila anda ingin berkontribusi dalam dokumen ini, kunjungi:
 
 .Saran
 Kirimkan saran anda ke:
+
 * naoum@hankache.com    - Bahasa Inggris
 * heince@cpan.org       - Bahasa Indonesia
 
 :sectnums:
 == Perkenalan
 === Apa itu Raku
-Raku adalah bahasa pemrograman tingkat tinggi yang bersifat umum/non-spesifik dan data type variable ataupun ekspresi dapat dideklarasikan secara statis maupun dinamis. 
-Raku mendukung beberapa paradigma (teknis penyelesain masalah), antara lain : Pemrograman secara Prosedural, Berorientasi Objek, dan Fungsional.
-* https://id.wikipedia.org/wiki/Pemrograman_Prosedural
-* https://id.wikipedia.org/wiki/Pemrograman_berorientasi_objek
-* https://id.wikipedia.org/wiki/Pemrograman_Fungsional
+Raku adalah bahasa pemrograman tingkat tinggi yang bersifat umum/non-spesifik dan data type variable ataupun ekspresi dapat dideklarasikan secara statis maupun dinamis.
+Raku mendukung beberapa paradigma (teknis penyelesain masalah), antara lain : link:https://id.wikipedia.org/wiki/Pemrograman_Prosedural[Pemrograman secara Prosedural],
+link:https://id.wikipedia.org/wiki/Pemrograman_berorientasi_objek[Berorientasi Objek], dan link:https://id.wikipedia.org/wiki/Pemrograman_Fungsional[Fungsional].
 
 .Raku moto:
 * TMTOWTDI (dibaca "Tim Toady"): There is more than one way to do it (Ada lebih dari satu cara untuk melakukan sesuatu).
@@ -54,7 +53,7 @@ Raku mendukung beberapa paradigma (teknis penyelesain masalah), antara lain : Pe
 === Istilah Khusus
 * *Raku*: Spesifikasi bahasa pemrograman dengan rangkain test.
 Implementasi yang lulus uji spesifikasi dari rangkaian test dianggap Raku.
-* *Rakudo*: Kompilator (compiler - https://id.wikipedia.org/wiki/Kompilator) untuk Raku.
+* *Rakudo*: link:https://id.wikipedia.org/wiki/Kompilator[Kompilator] untuk Raku.
 * *Rakudobrew*: program untuk mengelola instalasi Rakudo.
 * *Zef*: program untuk mengelola instalasi modul dari Raku.
 * *Rakudo Star*: Bundel program yang terdiri dari Rakudo, Zef, koleksi beberapa modul Perl6 dan dokumentasi.
@@ -64,11 +63,10 @@ Implementasi yang lulus uji spesifikasi dari rangkaian test dianggap Raku.
 
 Untuk menginstall "Rakudo Star", jalankan perintah berikut diterminal anda:
 ----
-wget https://rakudo.raku.org/downloads/star/rakudo-star-2018.01.tar.gz
-tar xfz rakudo-star-2018.01.tar.gz
-cd rakudo-star-2018.01
-perl Configure.pl --gen-moar --prefix /opt/rakudo-star-2018.01
-make install
+wget https://rakudo.perl6.org/downloads/star/rakudo-star-2019.03.tar.gz
+tar xfz rakudo-star-2019.03.tar.gz
+cd rakudo-star-2019.03
+perl Configure.pl --gen-moar --make-install --prefix ~/rakudo
 ----
 Untuk metode instalasi lainnya, kunjungi http://rakudo.org/how-to-get-rakudo/#Installing-Rakudo-Star-Linux
 
@@ -76,13 +74,13 @@ Untuk metode instalasi lainnya, kunjungi http://rakudo.org/how-to-get-rakudo/#In
 Ada 4 pilihan metode instalasi yang tersedia:
 
 * Lakukan langkah-langkah yang sama sesuai cara instalasi Linux
-* Instalasi dengan program homebrew (https://brew.sh): `brew install rakudo-star`
-* Instalasi dengan program MacPorts (https://www.macports.org): `sudo port install rakudo`
-* Unduh program installer terakhir (dengan file ekstensien .dmg) dari https://rakudo.raku.org/downloads/star/
+* Instalasi dengan program link:https://brew.sh[homebrew]: `brew install rakudo-star`
+* Instalasi dengan program link:https://www.macports.org[MacPorts]: `sudo port install rakudo`
+* Unduh program installer terakhir (dengan file ekstensien .dmg) dari https://rakudo.perl6.org/downloads/star/
 
 .Windows
-. Unduh program installer terakhir (dengan file ekstensien .msi, pilih sesuai arsitektur sistem) dari https://rakudo.raku.org/downloads/star/
-. Setelah instalasi, pastikan `C:\rakudo\bin` terdeklarasi di PATH(variabel yang dipakai dilingkungan sistem operasi) 
+. Unduh program installer terakhir (dengan file ekstensien .msi, pilih sesuai arsitektur sistem) dari https://rakudo.perl6.org/downloads/star/
+. Setelah instalasi, pastikan `C:\rakudo\bin` terdeklarasi di PATH(variabel yang dipakai dilingkungan sistem operasi)
 . Tes dengan menjalankan perintah `raku -v` dicommand line prompt untuk verifikasi versi.
 
 .Docker
@@ -91,24 +89,24 @@ Ada 4 pilihan metode instalasi yang tersedia:
 
 === Menjalankan kode Raku
 
-Menjalankan program / kode Raku dapat dilakukan melalui REPL(Read-Eval-Print Loop). 
-Caranya, buka program terminal, ketik `raku` kemudian tekan tombol [Enter]. 
-Tanda / karakter '>' akan muncul. 
+Menjalankan program / kode Raku dapat dilakukan melalui REPL(Read-Eval-Print Loop).
+Caranya, buka program terminal, ketik `raku` kemudian tekan tombol [Enter].
+Tanda / karakter '>' akan muncul.
 Selanjutnya, ketik kode yang mau dijalankan dan tekan tombol [Enter].
-REPL akan mencetak keluaran nilai dari kode yang diproses. 
+REPL akan mencetak keluaran nilai dari kode yang diproses.
 Anda dapat menulis kode lainnya dibaris yang baru atau ketik `exit` dan tekan enter untuk keluar dari REPL.
 
-Cara lainnya, ketik kode di file, simpan, dan jalankan menggunakan file tersebut. 
-Direkomendasikan bahwa file script Raku menggunakan ekstensien `.pl6`. 
-Jalankan file script tersebut melalui terminal, ketik `raku namafileyangdisimpan.pl6`, kemudian tekan tombol [Enter]. 
+Cara lainnya, ketik kode di file, simpan, dan jalankan menggunakan file tersebut.
+Direkomendasikan bahwa file script Raku menggunakan ekstensien `.p6`.
+Jalankan file script tersebut melalui terminal, ketik `raku namafileyangdisimpan.p6`, kemudian tekan tombol [Enter].
 Berbeda dengan metode REPL, cara ini tidak akan secara otomatis mencetak hasil tiap baris: kode harus menyertakan fungsi `say` untuk mengeluarkan cetakan hasil kode.
 
-Metode REPL kebanyakan dipakai untuk mencoba spesifik bagian dari kode, biasanya program yang hanya berisi 1 baris. 
+Metode REPL kebanyakan dipakai untuk mencoba spesifik bagian dari kode, biasanya program yang hanya berisi 1 baris.
 Untuk program yang membutuhkan kode lebih dari 1 baris, direkomendasikan untuk menyimpan kode kedalam file untuk kemudian diproses.
 
 Program yang hanya membutuhkan 1 baris dapat juga menggunakan command line dengan mengetikkan `raku -e 'kode anda disini'` diterminal dan tekan [Enter].
 
-[SARAN]
+[TIP]
 --
 Apabila anda menginstall Rakudo bukan "Rakudo Star", direkomendasikan untuk menginstall modul tambahan berikut ini (Ketik didalam terminal):
 
@@ -118,16 +116,16 @@ Apabila anda menginstall Rakudo bukan "Rakudo Star", direkomendasikan untuk meng
 --
 
 === Teks Editor
-Karena sebagian waktu kita digunakan untuk menulis kode dan menyimpannya dalam file, sebaiknya kita menggunakan teks editor yang dapat mengenali sintaks Raku. 
+Karena sebagian waktu kita digunakan untuk menulis kode dan menyimpannya dalam file, sebaiknya kita menggunakan teks editor yang dapat mengenali sintaks Raku.
 
-Saya menggunakan dan merekomendasi https://atom.io/[Atom]. 
-Atom adalah teks editor yang modern dan mempunyai fitur untuk mengenali dan menyorot sintaks Raku. 
-https://atom.io/packages/language-raku[Raku FE] adalah alternatif sintaks highlight(direpresentasikan dengan penekanan warna) untuk Raku, 
-diturunkan dari paket original tetapi disertai dengan perbaikan bug (https://id.wikipedia.org/wiki/Kekutu) dan fitur tambahan.
+Saya menggunakan dan merekomendasi https://atom.io/[Atom].
+Atom adalah teks editor yang modern dan mempunyai fitur untuk mengenali dan menyorot sintaks Raku.
+https://atom.io/packages/language-raku[Raku FE] adalah alternatif sintaks highlight(direpresentasikan dengan penekanan warna) untuk Raku,
+diturunkan dari paket original tetapi disertai dengan perbaikan link:https://id.wikipedia.org/wiki/Kekutu[bug] dan fitur tambahan.
 
-Sebagian orang dikomunitas juga menggunakan http://www.vim.org/[Vim], https://www.gnu.org/software/emacs/[Emacs] or http://padre.perlide.org/[Padre]. 
+Sebagian orang dikomunitas juga menggunakan http://www.vim.org/[Vim], https://www.gnu.org/software/emacs/[Emacs] or http://padre.perlide.org/[Padre].
 
-Versi baru dari Vim disertai dengan sintaks highlight. Sedangkan Emacs dan Padre membutuhkan paket tambahan untuk mendukung hal tersebut. 
+Versi baru dari Vim disertai dengan sintaks highlight. Sedangkan Emacs dan Padre membutuhkan paket tambahan untuk mendukung hal tersebut.
 
 
 === Hello World!
@@ -142,7 +140,7 @@ Dapat juga ditulis seperti:
 'hello world'.say;
 
 === Gambaran ikhtisar dari Sintaks
-Sintaks Raku memiliki bentuk yang bebas: Dalam artian posisi karakter dibaris maupun kolom dikode anda tidak mempunyai efek yang signifikan.  
+Sintaks Raku memiliki bentuk yang bebas: Dalam artian posisi karakter dibaris maupun kolom dikode anda tidak mempunyai efek yang signifikan.
 Contohnya Anda bebas untuk menggunakan karakter spasi dibagian manapun, walaupun pada kasus tertentu, spasi mengandung arti bagi Raku.
 
 *Pernyataan* adalah kumpulan perintah kode, harus diakhiri dengan karakter titik koma:
@@ -151,7 +149,7 @@ Contohnya Anda bebas untuk menggunakan karakter spasi dibagian manapun, walaupun
 *Ekspresi* adalah salah satu tipe bagian dari pernyataan yang mengembalikan suatu nilai:
 `1+2` akan mengembalikan nilai `3`
 
-Ekspresi adalah kombinasi dari 'Terms' (suatu nilai / variabel) dan "penghubung"(operator).
+Ekspresi adalah kombinasi dari *Terms* (suatu nilai / variabel) dan *penghubung* (operator).
 
 *Terms* adalah:
 
@@ -245,7 +243,8 @@ Komentar 2
 
 ==== Tanda Kutip
 String harus dipisah dengan tanda kutip ganda `"..."` atau tunggal `'...'`.
-* https://id.wikipedia.org/wiki/String
+
+https://id.wikipedia.org/wiki/String
 
 Selalu gunakan tanda kutip ganda:
 
@@ -332,11 +331,11 @@ Dibawah ini adalah tabel dari Operator yang umum dipakai.
 
 .2+| ++ | Prefix | Increment (kenaikan / tambahan) | my $var = 2; ++$var;  | menambah variable + 1 dan mengembalikan nilai `3`
 
-<m| Postfix <d| Increment <m| my $var = 2; $var++;  <| mengembalikan nilai variabel `2` kemudian menambah variabel + 1
+| Postfix <d| Increment <m| my $var = 2; $var++;  <| mengembalikan nilai variabel `2` kemudian menambah variabel + 1
 
 .2+|\--| Prefix | Decrement | my $var = 2; --$var;  | mengurangi nilai variabel - 1 dan mengembalikan nilai menjadi `1`
 
-<m| Postfix <d| Decrement <m| my $var = 2; $var--;  <| mengembalikan nilai variabel `2` kemudian  then mengurangi variabel -1
+| Postfix <d| Decrement <m| my $var = 2; $var--;  <| mengembalikan nilai variabel `2` kemudian  then mengurangi variabel -1
 
 .3+| + .3+| Prefix .3+| merubah nilai menjadi nilai numerik | +"3"  | 3
 
@@ -384,7 +383,7 @@ Dibawah ini adalah tabel dari Operator yang umum dipakai.
 
 === Reversed Operators (Operator terbalik)
 
-Penambahan karakter `R` sebelum operator akan membalikkan operand (https://id.wikipedia.org/wiki/Operand)
+Penambahan karakter `R` sebelum operator akan membalikkan link:https://id.wikipedia.org/wiki/Operand[operand]
 
 [cols=".^m,.^m,.^m,.^m", options="header"]
 |===
@@ -411,7 +410,7 @@ Dibentuk oleh kurung kotak buka dan tutup `[]`
 
 |===
 
-CATATAN: Untuk mengetahui operator lainnya termasuk tata cara penggabungan atau susunannya, kunjungi https://docs.raku.org/language/operators
+NOTE: Untuk mengetahui operator lainnya termasuk tata cara penggabungan atau susunannya, kunjungi https://docs.raku.org/language/operators
 
 == Variabel
 Variabel dari Perl6 diklasifikasian menjadi 3 kategori: Scalars, Arrays dan Hashes.
@@ -453,7 +452,7 @@ WIRO SABLENG
 gnelbaS oriW
 ----
 
-CATATAN: Untuk melihat metode yang lebih lengkap dan dapat diaplikasikan pada String, kunjungi https://docs.raku.org/type/Str
+NOTE: Untuk melihat metode yang lebih lengkap dan dapat diaplikasikan pada String, kunjungi https://docs.raku.org/type/Str
 
 [source,raku]
 .Integer
@@ -466,10 +465,10 @@ say $umur.is-prime;
 True
 ----
 
-CATATAN: Untuk melihat metode yang lebih lengkap dan dapat diaplikasikan pada Integer, kunjungi https://docs.raku.org/type/Int
+NOTE: Untuk melihat metode yang lebih lengkap dan dapat diaplikasikan pada Integer, kunjungi https://docs.raku.org/type/Int
 
 [source,raku]
-.Rational Number (https://id.wikipedia.org/wiki/Bilangan_rasional)
+.link:https://id.wikipedia.org/wiki/Bilangan_rasional[Rational Number]
 ----
 my $umur = 2.3;
 say $umur.numerator;
@@ -483,7 +482,7 @@ say $umur.nude;
 (23 10)
 ----
 
-CATATAN: Untuk melihat metode yang lebih lengkap dan dapat diaplikasikan pada Bilangan Rasional, kunjungi https://docs.raku.org/type/Rat
+NOTE: Untuk melihat metode yang lebih lengkap dan dapat diaplikasikan pada Bilangan Rasional, kunjungi https://docs.raku.org/type/Rat
 
 === Arrays
 Arrays adalah daftar yang dapat berisi lebih dari satu nilai.
@@ -496,7 +495,7 @@ say @hewan;
 
 Banyak pengoperasian dapat dilakukan pada arrays seperti contoh dibawah:
 
-Saran: karakter tilde  `~` digunakan untuk menggabungkan string.
+TIP: karakter tilde  `~` digunakan untuk menggabungkan string.
 
 [source,raku]
 .`Script`
@@ -506,7 +505,7 @@ say "Di kebun binatang ada " ~ @hewan.elems ~ " hewan";
 say "Hewannya antara lain: " ~ @hewan;
 say "Kebun binatang akan mengadopsi gorila";
 @hewan.push("gorila");
-say "Sekarang kebun binatang mempunyai hewan: " ~ @hewan; 
+say "Sekarang kebun binatang mempunyai hewan: " ~ @hewan;
 say "Hewan pertama yang diadopsi adalah " ~ @hewan[0];
 @hewan.pop;
 say "Sayangnya gorilanya kabur dan yang tersisa: " ~ @hewan;
@@ -607,7 +606,7 @@ say @tabel;
 [3 z]
 ----
 
-CATATAN: Untuk lebih lengkapnya tentang referensi Array, kunjungi https://docs.raku.org/type/Array
+NOTE: Untuk lebih lengkapnya tentang referensi Array, kunjungi https://docs.raku.org/type/Array
 
 === Hashes
 [source,raku]
@@ -645,18 +644,18 @@ Ibukota dari Perancis adalah: Paris
 ----
 
 .Penjelasan
-`.push: (katakunci => 'nilai')` menambahkan pasangan kata kunci dan nilainya. +
+`.push: (katakunci \=> 'nilai')` menambahkan pasangan kata kunci dan nilainya. +
 `.kv` mengembalikan daftar nilai seluruh pasangan kata kunci dan nilainya. +
 `.keys` mengembalikan daftar nilai seluruh kata kunci saja. +
 `.values` mengembalikan daftar nilai seluruh nilai dari kata kunci saja. +
 Kita dapak mengakses nilai spesifik dari kata kunci tertentu dengan `%hash<katakunci>`
 
-CATATAN: Untuk referensi lengkap Hash, kunjungi https://docs.raku.org/type/Hash
+NOTE: Untuk referensi lengkap Hash, kunjungi https://docs.raku.org/type/Hash
 
 === Types
 Dicontoh sebelumnya, kita tidak menspesifikasi tipe nilai dari suatu variabel.
 
-SARAN: `.WHAT` akan mengembalikan tipe nilai yang disimpan dalam variabel.
+TIP: `.WHAT` akan mengembalikan tipe nilai yang disimpan dalam variabel.
 
 [source,raku]
 ----
@@ -862,7 +861,7 @@ say $a;
 Binding variabel (pengikatan pada variabel) bersifat 2 arah. +
 `$a := $b` and `$b := $a` mempunyai efek yang sama.
 
-CATATAN: Untuk informasi yang lebih lengkap tentang variabel, kunjungi https://docs.raku.org/language/variables
+NOTE: Untuk informasi yang lebih lengkap tentang variabel, kunjungi https://docs.raku.org/language/variables
 
 == Fungsi dan Mutator
 
@@ -1019,8 +1018,8 @@ for @array -> $array-item {
 }
 ----
 
-Kode diatas kita membuat sebuah array, kemudian kita melakukan pengulangan terhadap array tersebut, 
-membuat variabel `$array-item` untuk menampung nilai dari tiap pengulangan, 
+Kode diatas kita membuat sebuah array, kemudian kita melakukan pengulangan terhadap array tersebut,
+membuat variabel `$array-item` untuk menampung nilai dari tiap pengulangan,
 melakukan perkalian `*100` pada tiap item array, kemudian menampilkan hasil tiap perulangan.
 
 === given
@@ -1070,7 +1069,7 @@ loop (my $i = 0; $i < 5; $i++) {
 }
 ----
 
-CATATAN: Untuk informasi lebih lanjut tentang pengulangan dan pengkondisian, kunjungi https://docs.raku.org/language/control
+NOTE: Untuk informasi lebih lanjut tentang pengulangan dan pengkondisian, kunjungi https://docs.raku.org/language/control
 
 == I/O
 Dalam Raku, dua antar muka yang sering dipakai adalah Terminal dan file.
@@ -1121,7 +1120,7 @@ say "Dear $nama, selamat datang di Raku";
 
 === Running Shell Commands (Menjalankan program shell/terminal)
 
-2 subroutines (https://id.wikipedia.org/wiki/Subrutin) dapat digunakan untuk menjalankan program shell:
+2 link:https://id.wikipedia.org/wiki/Subrutin[subroutines] dapat digunakan untuk menjalankan program shell:
 
 * `run` menjalankan program external tanpa melibatkan shell
 
@@ -1147,7 +1146,7 @@ shell "dir";
 ----
 Perintah atau program `echo` dan `ls` adalah perintah shell yang umum pada sistem operasi Linux: +
 Perintah `echo` mencetak keluaran teks pada terminal (hampir sama dengan fungsi `print` di Raku) +
-Perintah `ls` mencetak daftar semua file dan direktori yang ada pada direktori yang sekarang. 
+Perintah `ls` mencetak daftar semua file dan direktori yang ada pada direktori yang sekarang.
 
 Perintah atau program `dir` sama dengan perintah `ls` di sistem operasi Windows.
 
@@ -1208,17 +1207,17 @@ rmdir "folderbaru";
 
 Anda juga dapat memeriksa jika suatu file atau direktori ada atau tidak:
 
-Buat direktori baru `folder123` dan file kosong `script123.pl6`
+Buat direktori baru `folder123` dan file kosong `script123.p6`
 
 [source,raku]
 ----
-say "script123.pl6".IO.e;
+say "script123.p6".IO.e;
 say "folder123".IO.e;
 
-say "script123.pl6".IO.d;
+say "script123.p6".IO.d;
 say "folder123".IO.d;
 
-say "script123.pl6".IO.f;
+say "script123.p6".IO.f;
 say "folder123".IO.f;
 ----
 
@@ -1226,17 +1225,17 @@ say "folder123".IO.f;
 `IO.f` memeriksa jika file path adalah file. +
 `IO.d` memeriksa jika file path adalah sebuah direktori.
 
-PERINGATAN: Pengguna Windows dapat menggunakan `/` atau `\\` untuk mendefinisikan direktori +
+WARNING: Pengguna Windows dapat menggunakan `/` atau `\\` untuk mendefinisikan direktori +
 `C:\\rakudo\\bin` +
 `C:/rakudo/bin` +
 
-CATATAN: Untuk informasi lanjut seputar I/O, kunjungi https://docs.raku.org/type/IO
+NOTE: Untuk informasi lanjut seputar I/O, kunjungi https://docs.raku.org/type/IO
 
 == Subroutines
 === Definisi
-*Subroutines* (biasa disebut *subs* atau *functions) bertujuan untuk mengemas dan menggunakan kembali suatu fungsi. +
+*Subroutines* (biasa disebut *subs* atau *functions*) bertujuan untuk mengemas dan menggunakan kembali suatu fungsi. +
 
-Sebuah definisi subroutine dimulai dengan kata kunci `sub`. 
+Sebuah definisi subroutine dimulai dengan kata kunci `sub`.
 Perhatikan contoh dibawah:
 
 [source,raku]
@@ -1333,7 +1332,7 @@ sub kuadrat ($x) {
 say "7 kuadrat = " ~ kuadrat(7);
 ----
 
-Supaya lebih jelas, disarankan untuk secara eksplisit mendefinisikan nilai yang akan dikembalikan. 
+Supaya lebih jelas, disarankan untuk secara eksplisit mendefinisikan nilai yang akan dikembalikan.
 Ini dapat dilakukan dengan kata kunci `return`.
 [source,raku]
 .Explicit return
@@ -1393,11 +1392,10 @@ say "1.2 kuadrat = " ~ kuadrat(1.2);
 ----
 ====
 
-CATATAN: Untuk info lebih lanjut tentang subroutines dan functions, kunjungi https://docs.raku.org/language/functions
+NOTE: Untuk info lebih lanjut tentang subroutines dan functions, kunjungi https://docs.raku.org/language/functions
 
 == Functional Programming
-https://id.wikipedia.org/wiki/Pemrograman_Fungsional
-Dichapter ini kita akan melihat beberapa fitur yang mengfasilitasi Functional Programming.
+Dichapter ini kita akan melihat beberapa fitur yang mengfasilitasi link:https://id.wikipedia.org/wiki/Pemrograman_Fungsional[Functional Programming].
 
 === Functions are first-class citizens
 Functions/subroutines adalah warga negara kelas satu:
@@ -1481,7 +1479,7 @@ my @final-array = @array.unique.sort.reverse;
 say @final-array;
 ----
 
-Anda dapat melihat bahwa methods yang dirangkai lebih mudah untuk dilihat dimata. 
+Anda dapat melihat bahwa methods yang dirangkai lebih mudah untuk dilihat dimata.
 
 === Feed Operator
 *feed operator*, biasa disebut _pipe_ dibeberapa pemrograman fungsional, mengilustrasikan lebih lanjut method yang dirangkai.
@@ -1538,7 +1536,7 @@ Kita dapat juga menggunakan subroutine custom. Didalam hal ini `&genap`.
 
 Hal ini sangat praktis mengingat kita tidak perlu menggunakan pengulangan `loop` untuk setiap nilai elemen.
 
-PERINGATAN: Raku memberikan garansi bahwa urutan dari hasil adalah sama dengan daftar yang asli.
+WARNING: Raku memberikan garansi bahwa urutan dari hasil adalah sama dengan daftar yang asli.
             Tetapi tidak ada garansi bahwa Raku akan mengeksekusi methods sesuai daftar urutan atau dalam thread yang sama. Jadi, hati-hati dengan methods yang dapat menimbulkan efek samping, seperti `say` atau `print`.
 
 === Junctions
@@ -1608,7 +1606,7 @@ say $lazylist;
 Dicontoh ini, kita mendefinisikan secara eksplisit sebuah generator dalan `{ }` +
 lazy list akan mengembalikan elemen (Jika dipanggil) sebagai berikut (0, 3, 6, 9, 12)
 
-[PERINGATAN]
+[WARNING]
 ====
 Ketika menggunakan generator secara eksplisit, titik akhir harus nilai yang dapat digenerate oleh generator. +
 Jika titik akhir contoh diatas diubah menjadi 10, maka program tidak akan berhenti.
@@ -1678,10 +1676,10 @@ say $malam("Jane");
 Dicontoh ini, kita mendefinisikan sebuah subroutine `selamat($periode)` yang menerima satu argumen `$periode`
 dan megembalikan subroutine baru. Subroutine tersebut menerima satu argumen `$nama` dan mengembalikan gabungan argumen.
 
-Dicontoh ini kita menggunakan subroutine `selamat` untuk membuat 2 subroutine baru, yang pertama mengeluarkan output `Selamat Pagi` 
+Dicontoh ini kita menggunakan subroutine `selamat` untuk membuat 2 subroutine baru, yang pertama mengeluarkan output `Selamat Pagi`
 dan satu lagi `Selamat Malam`.
 
-`$pagi` dan `$malam` keduanya adalah closures. Mereka sama-sama memakai subroutine yang sama, tetapi berbeda environment. + 
+`$pagi` dan `$malam` keduanya adalah closures. Mereka sama-sama memakai subroutine yang sama, tetapi berbeda environment. +
 Pada environment `$pagi`, `$periode` nya `Pagi` sedangkan `$malam`, `$periode` nya `Malam`.
 
 == Classes & Objects
@@ -1727,7 +1725,7 @@ Kata kunci `class` digunakan untuk mendefinisikan sebuah class. +
 Kata kunci `has` digunakan untuk mendefiniskan atribut dari sebuah class. +
 Method `.new()` disebut *constructor*. method ini membuat objek sebagai instansi dari class yang dipanggil.
 
-Pada contoh diatas, variabel `$john` menampung referensi kepada instansi baru "Manusia" yang didefinisikan melalui `Manusia.new()`. + 
+Pada contoh diatas, variabel `$john` menampung referensi kepada instansi baru "Manusia" yang didefinisikan melalui `Manusia.new()`. +
 Argumen-argumen yang dideklarasikan pada method `.new()` digunakan untuk memberikan nilai kepada atribut-atribut class tersebut.
 
 Sebuah kelas dapat diberikan ruang lingkup lexical menggunakan kata kunci `my`:
@@ -1797,9 +1795,9 @@ Konstruktor tersebut dapat digunakan untuk membuat objek dengan memberikan argum
 Defaultnya, argumen pada konstruktor hanya dapat diberikan dengan *named arguments*. +
 Dalam contoh diatas, perhatikan argumen yang diberikan ke `.new()` didefinisikan dengan penamaan:
 
-* nama => 'John'
+* nama \=> 'John'
 
-* umur => 23
+* umur \=> 23
 
 
 Bagaimana jika kita tidak ingin memberikan nama dari tiap atribut setiap kali kita ingin mebuat objek? +
@@ -1856,7 +1854,7 @@ say $john.berhak;
 ----
 
 Ketika methods didefinisikan didalam suatu class, method dapat dipanggil pada objek tertentu menggunakan _tanda titik_: +
-_objek_*.*_method_ atau seperti contoh diatas: `$john.nilai-umur`
+_objek_ *.* _method_ atau seperti contoh diatas: `$john.nilai-umur`
 
 Didalam definisi suatu method, jika kita perlu mereferensikan objek untuk memanggil method lainnya, kita dapat menggunakan kata kunci `self`. +
 
@@ -2285,7 +2283,7 @@ Introspection difasilitasi dengan:
 * `~~` disebut operator smart-match.
 Ia mengevaluasi ke _True_ bila objek dibuat dari class yang dibandingkan atau apapun yang diwariskan.
 
-[CATATAN]
+[NOTE]
 --
 Untuk informasi lebih lanjut Pemrograman berbasis objek, kunjungi:
 
@@ -2326,7 +2324,7 @@ say "Apa kabar?"
 .`Output`
 ----
 Type check failed in assignment to $nama; expected Str but got Int
-   in block <unit> at exceptions.pl6:2
+   in block <unit> at exceptions.p6:2
 ----
 
 Perhatikan pada saat error terjadi (dalam hal ini, memberikan bilangan angka ke variabel string) program akan terhenti dan baris kode lainnya tidak akan dievaluasi.
@@ -2419,7 +2417,7 @@ Semua typed exceptions merupakan turunan dari class `X`, dibawah ada beberapa co
 `X::OS` merupakan eksepsi terkait error OS +
 `X::Str::Numeric` meruapakan eksepsi terkait merubah tipe data string ke numerik
 
-CATATAN: Untuk tipe eksepsi yang lebih lengkap dan method terkait, kunjungi https://docs.raku.org/type-exceptions.html
+NOTE: Untuk tipe eksepsi yang lebih lengkap dan method terkait, kunjungi https://docs.raku.org/type-exceptions.html
 
 
 == Regular Expressions
@@ -2650,7 +2648,7 @@ if 'Rakudo adalah Raku compiler' ~~ m/:s Raku/ {
 .Output
 ----
 Hasil yang cocok adalah: Raku
-String sebelum hasil cocok adalah: Rakudo adalah 
+String sebelum hasil cocok adalah: Rakudo adalah
 String setelah hasil cocok adalah:  compiler
 Hasil string yang cocok mulai pada posisi: 14
 Hasil string yang cocok berakhir pada posisi: 20
@@ -2675,7 +2673,7 @@ Mari kita cek jika suatu email itu valid atau tidak. +
 Untuk contoh ini kita akan berasumsi sebuah email yang valid mempunyai format sebagai berikut: +
 nama depan [dot] nama belakang [at] perusahaan [dot] (com/org/net)
 
-PERINGATAN: regex yang digunakan dicontoh ini untuk validasi email tidak terlalu akurat. +
+WARNING: regex yang digunakan dicontoh ini untuk validasi email tidak terlalu akurat. +
 Hanya bertujuan sebagai demonstrasi fungsi regex pada Raku. +
 Jangan gunakan dalam lingkungan produksi.
 
@@ -2738,7 +2736,7 @@ if $email ~~ / <banyak-huruf> <dot> <banyak-huruf> <at> <banyak-huruf-angka> <do
 Regex yang mempunyai nama didefinisikan dengan sintaks berikut `my regex nama-regex { definisi regex }` +
 Regex yang mempunyai nama dapat dipanggil menggunakan sintaks berikut: `<nama-regex>`
 
-CATATAN: Untuk info lebih lanjut tentang regex, kunjungi https://docs.raku.org/language/regexes
+NOTE: Untuk info lebih lanjut tentang regex, kunjungi https://docs.raku.org/language/regexes
 
 == Raku Modules
 Raku adalah bahasa pemrograman bertujuan umum. Ia dapat digunakan untuk mengatasi banyak kerjaan termasuk:
@@ -2754,7 +2752,7 @@ Untuk menginstall sebuah modul yang spesifik, ketikkan perintah dibawah pada ter
 
 `zef install "nama modul"`
 
-CATATAN: Direktori Modul Raku dapat ditemukan di: https://modules.raku.org/
+NOTE: Direktori Modul Raku dapat ditemukan di: https://modules.raku.org/
 
 === Menggunakan Modul
 MD5 adalah fungsi hash kriptografis yang memproduksi nilah hash 128-bit. +
@@ -2779,7 +2777,7 @@ say $hashed-password;
 Untuk dapat menjalankan fungsi `md5_hex()` yang membuat hashes, kita perlu untuk memuat modul yang dibutuhkan. +
 Kata kunci `use` memuat modul agar dapat digunakan didalam skrip.
 
-PERINGATAN: Dalam prakternya, MD5 Hash sendiri tidak cukup, karena dapat diserang dengan metode brute force memakai kumpulan kata. +
+WARNING: Dalam prakternya, MD5 Hash sendiri tidak cukup, karena dapat diserang dengan metode brute force memakai kumpulan kata. +
 Idealnya harus dikombinasikan dengan sebuah salt, tautan link:https://en.wikipedia.org/wiki/Salt_(cryptography)[https://en.wikipedia.org/wiki/Salt_(cryptography)].
 
 == Unicode
@@ -2984,17 +2982,17 @@ Jika *broken*, maka akan ada eksepsi yang dilemparkan.
 
 Check the time it took each script to complete.
 
-PERINGATAN: paralelisme selalu menambah beban kerja pada threading. Jika penambahan beban tidak diimbangi dengan kecepatan, skrip akan lebih lambat. +
+WARNING: paralelisme selalu menambah beban kerja pada threading. Jika penambahan beban tidak diimbangi dengan kecepatan, skrip akan lebih lambat. +
 Ini mengapa, penggunaan `race`, `hyper`, `start` dan `await` untuk skrip yang sederhana dapat melambatkannya.
 
 === Concurrency and Asynchrony
-CATATAN: Untuk info lebih lanjut tentang Concurrency dan Asynchronous, kunjungi https://docs.raku.org/language/concurrency
+NOTE: Untuk info lebih lanjut tentang Concurrency dan Asynchronous, kunjungi https://docs.raku.org/language/concurrency
 
 == Native Calling Interface
 
-Raku memberikan kita kemampuan untuk mengakses library C, menggunakan Native Calling Interface. 
+Raku memberikan kita kemampuan untuk mengakses library C, menggunakan Native Calling Interface.
 
-`NativeCall` adalah modul standar bawaan Raku dan menawarkan fungsi untuk memudahkan tugas terkait interaksi antara Raku dan C. 
+`NativeCall` adalah modul standar bawaan Raku dan menawarkan fungsi untuk memudahkan tugas terkait interaksi antara Raku dan C.
 
 === Memanggil sebuah fungsi
 
@@ -3025,11 +3023,11 @@ gcc -c ncitest.c
 gcc -shared -o ncitest.dll ncitest.o
 ----
 
-Didalam direktori yang sama dimana anda mengkompilasi library C, buat file Raku baru 
+Didalam direktori yang sama dimana anda mengkompilasi library C, buat file Raku baru
 yang berisi kode dibawah dan jalankan.
 
 [source,raku]
-.ncitest.pl6
+.ncitest.p6
 ----
 use NativeCall;
 
@@ -3050,7 +3048,7 @@ Terakhir, kita memanggil subroutine Raku kita.
 
 Intinya adalah deklarasi sebuah subroutine dengan trait `is native` dan penamaan dari library C.
 
-=== Mengganti nama sebuah fungsi 
+=== Mengganti nama sebuah fungsi
 
 Pada contoh diatas, kita melihat bagaimana kita dapat memanggil fungsi C yang sederhana dengan membungkusnya
 dengan subroutine Raku menggunakan penamaan yang sama dan trait `is native`.
@@ -3061,7 +3059,7 @@ Untuk melakukannya, kita dapat gunakan trait `is symbol`.
 Mari kita modifikasi skrip Raku diatas dan merubah nama subroutine dari `hellofromc` menjadi `hello`
 
 [source,raku]
-.ncitest.pl6
+.ncitest.p6
 ----
 use NativeCall;
 
@@ -3091,7 +3089,7 @@ void hellofromc (char* nama) {
 ----
 
 [source,raku]
-.ncitest.pl6
+.ncitest.p6
 ----
 use NativeCall;
 
@@ -3116,7 +3114,7 @@ int tambah (int a, int b) {
 ----
 
 [source,raku]
-.ncitest.pl6
+.ncitest.p6
 ----
 use NativeCall;
 
@@ -3188,7 +3186,7 @@ Untungnya Raku menyediakan banyak tipe untuk ini.
 
 |===
 
-CATATAN: Untuk info lebih lanjut pada Native Calling Interface, kunjungi https://docs.raku.org/language/nativecall
+NOTE: Untuk info lebih lanjut pada Native Calling Interface, kunjungi https://docs.raku.org/language/nativecall
 
 == Komunitas
 

@@ -1,7 +1,7 @@
-= Perl 6 入门
+= Raku 入门
 Naoum Hankache <naoum@hankache.com>; ohmycloud <http://ohmycloud.github.io>; wenjie1991 <https://github.com/wenjie1991>
-:description: Perl 6 入门
-:keywords: perl6, perl 6, 入门, perl6intro, perl 6 入门, perl 6 指南, perl 6 intro
+:description: Raku 入门
+:keywords: perl6, Raku, 入门, perl6intro, Raku 入门, Raku 指南, Raku Intro, Raku Guide
 :Revision: 1.0
 :icons: font
 :source-highlighter: pygments
@@ -12,71 +12,73 @@ Naoum Hankache <naoum@hankache.com>; ohmycloud <http://ohmycloud.github.io>; wen
 :doctype: book
 :lang: zh
 
-本文档旨在为您提供 Perl 6 编程语言的快速概述。
-它可以让 Perl 6 初学者快速上手。
+本文档旨在为您提供 Raku 编程语言的快速概述。
+它可以让 Raku 初学者快速上手。
 
-本文档的一部分章节涉及 http://docs.perl6.org[Perl 6文档] 的其他（更完整和准确）部分。
+本文档的一部分章节涉及 link:http://docs.raku.org[Raku 文档]的其他（更完整和准确）部分。
 如果您需要有关特定主题的更多信息，您应该阅读它们。
 
 在本文档中，您会找到大部分所讨论主题的示例。
 为了更好地理解它们，请花时间再现所有的例子。
 
-.License 
+.许可证
 本工作根据知识共享署名 - 授权4.0国际许可协议进行许可。
 要查看此许可证的副本，请访问
 
 * https://creativecommons.org/licenses/by-sa/4.0/.
 
-.Contribution
+.贡献
 如果您想对此文档做贡献，请访问：
 
-* https://github.com/hankache/perl6intro
+* https://github.com/hankache/rakuguide
 
-.Feedback
+.意见反馈
 欢迎所有的反馈：
 naoum@hankache.com
 
 如果你喜欢这个工作， 欢迎在
-link:https://github.com/hankache/perl6intro[Github] 给这个仓库点赞。
+link:https://github.com/hankache/rakuguide[Github] 给这个仓库点赞。
 
-.Translations
-* Bulgarian: http://bg.perl6intro.com
-* Chinese: http://zh.perl6intro.com
-* Dutch: http://nl.perl6intro.com
-* French: http://fr.perl6intro.com
-* German: http://de.perl6intro.com
-* Italian http://it.perl6intro.com
-* Japanese: http://ja.perl6intro.com
-* Portuguese: http://pt.perl6intro.com
-* Spanish: http://es.perl6intro.com
+.翻译
+* 保加利亚语: https://raku.guide/bg
+* 中文: https://raku.guide/zh
+* 荷兰语: https://raku.guide/nl
+* 法语: https://raku.guide/fr
+* 德语: https://raku.guide/de
+* 印度尼西亚语: https://raku.guide/id
+* 意大利语 https://raku.guide/it
+* 日语: https://raku.guide/ja
+* 葡萄牙语: https://raku.guide/pt
+* 西班牙语: https://raku.guide/es
+* 土耳其语: https://raku.guide/tr
+* 俄语: https://raku.guide/ru
 
 :sectnums:
 == 序言
-=== 什么是 Perl 6
-Perl 6 是一种高级的，通用的，渐进类型的语言。
-Perl 6 是多范式的。它支持过程式编程，面向对象编程和函数式编程。
+=== 什么是 Raku
+Raku 是一种高级的，通用的，渐进类型的语言。
+Raku 是多范式的。它支持过程式编程，面向对象编程和函数式编程。
 
-.Perl 6 motto:
+.Raku motto:
 * TMTOWTDI (发音是 Tim Toady): 每个问题都有许多解决方式。
 * 简单的事情应该保持简单，困难的事情应该变得简单，不可能的事情应该成为可能。
 
-=== 术语 
-* *Perl 6*: 带有测试套件的语言规范。
-Perl 6 是通过该规范测试套件的实现。
-* *Rakudo*: Perl 6 的编译器。
+=== 术语
+* *Raku*: 带有测试套件的语言规范。
+Raku 是通过该规范测试套件的实现。
+* *Rakudo*: Raku 的编译器。
 * *Rakudobrew*: Rakudo 的安装管理器。
-* *Zef*: Perl 6 的模块安装程序。
-* *Rakudo Star*: 是一个包含 Rakudo, Zef, 和经遴选的 Perl 6 模块与文档的分发包。
+* *Zef*: Raku 的模块安装程序。
+* *Rakudo Star*: 是一个包含 Rakudo, Zef, 和经遴选的 Raku 模块与文档的分发包。
 
-=== 安装 Perl 6
+=== 安装 Raku
 .Linux
 . 安装 Rakudo Star: 在终端中运行：
 ----
-wget https://rakudo.perl6.org/downloads/star/rakudo-star-2018.01.tar.gz
-tar xfz rakudo-star-2018.01.tar.gz
-cd rakudo-star-2018.01
-perl Configure.pl --gen-moar --prefix /opt/rakudo-star-2018.01
-make install
+wget https://rakudo.perl6.org/downloads/star/rakudo-star-2019.03.tar.gz
+tar xfz rakudo-star-2019.03.tar.gz
+cd rakudo-star-2019.03
+perl Configure.pl --gen-moar --make-install --prefix ~/rakudo
 ----
 
 对于其它选项, 请参阅 http://rakudo.org/how-to-get-rakudo/#Installing-Rakudo-Star-Linux
@@ -87,25 +89,25 @@ make install
 * 按照在 Linux 上安装步骤进行同样的操作
 * 使用 homebrew 安装: `brew install rakudo-star`
 * 使用 MacPorts 安装: `sudo port install rakudo`
-* 从 https://rakudo.perl6.org/downloads/star/ 下载最新的安装器(.dmg 后缀的文件) 
+* 从 https://rakudo.org/latest/star/macos 下载最新的安装器(.dmg 后缀的文件)
 
 .Windows
-. 从 http://rakudo.org/downloads/star/ 下载最新的安装器(.msi 后缀的文件) +
-如果你的系统架构是 32-bit, 则下载 x86 文件; 如果是 64-bit, 下载 x86_64 文件。
+. 从 或 下载最新的安装器(.msi 后缀的文件) +
+. 如果你的系统架构是 64-bit, 可以从 https://rakudo.org/latest/star/win64 下载最新的安装器(.msi 后缀的文件); 如果是 32-bit, 则从 https://rakudo.org/latest/star/win32 下载最新的安装器(.msi 后缀的文件）。
 . 安装完成后，确保 `C:\rakudo\bin` 在 PATH 中。
 
 .Docker
 . 获取官方的 Docker 镜像 `docker pull rakudo-star`
 . 然后运行一个带有该镜像的容器 `docker run -it rakudo-star`
 
-=== 运行 Perl 6 代码
+=== 运行 Raku 代码
 
-运行 Perl 6 代码可以通过使用 REPL（Read-Eval-Print 循环)来实现。
+运行 Raku 代码可以通过使用 REPL（Read-Eval-Print 循环)来实现。
 实现方法是，打开命令行终端，输入 `perl6` 后回车。这会导致命令提示符 `>` 的出现。接着, 输入一行代码后回车。
 REPL 将会打印出该行的返回值。然后你可以输入另外的行, 或输入 `exit` 并回车以离开 REPL。
 
-或者，你可以在文件中编写你的代码，保存后再运行。建议 Perl 6 脚本文件的扩展名设定为 `.pl6`。
-运行该文件的代码时只需将 `perl6 filename.pl6` 输入到命令行终端后回车即可。
+或者，你可以在文件中编写你的代码，保存后再运行。建议 Raku 脚本文件的扩展名设定为 `.raku`。
+运行该文件的代码时只需将 `perl6 filename.raku` 输入到命令行终端后回车即可。
 但不像 REPL, 这不会自动打印出每一行的结果：这里要求文件中的代码必须包含 `say` 那样的语句以打印输出。
 
 REPL 大多用于测试特殊代码片段，通常只有有一行。对于超过一行的程序，建议先把它们保存到文件中而后再运行。
@@ -125,16 +127,16 @@ Rakudo Star 搭载了一个行编辑器来帮你最大程度地利用 REPL。
 --
 
 === 编辑器
-因为大多数情况下我们会在文件中编写并存储 Perl 6 程序，因此我们需要一个优雅的而且能识别 Perl 6 语法的文本编辑器。
+因为大多数情况下我们会在文件中编写并存储 Raku 程序，因此我们需要一个优雅的而且能识别 Raku 语法的文本编辑器。
 
 从个人角度来说，我推荐正在使用的 https://atom.io/[Atom]。
-这是一个时尚的文本编辑器，带有开箱即用的 Perl 6 语法高亮功能。
-https://atom.io/packages/language-perl6[Perl 6 FE] 是相对于 Atom 默认 Perl 6 语法高亮插件的另一种选择，也可以高亮 Perl 6 的语法，该软件来源于原始的包，
+这是一个时尚的文本编辑器，带有开箱即用的 Raku 语法高亮功能。
+https://atom.io/packages/language-perl6[Raku FE] 是相对于 Atom 默认 Raku 语法高亮插件的另一种选择，也可以高亮 Raku 的语法，该软件来源于原始的包，
 但存在很多 bug 需要修补和编辑。
 
 社区里的其他同伴也有使用 http://www.vim.org/[Vim] ， https://www.gnu.org/software/emacs/[Emacs] 和 http://padre.perlide.org/[Padre] 的。
 
-最新版本的 Vim 自带 Perl 6 语法高亮的功能，Emacs 和 Padre 则需要另行安装额外的包。
+最新版本的 Vim 自带 Raku 语法高亮的功能，Emacs 和 Padre 则需要另行安装额外的包。
 
 
 === Hello World!
@@ -149,7 +151,7 @@ say 'hello world';
 'hello world'.say;
 
 === 语法概要
-Perl 6 是 *形式自由的*, (大多数时候)你可以使用任意数量的空格。
+Raku 是 *形式自由的*, (大多数时候)你可以使用任意数量的空格。
 
 *语句* 通常是一个逻辑代码行, 它们需要以一个分号结尾:
 `say "Hello" if True;`
@@ -191,7 +193,7 @@ Perl 6 是 *形式自由的*, (大多数时候)你可以使用任意数量的空
 
 * 它们可以包含数字 (除了第一个字符)。
 
-* 它们可以包含破折号或撇号(除了第一个和最后一个字符), 前提是每个短划线或撇号的右侧有一个字母字符。
+* 它们可以包含破折号或撇号(除了第一个和最后一个字符), 前提是每个破折号或撇号的右侧有一个字母字符。
 
 |===
 
@@ -228,17 +230,17 @@ Perl 6 是 *形式自由的*, (大多数时候)你可以使用任意数量的空
 
 注释被分为 3 种类型:
 
-* 单行注释: 
+* 单行注释:
 +
 [source,perl6]
 # This is a single line comment
 
-* 嵌套的注释: 
+* 嵌套的注释:
 +
 [source,perl6]
 say #`(This is an embedded comment) "Hello World."
 
-* 多行注释: 
+* 多行注释:
 +
 [source,perl6]
 -----------------------------
@@ -304,17 +306,41 @@ say "Hello $name";   # Hello John Doe
 
 | != | 中缀 | 数值不等 | 9 != 7  | True
 
-| < | 中缀 | 小于 | 9 < 7  | False
+| < | 中缀 | 数值小于 | 9 < 7  | False
 
-| > | 中缀 | 大于 | 9 > 7  | True
+| > | 中缀 | 数值大于 | 9 > 7  | True
 
-| \<= | 中缀 | 小于等于 | 7 \<= 7  | True
+| \<= | 中缀 | 数值小于等于 | 7 \<= 7  | True
 
-| >= | 中缀 | 大于等于 | 9 >= 7  | True
+| >= | 中缀 | 数值大于等于 | 9 >= 7  | True
+
+.3+| +<=>+ .3+| 中缀 .3+| 数值比较 | 1 +<=>+ 1.0 | Same
+
+<| 1 +<=>+ 2 <| Less
+
+<| 3 +<=> 2+ <| More
 
 | eq | 中缀 | 字符串相等 | "John" eq "John"  | True
 
 | ne | 中缀 | 字符串不等 | "John" ne "Jane"  | True
+
+| lt | 中缀 | 字符串小于 | "a" lt "b" | True
+
+| gt | 中缀 | 字符串大于 | "a" gt "b" | False
+
+| le | 中缀 | 字符串小于等于 | "a" le "a" | True
+
+| ge | 中缀 | 字符串大于等于 | "a" ge "b" | False
+
+.3+| leg .3+| 中缀 .3+| 字符串比较 | "a" leg "a" | Same
+
+<| "a" leg "b" <| Less
+
+<| "c" leg "b" <| More
+
+.2+| cmp .2+| 中缀 .2+| 智能比较 | "a" cmp "b" | Less
+
+<| 3.5 cmp 2.6 <| More
 
 | = | 中缀 | 赋值 | my $var = 7  | 将字面值 `7` 赋值给变量 `$var`
 
@@ -330,19 +356,19 @@ say "Hello $name";   # Hello John Doe
 
 <| 2 ~~ Int <| True
 
-<| "Perl 6" ~~ "Perl 6" <| True
+<| "Raku" ~~ "Raku" <| True
 
-<| "Perl 6" ~~ Str <| True
+<| "Raku" ~~ Str <| True
 
 <| "enlightenment" ~~ /light/ <| ｢light｣
 
 .2+| ++ | 前缀 | 递增 | my $var = 2; ++$var;  | 递增变量然后返回变量值 `3`
 
-<m| 后缀 <d| 递增 <m| my $var = 2; $var++;  <| 返回变量值 `2` 然后递增变量
+| 后缀 <d| 递增 <m| my $var = 2; $var++;  <| 返回变量值 `2` 然后递增变量
 
 .2+|\--| 前缀 | 递减 | my $var = 2; --$var;  | 递减变量然后返回变量值 `1`
 
-<m| 后缀 <d| 递减 <m| my $var = 2; $var--;  <| 返回变量值 `2` 然后递减变量
+| 后缀 <d| 递减 <m| my $var = 2; $var--;  <| 返回变量值 `2` 然后递减变量
 
 .3+| + .3+| 前缀 .3+| 强制转变为数值 | +"3"  | 3
 
@@ -370,19 +396,19 @@ say "Hello $name";   # Hello John Doe
 
 | ! | 前缀 | 强制转换为布尔值并返回相反数 | !4 | False
 
-| .. | 中缀 | Range 构造函数 |  0..5  | 创建 0 到 5 的整数列
+| .. | 中缀 | Range 构造函数 |  0..5  | 创建区间 [0,5] footnote:intervals[维基百科：区间 https://zh.wikipedia.org/zh-cn/%E5%8D%80%E9%96%93#%E5%9A%B4%E6%A0%BC%E5%AE%9A%E7%BE%A9]
 
-| ..^ | 中缀 | Range 构造函数 |  0..^5  | 创建 0 到 4 的整数列
+| ..^ | 中缀 | Range 构造函数 |  0..^5  | 创建区间 [0,5) footnote:intervals[]
 
-| ^.. | 中缀 | Range 构造函数 |  0^..5  | 创建 1 到 5 的整数列
+| ^.. | 中缀 | Range 构造函数 |  0^..5  | 创建区间 (0,5] footnote:intervals[]
 
-| \^..^ | 中缀 | Range 构造函数 |  0\^..^5  | 创建 1 到 4 的整数列
+| \^..^ | 中缀 | Range 构造函数 |  0\^..^5  | 创建区间 (0,5) footnote:intervals[]
 
-| ^ | 前缀 | Range 构造函数 |  ^5  | 等价于0..^5，创建 0 到 4 的整数列
+| ^ | 前缀 | Range 构造函数 |  ^5  | 等价于0..^5，创建区间 [0,5) footnote:intervals[]
 
-| ... | 中缀 | 惰性列表构造函数 |  0...9999  |  只有接到请求时才返回元素
+| \... | 中缀 | 惰性列表构造函数 |  0\...9999  |  只有接到请求时才返回元素
 
-.2+| {vbar} .2+| 前缀 .2+| 扁平化 | {vbar}(0..5)  | (0 1 2 3 4 5) 
+.2+| {vbar} .2+| 前缀 .2+| 扁平化 | {vbar}(0..5)  | (0 1 2 3 4 5)
 
 <| {vbar}(0\^..^5)  <| (1 2 3 4)
 
@@ -417,16 +443,16 @@ say "Hello $name";   # Hello John Doe
 
 |===
 
-NOTE: 可以到 https://docs.perl6.org/language/operators 查看完整的运算符列表和它们的优先级。
+NOTE: 可以到 https://docs.raku.org/language/operators 查看完整的运算符列表和它们的优先级。
 
 == 变量
-Perl 6 中的变量分为 3 类：标量、数组和哈希。
+Raku 中的变量分为 3 类：标量、数组和哈希。
 
 变量名以 *魔符* (sigil) 开头以区分不同类型。
 
-* `$` 用于标量 (scalars)
-* `@` 用于数组 (arrays)
-* `%` 用于哈希 (hashes)
+* `$` 用于标量 (scalar)
+* `@` 用于数组 (array)
+* `%` 用于哈希 (hash)
 
 === 标量
 标量用于存储一项数据或引用。
@@ -459,7 +485,7 @@ JOHN DOE
 eoD nhoJ
 ----
 
-NOTE: 所有可应用于字符串的方法列表，请参照 https://docs.perl6.org/type/Str
+NOTE: 所有可应用于字符串的方法列表，请参照 https://docs.raku.org/type/Str
 
 [source,perl6]
 .整数
@@ -472,7 +498,7 @@ say $age.is-prime; # .is-prime 判断整数值是否为质数
 True
 ----
 
-NOTE: 所有可应用于整数的方法列表，请参照 https://docs.perl6.org/type/Int
+NOTE: 所有可应用于整数的方法列表，请参照 https://docs.raku.org/type/Int
 
 [source,perl6]
 .有理数
@@ -489,7 +515,7 @@ say $age.nude;        # .nude 同时获得分子分母
 (23 10)
 ----
 
-NOTE: 所有可应用于有理数的方法列表，请参照 https://docs.perl6.org/type/Rat
+NOTE: 所有可应用于有理数的方法列表，请参照 https://docs.raku.org/type/Rat
 
 === 数组
 数组是储存有多个值的列表。
@@ -505,31 +531,31 @@ say @animals;
 TIP: 波浪符 `~` 可用于列表中字符串的连接。
 
 [source,perl6]
-.`脚本` 
+.`脚本`
 ----
 my @animals = 'camel','vicuña','llama';
-say "The zoo contains " ~ @animals.elems ~ " animals";
-say "The animals are: " ~ @animals;
-say "I will adopt an owl for the zoo";
+say "动物园容纳了 " ~ @animals.elems ~ " 只动物";
+say "这些动物是: " ~ @animals;
+say "动物园收养了一只 owl";
 @animals.push("owl");
-say "Now my zoo has: " ~ @animals;
-say "The first animal we adopted was the " ~ @animals[0];
+say "现在动物园有: " ~ @animals;
+say "动物园收养的第一只动物是 " ~ @animals[0];
 @animals.pop;
-say "Unfortunately the owl got away and we're left with: " ~ @animals;
-say "We're closing the zoo and keeping one animal only";
-say "We're going to let go: " ~ @animals.splice(1,2) ~ " and keep the " ~ @animals;
+say "不幸的是， owl 走了，还剩下: " ~ @animals;
+say "我们要关闭动物园，只留下一只动物";
+say "我们要放走: " ~ @animals.splice(1,2) ~ " ，只剩下 " ~ @animals;
 ----
 
-.`输出` 
+.`输出`
 ----
-The zoo contains 3 animals
-The animals are: camel vicuña llama
-I will adopt an owl for the zoo
-Now my zoo has: camel vicuña llama owl
-The first animal we adopted was the camel
-Unfortunately the owl got away and we're left with: camel vicuña llama
-We're closing the zoo and keeping one animal only
-We're going to let go: vicuña llama and keep the camel
+动物园容纳了 3 只动物
+这些动物是: camel vicuña llama
+动物园收养了一只 owl
+现在动物园有: camel vicuña llama owl
+动物园收养的第一只动物是 camel
+不幸的是， owl 走了，还剩下: camel vicuña llama
+我们要关闭动物园，只留下一只动物
+我们要放走: vicuña llama ，只剩下 camel
 ----
 
 .说明
@@ -540,7 +566,7 @@ We're going to let go: vicuña llama and keep the camel
 `.splice(a,b)` 会删除从位置 `a` 开始的 `b` 个元素。
 
 ==== 定长数组
-一般数组通过以下方式声明: 
+一般数组通过以下方式声明:
 [source,perl6]
 my @array;
 
@@ -550,7 +576,7 @@ my @array;
 对应地，我们可以创建一个定长数组。 +
 在这种数组中不能访问下标超过定义大小的元素。
 
-可以通过在变量名后的方括号中指定最大元素个数来定义定长数组的长度: 
+可以通过在变量名后的方括号中指定最大元素个数来定义定长数组的长度:
 [source,perl6]
 my @array[3];
 
@@ -575,12 +601,12 @@ my @array[3];
 ----
 
 ----
-第一维的索引值 3 超出了范围（必须是0..2)
+Index 3 for dimension 1 out of range (must be 0..2) 第一维的索引值 3 超出了范围（必须是0..2)
 ----
 
 ==== 多维数组
 到现在为止我们看到的数组还都是一维的。 +
-幸运的是，我们在 Perl 6 中能定义多维数组。
+幸运的是，我们在 Raku 中能定义多维数组。
 
 [source,perl6]
 my @tbl[3;2];
@@ -613,8 +639,8 @@ say @tbl
 [3 z]
 ----
 
-NOTE: 对于完整的数组参考资料，请参照 https://docs.perl6.org/type/Array
- 
+NOTE: 对于完整的数组参考资料，请参照 https://docs.raku.org/type/Array
+
 === Hashes 哈希
 [source,perl6]
 .哈希是一组键值对。
@@ -651,13 +677,13 @@ The capital of France is: Paris
 ----
 
 .说明
-`.push:(key => "value")` 添加一个新键值对。 +
+`.push:(key \=> "value")` 添加一个新键值对。 +
 `.kv` 返回一个包含所有键值对的列表。 +
 `.keys` 返回一个包含所有键的列表。 +
 `.values` 返回一个包含所有值的列表。 +
 我们可以通过哈希中特定值所对应的键来访问这个值。 `%hash<key>`
 
-NOTE: 完整的哈希参考资料，请参照 https://docs.perl6.org/type/Hash
+NOTE: 完整的哈希参考资料，请参照 https://docs.raku.org/type/Hash
 
 === 类型
 前面的例子中，我们并没有指定变量中值的类型。
@@ -689,13 +715,13 @@ say $var;
 say $var.WHAT;
 ----
 
-运行会失败并返回报错信息: `Type check failed in assignment to $var; expected Int but got Str`
+运行会失败并返回报错信息: `Type check failed in assignment to $var; expected Int but got Str 赋值给$var时类型检查失败，预期Int但是得到Str`
 
 这是因为我们预先指定变量类型为(Int),当将(Str)赋值给它的时候就导致了运行失败。
 
 这种编程风格被称为静态类型编程。静态在这里是指变量类型在赋值前定义并且不能在更改。
 
-Perl 6 属于 *渐进类型* ;它同时支持 *静态* 和 *动态* 类型。
+Raku 属于 *渐进类型* ;它同时支持 *静态* 和 *动态* 类型。
 
 .数组和哈希同样可以为静态类型:
 [source,perl6]
@@ -729,7 +755,7 @@ say %student-name.WHAT;
 
 | *类型*  | *描述* | *例子* | *结果*
 
-| Mu | Perl 6 的基础类型 | |
+| Mu | Raku 的基础类型 | |
 
 | Any | 新类和大部分内部类的默认基类 | |
 
@@ -774,7 +800,7 @@ say $var2.WHAT;   # (Any)
 === 作用域
 在第一次使用变量之前，变量需要被声明。
 
-在 Perl 6 中可以使用使用多种声明方式。其中 `my` 已经在上述例子中使用到。
+在 Raku 中可以使用使用多种声明方式。其中 `my` 已经在上述例子中使用到。
 
 [source,perl6]
 my $var=1;
@@ -782,8 +808,8 @@ my $var=1;
 `my` 声明指定了变量上下文作用域。
 换句话说，这个变量只能在它被定义的块中被访问。
 
-Perl 6 中块有 `{}` 界定。
-如果没有块存在，那么变量就在整个 Perl 6 脚本中可用。
+Raku 中块有 `{}` 界定。
+如果没有块存在，那么变量就在整个 Raku 脚本中可用。
 
 [source,perl6]
 ----
@@ -833,7 +859,7 @@ say $var;
 ----
 
 我们不能改变 *绑定* 到变量上的值 +
-*绑定* 通过 `：=` 操作符实现。
+*绑定* 通过 `:=` 操作符实现。
 
 [source,perl6]
 .绑定
@@ -847,11 +873,11 @@ say $var;
 .`输出`
 ----
 123
-Cannot assign to an immutable value
+Cannot assign to an immutable value 不允许赋值到一个不可变值
 ----
 
 [source,perl6]
-.变量也可以绑定到其他变量: 
+.变量也可以绑定到其他变量:
 ----
 my $a;
 my $b;
@@ -871,7 +897,7 @@ say $a;
 就像你已经注意到的那样，绑定变量是双向的。 +
 `$a := $b` 和 `$b := $a` 拥有同样的效果.
 
-NOTE: 关于变量的更多信息，请参见 https://docs.perl6.org/language/variables
+NOTE: 关于变量的更多信息，请参见 https://docs.raku.org/language/variables
 
 == 函数和修改器
 
@@ -914,7 +940,7 @@ say @numbers;      #4
 为了强制一个函数作为修改器那样对原始数据进行修改，而我们可以使用 `.=` 来代替 `.` (#4) (脚本的第9行)
 
 == 循环和条件语句
-Perl 6 有多种条件和循环结构。
+Raku 有多种条件和循环结构。
 
 === if
 仅在条件满足（条件表达式结果为 `True`）时运行代码。
@@ -928,7 +954,7 @@ if $age > 18 {
 }
 ----
 
-在 Perl 6 中我们能倒装条件语句和待运行的代码。 +
+在 Raku 中我们能倒装条件语句和待运行的代码。 +
 将待运行的代码和条件语句倒装后，条件语句总是优先被执行。
 
 [source,perl6]
@@ -945,15 +971,15 @@ say 'Welcome' if $age > 18;
 
 [source,perl6]
 ----
-# run the same code for different values of the variable
-my $number-of-seats = 9;
+# 为变量不同的值运行相同的代码
+my $座位数 = 9;
 
-if $number-of-seats <= 5 {
-  say 'I am a sedan'
-} elsif $number-of-seats <= 7 {
-  say 'I am 7 seater'
+if $座位数 <= 5 {
+  say '我是小轿车'
+} elsif $座位数 <= 7 {
+  say '我是七座车'
 } else {
-  say 'I am a van'
+  say '我是面包车'
 }
 ----
 
@@ -981,7 +1007,7 @@ unless $clean-shoes {
 }
 ----
 
-`否` 运算在 Perl 6 中用 `！` 或 `not` 来实现。
+`否` 运算在 Raku 中用 `！` 或 `not` 来实现。
 
 `unless (条件)` 可以用来代替 `if not (条件)`。
 
@@ -1033,7 +1059,7 @@ for @array -> $array-item {
 
 === given
 
-在 Perl 6 中的 `given`  类似其他语言中的 switch，但是要更加地强大。
+在 Raku 中的 `given`  类似其他语言中的 switch，但是要更加地强大。
 
 [source,perl6]
 ----
@@ -1049,7 +1075,7 @@ given $var {
 
 在成功匹配后，匹配就会停止。
 
-如果在匹配成功后运行的代码块中加了 `proceed`，那么就要在下一个成功匹配后才停止匹配。
+如果在匹配成功后运行的代码块中加了 `proceed`，那么就要在下一次成功匹配后才停止匹配。
 
 [source,perl6]
 ----
@@ -1066,8 +1092,8 @@ given $var {
 === loop
 
 `loop` 是进行 `for` 循环的另一种方式。 +
-Perl 6 中 C 语言家族的 `for` 循环使用 `loop` 来表示。 +
-Perl 6 是 C 语言家族中的一员。
+Raku 中 C 语言家族的 `for` 循环使用 `loop` 来表示。 +
+Raku 是 C 语言家族中的一员。
 
 [source,perl6]
 ----
@@ -1076,11 +1102,11 @@ loop (my $i = 0; $i < 5; $i++) {
 }
 ----
 
-NOTE: 更多关于循环和条件语句的信息，参见 https://docs.perl6.org/language/control
+NOTE: 更多关于循环和条件语句的信息，参见 https://docs.raku.org/language/control
 
 
 == I/O
-在 Perl 6 中，两个最常用的输入/输出的端口是终端和文件。
+在 Raku 中，两个最常用的输入/输出的端口是终端和文件。
 
 === 在终端中基本的 I/O 操作
 
@@ -1109,7 +1135,7 @@ my $name;
 say "Hi, what's your name?";
 $name = get;
 
-say "Dear $name welcome to Perl 6";
+say "Dear $name welcome to Raku";
 ----
 
 当上面的代码运行时，终端会等你输入名字和回车键。
@@ -1124,7 +1150,7 @@ say "Dear $name welcome to Perl 6";
 ----
 my $name = prompt "Hi, what's your name? ";
 
-say "Dear $name welcome to Perl 6";
+say "Dear $name welcome to Raku";
 ----
 
 === 运行 Shell 命令
@@ -1149,7 +1175,7 @@ shell "ls";
 shell "dir";
 ----
 `echo` 和 `ls` 是常用的 Linux shell 命令 +
-`echo` 打印文本到终端（和 Perl 6 中的 `print` 相同 +
+`echo` 打印文本到终端（和 Raku 中的 `print` 相同 +
 `ls` 列出当前目录下所有的文件和文件夹。
 
 `dir` 在 Windows 中和 `ls` 的功能相同。
@@ -1159,7 +1185,7 @@ shell "dir";
 ==== slurp
 `slurp` 用来从文件中读入数据。
 
-建立一个文本文件包含一下内容：
+建立一个文本文件包含以下内容：
 
 .datafile.txt
 ----
@@ -1190,7 +1216,7 @@ spurt "newdatafile.txt", $newdata;
 在运行上述代码后，一个存储有 New score 的文件 _newdatafile.txt_ 会被创建。
 
 === 文件和文件目录操作
-在先前的例子中，Perl 6 能不使用 shell 命令的情况下列出一个目录下所有的内容。
+在先前的例子中，Raku 能不使用 shell 命令的情况下列出一个目录下所有的内容。
 
 [source,perl6]
 ----
@@ -1211,17 +1237,17 @@ rmdir "newfolder";
 
 你还可以检查特定的路径是否存在：
 
-在你要运行以下脚本的目录中，建立一个叫 `folder123` 的空文件夹和一个文件 `script123.pl6`
+在你要运行以下脚本的目录中，建立一个叫 `folder123` 的空文件夹和一个文件 `script123.raku`
 
 [source,perl6]
 ----
-say "script123.pl6".IO.e;
+say "script123.raku".IO.e;
 say "folder123".IO.e;
 
-say "script123.pl6".IO.d;
+say "script123.raku".IO.d;
 say "folder123".IO.d;
 
-say "script123.pl6".IO.f;
+say "script123.raku".IO.f;
 say "folder123".IO.f;
 ----
 
@@ -1233,7 +1259,7 @@ WARNING: Windows 下使用 `/` 或 `\\` 来定义目录 +
 `C:\\rakudo\\bin` +
 `C:/rakudo/bin` +
 
-NOTE: 更多关于 I/O，详见 https://docs.perl6.org/type/IO
+NOTE: 更多关于 I/O，详见 https://docs.raku.org/type/IO
 
 == 子例程
 === 定义
@@ -1290,7 +1316,7 @@ greet "Laura","Mrs.";
 === 默认参数和可选参数
 如果一个子例程被定义需要一个参数，但是我们调用它的时候没有提供所需的参数，那么这个子例程就不能运行。
 
-不过 Perl 6 提供了：
+不过 Raku 提供了：
 
 * 可选参数
 * 默认参数
@@ -1370,7 +1396,7 @@ say "1.2 squared is equal to " ~ squared(1.2);
 如果子例程不能提供符合类型要求的返回值，程序就会报错。
 
 ----
-Type check failed for return value; expected Int but got Rat (1.44)
+Type check failed for return value; expected Int but got Rat (1.44) 返回值类型检查失败，预期Int但是得到Rat（1.44）
 ----
 
 [TIP]
@@ -1378,11 +1404,11 @@ Type check failed for return value; expected Int but got Rat (1.44)
 类型限制不仅可以控制返回值的类型，还可以控制返回值的定义状态。
 
 之前的例子中，我们指定了返回值必须为 `Int`。 +
-我们可以指定返回值 `Int` 需要被严格定义或者不用定义： +
-`--> Int:D` 和 `--> Int:U`
+还可以进一步严格指定返回值 `Int` 是已定义（defined）或未定义（undefined）的： +
+`-\-> Int:D` 和 `-\-> Int:U`
 
 使用类型限制是一个好的习惯。 +
-以下是将前面的例子修改后的结果，其中使用 `:D` 强制返回有定义的 `Int`。
+以下是将前面的例子修改后的结果，其中使用 `:D` 强制返回已定义的 `Int`。
 
 [source,perl6]
 ----
@@ -1393,7 +1419,7 @@ say "1.2 squared is equal to " ~ squared(1.2);
 ----
 ====
 
-NOTE: 关于更多子例程和函数的资料，详见 https://docs.perl6.org/language/functions
+NOTE: 关于更多子例程和函数的资料，详见 https://docs.raku.org/language/functions
 
 
 == 函数式编程
@@ -1448,7 +1474,7 @@ say map(-> $x {$x ** 2}, @array);
 注意我们没有声明子例程并把它作为参数传递给 `map`, 而是在里面直接定义了匿名函数。 +
 匿名函数 `\-> $x {$x ** 2}` 没有句柄并且不能被调用。
 
-按照 Perl 6 的说法我们把这个标记叫做 *pointy block*。
+按照 Raku 的说法我们把这个标记叫做 *pointy block*。
 
 [source,perl6]
 .pointy block 也能用于把函数赋值给变量:
@@ -1461,7 +1487,7 @@ say $squared(9);
 
 === 链式调用
 
-在 Perl 6中, 方法可以链接起来, 你不再需要把一个方法的结果作为参数传递给另外一个方法了。
+在 Raku中, 方法可以链接起来, 你不再需要把一个方法的结果作为参数传递给另外一个方法了。
 
 我们假设你有一个数组。你被要求返回该数组的唯一值, 并且按从大到小的顺序排序。
 
@@ -1474,7 +1500,7 @@ say @final-array;
 ----
 首先我们在 `@array` 上调用 `unique` 函数, 然后我们把它的结果作为参数传递给 `sort` 函数, 再然后我们把结果传递给 `reverse` 函数。
 
-和上面的例子相比, Perl 6 允许链式方法。 +
+和上面的例子相比, Raku 允许链式方法。 +
 上面的例子可以像下面这样写, 利用 *方法链* 的优点:
 
 [source,perl6]
@@ -1489,7 +1515,7 @@ say @final-array;
 === Feed 操作符
 *feed 操作符*, 在有些函数式编程语言中也叫 _管道_, 然而它是链式方法的一个更好的可视化产出。
 [source,perl6]
-.Forward Feed
+.正向流（Forward Feed）
 ----
 my @array = <7 8 9 0 1 2 4 3 5 6>;
 @array ==> unique()
@@ -1510,7 +1536,7 @@ say @final-array;
 
 
 [source,perl6]
-.Backward Feed
+.反向流（Backward Feed）
 ----
 my @array = <7 8 9 0 1 2 4 3 5 6>;
 my @final-array-v2 <== reverse()
@@ -1522,7 +1548,7 @@ say @final-array-v2;
 
 .解释
 
-向后流就像向前流一样, 但是是以反转的顺序写的。 +
+正向流就像反向流一样, 但是是以反转的顺序写的。 +
 
 方法的流动方向是自下而上。
 
@@ -1533,24 +1559,24 @@ say @final-array-v2;
 my @array = <0 1 2 3 4 5 6 7 8 9 10>;
 sub is-even($var) { $var %% 2 };
 
-say @array».is-prime;
-say @array».&is-even;
+say @array>>.is-prime;
+say @array>>.&is-even;
 ----
 
-我们能通过使用 hyper 操作符，调用 Perl 6 中已经定义过的方法。例如 `is-prime` 告诉我们一个数字是否是质数。 +
+我们能通过使用 hyper 操作符，调用 Raku 中已经定义过的方法。例如 `is-prime` 告诉我们一个数字是否是质数。 +
 
 此外我们能定义新的子例程并使用 hyper 操作符调用它们。但是这时我们必须在方法的名字前面加上 `&` 符号。例如 `&is-even`。
 
 这很实用，因为我们不必写 `for` 循环就可以迭代每个值。
 
-WARNING: Perl 6 会保证结果的顺序与原始值的顺序相同。 +
-但是 *不能保证* Perl 6 会真正地在同一个顺序或在同一个线程中调用该方法。 +
+WARNING: Raku 会保证结果的顺序与原始值的顺序相同。 +
+但是 *不能保证* Raku 会真正地在同一个顺序或在同一个线程中调用该方法。 +
 因此，请注意具有副作用的方法，例如 `say` 或 `print`。
 
-===  Junctions
+===  Junction
 *junction* 是值的逻辑叠加。
 
-在下面的例子中 `1|2|3` 是一个 junction。
+在下面的例子中 `1|2|3` 是一个junction。
 [source,perl6]
 ----
 my $var = 2;
@@ -1558,7 +1584,7 @@ if $var == 1|2|3 {
     say "The variable is 1 or 2 or 3"
 }
 ----
-junctions 的使用常常触发 **自动线程化**; 每个 junction 元素都执行该操作, 并且所有的结果被组合到一个新的 junction 中并返回。
+ junction 的使用常常触发 **自动线程化**; 每个 junction 元素都执行该操作, 并且所有的结果被组合到一个新的 junction 中并返回。
 
 ===  惰性列表
 *惰性列表* 是被惰性求值的列表。 +
@@ -1572,8 +1598,8 @@ junctions 的使用常常触发 **自动线程化**; 每个 junction 元素都�
 
 * 定义控制流的能力
 
-我们使用中缀操作符 `...` 来创建惰性列表。 +
-惰性列表拥有一个 *初始元素(s)*, 一个 *生成器* 和一个 *结束点*。
+我们使用中缀操作符 `\...` 来创建惰性列表。 +
+惰性列表具有 *初始元素*, *生成器* 和 *结束点*。
 
 [source,perl6]
 . 简单惰性列表
@@ -1601,7 +1627,7 @@ my  $lazylist = (0,2 ... 10);
 say $lazylist;
 ----
 
-初始的元素是 0 和 2 而结束点是 10。虽然没有定义生成器, 但是使用了初始元素, Perl 6 会把生成器推断为 (+2)。 +
+初始的元素是 0 和 2 而结束点是 10。虽然没有定义生成器, 但是使用了初始元素, Raku 会把生成器推断为 (+2)。 +
 
 这个惰性列表可能返回(如果需要的话)下面的元素 (0, 2, 4, 6, 8, 10)。
 [source,perl6]
@@ -1621,8 +1647,8 @@ say $lazylist;
 
 如果在上面的例子中我们使用的结束点是 10 而非 12, 那么生成器就不会停止。生成器会 _跳过_ 那个结束点。
 
-你可以使用 `0 ...^ * > 10` 代替 `0 ... 10`。 +
-你可以把它读作: 从 0 直到第一个大于 10(不包括它)的值。
+你可以使用 `0 \...^ * > 10` 代替 `0 \... 10`。 +
+你可以把它读作: 从 0 直到第一个大于 10 的值（不包含该值）。
 [source,perl6]
 .这不会使生成器停止
 ----
@@ -1640,7 +1666,7 @@ say $lazylist;
 
 === 闭包
 
-在 Perl 6 中所有的代码对象都是闭包, 这意味着它们能从外部作用域(outer scope)引用词法变量(lexical variables)。
+在 Raku 中所有的代码对象都是闭包, 这意味着它们能从外部作用域(outer scope)引用词法变量(lexical variables)。
 
 [source,perl6]
 ----
@@ -1692,8 +1718,8 @@ say $evening("Jane");
 
 == 类和对象
 
-在上一章中我们学习了 Perl 6 中函数式编程的便利性。 +
-在这一章中我们将看看 Perl 6 中的面向对象编程。
+在上一章中我们学习了 Raku 中函数式编程的便利性。 +
+在这一章中我们将看看 Raku 中的面向对象编程。
 
 ===  介绍
 _面向对象_ 编程是当今广泛使用的范式之一。 +
@@ -1708,9 +1734,9 @@ _面向对象_ 编程是当今广泛使用的范式之一。 +
 
 |===
 
-| 房间里有 4 个 people   | *objects* => 4 people                  
-| 这 4 个人是 humans    | *class* => Human                       
-| 它们有不同的名字,年纪,性别和国籍 | *attribute* => name,age,sex,nationality
+| 房间里有 4 个人   | *对象* => 4 people
+| 这 4 个人是人类    | *类* => Human
+| 它们有不同的名字,年纪,性别和国籍 | *属性* => name,age,sex,nationality
 
 |===
 
@@ -1720,16 +1746,13 @@ _面向对象_ 编程是当今广泛使用的范式之一。 +
 [source,perl6]
 ----
 class Human {
-    has $name;
-    has $age;
-    has $sex;
-    has $nationality;
+  has $.name;
+  has $.age;
+  has $.sex;
+  has $.nationality;
 }
 
-my $john = Human.new(name => 'John',
-                     age  => 23,
-                     sex  => 'M'
-                     nationality => 'American')
+my $john = Human.new(name => 'John', age => 23, sex => 'M', nationality => 'American');
 say $john;
 ----
 
@@ -1772,9 +1795,9 @@ say sayvar;
 ----
 
 `sayvar` 是一个存取器。它让我们通过不直接访问这个变量来访问这个变量。
-在 Perl 6 中使用  *twigils* 使得封装很便利。 +
-Twigils 是第二 _符号_。它们存在于符号和属性名之间。 +
-有两个 twigils 用在类中:
+在 Raku 中使用  *twigil* 使得封装很便利。 +
+twigil 是次级的 _魔符(sigil)_ ，用于魔符和属性名之间。 +
+有两种 twigil 可用于类中:
 
 * `!` 用于显式地声明属性是私有的
 * `.` 用于为属性自动生成存取器
@@ -1795,22 +1818,22 @@ my $john = Human.new(name => 'John', age => 23, sex => 'M', nationality => 'Amer
 say $john;
 ----
 给脚本追加这样的的语句: `say $john.age`; +
-它会返回这样的错误: `Method 'age' not found for invocant of class 'Human'`。 +
+它会返回这样的错误: `Method 'age' not found for invocant of class 'Human' 在类'Human'中没有找到请求的方法'age'`。 +
 原因是 `$!age` 是私有的并且只能用于对象内部。 尝试在对象外部访问它会返回一个错误。
 
 现在用 `has $.age` 代替 `$!age` 并看看 `say $john.age;` 的结果是什么。
 
 
 ===  具名参数 vs. 位置参数
-在 Perl 6 中, 所有的类继承了一个默认的 `.new` 构造函数。 +
+在 Raku 中, 所有的类继承了一个默认的 `.new` 构造函数。 +
 通过为他提供参数, 它能用于创建对象。 +
 只能提供 *具名参数* 给默认的构造函数。 +
 
 如果你考虑上面的例子, 你会看到所有提供给 `.new` 方法的参数都是按名字定义的:
 
-* name => 'John'
+* name \=> 'John'
 
-* age     => 23
+* age  \=> 23
 
 假如我不想在每次创建新对象的时候为每个属性提供一个名字呢? +
 那么我需要创建另外一个接收 *位置参数* 的构造函数。
@@ -1994,7 +2017,7 @@ class Employee is Human {
 `is` 关键字定义了继承。 +
 按面向对象的说法, Employee 是 Human 的 *孩子*, 而 Human 是 Employee 的 *父亲*。
 
-所有的子类继承了父类的属性和方法, 所以没有必要重新它们。
+所有的子类继承了父类的属性和方法, 所以没有必要重新定义它们。
 
 ==== 重写
 
@@ -2056,15 +2079,15 @@ $jane.introduce-yourself;
 
 根据对象所属的类, 会调用正确的方法。
 
-==== Submethods
+==== Submethod
 
-*Submethods* 是一种子类继承不到的方法。 +
+*submethod* 是一种子类继承不到的方法。 +
 它们只能从所声明的类中访问。 +
 它们使用 `submethod` 关键字定义。
 
 === 多重继承
 
-在 Perl 6 中允许多重继承。一个类可以继承自多个其它的类。
+在 Raku 中允许多重继承。一个类可以继承自多个其它的类。
 
 [source,perl6]
 ----
@@ -2116,7 +2139,7 @@ $actual-vs-forecast.plot;
 你应该注意到了, 在 `combo-chart` 身上调用 `plot` 方法并没有产生所要求的结果。它只绘制了一个序列。 +
 发生了什么事? +
 
-`combo-chart` 继承自 `line-chart` 和 `bar-chart`, 它们都有一个叫做 `plot` 的方法。当我们在 `combo-chart` 身上调用那个方法时, Perl 6 内部会尝试通过调用其所继承的方法之一来解决冲突。
+`combo-chart` 继承自 `line-chart` 和 `bar-chart`, 它们都有一个叫做 `plot` 的方法。当我们在 `combo-chart` 身上调用那个方法时, Raku 内部会尝试通过调用其所继承的方法之一来解决冲突。
 
 .纠正
 
@@ -2158,7 +2181,7 @@ say "实际 vs 预测:";
 $actual-vs-forecast.plot;
 ----
 
-.`输出`
+.`输出`（译注，截至2019.4.30，这段代码在实现中的输出与预期不一致，参见 https://github.com/hankache/perl6intro/issues/192 ）
 
 ----
 实际的销售:
@@ -2170,12 +2193,12 @@ $actual-vs-forecast.plot;
 [9 8 10 7 6 9]
 ----
 
-===  Roles
+===  Role
 
-*Roles* 在它们是属性和方法的集合这个意义上和类有点类似。
-Roles 使用关键字 `role` 声明, 而想实现该 role 的类可以使用 `does` 关键字。
+*role* 也是属性和方法的集合，在这个意义上它和类（class）有些相似。
+role 使用关键字 `role` 声明, 而想实现该 role 的类可以使用 `does` 关键字。
 
-.使用 roles 重写多重继承的例子
+.使用 role 重写多重继承的例子
 [source,perl6]
 ----
 role bar-chart {
@@ -2214,7 +2237,7 @@ $actual-vs-forecast.plot;
 
 运行上面的脚本你会看到结果是一样的。
 
-现在你问问自己, 如果 roles 表现得像类的话那么它们的用途是什么呢? +
+现在你问问自己, 如果 role 表现得像类的话那么它们的用途是什么呢? +
 
 要回答你的问题, 修改第一个用于展示多重继承的脚本,  这个脚本中我们 _忘记_ 重写 `plot` 方法了。
 
@@ -2254,15 +2277,16 @@ $actual-vs-forecast.plot;
 
 ----
 ===SORRY!===
-Method 'plot' must be resolved by class combo-chart because it exists in multiple roles (line-chart, bar-chart)
+Method 'plot' must be resolved by class combo-chart because it exists in multiple roles (line-chart, bar-chart) 
+类'combo-chart'的方法'plot'必须被决定，因为存在多个role（line-chart, bar-chart）
 ----
 
 .解释
 
-如果多个 roles 被应用到同一个类中, 会出现冲突并抛出一个编译时错误。 +
+如果多个 role 被应用到同一个类中, 会出现冲突并抛出一个编译时错误。 +
 这是比多重继承更安全的方法, 其中冲突不被认为是错误并且简单地在运行时解决。
 
-Roles 会提醒你有冲突。
+role 会提醒你有冲突。
 
 [source,perl6]
 ----
@@ -2345,10 +2369,10 @@ if $jane ~~ Human {say 'Jane is a Human'};
 
 [NOTE]
 --
-有关 Perl 6 中面向对象编程的更多信息，请参阅：
+有关 Raku 中面向对象编程的更多信息，请参阅：
 
-* https://docs.perl6.org/language/classtut
-* https://docs.perl6.org/language/objects
+* https://docs.raku.org/language/classtut
+* https://docs.raku.org/language/objects
 --
 
 == 异常处理
@@ -2382,14 +2406,14 @@ How are you doing today?
 my Str $name;
 $name = 123;
 say "Hello " ~ $name;
-say "How are you doing today?"
+say "今天过得怎么样？"
 ----
 
 .`输出`
 
 ----
-Type check failed in assignment to $name; expected Str but got Int
-   in block <unit> at exceptions.pl6:2
+Type check failed in assignment to $name; expected Str but got Int 赋值给$name时类型检查失败，预期Str但是得到Int
+   in block <unit> at exceptions.raku:2
 ----
 
 你应该看到当错误出现时(在这个例子中把数组赋值给字符串变量)程序会停止并且其它行的代码不会被执行, 即使它们是正确的。
@@ -2404,28 +2428,28 @@ try {
   say "Hello " ~ $name;
   CATCH {
     default {
-      say "Can you tell us your name again, we couldn't find it in the register.";
+      say "请再说一次你的名字，我们在记录中找不到它。";
     }
   }
 }
-say "How are you doing today?";
+say "今天过得怎么样？";
 ----
 
 .`输出`
 
 ----
-Can you tell us your name again, we couldn't find it in the register.
-How are you doing today?
+请再说一次你的名字，我们在记录中找不到它。
+今天过得怎么样？
 ----
 
-异常处理是使用 `try-catch` block 完成的。
+异常处理是使用 `try-catch` 块完成的。
 
 [source,perl6]
 ----
 try {
-  # code goes in here
-  # 如果有东西出错, 脚本会进入到下面的 CATCH block 中
-  # 如果什么错误也没有, 那么 CATCH block 会被忽略
+  # 代码在这里运行
+  # 如果有东西出错, 脚本会进入到下面的 CATCH 块中
+  # 如果什么错误也没有, 那么 CATCH 块会被忽略
   CATCH {
     default {
       # 只有抛出异常时, 这儿的代码才会被求值
@@ -2434,20 +2458,20 @@ try {
 }
 ----
 
-`CATCH` block 能像定义 `given` block 那样定义。
+`CATCH` 块能像定义 `given` 块那样定义。
 这意味着我们能捕获并处理各种不同类型的异常。
 
 [source,perl6]
 ----
 try {
-  #code goes in here
-  #if anything goes wrong, the script will enter the below CATCH block
-  #if nothing goes wrong the CATCH block will be ignored
+  # 代码在这里运行
+  # 如果有东西出错, 脚本会进入到下面的 CATCH 块中
+  # 如果什么错误也没有, 那么 CATCH 块会被忽略
   CATCH {
-    when X::AdHoc { #do something if an exception of type X::AdHoc is thrown }
-    when X::IO { #do something if an exception of type X::IO is thrown }
-    when X::OS { #do something if an exception of type X::OS is thrown }
-    default { #do something if an exception is thrown and doesn't belong to the above types }
+    when X::AdHoc { # 当异常 X::AdHoc 被抛出时要执行的操作 }
+    when X::IO { # 当异常 X::IO 被抛出时要执行的操作}
+    when X::OS { # 当异常 X::OS 被抛出时要执行的操作 }
+    default { # 当异常类型不属于上述任何一种时要执行的操作}
   }
 }
 ----
@@ -2457,52 +2481,53 @@ try {
 Perl  6 也允许你显式地抛出异常。 +
 有两种类型的异常可以抛出:
 
-* ad-hoc 异常
+* 特设异常（ad-hoc exceptions）
 
-* 类型异常
+* 类型化异常（typed exceptions）
 
 [source,perl6]
-.ad-hoc
+.特设
 ----
 my Int $age = 21;
 die "Error !";
 ----
 
 [source,perl6]
-.typed
+.类型化
 ----
 my Int $age = 21;
 X::AdHoc.new(payload => 'Error !').throw;
 ----
 
-使用 `die` 子例程后面跟着异常消息来抛出 Ad-hoc 异常。
+使用 `die` 子例程后面跟着异常消息来抛出特设异常。
 
-Typed 异常是对象, 因此上面的例子中使用了 `.new()` 构造函数。 +
-所有类型化的异常都是从类 `X` 开始, 下面是一些例子: +
+类型化异常是对象, 因此上面的例子中使用了 `.new()` 构造函数。 +
+所有类型化异常都是从类 `X` 开始, 下面是一些例子: +
 `X::AdHoc` 是最简单的异常类型 +
 `X::IO` 跟 IO 错误有关。 +
 `X::OS` 跟 OS 错误有关。 +
 `X::Str::Numeric` 跟把字符串强制转换为数字有关。
 
-NOTE: 查看异常类型和相关方法的完整列表请到  [http://doc.perl6.org/type.html](http://doc.perl6.org/type.html) 
+NOTE: 查看异常类型和相关方法的完整列表请到  https://docs.raku.org/type-exceptions.html
 
 
 
 == 正则表达式
 
-正则表达式, 或 _regex_ 是一个用于模式匹配的字符序列。
+正则表达式（regular expression）, 或 _regex_ 是一个用于模式匹配的字符序列。 +
+（译注，regular expression和regex都是“正则表达式”，后者是前者的缩写。本文中的regex同时也是Perl6的类名，它包含“Perl6专属”的用法，与其他语言甚至Perl5中的正则语法不完全一致，故不翻译，以示区分。）
 
 理解它最简单的一种方式是把它看作模式。
 [source,perl6]
 ----
 if 'enlightenment' ~~ m/ light / {
-    say "enlightenment contains the word light";
+    say "enlightenment 包含单词 light";
 }
 ----
 
 在这个例子中, 智能匹配操作符 `~~` 用于检查一个字符串(enlightenment)是否包含一个单词(light)。 +
 
-"Enlightenment"  与正则表达式 `m/ light /` 匹配。
+"Enlightenment" 与regex `m/ light /` 匹配。
 
 === Regex 定义
 
@@ -2517,14 +2542,14 @@ if 'enlightenment' ~~ m/ light / {
 除非显式地指定, 否则空白是无关紧要的, `m/light/` 和 `m/ light /` 是相同的。
 
 === 匹配字符
-字母数字字符和下划线 `_` 在正则表达式中是按原样写出的。 +
+字母数字字符和下划线 `_` 在表达式中是按原样写出的。 +
 所有其它字符必须使用反斜线或用引号围起来以转义。
 
 [source,perl6]
 .反斜线
 ----
 if 'Temperature: 13' ~~ m/ \: / {
-    say "The string provided contains a colon :";
+    say "提供的字符串包含冒号 :";
 }
 ----
 
@@ -2532,7 +2557,7 @@ if 'Temperature: 13' ~~ m/ \: / {
 .单引号
 ----
 if 'Age = 13' ~~ m/ '=' / {
-    say "The string provided contains an equal character = ";
+    say "提供的字符串包含等号 = ";
 }
 ----
 
@@ -2540,19 +2565,19 @@ if 'Age = 13' ~~ m/ '=' / {
 .双引号
 ----
 if 'name@company.com' ~~ m/ "@" / {
-    say "This is a valid email address because it contains an @ character";
+    say "这是一个有效的电子邮件地址，因为它包含 @ 字符";
 }
 ----
 
 === 匹配字符类
-字符可以分类，我们可以匹配他们。 +
-我们也可以匹配该类别的反面（除了它的所有东西）:
+字符可以分类，我们可以用类别匹配字符。 +
+也可以匹配该类别的反面（除此之外的所有内容）:
 
 |===
 
-| *Category* | *Regex* | *Inverse* | *Regex*
+| *类别* | *Regex* | *反类别* | *Regex*
 
-| 单词字符 (字母, 数字 或 下划线) | \w | 除了单词字符之外的任意字符 | \W
+| 单词字符 (字母数字下划线) | \w | 除了单词字符之外的任意字符 | \W
 
 | 数字 | \d | 除了数字之外的任意字符 | \D
 
@@ -2562,72 +2587,72 @@ if 'name@company.com' ~~ m/ "@" / {
 
 | 垂直空白 | \v | 除了垂直空白之外的任意字符 | \V
 
-| Tab | \t | 除了 Tab 之外的任意字符 | \T
+| 制表符空白（Tab） | \t | 除了制表符空白之外的任意字符 | \T
 
-| 换行 | \n | 除了换行之外的任意字符 | \N
+| 换行符 | \n | 除了换行符之外的任意字符 | \N
 
 |===
 
 [source,perl6]
 ----
 if "John123" ~~ / \d / {
-  say "This is not a valid name, numbers are not allowed";
+  say "这不是有效名称，不允许使用数字";
 } else {
-  say "This is a valid name"
+  say "这是个有效名称"
 }
 if "John-Doe" ~~ / \s / {
-  say "This string contains whitespace";
+  say "这个字符串包含空白";
 } else {
-  say "This string doesn't contain whitespace"
+  say "这个字符串不包含空白"
 }
 ----
 
 === Unicode 属性
 就像之前章节看到的, 匹配字符类很方便。 +
 话虽这么说，更系统的方法是使用 Unicode 属性。 +
-这样就可以让你匹配在 ASCII 标准内和标准外的字符集。 
+这样就可以让你匹配在 ASCII 标准内和标准外的字符集。
 Unicode 属性闭合在 `<: >` 中。
 
 [source,perl6]
 ----
 if "Devanagari Numbers १२३" ~~ / <:N> / {
-  say "Contains a number";
+  say "包含数字";
 } else {
-  say "Doesn't contain a number"
+  say "不包含数字"
 }
 
 if "Привет, Иван." ~~ / <:Lu> / {
-  say "Contains an uppercase letter";
+  say "包含大写字母";
 } else {
-  say "Doesn't contain an upper case letter"
+  say "不包含大写字母"
 }
 
 if "John-Doe" ~~ / <:Pd> / {
-  say "Contains a dash";
+  say "包含破折号";
 } else {
-  say "Doesn't contain a dash"
+  say "不包含破折号"
 }
 ----
 
 === 通配符
-通配符也可以用在正则表达式中。
+通配符也可以用在 regex 中。
 
 点 `.` 意味着任何单个字符。
 
 [source,perl6]
 ----
 if 'abc' ~~ m/ a.c / {
-    say "Match";
+    say "匹配";
 }
 
 if 'a2c' ~~ m/ a.c / {
-    say "Match";
+    say "匹配";
 }
 
 if 'ac' ~~ m/ a.c / {
-    say "Match";
+    say "匹配";
   } else {
-    say "No Match";
+    say "不匹配";
 }
 ----
 
@@ -2640,15 +2665,15 @@ if 'ac' ~~ m/ a.c / {
 [source,perl6]
 ----
 if 'ac' ~~ m/ a?c / {
-    say "Match";
+    say "匹配";
   } else {
-    say "No Match";
+    say "不匹配";
 }
 
 if 'c' ~~ m/ a?c / {
-    say "Match";
+    say "匹配";
   } else {
-    say "No Match";
+    say "不匹配";
 }
 ----
 
@@ -2657,27 +2682,27 @@ if 'c' ~~ m/ a?c / {
 [source,perl6]
 ----
 if 'az' ~~ m/ a*z / {
-    say "Match";
+    say "匹配";
   } else {
-    say "No Match";
+    say "不匹配";
 }
 
 if 'aaz' ~~ m/ a*z / {
-    say "Match";
+    say "匹配";
   } else {
-    say "No Match";
+    say "不匹配";
 }
 
 if 'aaaaaaaaaaz' ~~ m/ a*z / {
-    say "Match";
+    say "匹配";
   } else {
-    say "No Match";
+    say "不匹配";
 }
 
 if 'z' ~~ m/ a*z / {
-    say "Match";
+    say "匹配";
   } else {
-    say "No Match";
+    say "不匹配";
 }
 ----
 
@@ -2686,54 +2711,54 @@ if 'z' ~~ m/ a*z / {
 [source,perl6]
 ----
 if 'az' ~~ m/ a+z / {
-    say "Match";
+    say "匹配";
   } else {
-    say "No Match";
+    say "不匹配";
 }
 
 if 'aaz' ~~ m/ a+z / {
-    say "Match";
+    say "匹配";
   } else {
-    say "No Match";
+    say "不匹配";
 }
 
 if 'aaaaaaaaaaz' ~~ m/ a+z / {
-    say "Match";
+    say "匹配";
   } else {
-    say "No Match";
+    say "不匹配";
 }
 
 if 'z' ~~ m/ a+z / {
-    say "Match";
+    say "匹配";
   } else {
-    say "No Match";
+    say "不匹配";
 }
 ----
 
 === 匹配结果
 
-当匹配字符串的正则表达式成功时, 
+当匹配字符串的regex成功时,
 匹配结果被存储在一个特殊的变量 `$/` 中。
 
 [source,perl6]
 .脚本
 ----
-if 'Rakudo is a Perl 6 compiler' ~~ m/:s Perl 6/ {
-    say "The match is: " ~ $/;
-    say "The string before the match is: " ~ $/.prematch;
-    say "The string after the match is: " ~ $/.postmatch;
-    say "The matching string starts at position: " ~ $/.from;
-    say "The matching string ends at position: " ~ $/.to;
+if 'Rakudo is a Raku compiler' ~~ m/:s Raku/ {
+    say "匹配的内容是：" ~ $/;
+    say "匹配之前的字符串：" ~ $/.prematch;
+    say "匹配之后的字符串：" ~ $/.postmatch;
+    say "匹配从字符串此处开始：" ~ $/.from;
+    say "匹配从字符串此处结束：" ~ $/.to;
 }
 ----
 
 .输出
 ----
-The match is: Perl 6
-The string before the match is: Rakudo is a
-The string after the match is:  compiler
-The matching string starts at position: 12
-The matching string ends at position: 18
+匹配的内容是：Raku
+匹配之前的字符串：Rakudo is a
+匹配之后的字符串： compiler
+匹配从字符串此处开始：12
+匹配从字符串此处结束：18
 ----
 
 .解释
@@ -2746,10 +2771,10 @@ The matching string ends at position: 18
 `.from` 返回匹配的开始位置 +
 `.to` 返回匹配的结束位置 +
 
-TIP: 默认地空白在 regex 中是无关紧要的。 +
-如果我们想在 regex 中包含空白, 我们必须显式地这样做。 +
-regex `m/:s Perl 6/` 中的 `:s` 强制考虑空白并且不会被删除。
-二选一, 我们能把 regex 写为 `m/Perl\s6/` 并使用 `\s` 占位符。
+TIP: 默认地，空白符在 regex 中会被忽略。 +
+如果想在 regex 中包含空白, 我们必须显式地这样做。 +
+regex `m/:s Raku/` 中的 `:s` 用于强制匹配空白符。
+另外, 可以把 regex 写为 `m/Perl\s6/` ，使用 `\s` 代表空白符。
 如果 regex 中包含的空白不止一个, 使用 `:s` 比使用 `\s` 更高效。
 
 
@@ -2758,82 +2783,82 @@ regex `m/:s Perl 6/` 中的 `:s` 强制考虑空白并且不会被删除。
 
 让我们检查一个邮件是否合法。 +
 我们假设一个合法的电子邮件地址的形式如下: +
-first name [dot] last name [at] company [dot] (com/org/net)
+名 [点] 姓 [at] 公司名 [点] (com/org/net)
 
 WARNING:  这个例子中用于电子邮件检测的 regex 不是很准确。 +
-它的核心意图是用来解释 Perl 6 中的 regex 的功能的。 +
+它的核心意图是用来解释 Raku 中的 regex 的功能的。 +
 不要在生产中原样使用它。
 
 [source,perl6]
-.Script
+.脚本
 ----
 my $email = 'john.doe@perl6.org';
 my $regex = / <:L>+\.<:L>+\@<:L+:N>+\.<:L>+ /;
 
 if $email ~~ $regex {
-  say $/ ~ " is a valid email";
+  say $/ ~ " 是一个合法的Email地址";
 } else {
-  say "This is not a valid email";
+  say "这不是合法的Email地址";
 }
 ----
 
 .输出
 
-`john.doe@perl6.org is a valid email`
+`john.doe@perl6.org 是一个合法的Email地址`
 
 .解释
 
-`<:L>`  匹配单个字符 +
-`<:L>+` 匹配单个字符或更多字符 +
-`\.`  匹配单个点号字符 +
-`\@`  匹配单个  [at] 符号 +
+`<:L>`  匹配一个字母 +
+`<:L>+` 匹配至少一个字母 +
+`\.`  匹配单个 . 符号 +
+`\@`  匹配单个 @ 符号 +
 `<:L+:N>` 匹配一个字母或数字 +
-`<:L+:N>+` 匹配多个字母或数字 +
+`<:L+:N>+` 匹配至少一个字母或数字 +
 
 其中的 regex 可以分解成如下:
 
-* *first name* `<:L>+`
+* *名* `<:L>+`
 
-* *[dot]* `\.`
+* *[点]* `\.`
 
-* *last name* `<:L>+`
+* *姓* `<:L>+`
 
 * *[at]* `\@`
 
-* *company name* `<:L+:N>+`
+* *公司名* `<:L+:N>+`
 
-* *[dot]* `\.`
+* *[点]* `\.`
 
 * *com/org/net* `<:L>+`
 
 [source,perl6]
-.可选地, 一个 regex 可以被分解成多个具名 regexes。
+.可选的, 一个 regex 可以被分解成多个具名 regex  。
 ----
 my $email = 'john.doe@perl6.org';
-my regex many-letters { <:L>+ };
-my regex dot { \. };
+my regex 多个字母 { <:L>+ };
+my regex 点 { \. };
 my regex at { \@ };
-my regex many-letters-numbers { <:L+:N>+ };
+my regex 多个字母与数字 { <:L+:N>+ };
 
-if $email ~~ / <many-letters> <dot> <many-letters> <at> <many-letters-numbers> <dot> <many-letters> / {
-  say $/ ~ " is a valid email";
+if $email ~~ / <多个字母> <点> <多个字母> <at> <多个字母与数字> <点> <多个字母> / {
+  say $/ ~ " 是一个合法的Email地址";
 } else {
-  say "This is not a valid email";
+  say "这不是合法的Email地址";
 }
 ----
 
-具名 regex 是使用 `my regex regex-name { regex definition }` 定义的。 +
-具名 regex 可以使用 `<regex-name>` 来调用。
+具名 regex 是使用 `my regex 表达式名 { regex 定义 }` 定义的。 +
+具名 regex 可以使用 `<表达式名>` 来调用。
 
-NOTE: 更多关于 regexes 的东西, 查看 http://doc.perl6.org/language/regexes
+NOTE: 更多关于 regex 的内容, 查看 https://docs.raku.org/language/regexes
 
-== Perl 6 模块
-Perl 6是通用编程语言。 它可以用于处理众多任务，包括：
+== Raku 模块
+Raku是通用编程语言。 它可以用于处理众多任务，包括：
 文本处理，图形，网络，数据库，网络协议等。
 
 可重用性是一个非常重要的概念，程序员不必在每次他们想要执行新任务时重新发明轮子。
 
-Perl 6 允许创建和重新分发 *modules*。 每个模块是一组封装的功能，可以在安装后重复使用。
+Raku 允许创建和重新分发 *modules*。 每个模块是一组封装的功能，可以在安装后重复使用。
 
 _Zef_ 是 Rakudo Star 中自带的模块管理工具。
 
@@ -2841,7 +2866,7 @@ _Zef_ 是 Rakudo Star 中自带的模块管理工具。
 
 `zef install "module name"`
 
-NOTE: Perl 6 的模块目录可以在 https://modules.perl6.org/ 中找到。
+NOTE: Raku 的模块目录可以在 https://modules.raku.org/ 中找到。
 
 === 使用模块
 
@@ -2852,7 +2877,7 @@ MD5 有多种加密存储在数据库中的口令的应用程序。
 
 比方说，你需要一个生成密码的MD5哈希以存储在数据库中备用的脚本。
 
-幸运的是， Perl 6 已经有一个能实现 MD5 算法的模块。我们来安装它: +
+幸运的是， Raku 已经有一个能实现 MD5 算法的模块。我们来安装它: +
 `zef install Digest::MD5`
 
 现在运行下面的脚本:
@@ -2868,18 +2893,19 @@ say $hashed-password;
 为了运行创建哈希的 `md5_hex()` 函数, 我们需要加载需要的模块。 +
 `use` 关键字用于在脚本中加载模块。
 
-WARNING: 实际上，MD5 哈希是不够的，因为它容易进行字典攻击。 +
-它应该加盐。link:https://en.wikipedia.org/wiki/Salt_(cryptography)[https://en.wikipedia.org/wiki/Salt_(cryptography)].
+WARNING: 实际上，MD5 哈希是不够的，因为它容易被字典攻击。 +
+它应该加盐。link:https://zh.wikipedia.org/wiki/%E7%9B%90_(%E5%AF%86%E7%A0%81%E5%AD%A6)[维基百科：盐 (密码学)]
 
 == Unicode
 
-Unicode 是编码并表现文本的标准, 它满足了世界上的大部分系统。 +
+Unicode 是编码并表现文本的标准, 它涵盖了世界上大多数书写系统。 +
 UTF-8 是能够以Unicode编码所有可能的字符或代码点的字符编码。
 
 字符的定义是通过: +
 
-*字素*: 可见的表示 +
-*代码点*: 赋值给字符的数字
+*字素*: 视觉表示 +
+*代码点*: 赋值给字符的数字 +
+*代码点名称*: 字符的名称
 
 === 使用 Unicode
 
@@ -2956,6 +2982,54 @@ my $var = 2 + ⅒;
 say $var;
 ----
 
+=== Unicode 相关的操作符
+
+==== 数字
+
+10 个阿拉伯数字 "0, 1, 2, 3, 4, 5, 6, 7, 8, 9" 是今天全世界使用最广泛的数字字符集。
+
+不过在全世界各地其他数字字符集也少量地被使用。
+
+在使用不同数字字符集的时候，不需要特别的留意。所有方法、操作符都会像在阿拉伯数字上那样工作。
+
+[source,perl6]
+----
+say (٤,٥,٦,1,2,3).sort;  # (1 2 3 4 5 6)
+say 1 + ٩;               # 10
+----
+
+==== 字符串
+
+我们在进行字符串操作的时候，结果可能不会像我们期待的那样，特别是在进行比较或排序的时候。
+
+===== 比较
+
+[source,perl6]
+----
+say 'a' cmp 'B'; # More
+----
+上面的例子显示 `a` 要比 `B` 更大。这是因为小写 `a` 的代码点比大写 `B` 的代码点大。
+
+虽然这在技术上是对的，不过它可能不是我们所期待的。
+
+幸运的是 Raku 拥有一套应用了 link:http://unicode.org/reports/tr10/[Unicode 排序算法]的操作符。 +
+`unicmp` 是其中一个，它的功能和上面的 `cmp` 相似，不过是 unicode 相关的。
+
+[source,perl6]
+----
+say 'a' unicmp 'B'; # Less
+----
+你看到了吗，使用 `unicmp` 操作符的时候得到 `a` 小于 `B` 的结果。
+
+===== 排序
+Raku 提供了 `collate` 方法来替代代码点排序方法 `sort` 应用于 unicode，`collate` 应用了 link:http://unicode.org/reports/tr10/[Unicode 排序算法]。
+[source,perl6]
+----
+say ('a','b','c','D','E','F').sort;    # (D E F a b c)
+say ('a','b','c','D','E','F').collate; # (a b c D E F)
+----
+
+
 == 并行、并发和异步
 
 === 并行
@@ -2963,7 +3037,7 @@ say $var;
 在正常情况下, 程序中的所有任务都是相继地运行的。 +
 这可能不是个事儿除非你正尝试去做的东西需要耗费很多时间。
 
-幸亏Perl 6 拥有能让你并行地运行的功能。 +
+幸亏Raku 拥有能让你并行地运行的功能。 +
 此时, 需要注意到的是存在两类并行方式：
 
 * *任务并行化*: 两个(或更多)独立的表达式并行地运行。
@@ -2975,9 +3049,9 @@ say $var;
 ==== 数据并行化
 [source,perl6]
 ----
-my @array = (0..50000);                     # Array population
-my @result = @array.map({ is-prime $_ });   # call is-prime for each array element
-say now - INIT now;                         # Output the time it took for the script to complete
+my @array = (0..50000);                     # 数组总体
+my @result = @array.map({ is-prime $_ });   # 为每个数组元素调用 is-prime（判断是否为质数）
+say now - INIT now;                         # 输出脚本完成花费的时间
 ----
 
 .考虑上面的例子:
@@ -2989,9 +3063,9 @@ say now - INIT now;                         # Output the time it took for the sc
 .幸运的是, 我们能同时在多个数组元素身上调用 `is-prime` 函数:
 [source,perl6]
 ----
-my @array = (0..50000);                         # Array population
-my @result = @array.race.map({ is-prime $_ });  # call is-prime for each array element
-say now - INIT now;                             # Output the time it took to complete
+my @array = (0..50000);                         # 数组总体
+my @result = @array.race.map({ is-prime $_ });  # 为每个数组元素调用 is-prime（判断是否为质数）
+say now - INIT now;                             # 输出完成所花费的时间
 ----
 
 注意表达式中使用的 `race`。这个方法会使数组元素能够并行地迭代。
@@ -3020,7 +3094,7 @@ my @result = @array.hyper.map( {$_ + 1} );
 
 如果你俩个脚本都运行了, 你应该注意到一个排序了, 一个没有排序。
 
-==== 
+====
 
 ==== 任务并行化
 [source,perl6]
@@ -3083,12 +3157,12 @@ WARNING: 并行总是添加线程开销。如果开销抵消不了运算速度�
 
 === 并发和异步
 
-NOTE: 关于并发和异步编程的更多信息, 请查看  http://doc.perl6.org/language/concurrency
+NOTE: 关于并发和异步编程的更多信息, 请查看  https://docs.raku.org/language/concurrency
 
-== Native Calling 接口 
-Perl 6 可以让我们通过 Native Calling 接口来使用 C 库。
+== Native Calling 接口
+Raku 可以让我们通过 Native Calling 接口来使用 C 库。
 
-`NativeCall` 是 Perl 6 自带的标准模块，它提供了一系列功能方便了 Perl 6 和 C 的接口。
+`NativeCall` 是 Raku 自带的标准模块，它提供了一系列功能方便了 Raku 和 C 的接口。
 
 === 调用函数
 
@@ -3119,10 +3193,10 @@ gcc -c ncitest.c
 gcc -shared -o ncitest.dll ncitest.o
 ----
 
-在你编译 C 库的路径下新建一个包含下面代码的 Perl 6 文件，并运行它。
+在你编译 C 库的路径下新建一个包含下面代码的 Raku 文件，并运行它。
 
 [source,perl6]
-.ncitest.pl6
+.ncitest.raku
 ----
 use NativeCall;
 
@@ -3136,7 +3210,7 @@ hellofromc();
 首先，我们声明使用 `NativeCall` 模块。 +
 接着，我们定义了一个常量 `LIBPATH` 来存储 C 库的路径。 +
 其中 `$*CWD` 返回当前目录。 +
-然后，我们定义一个新的 Perl 6 子例程 `hellofromc` 作为 C 库中名称同为 `hellofromc` 的 C 函数之包装函数。这个 C 库就是 `LIBPATH` 所对应的。 +
+然后，我们定义一个新的 Raku 子例程 `hellofromc` 作为 C 库中名称同为 `hellofromc` 的 C 函数之包装函数。这个 C 库就是 `LIBPATH` 所对应的。 +
 这些是通过使用 `is native` 特征实现的。 +
 最后，调用我们的 Perl6 子例程。
 
@@ -3144,15 +3218,15 @@ hellofromc();
 
 === 函数重命名
 
-上面的例子中，我们看到了如何通过 `is native` 特征使用同名 Perl 6 子例程来包装 C 函数从而调用它。
+上面的例子中，我们看到了如何通过 `is native` 特征使用同名 Raku 子例程来包装 C 函数从而调用它。
 
-有时我们希望更改 Perl 6 子例程的名称。 +
+有时我们希望更改 Raku 子例程的名称。 +
 为此，我们需要使用 `is symbol` 特征。
 
-下面就来修改上面的 Perl 6 脚本，将 Perl 6 子例程 `hellofromc` 重命名为 `hello`。
+下面就来修改上面的 Raku 脚本，将 Raku 子例程 `hellofromc` 重命名为 `hello`。
 
 [source,perl6]
-.ncitest.pl6
+.ncitest.raku
 ----
 use NativeCall;
 
@@ -3163,12 +3237,12 @@ hello();
 ----
 
 .解释
-由于 Perl 6 子例程与对应的 C 函数不同名，我们在这里需要使用 `is symbol` 来提供原始的 C 函数名。
+由于 Raku 子例程与对应的 C 函数不同名，我们在这里需要使用 `is symbol` 来提供原始的 C 函数名。
 
 === 参数传递
 
-编译下面更改过的的 C 库代码并运行 Perl 6 脚本。 +
-注意我们是如何修改 C 和 Perl 6 代码来接收一个字符串参数（在 C 中是 `chr*`，在 Perl 6 中是 `Str`） 
+编译下面更改过的的 C 库代码并运行 Raku 脚本。 +
+注意我们是如何修改 C 和 Raku 代码来接收一个字符串参数（在 C 中是 `chr*`，在 Raku 中是 `Str`）
 
 [source,c]
 .ncitest.c
@@ -3181,7 +3255,7 @@ void hellofromc (char* name) {
 ----
 
 [source,perl6]
-.ncitest.pl6
+.ncitest.raku
 ----
 use NativeCall;
 
@@ -3194,7 +3268,7 @@ hello('Jane');
 === 返回值
 
 让我们再来定义一个简单的计算器，实现接收两个整数输入并返回它们之和。 +
-编译下面的 C 库，并运行 Perl 6 脚本。
+编译下面的 C 库，并运行 Raku 脚本。
 
 [source,c]
 .ncitest.c
@@ -3205,7 +3279,7 @@ int add (int a, int b) {
 ----
 
 [source,perl6]
-.ncitest.pl6
+.ncitest.raku
 ----
 use NativeCall;
 
@@ -3215,20 +3289,20 @@ sub add(int32,int32) returns int32 is native(LIBPATH) { * }
 say add(2,3);
 ----
 
-注意其中 C 和 Perl 6 函数如何接收两个整数并返回一个整数。（C 中的 `int` 和 Perl 6 中的 `int32`）
+注意其中 C 和 Raku 函数如何接收两个整数并返回一个整数。（C 中的 `int` 和 Raku 中的 `int32`）
 
 === 类型
 
-你可能要问，为什么在最后的 Perl 6 脚本中我们要使用 `int32` 来代替 `Int` 。 +
-因为在 Perl 6 中像 `Int`，`Rat` 等类型不能用来传递与接收 C 函数中的值。 +
-所以必须在 Perl 6 中使用同 C 中类型相对应的类型。
+你可能要问，为什么在最后的 Raku 脚本中我们要使用 `int32` 来代替 `Int` 。 +
+因为在 Raku 中像 `Int`，`Rat` 等类型不能用来传递与接收 C 函数中的值。 +
+所以必须在 Raku 中使用同 C 中类型相对应的类型。
 
-幸运的是，Perl 6 提供了许多数据类型来对应 C 中的数据类型。
+幸运的是，Raku 提供了许多数据类型来对应 C 中的数据类型。
 
 [cols="^.^,^.^",options="header"]
 |===
 
-| C 类型| Perl 6 类型
+| C 类型| Raku 类型
 
 | `char` .2+| `int8`
 
@@ -3276,16 +3350,19 @@ say add(2,3);
 
 |===
 
-NOTE: 更多关于 Native Calling 接口, 详见 https://docs.perl6.org/language/nativecall
+NOTE: 更多关于 Native Calling 接口, 详见 https://docs.raku.org/language/nativecall
 
 
 == 社区
 
-* link:irc://irc.freenode.net/#perl6[#perl6] IRC 频道. 很多讨论发生在频道中。你可以到 http://perl6.org/community/irc 进行任何询问。
+* link:irc://irc.freenode.net/#raku[#raku] IRC 频道. 很多讨论发生在频道中。你可以到 http://raku.org/community/irc 进行任何询问。
 
-* link:https://p6weekly.wordpress.com[p6weekly] Perl 6 周边的变化和每周概述。
+* link:https://rakudoweekly.blog[Rakudo Weekly] Raku 周边的变化和每周概述。
 
-* link:http://pl6anet.org[pl6anet] 博客聚合器. 敬请阅读专注于 Perl 6 的博客文章。
+* link:http://pl6anet.org[pl6anet] 博客聚合器. 敬请阅读专注于 Raku 的博客文章。
 
-* link:https://www.reddit.com/r/perl6/[/r/perl6] 订阅 Perl 6 子版本。
+* link:https://www.reddit.com/r/rakulang/[/r/rakulang] 订阅 Raku 子版本。
 
+* link:https://twitter.com/perl6org[@perl6org] Perl6 社区推特
+
+* link:https://alerts.perl6.org[P6lert] 核心开发者的提醒。及时了解重要的变动。

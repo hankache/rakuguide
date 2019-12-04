@@ -53,16 +53,20 @@ Perl 6 ist multi-paradigmatisch. Es unterstützt prozedurales, objektorientierte
 * *Perl 6*: Eine Sprachenspezifikation mit einer Testsuite. Implementierungen, die diese Tests bestehen nennt man Perl 6.
 * *Rakudo*: Ein Compiler für Perl 6.
 * *Rakudobrew*: Ein Installationenmanager für Rakudo.
-* *Panda*: Ein Perl 6 Moduleinstallierer.
-* *Rakudo Star*: Ein Paket mit Rakudo, Panda, einer Sammlung von Perl 6 Modulen und Dokumentation.
+* *Zef*: Ein Perl 6 Moduleinstallierer.
+* *Rakudo Star*: Ein Paket mit Rakudo, Zef, einer Sammlung von Perl 6 Modulen und Dokumentation.
 
 === Perl 6 installieren
 .Linux
-. Installiere Rakudobrew: https://github.com/tadzik/rakudobrew
 
-. Installiere Rakudo: Gebe dieses Kommando in ein Terminalfenster ein `rakudobrew build moar`
-
-. Installiere Panda: Gebe dieses Kommando in ein Terminalfenster ein `rakudobrew build panda`
+Um Rakudo-Star zu installieren, führe diese Kommandos in einem Terminalfenster aus:
+----
+wget https://rakudo.perl6.org/downloads/star/rakudo-star-2019.03.tar.gz
+tar xfz rakudo-star-2019.03.tar.gz
+cd rakudo-star-2019.03
+perl Configure.pl --gen-moar --make-install --prefix ~/rakudo
+----
+Mehr Informationen stehen unter: http://rakudo.org/how-to-get-rakudo/#Installing-Rakudo-Star-Linux
 
 .OSX
 Folgen Sie der Anleitung für Linux +
@@ -99,9 +103,9 @@ Rakudo Star beinhaltet einen Zeileineditor der dabei hilft, REPL leichter verwen
 Ist nur das einfache Rakudo aber nicht Rakudo Star installiert, dann sind wahrscheinlich keine Zeileneditorfunktionen aktiviert (Auf- und Abwärtspfeile für die Kommandozeilenhistorie, Links- und Rechtspfeil um die Eingabe zu bearbeite, Tabulator zur Vervollständigung).
 Das läßt sich mit einem der folgenden Kommandos nachholen:
 
-* `panda install Linenoise` funktioniert auf Windows, Linux und OSX
+* `zef install Linenoise` funktioniert auf Windows, Linux und OSX
 
-* `panda install Readline` funktioniert auf Linux, falls Sie die _Readline_-Bibliothek bevorzugen.
+* `zef install Readline` funktioniert auf Linux, falls Sie die _Readline_-Bibliothek bevorzugen.
 --
 
 === Editoren
@@ -305,11 +309,11 @@ Diese Tabelle zeigt die am Häufigsten verwendten Operatoren.
 
 .2+| ++ | Prefix | Inkrementierung | my $var = 2; ++$var;  | Inkrementiere die Variable um 1 und gebe das Resultat aus `3`
 
-<m| Postfix <d| Inkrementierung <m| my $var = 2; $var++;  <| Gebe den Inhalt der Variable aus `2` und inkrementiere dann um eins
+| Postfix <d| Inkrementierung <m| my $var = 2; $var++;  <| Gebe den Inhalt der Variable aus `2` und inkrementiere dann um eins
 
 .2+|\--| Prefix | Dekrementierung | my $var = 2; --$var;  | Dekrementiere die Variable um 1 und gebe das Resultat aus `1`
 
-<m| Postfix <d| Dekrementierung <m| my $var = 2; $var--;  <| Gebe den Inhalt der Variable aus `2` und dekrementiere dann um eins
+| Postfix <d| Dekrementierung <m| my $var = 2; $var--;  <| Gebe den Inhalt der Variable aus `2` und dekrementiere dann um eins
 
 .3+| + .3+| Prefix .3+| Verwandle den Operanden in einen numerischen Wert | +"3"  | 3
 
@@ -581,7 +585,7 @@ Die Hauptstadt von Frankreich ist: Paris
 ----
 
 .Erklärung
-`.push: (key => 'Value')` fügt ein weiteres Schlüssel-Wert-Paar (key/value pair) hinzu. +
+`.push: (key \=> 'Value')` fügt ein weiteres Schlüssel-Wert-Paar (key/value pair) hinzu. +
 `.kv` gibt eine Liste mit allen Schlüsseln und Werten aus. +
 `.keys` gibt eine Liste mit allen Schlüsseln aus. +
 `.values` gibt eine Liste mit allen Werten aus. +
@@ -1577,9 +1581,9 @@ Dieser kann verwendet werden, Objekte zu erstellen, indem er mit Argumenten ausg
 Er kann aber ausschließtlich mit *benannten Argumenten* verwendet werden. +
 Im obigen Beispiel ist zu erkennen, dass alle `.new()` mitgegebenen Argumente benannt waren:
 
-* name => 'Hans'
+* name \=> 'Hans'
 
-* alter => 23
+* alter \=> 23
 
 
 Aber was, wenn nicht jedesmal die Namen aller Attribute mit übergeben werden sollen, wenn ein neues Objekt erstellt werden soll? +
@@ -2525,11 +2529,11 @@ Wiederverwendbarkeit ist ein sehr wichtiges Konzept, dass es Programmierern erla
 
 Perl 6 ermöglicht das Erstellen und Verteilen von *Modulen*. Jedes Modul ist ein verpacktes Bündel von Funktionalität die wiederverwendet werden kann, sobald sie installiert wurde.
 
-_Panda_ ist ein Module-Management-Tool das mit Rakudo geliefert wird.
+_Zef_ ist ein Module-Management-Tool das mit Rakudo-Star mitgeliefert wird.
 
 Um ein beliebiges Modul zu installieren, tippt man folgendes Kommando in ein Terminal:
 
-`panda install "module name"`
+`zef install "module name"`
 
 NOTE: Das Perl 6 Modul-Verzeichnis findet man unter: http://modules.perl6.org/
 
@@ -2542,7 +2546,7 @@ Damit wird sichergestellt, dass auch wenn die Datenbank in falsche Hände gerate
 Lets say you need a script that generates the MD5 hash of a password in preparation for storing it in the DB.
 
 Zum Glück gibt es schon ein Perl 6 Modul, das den MD5 Algorithmus implementiert. Zeit es zu installieren: +
-`panda install Digest::MD5`
+`zef install Digest::MD5`
 
 Dann das folgende Skript ausführen:
 [source,perl6]
