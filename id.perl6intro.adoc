@@ -1,22 +1,22 @@
-= Perkenalan Bahasa Pemrograman Perl 6 
+= Perkenalan Bahasa Pemrograman Raku 
 Naoum Hankache <naoum@hankache.com>; Heince Kurniawan <heince@cpan.org>
-:description: Pengenalan secara umum untuk bahasa pemrograman Perl 6
-:keywords: perl6, perl 6, introduction, perl6intro, perkenalan perl 6, perl 6 tutorial, perl 6 intro
+:description: Pengenalan secara umum untuk bahasa pemrograman Raku
+:keywords: raku, raku, introduction, rakuintro, perkenalan raku, raku tutorial, raku intro
 :Revision: 1.0
 :icons: font
 :source-highlighter: pygments
 //:pygments-style: manni
-:source-language: perl6
+:source-language: raku
 :pygments-linenums-mode: table
 :toc: left
 :doctype: book
 :lang: id
 
 
-Dokumen ini dimaksudkan untuk memberikan gambaran secara umum dari bahasa pemrograman Perl 6.
-Bagi anda yang baru pada pemrograman Perl 6, dokumen ini diharapkan dapat memberikan informasi yang cukup dan bahan untuk memulai.
+Dokumen ini dimaksudkan untuk memberikan gambaran secara umum dari bahasa pemrograman Raku.
+Bagi anda yang baru pada pemrograman Raku, dokumen ini diharapkan dapat memberikan informasi yang cukup dan bahan untuk memulai.
 
-Beberapa bagian dari dokumen ini merujuk ke http://docs.perl6.org[tautan resmi dokumentasi Perl 6] dimana tautan yang dirujuk lebih lengkap dan akurat..
+Beberapa bagian dari dokumen ini merujuk ke http://docs.raku.org[tautan resmi dokumentasi Raku] dimana tautan yang dirujuk lebih lengkap dan akurat..
 Anda diharapkan untuk merujuk kesana bila memerlukan informasi lebih spesifik dari subjek tertentu.
 
 Melalui dokumen ini, anda akan menemukan beberapa contoh untuk topik yang banyak dibahas.
@@ -31,7 +31,7 @@ Untuk melihat salinan lisensi ini, kunjungi
 .Kontribusi
 Apabila anda ingin berkontribusi dalam dokumen ini, kunjungi:
 
-* https://github.com/hankache/perl6intro
+* https://github.com/hankache/rakuintro
 
 .Saran
 Kirimkan saran anda ke:
@@ -40,31 +40,31 @@ Kirimkan saran anda ke:
 
 :sectnums:
 == Perkenalan
-=== Apa itu Perl 6
-Perl 6 adalah bahasa pemrograman tingkat tinggi yang bersifat umum/non-spesifik dan data type variable ataupun ekspresi dapat dideklarasikan secara statis maupun dinamis. 
-Perl 6 mendukung beberapa paradigma (teknis penyelesain masalah), antara lain : Pemrograman secara Prosedural, Berorientasi Objek, dan Fungsional.
+=== Apa itu Raku
+Raku adalah bahasa pemrograman tingkat tinggi yang bersifat umum/non-spesifik dan data type variable ataupun ekspresi dapat dideklarasikan secara statis maupun dinamis. 
+Raku mendukung beberapa paradigma (teknis penyelesain masalah), antara lain : Pemrograman secara Prosedural, Berorientasi Objek, dan Fungsional.
 * https://id.wikipedia.org/wiki/Pemrograman_Prosedural
 * https://id.wikipedia.org/wiki/Pemrograman_berorientasi_objek
 * https://id.wikipedia.org/wiki/Pemrograman_Fungsional
 
-.Perl 6 moto:
+.Raku moto:
 * TMTOWTDI (dibaca "Tim Toady"): There is more than one way to do it (Ada lebih dari satu cara untuk melakukan sesuatu).
 * Hal-hal yang mudah harus tetap mudah, hal-hal yang sulit harus menjadi lebih mudah, dan hal-hal yang tidak mungkin menjadi sulit.
 
 === Istilah Khusus
-* *Perl 6*: Spesifikasi bahasa pemrograman dengan rangkain test.
-Implementasi yang lulus uji spesifikasi dari rangkaian test dianggap Perl 6.
-* *Rakudo*: Kompilator (compiler - https://id.wikipedia.org/wiki/Kompilator) untuk Perl 6.
+* *Raku*: Spesifikasi bahasa pemrograman dengan rangkain test.
+Implementasi yang lulus uji spesifikasi dari rangkaian test dianggap Raku.
+* *Rakudo*: Kompilator (compiler - https://id.wikipedia.org/wiki/Kompilator) untuk Raku.
 * *Rakudobrew*: program untuk mengelola instalasi Rakudo.
-* *Zef*: program untuk mengelola instalasi modul dari Perl 6.
+* *Zef*: program untuk mengelola instalasi modul dari Raku.
 * *Rakudo Star*: Bundel program yang terdiri dari Rakudo, Zef, koleksi beberapa modul Perl6 dan dokumentasi.
 
-=== Cara Instalasi Perl 6
+=== Cara Instalasi Raku
 .Linux
 
 Untuk menginstall "Rakudo Star", jalankan perintah berikut diterminal anda:
 ----
-wget https://rakudo.perl6.org/downloads/star/rakudo-star-2018.01.tar.gz
+wget https://rakudo.raku.org/downloads/star/rakudo-star-2018.01.tar.gz
 tar xfz rakudo-star-2018.01.tar.gz
 cd rakudo-star-2018.01
 perl Configure.pl --gen-moar --prefix /opt/rakudo-star-2018.01
@@ -78,35 +78,35 @@ Ada 4 pilihan metode instalasi yang tersedia:
 * Lakukan langkah-langkah yang sama sesuai cara instalasi Linux
 * Instalasi dengan program homebrew (https://brew.sh): `brew install rakudo-star`
 * Instalasi dengan program MacPorts (https://www.macports.org): `sudo port install rakudo`
-* Unduh program installer terakhir (dengan file ekstensien .dmg) dari https://rakudo.perl6.org/downloads/star/
+* Unduh program installer terakhir (dengan file ekstensien .dmg) dari https://rakudo.raku.org/downloads/star/
 
 .Windows
-. Unduh program installer terakhir (dengan file ekstensien .msi, pilih sesuai arsitektur sistem) dari https://rakudo.perl6.org/downloads/star/
+. Unduh program installer terakhir (dengan file ekstensien .msi, pilih sesuai arsitektur sistem) dari https://rakudo.raku.org/downloads/star/
 . Setelah instalasi, pastikan `C:\rakudo\bin` terdeklarasi di PATH(variabel yang dipakai dilingkungan sistem operasi) 
-. Tes dengan menjalankan perintah `perl6 -v` dicommand line prompt untuk verifikasi versi.
+. Tes dengan menjalankan perintah `raku -v` dicommand line prompt untuk verifikasi versi.
 
 .Docker
 . Unduh dari tautan resmi `docker pull rakudo-star`
 . Kemudian jalankan container dengan perintah `docker run -it rakudo-star`
 
-=== Menjalankan kode Perl 6
+=== Menjalankan kode Raku
 
-Menjalankan program / kode Perl 6 dapat dilakukan melalui REPL(Read-Eval-Print Loop). 
-Caranya, buka program terminal, ketik `perl6` kemudian tekan tombol [Enter]. 
+Menjalankan program / kode Raku dapat dilakukan melalui REPL(Read-Eval-Print Loop). 
+Caranya, buka program terminal, ketik `raku` kemudian tekan tombol [Enter]. 
 Tanda / karakter '>' akan muncul. 
 Selanjutnya, ketik kode yang mau dijalankan dan tekan tombol [Enter].
 REPL akan mencetak keluaran nilai dari kode yang diproses. 
 Anda dapat menulis kode lainnya dibaris yang baru atau ketik `exit` dan tekan enter untuk keluar dari REPL.
 
 Cara lainnya, ketik kode di file, simpan, dan jalankan menggunakan file tersebut. 
-Direkomendasikan bahwa file script Perl 6 menggunakan ekstensien `.pl6`. 
-Jalankan file script tersebut melalui terminal, ketik `perl6 namafileyangdisimpan.pl6`, kemudian tekan tombol [Enter]. 
+Direkomendasikan bahwa file script Raku menggunakan ekstensien `.pl6`. 
+Jalankan file script tersebut melalui terminal, ketik `raku namafileyangdisimpan.pl6`, kemudian tekan tombol [Enter]. 
 Berbeda dengan metode REPL, cara ini tidak akan secara otomatis mencetak hasil tiap baris: kode harus menyertakan fungsi `say` untuk mengeluarkan cetakan hasil kode.
 
 Metode REPL kebanyakan dipakai untuk mencoba spesifik bagian dari kode, biasanya program yang hanya berisi 1 baris. 
 Untuk program yang membutuhkan kode lebih dari 1 baris, direkomendasikan untuk menyimpan kode kedalam file untuk kemudian diproses.
 
-Program yang hanya membutuhkan 1 baris dapat juga menggunakan command line dengan mengetikkan `perl6 -e 'kode anda disini'` diterminal dan tekan [Enter].
+Program yang hanya membutuhkan 1 baris dapat juga menggunakan command line dengan mengetikkan `raku -e 'kode anda disini'` diterminal dan tekan [Enter].
 
 [SARAN]
 --
@@ -118,11 +118,11 @@ Apabila anda menginstall Rakudo bukan "Rakudo Star", direkomendasikan untuk meng
 --
 
 === Teks Editor
-Karena sebagian waktu kita digunakan untuk menulis kode dan menyimpannya dalam file, sebaiknya kita menggunakan teks editor yang dapat mengenali sintaks Perl 6. 
+Karena sebagian waktu kita digunakan untuk menulis kode dan menyimpannya dalam file, sebaiknya kita menggunakan teks editor yang dapat mengenali sintaks Raku. 
 
 Saya menggunakan dan merekomendasi https://atom.io/[Atom]. 
-Atom adalah teks editor yang modern dan mempunyai fitur untuk mengenali dan menyorot sintaks Perl 6. 
-https://atom.io/packages/language-perl6[Perl 6 FE] adalah alternatif sintaks highlight(direpresentasikan dengan penekanan warna) untuk Perl 6, 
+Atom adalah teks editor yang modern dan mempunyai fitur untuk mengenali dan menyorot sintaks Raku. 
+https://atom.io/packages/language-raku[Raku FE] adalah alternatif sintaks highlight(direpresentasikan dengan penekanan warna) untuk Raku, 
 diturunkan dari paket original tetapi disertai dengan perbaikan bug (https://id.wikipedia.org/wiki/Kekutu) dan fitur tambahan.
 
 Sebagian orang dikomunitas juga menggunakan http://www.vim.org/[Vim], https://www.gnu.org/software/emacs/[Emacs] or http://padre.perlide.org/[Padre]. 
@@ -133,17 +133,17 @@ Versi baru dari Vim disertai dengan sintaks highlight. Sedangkan Emacs dan Padre
 === Hello World!
 Mari kita mulai dengan ritual `hello world`.
 
-[source,perl6]
+[source,raku]
 say 'hello world';
 
 Dapat juga ditulis seperti:
 
-[source,perl6]
+[source,raku]
 'hello world'.say;
 
 === Gambaran ikhtisar dari Sintaks
-Sintaks Perl 6 memiliki bentuk yang bebas: Dalam artian posisi karakter dibaris maupun kolom dikode anda tidak mempunyai efek yang signifikan.  
-Contohnya Anda bebas untuk menggunakan karakter spasi dibagian manapun, walaupun pada kasus tertentu, spasi mengandung arti bagi Perl 6.
+Sintaks Raku memiliki bentuk yang bebas: Dalam artian posisi karakter dibaris maupun kolom dikode anda tidak mempunyai efek yang signifikan.  
+Contohnya Anda bebas untuk menggunakan karakter spasi dibagian manapun, walaupun pada kasus tertentu, spasi mengandung arti bagi Raku.
 
 *Pernyataan* adalah kumpulan perintah kode, harus diakhiri dengan karakter titik koma:
 `say "Hello" if True;`
@@ -224,17 +224,17 @@ Komentar dibagi menjadi 3 tipe:
 
 * Satu baris:
 +
-[source,perl6]
+[source,raku]
 # Ini adalah contoh komentar satu baris
 
 * Tertanam (Embedded):
 +
-[source,perl6]
+[source,raku]
 say #`(Ini adalah contoh komentar tertanam) "Hello World."
 
 * Lebih dari satu baris (multi):
 +
-[source,perl6]
+[source,raku]
 -----------------------------
 =begin komentar
 Ini adalah contoh komentar lebih dari satu baris
@@ -253,7 +253,7 @@ Selalu gunakan tanda kutip ganda:
 
 * Jika string mengandung variabel yang perlu diinterpolasi
 
-[source,perl6]
+[source,raku]
 -----------------------------------
 say 'Hello World';   # Hello World
 say "Hello World";   # Hello World
@@ -324,9 +324,9 @@ Dibawah ini adalah tabel dari Operator yang umum dipakai.
 
 <| 2 ~~ Int <| True
 
-<| "Perl 6" ~~ "Perl 6" <| True
+<| "Raku" ~~ "Raku" <| True
 
-<| "Perl 6" ~~ Str <| True
+<| "Raku" ~~ Str <| True
 
 <| "enlightenment" ~~ /light/ <| ｢light｣
 
@@ -411,7 +411,7 @@ Dibentuk oleh kurung kotak buka dan tutup `[]`
 
 |===
 
-CATATAN: Untuk mengetahui operator lainnya termasuk tata cara penggabungan atau susunannya, kunjungi https://docs.perl6.org/language/operators
+CATATAN: Untuk mengetahui operator lainnya termasuk tata cara penggabungan atau susunannya, kunjungi https://docs.raku.org/language/operators
 
 == Variabel
 Variabel dari Perl6 diklasifikasian menjadi 3 kategori: Scalars, Arrays dan Hashes.
@@ -425,7 +425,7 @@ Karakter *sigil* (Sign in Latin) adalah karakter yang digunakan sebagai awalan u
 === Scalars
 Scalar menampung satu nilai atau referensi.
 
-[source,perl6]
+[source,raku]
 ----
 # String
 my $nama = 'Wiro Sableng';
@@ -438,7 +438,7 @@ say $umur;
 
 Suatu set pengoperasian tertentu dapat dilakukan di scalar, tergantung dari nilai yang ditampung.
 
-[source,perl6]
+[source,raku]
 .String
 ----
 my $nama = 'Wiro Sableng';
@@ -453,9 +453,9 @@ WIRO SABLENG
 gnelbaS oriW
 ----
 
-CATATAN: Untuk melihat metode yang lebih lengkap dan dapat diaplikasikan pada String, kunjungi https://docs.perl6.org/type/Str
+CATATAN: Untuk melihat metode yang lebih lengkap dan dapat diaplikasikan pada String, kunjungi https://docs.raku.org/type/Str
 
-[source,perl6]
+[source,raku]
 .Integer
 ----
 my $umur = 17;
@@ -466,9 +466,9 @@ say $umur.is-prime;
 True
 ----
 
-CATATAN: Untuk melihat metode yang lebih lengkap dan dapat diaplikasikan pada Integer, kunjungi https://docs.perl6.org/type/Int
+CATATAN: Untuk melihat metode yang lebih lengkap dan dapat diaplikasikan pada Integer, kunjungi https://docs.raku.org/type/Int
 
-[source,perl6]
+[source,raku]
 .Rational Number (https://id.wikipedia.org/wiki/Bilangan_rasional)
 ----
 my $umur = 2.3;
@@ -483,12 +483,12 @@ say $umur.nude;
 (23 10)
 ----
 
-CATATAN: Untuk melihat metode yang lebih lengkap dan dapat diaplikasikan pada Bilangan Rasional, kunjungi https://docs.perl6.org/type/Rat
+CATATAN: Untuk melihat metode yang lebih lengkap dan dapat diaplikasikan pada Bilangan Rasional, kunjungi https://docs.raku.org/type/Rat
 
 === Arrays
 Arrays adalah daftar yang dapat berisi lebih dari satu nilai.
 
-[source,perl6]
+[source,raku]
 ----
 my @hewan = 'ayam','bebek','burung';
 say @hewan;
@@ -498,7 +498,7 @@ Banyak pengoperasian dapat dilakukan pada arrays seperti contoh dibawah:
 
 Saran: karakter tilde  `~` digunakan untuk menggabungkan string.
 
-[source,perl6]
+[source,raku]
 .`Script`
 ----
 my @hewan = 'harimau','gajah','panda';
@@ -535,7 +535,7 @@ Kita dapat mengakses spesifik elemen array dengan menspesifikasian posisinya `@h
 
 ==== Fixed-size arrays (array yang berukuran tetap)
 Secara dasar, array dideklarasikan sebagai berikut:
-[source,perl6]
+[source,raku]
 my @array;
 
 Array dapat mempunyai ukuran tak terbatas dan karenanya disebut auto-extending(diperpanjang otomatis). +
@@ -545,12 +545,12 @@ Sebaliknya, kita dapat juga membuat array dengan ukuran yang tetap. +
 Array ini tidak dapat diakses diluar atau melebihi ukuran yang ditetapkan.
 
 Untuk mendeklarasi array dengan ukuran tetap, spesifikasikan jumlah maksimum elemen di kurung kotak setelah penamaan variabelnya:
-[source,perl6]
+[source,raku]
 my @array[3];
 
 Array ini akan dapat menampung maksimum 3 nilai, terindeks dari 0 sampai 2.
 
-[source,perl6]
+[source,raku]
 ----
 my @array[3];
 @array[0] = "nilai pertama";
@@ -559,7 +559,7 @@ my @array[3];
 ----
 
 Anda tidak dapat menambah nilai keempat kedalam array ini:
-[source,perl6]
+[source,raku]
 ----
 my @array[3];
 @array[0] = "nilai pertama";
@@ -576,7 +576,7 @@ Index 3 for dimension 1 out of range (must be 0..2)
 Array yang kita demonstrasikan diatas adalah array dengan 1 dimensi. +
 Kita juga dapat mendefinisikan array multi dimensi.
 
-[source,perl6]
+[source,raku]
 my @tabel[3;2];
 
 Ini adalah array dengan 2 dimensi.
@@ -584,7 +584,7 @@ Dimensi pertama dapat mempunyai maksimal 3 nilai dan dimensi yang kedua dapat me
 
 Dapat diilustrasikan seperti tabel 3x2.
 
-[source,perl6]
+[source,raku]
 ----
 my @tabel[3;2];
 @tabel[0;0] = 1;
@@ -607,17 +607,17 @@ say @tabel;
 [3 z]
 ----
 
-CATATAN: Untuk lebih lengkapnya tentang referensi Array, kunjungi https://docs.perl6.org/type/Array
+CATATAN: Untuk lebih lengkapnya tentang referensi Array, kunjungi https://docs.raku.org/type/Array
 
 === Hashes
-[source,perl6]
+[source,raku]
 .Hash adalah kumpulan dari satu atau lebih pasangan kata kunci dan nilainya.
 ----
 my %ibukota = ('UK','London','Indonesia','Jakarta');
 say %ibukota;
 ----
 
-[source,perl6]
+[source,raku]
 .Cara lain dalam mengisi nilai hash:
 ----
 my %ibukota = (UK => 'London', Indonesia => 'Jakarta');
@@ -625,7 +625,7 @@ say %ibukota;
 ----
 
 Beberapa metode yang dapat dipanggil dengan hash:
-[source,perl6]
+[source,raku]
 .`Script`
 ----
 my %ibukota = (UK => 'London', Indonesia => 'Jakarta');
@@ -651,14 +651,14 @@ Ibukota dari Perancis adalah: Paris
 `.values` mengembalikan daftar nilai seluruh nilai dari kata kunci saja. +
 Kita dapak mengakses nilai spesifik dari kata kunci tertentu dengan `%hash<katakunci>`
 
-CATATAN: Untuk referensi lengkap Hash, kunjungi https://docs.perl6.org/type/Hash
+CATATAN: Untuk referensi lengkap Hash, kunjungi https://docs.raku.org/type/Hash
 
 === Types
 Dicontoh sebelumnya, kita tidak menspesifikasi tipe nilai dari suatu variabel.
 
 SARAN: `.WHAT` akan mengembalikan tipe nilai yang disimpan dalam variabel.
 
-[source,perl6]
+[source,raku]
 ----
 my $var = 'Text';
 say $var;
@@ -676,7 +676,7 @@ Gaya koding seperti ini disebut dynamic typing. Dinamis dalam artian suatu varia
 Sekarang coba untuk menjalankan contoh dibawah: +
 Perhatikan `Int` sebelum nama variabel.
 
-[source,perl6]
+[source,raku]
 ----
 my Int $var = 'Text';
 say $var;
@@ -690,10 +690,10 @@ Ketika kita mencoba untuk memberikan nilai berupa (Str), kode tersebut akan gaga
 
 Gaya koding ini disebut static typing. Statis dalam artian tipe nilai variabel didefinisikan sebelumnya dan tidak dapat dirubah.
 
-Perl 6 diklasifikasikan sebagai *gradually typed*; Memperbolehkan gaya statis dan dinamis.
+Raku diklasifikasikan sebagai *gradually typed*; Memperbolehkan gaya statis dan dinamis.
 
 .Arrays dan hashes dapat juga dideklarasikan secara statis:
-[source,perl6]
+[source,raku]
 ----
 my Int @array = 1,2,3;
 say @array;
@@ -720,9 +720,9 @@ Anda mungkin tidak akan pernah memakai dua tipe yang pertama, tipe tersebut dica
 
 | *Tipe* | *Deskripsi* | *Contoh* | *Hasil*
 
-| Mu | Hirarki paling atas dari tipe Perl 6 | |
+| Mu | Hirarki paling atas dari tipe Raku | |
 
-| Any | Default kelas dasar untuk kelas baru dan hampir semua kelas lainnya yang termasuk dalam Perl 6 | |
+| Any | Default kelas dasar untuk kelas baru dan hampir semua kelas lainnya yang termasuk dalam Raku | |
 
 | Cool | Nilai yang dapat dianggap sebagai string atau numerik | my Cool $var = 31; say $var.flip; say $var * 2; | 13 62
 
@@ -741,7 +741,7 @@ Anda mungkin tidak akan pernah memakai dua tipe yang pertama, tipe tersebut dica
 Introspection adalah proses untuk medapatkan informasi tentang properti suatu objek seperti tipe objek. +
 Disalah satu contoh sebelumnya, kita menggunakan `.WHAT` untuk mengembalikan tipe dari variabel.
 
-[source,perl6]
+[source,raku]
 ----
 my Int $var;
 say $var.WHAT;    # (Int)
@@ -765,18 +765,18 @@ Untuk menhapus nilai dari suatu variabel, berikan `Nil` ke variabel tersebut.
 === Scoping (Ruang lingkup)
 Sebelum menggunakan variabel, variabel perlu dideklarasikan.
 
-Beberapa deklarator digunakan di Perl 6. Kita telah menggunakan `my` selama ini.
+Beberapa deklarator digunakan di Raku. Kita telah menggunakan `my` selama ini.
 
-[source,perl6]
+[source,raku]
 my $var=1;
 
 Deklarator `my` declarator memberikan variabel ruang lingkup *lexical*.
 Dengan kata lain, variabel cuma bisa diakses bila berada didalam blok dimana variabel dideklarasikan.
 
-Suatu blok di Perl 6 dibatasi oleh `{  }`.
-Jika blok tidak ditemukan, variabel akan bisa diakses diseluruh kode Perl 6.
+Suatu blok di Raku dibatasi oleh `{  }`.
+Jika blok tidak ditemukan, variabel akan bisa diakses diseluruh kode Raku.
 
-[source,perl6]
+[source,raku]
 ----
 {
   my Str $var = 'Text';
@@ -787,7 +787,7 @@ say $var;   # bagian ini tidak dapat diakses, akan terdapat error
 
 Karena sebuah variabel hanya dapat diakses diblok dimana variabel tersebut didefinisikan, nama variabel yang sama dapat digunakan diblok yang lain.
 
-[source,perl6]
+[source,raku]
 ----
 {
   my Str $var = 'Text';
@@ -800,7 +800,7 @@ say $var;
 === Assignment vs. Binding
 Kita telah melihat dicontoh sebelumnya bagaimana untuk memberikan nilai ke variabel. +
 Pemberian nilai (Assignment) dilakukan menggunakan operator `=`.
-[source,perl6]
+[source,raku]
 ----
 my Int $var = 123;
 say $var;
@@ -808,7 +808,7 @@ say $var;
 
 Kita dapat mengubah nilai yang diberi pada suatu variabel:
 
-[source,perl6]
+[source,raku]
 .Assignment
 ----
 my Int $var = 123;
@@ -826,7 +826,7 @@ say $var;
 Disamping itu, kita tidak dapat merubah nilai yang *terikat* pada variabel. +
 *Binding* atau pengikatan suatu nilai dilakukan menggunakan operator `:=`.
 
-[source,perl6]
+[source,raku]
 .Binding
 ----
 my Int $var := 123;
@@ -841,7 +841,7 @@ say $var;
 Cannot assign to an immutable value
 ----
 
-[source,perl6]
+[source,raku]
 .Variabel dapat juga direferensikan kevariabel lainnya:
 ----
 my $a;
@@ -862,7 +862,7 @@ say $a;
 Binding variabel (pengikatan pada variabel) bersifat 2 arah. +
 `$a := $b` and `$b := $a` mempunyai efek yang sama.
 
-CATATAN: Untuk informasi yang lebih lengkap tentang variabel, kunjungi https://docs.perl6.org/language/variables
+CATATAN: Untuk informasi yang lebih lengkap tentang variabel, kunjungi https://docs.raku.org/language/variables
 
 == Fungsi dan Mutator
 
@@ -870,7 +870,7 @@ Penting untuk mengetahui perbedaan fungsi dan mutator. +
 Fungsi tidak mengubah status dari objek atau variabel yang dipanggil / digunakan. +
 Mutator memodifikasi status dari objek atau variabel.
 
-[source,perl6,linenums]
+[source,raku,linenums]
 .`Script`
 ----
 my @numbers = [7,2,4,9,11,3];
@@ -910,7 +910,7 @@ Perl6 mempunyai banyak sintaks atau cara untuk melakukan persyaratan dan pengula
 === if
 Kode hanya akan berjalan apabila syarat atau kondisi tertentu dipenuhi, misalnya sebuah ekpresi yang mengembalikan nilai `True`.
 
-[source,perl6]
+[source,raku]
 ----
 my $umur = 19;
 
@@ -919,10 +919,10 @@ if $umur > 18 {
 }
 ----
 
-Dalam Perl 6, kita dapat membalikkan susunan kode dan kondisinya. +
+Dalam Raku, kita dapat membalikkan susunan kode dan kondisinya. +
 Bahkan bila kode dan kondisinya sudah dibalik, kondisi / syarat selalu akan dievaluasi terlebih dahulu.
 
-[source,perl6]
+[source,raku]
 ----
 my $umur = 19;
 
@@ -934,7 +934,7 @@ Jika syarat atau kondisi tidak terpenuhi, kita dapat menyertakan blok alternatif
 * `else`
 * `elsif`
 
-[source,perl6]
+[source,raku]
 ----
 # Menjalankan kode yang sama dengan nilai variabel yang berbeda
 my $jumlah-kursi = 9;
@@ -953,7 +953,7 @@ Merupakan pernyataan negasi atau lawan statement dari `if`.
 
 Kode berikut ini:
 
-[source,perl6]
+[source,raku]
 ----
 my $sepatu-bersih = False;
 
@@ -963,7 +963,7 @@ if not $sepatu-bersih {
 ----
 Dapat juga ditulis seperti:
 
-[source,perl6]
+[source,raku]
 ----
 my $sepatu-bersih = False;
 
@@ -972,7 +972,7 @@ unless $sepatu-bersih {
 }
 ----
 
-Negasi dalam Perl 6 dilakukan dengan `!` atau `not`.
+Negasi dalam Raku dilakukan dengan `!` atau `not`.
 
 `unless (condition)` digunakan bukannya `if not (condition)`.
 
@@ -982,7 +982,7 @@ Negasi dalam Perl 6 dilakukan dengan `!` atau `not`.
 
 `with` hampir sama dengan pernyataan `if`, bedanya `with` mengecek apakah variabel terdefinisi.
 
-[source,perl6]
+[source,raku]
 ----
 my Int $var=1;
 
@@ -992,7 +992,7 @@ with $var {
 ----
 
 Apabila variabel tidak diberikan suatu nilai, tidak akan ada output.
-[source,perl6]
+[source,raku]
 ----
 my Int $var;
 
@@ -1010,7 +1010,7 @@ Jika kondisi pertama `with` tidak terpenuhi, alternatifnya dapat ditentukan deng
 
 Pernyataan `for` melakukan pengulangan terhadap kelipatan nilai.
 
-[source,perl6]
+[source,raku]
 ----
 my @array = [1,2,3];
 
@@ -1025,10 +1025,10 @@ melakukan perkalian `*100` pada tiap item array, kemudian menampilkan hasil tiap
 
 === given
 
-`given` dalam Perl 6 hampir sama dengan pernyataan `switch` pada bahasa pemrograman lainnya,
+`given` dalam Raku hampir sama dengan pernyataan `switch` pada bahasa pemrograman lainnya,
 tetapi lebih powerful.
 
-[source,perl6]
+[source,raku]
 ----
 my $var = 42;
 
@@ -1043,7 +1043,7 @@ given $var {
 Proses perbandingan akan berhenti (tidak diteruskan keperbandingan selanjutnya) apabila ada yang sukses.
 
 Apabila ingin lanjut keperbandingan selanjutnya, bisa menggunakan `proceed`.
-[source,perl6]
+[source,raku]
 ----
 my $var = 42;
 
@@ -1061,26 +1061,26 @@ given $var {
 
 Sebenarnya, `loop` adalah bagaimana pengulangan `for` ditulis dalam bahasa pemrograman C.
 
-Perl 6 tergolong didalam keluarga bahasa pemrograman C.
+Raku tergolong didalam keluarga bahasa pemrograman C.
 
-[source,perl6]
+[source,raku]
 ----
 loop (my $i = 0; $i < 5; $i++) {
   say "nomor sekarang adalah $i"
 }
 ----
 
-CATATAN: Untuk informasi lebih lanjut tentang pengulangan dan pengkondisian, kunjungi https://docs.perl6.org/language/control
+CATATAN: Untuk informasi lebih lanjut tentang pengulangan dan pengkondisian, kunjungi https://docs.raku.org/language/control
 
 == I/O
-Dalam Perl 6, dua antar muka yang sering dipakai adalah Terminal dan file.
+Dalam Raku, dua antar muka yang sering dipakai adalah Terminal dan file.
 
 === Dasar I/O menggunakan Terminal
 
 ==== say
 `say` menulis ke standard output. Ia menambah karakter baris baru diakhir. Dengan kata lain, kode dibawah:
 
-[source,perl6]
+[source,raku]
 ----
 say 'Hello Mam.';
 say 'Hello Sir.';
@@ -1095,14 +1095,14 @@ Coba untuk mengganti `say` dengan `print` dan bandingkan keluaran hasilnya.
 ==== get
 `get` digunakan untuk menangkap input dari terminal.
 
-[source,perl6]
+[source,raku]
 ----
 my $nama;
 
 say "Hi, namanya siapa?";
 $nama = get;
 
-say "Halo $nama, selamat datang di Perl 6";
+say "Halo $nama, selamat datang di Raku";
 ----
 
 Ketika kode dijalankan, terminal akan menunggu input nama. Masukkan nama anda dan tekan tombol [Enter].
@@ -1112,11 +1112,11 @@ Ketika kode dijalankan, terminal akan menunggu input nama. Masukkan nama anda da
 
 Contoh diatas bisa juga ditulis seperti ini:
 
-[source,perl6]
+[source,raku]
 ----
 my $nama = prompt "Hi, nama anda siapa? ";
 
-say "Dear $nama, selamat datang di Perl 6";
+say "Dear $nama, selamat datang di Raku";
 ----
 
 === Running Shell Commands (Menjalankan program shell/terminal)
@@ -1132,7 +1132,7 @@ Redirection adalah suatu teknik mengalihkan input atau output suatu proses ke lo
 Environment variable adalah variabel yang mempengaruhi proses / program yang sedang berjalan, biasanya diset sebelum program berjalan dan dapat berubah
 seiring jalannya program.
 
-[source,perl6]
+[source,raku]
 .Jalankan program dibawah apabila anda menggunakan sistem operasi Linux/macOS
 ----
 my $nama = 'Neo';
@@ -1140,13 +1140,13 @@ run 'echo', "hello $nama";
 shell "ls";
 ----
 
-[source,perl6]
+[source,raku]
 .Jalankan program dibawah apabila anda menggunakan sistem operasi Windows
 ----
 shell "dir";
 ----
 Perintah atau program `echo` dan `ls` adalah perintah shell yang umum pada sistem operasi Linux: +
-Perintah `echo` mencetak keluaran teks pada terminal (hampir sama dengan fungsi `print` di Perl 6) +
+Perintah `echo` mencetak keluaran teks pada terminal (hampir sama dengan fungsi `print` di Raku) +
 Perintah `ls` mencetak daftar semua file dan direktori yang ada pada direktori yang sekarang. 
 
 Perintah atau program `dir` sama dengan perintah `ls` di sistem operasi Windows.
@@ -1165,7 +1165,7 @@ Johnnie 7
 Jane 8
 Joanna 7
 ----
-[source,perl6]
+[source,raku]
 ----
 my $data = slurp "datafile.txt";
 say $data;
@@ -1174,7 +1174,7 @@ say $data;
 ==== spurt
 `spurt` digunakan untuk menulis data kedalam suatu file.
 
-[source,perl6]
+[source,raku]
 ----
 my $databaru = "Nilai baru:
 Paul 10
@@ -1187,9 +1187,9 @@ spurt "datafilebaru.txt", $databaru;
 Setelah menjalankan kode diatas, file baru dengan nama _datafilebaru.txt_ akan terbuat. File tersebut akan berisi nilai baru.
 
 === Bekerja dengan file dan direktori
-Perl 6 dapat memberikan daftar isi dari sebuah direktori tanpa menggunakan perintah shell (contohnya seperti perintah `ls`).
+Raku dapat memberikan daftar isi dari sebuah direktori tanpa menggunakan perintah shell (contohnya seperti perintah `ls`).
 
-[source,perl6]
+[source,raku]
 ----
 say dir;              # Mencetak daftar file dan direktori pada direktori yang sekarang
 say dir "/Dokumen";   # Mencetak daftar file dan direktori pada direktory yang ditentukan
@@ -1197,7 +1197,7 @@ say dir "/Dokumen";   # Mencetak daftar file dan direktori pada direktory yang d
 
 Anda juga dapat membuat dan meghapus direktori.
 
-[source,perl6]
+[source,raku]
 ----
 mkdir "folderbaru";
 rmdir "folderbaru";
@@ -1210,7 +1210,7 @@ Anda juga dapat memeriksa jika suatu file atau direktori ada atau tidak:
 
 Buat direktori baru `folder123` dan file kosong `script123.pl6`
 
-[source,perl6]
+[source,raku]
 ----
 say "script123.pl6".IO.e;
 say "folder123".IO.e;
@@ -1230,7 +1230,7 @@ PERINGATAN: Pengguna Windows dapat menggunakan `/` atau `\\` untuk mendefinisika
 `C:\\rakudo\\bin` +
 `C:/rakudo/bin` +
 
-CATATAN: Untuk informasi lanjut seputar I/O, kunjungi https://docs.perl6.org/type/IO
+CATATAN: Untuk informasi lanjut seputar I/O, kunjungi https://docs.raku.org/type/IO
 
 == Subroutines
 === Definisi
@@ -1239,7 +1239,7 @@ CATATAN: Untuk informasi lanjut seputar I/O, kunjungi https://docs.perl6.org/typ
 Sebuah definisi subroutine dimulai dengan kata kunci `sub`. 
 Perhatikan contoh dibawah:
 
-[source,perl6]
+[source,raku]
 ----
 sub selamat-pagi {
   say "Hello, selamat pagi !";
@@ -1258,7 +1258,7 @@ Jumlah dan tipe dari parameter tersebut dinamakan *signature*.
 subroutine dibawah menerima argumen sebuah string.
 The below subroutine accepts a string argument.
 
-[source,perl6]
+[source,raku]
 ----
 sub say-hello (Str $nama) {
     say "Hello " ~ $nama ~ "!!!!"
@@ -1272,7 +1272,7 @@ Memungkinkan untuk mendefinisi lebih dari satu subroutine dengan mengunakan nama
 Ketika subroutine dipanggil, runtime akan memutuskan versi mana yang akan digunakan berdasarkan jumlah dan tipe dari argumen yang diterima.
 Tipe subroutine seperti ini memerlukan kata kunci `multi` bukan `sub`.
 
-[source,perl6]
+[source,raku]
 ----
 multi selamat-pagi($nama) {
     say "Selamat Pagi $nama";
@@ -1288,14 +1288,14 @@ selamat-pagi "Laura","Nyonya";
 === Default and Optional Parameters
 Jika sebuah subroutine didefinisikan untuk menerima sebuah argumen dan dipanggil tanpa argumen, maka program tersebut akan gagal.
 
-Perl 6 menyediakan kemampuan untuk mendefinisi subroutine dengan :
+Raku menyediakan kemampuan untuk mendefinisi subroutine dengan :
 
 * Optional Parameters : argumen yang boleh ada atau tidak
 * Default Parameters :  apabila argumen tidak diberikan, maka nilai default yang akan dipakai sebagai acuan
 
 Optional parameters didefinisikan dengan menambah karakter `?` setelah penamaan parameter.
 
-[source,perl6]
+[source,raku]
 ----
 sub say-hello($nama?) {
   with $nama { say "Hello " ~ $nama }
@@ -1308,7 +1308,7 @@ say-hello("Laura");
 Jika tidak memberikan argumen, nilai default dapat didefinisikan. +
 Ini dapat dilakukan dengan memberikan nilai pada parameter.
 
-[source,perl6]
+[source,raku]
 ----
 sub say-hello($nama="Matt") {
   say "Hello " ~ $nama;
@@ -1324,7 +1324,7 @@ Terkadang, kita memanggil subroutine hanya untuk nilai yang dikembalikan *return
 
 Apabila *return value* tidak ditulis secara implisit maka statement atau ekspresi terakhir yang akan menjadi *return value*.
 
-[source,perl6]
+[source,raku]
 .Implicit return
 ----
 sub kuadrat ($x) {
@@ -1335,7 +1335,7 @@ say "7 kuadrat = " ~ kuadrat(7);
 
 Supaya lebih jelas, disarankan untuk secara eksplisit mendefinisikan nilai yang akan dikembalikan. 
 Ini dapat dilakukan dengan kata kunci `return`.
-[source,perl6]
+[source,raku]
 .Explicit return
 ----
 sub kuadrat ($x) {
@@ -1349,7 +1349,7 @@ Begitupun dengan return values.
 
 Untuk membatasi return value ke tipe tertentu, dapat menggunakan `returns` atau tanda panah `-\->` di signature.
 
-[source,perl6]
+[source,raku]
 .Penggunaan returns trait
 ----
 sub kuadrat ($x) returns Int {
@@ -1358,7 +1358,7 @@ sub kuadrat ($x) returns Int {
 say "1.2 kuadrat = " ~ kuadrat(1.2);
 ----
 
-[source,perl6]
+[source,raku]
 .Penggunaan tanda panah
 ----
 sub kuadrat ($x --> Int) {
@@ -1384,7 +1384,7 @@ Kita dapat juga menentukan bahwa nilai `Int` yang dikembalikan harus terdefinisi
 Sangat disarankan untuk menggunakan tipe constraints tersebut. +
 Dibawah adalah versi modifikasi dari contoh sebelumnya yang memakai `:D` untuk memaksa nilai `Int` yang dikembalikan harus terdefinisi.
 
-[source,perl6]
+[source,raku]
 ----
 sub kuadrat ($x --> Int:D) {
   return $x ** 2;
@@ -1393,7 +1393,7 @@ say "1.2 kuadrat = " ~ kuadrat(1.2);
 ----
 ====
 
-CATATAN: Untuk info lebih lanjut tentang subroutines dan functions, kunjungi https://docs.perl6.org/language/functions
+CATATAN: Untuk info lebih lanjut tentang subroutines dan functions, kunjungi https://docs.raku.org/language/functions
 
 == Functional Programming
 https://id.wikipedia.org/wiki/Pemrograman_Fungsional
@@ -1411,7 +1411,7 @@ Functions/subroutines adalah warga negara kelas satu:
 Contohnya fungsi `map`. +
 `map` adalah  _higher order function_, ia dapat menerima fungsi lain sebagai argument.
 
-[source,perl6]
+[source,raku]
 .Script
 ----
 my @array = <1 2 3 4 5>;
@@ -1438,7 +1438,7 @@ Fungsi anonim biasa disebut juga *lambda*. +
 Fungsi anonim tidak mempunyai nama.
 
 Mari kita tulis ulang contoh dari `map` dan memakai fungsi anonim
-[source,perl6]
+[source,raku]
 ----
 my @array = <1 2 3 4 5>;
 say map(-> $x {$x ** 2},@array);
@@ -1446,9 +1446,9 @@ say map(-> $x {$x ** 2},@array);
 Perhatikan bahwa kita tidak mendeklarasikan subroutine kuadrat.
 Kita mendefinisikannya kedalam fungsi anonim sebagai `\-> $x {$x ** 2}`.
 
-Dalam istilah Perl 6, kita memanggilnya sebagai *pointy block*
+Dalam istilah Raku, kita memanggilnya sebagai *pointy block*
 
-[source,perl6]
+[source,raku]
 .Sebuah pointy block dapat juga digunakan untuk menempatkan fungsi ke variabel:
 ----
 my $kuadrat = -> $x {
@@ -1458,13 +1458,13 @@ say $kuadrat(9);
 ----
 
 === Chaining
-Di Perl 6, methods dapat dirangkai, jadi anda tidak perlu menyerahkan hasil dari satu method ke method lainnya sebagai argumen.
+Di Raku, methods dapat dirangkai, jadi anda tidak perlu menyerahkan hasil dari satu method ke method lainnya sebagai argumen.
 
 Sebagai ilustrasi: Dalam sebuah array, anda mungkin perlu mengembalikan nilai yang unik, mengurutkannya dari nilai terbesar sampai terkecil.
 
 Solusi dimana methods tidak dirangkai:
 
-[source,perl6]
+[source,raku]
 ----
 my @array = <7 8 9 0 1 2 4 3 5 6 7 8 9>;
 my @final-array = reverse(sort(unique(@array)));
@@ -1474,7 +1474,7 @@ Disini, kita menggunakan `unique` on `@array`, memberikan hasilnya sebagai argum
 
 Sebaliknya, dengan method yang dirangkai, contoh diatas dapat ditulis sebagai berikut:
 
-[source,perl6]
+[source,raku]
 ----
 my @array = <7 8 9 0 1 2 4 3 5 6 7 8 9>;
 my @final-array = @array.unique.sort.reverse;
@@ -1486,7 +1486,7 @@ Anda dapat melihat bahwa methods yang dirangkai lebih mudah untuk dilihat dimata
 === Feed Operator
 *feed operator*, biasa disebut _pipe_ dibeberapa pemrograman fungsional, mengilustrasikan lebih lanjut method yang dirangkai.
 
-[source,perl6]
+[source,raku]
 .Forward Feed
 ----
 my @array = <7 8 9 0 1 2 4 3 5 6 7 8 9>;
@@ -1507,7 +1507,7 @@ Mulai dengan `@Array`   kemudian mengembalikan daftar elemen yang unik
 Alur dari method dieksekusi dari atas kebawah.
 
 
-[source,perl6]
+[source,raku]
 .Backward Feed
 ----
 my @array = <7 8 9 0 1 2 4 3 5 6 7 8 9>;
@@ -1524,7 +1524,7 @@ Alur dari method dieksekusi dari bawah keatas.
 
 === Hyper operator
 *hyper operator* `>>.` akan mengeksekusi sebuah method kesemua elemen dan mengembalikan daftar hasilnya.
-[source,perl6]
+[source,raku]
 ----
 my @array = <0 1 2 3 4 5 6 7 8 9 10>;
 sub genap($var) { $var %% 2 };
@@ -1533,19 +1533,19 @@ say @array>>.is-prime;
 say @array>>.&genap;
 ----
 
-Kita dapat menggunakan methods bawaan Perl 6 seperti `is-prime` yang mengecek apakah suatu bilangan merupakan bilangan prima atau bukan. +
+Kita dapat menggunakan methods bawaan Raku seperti `is-prime` yang mengecek apakah suatu bilangan merupakan bilangan prima atau bukan. +
 Kita dapat juga menggunakan subroutine custom. Didalam hal ini `&genap`.
 
 Hal ini sangat praktis mengingat kita tidak perlu menggunakan pengulangan `loop` untuk setiap nilai elemen.
 
-PERINGATAN: Perl 6 memberikan garansi bahwa urutan dari hasil adalah sama dengan daftar yang asli.
-            Tetapi tidak ada garansi bahwa Perl 6 akan mengeksekusi methods sesuai daftar urutan atau dalam thread yang sama. Jadi, hati-hati dengan methods yang dapat menimbulkan efek samping, seperti `say` atau `print`.
+PERINGATAN: Raku memberikan garansi bahwa urutan dari hasil adalah sama dengan daftar yang asli.
+            Tetapi tidak ada garansi bahwa Raku akan mengeksekusi methods sesuai daftar urutan atau dalam thread yang sama. Jadi, hati-hati dengan methods yang dapat menimbulkan efek samping, seperti `say` atau `print`.
 
 === Junctions
 A *junction* adalah superpoisi logis dari nilai-nilai.
 
 Contoh dibawah `1|2|3` adalah junction.
-[source,perl6]
+[source,raku]
 ----
 my $var = 2;
 if $var == 1|2|3 {
@@ -1571,7 +1571,7 @@ Berikut manfaatnya:
 Untuk membangun lazy listm kita menggunakan operator infix `...` +
 lazy list mempunyai *elemen awal*, *generator* and an *titik akhir*.
 
-[source,perl6]
+[source,raku]
 .Simple lazy list
 ----
 my $lazylist = (1 ... 10);
@@ -1580,7 +1580,7 @@ say $lazylist;
 Elemen awal adalah 1 dan titik akhir adalah 10. Tidak ada generator yang didefinisikan, jadi defaultnya adalah (+1) +
 Dengan kata lain lazy list akan mengembalikan elemen (Jika dipanggil) sebagai berikut (1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
 
-[source,perl6]
+[source,raku]
 .lazy list tak terbatas
 ----
 my $lazylist = (1 ... Inf);
@@ -1588,7 +1588,7 @@ say $lazylist;
 ----
 Jika dipanggil maka akan mengembalikan nilai integer antara 1 dan tak terhingga.
 
-[source,perl6]
+[source,raku]
 .Lazy list menggunakan generator yang disimpulkan
 ----
 my $lazylist = (0,2 ... 10);
@@ -1596,10 +1596,10 @@ say $lazylist;
 ----
 Elemen awal adalah 0 dan 2, titik akhir adalah 10.
 The initial elements are 0 and 2 and the endpoint is 10.
-Tidak ada generator yang didefinisikam tapi menggunakan elemen awal, Perl 6 akan menyimpulkan generator adalah (+2) +
+Tidak ada generator yang didefinisikam tapi menggunakan elemen awal, Raku akan menyimpulkan generator adalah (+2) +
 lazy list akan mengembalikan elemen (Jika dipanggil) sebagai berikut (0, 2, 4, 6, 8, 10)
 
-[source,perl6]
+[source,raku]
 .Lazy list menggunakan generator yang didefinisikan
 ----
 my $lazylist = (0, { $_ + 3 } ... 12);
@@ -1616,14 +1616,14 @@ Jika titik akhir contoh diatas diubah menjadi 10, maka program tidak akan berhen
 Alternatifnya anda dapat mengganti `0 ... 10` dengan `0 ...^ * > 10` +
 Dapat dibaca: Dari 0 sampai nilai pertama yang lebih dari 10 (tidak termasuk)
 
-[source,perl6]
+[source,raku]
 .Dicontoh ini generator tidak akan berhenti
 ----
 my $lazylist = (0, { $_ + 3 } ... 10);
 say $lazylist;
 ----
 
-[source,perl6]
+[source,raku]
 .Dicontoh ini generator bisa berhenti
 ----
 my $lazylist = (0, { $_ + 3 } ...^ * > 10);
@@ -1632,9 +1632,9 @@ say $lazylist;
 ====
 
 === Closures
-Semua kode objek di Perl 6 adalah closures, artinya objek dapat direferensikan ke variabel dari lingkup luarnya.
+Semua kode objek di Raku adalah closures, artinya objek dapat direferensikan ke variabel dari lingkup luarnya.
 
-[source,perl6]
+[source,raku]
 ----
 sub selamat-pagi {
     my $nama = "Wiro Sableng";
@@ -1662,7 +1662,7 @@ Environment terdiri dari variabel lokal yang didalam lingkupnya, pada saat itula
 Dicontoh diatas, `$ucapan` adalah closure yang menggabungkan subroutine `salam` dan string `Wiro Sableng`.
 
 Mari kita lihat lebih lanjut kecontoh yang lebih menarik.
-[source,perl6]
+[source,raku]
 ----
 sub selamat($periode) {
   return sub ($nama) {
@@ -1685,7 +1685,7 @@ dan satu lagi `Selamat Malam`.
 Pada environment `$pagi`, `$periode` nya `Pagi` sedangkan `$malam`, `$periode` nya `Malam`.
 
 == Classes & Objects
-Dichapter ini kita akan membahas pemrograman berbasis objek pada Perl 6.
+Dichapter ini kita akan membahas pemrograman berbasis objek pada Raku.
 
 === Pengenalan
 
@@ -1711,7 +1711,7 @@ Untuk dapat lebih memahami relasinya, lihat contoh dibawah:
 Dalam istilah pemprograman berbasis objek, objek adalah *instances* dari sebuah kelas.
 
 Perhatikan skrip dibawah:
-[source,perl6]
+[source,raku]
 ----
 class Manusia {
   has $.nama;
@@ -1731,7 +1731,7 @@ Pada contoh diatas, variabel `$john` menampung referensi kepada instansi baru "M
 Argumen-argumen yang dideklarasikan pada method `.new()` digunakan untuk memberikan nilai kepada atribut-atribut class tersebut.
 
 Sebuah kelas dapat diberikan ruang lingkup lexical menggunakan kata kunci `my`:
-[source,perl6]
+[source,raku]
 ----
 my class Manusia {
 
@@ -1746,14 +1746,14 @@ Untuk mengakses atribut dari luar objek, kita menggunakan methods yang disebut *
 Kedua skrip dibawah memhasilkan output yang sama.
 
 .Akses langsung ke variabel:
-[source,perl6]
+[source,raku]
 ----
 my $var = 7;
 say $var;
 ----
 
 .Enkapsulasi:
-[source,perl6]
+[source,raku]
 ----
 my $var = 7;
 sub sayvar {
@@ -1773,7 +1773,7 @@ Kedua twigils ini dapat digunakan dalam class:
 Defaultnya, semua atribut adalah private tetapi disarankan untuk selalu menggunakan twigil `!`.
 
 Maka kita harusnya menulis ulang class diatas sebagai berikut:
-[source,perl6]
+[source,raku]
 ----
 class Manusia {
   has $!nama;
@@ -1792,7 +1792,7 @@ Karena `$!umur` bersifat private dan hanya bisa digunakan didalam ruang lingkup 
 Sekarang coba ganti `has $!umur` menjadi `has $.umur` dan perhatikan hasil dari `say $john.umur;`
 
 === Named vs. Positional Parameters
-Dalam Perl 6, semua class menurunkan default konstruktor `.new()`. +
+Dalam Raku, semua class menurunkan default konstruktor `.new()`. +
 Konstruktor tersebut dapat digunakan untuk membuat objek dengan memberikan argumen. +
 Defaultnya, argumen pada konstruktor hanya dapat diberikan dengan *named arguments*. +
 Dalam contoh diatas, perhatikan argumen yang diberikan ke `.new()` didefinisikan dengan penamaan:
@@ -1805,7 +1805,7 @@ Dalam contoh diatas, perhatikan argumen yang diberikan ke `.new()` didefinisikan
 Bagaimana jika kita tidak ingin memberikan nama dari tiap atribut setiap kali kita ingin mebuat objek? +
 Maka kita harus membuat konstruktor lain yang menerima *positional arguments*.
 
-[source,perl6]
+[source,raku]
 ----
 class Manusia {
   has $.nama;
@@ -1833,7 +1833,7 @@ Dalam keadaan normal, methods diperlukan untuk melancarkan suatu aksi kepada atr
 Ini merupakan konsep dari enkapsulasi. Atribut dari objek hanya dapat dimanipulasi dari dalam objek menggunakan methods.
 Diluar itu, hanya dapat berinteraksi dengan method suatu objek, dan tidak dapat akses langsung ke atribut.
 
-[source,perl6]
+[source,raku]
 ----
 class Manusia {
   has $.nama;
@@ -1880,7 +1880,7 @@ Kita tidak menginginkan pengguna untuk mengakses langsung, maka kita mendeklaras
 Pendeklarasian method private harus menggunakan twigil `!` sebelum penamaannya. +
 Method private diakses dengan `!` bukan `.`
 
-[source,perl6]
+[source,raku]
 ----
 method !ini-private {
   # kode kamu disini
@@ -1899,7 +1899,7 @@ Atribut tersebut dapat diinisialisasi pada saat pendefinisian. +
 *Class attributes* dideklarasikan dengan kata kunci `my` bukan `has`. +
 Mereka diakses dalam class itu sendiri, tidak dilevel objek.
 
-[source,perl6]
+[source,raku]
 ----
 class Manusia {
   has $.nama;
@@ -1920,7 +1920,7 @@ Sampai tahap ini, semua contoh yang kita lihat menggunakan accessor untuk mendap
 
 Bagaimana jika kita butuh untuk memodifikasi nilai dari sebuah atribut? +
 Kita harus memberikan label _read/write_ menggunakan kata kunci `is rw`
-[source,perl6]
+[source,raku]
 ----
 class Manusia {
   has $.nama;
@@ -1947,7 +1947,7 @@ Manusia mempuyai 2 atribut: nama dan umur. +
 Karyawan mempunyai 4 atribut: nama, umur, perusahaan dan gaji
 
 Seseorang akan tergoda untuk mendefinisikan class seperti ini:
-[source,perl6]
+[source,raku]
 ----
 class Manusia {
   has $.nama;
@@ -1964,7 +1964,7 @@ class Karyawan {
 Secara teknis benar, tetapi secara konsep tidak baik.
 
 Cara yang lebih baik adalah:
-[source,perl6]
+[source,raku]
 ----
 class Manusia {
   has $.nama;
@@ -1988,7 +1988,7 @@ Konsep ini dinamakan *overriding*.
 
 Dalam contoh dibawah, method `perkenalkan-dirimu` diwariskan oleh class Karyawan.
 
-[source,perl6]
+[source,raku]
 ----
 class Manusia {
   has $.nama;
@@ -2011,7 +2011,7 @@ $jane.perkenalkan-dirimu;
 ----
 Overriding bekerja seperti ini:
 
-[source,perl6]
+[source,raku]
 ----
 class Manusia {
   has $.nama;
@@ -2045,9 +2045,9 @@ Hanya bisa diakses dari dalam class dimana dideklarasikan. +
 Didefinisikan dengan kata kunci `submethod`.
 
 === Multiple Inheritance (pewarisan ganda atau lebih dari satu)
-Multiple inheritance diperbolehkan pada Perl 6. Sebuah class dapat mewarisi dari satu atau lebih class.
+Multiple inheritance diperbolehkan pada Raku. Sebuah class dapat mewarisi dari satu atau lebih class.
 
-[source,perl6]
+[source,raku]
 ----
 class grafik-batang {
   has Int @.nilai-batang;
@@ -2094,13 +2094,13 @@ Class `grafik-gabungan` dapat menampung 2 class, grafik-batang dan grafik-garis.
 Perhatikan bahwa method `plot` yang dipanggil dalam class `grafik-gabungan` hanya menampilkan 1 plot. +
 Kenapa ini bisa terjadi? +
 `grafik-gabungan` mewarisi class `grafik-garis` dan `grafik-batang`, dan keduanya mempunyai method `plot`.
-Ketika kita memanggil method tersebut di `grafik-gabungan`, Perl 6 akan mecoba menyelesaikan konflik dengan hanya memanggil salah 1 dari method yang diwarisi.
+Ketika kita memanggil method tersebut di `grafik-gabungan`, Raku akan mecoba menyelesaikan konflik dengan hanya memanggil salah 1 dari method yang diwarisi.
 
 .Koreksi
 Agar dapat menampilkan kedua plot dengan benar, kita menggunakan konsep override di `grafik-gabungan`.
 In order to behave correctly, we should have overridden the method `plot` in the `combo-chart`.
 
-[source,perl6]
+[source,raku]
 ----
 class grafik-batang {
   has Int @.nilai-batang;
@@ -2153,7 +2153,7 @@ Aktual vs Perkiraan:
 Roles dideklarasikan dengan kata kunci `role`. Class yang ingin mengimplementasi role dapat menggunakan kata kunci `does`.
 
 .Mari kita tulis ulang contoh multiple inheritance menggunakan roles:
-[source,perl6]
+[source,raku]
 ----
 role grafik-batang {
   has Int @.nilai-batang;
@@ -2195,7 +2195,7 @@ Jadi, apa bedanya dengan class, kegunaannya apa ? +
 Untuk menjawabnya, modifikasi skrip yang pertama untuk menunjukkan multiple inheritance,
 skrip yang dimana kita lupa untuk override method `plot`.
 
-[source,perl6]
+[source,raku]
 ----
 role grafik-batang {
   has Int @.nilai-batang;
@@ -2242,7 +2242,7 @@ Roles akan memperingatkan jika ada konflik.
 === Introspection
 *Introspection* adalah proses memperoleh informasi tentang suatu objek seperti tipenya, atribut atau method.
 
-[source,perl6]
+[source,raku]
 ----
 class Manusia {
   has Str $.nama;
@@ -2289,8 +2289,8 @@ Ia mengevaluasi ke _True_ bila objek dibuat dari class yang dibandingkan atau ap
 --
 Untuk informasi lebih lanjut Pemrograman berbasis objek, kunjungi:
 
-* https://docs.perl6.org/language/classtut
-* https://docs.perl6.org/language/objects
+* https://docs.raku.org/language/classtut
+* https://docs.raku.org/language/objects
 --
 == Exception Handling
 
@@ -2299,7 +2299,7 @@ Untuk informasi lebih lanjut Pemrograman berbasis objek, kunjungi:
 
 Skrip dibawah berjalan dengan baik:
 
-[source,perl6]
+[source,raku]
 ----
 my Str $nama;
 $nama = "Joanna";
@@ -2315,7 +2315,7 @@ Apa kabar?
 
 Sekarang perhatikan skrip yang mengeluarkan eksepsi:
 
-[source,perl6]
+[source,raku]
 ----
 my Str $nama;
 $nama = 123;
@@ -2333,7 +2333,7 @@ Perhatikan pada saat error terjadi (dalam hal ini, memberikan bilangan angka ke 
 
 *Exception handling* adalah proses menangkap eksepsi yang dilemparkan agar skrip dapat lanjut bekerja.
 
-[source,perl6]
+[source,raku]
 ----
 my Str $nama;
 try {
@@ -2356,7 +2356,7 @@ Apa kabar?
 
 Exception handling dilakukan dengan menggunakan blok `try-catch`.
 
-[source,perl6]
+[source,raku]
 ----
 try {
   # kode disini
@@ -2373,7 +2373,7 @@ try {
 Blok `CATCH` dapat didefinisikan seperti blok `given`.
 Ini berarti kita dapat menangkap dan mengatur banyak tipe eksepsi.
 
-[source,perl6]
+[source,raku]
 ----
 try {
   # kode disini
@@ -2389,21 +2389,21 @@ try {
 ----
 
 === Throwing Exceptions
-Perl 6 mengijinkan anda untuk secara eksplisit melempar eksespsi. +
+Raku mengijinkan anda untuk secara eksplisit melempar eksespsi. +
 Berikut 2 tipenya:
 
 * ad-hoc exceptions
 
 * typed exceptions
 
-[source,perl6]
+[source,raku]
 .ad-hoc
 ----
 my Int $umur = 21;
 die "Error !";
 ----
 
-[source,perl6]
+[source,raku]
 .typed
 ----
 my Int $umur = 21;
@@ -2419,14 +2419,14 @@ Semua typed exceptions merupakan turunan dari class `X`, dibawah ada beberapa co
 `X::OS` merupakan eksepsi terkait error OS +
 `X::Str::Numeric` meruapakan eksepsi terkait merubah tipe data string ke numerik
 
-CATATAN: Untuk tipe eksepsi yang lebih lengkap dan method terkait, kunjungi https://docs.perl6.org/type-exceptions.html
+CATATAN: Untuk tipe eksepsi yang lebih lengkap dan method terkait, kunjungi https://docs.raku.org/type-exceptions.html
 
 
 == Regular Expressions
 A regular expression, atau _regex_, adalah urutan karakter yang digunakan untuk pencocokan pola. +
 Pikirkan sebagai pola.
 
-[source,perl6]
+[source,raku]
 ----
 if 'keterangan' ~~ m/ terang / {
     say "keterangan mengandung kata terang";
@@ -2452,7 +2452,7 @@ Kecuali dispesifikasi secara eksplisit, spasi akan diabaikan; `m/terang/` dan `m
 Karakter Alfanumerik dan garis bawah dituliskan seperti apa adanya. +
 Karakter lainnya harus menggunakan `\` atau dikelilingi oleh kutipan `''`.
 
-[source,perl6]
+[source,raku]
 .Backslash
 ----
 if 'Suhu: 13' ~~ m/ \: / {
@@ -2460,7 +2460,7 @@ if 'Suhu: 13' ~~ m/ \: / {
 }
 ----
 
-[source,perl6]
+[source,raku]
 .Single quote (kutipan satu)
 ----
 if 'Umur = 13' ~~ m/ '=' / {
@@ -2468,7 +2468,7 @@ if 'Umur = 13' ~~ m/ '=' / {
 }
 ----
 
-[source,perl6]
+[source,raku]
 .Double quotes (kutipan ganda)
 ----
 if 'nama@company.com' ~~ m/ "@" / {
@@ -2500,7 +2500,7 @@ Kita juga dapat mencocokkan dengan kebalikan dari kategori tersebut :
 
 |===
 
-[source,perl6]
+[source,raku]
 ----
 if "John123" ~~ / \d / {
   say "Ini bukan nama yang valid, angka tidak diperbolehkan";
@@ -2521,7 +2521,7 @@ Pendekatan yang lebih sistematis adalah menggunakan properti Unicode. +
 Metode ini memungkinkan untuk mencocokkan kategori dari karakter didalam dan diluar standar ASCII. +
 Properti Unicode tertutup dalam `<: >`
 
-[source,perl6]
+[source,raku]
 ----
 if "Angka Devanagari १२३" ~~ / <:N> / {
   say "Mengandung angka";
@@ -2545,7 +2545,7 @@ Wildcards dapat juga digunakan dalam sebuah regex.
 
 Tanda titik `.` berarti setiap karakter tunggal.
 
-[source,perl6]
+[source,raku]
 ----
 if 'abc' ~~ m/ a.c / {
     say "Cocok";
@@ -2565,7 +2565,7 @@ Quantifiers datang setelah karakter dan digunakan untuk berapa kali kita menging
 
 Tanda tanya `?` berarti nol atau satu kali.
 
-[source,perl6]
+[source,raku]
 ----
 if 'ac' ~~ m/ a?c / {
     say "Cocok";
@@ -2581,7 +2581,7 @@ if 'c' ~~ m/ a?c / {
 
 Karakter `*` berarti nol atau beberapa kali.
 
-[source,perl6]
+[source,raku]
 ----
 if 'az' ~~ m/ a*z / {
     say "Cocok";
@@ -2607,7 +2607,7 @@ if 'z' ~~ m/ a*z / {
 
 Tanda `+` berarti paling tidak satu kali.
 
-[source,perl6]
+[source,raku]
 ----
 if 'az' ~~ m/ a+z / {
     say "Cocok";
@@ -2635,10 +2635,10 @@ if 'z' ~~ m/ a+z / {
 Setiap kalo proses pencocokan dengan regex berhasil,
 hasil string yang cocok disimpan dalam variabel spesial `$/`
 
-[source,perl6]
+[source,raku]
 .Script
 ----
-if 'Rakudo adalah Perl 6 compiler' ~~ m/:s Perl 6/ {
+if 'Rakudo adalah Raku compiler' ~~ m/:s Raku/ {
     say "Hasil yang cocok adalah: " ~ $/;
     say "String sebelum hasil cocok adalah: " ~ $/.prematch;
     say "String setelah hasil cocok adalah: " ~ $/.postmatch;
@@ -2649,7 +2649,7 @@ if 'Rakudo adalah Perl 6 compiler' ~~ m/:s Perl 6/ {
 
 .Output
 ----
-Hasil yang cocok adalah: Perl 6
+Hasil yang cocok adalah: Raku
 String sebelum hasil cocok adalah: Rakudo adalah 
 String setelah hasil cocok adalah:  compiler
 Hasil string yang cocok mulai pada posisi: 14
@@ -2666,7 +2666,7 @@ Method berikut dapat dipanggil pada _Match Object_: +
 
 TIP: Defaultnya, spasi pada regex diabaikan. +
 Jika kita ingin mencocokkan dengan suatu regex yang mengandung spasi, kita harus secara eksplisit menyatakannya. +
-`:s` dalam regex `m/:s Perl 6/` memaksa spasi untuk tidak diabaikan. +
+`:s` dalam regex `m/:s Raku/` memaksa spasi untuk tidak diabaikan. +
 Alternatifnya, kita dapat menulis regex dengan cara `m/ Perl\s6 /` dan menggunakan `\s` yang merepresentasikan sebuah spasi. +
 Jika sebuah regex mengandung lebih dari satu spasi, penggunaan `:s` lebih baik dibanding `\s` untuk setiap spasi.
 
@@ -2676,13 +2676,13 @@ Untuk contoh ini kita akan berasumsi sebuah email yang valid mempunyai format se
 nama depan [dot] nama belakang [at] perusahaan [dot] (com/org/net)
 
 PERINGATAN: regex yang digunakan dicontoh ini untuk validasi email tidak terlalu akurat. +
-Hanya bertujuan sebagai demonstrasi fungsi regex pada Perl 6. +
+Hanya bertujuan sebagai demonstrasi fungsi regex pada Raku. +
 Jangan gunakan dalam lingkungan produksi.
 
-[source,perl6]
+[source,raku]
 .Script
 ----
-my $email = 'john.doe@perl6.org';
+my $email = 'john.doe@raku.org';
 my $regex = / <:L>+\.<:L>+\@<:L+:N>+\.<:L>+ /;
 
 if $email ~~ $regex {
@@ -2693,7 +2693,7 @@ if $email ~~ $regex {
 ----
 
 .Output
-`john.doe@perl6.org adalah email yang valid`
+`john.doe@raku.org adalah email yang valid`
 
 .Penjelasan
 `<:L>` mencocokkan dengan sebuah huruf +
@@ -2719,10 +2719,10 @@ Regex dapat diuraikan sebagai berikut:
 
 * *com/org/net* `<:L>+`
 
-[source,perl6]
+[source,raku]
 .Alternatively, sebuah regex dapat dipecah menjadi lebih dari satu penamaan regex
 ----
-my $email = 'john.doe@perl6.org';
+my $email = 'john.doe@raku.org';
 my regex banyak-huruf { <:L>+ };
 my regex dot { \. };
 my regex at { \@ };
@@ -2738,15 +2738,15 @@ if $email ~~ / <banyak-huruf> <dot> <banyak-huruf> <at> <banyak-huruf-angka> <do
 Regex yang mempunyai nama didefinisikan dengan sintaks berikut `my regex nama-regex { definisi regex }` +
 Regex yang mempunyai nama dapat dipanggil menggunakan sintaks berikut: `<nama-regex>`
 
-CATATAN: Untuk info lebih lanjut tentang regex, kunjungi https://docs.perl6.org/language/regexes
+CATATAN: Untuk info lebih lanjut tentang regex, kunjungi https://docs.raku.org/language/regexes
 
-== Perl 6 Modules
-Perl 6 adalah bahasa pemrograman bertujuan umum. Ia dapat digunakan untuk mengatasi banyak kerjaan termasuk:
+== Raku Modules
+Raku adalah bahasa pemrograman bertujuan umum. Ia dapat digunakan untuk mengatasi banyak kerjaan termasuk:
 Manipuasi teks, grafis, web, basis data, protokol jaringan, dsb.
 
 Usabilitas adalah konsep yang sangat penting dimana programer tidak perlu mengulang kembali tiap kali mereka ingin melakukan suatu tugas.
 
-Perl 6 mengijinkan pembuatan dan redistribusi dari *modules*. Tiap modul adalah sebuah kemasan dari bermacam fungsi yang dapat dipakai kembali.
+Raku mengijinkan pembuatan dan redistribusi dari *modules*. Tiap modul adalah sebuah kemasan dari bermacam fungsi yang dapat dipakai kembali.
 
 _Zef_ adalah alat manajemen modul yang datang dengan Rakudo Star.
 
@@ -2754,7 +2754,7 @@ Untuk menginstall sebuah modul yang spesifik, ketikkan perintah dibawah pada ter
 
 `zef install "nama modul"`
 
-CATATAN: Direktori Modul Perl 6 dapat ditemukan di: https://modules.perl6.org/
+CATATAN: Direktori Modul Raku dapat ditemukan di: https://modules.raku.org/
 
 === Menggunakan Modul
 MD5 adalah fungsi hash kriptografis yang memproduksi nilah hash 128-bit. +
@@ -2762,13 +2762,13 @@ MD5 mempunyai kegunaan yang banyak, termasuk mengenkripsi password dalam basis d
 Ketika ada registrasi user baru, keterangan infonya tidak disimpan dalam teks polos tetapi _hashed_ (terenkripsi).
 Alasannya adalah jika basis data diretas, penyerang tidak dapat mengetahui kata sandi yang disimpan.
 
-Untungnya, anda tidak perlu mengimplementasi algoritma MD5 sendiri; Ada modul Perl 6 yang sudah diimplementasikan.
+Untungnya, anda tidak perlu mengimplementasi algoritma MD5 sendiri; Ada modul Raku yang sudah diimplementasikan.
 
 Mari kita install: +
 `zef install Digest::MD5`
 
 Sekarang, jalankan skrip dibawah:
-[source,perl6]
+[source,raku]
 ----
 use Digest::MD5;
 my $password = "password123";
@@ -2794,7 +2794,7 @@ Karakter didefinisikan dengan sebuah: +
 === Menggunakan Unicode
 
 .Mari kita lihat bagaimana kita dapat mengeluarkan karakter menggunakan Unicode
-[source,perl6]
+[source,raku]
 ----
 say "a";
 say "\x0061";
@@ -2809,7 +2809,7 @@ say "\c[LATIN SMALL LETTER A]";
 . Menggunakan `\c` dan nama code point
 
 .Sekarang mari kita output sebuah gambar senyuman
-[source,perl6]
+[source,raku]
 ----
 say "☺";
 say "\x263a";
@@ -2817,7 +2817,7 @@ say "\c[WHITE SMILING FACE]";
 ----
 
 .Contoh lain menggabungkan dua code points
-[source,perl6]
+[source,raku]
 ----
 say "á";
 say "\x00e1";
@@ -2832,7 +2832,7 @@ Huruf `á`dapat ditulis:
 * atau kombinasi dari code point daru `a` dan acute `\x0061\x0301`
 
 .Beberapa method yang dapat digunakan:
-[source,perl6]
+[source,raku]
 ----
 say "á".NFC;
 say "á".NFD;
@@ -2851,7 +2851,7 @@ LATIN SMALL LETTER A WITH ACUTE
 `uniname` mengembalikan nama code point.
 
 .Huruf Unicode dapat digunakan sebagai identifiers:
-[source,perl6]
+[source,raku]
 ----
 my $Δ = 1;
 $Δ++;
@@ -2859,7 +2859,7 @@ say $Δ;
 ----
 
 .Unicode dapat juga digunakan untuk perhitungan can be used to do math:
-[source,perl6]
+[source,raku]
 ----
 my $var = 2 + ⅒;
 say $var;
@@ -2871,7 +2871,7 @@ say $var;
 Dalam keadaan normal, semua tugas dalam suatu program berjalan secara sekuensial. +
 Ini mungkin bukan sebuah masalah, kecuali akan memakan waktu lebih lama.
 
-Perl 6 mempunyai fitur yang dapat menjalankan tugas secara paralel. +
+Raku mempunyai fitur yang dapat menjalankan tugas secara paralel. +
 Ditahap ini, penting untuk dicatat bahwa paralelisme dapat berarti 1 dari 2 hal:
 
 * *Task Parallelism*: dua (atau lebih) ekspresi yang berdiri sendiri berjalan secara paralel.
@@ -2879,7 +2879,7 @@ Ditahap ini, penting untuk dicatat bahwa paralelisme dapat berarti 1 dari 2 hal:
 * *Data Parallelism*: ekspresi tunggal beriterasi pada suatu daftar elemen secara parelel..
 
 ==== Data Parallelism
-[source,perl6]
+[source,raku]
 ----
 my @array = (0..50000);                     # Array population
 my @result = @array.map({ is-prime $_ });   # panggil is-prime untuk tiap elemen array
@@ -2892,7 +2892,7 @@ Subroutine `is-prime`dipanggil untuk tiap elemen array secara sekuensial: +
 `is-prime @array[0]` kemudian `is-prime @array[1]` kemudian `is-prime @array[2]` dsb.
 
 .Untungnya kita dapat memanggil `is-prime` pada lebih dari satu elemen array dalam waktu yang sama:
-[source,perl6]
+[source,raku]
 ----
 my @array = (0..50000);                         # Array population
 my @result = @array.race.map({ is-prime $_ });  # panggil subroutine is-prime untuk tiap elemen array
@@ -2908,7 +2908,7 @@ Setelah menjalankan kedua contoh (dengan atau tanpa `race`), bandingkan waktu ek
 ====
 `race` tidak akan mempertahankan urutan dari elemen. Jika ingin, anda dapat menggunakan `hyper`.
 
-[source,perl6]
+[source,raku]
 .race
 ----
 my @array = (1..1000);
@@ -2916,7 +2916,7 @@ my @result = @array.race.map( {$_ + 1} );
 .say for @result;
 ----
 
-[source,perl6]
+[source,raku]
 .hyper
 ----
 my @array = (1..1000);
@@ -2930,7 +2930,7 @@ Jika anda menjalankan kedua contoh, anda dapat melihat satu disortir dan yang sa
 
 ==== Task Parallelism
 
-[source,perl6]
+[source,raku]
 ----
 my @array1 = (0..49999);
 my @array2 = (2..50001);
@@ -2957,7 +2957,7 @@ dan kemudian mengevaluasi `@array2.map( {is-prime($_ - 1)} )`
 Kedua operasi tersebut tidak bergantung satu sama lain.
 
 .Kenapa tidak menjalankan keduanya secara paralel?
-[source,perl6]
+[source,raku]
 ----
 my @array1 = (0..49999);
 my @array2 = (2..50001);
@@ -2988,13 +2988,13 @@ PERINGATAN: paralelisme selalu menambah beban kerja pada threading. Jika penamba
 Ini mengapa, penggunaan `race`, `hyper`, `start` dan `await` untuk skrip yang sederhana dapat melambatkannya.
 
 === Concurrency and Asynchrony
-CATATAN: Untuk info lebih lanjut tentang Concurrency dan Asynchronous, kunjungi https://docs.perl6.org/language/concurrency
+CATATAN: Untuk info lebih lanjut tentang Concurrency dan Asynchronous, kunjungi https://docs.raku.org/language/concurrency
 
 == Native Calling Interface
 
-Perl 6 memberikan kita kemampuan untuk mengakses library C, menggunakan Native Calling Interface. 
+Raku memberikan kita kemampuan untuk mengakses library C, menggunakan Native Calling Interface. 
 
-`NativeCall` adalah modul standar bawaan Perl 6 dan menawarkan fungsi untuk memudahkan tugas terkait interaksi antara Perl 6 dan C. 
+`NativeCall` adalah modul standar bawaan Raku dan menawarkan fungsi untuk memudahkan tugas terkait interaksi antara Raku dan C. 
 
 === Memanggil sebuah fungsi
 
@@ -3025,10 +3025,10 @@ gcc -c ncitest.c
 gcc -shared -o ncitest.dll ncitest.o
 ----
 
-Didalam direktori yang sama dimana anda mengkompilasi library C, buat file Perl 6 baru 
+Didalam direktori yang sama dimana anda mengkompilasi library C, buat file Raku baru 
 yang berisi kode dibawah dan jalankan.
 
-[source,perl6]
+[source,raku]
 .ncitest.pl6
 ----
 use NativeCall;
@@ -3043,24 +3043,24 @@ hellofromc();
 Pertama-tama kita mendeklarasikan akan menggunakan modul `NativeCall`. +
 Kemudian kita membuat sebuah konstan `LIBPATH` yang menampung path ke library C. +
 Perhatikan bahwa `$*CWD` mengembalikan direktori kerja saat ini. +
-Kemudian kita membuat subroutine Perl 6 baru bernama `hellofromc()` yang bertindak sebagai
+Kemudian kita membuat subroutine Raku baru bernama `hellofromc()` yang bertindak sebagai
 pembungkus ke fungsi C yang mempunyai nama yang sama dan berada didalam library C di `LIBPATH`. +
 Semua ini diselesaikan dengan menggunakan trait `is native`. +
-Terakhir, kita memanggil subroutine Perl 6 kita.
+Terakhir, kita memanggil subroutine Raku kita.
 
 Intinya adalah deklarasi sebuah subroutine dengan trait `is native` dan penamaan dari library C.
 
 === Mengganti nama sebuah fungsi 
 
 Pada contoh diatas, kita melihat bagaimana kita dapat memanggil fungsi C yang sederhana dengan membungkusnya
-dengan subroutine Perl 6 menggunakan penamaan yang sama dan trait `is native`.
+dengan subroutine Raku menggunakan penamaan yang sama dan trait `is native`.
 
-Dalam beberapa kasus, kita ingin merubah nama dari subroutine Perl 6. +
+Dalam beberapa kasus, kita ingin merubah nama dari subroutine Raku. +
 Untuk melakukannya, kita dapat gunakan trait `is symbol`.
 
-Mari kita modifikasi skrip Perl 6 diatas dan merubah nama subroutine dari `hellofromc` menjadi `hello`
+Mari kita modifikasi skrip Raku diatas dan merubah nama subroutine dari `hellofromc` menjadi `hello`
 
-[source,perl6]
+[source,raku]
 .ncitest.pl6
 ----
 use NativeCall;
@@ -3072,13 +3072,13 @@ hello();
 ----
 
 .Penjelasan:
-Dalam kasus subroutine Perl 6 mempunyai nama yang berbeda dengan fungsi C,
+Dalam kasus subroutine Raku mempunyai nama yang berbeda dengan fungsi C,
 Kita dapat menggunakan trait `is symbol` dengan mereferensikan nama fungsi C.
 
 === Pemberian Argumen dalam fungsi
 
-Compile library C yang telah dimodifikasi berikut dan jalankan skrip Perl 6 dibawah. +
-Perhatikan bagaimana kita memodifikasi baik kode C dan Perl 6 untuk dapat menerima string (`char*` di C dan `Str` di Perl 6)
+Compile library C yang telah dimodifikasi berikut dan jalankan skrip Raku dibawah. +
+Perhatikan bagaimana kita memodifikasi baik kode C dan Raku untuk dapat menerima string (`char*` di C dan `Str` di Raku)
 
 [source,c]
 .ncitest.c
@@ -3090,7 +3090,7 @@ void hellofromc (char* nama) {
 }
 ----
 
-[source,perl6]
+[source,raku]
 .ncitest.pl6
 ----
 use NativeCall;
@@ -3105,7 +3105,7 @@ hello('Jane');
 
 Mari kita mengulang proses sekali lagi dan membuat kalkulator sederhana yang menerima
 2 integer dan melakukan operasi penambahan. +
-Compile library C dan jalankan skrip Perl 6.
+Compile library C dan jalankan skrip Raku.
 
 [source,c]
 .ncitest.c
@@ -3115,7 +3115,7 @@ int tambah (int a, int b) {
 }
 ----
 
-[source,perl6]
+[source,raku]
 .ncitest.pl6
 ----
 use NativeCall;
@@ -3126,21 +3126,21 @@ sub tambah(int32,int32) returns int32 is native(LIBPATH) { * }
 say tambah(2,3);
 ----
 
-Perhatikan bagaimana baik fungsi C dan Perl 6 menerima 2 integer dan mengembalikan satu nilai
-(`int` pada C dan `int32` pada Perl 6)
+Perhatikan bagaimana baik fungsi C dan Raku menerima 2 integer dan mengembalikan satu nilai
+(`int` pada C dan `int32` pada Raku)
 
 === Types
 
-Anda mungkin bertanya mengapa kita menggunakan `int32` bukan `Int` pada Perl 6.
-Beberapa tipe pada Perl 6 seperti `Int`, `Rat`, dsb, tidak dapat digunakan untuk menerima atau memberikan nilai dari fungsi C. +
+Anda mungkin bertanya mengapa kita menggunakan `int32` bukan `Int` pada Raku.
+Beberapa tipe pada Raku seperti `Int`, `Rat`, dsb, tidak dapat digunakan untuk menerima atau memberikan nilai dari fungsi C. +
 Harus menggunakan tipe yang sama dengan di C.
 
-Untungnya Perl 6 menyediakan banyak tipe untuk ini.
+Untungnya Raku menyediakan banyak tipe untuk ini.
 
 [cols="^.^,^.^",options="header"]
 |===
 
-| C Type | Perl 6 Type
+| C Type | Raku Type
 
 | `char` .2+| `int8`
 
@@ -3188,14 +3188,14 @@ Untungnya Perl 6 menyediakan banyak tipe untuk ini.
 
 |===
 
-CATATAN: Untuk info lebih lanjut pada Native Calling Interface, kunjungi https://docs.perl6.org/language/nativecall
+CATATAN: Untuk info lebih lanjut pada Native Calling Interface, kunjungi https://docs.raku.org/language/nativecall
 
 == Komunitas
 
-* link:irc://irc.freenode.net/#perl6[#perl6] IRC channel. Banyak diskusi terjadi di IRC. Saluran ini merupakan tempat yang tepat bila anda ingin bertanya: https://perl6.org/community/irc
+* link:irc://irc.freenode.net/#raku[#raku] IRC channel. Banyak diskusi terjadi di IRC. Saluran ini merupakan tempat yang tepat bila anda ingin bertanya: https://raku.org/community/irc
 
-* link:https://p6weekly.wordpress.com[p6weekly] Gambaran perubahan mingguan seputar Perl 6.
+* link:https://p6weekly.wordpress.com[p6weekly] Gambaran perubahan mingguan seputar Raku.
 
-* link:http://pl6anet.org[pl6anet] blog aggregator. Blog yang fokus pada Perl 6.
+* link:http://pl6anet.org[pl6anet] blog aggregator. Blog yang fokus pada Raku.
 
-* link:https://www.reddit.com/r/perl6/[/r/perl6] Berlangganan pada subreddit Perl 6.
+* link:https://www.reddit.com/r/raku/[/r/raku] Berlangganan pada subreddit Raku.
