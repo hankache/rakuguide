@@ -31,7 +31,7 @@ Untuk melihat salinan lisensi ini, kunjungi
 .Kontribusi
 Apabila anda ingin berkontribusi dalam dokumen ini, kunjungi:
 
-* https://github.com/hankache/rakuintro
+* https://github.com/hankache/rakuguide
 
 .Saran
 Kirimkan saran anda ke:
