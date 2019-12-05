@@ -3293,4 +3293,4 @@ This should be your go to place for any enquiry for which you want an immediate 
 
 * link:https://www.reddit.com/r/rakulang/[/r/rakulang] subscribe to the Raku subreddit.
 
-* link:https://twitter.com/perl6org[@perl6org] follow the community on twitter.
+* link:https://twitter.com/raku_news[@raku_news] follow the community on twitter.
