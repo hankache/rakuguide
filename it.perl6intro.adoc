@@ -185,7 +185,7 @@ Gli *operandi* possono essere:
 
 * *Costanti*: un valore costante come un numero o una stringa.
 
-Gli *operatore* vengono classificati nei seguenti tipi:
+Gli *operatori* vengono classificati nei seguenti tipi:
 
 |===
 
