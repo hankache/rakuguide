@@ -3273,4 +3273,4 @@ NOTE: ネイティブコール インタフェースについてより詳しく�
 
 * link:https://www.reddit.com/r/rakulang/[/r/rakulang] Rakuのsubredditを購読しましょう。
 
-* link:https://twitter.com/perl6org[@perl6org] twitterでコミュニティをフォローしましょう。
+* link:https://twitter.com/raku_news[@raku_news] twitterでコミュニティをフォローしましょう。
