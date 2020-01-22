@@ -3263,7 +3263,9 @@ NOTE: ネイティブコール インタフェースについてより詳しく�
 
 == コミュニティ
 
-* link:irc://irc.freenode.net/#raku[#raku] IRCチャンネルです。活発な議論が行われています。何でも気軽に質問してください: https://raku.org/community/irc
+* link:irc://irc.freenode.net/#raku[#raku] IRCチャンネルです。活発な議論が行われています。何でも気軽に質問してください。簡単でよいからすぐに回答がほしい場合に適しています。: https://raku.org/community/irc
+
+* link:https://stackoverflow.com/questions/tagged/raku[StackOverflow Raku questions] はIRCよりももっと詳しい回答がほしい場合に適しています。
 
 * link:https://rakudoweekly.wordpress.com[rakudoweekly] Rakudoとその周辺の出来事について今週のダイジェストをお伝えします。
 
