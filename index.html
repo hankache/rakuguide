@@ -728,9 +728,9 @@ Implementations that pass the specification test suite are considered Raku.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-n">wget</span> <span class="tok-n">https:</span>//<span class="tok-n">rakudo</span>.<span class="tok-n">perl6</span>.<span class="tok-n">org</span><span class="tok-o">/</span><span class="tok-n">downloads</span><span class="tok-o">/</span><span class="tok-n">star</span><span class="tok-o">/</span><span class="tok-n">rakudo-star-2019</span><span class="tok-mf">.03</span>.<span class="tok-n">tar</span>.<span class="tok-n">gz</span>
-<span class="tok-n">tar</span> <span class="tok-n">xfz</span> <span class="tok-n">rakudo-star-2019</span><span class="tok-mf">.03</span>.<span class="tok-n">tar</span>.<span class="tok-n">gz</span>
-<span class="tok-n">cd</span> <span class="tok-n">rakudo-star-2019</span><span class="tok-mf">.03</span>
+<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-n">wget</span> <span class="tok-n">https:</span>//<span class="tok-n">rakudo</span>.<span class="tok-n">org</span><span class="tok-o">/</span><span class="tok-n">downloads</span><span class="tok-o">/</span><span class="tok-n">star</span><span class="tok-o">/</span><span class="tok-n">rakudo-star-2020</span><span class="tok-mf">.01</span>.<span class="tok-n">tar</span>.<span class="tok-n">gz</span>
+<span class="tok-n">tar</span> <span class="tok-n">xfz</span> <span class="tok-n">rakudo-star-2020</span><span class="tok-mf">.01</span>.<span class="tok-n">tar</span>.<span class="tok-n">gz</span>
+<span class="tok-n">cd</span> <span class="tok-n">rakudo-star-2020</span><span class="tok-mf">.01</span>
 <span class="tok-nb">perl</span> <span class="tok-n">Configure</span>.<span class="tok-n">pl</span> --<span class="tok-n">gen-moar</span> --<span class="tok-n">make-install</span> --<span class="tok-n">prefix</span> ~/<span class="tok-n">rakudo</span></code></pre>
 </div>
 </div>
@@ -761,8 +761,7 @@ Implementations that pass the specification test suite are considered Raku.</p>
 <div class="title">Windows</div>
 <ol class="arabic">
 <li>
-<p>For 64-bit architectures: Get the latest installer (file with .msi extension) from <a href="https://rakudo.org/latest/star/win64" class="bare">https://rakudo.org/latest/star/win64</a><br>
-For 32-bit architectures: Get the latest installer (file with .msi extension) from <a href="https://rakudo.org/latest/star/win32" class="bare">https://rakudo.org/latest/star/win32</a></p>
+<p>For 64-bit architectures: Get the latest installer (file with .msi extension) from <a href="https://rakudo.org/latest/star/win" class="bare">https://rakudo.org/latest/star/win</a></p>
 </li>
 <li>
 <p>After installation, make sure <code>C:\rakudo\bin</code> is in the PATH</p>
@@ -785,7 +784,7 @@ For 32-bit architectures: Get the latest installer (file with .msi extension) fr
 <h3 id="_running_raku_code">1.4. Running Raku code</h3>
 <div class="paragraph">
 <p>Running Raku code can be done using the REPL (Read-Eval-Print Loop).
-To do this, open a terminal, type <code>perl6</code> into the terminal window,
+To do this, open a terminal, type <code>raku</code> into the terminal window,
 and hit [Enter].  This will cause a prompt of <code>&gt;</code> to appear.
 Next, type a line of code and hit [Enter]. The REPL will print out
 the value of the line.  You may then type another line, or type <code>exit</code>
@@ -794,7 +793,7 @@ and hit [Enter] to leave the REPL.</p>
 <div class="paragraph">
 <p>Alternatively, write your code in a file, save it and run it.
 It is recommended that Raku scripts have a  <code>.raku</code> file name extension.
-Run the file by typing <code>perl6 filename.raku</code> into the terminal window
+Run the file by typing <code>raku filename.raku</code> into the terminal window
 and hitting [Enter]. Unlike the REPL, this will not automatically print
 the result of each line: the code must contain a statement like <code>say</code>
 to print output.</p>
@@ -806,7 +805,7 @@ store them in a file and then run them.</p>
 </div>
 <div class="paragraph">
 <p>Single lines may also be tried non-interactively on the command-line by
-typing <code>perl6 -e 'your code here'</code> and hitting [Enter].</p>
+typing <code>raku -e 'your code here'</code> and hitting [Enter].</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -5562,7 +5561,7 @@ This should be your go to place for any enquiry for which you want an immediate 
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-01-23 20:48:43 +0300
+Last updated 2020-03-17 20:46:14 +0200
 </div>
 </div>
 <style>
