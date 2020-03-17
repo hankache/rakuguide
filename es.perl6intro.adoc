@@ -59,9 +59,9 @@ Las implementaciones que pasan el banco de pruebas de la especificación se cons
 .Linux
 Instalación de Rakudo Star desde la línea de comandos:
 ----
-wget https://rakudo.perl6.org/downloads/star/rakudo-star-2019.03.tar.gz
-tar xfz rakudo-star-2019.03.tar.gz
-cd rakudo-star-2019.03
+wget https://rakudo.org/downloads/star/rakudo-star-2020.01.tar.gz
+tar xfz rakudo-star-2020.01.tar.gz
+cd rakudo-star-2020.01
 perl Configure.pl --gen-moar --make-install --prefix ~/rakudo
 ----
 Tienes más información en http://rakudo.org/how-to-get-rakudo/#Installing-Rakudo-Star-Linux
@@ -78,10 +78,8 @@ https://rakudo.org/latest/star/macos
 
 .Windows
 . Para arquitectura 64-bit: descarga el instalador más reciente (.msi) desde
-https://rakudo.org/latest/star/win64 +
-Para arquitectura 32-bit: descarga el instalador más reciente (.msi) desde
-https://rakudo.org/latest/star/win32
-. Finalizada la instalación, comprueba que C:\rakudo\bin figura en el PATH del sistema.
+https://rakudo.org/latest/star/win
+. Finalizada la instalación, comprueba que `C:\rakudo\bin` figura en el PATH del sistema.
 
 .Docker
 . Consigue la imagen oficial de Docker `docker pull rakudo-star`

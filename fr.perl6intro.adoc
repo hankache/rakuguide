@@ -62,9 +62,9 @@ Les implémentations qui passent la suite de tests sont considérées comme du R
 === Installer Raku
 .Linux
 ----
-wget https://rakudo.org/downloads/star/rakudo-star-2019.03.tar.gz
-tar xfz rakudo-star-2019.03.tar.gz
-cd rakudo-star-2019.03
+wget https://rakudo.org/downloads/star/rakudo-star-2020.01.tar.gz
+tar xfz rakudo-star-2020.01.tar.gz
+cd rakudo-star-2020.01
 perl Configure.pl --gen-moar --make-install --prefix ~/rakudo
 ----
 
@@ -78,8 +78,7 @@ Quatre solutions possibles :
 
 
 .Windows
-. Pour les architectures 64-bit : Téléchargez le dernier installeur (extension .msi) ici https://rakudo.org/latest/star/win64 +
-Pour les architectures 32-bit: Téléchargez le dernier installeur (extension .msi) ici https://rakudo.org/latest/star/win32
+. Pour les architectures 64-bit : Téléchargez le dernier installeur (extension .msi) ici https://rakudo.org/latest/star/win
 . Après l'installation, assurez vous que `C:\rakudo\bin` soit dans votre PATH.
 
 .Docker

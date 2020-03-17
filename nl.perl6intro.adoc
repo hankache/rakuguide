@@ -57,9 +57,9 @@ Een implementatie van Raku die al deze tests succesvol kan uitvoeren, mag zich e
 .Linux
 Voer de volgende commando's uit in een Terminal venster om Rakudo Star te installeren:
 ----
-wget https://rakudo.raku.org/downloads/star/rakudo-star-2019.03.tar.gz
-tar xfz rakudo-star-2019.03.tar.gz
-cd rakudo-star-2019.03
+wget https://rakudo.org/downloads/star/rakudo-star-2020.01.tar.gz
+tar xfz rakudo-star-2020.01.tar.gz
+cd rakudo-star-2020.01
 perl Configure.pl --gen-moar --make-install --prefix ~/rakudo
 ----
 Zie https://rakudo.org/how-to-get-rakudo/#Installing-Rakudo-Star-Linux voor meer opties.
@@ -73,8 +73,7 @@ MacOS kent vier mogelijkheden:
 * Download de meest recente installer (bestand met .dmg extensie) van https://rakudo.org/latest/star/macos
 
 .Windows
-. Voor 64-bit systemen: Download de meest recente installer (bestand met .msi extensie) van https://rakudo.org/latest/star/win64 +
-Voor 32-bit systemen: Download de meest recente installer (bestand met .msi extensie) van https://rakudo.org/latest/star/win32
+. Voor 64-bit systemen: Download de meest recente installer (bestand met .msi extensie) van https://rakudo.org/latest/star/win
 . Zorg ervoor dat `C:\rakudo\bin` in je PATH is na het installeren.
 
 .Docker
@@ -3067,7 +3066,7 @@ void hallovanc () {
 ----
 
 Afhankelijk van het Operating System dat je gebruikt, moet je de volgende commando's uitvoeren om een bibliotheek te maken van bovenstaand C programma.
- 
+
 .Op Linux:
 ----
 gcc -c -fpic ncitest.c
@@ -3135,7 +3134,7 @@ In de situatie waarin de Raku subroutine een andere naam heeft als de naam van d
 
 Compileer deze aangepaste C-bibliotheek en voer dan het onderstaande Raku programma uit. +
 Merk op dat we zowel de C-bibliotheek als het Raku programma zo hebben aangepast dat ze beide een string verwachten (`char*` in C, en `Str` in Raku).
- 
+
 [source,c]
 .ncitest.c
 ----

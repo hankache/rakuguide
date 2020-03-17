@@ -75,9 +75,9 @@ Raku 是通过该规范测试套件的实现。
 .Linux
 . 安装 Rakudo Star: 在终端中运行：
 ----
-wget https://rakudo.perl6.org/downloads/star/rakudo-star-2019.03.tar.gz
-tar xfz rakudo-star-2019.03.tar.gz
-cd rakudo-star-2019.03
+wget https://rakudo.org/downloads/star/rakudo-star-2020.01.tar.gz
+tar xfz rakudo-star-2020.01.tar.gz
+cd rakudo-star-2020.01
 perl Configure.pl --gen-moar --make-install --prefix ~/rakudo
 ----
 
@@ -93,7 +93,7 @@ perl Configure.pl --gen-moar --make-install --prefix ~/rakudo
 
 .Windows
 . 从 或 下载最新的安装器(.msi 后缀的文件) +
-. 如果你的系统架构是 64-bit, 可以从 https://rakudo.org/latest/star/win64 下载最新的安装器(.msi 后缀的文件); 如果是 32-bit, 则从 https://rakudo.org/latest/star/win32 下载最新的安装器(.msi 后缀的文件）。
+. 如果你的系统架构是 64-bit, 可以从 https://rakudo.org/latest/star/win 下载最新的安装器(.msi 后缀的文件)。
 . 安装完成后，确保 `C:\rakudo\bin` 在 PATH 中。
 
 .Docker
@@ -2277,7 +2277,7 @@ $actual-vs-forecast.plot;
 
 ----
 ===SORRY!===
-Method 'plot' must be resolved by class combo-chart because it exists in multiple roles (line-chart, bar-chart) 
+Method 'plot' must be resolved by class combo-chart because it exists in multiple roles (line-chart, bar-chart)
 类'combo-chart'的方法'plot'必须被决定，因为存在多个role（line-chart, bar-chart）
 ----
 
