@@ -29,7 +29,7 @@ Install the required tools:
 
     $ sudo pip install Pygments
     $ sudo gem install asciidoctor
-    $ sudo gem install --pre asciidoctor-pdf
+    $ sudo gem install asciidoctor-pdf
     $ sudo gem install pygments.rb
 
 To produce **perl6intro.pdf**, run:
