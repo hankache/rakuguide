@@ -62,9 +62,9 @@ Les implémentations qui passent la suite de tests sont considérées comme du R
 === Installer Raku
 .Linux
 ----
-wget https://rakudo.org/downloads/star/rakudo-star-2020.01.tar.gz
-tar xfz rakudo-star-2020.01.tar.gz
-cd rakudo-star-2020.01
+wget https://rakudo.org/downloads/star/rakudo-star-2020.10.tar.gz
+tar xfz rakudo-star-2020.10.tar.gz
+cd rakudo-star-2020.10
 perl Configure.pl --gen-moar --make-install --prefix ~/rakudo
 ----
 

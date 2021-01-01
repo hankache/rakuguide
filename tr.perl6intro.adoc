@@ -76,12 +76,12 @@ Raku prosedürel, nesne yönelimli ve fonksiyonel programlamayı destekler. _(mu
 
 Rakudo Star kurulumu için komutları takip edin:
 ----
-wget https://rakudo.org/downloads/star/rakudo-star-2020.01.tar.gz
-tar xfz rakudo-star-2020.01.tar.gz
-cd rakudo-star-2020.01
+wget https://rakudo.org/downloads/star/rakudo-star-2020.10.tar.gz
+tar xfz rakudo-star-2020.10.tar.gz
+cd rakudo-star-2020.10
 perl Configure.pl --gen-moar --make-install --prefix ~/rakudo
 ----
-Diğer ayarlar için http://rakudo.org/how-to-get-rakudo/#Installing-Rakudo-Star-Linux adresini ziyaret edebilirsiniz.
+Diğer ayarlar için https://rakudo.org/star/source adresini ziyaret edebilirsiniz.
 
 .macOS
 Dört seçenek mevcuttur:

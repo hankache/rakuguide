@@ -63,12 +63,12 @@ Implementasi yang lulus uji spesifikasi dari rangkaian test dianggap Raku.
 
 Untuk menginstall "Rakudo Star", jalankan perintah berikut diterminal anda:
 ----
-wget https://rakudo.org/downloads/star/rakudo-star-2020.01.tar.gz
-tar xfz rakudo-star-2020.01.tar.gz
-cd rakudo-star-2020.01
+wget https://rakudo.org/downloads/star/rakudo-star-2020.10.tar.gz
+tar xfz rakudo-star-2020.10.tar.gz
+cd rakudo-star-2020.10
 perl Configure.pl --gen-moar --make-install --prefix ~/rakudo
 ----
-Untuk metode instalasi lainnya, kunjungi http://rakudo.org/how-to-get-rakudo/#Installing-Rakudo-Star-Linux
+Untuk metode instalasi lainnya, kunjungi https://rakudo.org/star/source
 
 .macOS
 Ada 4 pilihan metode instalasi yang tersedia:

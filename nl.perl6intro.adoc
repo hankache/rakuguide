@@ -57,12 +57,12 @@ Een implementatie van Raku die al deze tests succesvol kan uitvoeren, mag zich e
 .Linux
 Voer de volgende commando's uit in een Terminal venster om Rakudo Star te installeren:
 ----
-wget https://rakudo.org/downloads/star/rakudo-star-2020.01.tar.gz
-tar xfz rakudo-star-2020.01.tar.gz
-cd rakudo-star-2020.01
+wget https://rakudo.org/downloads/star/rakudo-star-2020.10.tar.gz
+tar xfz rakudo-star-2020.10.tar.gz
+cd rakudo-star-2020.10
 perl Configure.pl --gen-moar --make-install --prefix ~/rakudo
 ----
-Zie https://rakudo.org/how-to-get-rakudo/#Installing-Rakudo-Star-Linux voor meer opties.
+Zie https://rakudo.org/star/source voor meer opties.
 
 .MacOS
 MacOS kent vier mogelijkheden:

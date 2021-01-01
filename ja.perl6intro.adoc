@@ -64,13 +64,13 @@ Rakuはマルチパラダイム言語です。手続き型、オブジェクト�
 .Linux
 Rakudo Starをインストールするには、次のコマンドをターミナルで実行してください:
 ----
-wget https://rakudo.org/downloads/star/rakudo-star-2020.01.tar.gz
-tar xfz rakudo-star-2020.01.tar.gz
-cd rakudo-star-2020.01
+wget https://rakudo.org/downloads/star/rakudo-star-2020.10.tar.gz
+tar xfz rakudo-star-2020.10.tar.gz
+cd rakudo-star-2020.10
 perl Configure.pl --gen-moar --make-install --prefix ~/rakudo
 ----
 
-他のインストール方法を知りたければ次のリンクを参照してください。 http://rakudo.org/how-to-get-rakudo/#Installing-Rakudo-Star-Linux
+他のインストール方法を知りたければ次のリンクを参照してください。 https://rakudo.org/star/source
 
 .macOS
 四つの選択肢から選んでください:

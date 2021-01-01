@@ -61,12 +61,12 @@ Perl 6 ist multi-paradigmatisch. Es unterstützt prozedurales, objektorientierte
 
 Um Rakudo-Star zu installieren, führe diese Kommandos in einem Terminalfenster aus:
 ----
-wget https://rakudo.org/downloads/star/rakudo-star-2020.01.tar.gz
-tar xfz rakudo-star-2020.01.tar.gz
-cd rakudo-star-2020.01
+wget https://rakudo.org/downloads/star/rakudo-star-2020.10.tar.gz
+tar xfz rakudo-star-2020.10.tar.gz
+cd rakudo-star-2020.10
 perl Configure.pl --gen-moar --make-install --prefix ~/rakudo
 ----
-Mehr Informationen stehen unter: http://rakudo.org/how-to-get-rakudo/#Installing-Rakudo-Star-Linux
+Mehr Informationen stehen unter: https://rakudo.org/star/source
 
 .OSX
 Folgen Sie der Anleitung für Linux +

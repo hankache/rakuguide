@@ -80,12 +80,12 @@ Le implementazioni che passano la test suite di specifica sono considerate Perl 
 
 Per installare Rakudo Star, lancia questi comandi dal tuo terminale:
 ----
-wget https://rakudo.org/downloads/star/rakudo-star-2020.01.tar.gz
-tar xfz rakudo-star-2020.01.tar.gz
-cd rakudo-star-2020.01
+wget https://rakudo.org/downloads/star/rakudo-star-2020.10.tar.gz
+tar xfz rakudo-star-2020.10.tar.gz
+cd rakudo-star-2020.10
 perl Configure.pl --gen-moar --make-install --prefix ~/rakudo
 ----
-Per altre opzioni, vai a http://rakudo.org/how-to-get-rakudo/#Installing-Rakudo-Star-Linux
+Per altre opzioni, vai a https://rakudo.org/star/source
 
 .macOS
 Ci sono quattro opzioni:

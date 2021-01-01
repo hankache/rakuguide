@@ -59,12 +59,12 @@ Las implementaciones que pasan el banco de pruebas de la especificación se cons
 .Linux
 Instalación de Rakudo Star desde la línea de comandos:
 ----
-wget https://rakudo.org/downloads/star/rakudo-star-2020.01.tar.gz
-tar xfz rakudo-star-2020.01.tar.gz
-cd rakudo-star-2020.01
+wget https://rakudo.org/downloads/star/rakudo-star-2020.10.tar.gz
+tar xfz rakudo-star-2020.10.tar.gz
+cd rakudo-star-2020.10
 perl Configure.pl --gen-moar --make-install --prefix ~/rakudo
 ----
-Tienes más información en http://rakudo.org/how-to-get-rakudo/#Installing-Rakudo-Star-Linux
+Tienes más información en https://rakudo.org/star/source
 
 .macOS
 
