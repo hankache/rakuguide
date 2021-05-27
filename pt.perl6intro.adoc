@@ -2965,7 +2965,7 @@ NOTE: Para mais informações sobre Concorrência e Programação Assíncrona, v
 
 == A Comunidade
 
-* Canal de IRC link:irc://irc.freenode.net/#perl6[#perl6]. Muita discussão acontece no canal de IRC. Esse deve ser seu lugar de destino para qualquer questão: https://perl6.org/community/irc
+* Canal de IRC link:https://web.libera.chat/#raku[#perl6]. Muita discussão acontece no canal de IRC. Esse deve ser seu lugar de destino para qualquer questão: https://perl6.org/community/irc
 
 * Agregador de blogs link:http://pl6anet.org[pl6anet]. Fique em dia lendo blog posts com foco em Perl 6.
 

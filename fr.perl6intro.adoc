@@ -2987,7 +2987,7 @@ NOTE: Pour plus d'informations sur l'interface d'appel natif, voir: https://docs
 
 == La communauté
 
-* link:irc://irc.freenode.net/#raku[#raku] IRC channel. De nombreuses discussions ont lieu sur IRC. +
+* link:https://web.libera.chat/#raku[#raku] IRC channel. De nombreuses discussions ont lieu sur IRC. +
 Votre première source d'infos si vous voulez dez réponses rapides: https://raku.org/community/irc
 
 * link:https://stackoverflow.com/questions/tagged/raku[StackOverflow, questions sur Raku] pour avoir des explications plus détaillées à vos questions.

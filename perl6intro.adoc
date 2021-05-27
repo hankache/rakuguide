@@ -3281,7 +3281,7 @@ NOTE: For more info on the Native Calling Interface, see https://docs.raku.org/l
 
 == The Community
 
-* link:https://kiwiirc.com/client/irc.libera.chat/#raku[#raku] IRC channel. Much discussion happens on IRC. +
+* link:https://web.libera.chat/#raku[#raku] IRC channel. Much discussion happens on IRC. +
 This should be your go to place for any enquiry for which you want an immediate answer: https://raku.org/community/irc
 
 * link:https://stackoverflow.com/questions/tagged/raku[StackOverflow Raku questions] is a place where questions about Raku can be answered more in-depth.

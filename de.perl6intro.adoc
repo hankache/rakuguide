@@ -2768,7 +2768,7 @@ NOTE: Für mehr Information über Parallele Programmierung und Ungleichzeitigkei
 
 == Die Community
 
-Die Diskussion findet auf dem link:irc://irc.freenode.net/#perl6[#perl6] IRC Kanal statt. Dort läßt sich jede Frage stellen: +
+Die Diskussion findet auf dem link:https://web.libera.chat/#raku[#perl6] IRC Kanal statt. Dort läßt sich jede Frage stellen: +
 http://perl6.org/community/irc
 
 Hier gibt es Blog-Artikel zum Thema Perl 6: +

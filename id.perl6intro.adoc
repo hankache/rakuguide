@@ -3190,7 +3190,7 @@ NOTE: Untuk info lebih lanjut pada Native Calling Interface, kunjungi https://do
 
 == Komunitas
 
-* link:irc://irc.freenode.net/#raku[#raku] IRC channel. Banyak diskusi terjadi di IRC. Saluran ini merupakan tempat yang tepat bila anda ingin bertanya: https://raku.org/community/irc
+* link:https://web.libera.chat/#raku[#raku] IRC channel. Banyak diskusi terjadi di IRC. Saluran ini merupakan tempat yang tepat bila anda ingin bertanya: https://raku.org/community/irc
 
 * link:https://p6weekly.wordpress.com[p6weekly] Gambaran perubahan mingguan seputar Raku.
 

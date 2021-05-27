@@ -3167,11 +3167,10 @@ https://docs.perl6.org/language/concurrency
 
 == Общността
 
-* link:irc://irc.freenode.net/#perl6[#perl6] IRC канал. Повечето обсъждания се случват в IRC. Там трябва да ходите по всякакви въпроси: https://perl6.org/community/irc
+* link:https://web.libera.chat/#raku[#perl6] IRC канал. Повечето обсъждания се случват в IRC. Там трябва да ходите по всякакви въпроси: https://perl6.org/community/irc
 
 * link:https://p6weekly.wordpress.com[p6weekly] седмичен преглед на промените в Пърл 6 и новините около него.
 
 * link:http://pl6anet.org[pl6anet] блог агрегатор. Следете статиите, свързани с Пърл 6.
 
 * link:https://www.reddit.com/r/perl6/[/r/perl6] Запишете се в канала, посветен на Пърл 6.
-

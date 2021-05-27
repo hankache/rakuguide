@@ -2436,7 +2436,7 @@ De gemakkelijkste manier om dit te begrijpen, is om het te beschouwen als een pa
 [source,perl6]
 ----
 if 'verlichting' ~~ m/ licht / {
-    say "verlichting bevat het woord licht';
+    say "verlichting bevat het woord licht";
 }
 ----
 
@@ -3245,7 +3245,7 @@ NOTE: Voor meer informatie over de Native Calling Interface, zie https://docs.ra
 
 == De Community
 
-* link:irc://irc.freenode.net/#raku[#raku] IRC kanaal. Veel discussies vinden plaats op IRC. Mocht je vragen hebben die relatief snel een antwoord nodig hebben, dan kun je het beste naar  https://raku.org/community/irc gaan
+* link:https://web.libera.chat/#raku[#raku] IRC kanaal. Veel discussies vinden plaats op IRC. Mocht je vragen hebben die relatief snel een antwoord nodig hebben, dan kun je het beste naar  https://raku.org/community/irc gaan
 
 * link:https://stackoverflow.com/questions/tagged/raku is een plaats waar vragen over Raku meer diepgaand beantwoord worden.
 

@@ -3355,7 +3355,7 @@ NOTE: 更多关于 Native Calling 接口, 详见 https://docs.raku.org/language/
 
 == 社区
 
-* link:irc://irc.freenode.net/#raku[#raku] IRC 频道. 很多讨论发生在频道中。你可以到 http://raku.org/community/irc 进行任何询问。
+* link:https://web.libera.chat/#raku[#raku] IRC 频道. 很多讨论发生在频道中。你可以到 https://raku.org/community/irc 进行任何询问。
 
 * link:https://rakudoweekly.blog[Rakudo Weekly] Raku 周边的变化和每周概述。
 
@@ -3363,6 +3363,6 @@ NOTE: 更多关于 Native Calling 接口, 详见 https://docs.raku.org/language/
 
 * link:https://www.reddit.com/r/rakulang/[/r/rakulang] 订阅 Raku 子版本。
 
-* link:https://twitter.com/perl6org[@perl6org] Perl6 社区推特
+* link:https://twitter.com/raku_news[@perl6org] Perl6 社区推特
 
 * link:https://alerts.perl6.org[P6lert] 核心开发者的提醒。及时了解重要的变动。

@@ -3112,7 +3112,7 @@ NOTE: _Native Calling Interface_ hakkında daha fazla bilgiye https://docs.perl6
 
 == Topluluk
 
-* link:irc://irc.freenode.net/#perl6[#perl6] IRC kanalı. IRC oldukça aktiftir. Hakkında daha fazla bilgi için: https://perl6.org/community/irc
+* link:https://web.libera.chat/#raku[#perl6] IRC kanalı. IRC oldukça aktiftir. Hakkında daha fazla bilgi için: https://perl6.org/community/irc
 
 * link:https://p6weekly.wordpress.com[p6weekly] Perl 6 ve yapılan değişiklikler ile ilgili bir haftalık bülten.
 

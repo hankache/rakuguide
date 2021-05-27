@@ -3177,7 +3177,7 @@ Por fortuna, Raku proporciona muchos tipos que se corresponden con los de C.
 NOTE: En https://docs.raku.org/language/nativecall tienes más información sobre la Interfaz de Llamadas Nativas.
 
 == La Comunidad
-* En el canal de IRC link:irc://irc.freenode.net/#raku[#raku] se concentra la mayor parte del debate sobre Raku. En: https://perl6.org/community/irc puedes indicar cualquier duda.
+* En el canal de IRC link:https://web.libera.chat/#raku[#raku] se concentra la mayor parte del debate sobre Raku. En: https://perl6.org/community/irc puedes indicar cualquier duda.
 
 * Si tienes alguna consulta y necesitas respuestas en profundidad indícalas en link:https://stackoverflow.com/questions/tagged/raku[StackOverflow Raku questions].
 

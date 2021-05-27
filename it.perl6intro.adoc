@@ -3208,7 +3208,7 @@ NOTE: Per avere più informazioni sull'interfaccia chiamante nativa vedi qui htt
 
 == La comunità
 
-* link:irc://irc.freenode.net/#perl6[#perl6] Canale IRC. Si discute molto su IRC. Per le tue investigazioni rivolgiti a questo canale: https://perl6.org/community/irc
+* link:https://web.libera.chat/#raku[#perl6] Canale IRC. Si discute molto su IRC. Per le tue investigazioni rivolgiti a questo canale: https://perl6.org/community/irc
 
 * link:https://p6weekly.wordpress.com[p6weekly] Panoramica settimanale dei cambiamenti intorno al mondo Perl 6.
 
