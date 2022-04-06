@@ -161,8 +161,25 @@ that can also be written as:
 Raku is *free form*: Most of the time you are free to use any amount of whitespace, although in certain
 cases whitespace carries meaning.
 
-*Statements* are typically a logical line of code, they need to end with a semicolon:
-`say "Hello" if True;`
+*Statements* are typically a single line of code separated with semicolons:
+[source,perl6]
+----
+say "Hello" if True;
+say "World" if False;
+----
+
+Semicolons are not required after the last statement in a file or block of code, but it's good
+practice to include them anyway.
+
+*Blocks* can contain a collection of statements. Surround statements with curly braces to create a
+block:
+[source,perl6]
+----
+{
+    say "First statement in the block.";
+    say "Second statement in the block.";
+}
+----
 
 *Expressions* are a special type of statement that returns a value:
 `1+2` will return `3`
