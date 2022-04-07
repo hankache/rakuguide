@@ -541,6 +541,20 @@ say $age.nude;
 
 NOTE: For the complete list of methods applicable to Rational Numbers, see https://docs.raku.org/type/Rat
 
+[source,perl6]
+.Objects
+----
+class Greeting {
+   has Str $.greeting = 'Hello world!';
+}
+my $greeting-object = Greeting.new();
+say $greeting-object.greeting;
+----
+
+----
+Hello world!
+----
+
 === Arrays
 Arrays are lists containing multiple values.
 
