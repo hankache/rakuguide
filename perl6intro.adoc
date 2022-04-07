@@ -478,6 +478,10 @@ A *sigil* (Sign in Latin) is a character that is used as a prefix to categorize 
 * `@` is used for arrays
 * `%` is used for hashes
 
+NOTE: This guide offers a simplified model of variables suitable for learning
+the basics of Raku. For a deeper understanding of variables, see
+https://docs.raku.org/language/containers 
+
 === Scalars
 A scalar holds one value or reference.
 
