@@ -144,13 +144,17 @@ Consider running the following command and you shall be all set:
 Since most of the time we will be writing and storing our Raku programs in files, we should have
 a decent text editor that recognizes Raku syntax.
 
-I personally use and recommend https://atom.io/[Atom]. It is a modern text editor and comes with Raku syntax highlighting out of the box.
-https://atom.io/packages/language-perl6[Perl 6 FE] is an alternative Raku syntax highlighter for Atom, derived from the original package but with many bug fixes and additions.
+https://commaide.com/[Comma] is the Integrated Development Environment designed specifically for Raku.
 
-Other people in the community also use http://www.vim.org/[Vim], https://www.gnu.org/software/emacs/[Emacs] or http://padre.perlide.org/[Padre].
+The community also uses frequently the following editors:
 
-Recent versions of Vim ship with syntax highlighting out of the box. Emacs and Padre will require installation of additional packages.
+* https://atom.io/[Atom]: better syntax highlighting enabled using https://atom.io/packages/language-perl6[Perl 6 FE]
 
+* https://www.vim.org/[Vim]: better syntax highlighting enabled using https://github.com/Raku/vim-raku[vim-raku]
+
+* https://www.gnu.org/software/emacs/[Emacs]: syntax highlighting enabled using https://github.com/Raku/raku-mode[raku-mode]
+
+* https://www.nano-editor.org/[Nano]: syntax highlighting enabled using https://github.com/hankache/raku.nanorc[raku.nanorc]
 
 === Hello World!
 We shall begin with The `hello world` ritual.
