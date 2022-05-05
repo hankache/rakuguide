@@ -80,10 +80,16 @@ Raku является мультипарадигменным: он поддер�
 
 Чтобы установить Rakudo Star, запустите следующие команды в вашем эмуляторе терминала:
 ----
-wget https://rakudo.org/downloads/star/rakudo-star-2020.10.tar.gz
-tar xfz rakudo-star-2020.10.tar.gz
-cd rakudo-star-2020.10
-perl Configure.pl --gen-moar --make-install --prefix ~/rakudo
+mkdir ~/rakudo && cd $_
+curl -LJO https://rakudo.org/latest/star/src
+tar -xzf rakudo-star-*.tar.gz
+mv rakudo-star-*/* .
+rm -fr rakudo-star-*
+
+./bin/rstar install
+
+echo "export PATH=$(pwd)/bin/:$(pwd)/share/perl6/site/bin:$(pwd)/share/perl6/vendor/bin:$(pwd)/share/perl6/core/bin:\$PATH" >> ~/.bashrc
+source ~/.bashrc
 ----
 С другими вариантами можно ознакомиться на https://rakudo.org/star/source
 

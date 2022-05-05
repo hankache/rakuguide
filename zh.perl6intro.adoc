@@ -75,10 +75,16 @@ Raku 是通过该规范测试套件的实现。
 .Linux
 . 安装 Rakudo Star: 在终端中运行：
 ----
-wget https://rakudo.org/downloads/star/rakudo-star-2020.10.tar.gz
-tar xfz rakudo-star-2020.10.tar.gz
-cd rakudo-star-2020.10
-perl Configure.pl --gen-moar --make-install --prefix ~/rakudo
+mkdir ~/rakudo && cd $_
+curl -LJO https://rakudo.org/latest/star/src
+tar -xzf rakudo-star-*.tar.gz
+mv rakudo-star-*/* .
+rm -fr rakudo-star-*
+
+./bin/rstar install
+
+echo "export PATH=$(pwd)/bin/:$(pwd)/share/perl6/site/bin:$(pwd)/share/perl6/vendor/bin:$(pwd)/share/perl6/core/bin:\$PATH" >> ~/.bashrc
+source ~/.bashrc
 ----
 
 对于其它选项, 请参阅 https://rakudo.org/star/source
