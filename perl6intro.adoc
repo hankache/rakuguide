@@ -150,6 +150,8 @@ The community also uses frequently the following editors:
 
 * https://atom.io/[Atom]: better syntax highlighting enabled using https://atom.io/packages/language-perl6[Perl 6 FE]
 
+* https://code.visualstudio.com/[Visual Studio Code]: syntax highlighting and error checking enabled using https://marketplace.visualstudio.com/items?itemName=bscan.raku-navigator[raku-navigator]
+
 * https://www.vim.org/[Vim]: better syntax highlighting enabled using https://github.com/Raku/vim-raku[vim-raku]
 
 * https://www.gnu.org/software/emacs/[Emacs]: syntax highlighting enabled using https://github.com/Raku/raku-mode[raku-mode]
@@ -490,7 +492,7 @@ A *sigil* (Sign in Latin) is a character that is used as a prefix to categorize 
 
 NOTE: This guide offers a simplified model of variables suitable for learning
 the basics of Raku. For a deeper understanding of variables, see
-https://docs.raku.org/language/containers 
+https://docs.raku.org/language/containers
 
 === Scalars
 A scalar holds one value or reference.
