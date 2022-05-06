@@ -2815,7 +2815,7 @@ To install a specific module, type the below command in your terminal:
 
 `zef install "module name"`
 
-NOTE: The Raku modules directory can be found on: https://modules.raku.org/
+NOTE: The Raku modules directory can be found on: https://raku.land/
 
 === Using Modules
 MD5 is a cryptographic hash function that produces a 128-bit hash value. +
@@ -3321,7 +3321,7 @@ This should be your go to place for any enquiry for which you want an immediate 
 
 * link:https://rakudoweekly.blog[Rakudo Weekly] a weekly overview of changes in and around Rakudo.
 
-* link:http://pl6anet.org[pl6anet] blog aggregator. Stay tuned by reading blog posts that focus on Raku.
+* link:https://planet.raku.org/[Planet Raku] blog aggregator. Stay tuned by reading blog posts that focus on Raku.
 
 * link:https://www.reddit.com/r/rakulang/[/r/rakulang] subscribe to the Raku subreddit.
 
