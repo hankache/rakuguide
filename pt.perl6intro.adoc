@@ -119,7 +119,7 @@ ou digitar `exit` e aperte [Enter] para sair da REPL.
 
 Como alternativa, escreva seu código em um arquivo, salve e execute-o.
 É recomendado que programas em Raku sejam gravados em arquivos com
-a extensão `.pl6`. Execute o arquivo digitando `raku nomedoarquivo.pl6`
+a extensão `.raku`. Execute o arquivo digitando `raku nomedoarquivo.raku`
 na janela do terminal e apertando [Enter]. Ao contrário da REPL, isso
 não vai automaticamente imprimir o resultado de cada linha: o código
 precisa ter um comando `say` para imprimir coisas.
@@ -1241,17 +1241,17 @@ rmdir "novapasta";
 
 Você também pode verificar se um determinado caminho existe, se é um arquivo ou um diretório:
 
-No diretório onde você vai executar o script abaixo, crie um diretório vazio `pasta123` e um arquivo vazio `script123.pl6`
+No diretório onde você vai executar o script abaixo, crie um diretório vazio `pasta123` e um arquivo vazio `script123.raku`
 
 [source,raku]
 ----
-say "script123.pl6".IO.e;
+say "script123.raku".IO.e;
 say "folder123".IO.e;
 
-say "script123.pl6".IO.d;
+say "script123.raku".IO.d;
 say "folder123".IO.d;
 
-say "script123.pl6".IO.f;
+say "script123.raku".IO.f;
 say "folder123".IO.f;
 ----
 
@@ -2318,7 +2318,7 @@ say "Como vai você hoje?"
 .`Saída`
 ----
 Type check failed in assignment to $nome; expected Str but got Int
-   in block <unit> at exceptions.pl6:2
+   in block <unit> at exceptions.raku:2
 ----
 
 Você deve ter percebido que sempre que um erro ocorre (nesse caso, atribuir um número a uma variável de string) o programa vai parar e outras linhas de código não serão avaliadas, mesmo que estejam corretas.
