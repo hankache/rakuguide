@@ -1,4 +1,4 @@
-= Introdução ao Perl 6
+= Introdução ao Raku
 Naoum Hankache <naoum@hankache.com>; Breno de_Oliveira <garu@cpan.org>
 :description: Uma introdução geral ao Perl 6
 :keywords: perl6, perl 6, introdução, perl6intro, introdução ao perl 6, tutorial perl 6, perl 6 intro
