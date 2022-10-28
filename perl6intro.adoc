@@ -263,21 +263,60 @@ Using meaningful names will ease your (and other's) programming life.
 * `monthly-salary = daily-rate * working-days` would be a better way to name your variables.
 
 ==== Comments
-A comment is text ignored by the compiler and used as a note.
+Raku code is parsed and interpreted by the Rakudo compiler. However, you can 
+also mix human-readable text in with your code to help you and other developers
+understand what the code does. We call this text a "comment."
 
-Comments are divided into 3 types:
+We can add special characters in with the code to let the compiler know where
+the comments are. There are a few different ways to do this.
 
-* Single line:
+* Single line comments:
 +
 [source,perl6]
-# This is a single line comment
+# All the text after the '#' at the start of this line is ignored by the compiler.
+
+Single line comments can be placed after code, as well:
+
++
+[source,perl6]
+say 'hey'; # this code will print the word "hey" followed by a newline 
+
+Sometimes, several single line comments are used to break up long comments:
+
++
+[source,perl6]
+# We span single line comments across multiple line
+# to break up comments that would normally be too long
+# to comfortably display on a single line.
 
 * Embedded:
+
+Embedded comments can be located anywhere in the code, not just at
+the beginning or end of lines of code:
+
 +
 [source,perl6]
 say #`(This is an embedded comment) "Hello World."
 
-* Multi line:
+As shown in the example above, embedded comments a begin with the '#`'
+characters. The human-readable comment is displayed between parentheses. You
+can also use curly braces, square brackets, and angle brackets to surround the
+comment.
+
+* Multi-line:
+
+If you wish the create comments that span multiple lines, you can use
+an embedded comment for this purpoose:
+
+[source,perl6]
+#`(
+This is an embedded comment
+that spans multiple
+lines.
+)
+
+Or you can use pod (plain old documentation) comments: 
+
 +
 [source,perl6]
 -----------------------------
