@@ -21,7 +21,7 @@ my $favicon-rest = q:to/END/;
 END
 
 sub clone() {
-  shell 'git clone --branch master https://github.com/hankache/rakuguide.git Src';
+  shell 'git clone --branch main https://github.com/hankache/rakuguide.git Src';
 }
 
 sub clean-up() {
@@ -32,14 +32,14 @@ sub MAIN(Str $language = 'all') {
   clone();
   given $language {
     when 'all' {
-      shell 'asciidoctor -o index.html Src/perl6intro.adoc';
+      shell 'asciidoctor -o index.html Src/rakuguide.adoc';
       my $html = slurp 'index.html';
       $html .= subst("<head>","<head>" ~ $gtag ~ $favicon-en);
       spurt 'index.html',$html;
       say "en generated.";
-      for indir 'Src',{ map(*.substr(0..1), grep({ .Str ne ('perl6intro.adoc','.git','.gitignore','LICENSE','README.md').any }, dir)).sort } -> $translation {
+      for indir 'Src',{ map(*.substr(0..1), grep({ .Str ne ('rakuguide.adoc','.git','.gitignore','LICENSE','README.md').any }, dir)).sort } -> $translation {
           mkdir $translation;
-          shell "asciidoctor -D $translation -o index.html Src/$translation.perl6intro.adoc";
+          shell "asciidoctor -D $translation -o index.html Src/$translation.rakuguide.adoc";
           my $html = slurp "$translation/index.html";
           $html .= subst("<head>","<head>" ~ $gtag ~ $favicon-rest);
           spurt "$translation/index.html",$html;
@@ -47,15 +47,15 @@ sub MAIN(Str $language = 'all') {
       }
     }
     when 'en' {
-      shell 'asciidoctor -o index.html Src/perl6intro.adoc';
+      shell 'asciidoctor -o index.html Src/rakuguide.adoc';
       my $html = slurp 'index.html';
       $html .= subst("<head>","<head>" ~ $gtag ~ $favicon-en);
       spurt 'index.html',$html;
       say "en generated.";
     }
-    when indir('Src',{ map(*.substr(0..1), grep({ .Str ne 'perl6intro.adoc' }, dir)).sort }).any {
+    when indir('Src',{ map(*.substr(0..1), grep({ .Str ne 'rakuguide.adoc' }, dir)).sort }).any {
       mkdir $_;
-      shell "asciidoctor -D $_ -o index.html Src/$_.perl6intro.adoc";
+      shell "asciidoctor -D $_ -o index.html Src/$_.rakuguide.adoc";
       my $html = slurp "$_/index.html";
       $html .= subst("<head>","<head>" ~ $gtag ~ $favicon-rest);
       spurt "$_/index.html",$html;
