@@ -32,13 +32,13 @@ Install the required tools:
     $ sudo gem install asciidoctor-pdf
     $ sudo gem install pygments.rb
 
-To produce **perl6intro.pdf**, run:
+To produce **rakuguide.pdf**, run:
 
-    $ asciidoctor-pdf perl6intro.adoc
+    $ asciidoctor-pdf rakuguide.adoc
 
-To produce **perl6intro.html**, run:
+To produce **rakuguide.html**, run:
 
-    $ asciidoctor perl6intro.adoc
+    $ asciidoctor rakuguide.adoc
 
 ### Feedback
 All feedback is welcomed:
@@ -49,7 +49,7 @@ All feedback is welcomed:
 
 ### Translations
 If you wish to translate this document, always use the English version as your starting point.
-If you are starting a new translation create a new file. For example, the French translation will be in fr.perl6intro.adoc, the Deutsch translation in de.perl6intro.adoc  
+If you are starting a new translation create a new file. For example, the French translation will be in fr.rakuguide.adoc, the Deutsch translation in de.rakuguide.adoc  
 If you want to modify a translated version, consider modifying the English version first. It is important that all translations be kept in sync.
 
 ### Contributing
