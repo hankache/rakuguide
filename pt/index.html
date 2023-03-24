@@ -15,11 +15,11 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 2.0.17">
-<meta name="description" content="Uma introdução geral ao Perl 6">
-<meta name="keywords" content="perl6, perl 6, introdução, perl6intro, introdução ao perl 6, tutorial perl 6, perl 6 intro">
-<meta name="author" content="Naoum Hankache, Breno de Oliveira">
-<title>Introdução ao Perl 6</title>
+<meta name="generator" content="Asciidoctor 2.0.18">
+<meta name="description" content="Uma introdução geral ao Raku">
+<meta name="keywords" content="raku, introdução, rakuguide, introdução ao raku, tutorial raku, raku intro">
+<meta name="author" content="Naoum Hankache, Breno de Oliveira, Humberto Massa">
+<title>Introdução ao Raku</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -98,10 +98,10 @@ code{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;font-weight:400;
 ul,ol,dl{line-height:1.6;margin-bottom:1.25em;list-style-position:outside;font-family:inherit}
 ul,ol{margin-left:1.5em}
 ul li ul,ul li ol{margin-left:1.25em;margin-bottom:0}
-ul.square li ul,ul.circle li ul,ul.disc li ul{list-style:inherit}
-ul.square{list-style-type:square}
 ul.circle{list-style-type:circle}
 ul.disc{list-style-type:disc}
+ul.square{list-style-type:square}
+ul.circle ul:not([class]),ul.disc ul:not([class]),ul.square ul:not([class]){list-style:inherit}
 ol li ul,ol li ol{margin-left:1.25em;margin-bottom:0}
 dl dt{margin-bottom:.3125em;font-weight:bold}
 dl dd{margin-bottom:1.25em}
@@ -524,22 +524,24 @@ pre.pygments .tok-il { color: #666666 } /* Literal.Number.Integer.Long */
 </head>
 <body class="book toc2 toc-left">
 <div id="header">
-<h1>Introdução ao Perl 6</h1>
+<h1>Introdução ao Raku</h1>
 <div class="details">
 <span id="author" class="author">Naoum Hankache</span><br>
 <span id="email" class="email"><a href="mailto:naoum@hankache.com">naoum@hankache.com</a></span><br>
 <span id="author2" class="author">Breno de Oliveira</span><br>
 <span id="email2" class="email"><a href="mailto:garu@cpan.org">garu@cpan.org</a></span><br>
+<span id="author3" class="author">Humberto Massa</span><br>
+<span id="email3" class="email"><a href="mailto:massa@cpan.org">massa@cpan.org</a></span><br>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
 <li><a href="#_introdução">1. Introdução</a>
 <ul class="sectlevel2">
-<li><a href="#_o_que_é_perl_6">1.1. O que é Perl 6</a></li>
+<li><a href="#_o_que_é_raku">1.1. O que é Raku</a></li>
 <li><a href="#_jargão">1.2. Jargão</a></li>
-<li><a href="#_instalando_perl_6">1.3. Instalando Perl 6</a></li>
-<li><a href="#_executando_código_em_perl_6">1.4. Executando código em Perl 6</a></li>
+<li><a href="#_instalando_raku">1.3. Instalando Raku</a></li>
+<li><a href="#_executando_código_em_raku">1.4. Executando código em Raku</a></li>
 <li><a href="#_editores">1.5. Editores</a></li>
 <li><a href="#_alô_mundo">1.6. Alô Mundo!</a></li>
 <li><a href="#_visão_geral_da_sintaxe">1.7. Visão geral da sintaxe</a></li>
@@ -635,7 +637,7 @@ pre.pygments .tok-il { color: #666666 } /* Literal.Number.Integer.Long */
 <li><a href="#_exemplo">11.8. Exemplo</a></li>
 </ul>
 </li>
-<li><a href="#_módulos_em_perl_6">12. Módulos em Perl 6</a>
+<li><a href="#_módulos_em_raku">12. Módulos em Raku</a>
 <ul class="sectlevel2">
 <li><a href="#_usando_módulos">12.1. Usando Módulos</a></li>
 </ul>
@@ -659,11 +661,11 @@ pre.pygments .tok-il { color: #666666 } /* Literal.Number.Integer.Long */
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Este documento tem como objetivo oferecer uma visão geral da linguagem de programação Perl 6.
-Para quem é novo em Perl 6 esse material deve te dar o necessário para começar.</p>
+<p>Este documento tem como objetivo oferecer uma visão geral da linguagem de programação Raku.
+Para quem é novo em Raku esse material deve te dar o necessário para começar.</p>
 </div>
 <div class="paragraph">
-<p>Algumas seções desse documento referenciam outras partes (mais completas e precisas) da <a href="http://docs.perl6.org">documentação do Perl 6</a>.
+<p>Algumas seções desse documento referenciam outras partes (mais completas e precisas) da <a href="http://docs.raku.org">documentação do Raku</a>.
 Leia-as se precisar de mais informações sobre um assunto específico.</p>
 </div>
 <div class="paragraph">
@@ -689,7 +691,7 @@ Para ver uma cópia dessa licença, visite</p>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="https://github.com/hankache/perl6intro" class="bare">https://github.com/hankache/perl6intro</a></p>
+<p><a href="https://github.com/hankache/rakuguide" class="bare">https://github.com/hankache/rakuguide</a></p>
 </li>
 </ul>
 </div>
@@ -705,28 +707,55 @@ Para ver uma cópia dessa licença, visite</p>
 <li>
 <p><a href="mailto:garu@cpan.org">garu@cpan.org</a></p>
 </li>
+<li>
+<p><a href="mailto:massa@cpan.org">massa@cpan.org</a></p>
+</li>
 </ul>
 </div>
 <div class="paragraph">
-<p>Se você gostou desse trabalho, clique na <em>estrela</em> do repositório no <a href="https://github.com/hankache/perl6intro">Github</a>.</p>
+<p>Se você gostou desse trabalho, clique na <em>estrela</em> do repositório no <a href="https://github.com/hankache/rakuguide">Github</a>.</p>
 </div>
 <div class="ulist">
 <div class="title">Traduções</div>
 <ul>
 <li>
-<p>Inglês: <a href="http://perl6intro.com" class="bare">http://perl6intro.com</a></p>
+<p>Inglês: <a href="https://raku.guide" class="bare">https://raku.guide</a></p>
 </li>
 <li>
-<p>Francês: <a href="http://fr.perl6intro.com" class="bare">http://fr.perl6intro.com</a></p>
+<p>Alemão: <a href="https://raku.guide/de" class="bare">https://raku.guide/de</a></p>
 </li>
 <li>
-<p>Alemão: <a href="http://de.perl6intro.com" class="bare">http://de.perl6intro.com</a></p>
+<p>Búlgaro: <a href="https://raku.guide/bg" class="bare">https://raku.guide/bg</a></p>
 </li>
 <li>
-<p>Japonês: <a href="http://ja.perl6intro.com" class="bare">http://ja.perl6intro.com</a></p>
+<p>Chinês: <a href="https://raku.guide/zh" class="bare">https://raku.guide/zh</a></p>
 </li>
 <li>
-<p>Espanhol: <a href="http://es.perl6intro.com" class="bare">http://es.perl6intro.com</a></p>
+<p>Espanhol: <a href="https://raku.guide/es" class="bare">https://raku.guide/es</a></p>
+</li>
+<li>
+<p>Francês: <a href="https://raku.guide/fr" class="bare">https://raku.guide/fr</a></p>
+</li>
+<li>
+<p>Holandês: <a href="https://raku.guide/nl" class="bare">https://raku.guide/nl</a></p>
+</li>
+<li>
+<p>Indonésio: <a href="https://raku.guide/id" class="bare">https://raku.guide/id</a></p>
+</li>
+<li>
+<p>Italiano: <a href="https://raku.guide/it" class="bare">https://raku.guide/it</a></p>
+</li>
+<li>
+<p>Japonês: <a href="https://raku.guide/ja" class="bare">https://raku.guide/ja</a></p>
+</li>
+<li>
+<p>Português: <a href="https://raku.guide/pt" class="bare">https://raku.guide/pt</a></p>
+</li>
+<li>
+<p>Russo: <a href="https://raku.guide/ru" class="bare">https://raku.guide/ru</a></p>
+</li>
+<li>
+<p>Turco: <a href="https://raku.guide/tr" class="bare">https://raku.guide/tr</a></p>
 </li>
 </ul>
 </div>
@@ -736,13 +765,13 @@ Para ver uma cópia dessa licença, visite</p>
 <h2 id="_introdução">1. Introdução</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_o_que_é_perl_6">1.1. O que é Perl 6</h3>
+<h3 id="_o_que_é_raku">1.1. O que é Raku</h3>
 <div class="paragraph">
-<p>Perl 6 é uma linguagem de alto nível, uso geral e com tipagem gradual.
-Perl 6 é multi paradigma. Ela suporta programação Procedural, Orientada a Objetos e Funcional.</p>
+<p>Raku é uma linguagem de alto nível, uso geral e com tipagem gradual.
+Raku é multi paradigma. Ela suporta programação Procedural, Orientada a Objetos e Funcional.</p>
 </div>
 <div class="ulist">
-<div class="title">Lema do Perl 6:</div>
+<div class="title">Lema do Raku:</div>
 <ul>
 <li>
 <p>TMTOWTDI (Pronuncia-se Tim Toady): Existe mais de uma maneira de se fazer as coisas (there is more than one way to do it).</p>
@@ -758,42 +787,49 @@ Perl 6 é multi paradigma. Ela suporta programação Procedural, Orientada a Obj
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Perl 6</strong>: É a especificação da linguagem com uma suite de testes.
-Implementações que passem na suite de testes da especificação são consideradas Perl 6.</p>
+<p><strong>Raku</strong>: É a especificação da linguagem com uma suite de testes.
+Implementações que passem na suite de testes da especificação são consideradas Raku.</p>
 </li>
 <li>
-<p><strong>Rakudo</strong>: É um compilador para Perl 6.</p>
+<p><strong>Rakudo</strong>: É um compilador para Raku.</p>
 </li>
 <li>
 <p><strong>Rakudobrew</strong>: É um gerenciador de instalações para o Rakudo.</p>
 </li>
 <li>
-<p><strong>Zef</strong>: É um instalador de módulos do Perl 6.</p>
+<p><strong>Zef</strong>: É um instalador de módulos do Raku.</p>
 </li>
 <li>
-<p><strong>Rakudo Star</strong>: É um pacote que inclui Rakudo, Zef, uma coleção de módulos Perl 6, e documentação.</p>
+<p><strong>Rakudo Star</strong>: É um pacote que inclui Rakudo, Zef, uma coleção de módulos Raku, e documentação.</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_instalando_perl_6">1.3. Instalando Perl 6</h3>
-<div class="olist arabic">
+<h3 id="_instalando_raku">1.3. Instalando Raku</h3>
+<div class="paragraph">
 <div class="title">Linux</div>
-<ol class="arabic">
-<li>
-<p>Instale o Rakudobrew: <a href="https://github.com/tadzik/rakudobrew" class="bare">https://github.com/tadzik/rakudobrew</a></p>
-</li>
-<li>
-<p>Instale o Rakudo: Digite o seguinte comando no terminal <code>rakudobrew build moar</code></p>
-</li>
-<li>
-<p>Instale o Zef: Digite o seguinte comando no terminal <code>rakudobrew build zef</code></p>
-</li>
-</ol>
+<p>Para instalar o Rakudo Star, execute os seguintes comandos no terminal:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-nb">mkdir</span> ~/<span class="tok-n">rakudo</span> &amp;&amp; <span class="tok-n">cd</span> <span class="tok-nv">$_</span>
+<span class="tok-n">curl</span> -<span class="tok-n">LJO</span> <span class="tok-n">https:</span>//<span class="tok-n">rakudo</span>.<span class="tok-n">org</span><span class="tok-o">/</span><span class="tok-n">latest</span><span class="tok-o">/</span><span class="tok-n">star</span><span class="tok-o">/</span><span class="tok-n">src</span>
+<span class="tok-n">tar</span> -<span class="tok-n">xzf</span> <span class="tok-n">rakudo-star-</span>*.<span class="tok-n">tar</span>.<span class="tok-n">gz</span>
+<span class="tok-n">mv</span> <span class="tok-n">rakudo-star-</span>*/* .
+<span class="tok-n">rm</span> -<span class="tok-n">fr</span> <span class="tok-n">rakudo-star-</span>*
+
+./<span class="tok-n">bin</span><span class="tok-o">/</span><span class="tok-n">rstar</span> <span class="tok-n">install</span>
+
+<span class="tok-n">echo</span> <span class="tok-s">&quot;export PATH=$(pwd)/bin/:$(pwd)/share/perl6/site/bin:$(pwd)/share/perl6/vendor/bin:$(pwd)/share/perl6/core/bin:\$PATH&quot;</span> &gt;&gt; ~/.<span class="tok-n">bashrc</span>
+<span class="tok-nb">source</span> ~/.<span class="tok-n">bashrc</span></code></pre>
+</div>
 </div>
 <div class="paragraph">
-<div class="title">OSX</div>
+<p>For other options, go to <a href="https://rakudo.org/star/source" class="bare">https://rakudo.org/star/source</a></p>
+</div>
+<div class="paragraph">
+<div class="title">macOS</div>
 <p>Quatro opções estão disponíveis:</p>
 </div>
 <div class="ulist">
@@ -837,10 +873,10 @@ Se o seu sistema for 32 bits, baixe o arquivo x86; se for 64 bits, baixe o arqui
 </div>
 </div>
 <div class="sect2">
-<h3 id="_executando_código_em_perl_6">1.4. Executando código em Perl 6</h3>
+<h3 id="_executando_código_em_raku">1.4. Executando código em Raku</h3>
 <div class="paragraph">
-<p>Executar código Perl 6 pode ser feito usando a REPL (Read-Eval-Print Loop).
-Para isso, abra um terminal, digite <code>perl6</code> na janela do terminal
+<p>Executar código Raku pode ser feito usando a REPL (Read-Eval-Print Loop).
+Para isso, abra um terminal, digite <code>raku</code> na janela do terminal
 e aperte [Enter]. Isso vai fazer com que um prompt de <code>&gt;</code> apareça.
 Em seguida, digite uma linha de código e aperte [Enter]. A REPL vai
 exibir o valor daquela linha. Você pode então digitar outra linha,
@@ -848,8 +884,8 @@ ou digitar <code>exit</code> e aperte [Enter] para sair da REPL.</p>
 </div>
 <div class="paragraph">
 <p>Como alternativa, escreva seu código em um arquivo, salve e execute-o.
-É recomendado que programas em Perl 6 sejam gravados em arquivos com
-a extensão <code>.pl6</code>. Execute o arquivo digitando <code>perl6 nomedoarquivo.pl6</code>
+É recomendado que programas em Raku sejam gravados em arquivos com
+a extensão <code>.raku</code>. Execute o arquivo digitando <code>raku nomedoarquivo.raku</code>
 na janela do terminal e apertando [Enter]. Ao contrário da REPL, isso
 não vai automaticamente imprimir o resultado de cada linha: o código
 precisa ter um comando <code>say</code> para imprimir coisas.</p>
@@ -861,7 +897,7 @@ recomendado escrever em um arquivo e executá-lo.</p>
 </div>
 <div class="paragraph">
 <p>Linhas individuais também podem ser executadas de modo não interativo
-na linha de comando digitando <code>perl6 -e 'seu código aqui'</code> e apertando
+na linha de comando digitando <code>raku -e 'seu código aqui'</code> e apertando
 [Enter].</p>
 </div>
 <div class="admonitionblock tip">
@@ -899,14 +935,14 @@ Considere executar o seguinte comando e estará tudo pronto:</p>
 <div class="sect2">
 <h3 id="_editores">1.5. Editores</h3>
 <div class="paragraph">
-<p>Como vamos passar um bom tempo escrevendo e gravando programas Perl 6 em
+<p>Como vamos passar um bom tempo escrevendo e gravando programas Raku em
 arquivos, é bom termos um editor de textos decente que reconheça a sintaxe
-do Perl 6.</p>
+do Raku.</p>
 </div>
 <div class="paragraph">
 <p>Eu particularmente uso e recomendo o <a href="https://atom.io/">Atom</a>. É um editor de
-textos moderno e já vem com reconhecimento de sintaxe em Perl 6.
-<a href="https://atom.io/packages/language-perl6fe">Perl6-fe</a> é um reconhecedor de
+textos moderno e já vem com reconhecimento de sintaxe em Raku.
+<a href="https://atom.io/packages/language-rakufe">Raku-fe</a> é um reconhecedor de
 sintaxe alternativo para o Atom, derivado do pacote original mas com muitas
 correções e adições.</p>
 </div>
@@ -926,7 +962,7 @@ precisam da instalação de pacotes adicionais.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-nb">say</span> <span class="tok-s">&#39;hello world&#39;</span>;</code></pre>
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-nb">say</span> <span class="tok-s">&#39;hello world&#39;</span>;</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -934,14 +970,14 @@ precisam da instalação de pacotes adicionais.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-s">&#39;hello world&#39;</span>.<span class="tok-nb">say</span>;</code></pre>
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-s">&#39;hello world&#39;</span>.<span class="tok-nb">say</span>;</code></pre>
 </div>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_visão_geral_da_sintaxe">1.7. Visão geral da sintaxe</h3>
 <div class="paragraph">
-<p>Perl 6 tem <strong>forma livre</strong>: Você tem liberdade (na maioria dos casos) para usar
+<p>Raku tem <strong>forma livre</strong>: Você tem liberdade (na maioria dos casos) para usar
 qualquer quantidade de espaços em branco.</p>
 </div>
 <div class="paragraph">
@@ -1111,7 +1147,7 @@ uma nota.</p>
 <p>Linha única:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-c1"># Isso é uma linha de comentário</span></code></pre>
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-c1"># Isso é uma linha de comentário</span></code></pre>
 </div>
 </div>
 </li>
@@ -1119,7 +1155,7 @@ uma nota.</p>
 <p>Embutido:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-nb">say</span> <span class="tok-cm">#`(Isso é um comentário embutido)</span> <span class="tok-s">&quot;Alô Mundo.&quot;</span></code></pre>
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-nb">say</span> <span class="tok-cm">#`(Isso é um comentário embutido)</span> <span class="tok-s">&quot;Alô Mundo.&quot;</span></code></pre>
 </div>
 </div>
 </li>
@@ -1127,7 +1163,7 @@ uma nota.</p>
 <p>Multi linhas:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-cm">=begin comment</span>
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-cm">=begin comment</span>
 <span class="tok-cm">Esse é um comentário de várias linhas.</span>
 <span class="tok-cm">Comentário 1</span>
 <span class="tok-cm">Comentário 2</span>
@@ -1158,7 +1194,7 @@ uma nota.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-nb">say</span> <span class="tok-s">&#39;Alô Mundo&#39;</span>;   <span class="tok-c1"># Alô Mundo</span>
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-nb">say</span> <span class="tok-s">&#39;Alô Mundo&#39;</span>;   <span class="tok-c1"># Alô Mundo</span>
 <span class="tok-nb">say</span> <span class="tok-s">&quot;Alô Mundo&quot;</span>;   <span class="tok-c1"># Alô Mundo</span>
 <span class="tok-nb">say</span> <span class="tok-s">&quot;Gota d&#39;água&quot;</span>; <span class="tok-c1"># Gota d&#39;água</span>
 <span class="tok-k">my</span> <span class="tok-nv">$name</span> = <span class="tok-s">&#39;Maria Silva&#39;</span>;
@@ -1367,11 +1403,11 @@ uma nota.</p>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>True</code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>"Perl 6" ~~ "Perl 6"</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>"Raku" ~~ "Raku"</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>True</code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>"Perl 6" ~~ Str</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>"Raku" ~~ Str</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>True</code></p></td>
 </tr>
 <tr>
@@ -1603,7 +1639,7 @@ Eles são formados colocando o operador entre colchetes <code>[]</code></p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Para a lista completa de operadores, incluindo sua precedência, visite <a href="https://docs.perl6.org/language/operators" class="bare">https://docs.perl6.org/language/operators</a>
+Para a lista completa de operadores, incluindo sua precedência, visite <a href="https://docs.raku.org/language/operators" class="bare">https://docs.raku.org/language/operators</a>
 </td>
 </tr>
 </table>
@@ -1615,7 +1651,7 @@ Para a lista completa de operadores, incluindo sua precedência, visite <a href=
 <h2 id="_variáveis">3. Variáveis</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Variáveis em Perl 6 são classificadas em 3 categorias: Scalars (escalares), Arrays e Hashes.</p>
+<p>Variáveis em Raku são classificadas em 3 categorias: Scalars (escalares), Arrays e Hashes.</p>
 </div>
 <div class="paragraph">
 <p>Um <strong>sigil</strong> (símbolo) é um caractere usado como prefixo para categorizar variáveis.</p>
@@ -1640,7 +1676,7 @@ Para a lista completa de operadores, incluindo sua precedência, visite <a href=
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-c1">#String</span>
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-c1">#String</span>
 <span class="tok-k">my</span> <span class="tok-nv">$nome</span> = <span class="tok-s">&#39;Maria Silva&#39;</span>;
 <span class="tok-nb">say</span> <span class="tok-nv">$nome</span>;
 
@@ -1656,7 +1692,7 @@ do valor que ele armazena.</p>
 <div class="listingblock">
 <div class="title">String</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">$nome</span> = <span class="tok-s">&#39;Maria Silva&#39;</span>;
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-k">my</span> <span class="tok-nv">$nome</span> = <span class="tok-s">&#39;Maria Silva&#39;</span>;
 <span class="tok-nb">say</span> <span class="tok-nv">$nome</span>.<span class="tok-nb">uc</span>;
 <span class="tok-nb">say</span> <span class="tok-nv">$nome</span>.<span class="tok-nb">chars</span>;
 <span class="tok-nb">say</span> <span class="tok-nv">$nome</span>.<span class="tok-nb">flip</span>;</code></pre>
@@ -1664,7 +1700,7 @@ do valor que ele armazena.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-n">MARIA</span> <span class="tok-n">SILVA</span>
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-n">MARIA</span> <span class="tok-n">SILVA</span>
 <span class="tok-mi">11</span>
 <span class="tok-n">avliS</span> <span class="tok-n">airaM</span></code></pre>
 </div>
@@ -1676,7 +1712,7 @@ do valor que ele armazena.</p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Para a lista completa de métodos aplicáveis a Strings, veja <a href="https://docs.perl6.org/type/Str" class="bare">https://docs.perl6.org/type/Str</a>
+Para a lista completa de métodos aplicáveis a Strings, veja <a href="https://docs.raku.org/type/Str" class="bare">https://docs.raku.org/type/Str</a>
 </td>
 </tr>
 </table>
@@ -1684,13 +1720,13 @@ Para a lista completa de métodos aplicáveis a Strings, veja <a href="https://d
 <div class="listingblock">
 <div class="title">Inteiros</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">$idade</span> = <span class="tok-mi">17</span>;
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-k">my</span> <span class="tok-nv">$idade</span> = <span class="tok-mi">17</span>;
 <span class="tok-nb">say</span> <span class="tok-nv">$idade</span>.<span class="tok-nb">is-prime</span>;</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-nb">True</span></code></pre>
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-nb">True</span></code></pre>
 </div>
 </div>
 <div class="admonitionblock note">
@@ -1700,7 +1736,7 @@ Para a lista completa de métodos aplicáveis a Strings, veja <a href="https://d
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Para a lista completa de métodos aplicáveis a Inteiros, visite <a href="https://docs.perl6.org/type/Int" class="bare">https://docs.perl6.org/type/Int</a>
+Para a lista completa de métodos aplicáveis a Inteiros, visite <a href="https://docs.raku.org/type/Int" class="bare">https://docs.raku.org/type/Int</a>
 </td>
 </tr>
 </table>
@@ -1708,7 +1744,7 @@ Para a lista completa de métodos aplicáveis a Inteiros, visite <a href="https:
 <div class="listingblock">
 <div class="title">Números Racionais</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">$idade</span> = <span class="tok-mf">2.3</span>;
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-k">my</span> <span class="tok-nv">$idade</span> = <span class="tok-mf">2.3</span>;
 <span class="tok-nb">say</span> <span class="tok-nv">$idade</span>.<span class="tok-nb">numerator</span>;
 <span class="tok-nb">say</span> <span class="tok-nv">$idade</span>.<span class="tok-nb">denominator</span>;
 <span class="tok-nb">say</span> <span class="tok-nv">$idade</span>.<span class="tok-nb">nude</span>;</code></pre>
@@ -1716,7 +1752,7 @@ Para a lista completa de métodos aplicáveis a Inteiros, visite <a href="https:
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-mi">23</span>
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-mi">23</span>
 <span class="tok-mi">10</span>
 (<span class="tok-mi">23</span> <span class="tok-mi">10</span>)</code></pre>
 </div>
@@ -1728,7 +1764,7 @@ Para a lista completa de métodos aplicáveis a Inteiros, visite <a href="https:
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Para a lista completa de métodos aplicáveis a Números Racionais, visite <a href="http://doc.perl6.org/type/Rat" class="bare">http://doc.perl6.org/type/Rat</a>
+Para a lista completa de métodos aplicáveis a Números Racionais, visite <a href="http://doc.raku.org/type/Rat" class="bare">http://doc.raku.org/type/Rat</a>
 </td>
 </tr>
 </table>
@@ -1741,7 +1777,7 @@ Para a lista completa de métodos aplicáveis a Números Racionais, visite <a hr
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">@animais</span> = <span class="tok-s">&#39;camelo&#39;</span>,<span class="tok-s">&#39;lhama&#39;</span>,<span class="tok-s">&#39;coruja&#39;</span>;
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-k">my</span> <span class="tok-nv">@animais</span> = <span class="tok-s">&#39;camelo&#39;</span>,<span class="tok-s">&#39;lhama&#39;</span>,<span class="tok-s">&#39;coruja&#39;</span>;
 <span class="tok-nb">say</span> <span class="tok-nv">@animais</span>;</code></pre>
 </div>
 </div>
@@ -1763,7 +1799,7 @@ O til <code>~</code> é usado para concatenar strings.
 <div class="listingblock">
 <div class="title"><code>Script</code></div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">@animais</span> = <span class="tok-s">&#39;camelo&#39;</span>,<span class="tok-s">&#39;vicunha&#39;</span>,<span class="tok-s">&#39;lhama&#39;</span>;
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-k">my</span> <span class="tok-nv">@animais</span> = <span class="tok-s">&#39;camelo&#39;</span>,<span class="tok-s">&#39;vicunha&#39;</span>,<span class="tok-s">&#39;lhama&#39;</span>;
 <span class="tok-nb">say</span> <span class="tok-s">&quot;O zoológico contém &quot;</span> ~ <span class="tok-nv">@animals</span>.<span class="tok-nb">elems</span> ~ <span class="tok-s">&quot; animais&quot;</span>;
 <span class="tok-nb">say</span> <span class="tok-s">&quot;Os animais são: &quot;</span> ~ <span class="tok-nv">@animais</span>;
 <span class="tok-nb">say</span> <span class="tok-s">&quot;Vou adotar uma coruja para o zoo&quot;</span>;
@@ -1779,7 +1815,7 @@ O til <code>~</code> é usado para concatenar strings.
 <div class="listingblock">
 <div class="title"><code>Saída</code></div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-n">O</span> <span class="tok-n">zoológico</span> <span class="tok-n">contém</span> <span class="tok-mi">3</span> <span class="tok-n">animais</span>
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-n">O</span> <span class="tok-n">zoológico</span> <span class="tok-n">contém</span> <span class="tok-mi">3</span> <span class="tok-n">animais</span>
 <span class="tok-n">Os</span> <span class="tok-n">animais</span> <span class="tok-n">são:</span> <span class="tok-n">camelo</span> <span class="tok-n">vicunha</span> <span class="tok-n">lhama</span>
 <span class="tok-n">Vou</span> <span class="tok-n">adotar</span> <span class="tok-n">uma</span> <span class="tok-n">coruja</span> <span class="tok-n">para</span> <span class="tok-n">o</span> <span class="tok-n">zoo</span>
 <span class="tok-n">Agora</span> <span class="tok-n">o</span> <span class="tok-n">zoo</span> <span class="tok-n">tem:</span> <span class="tok-n">camelo</span> <span class="tok-n">vicunha</span> <span class="tok-n">lhama</span> <span class="tok-n">coruja</span>
@@ -1804,7 +1840,7 @@ Podemos acessar um elemento específico do array especificando sua posição, co
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">@array</span>;</code></pre>
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-k">my</span> <span class="tok-nv">@array</span>;</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1820,7 +1856,7 @@ Esses arrays não podem ser acessados em posições acima do seu tamanho predefi
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">@array</span>[<span class="tok-mi">3</span>];</code></pre>
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-k">my</span> <span class="tok-nv">@array</span>[<span class="tok-mi">3</span>];</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1828,7 +1864,7 @@ Esses arrays não podem ser acessados em posições acima do seu tamanho predefi
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">@array</span>[<span class="tok-mi">3</span>];
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-k">my</span> <span class="tok-nv">@array</span>[<span class="tok-mi">3</span>];
 <span class="tok-nv">@array</span>[<span class="tok-mi">0</span>] = <span class="tok-s">&quot;primeiro valor&quot;</span>;
 <span class="tok-nv">@array</span>[<span class="tok-mi">1</span>] = <span class="tok-s">&quot;segundo valor&quot;</span>;
 <span class="tok-nv">@array</span>[<span class="tok-mi">2</span>] = <span class="tok-s">&quot;terceiro valor&quot;</span>;</code></pre>
@@ -1839,7 +1875,7 @@ Esses arrays não podem ser acessados em posições acima do seu tamanho predefi
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">@array</span>[<span class="tok-mi">3</span>];
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-k">my</span> <span class="tok-nv">@array</span>[<span class="tok-mi">3</span>];
 <span class="tok-nv">@array</span>[<span class="tok-mi">0</span>] = <span class="tok-s">&quot;primeiro valor&quot;</span>;
 <span class="tok-nv">@array</span>[<span class="tok-mi">1</span>] = <span class="tok-s">&quot;segundo valor&quot;</span>;
 <span class="tok-nv">@array</span>[<span class="tok-mi">2</span>] = <span class="tok-s">&quot;terceiro valor&quot;</span>;
@@ -1848,7 +1884,7 @@ Esses arrays não podem ser acessados em posições acima do seu tamanho predefi
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-n">Index</span> <span class="tok-mi">3</span> <span class="tok-k">for</span> <span class="tok-n">dimension</span> <span class="tok-mi">1</span> <span class="tok-n">out</span> <span class="tok-nb">of</span> <span class="tok-nb">range</span> (<span class="tok-n">must</span> <span class="tok-n">be</span> <span class="tok-mi">0</span><span class="tok-o">..</span><span class="tok-mi">2</span>)</code></pre>
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-n">Index</span> <span class="tok-mi">3</span> <span class="tok-k">for</span> <span class="tok-n">dimension</span> <span class="tok-mi">1</span> <span class="tok-n">out</span> <span class="tok-nb">of</span> <span class="tok-nb">range</span> (<span class="tok-n">must</span> <span class="tok-n">be</span> <span class="tok-mi">0</span><span class="tok-o">..</span><span class="tok-mi">2</span>)</code></pre>
 </div>
 </div>
 </div>
@@ -1856,11 +1892,11 @@ Esses arrays não podem ser acessados em posições acima do seu tamanho predefi
 <h4 id="_arrays_multidimensionais">3.2.2. Arrays multidimensionais</h4>
 <div class="paragraph">
 <p>Os arrays que vimos até agora são unidimensionais.<br>
-Felizmente, podemos definir arrays multidimensionais em Perl 6.</p>
+Felizmente, podemos definir arrays multidimensionais em Raku.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">@tbl</span>[<span class="tok-mi">3</span>;<span class="tok-mi">2</span>];</code></pre>
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-k">my</span> <span class="tok-nv">@tbl</span>[<span class="tok-mi">3</span>;<span class="tok-mi">2</span>];</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1872,7 +1908,7 @@ A primeira dimensão pode ter até 3 valores e a segunda dimensão até 2 valore
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">@tbl</span>[<span class="tok-mi">3</span>;<span class="tok-mi">2</span>];
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-k">my</span> <span class="tok-nv">@tbl</span>[<span class="tok-mi">3</span>;<span class="tok-mi">2</span>];
 <span class="tok-nv">@tbl</span>[<span class="tok-mi">0</span>;<span class="tok-mi">0</span>] = <span class="tok-mi">1</span>;
 <span class="tok-nv">@tbl</span>[<span class="tok-mi">0</span>;<span class="tok-mi">1</span>] = <span class="tok-s">&quot;x&quot;</span>;
 <span class="tok-nv">@tbl</span>[<span class="tok-mi">1</span>;<span class="tok-mi">0</span>] = <span class="tok-mi">2</span>;
@@ -1884,13 +1920,13 @@ A primeira dimensão pode ter até 3 valores e a segunda dimensão até 2 valore
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span>[[<span class="tok-mi">1</span> <span class="tok-nb">x</span>] [<span class="tok-mi">2</span> <span class="tok-n">y</span>] [<span class="tok-mi">3</span> <span class="tok-nb">z</span>]]</code></pre>
+<pre class="pygments highlight"><code data-lang="raku"><span></span>[[<span class="tok-mi">1</span> <span class="tok-nb">x</span>] [<span class="tok-mi">2</span> <span class="tok-n">y</span>] [<span class="tok-mi">3</span> <span class="tok-nb">z</span>]]</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title">Representação visual do array:</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span>[<span class="tok-mi">1</span> <span class="tok-nb">x</span>]
+<pre class="pygments highlight"><code data-lang="raku"><span></span>[<span class="tok-mi">1</span> <span class="tok-nb">x</span>]
 [<span class="tok-mi">2</span> <span class="tok-n">y</span>]
 [<span class="tok-mi">3</span> <span class="tok-nb">z</span>]</code></pre>
 </div>
@@ -1902,7 +1938,7 @@ A primeira dimensão pode ter até 3 valores e a segunda dimensão até 2 valore
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Para uma referência completa sobre Arrays, veja <a href="https://docs.perl6.org/type/Array" class="bare">https://docs.perl6.org/type/Array</a>
+Para uma referência completa sobre Arrays, veja <a href="https://docs.raku.org/type/Array" class="bare">https://docs.raku.org/type/Array</a>
 </td>
 </tr>
 </table>
@@ -1914,14 +1950,14 @@ Para uma referência completa sobre Arrays, veja <a href="https://docs.perl6.org
 <div class="listingblock">
 <div class="title">Um Hash é um conjunto de pares de Chave/Valor.</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">%capitais</span> = (<span class="tok-s">&#39;Inglaterra&#39;</span>,<span class="tok-s">&#39;Londres&#39;</span>,<span class="tok-s">&#39;Alemanha&#39;</span>,<span class="tok-s">&#39;Berlim&#39;</span>);
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-k">my</span> <span class="tok-nv">%capitais</span> = (<span class="tok-s">&#39;Inglaterra&#39;</span>,<span class="tok-s">&#39;Londres&#39;</span>,<span class="tok-s">&#39;Alemanha&#39;</span>,<span class="tok-s">&#39;Berlim&#39;</span>);
 <span class="tok-nb">say</span> <span class="tok-nv">%capitais</span>;</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title">Outra forma sucinta de popular um hash:</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">%capitais</span> = (<span class="tok-n">Inglaterra</span> =&gt; <span class="tok-s">&#39;Londres&#39;</span>, <span class="tok-n">Alemanha</span> =&gt; <span class="tok-s">&#39;Berlim&#39;</span>);
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-k">my</span> <span class="tok-nv">%capitais</span> = (<span class="tok-n">Inglaterra</span> =&gt; <span class="tok-s">&#39;Londres&#39;</span>, <span class="tok-n">Alemanha</span> =&gt; <span class="tok-s">&#39;Berlim&#39;</span>);
 <span class="tok-nb">say</span> <span class="tok-nv">%capitais</span>;</code></pre>
 </div>
 </div>
@@ -1931,7 +1967,7 @@ Para uma referência completa sobre Arrays, veja <a href="https://docs.perl6.org
 <div class="listingblock">
 <div class="title"><code>Script</code></div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">%capitais</span> = (<span class="tok-n">Inglaterra</span> =&gt; <span class="tok-s">&#39;Londres&#39;</span>, <span class="tok-n">Alemanha</span> =&gt; <span class="tok-s">&#39;Berlim&#39;</span>);
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-k">my</span> <span class="tok-nv">%capitais</span> = (<span class="tok-n">Inglaterra</span> =&gt; <span class="tok-s">&#39;Londres&#39;</span>, <span class="tok-n">Alemanha</span> =&gt; <span class="tok-s">&#39;Berlim&#39;</span>);
 <span class="tok-nv">%capitais</span>.<span class="tok-n">push:</span> (<span class="tok-n">França</span> =&gt; <span class="tok-s">&#39;Paris&#39;</span>);
 <span class="tok-nb">say</span> <span class="tok-nv">%capitais</span>.<span class="tok-nb">kv</span>;
 <span class="tok-nb">say</span> <span class="tok-nv">%capitais</span>.<span class="tok-nb">keys</span>;
@@ -1942,7 +1978,7 @@ Para uma referência completa sobre Arrays, veja <a href="https://docs.perl6.org
 <div class="listingblock">
 <div class="title"><code>Saída</code></div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span>(<span class="tok-n">França</span> <span class="tok-n">Paris</span> <span class="tok-n">Alemanha</span> <span class="tok-n">Berlim</span> <span class="tok-n">Inglaterra</span> <span class="tok-n">Londres</span>)
+<pre class="pygments highlight"><code data-lang="raku"><span></span>(<span class="tok-n">França</span> <span class="tok-n">Paris</span> <span class="tok-n">Alemanha</span> <span class="tok-n">Berlim</span> <span class="tok-n">Inglaterra</span> <span class="tok-n">Londres</span>)
 (<span class="tok-n">França</span> <span class="tok-n">Alemanha</span> <span class="tok-n">Inglaterra</span>)
 (<span class="tok-n">Paris</span> <span class="tok-n">Berlim</span> <span class="tok-n">Londres</span>)
 <span class="tok-n">A</span> <span class="tok-n">capital</span> <span class="tok-n">da</span> <span class="tok-n">França</span> <span class="tok-n">é:</span> <span class="tok-n">Paris</span></code></pre>
@@ -1963,7 +1999,7 @@ Podemos acessar um valor específico no hash especificando sua chave <code>%hash
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Para uma referência completa sobre Hashes, veja <a href="https://docs.perl6.org/type/Hash" class="bare">https://docs.perl6.org/type/Hash</a>
+Para uma referência completa sobre Hashes, veja <a href="https://docs.raku.org/type/Hash" class="bare">https://docs.raku.org/type/Hash</a>
 </td>
 </tr>
 </table>
@@ -1988,7 +2024,7 @@ Para uma referência completa sobre Hashes, veja <a href="https://docs.perl6.org
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">$var</span> = <span class="tok-s">&#39;Texto&#39;</span>;
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-k">my</span> <span class="tok-nv">$var</span> = <span class="tok-s">&#39;Texto&#39;</span>;
 <span class="tok-nb">say</span> <span class="tok-nv">$var</span>;
 <span class="tok-nb">say</span> <span class="tok-nv">$var</span>.<span class="tok-nb">WHAT</span>;
 
@@ -2009,7 +2045,7 @@ Note o <code>Int</code> antes do nome da variável.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nb">Int</span> <span class="tok-nv">$var</span> = <span class="tok-s">&#39;Texto&#39;</span>;
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-k">my</span> <span class="tok-nb">Int</span> <span class="tok-nv">$var</span> = <span class="tok-s">&#39;Texto&#39;</span>;
 <span class="tok-nb">say</span> <span class="tok-nv">$var</span>;
 <span class="tok-nb">say</span> <span class="tok-nv">$var</span>.<span class="tok-nb">WHAT</span>;</code></pre>
 </div>
@@ -2025,12 +2061,12 @@ Quando tentamos atribuír uma (Str) nela, a operação falhou.</p>
 <p>Esse estilo de programação é chamado tipagem estática. Estática no sentido de que o tipo das variáveis é definido antes das atribuições e não pode mudar.</p>
 </div>
 <div class="paragraph">
-<p>Perl 6 é classificado como uma linguagem com <strong>tipagem gradual</strong>; ela permite tanto tipagem <strong>estática</strong> quanto <strong>dinâmica</strong>.</p>
+<p>Raku é classificado como uma linguagem com <strong>tipagem gradual</strong>; ela permite tanto tipagem <strong>estática</strong> quanto <strong>dinâmica</strong>.</p>
 </div>
 <div class="listingblock">
 <div class="title">Arrays e hashes também podem ser tipados estaticamente:</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nb">Int</span> <span class="tok-nv">@array</span> = <span class="tok-mi">1</span>,<span class="tok-mi">2</span>,<span class="tok-mi">3</span>;
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-k">my</span> <span class="tok-nb">Int</span> <span class="tok-nv">@array</span> = <span class="tok-mi">1</span>,<span class="tok-mi">2</span>,<span class="tok-mi">3</span>;
 <span class="tok-nb">say</span> <span class="tok-nv">@array</span>;
 <span class="tok-nb">say</span> <span class="tok-nv">@array</span>.<span class="tok-nb">WHAT</span>;
 
@@ -2067,7 +2103,7 @@ Quando tentamos atribuír uma (Str) nela, a operação falhou.</p>
 </tr>
 <tr>
 <td class="tableblock halign-center valign-middle"><p class="tableblock"><code>Mu</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>A raiz da hierarquia de tipos em Perl 6</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>A raiz da hierarquia de tipos em Raku</code></p></td>
 <td class="tableblock halign-left valign-middle"></td>
 <td class="tableblock halign-left valign-middle"></td>
 </tr>
@@ -2118,7 +2154,7 @@ Em um dos exemplos acima usamos <code>.WHAT</code> para retornar o tipo de uma v
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nb">Int</span> <span class="tok-nv">$var</span>;
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-k">my</span> <span class="tok-nb">Int</span> <span class="tok-nv">$var</span>;
 <span class="tok-nb">say</span> <span class="tok-nv">$var</span>.<span class="tok-nb">WHAT</span>;    <span class="tok-c1"># (Int)</span>
 <span class="tok-k">my</span> <span class="tok-nv">$var2</span>;
 <span class="tok-nb">say</span> <span class="tok-nv">$var2</span>.<span class="tok-nb">WHAT</span>;   <span class="tok-c1"># (Any)</span>
@@ -2145,11 +2181,11 @@ Para limpar o valor de uma variável, atribua <code>Nil</code> a ela.</p>
 <p>Antes de usar uma variável pela primeira vez, ela precisa ser declarada.</p>
 </div>
 <div class="paragraph">
-<p>Há muitas formas de se declarar variáveis em Perl 6, e <code>my</code> é a que utilizamos até agora em todos os exemplos acima.</p>
+<p>Há muitas formas de se declarar variáveis em Raku, e <code>my</code> é a que utilizamos até agora em todos os exemplos acima.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">$var</span>=<span class="tok-mi">1</span>;</code></pre>
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-k">my</span> <span class="tok-nv">$var</span>=<span class="tok-mi">1</span>;</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2157,12 +2193,12 @@ Para limpar o valor de uma variável, atribua <code>Nil</code> a ela.</p>
 Em outras palavras, a variável só será acessível no mesmo bloco em que foi declarada.</p>
 </div>
 <div class="paragraph">
-<p>Um bloco em Perl 6 é delimitado por <code>{ }</code>.
-Se nenhum bloco é encontrado, a variável estará disponível em qualquer parte do programa Perl 6.</p>
+<p>Um bloco em Raku é delimitado por <code>{ }</code>.
+Se nenhum bloco é encontrado, a variável estará disponível em qualquer parte do programa Raku.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span>{
+<pre class="pygments highlight"><code data-lang="raku"><span></span>{
   <span class="tok-k">my</span> <span class="tok-nb">Str</span> <span class="tok-nv">$var</span> = <span class="tok-s">&#39;Texto&#39;</span>;
   <span class="tok-nb">say</span> <span class="tok-nv">$var</span>; <span class="tok-c1"># está acessível</span>
 }
@@ -2174,7 +2210,7 @@ Se nenhum bloco é encontrado, a variável estará disponível em qualquer parte
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span>{
+<pre class="pygments highlight"><code data-lang="raku"><span></span>{
   <span class="tok-k">my</span> <span class="tok-nb">Str</span> <span class="tok-nv">$var</span> = <span class="tok-s">&#39;Texto&#39;</span>;
   <span class="tok-nb">say</span> <span class="tok-nv">$var</span>;
 }
@@ -2191,7 +2227,7 @@ Se nenhum bloco é encontrado, a variável estará disponível em qualquer parte
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nb">Int</span> <span class="tok-nv">$var</span> = <span class="tok-mi">123</span>;
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-k">my</span> <span class="tok-nb">Int</span> <span class="tok-nv">$var</span> = <span class="tok-mi">123</span>;
 <span class="tok-nb">say</span> <span class="tok-nv">$var</span>;</code></pre>
 </div>
 </div>
@@ -2201,7 +2237,7 @@ Se nenhum bloco é encontrado, a variável estará disponível em qualquer parte
 <div class="listingblock">
 <div class="title">Atribuição</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nb">Int</span> <span class="tok-nv">$var</span> = <span class="tok-mi">123</span>;
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-k">my</span> <span class="tok-nb">Int</span> <span class="tok-nv">$var</span> = <span class="tok-mi">123</span>;
 <span class="tok-nb">say</span> <span class="tok-nv">$var</span>;
 <span class="tok-nv">$var</span> = <span class="tok-mi">999</span>;
 <span class="tok-nb">say</span> <span class="tok-nv">$var</span>;</code></pre>
@@ -2210,7 +2246,7 @@ Se nenhum bloco é encontrado, a variável estará disponível em qualquer parte
 <div class="listingblock">
 <div class="title"><code>Saída</code></div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-mi">123</span>
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-mi">123</span>
 <span class="tok-mi">999</span></code></pre>
 </div>
 </div>
@@ -2221,7 +2257,7 @@ Se nenhum bloco é encontrado, a variável estará disponível em qualquer parte
 <div class="listingblock">
 <div class="title">Binding</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nb">Int</span> <span class="tok-nv">$var</span> := <span class="tok-mi">123</span>;
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-k">my</span> <span class="tok-nb">Int</span> <span class="tok-nv">$var</span> := <span class="tok-mi">123</span>;
 <span class="tok-nb">say</span> <span class="tok-nv">$var</span>;
 <span class="tok-nv">$var</span> = <span class="tok-mi">999</span>;
 <span class="tok-nb">say</span> <span class="tok-nv">$var</span>;</code></pre>
@@ -2230,14 +2266,14 @@ Se nenhum bloco é encontrado, a variável estará disponível em qualquer parte
 <div class="listingblock">
 <div class="title"><code>Saída</code></div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-mi">123</span>
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-mi">123</span>
 <span class="tok-n">Cannot</span> <span class="tok-n">assign</span> <span class="tok-nb">to</span> <span class="tok-n">an</span> <span class="tok-n">immutable</span> <span class="tok-nb">value</span></code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title">Variáveis também podem ser vinculadas a outras variáveis:</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">$a</span>;
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-k">my</span> <span class="tok-nv">$a</span>;
 <span class="tok-k">my</span> <span class="tok-nv">$b</span>;
 <span class="tok-nv">$b</span> := <span class="tok-nv">$a</span>;
 <span class="tok-nv">$a</span> = <span class="tok-mi">7</span>;
@@ -2249,7 +2285,7 @@ Se nenhum bloco é encontrado, a variável estará disponível em qualquer parte
 <div class="listingblock">
 <div class="title"><code>Saída</code></div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-mi">7</span>
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-mi">7</span>
 <span class="tok-mi">8</span></code></pre>
 </div>
 </div>
@@ -2264,7 +2300,7 @@ Se nenhum bloco é encontrado, a variável estará disponível em qualquer parte
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Para mais informações sobre variáveis, veja <a href="https://docs.perl6.org/language/variables" class="bare">https://docs.perl6.org/language/variables</a>
+Para mais informações sobre variáveis, veja <a href="https://docs.raku.org/language/variables" class="bare">https://docs.raku.org/language/variables</a>
 </td>
 </tr>
 </table>
@@ -2283,7 +2319,7 @@ Já modificadores mudam o estado de um objeto ao serem invocados.</p>
 <div class="listingblock">
 <div class="title"><code>Script</code></div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><table class="linenotable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<pre class="pygments highlight"><code data-lang="raku"><table class="linenotable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
 <span class="normal"> 2</span>
 <span class="normal"> 3</span>
 <span class="normal"> 4</span>
@@ -2308,7 +2344,7 @@ Já modificadores mudam o estado de um objeto ao serem invocados.</p>
 <div class="listingblock">
 <div class="title"><code>Saída</code></div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span>[<span class="tok-mi">7</span> <span class="tok-mi">2</span> <span class="tok-mi">4</span> <span class="tok-mi">9</span> <span class="tok-mi">11</span> <span class="tok-mi">3</span> <span class="tok-mi">99</span>] <span class="tok-c1">#1</span>
+<pre class="pygments highlight"><code data-lang="raku"><span></span>[<span class="tok-mi">7</span> <span class="tok-mi">2</span> <span class="tok-mi">4</span> <span class="tok-mi">9</span> <span class="tok-mi">11</span> <span class="tok-mi">3</span> <span class="tok-mi">99</span>] <span class="tok-c1">#1</span>
 (<span class="tok-mi">2</span> <span class="tok-mi">3</span> <span class="tok-mi">4</span> <span class="tok-mi">7</span> <span class="tok-mi">9</span> <span class="tok-mi">11</span> <span class="tok-mi">99</span>) <span class="tok-c1">#2</span>
 [<span class="tok-mi">7</span> <span class="tok-mi">2</span> <span class="tok-mi">4</span> <span class="tok-mi">9</span> <span class="tok-mi">11</span> <span class="tok-mi">3</span> <span class="tok-mi">99</span>] <span class="tok-c1">#3</span>
 [<span class="tok-mi">2</span> <span class="tok-mi">3</span> <span class="tok-mi">4</span> <span class="tok-mi">7</span> <span class="tok-mi">9</span> <span class="tok-mi">11</span> <span class="tok-mi">99</span>] <span class="tok-c1">#4</span></code></pre>
@@ -2340,7 +2376,7 @@ Já modificadores mudam o estado de um objeto ao serem invocados.</p>
 <h2 id="_laços_loops_e_condicionais">5. Laços (loops) e condicionais</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Perl 6 possui uma série de construções para loops e condicionais.</p>
+<p>Raku possui uma série de construções para loops e condicionais.</p>
 </div>
 <div class="sect2">
 <h3 id="_if">5.1. if</h3>
@@ -2349,7 +2385,7 @@ Já modificadores mudam o estado de um objeto ao serem invocados.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">$idade</span> = <span class="tok-mi">19</span>;
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-k">my</span> <span class="tok-nv">$idade</span> = <span class="tok-mi">19</span>;
 
 <span class="tok-k">if</span> <span class="tok-nv">$idade</span> &gt; <span class="tok-mi">18</span> {
   <span class="tok-nb">say</span> <span class="tok-s">&#39;Bem-vinda&#39;</span>
@@ -2357,12 +2393,12 @@ Já modificadores mudam o estado de um objeto ao serem invocados.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Em Perl 6 podemos inverter o código e a condição.<br>
+<p>Em Raku podemos inverter o código e a condição.<br>
 Mesmo se o código e a condição estiverem invertidos, a condição é sempre avaliada antes.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">$idade</span> = <span class="tok-mi">19</span>;
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-k">my</span> <span class="tok-nv">$idade</span> = <span class="tok-mi">19</span>;
 
 <span class="tok-nb">say</span> <span class="tok-s">&#39;Bem-vinda&#39;</span> <span class="tok-k">if</span> <span class="tok-nv">$idade</span> &gt; <span class="tok-mi">18</span>;</code></pre>
 </div>
@@ -2382,7 +2418,7 @@ Mesmo se o código e a condição estiverem invertidos, a condição é sempre a
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-c1"># experimente executar o mesmo código para diferentes valores da variável</span>
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-c1"># experimente executar o mesmo código para diferentes valores da variável</span>
 <span class="tok-k">my</span> <span class="tok-nv">$número-de-assentos</span> = <span class="tok-mi">9</span>;
 
 <span class="tok-k">if</span> <span class="tok-nv">$número-de-assentos</span> &lt;= <span class="tok-mi">5</span> {
@@ -2405,7 +2441,7 @@ Mesmo se o código e a condição estiverem invertidos, a condição é sempre a
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">$sapatos-limpos</span> = <span class="tok-nb">False</span>;
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-k">my</span> <span class="tok-nv">$sapatos-limpos</span> = <span class="tok-nb">False</span>;
 
 <span class="tok-k">if</span> <span class="tok-nb">not</span> <span class="tok-nv">$sapatos-limpos</span> {
   <span class="tok-nb">say</span> <span class="tok-s">&#39;Limpe seus sapatos&#39;</span>
@@ -2417,7 +2453,7 @@ Mesmo se o código e a condição estiverem invertidos, a condição é sempre a
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">$sapatos-limpos</span> = <span class="tok-nb">False</span>;
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-k">my</span> <span class="tok-nv">$sapatos-limpos</span> = <span class="tok-nb">False</span>;
 
 <span class="tok-k">unless</span> <span class="tok-nv">$sapatos-limpos</span> {
   <span class="tok-nb">say</span> <span class="tok-s">&#39;Limpe seus sapatos&#39;</span>
@@ -2425,7 +2461,7 @@ Mesmo se o código e a condição estiverem invertidos, a condição é sempre a
 </div>
 </div>
 <div class="paragraph">
-<p>Negação em Perl 6 é feita usando <code>!</code> ou <code>not</code>.</p>
+<p>Negação em Raku é feita usando <code>!</code> ou <code>not</code>.</p>
 </div>
 <div class="paragraph">
 <p><code>unless (condição)</code> é usado em vez de <code>if not (condição)</code>.</p>
@@ -2441,7 +2477,7 @@ Mesmo se o código e a condição estiverem invertidos, a condição é sempre a
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nb">Int</span> <span class="tok-nv">$var</span>=<span class="tok-mi">1</span>;
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-k">my</span> <span class="tok-nb">Int</span> <span class="tok-nv">$var</span>=<span class="tok-mi">1</span>;
 
 <span class="tok-k">with</span> <span class="tok-nv">$var</span> {
   <span class="tok-nb">say</span> <span class="tok-s">&#39;Alô&#39;</span>
@@ -2453,7 +2489,7 @@ Mesmo se o código e a condição estiverem invertidos, a condição é sempre a
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nb">Int</span> <span class="tok-nv">$var</span>;
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-k">my</span> <span class="tok-nb">Int</span> <span class="tok-nv">$var</span>;
 
 <span class="tok-k">with</span> <span class="tok-nv">$var</span> {
   <span class="tok-nb">say</span> <span class="tok-s">&#39;Alô&#39;</span>
@@ -2475,7 +2511,7 @@ Mesmo se o código e a condição estiverem invertidos, a condição é sempre a
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">@array</span> = [<span class="tok-mi">1</span>,<span class="tok-mi">2</span>,<span class="tok-mi">3</span>];
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-k">my</span> <span class="tok-nv">@array</span> = [<span class="tok-mi">1</span>,<span class="tok-mi">2</span>,<span class="tok-mi">3</span>];
 
 <span class="tok-k">for</span> <span class="tok-nv">@array</span> -&gt; <span class="tok-nv">$item</span> {
   <span class="tok-nb">say</span> <span class="tok-nv">$item</span> * <span class="tok-mi">100</span>
@@ -2489,11 +2525,11 @@ Mesmo se o código e a condição estiverem invertidos, a condição é sempre a
 <div class="sect2">
 <h3 id="_given">5.5. given</h3>
 <div class="paragraph">
-<p><code>given</code> é o equivalente em Perl 6 da função "switch" de outras linguagens.</p>
+<p><code>given</code> é o equivalente em Raku da função "switch" de outras linguagens.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">$var</span> = <span class="tok-mi">42</span>;
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-k">my</span> <span class="tok-nv">$var</span> = <span class="tok-mi">42</span>;
 
 <span class="tok-k">given</span> <span class="tok-nv">$var</span> {
     <span class="tok-k">when</span> <span class="tok-mi">0</span><span class="tok-o">..</span><span class="tok-mi">50</span> { <span class="tok-nb">say</span> <span class="tok-s">&#39;Menor ou igual a 50&#39;</span>}
@@ -2507,11 +2543,11 @@ Mesmo se o código e a condição estiverem invertidos, a condição é sempre a
 <p>Ao casar com uma condição, ele para de testar as outras condições.</p>
 </div>
 <div class="paragraph">
-<p>Como alternativa, usar <code>proceed</code> vai instruir o Perl 6 a continuar tentando casar com outras condições mesmo após a execução da condição atual.</p>
+<p>Como alternativa, usar <code>proceed</code> vai instruir o Raku a continuar tentando casar com outras condições mesmo após a execução da condição atual.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">$var</span> = <span class="tok-mi">42</span>;
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-k">my</span> <span class="tok-nv">$var</span> = <span class="tok-mi">42</span>;
 
 <span class="tok-k">given</span> <span class="tok-nv">$var</span> {
     <span class="tok-k">when</span> <span class="tok-mi">0</span><span class="tok-o">..</span><span class="tok-mi">50</span> { <span class="tok-nb">say</span> <span class="tok-s">&#39;Menor ou igual a 50&#39;</span>;<span class="tok-k">proceed</span>}
@@ -2531,11 +2567,11 @@ Mesmo se o código e a condição estiverem invertidos, a condição é sempre a
 <p>De fato, <code>loop</code> é como o <code>for</code> é escrito em linguagens da família do C.</p>
 </div>
 <div class="paragraph">
-<p>Perl 6 pertence à família de linguagens como C.</p>
+<p>Raku pertence à família de linguagens como C.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">loop</span> (<span class="tok-k">my</span> <span class="tok-nv">$i</span> = <span class="tok-mi">0</span>; <span class="tok-nv">$i</span> &lt; <span class="tok-mi">5</span>; <span class="tok-nv">$i</span>++) {
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-k">loop</span> (<span class="tok-k">my</span> <span class="tok-nv">$i</span> = <span class="tok-mi">0</span>; <span class="tok-nv">$i</span> &lt; <span class="tok-mi">5</span>; <span class="tok-nv">$i</span>++) {
   <span class="tok-nb">say</span> <span class="tok-s">&quot;O valor atual é $i&quot;</span>
 }</code></pre>
 </div>
@@ -2547,7 +2583,7 @@ Mesmo se o código e a condição estiverem invertidos, a condição é sempre a
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Para mais informações sobre laços e condicionais, veja <a href="https://docs.perl6.org/language/control" class="bare">https://docs.perl6.org/language/control</a>
+Para mais informações sobre laços e condicionais, veja <a href="https://docs.raku.org/language/control" class="bare">https://docs.raku.org/language/control</a>
 </td>
 </tr>
 </table>
@@ -2559,7 +2595,7 @@ Para mais informações sobre laços e condicionais, veja <a href="https://docs.
 <h2 id="_io">6. I/O</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Em Perl 6, as duas interfaces mais comuns para <em>Entrada/Saída</em> (<em>Input/Output</em> ou simplesmente I/O) são o <em>Terminal</em> e <em>Arquivos</em>.</p>
+<p>Em Raku, as duas interfaces mais comuns para <em>Entrada/Saída</em> (<em>Input/Output</em> ou simplesmente I/O) são o <em>Terminal</em> e <em>Arquivos</em>.</p>
 </div>
 <div class="sect2">
 <h3 id="_io_básica_usando_o_terminal">6.1. I/O básica usando o Terminal</h3>
@@ -2570,7 +2606,7 @@ Para mais informações sobre laços e condicionais, veja <a href="https://docs.
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-nb">say</span> <span class="tok-s">&#39;Olá Senhora.&#39;</span>;
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-nb">say</span> <span class="tok-s">&#39;Olá Senhora.&#39;</span>;
 <span class="tok-nb">say</span> <span class="tok-s">&#39;Olá Senhor.&#39;</span>;</code></pre>
 </div>
 </div>
@@ -2594,12 +2630,12 @@ Para mais informações sobre laços e condicionais, veja <a href="https://docs.
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">$nome</span>;
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-k">my</span> <span class="tok-nv">$nome</span>;
 
 <span class="tok-nb">say</span> <span class="tok-s">&quot;Oi, qual o seu nome?&quot;</span>;
 <span class="tok-nv">$name</span> = <span class="tok-nb">get</span>;
 
-<span class="tok-nb">say</span> <span class="tok-s">&quot;Prezado(a) $name bem-vindo(a) ao Perl 6&quot;</span>;</code></pre>
+<span class="tok-nb">say</span> <span class="tok-s">&quot;Prezado(a) $name bem-vindo(a) ao Raku&quot;</span>;</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2617,9 +2653,9 @@ Depois disso, ele vai te cumprimentar.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">$name</span> = <span class="tok-nb">prompt</span> <span class="tok-s">&quot;Oi, qual o seu nome? &quot;</span>;
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-k">my</span> <span class="tok-nv">$name</span> = <span class="tok-nb">prompt</span> <span class="tok-s">&quot;Oi, qual o seu nome? &quot;</span>;
 
-<span class="tok-nb">say</span> <span class="tok-s">&quot;Prezado(a) $name bem-vindo(a) ao Perl 6&quot;</span>;</code></pre>
+<span class="tok-nb">say</span> <span class="tok-s">&quot;Prezado(a) $name bem-vindo(a) ao Raku&quot;</span>;</code></pre>
 </div>
 </div>
 </div>
@@ -2643,7 +2679,7 @@ Todos os metacaracteres da shell serão interpretados pela própria shell, inclu
 <div class="listingblock">
 <div class="title">Execute isso se estiver usando Linux ou OSX</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">$name</span> = <span class="tok-s">&#39;Neo&#39;</span>;
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-k">my</span> <span class="tok-nv">$name</span> = <span class="tok-s">&#39;Neo&#39;</span>;
 <span class="tok-nb">run</span> <span class="tok-s">&#39;echo&#39;</span>, <span class="tok-s">&quot;olá $name&quot;</span>;
 <span class="tok-nb">shell</span> <span class="tok-s">&quot;ls&quot;</span>;</code></pre>
 </div>
@@ -2651,12 +2687,12 @@ Todos os metacaracteres da shell serão interpretados pela própria shell, inclu
 <div class="listingblock">
 <div class="title">Execute isso se estiver no Windows</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-nb">shell</span> <span class="tok-s">&quot;dir&quot;</span>;</code></pre>
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-nb">shell</span> <span class="tok-s">&quot;dir&quot;</span>;</code></pre>
 </div>
 </div>
 <div class="paragraph">
 <p><code>echo</code> e <code>ls</code> são palavras chave comuns de shell em Linux.<br>
-<code>echo</code> exibe texto no terminal (equivalente ao <code>print</code> no Perl 6)<br>
+<code>echo</code> exibe texto no terminal (equivalente ao <code>print</code> no Raku)<br>
 <code>ls</code> lista todos os arquivos e diretórios no diretório atual</p>
 </div>
 <div class="paragraph">
@@ -2676,7 +2712,7 @@ Todos os metacaracteres da shell serão interpretados pela própria shell, inclu
 <div class="listingblock">
 <div class="title">resultados.txt</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-n">João</span> <span class="tok-mi">9</span>
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-n">João</span> <span class="tok-mi">9</span>
 <span class="tok-n">José</span> <span class="tok-mi">7</span>
 <span class="tok-n">Joana</span> <span class="tok-mi">8</span>
 <span class="tok-n">Maria</span> <span class="tok-mi">7</span></code></pre>
@@ -2684,7 +2720,7 @@ Todos os metacaracteres da shell serão interpretados pela própria shell, inclu
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">$data</span> = <span class="tok-nb">slurp</span> <span class="tok-s">&quot;resultados.txt&quot;</span>;
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-k">my</span> <span class="tok-nv">$data</span> = <span class="tok-nb">slurp</span> <span class="tok-s">&quot;resultados.txt&quot;</span>;
 <span class="tok-nb">say</span> <span class="tok-nv">$data</span>;</code></pre>
 </div>
 </div>
@@ -2696,7 +2732,7 @@ Todos os metacaracteres da shell serão interpretados pela própria shell, inclu
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">$novos-dados</span> = <span class="tok-s">&quot;Novos resultados:</span>
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-k">my</span> <span class="tok-nv">$novos-dados</span> = <span class="tok-s">&quot;Novos resultados:</span>
 <span class="tok-s">Paulo 10</span>
 <span class="tok-s">Paulinho 9</span>
 <span class="tok-s">Paulão 11&quot;</span>;
@@ -2712,11 +2748,11 @@ Todos os metacaracteres da shell serão interpretados pela própria shell, inclu
 <div class="sect2">
 <h3 id="_trabalhando_com_arquivos_e_diretórios">6.4. Trabalhando com arquivos e diretórios</h3>
 <div class="paragraph">
-<p>Perl 6 pode listar o conteúdo de um diretório sem precisar executar comandos da shell (usando <code>ls</code>) como visto em um exemplo anterior.</p>
+<p>Raku pode listar o conteúdo de um diretório sem precisar executar comandos da shell (usando <code>ls</code>) como visto em um exemplo anterior.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-nb">say</span> <span class="tok-nb">dir</span>;              <span class="tok-c1"># Lista arquivos e diretórios no diretório atual</span>
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-nb">say</span> <span class="tok-nb">dir</span>;              <span class="tok-c1"># Lista arquivos e diretórios no diretório atual</span>
 <span class="tok-nb">say</span> <span class="tok-nb">dir</span> <span class="tok-s">&quot;/Documents&quot;</span>; <span class="tok-c1"># Lista arquivos e diretórios no diretório especificado</span></code></pre>
 </div>
 </div>
@@ -2725,7 +2761,7 @@ Todos os metacaracteres da shell serão interpretados pela própria shell, inclu
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-nb">mkdir</span> <span class="tok-s">&quot;novapasta&quot;</span>;
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-nb">mkdir</span> <span class="tok-s">&quot;novapasta&quot;</span>;
 <span class="tok-nb">rmdir</span> <span class="tok-s">&quot;novapasta&quot;</span>;</code></pre>
 </div>
 </div>
@@ -2737,17 +2773,17 @@ Todos os metacaracteres da shell serão interpretados pela própria shell, inclu
 <p>Você também pode verificar se um determinado caminho existe, se é um arquivo ou um diretório:</p>
 </div>
 <div class="paragraph">
-<p>No diretório onde você vai executar o script abaixo, crie um diretório vazio <code>pasta123</code> e um arquivo vazio <code>script123.pl6</code></p>
+<p>No diretório onde você vai executar o script abaixo, crie um diretório vazio <code>pasta123</code> e um arquivo vazio <code>script123.raku</code></p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-nb">say</span> <span class="tok-s">&quot;script123.pl6&quot;</span>.<span class="tok-nb">IO</span>.<span class="tok-nb">e</span>;
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-nb">say</span> <span class="tok-s">&quot;script123.raku&quot;</span>.<span class="tok-nb">IO</span>.<span class="tok-nb">e</span>;
 <span class="tok-nb">say</span> <span class="tok-s">&quot;folder123&quot;</span>.<span class="tok-nb">IO</span>.<span class="tok-nb">e</span>;
 
-<span class="tok-nb">say</span> <span class="tok-s">&quot;script123.pl6&quot;</span>.<span class="tok-nb">IO</span>.<span class="tok-nb">d</span>;
+<span class="tok-nb">say</span> <span class="tok-s">&quot;script123.raku&quot;</span>.<span class="tok-nb">IO</span>.<span class="tok-nb">d</span>;
 <span class="tok-nb">say</span> <span class="tok-s">&quot;folder123&quot;</span>.<span class="tok-nb">IO</span>.<span class="tok-nb">d</span>;
 
-<span class="tok-nb">say</span> <span class="tok-s">&quot;script123.pl6&quot;</span>.<span class="tok-nb">IO</span>.<span class="tok-nb">f</span>;
+<span class="tok-nb">say</span> <span class="tok-s">&quot;script123.raku&quot;</span>.<span class="tok-nb">IO</span>.<span class="tok-nb">f</span>;
 <span class="tok-nb">say</span> <span class="tok-s">&quot;folder123&quot;</span>.<span class="tok-nb">IO</span>.<span class="tok-nb">f</span>;</code></pre>
 </div>
 </div>
@@ -2777,7 +2813,7 @@ Usuários de Windows podem usar <code>/</code> ou <code>\\</code> para definir d
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Para mais informação sobre I/O, veja <a href="https://docs.perl6.org/type/IO" class="bare">https://docs.perl6.org/type/IO</a>
+Para mais informação sobre I/O, veja <a href="https://docs.raku.org/type/IO" class="bare">https://docs.raku.org/type/IO</a>
 </td>
 </tr>
 </table>
@@ -2799,7 +2835,7 @@ Veja o exemplo abaixo:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">sub</span> <span class="tok-n">saudação-alienígena</span> {
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-k">sub</span> <span class="tok-n">saudação-alienígena</span> {
   <span class="tok-nb">say</span> <span class="tok-s">&quot;Olá, terráqueos&quot;</span>;
 }
 
@@ -2821,7 +2857,7 @@ O número e tipo de argumentos que essa sub-rotina aceita é chamada de <strong>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">sub</span> <span class="tok-n">diga-oi</span> (<span class="tok-nb">Str</span> <span class="tok-nv">$nome</span>) {
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-k">sub</span> <span class="tok-n">diga-oi</span> (<span class="tok-nb">Str</span> <span class="tok-nv">$nome</span>) {
     <span class="tok-nb">say</span> <span class="tok-s">&quot;Oi &quot;</span> ~ <span class="tok-nv">$nome</span> ~ <span class="tok-s">&quot;!!!!&quot;</span>
 }
 <span class="tok-n">diga-oi</span> <span class="tok-s">&quot;Paulo&quot;</span>;
@@ -2838,7 +2874,7 @@ Esse tipo de subrotina é definido exatamente como uma sub normal, apenas trocan
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">multi</span> <span class="tok-n">cumprimento</span>(<span class="tok-nv">$nome</span>) {
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-k">multi</span> <span class="tok-n">cumprimento</span>(<span class="tok-nv">$nome</span>) {
     <span class="tok-nb">say</span> <span class="tok-s">&quot;Bom dia $nome&quot;</span>;
 }
 <span class="tok-k">multi</span> <span class="tok-n">cumprimento</span>(<span class="tok-nv">$nome</span>, <span class="tok-nv">$título</span>) {
@@ -2856,7 +2892,7 @@ Esse tipo de subrotina é definido exatamente como uma sub normal, apenas trocan
 <p>Se uma sub-rotina é definida para aceitar um argumento, e fazemos a chamada sem fornecer o argumento, ela falha.</p>
 </div>
 <div class="paragraph">
-<p>Como alternativa, o Perl 6 nos dá a possibilidade de definir sub-rotinas com:</p>
+<p>Como alternativa, o Raku nos dá a possibilidade de definir sub-rotinas com:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -2873,7 +2909,7 @@ Esse tipo de subrotina é definido exatamente como uma sub normal, apenas trocan
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">sub</span> <span class="tok-n">diga-oi</span>(<span class="tok-nv">$nome</span>?) {
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-k">sub</span> <span class="tok-n">diga-oi</span>(<span class="tok-nv">$nome</span>?) {
   <span class="tok-k">with</span> <span class="tok-nv">$nome</span> { <span class="tok-nb">say</span> <span class="tok-s">&quot;Oi &quot;</span> ~ <span class="tok-nv">$nome</span> }
   <span class="tok-k">else</span> { <span class="tok-nb">say</span> <span class="tok-s">&quot;Oi humano&quot;</span> }
 }
@@ -2887,7 +2923,7 @@ Isso é feito atribuindo um valor ao argumento durante a definição da sub-roti
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">sub</span> <span class="tok-n">diga-oi</span>(<span class="tok-nv">$nome</span>=<span class="tok-s">&quot;Miguel&quot;</span>) {
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-k">sub</span> <span class="tok-n">diga-oi</span>(<span class="tok-nv">$nome</span>=<span class="tok-s">&quot;Miguel&quot;</span>) {
   <span class="tok-nb">say</span> <span class="tok-s">&quot;Oi &quot;</span> ~ <span class="tok-nv">$nome</span>;
 }
 <span class="tok-n">diga-oi</span>;
@@ -2909,7 +2945,7 @@ Isso é feito atribuindo um valor ao argumento durante a definição da sub-roti
 <div class="listingblock">
 <div class="title">Retorno implícito</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">sub</span> <span class="tok-n">ao-quadrado</span> (<span class="tok-nv">$x</span>) {
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-k">sub</span> <span class="tok-n">ao-quadrado</span> (<span class="tok-nv">$x</span>) {
   <span class="tok-nv">$x</span> ** <span class="tok-mi">2</span>;
 }
 <span class="tok-nb">say</span> <span class="tok-s">&quot;7 ao quadrado é &quot;</span> ~ <span class="tok-n">ao-quadrado</span>(<span class="tok-mi">7</span>);</code></pre>
@@ -2922,7 +2958,7 @@ Isso pode ser feito usando a palavra-chave <code>return</code>.</p>
 <div class="listingblock">
 <div class="title">Retorno explícito</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">sub</span> <span class="tok-n">ao-quadrado</span> (<span class="tok-nv">$x</span>) {
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-k">sub</span> <span class="tok-n">ao-quadrado</span> (<span class="tok-nv">$x</span>) {
   <span class="tok-k">return</span> <span class="tok-nv">$x</span> ** <span class="tok-mi">2</span>;
 }
 <span class="tok-nb">say</span> <span class="tok-s">&quot;7 ao quadrao é &quot;</span> ~ <span class="tok-n">ao-quadrado</span>(<span class="tok-mi">7</span>);</code></pre>
@@ -2940,7 +2976,7 @@ O mesmo pode ser feito com valores de retorno.</p>
 <div class="listingblock">
 <div class="title">Usando o atributo returns</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">sub</span> <span class="tok-n">ao-quadrado</span> (<span class="tok-nv">$x</span>) <span class="tok-k">returns</span> <span class="tok-nb">Int</span> {
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-k">sub</span> <span class="tok-n">ao-quadrado</span> (<span class="tok-nv">$x</span>) <span class="tok-k">returns</span> <span class="tok-nb">Int</span> {
   <span class="tok-k">return</span> <span class="tok-nv">$x</span> ** <span class="tok-mi">2</span>;
 }
 <span class="tok-nb">say</span> <span class="tok-s">&quot;1.2 ao quadrado é &quot;</span> ~ <span class="tok-n">ao-quadrado</span>(<span class="tok-mf">1.2</span>);</code></pre>
@@ -2949,7 +2985,7 @@ O mesmo pode ser feito com valores de retorno.</p>
 <div class="listingblock">
 <div class="title">Usando a seta</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">sub</span> <span class="tok-n">ao-quadrado</span> (<span class="tok-nv">$x</span> --&gt; <span class="tok-nb">Int</span>) {
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-k">sub</span> <span class="tok-n">ao-quadrado</span> (<span class="tok-nv">$x</span> --&gt; <span class="tok-nb">Int</span>) {
   <span class="tok-k">return</span> <span class="tok-nv">$x</span> ** <span class="tok-mi">2</span>;
 }
 <span class="tok-nb">say</span> <span class="tok-s">&quot;1.2 ao quadrado é &quot;</span> ~ <span class="tok-n">ao-quadrado</span>(<span class="tok-mf">1.2</span>);</code></pre>
@@ -2960,7 +2996,7 @@ O mesmo pode ser feito com valores de retorno.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-n">Type</span> <span class="tok-n">check</span> <span class="tok-n">failed</span> <span class="tok-k">for</span> <span class="tok-k">return</span> <span class="tok-nb">value</span>; <span class="tok-nb">expected</span> <span class="tok-nb">Int</span> <span class="tok-k">but</span> <span class="tok-nb">got</span> <span class="tok-nb">Rat</span> (<span class="tok-mf">1.44</span>)</code></pre>
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-n">Type</span> <span class="tok-n">check</span> <span class="tok-n">failed</span> <span class="tok-k">for</span> <span class="tok-k">return</span> <span class="tok-nb">value</span>; <span class="tok-nb">expected</span> <span class="tok-nb">Int</span> <span class="tok-k">but</span> <span class="tok-nb">got</span> <span class="tok-nb">Rat</span> (<span class="tok-mf">1.44</span>)</code></pre>
 </div>
 </div>
 <div class="admonitionblock tip">
@@ -2984,7 +3020,7 @@ Abaixo segue a versão modificada dos exemplos anteriores usando <code>:D</code>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">sub</span> <span class="tok-n">ao-quadrado</span> (<span class="tok-nv">$x</span> --&gt; <span class="tok-nb">Int:D</span>) {
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-k">sub</span> <span class="tok-n">ao-quadrado</span> (<span class="tok-nv">$x</span> --&gt; <span class="tok-nb">Int:D</span>) {
   <span class="tok-k">return</span> <span class="tok-nv">$x</span> ** <span class="tok-mi">2</span>;
 }
 <span class="tok-nb">say</span> <span class="tok-s">&quot;1.2 ao quadrado é &quot;</span> ~ <span class="tok-n">ao-quadrado</span>(<span class="tok-mf">1.2</span>);</code></pre>
@@ -3001,7 +3037,7 @@ Abaixo segue a versão modificada dos exemplos anteriores usando <code>:D</code>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Para mais informações sobre sub-rotinas e funções, veja <a href="http://doc.perl6.org/language/functions" class="bare">http://doc.perl6.org/language/functions</a>
+Para mais informações sobre sub-rotinas e funções, veja <a href="http://doc.raku.org/language/functions" class="bare">http://doc.raku.org/language/functions</a>
 </td>
 </tr>
 </table>
@@ -3041,7 +3077,7 @@ Para mais informações sobre sub-rotinas e funções, veja <a href="http://doc.
 <div class="listingblock">
 <div class="title">Script</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">@array</span> = <span class="tok-s">&lt;1 2 3 4 5&gt;</span>;
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-k">my</span> <span class="tok-nv">@array</span> = <span class="tok-s">&lt;1 2 3 4 5&gt;</span>;
 <span class="tok-k">sub</span> <span class="tok-n">ao-quadrado</span>(<span class="tok-nv">$x</span>) {
   <span class="tok-nv">$x</span> ** <span class="tok-mi">2</span>
 }
@@ -3051,7 +3087,7 @@ Para mais informações sobre sub-rotinas e funções, veja <a href="http://doc.
 <div class="listingblock">
 <div class="title">Saída</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span>(<span class="tok-mi">1</span> <span class="tok-mi">4</span> <span class="tok-mi">9</span> <span class="tok-mi">16</span> <span class="tok-mi">25</span>)</code></pre>
+<pre class="pygments highlight"><code data-lang="raku"><span></span>(<span class="tok-mi">1</span> <span class="tok-mi">4</span> <span class="tok-mi">9</span> <span class="tok-mi">16</span> <span class="tok-mi">25</span>)</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -3067,7 +3103,7 @@ O resultado é uma lista com todos os elementos do array elevados ao quadrado.</
 <div class="sect2">
 <h3 id="_closures_clausuras">8.2. Closures (clausuras)</h3>
 <div class="paragraph">
-<p>Todos os objetos no Perl 6 são closures, o que significa que eles podem referenciar variáveis léxicas de escopos externos.</p>
+<p>Todos os objetos no Raku são closures, o que significa que eles podem referenciar variáveis léxicas de escopos externos.</p>
 </div>
 </div>
 <div class="sect2">
@@ -3081,7 +3117,7 @@ Uma função anônima não está associada a um identificador (ela não tem nome
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">@array</span> = <span class="tok-s">&lt;1 2 3 4 5&gt;</span>;
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-k">my</span> <span class="tok-nv">@array</span> = <span class="tok-s">&lt;1 2 3 4 5&gt;</span>;
 <span class="tok-nb">say</span> <span class="tok-n">map</span>(-&gt; <span class="tok-nv">$x</span> {<span class="tok-nv">$x</span> ** <span class="tok-mi">2</span>},<span class="tok-nv">@array</span>);</code></pre>
 </div>
 </div>
@@ -3090,12 +3126,12 @@ Uma função anônima não está associada a um identificador (ela não tem nome
 A sub-rotina anônima <code>-&gt; $x {$x ** 2}</code> não possui handle e não pode ser chamada.</p>
 </div>
 <div class="paragraph">
-<p>No linguajar Perl 6 chamamos essa notação de <strong>pointy block</strong> (bloco pontiagudo)</p>
+<p>No linguajar Raku chamamos essa notação de <strong>pointy block</strong> (bloco pontiagudo)</p>
 </div>
 <div class="listingblock">
 <div class="title">Um pointy block também pode ser usado para atribuir funções à variáveis:</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">$ao-quadrado</span> = -&gt; <span class="tok-nv">$x</span> {
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-k">my</span> <span class="tok-nv">$ao-quadrado</span> = -&gt; <span class="tok-nv">$x</span> {
   <span class="tok-nv">$x</span> ** <span class="tok-mi">2</span>
 }
 <span class="tok-nb">say</span> <span class="tok-nv">$ao-quadrado</span>(<span class="tok-mi">9</span>);</code></pre>
@@ -3105,7 +3141,7 @@ A sub-rotina anônima <code>-&gt; $x {$x ** 2}</code> não possui handle e não 
 <div class="sect2">
 <h3 id="_encadeamento_chaining">8.4. Encadeamento (Chaining)</h3>
 <div class="paragraph">
-<p>Em Perl 6, métodos podem ser encadeados, você não precisa mais passar o resultado de um método para outro como argumento.</p>
+<p>Em Raku, métodos podem ser encadeados, você não precisa mais passar o resultado de um método para outro como argumento.</p>
 </div>
 <div class="paragraph">
 <p>Vamos imaginar que você recebey um array de valores.
@@ -3116,7 +3152,7 @@ Pediram para que você retorne os valores únicos desse array, ordenados do maio
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">@array</span> = <span class="tok-s">&lt;7 8 9 0 1 2 4 3 5 6 7 8 9&gt;</span>;
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-k">my</span> <span class="tok-nv">@array</span> = <span class="tok-s">&lt;7 8 9 0 1 2 4 3 5 6 7 8 9&gt;</span>;
 <span class="tok-k">my</span> <span class="tok-nv">@array-final</span> = <span class="tok-nb">reverse</span>(<span class="tok-nb">sort</span>(<span class="tok-nb">unique</span>(<span class="tok-nv">@array</span>)));
 <span class="tok-nb">say</span> <span class="tok-nv">@array-final</span>;</code></pre>
 </div>
@@ -3125,12 +3161,12 @@ Pediram para que você retorne os valores únicos desse array, ordenados do maio
 <p>Primeiro chamamos a função <code>unique</code> em <code>@array</code>, então passamos o resultado como argumento para <code>sort</code> e depois passamos o resultado da ordenação para <code>reverse</code>.</p>
 </div>
 <div class="paragraph">
-<p>Em contraste com o exemplo acima, o encadeamento de métodos é permitido em Perl 6.<br>
+<p>Em contraste com o exemplo acima, o encadeamento de métodos é permitido em Raku.<br>
 O exemplo acima pode ser escrito como a seguir, tirando vantagem do encadeamento de métodos (<strong>method chaining</strong>):</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">@array</span> = <span class="tok-s">&lt;7 8 9 0 1 2 4 3 5 6 7 8 9&gt;</span>;
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-k">my</span> <span class="tok-nv">@array</span> = <span class="tok-s">&lt;7 8 9 0 1 2 4 3 5 6 7 8 9&gt;</span>;
 <span class="tok-k">my</span> <span class="tok-nv">@array-final</span> = <span class="tok-nv">@array</span>.<span class="tok-nb">unique</span>.<span class="tok-nb">sort</span>.<span class="tok-nb">reverse</span>;
 <span class="tok-nb">say</span> <span class="tok-nv">@array-final</span>;</code></pre>
 </div>
@@ -3147,7 +3183,7 @@ O exemplo acima pode ser escrito como a seguir, tirando vantagem do encadeamento
 <div class="listingblock">
 <div class="title">Alimentação para frente</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">@array</span> = <span class="tok-s">&lt;7 8 9 0 1 2 4 3 5 6 7 8 9&gt;</span>;
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-k">my</span> <span class="tok-nv">@array</span> = <span class="tok-s">&lt;7 8 9 0 1 2 4 3 5 6 7 8 9&gt;</span>;
 <span class="tok-nv">@array</span> ==&gt; <span class="tok-nb">unique</span>()
        ==&gt; <span class="tok-nb">sort</span>()
        ==&gt; <span class="tok-nb">reverse</span>()
@@ -3158,7 +3194,7 @@ O exemplo acima pode ser escrito como a seguir, tirando vantagem do encadeamento
 <div class="listingblock">
 <div class="title">Explicação</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-n">Comece</span> <span class="tok-n">com</span> `<span class="tok-nv">@array</span>` <span class="tok-n">então</span> <span class="tok-n">retorne</span> <span class="tok-n">uma</span> <span class="tok-n">lista</span> <span class="tok-n">de</span> <span class="tok-n">elementos</span> <span class="tok-n">únicos</span>
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-n">Comece</span> <span class="tok-n">com</span> `<span class="tok-nv">@array</span>` <span class="tok-n">então</span> <span class="tok-n">retorne</span> <span class="tok-n">uma</span> <span class="tok-n">lista</span> <span class="tok-n">de</span> <span class="tok-n">elementos</span> <span class="tok-n">únicos</span>
                     <span class="tok-n">então</span> <span class="tok-n">ordene</span> <span class="tok-n">a</span> <span class="tok-n">lista</span>
                     <span class="tok-n">então</span> <span class="tok-n">inverta</span> <span class="tok-n">a</span> <span class="tok-n">lista</span>
                     <span class="tok-n">então</span> <span class="tok-n">guarde</span> <span class="tok-n">o</span> <span class="tok-n">resultado</span> <span class="tok-n">em</span> <span class="tok-nv">@array-final</span></code></pre>
@@ -3170,7 +3206,7 @@ O exemplo acima pode ser escrito como a seguir, tirando vantagem do encadeamento
 <div class="listingblock">
 <div class="title">Alimentação para trás</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">@array</span> = <span class="tok-s">&lt;7 8 9 0 1 2 4 3 5 6 7 8 9&gt;</span>;
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-k">my</span> <span class="tok-nv">@array</span> = <span class="tok-s">&lt;7 8 9 0 1 2 4 3 5 6 7 8 9&gt;</span>;
 <span class="tok-k">my</span> <span class="tok-nv">@array-final-v2</span> &lt;== <span class="tok-nb">reverse</span>()
                    &lt;== <span class="tok-nb">sort</span>()
                    &lt;== <span class="tok-nb">unique</span>()
@@ -3191,7 +3227,7 @@ O fluxo das chamadas é de baixo para cima.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">@array</span> = <span class="tok-s">&lt;0 1 2 3 4 5 6 7 8 9 10&gt;</span>;
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-k">my</span> <span class="tok-nv">@array</span> = <span class="tok-s">&lt;0 1 2 3 4 5 6 7 8 9 10&gt;</span>;
 <span class="tok-k">sub</span> <span class="tok-n">é-par</span>(<span class="tok-nv">$var</span>) { <span class="tok-nv">$var</span> %% <span class="tok-mi">2</span> };
 
 <span class="tok-nb">say</span> <span class="tok-nv">@array</span>&gt;&gt;.<span class="tok-nb">is-prime</span>;
@@ -3199,7 +3235,7 @@ O fluxo das chamadas é de baixo para cima.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Usando o hiperoperador podemos chamar métodos já definidos no Perl 6, como <code>is-prime</code> que nos diz se um número é primo ou não.<br>
+<p>Usando o hiperoperador podemos chamar métodos já definidos no Raku, como <code>is-prime</code> que nos diz se um número é primo ou não.<br>
 Além disso podemos definir novas sub-rotinas e chamá-las usando o hiperoperador. Nesse caso precisamos prefixar um <code>&amp;</code> ao nome do método. Por exemplo, <code>&amp;é-par</code></p>
 </div>
 <div class="paragraph">
@@ -3216,7 +3252,7 @@ Além disso podemos definir novas sub-rotinas e chamá-las usando o hiperoperado
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">$var</span> = <span class="tok-mi">2</span>;
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-k">my</span> <span class="tok-nv">$var</span> = <span class="tok-mi">2</span>;
 <span class="tok-k">if</span> <span class="tok-nv">$var</span> == <span class="tok-mi">1</span><span class="tok-o">|</span><span class="tok-mi">2</span><span class="tok-o">|</span><span class="tok-mi">3</span> {
   <span class="tok-nb">say</span> <span class="tok-s">&quot;A variável é 1 ou 2 ou 3&quot;</span>
 }</code></pre>
@@ -3256,7 +3292,7 @@ Uma lista preguiçosa tem <strong>elementos iniciais</strong>, um <strong>gerado
 <div class="listingblock">
 <div class="title">Lista preguiçosa simples</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">$lazy</span> = (<span class="tok-mi">1</span> ... <span class="tok-mi">10</span>);
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-k">my</span> <span class="tok-nv">$lazy</span> = (<span class="tok-mi">1</span> ... <span class="tok-mi">10</span>);
 <span class="tok-nb">say</span> <span class="tok-nv">$lazy</span>;</code></pre>
 </div>
 </div>
@@ -3267,7 +3303,7 @@ Em outras palavras essa lista preguiçosa pode retornar (se pedido) os seguintes
 <div class="listingblock">
 <div class="title">Listas preguiçosas infinitas</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">$lazy</span> = (<span class="tok-mi">1</span> ... <span class="tok-n">Inf</span>);
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-k">my</span> <span class="tok-nv">$lazy</span> = (<span class="tok-mi">1</span> ... <span class="tok-n">Inf</span>);
 <span class="tok-nb">say</span> <span class="tok-nv">$lazy</span>;</code></pre>
 </div>
 </div>
@@ -3277,19 +3313,19 @@ Em outras palavras essa lista preguiçosa pode retornar (se pedido) os seguintes
 <div class="listingblock">
 <div class="title">Lista preguiçosa feita por gerador deduzido</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">$lazy</span> = (<span class="tok-mi">0</span>,<span class="tok-mi">2</span> ... <span class="tok-mi">10</span>);
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-k">my</span> <span class="tok-nv">$lazy</span> = (<span class="tok-mi">0</span>,<span class="tok-mi">2</span> ... <span class="tok-mi">10</span>);
 <span class="tok-nb">say</span> <span class="tok-nv">$lazy</span>;</code></pre>
 </div>
 </div>
 <div class="paragraph">
 <p>Os elementos iniciais são 0 e 2 e o final é 10.
-Nenhum gerador foi definido, mas usando os elementos iniciais, Perl 6 vai deduzir que o gerador é (+2)<br>
+Nenhum gerador foi definido, mas usando os elementos iniciais, Raku vai deduzir que o gerador é (+2)<br>
 Essa lista preguiçosa pode retornar (se pedido) os seguintes elementos (0, 2, 4, 6, 8, 10)</p>
 </div>
 <div class="listingblock">
 <div class="title">Lista preguiçosa feita por gerador definido</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">$lazy</span> = (<span class="tok-mi">0</span>, { <span class="tok-nv">$_</span> + <span class="tok-mi">3</span> } ... <span class="tok-mi">12</span>);
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-k">my</span> <span class="tok-nv">$lazy</span> = (<span class="tok-mi">0</span>, { <span class="tok-nv">$_</span> + <span class="tok-mi">3</span> } ... <span class="tok-mi">12</span>);
 <span class="tok-nb">say</span> <span class="tok-nv">$lazy</span>;</code></pre>
 </div>
 </div>
@@ -3316,14 +3352,14 @@ Você pode ler isso como: de 0 até o primeiro elemento maior que 10 (não inclu
 <div class="listingblock">
 <div class="title">Isso não vai parar o gerador</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">$lazy</span> = (<span class="tok-mi">0</span>, { <span class="tok-nv">$_</span> + <span class="tok-mi">3</span> } ... <span class="tok-mi">10</span>);
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-k">my</span> <span class="tok-nv">$lazy</span> = (<span class="tok-mi">0</span>, { <span class="tok-nv">$_</span> + <span class="tok-mi">3</span> } ... <span class="tok-mi">10</span>);
 <span class="tok-nb">say</span> <span class="tok-nv">$lazy</span>;</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title">Isso vai parar o gerador</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">$lazy</span> = (<span class="tok-mi">0</span>, { <span class="tok-nv">$_</span> + <span class="tok-mi">3</span> } ...^ * &gt; <span class="tok-mi">10</span>);
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-k">my</span> <span class="tok-nv">$lazy</span> = (<span class="tok-mi">0</span>, { <span class="tok-nv">$_</span> + <span class="tok-mi">3</span> } ...^ * &gt; <span class="tok-mi">10</span>);
 <span class="tok-nb">say</span> <span class="tok-nv">$lazy</span>;</code></pre>
 </div>
 </div>
@@ -3338,8 +3374,8 @@ Você pode ler isso como: de 0 até o primeiro elemento maior que 10 (não inclu
 <h2 id="_classes_objetos">9. Classes &amp; Objetos</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>No capítulo anterior, aprendemos como Perl 6 facilita Programação Funcional.<br>
-Neste capítulo veremos programação Orientada a Objetos em Perl 6.</p>
+<p>No capítulo anterior, aprendemos como Raku facilita Programação Funcional.<br>
+Neste capítulo veremos programação Orientada a Objetos em Raku.</p>
 </div>
 <div class="sect2">
 <h3 id="_introdução_2">9.1. Introdução</h3>
@@ -3383,7 +3419,7 @@ Atributos definem o <strong>estado</strong> de um objeto e métodos definem seu 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">class</span> <span class="tok-n">Humano</span> {
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-k">class</span> <span class="tok-n">Humano</span> {
   <span class="tok-k">has</span> <span class="tok-nv">$nome</span>;
   <span class="tok-k">has</span> <span class="tok-nv">$idade</span>;
   <span class="tok-k">has</span> <span class="tok-nv">$sexo</span>;
@@ -3408,7 +3444,7 @@ Os argumentos passados para o método <code>.new()</code> são usados para dar v
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-k">class</span> <span class="tok-n">Humano</span> {
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-k">my</span> <span class="tok-k">class</span> <span class="tok-n">Humano</span> {
 
 }</code></pre>
 </div>
@@ -3427,14 +3463,14 @@ Para acessar os atributos de fora do objeto usamos métodos que chamamos de <str
 <div class="listingblock">
 <div class="title">Acesso direto à variável:</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">$var</span> = <span class="tok-mi">7</span>;
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-k">my</span> <span class="tok-nv">$var</span> = <span class="tok-mi">7</span>;
 <span class="tok-nb">say</span> <span class="tok-nv">$var</span>;</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title">Encapsulamento:</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">$var</span> = <span class="tok-mi">7</span>;
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-k">my</span> <span class="tok-nv">$var</span> = <span class="tok-mi">7</span>;
 <span class="tok-k">sub</span> <span class="tok-n">sayvar</span> {
   <span class="tok-nv">$var</span>;
 }
@@ -3445,7 +3481,7 @@ Para acessar os atributos de fora do objeto usamos métodos que chamamos de <str
 <p>O método <code>sayvar</code> é um accessor. Ele nos permite acessar o valor de uma variável de forma indireta.</p>
 </div>
 <div class="paragraph">
-<p>Encapsulamento é facilitado em Perl 6 pelo uso dos <strong>twigils</strong>.<br>
+<p>Encapsulamento é facilitado em Raku pelo uso dos <strong>twigils</strong>.<br>
 Twigils são <em>sigils</em> (símbolos) segundários. Eles vem entre o símbolo da variável e o nome do atributo.<br>
 Dois twigils são usados em classes:</p>
 </div>
@@ -3467,7 +3503,7 @@ Dois twigils são usados em classes:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">class</span> <span class="tok-n">Humano</span> {
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-k">class</span> <span class="tok-n">Humano</span> {
   <span class="tok-k">has</span> <span class="tok-nv">$!nome</span>;
   <span class="tok-k">has</span> <span class="tok-nv">$!idade</span>;
   <span class="tok-k">has</span> <span class="tok-nv">$!sexo</span>;
@@ -3491,7 +3527,7 @@ Tentar acessar atributos privados de fora do objeto vai retornar um erro.</p>
 <div class="sect2">
 <h3 id="_argumentos_por_nome_vs_por_posição">9.3. Argumentos por Nome vs. por Posição</h3>
 <div class="paragraph">
-<p>Em Perl 6, todas as classes herdam o construtor padrão <code>.new()</code>.<br>
+<p>Em Raku, todas as classes herdam o construtor padrão <code>.new()</code>.<br>
 Ele pode ser usado para criar objetos chamando-o com alguns argumentos.<br>
 O construtor padrão só aceita <strong>argumentos por nome</strong>.<br>
 Considerando o exemplo acima, repare que todos os argumentos passados para <code>.new()</code> são definidos pelo próprio nome:</p>
@@ -3512,7 +3548,7 @@ Para isso precisamos criar um outro construtor que aceite <strong>argumentos por
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">class</span> <span class="tok-n">Humano</span> {
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-k">class</span> <span class="tok-n">Humano</span> {
   <span class="tok-k">has</span> <span class="tok-nv">$.nome</span>;
   <span class="tok-k">has</span> <span class="tok-nv">$.idade</span>;
   <span class="tok-k">has</span> <span class="tok-nv">$.sexo</span>;
@@ -3545,7 +3581,7 @@ O mundo externo só pode interagir com os métodos de um objeto, e não tem aces
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">class</span> <span class="tok-n">Humano</span> {
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-k">class</span> <span class="tok-n">Humano</span> {
   <span class="tok-k">has</span> <span class="tok-nv">$.nome</span>;
   <span class="tok-k">has</span> <span class="tok-nv">$.idade</span>;
   <span class="tok-k">has</span> <span class="tok-nv">$.sexo</span>;
@@ -3610,7 +3646,7 @@ Métodos privados são chamados com <code>!</code> em vez de <code>.</code></p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">method</span> !<span class="tok-n">sou-privado</span> {
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-k">method</span> !<span class="tok-n">sou-privado</span> {
   <span class="tok-c1"># código entra aqui</span>
 }
 
@@ -3632,7 +3668,7 @@ Eles são chamados na classe em si em vez de nos objetos.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">class</span> <span class="tok-n">Humano</span> {
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-k">class</span> <span class="tok-n">Humano</span> {
   <span class="tok-k">has</span> <span class="tok-nv">$.nome</span>;
   <span class="tok-k">my</span> <span class="tok-nv">$.contador</span> = <span class="tok-mi">0</span>;
   <span class="tok-k">method</span> <span class="tok-nb">new</span>(<span class="tok-nv">$nome</span>) {
@@ -3658,7 +3694,7 @@ Precisamos classificar o atributo como <em>leitura/escrita</em> (read/write) usa
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">class</span> <span class="tok-n">Humano</span> {
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-k">class</span> <span class="tok-n">Humano</span> {
   <span class="tok-k">has</span> <span class="tok-nv">$.nome</span>;
   <span class="tok-k">has</span> <span class="tok-nv">$.idade</span> <span class="tok-k">is</span> <span class="tok-k">rw</span>;
 }
@@ -3695,7 +3731,7 @@ Empregados tem 4 atributos: nome, idade, empresa e salário</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">class</span> <span class="tok-n">Humano</span> {
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-k">class</span> <span class="tok-n">Humano</span> {
   <span class="tok-k">has</span> <span class="tok-nv">$.nome</span>;
   <span class="tok-k">has</span> <span class="tok-nv">$.idade</span>;
 }
@@ -3716,7 +3752,7 @@ Empregados tem 4 atributos: nome, idade, empresa e salário</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">class</span> <span class="tok-n">Humano</span> {
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-k">class</span> <span class="tok-n">Humano</span> {
   <span class="tok-k">has</span> <span class="tok-nv">$.nome</span>;
   <span class="tok-k">has</span> <span class="tok-nv">$.idade</span>;
 }
@@ -3748,7 +3784,7 @@ Esse conceito é chamado <strong>overriding</strong> (sobrescrever).</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">class</span> <span class="tok-n">Humano</span> {
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-k">class</span> <span class="tok-n">Humano</span> {
   <span class="tok-k">has</span> <span class="tok-nv">$.nome</span>;
   <span class="tok-k">has</span> <span class="tok-nv">$.idade</span>;
   <span class="tok-k">method</span> <span class="tok-n">apresente-se</span> {
@@ -3773,7 +3809,7 @@ Esse conceito é chamado <strong>overriding</strong> (sobrescrever).</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">class</span> <span class="tok-n">Humano</span> {
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-k">class</span> <span class="tok-n">Humano</span> {
   <span class="tok-k">has</span> <span class="tok-nv">$.nome</span>;
   <span class="tok-k">has</span> <span class="tok-nv">$.idade</span>;
   <span class="tok-k">method</span> <span class="tok-n">apresente-se</span> {
@@ -3812,11 +3848,11 @@ São definidos usando a palavra-chave <code>submethod</code>.</p>
 <div class="sect2">
 <h3 id="_herança_múltipla">9.8. Herança Múltipla</h3>
 <div class="paragraph">
-<p>Herança múltipla é permitida em Perl 6. Uma classe pode herdar de várias outras classes.</p>
+<p>Herança múltipla é permitida em Raku. Uma classe pode herdar de várias outras classes.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">class</span> <span class="tok-n">gráfico-de-barras</span> {
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-k">class</span> <span class="tok-n">gráfico-de-barras</span> {
   <span class="tok-k">has</span> <span class="tok-nb">Int</span> <span class="tok-nv">@.valores-das-barras</span>;
   <span class="tok-k">method</span> <span class="tok-n">exibir</span> {
     <span class="tok-nb">say</span> <span class="tok-nv">@.valores-das-barras</span>;
@@ -3849,7 +3885,7 @@ São definidos usando a palavra-chave <code>submethod</code>.</p>
 <div class="listingblock">
 <div class="title"><code>Saída</code></div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-n">Vendas</span> <span class="tok-n">reais:</span>
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-n">Vendas</span> <span class="tok-n">reais:</span>
 [<span class="tok-mi">10</span> <span class="tok-mi">9</span> <span class="tok-mi">11</span> <span class="tok-mi">8</span> <span class="tok-mi">7</span> <span class="tok-mi">10</span>]
 <span class="tok-n">Vendas</span> <span class="tok-n">previstas:</span>
 [<span class="tok-mi">9</span> <span class="tok-mi">8</span> <span class="tok-mi">10</span> <span class="tok-mi">7</span> <span class="tok-mi">6</span> <span class="tok-mi">9</span>]
@@ -3866,7 +3902,7 @@ Você deve ter reparado que chamar o método <code>exibir</code> em <code>gráfi
 Só uma das séries foi exibida.<br>
 Por que isso aconteceu?<br>
 <code>gráfico-combinado</code> herdou de <code>gráfico-de-linhas</code> e de <code>gráfico-de-barras</code>, e ambos possuem um método chamado <code>exibir</code>.
-Quando chamamos esse método em <code>gráfico-combinado</code> o Perl 6 vai tentar resolver esse conflito chamando um dos métodos herdados.</p>
+Quando chamamos esse método em <code>gráfico-combinado</code> o Raku vai tentar resolver esse conflito chamando um dos métodos herdados.</p>
 </div>
 <div class="paragraph">
 <div class="title">Correção</div>
@@ -3874,7 +3910,7 @@ Quando chamamos esse método em <code>gráfico-combinado</code> o Perl 6 vai ten
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">class</span> <span class="tok-n">gráfico-de-barras</span> {
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-k">class</span> <span class="tok-n">gráfico-de-barras</span> {
   <span class="tok-k">has</span> <span class="tok-nb">Int</span> <span class="tok-nv">@.valores-das-barras</span>;
   <span class="tok-k">method</span> <span class="tok-n">exibir</span> {
     <span class="tok-nb">say</span> <span class="tok-nv">@.valores-das-barras</span>;
@@ -3911,7 +3947,7 @@ Quando chamamos esse método em <code>gráfico-combinado</code> o Perl 6 vai ten
 <div class="listingblock">
 <div class="title"><code>Saída</code></div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-n">Vendas</span> <span class="tok-n">reais:</span>
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-n">Vendas</span> <span class="tok-n">reais:</span>
 [<span class="tok-mi">10</span> <span class="tok-mi">9</span> <span class="tok-mi">11</span> <span class="tok-mi">8</span> <span class="tok-mi">7</span> <span class="tok-mi">10</span>]
 <span class="tok-n">Vendas</span> <span class="tok-n">previstas:</span>
 [<span class="tok-mi">9</span> <span class="tok-mi">8</span> <span class="tok-mi">10</span> <span class="tok-mi">7</span> <span class="tok-mi">6</span> <span class="tok-mi">9</span>]
@@ -3932,7 +3968,7 @@ Quando chamamos esse método em <code>gráfico-combinado</code> o Perl 6 vai ten
 <div class="listingblock">
 <div class="title">Vamos reescrever o exemplo de herança múltipla usando roles:</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">role</span> <span class="tok-n">gráfico-de-barras</span> {
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-k">role</span> <span class="tok-n">gráfico-de-barras</span> {
   <span class="tok-k">has</span> <span class="tok-nb">Int</span> <span class="tok-nv">@.valores-das-barras</span>;
   <span class="tok-k">method</span> <span class="tok-n">exibir</span> {
     <span class="tok-nb">say</span> <span class="tok-nv">@.valores-das-barras</span>;
@@ -3976,7 +4012,7 @@ aquele em que <em>esquecemos</em> de sobrescrever o método <code>exibir</code>.
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">role</span> <span class="tok-n">gráfico-de-barras</span> {
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-k">role</span> <span class="tok-n">gráfico-de-barras</span> {
   <span class="tok-k">has</span> <span class="tok-nb">Int</span> <span class="tok-nv">@.valores-das-barras</span>;
   <span class="tok-k">method</span> <span class="tok-n">exibir</span> {
     <span class="tok-nb">say</span> <span class="tok-nv">@.valores-das-barras</span>;
@@ -4009,7 +4045,7 @@ aquele em que <em>esquecemos</em> de sobrescrever o método <code>exibir</code>.
 <div class="listingblock">
 <div class="title"><code>Saída</code></div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span>===<span class="tok-n">SORRY</span>!===
+<pre class="pygments highlight"><code data-lang="raku"><span></span>===<span class="tok-n">SORRY</span>!===
 <span class="tok-nb">Method</span> <span class="tok-s">&#39;exibir&#39;</span> <span class="tok-n">must</span> <span class="tok-n">be</span> <span class="tok-n">resolved</span> <span class="tok-n">by</span> <span class="tok-k">class</span> <span class="tok-n">gráfico-combinado</span> <span class="tok-n">because</span> <span class="tok-n">it</span> <span class="tok-n">exists</span> <span class="tok-nb">in</span> <span class="tok-n">multiple</span> <span class="tok-n">roles</span> (<span class="tok-n">gráfico-de-linhas</span>, <span class="tok-n">gráfico-de-barras</span>)</code></pre>
 </div>
 </div>
@@ -4029,7 +4065,7 @@ Essa é uma abordagem muito mais segura que herança múltipla onde conflitos n�
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">class</span> <span class="tok-n">Humano</span> {
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-k">class</span> <span class="tok-n">Humano</span> {
   <span class="tok-k">has</span> <span class="tok-nv">$.nome</span>;
   <span class="tok-k">has</span> <span class="tok-nv">$.idade</span>;
   <span class="tok-k">method</span> <span class="tok-n">apresente-se</span> {
@@ -4089,15 +4125,15 @@ Ele avalia como <em>True</em> (verdadeiro) se o objeto foi criado da mesma class
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Para mais informações sobre Programação Orientada a Objetos em Perl 6, veja:</p>
+<p>Para mais informações sobre Programação Orientada a Objetos em Raku, veja:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="https://docs.perl6.org/language/classtut" class="bare">https://docs.perl6.org/language/classtut</a></p>
+<p><a href="https://docs.raku.org/language/classtut" class="bare">https://docs.raku.org/language/classtut</a></p>
 </li>
 <li>
-<p><a href="https://docs.perl6.org/language/objects" class="bare">https://docs.perl6.org/language/objects</a></p>
+<p><a href="https://docs.raku.org/language/objects" class="bare">https://docs.raku.org/language/objects</a></p>
 </li>
 </ul>
 </div>
@@ -4122,7 +4158,7 @@ Dizemos que as exceções são <em>lançadas</em> (<em>thrown</em>).</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nb">Str</span> <span class="tok-nv">$nome</span>;
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-k">my</span> <span class="tok-nb">Str</span> <span class="tok-nv">$nome</span>;
 <span class="tok-nv">$nome</span> = <span class="tok-s">&quot;Joana&quot;</span>;
 <span class="tok-nb">say</span> <span class="tok-s">&quot;Olá &quot;</span> ~ <span class="tok-nv">$nome</span>;
 <span class="tok-nb">say</span> <span class="tok-s">&quot;Como vai você hoje?&quot;</span></code></pre>
@@ -4131,7 +4167,7 @@ Dizemos que as exceções são <em>lançadas</em> (<em>thrown</em>).</p>
 <div class="listingblock">
 <div class="title"><code>Saída</code></div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-n">Olá</span> <span class="tok-n">Joana</span>
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-n">Olá</span> <span class="tok-n">Joana</span>
 <span class="tok-n">Como</span> <span class="tok-n">vai</span> <span class="tok-n">você</span> <span class="tok-n">hoje</span>?</code></pre>
 </div>
 </div>
@@ -4140,7 +4176,7 @@ Dizemos que as exceções são <em>lançadas</em> (<em>thrown</em>).</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nb">Str</span> <span class="tok-nv">$nome</span>;
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-k">my</span> <span class="tok-nb">Str</span> <span class="tok-nv">$nome</span>;
 <span class="tok-nv">$nome</span> = <span class="tok-mi">123</span>;
 <span class="tok-nb">say</span> <span class="tok-s">&quot;Olá &quot;</span> ~ <span class="tok-nv">$nome</span>;
 <span class="tok-nb">say</span> <span class="tok-s">&quot;Como vai você hoje?&quot;</span></code></pre>
@@ -4149,8 +4185,8 @@ Dizemos que as exceções são <em>lançadas</em> (<em>thrown</em>).</p>
 <div class="listingblock">
 <div class="title"><code>Saída</code></div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-n">Type</span> <span class="tok-n">check</span> <span class="tok-n">failed</span> <span class="tok-nb">in</span> <span class="tok-n">assignment</span> <span class="tok-nb">to</span> <span class="tok-nv">$nome</span>; <span class="tok-nb">expected</span> <span class="tok-nb">Str</span> <span class="tok-k">but</span> <span class="tok-nb">got</span> <span class="tok-nb">Int</span>
-   <span class="tok-nb">in</span> <span class="tok-nb">block</span> <span class="tok-s">&lt;unit&gt;</span> <span class="tok-nb">at</span> <span class="tok-n">exceptions</span>.<span class="tok-n">pl6:2</span></code></pre>
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-n">Type</span> <span class="tok-n">check</span> <span class="tok-n">failed</span> <span class="tok-nb">in</span> <span class="tok-n">assignment</span> <span class="tok-nb">to</span> <span class="tok-nv">$nome</span>; <span class="tok-nb">expected</span> <span class="tok-nb">Str</span> <span class="tok-k">but</span> <span class="tok-nb">got</span> <span class="tok-nb">Int</span>
+   <span class="tok-nb">in</span> <span class="tok-nb">block</span> <span class="tok-s">&lt;unit&gt;</span> <span class="tok-nb">at</span> <span class="tok-n">exceptions</span>.<span class="tok-n">raku:2</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -4161,7 +4197,7 @@ Dizemos que as exceções são <em>lançadas</em> (<em>thrown</em>).</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nb">Str</span> <span class="tok-nv">$nome</span>;
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-k">my</span> <span class="tok-nb">Str</span> <span class="tok-nv">$nome</span>;
 <span class="tok-k">try</span> {
   <span class="tok-nv">$nome</span> = <span class="tok-mi">123</span>;
   <span class="tok-nb">say</span> <span class="tok-s">&quot;Olá &quot;</span> ~ <span class="tok-nv">$nome</span>;
@@ -4177,7 +4213,7 @@ Dizemos que as exceções são <em>lançadas</em> (<em>thrown</em>).</p>
 <div class="listingblock">
 <div class="title"><code>Saída</code></div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-n">Pode</span> <span class="tok-n">dizer</span> <span class="tok-n">seu</span> <span class="tok-n">nome</span> <span class="tok-n">de</span> <span class="tok-n">novo</span>? <span class="tok-n">Não</span> <span class="tok-n">o</span> <span class="tok-n">encontramos</span> <span class="tok-n">nos</span> <span class="tok-n">registros</span>.
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-n">Pode</span> <span class="tok-n">dizer</span> <span class="tok-n">seu</span> <span class="tok-n">nome</span> <span class="tok-n">de</span> <span class="tok-n">novo</span>? <span class="tok-n">Não</span> <span class="tok-n">o</span> <span class="tok-n">encontramos</span> <span class="tok-n">nos</span> <span class="tok-n">registros</span>.
 <span class="tok-n">Como</span> <span class="tok-n">vai</span> <span class="tok-n">você</span> <span class="tok-n">hoje</span>?</code></pre>
 </div>
 </div>
@@ -4186,7 +4222,7 @@ Dizemos que as exceções são <em>lançadas</em> (<em>thrown</em>).</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">try</span> {
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-k">try</span> {
   <span class="tok-c1"># coloque algum código aqui</span>
   <span class="tok-c1"># se algo der errado, o script vai entrar para o bloco CATCH abaixo</span>
   <span class="tok-c1"># se nada der errado o bloco CATCH será ignorado</span>
@@ -4204,7 +4240,7 @@ Isso significa que podemos <em>capturar</em> e tratar de forma diferente muitos 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">try</span> {
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-k">try</span> {
   <span class="tok-c1"># coloque algum código aqui</span>
   <span class="tok-c1"># se algo der errado, o script vai entrar para o bloco CATCH abaixo</span>
   <span class="tok-c1"># se nada der errado o bloco CATCH será ignorado</span>
@@ -4221,7 +4257,7 @@ Isso significa que podemos <em>capturar</em> e tratar de forma diferente muitos 
 <div class="sect2">
 <h3 id="_lançando_exceções">10.2. Lançando Exceções</h3>
 <div class="paragraph">
-<p>Assim como capturar exceções, Perl 6 também permite que você explicitamente lance exceções.<br>
+<p>Assim como capturar exceções, Raku também permite que você explicitamente lance exceções.<br>
 Dois tipos de exceções podem ser lançados:</p>
 </div>
 <div class="ulist">
@@ -4237,14 +4273,14 @@ Dois tipos de exceções podem ser lançados:</p>
 <div class="listingblock">
 <div class="title">ad-hoc</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nb">Int</span> <span class="tok-nv">$age</span> = <span class="tok-mi">21</span>;
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-k">my</span> <span class="tok-nb">Int</span> <span class="tok-nv">$age</span> = <span class="tok-mi">21</span>;
 <span class="tok-nb">die</span> <span class="tok-s">&quot;Erro!&quot;</span>;</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title">tipada</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nb">Int</span> <span class="tok-nv">$age</span> = <span class="tok-mi">21</span>;
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-k">my</span> <span class="tok-nb">Int</span> <span class="tok-nv">$age</span> = <span class="tok-mi">21</span>;
 <span class="tok-o">X</span>::<span class="tok-n">AdHoc</span>.<span class="tok-nb">new</span>(<span class="tok-nb">payload</span> =&gt; <span class="tok-s">&#39;Erro!&#39;</span>).<span class="tok-nb">throw</span>;</code></pre>
 </div>
 </div>
@@ -4266,7 +4302,7 @@ Todas as exceções tipadas descendem da classe <code>X</code>, abaixo seguem al
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Para uma lista completa de tipos de exceção e seus métodos associados visite <a href="https://docs.perl6.org/type-exceptions.html" class="bare">https://docs.perl6.org/type-exceptions.html</a>
+Para uma lista completa de tipos de exceção e seus métodos associados visite <a href="https://docs.raku.org/type-exceptions.html" class="bare">https://docs.raku.org/type-exceptions.html</a>
 </td>
 </tr>
 </table>
@@ -4283,7 +4319,7 @@ A forma mais fácil de entender regexes é pensar nelas como padrões.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">if</span> <span class="tok-s">&#39;iluminação&#39;</span> ~~ <span class="tok-sr">m/ ilumina /</span> {
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-k">if</span> <span class="tok-s">&#39;iluminação&#39;</span> ~~ <span class="tok-sr">m/ ilumina /</span> {
     <span class="tok-nb">say</span> <span class="tok-s">&quot;inluminação contém a palavra ilumina&quot;</span>;
 }</code></pre>
 </div>
@@ -4323,7 +4359,7 @@ Todos os outros caracteres precisam ser escapados usando contrabarra ou colocado
 <div class="listingblock">
 <div class="title">Contrabarra</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">if</span> <span class="tok-s">&#39;Temperatura: 13&#39;</span> ~~ <span class="tok-sr">m/ \: /</span> {
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-k">if</span> <span class="tok-s">&#39;Temperatura: 13&#39;</span> ~~ <span class="tok-sr">m/ \: /</span> {
     <span class="tok-nb">say</span> <span class="tok-s">&quot;A string fornecida contém dois-pontos :&quot;</span>;
 }</code></pre>
 </div>
@@ -4331,7 +4367,7 @@ Todos os outros caracteres precisam ser escapados usando contrabarra ou colocado
 <div class="listingblock">
 <div class="title">Aspas simples</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">if</span> <span class="tok-s">&#39;Idade = 13&#39;</span> ~~ <span class="tok-sr">m/ &#39;=&#39; /</span> {
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-k">if</span> <span class="tok-s">&#39;Idade = 13&#39;</span> ~~ <span class="tok-sr">m/ &#39;=&#39; /</span> {
     <span class="tok-nb">say</span> <span class="tok-s">&quot;A string fornecida contém o símbolo de igualdade =&quot;</span>;
 }</code></pre>
 </div>
@@ -4339,7 +4375,7 @@ Todos os outros caracteres precisam ser escapados usando contrabarra ou colocado
 <div class="listingblock">
 <div class="title">Aspas duplas</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">if</span> <span class="tok-s">&#39;nome@empresa.com&#39;</span> ~~ <span class="tok-sr">m/ &quot;@&quot; /</span> {
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-k">if</span> <span class="tok-s">&#39;nome@empresa.com&#39;</span> ~~ <span class="tok-sr">m/ &quot;@&quot; /</span> {
     <span class="tok-nb">say</span> <span class="tok-s">&quot;Esse é um email válido porque contém o caractere @&quot;</span>;
 }</code></pre>
 </div>
@@ -4411,7 +4447,7 @@ Também podemos casar com o inverso daquela categoria (tudo menos ela):</p>
 </table>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">if</span> <span class="tok-s">&quot;João123&quot;</span> ~~<span class="tok-sr"> / \d /</span> {
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-k">if</span> <span class="tok-s">&quot;João123&quot;</span> ~~<span class="tok-sr"> / \d /</span> {
   <span class="tok-nb">say</span> <span class="tok-s">&quot;Nome inválido, números não são permitidos&quot;</span>;
 } <span class="tok-k">else</span> {
   <span class="tok-nb">say</span> <span class="tok-s">&quot;Esse nome é válido&quot;</span>
@@ -4433,7 +4469,7 @@ Propriedades Unicode são definidas entre <code>&lt;:</code> e <code>&gt;</code>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">if</span> <span class="tok-s">&quot;João23&quot;</span> ~~<span class="tok-sr"> / &lt;:N&gt; /</span> {
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-k">if</span> <span class="tok-s">&quot;João23&quot;</span> ~~<span class="tok-sr"> / &lt;:N&gt; /</span> {
   <span class="tok-nb">say</span> <span class="tok-s">&quot;Contém um número&quot;</span>;
 } <span class="tok-k">else</span> {
   <span class="tok-nb">say</span> <span class="tok-s">&quot;Não contém um número&quot;</span>
@@ -4461,7 +4497,7 @@ Propriedades Unicode são definidas entre <code>&lt;:</code> e <code>&gt;</code>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">if</span> <span class="tok-s">&#39;abc&#39;</span> ~~ <span class="tok-sr">m/ a.c /</span> {
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-k">if</span> <span class="tok-s">&#39;abc&#39;</span> ~~ <span class="tok-sr">m/ a.c /</span> {
     <span class="tok-nb">say</span> <span class="tok-s">&quot;Casou&quot;</span>;
 }
 <span class="tok-k">if</span> <span class="tok-s">&#39;a2c&#39;</span> ~~ <span class="tok-sr">m/ a.c /</span> {
@@ -4485,7 +4521,7 @@ Propriedades Unicode são definidas entre <code>&lt;:</code> e <code>&gt;</code>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">if</span> <span class="tok-s">&#39;ac&#39;</span> ~~ <span class="tok-sr">m/ a?c /</span> {
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-k">if</span> <span class="tok-s">&#39;ac&#39;</span> ~~ <span class="tok-sr">m/ a?c /</span> {
     <span class="tok-nb">say</span> <span class="tok-s">&quot;Casou&quot;</span>;
   } <span class="tok-k">else</span> {
     <span class="tok-nb">say</span> <span class="tok-s">&quot;Não casou&quot;</span>;
@@ -4502,7 +4538,7 @@ Propriedades Unicode são definidas entre <code>&lt;:</code> e <code>&gt;</code>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">if</span> <span class="tok-s">&#39;az&#39;</span> ~~ <span class="tok-sr">m/ a*z /</span> {
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-k">if</span> <span class="tok-s">&#39;az&#39;</span> ~~ <span class="tok-sr">m/ a*z /</span> {
     <span class="tok-nb">say</span> <span class="tok-s">&quot;Casou&quot;</span>;
   } <span class="tok-k">else</span> {
     <span class="tok-nb">say</span> <span class="tok-s">&quot;Não Casou&quot;</span>;
@@ -4529,7 +4565,7 @@ Propriedades Unicode são definidas entre <code>&lt;:</code> e <code>&gt;</code>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">if</span> <span class="tok-s">&#39;az&#39;</span> ~~ <span class="tok-sr">m/ a+z /</span> {
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-k">if</span> <span class="tok-s">&#39;az&#39;</span> ~~ <span class="tok-sr">m/ a+z /</span> {
     <span class="tok-nb">say</span> <span class="tok-s">&quot;Casou&quot;</span>;
   } <span class="tok-k">else</span> {
     <span class="tok-nb">say</span> <span class="tok-s">&quot;Não Casou&quot;</span>;
@@ -4560,7 +4596,7 @@ Propriedades Unicode são definidas entre <code>&lt;:</code> e <code>&gt;</code>
 <div class="listingblock">
 <div class="title">Script</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">if</span> <span class="tok-s">&#39;Rakudo é um compilador de Perl 6.&#39;</span> ~~ <span class="tok-sr">m/:s Perl 6/</span> {
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-k">if</span> <span class="tok-s">&#39;Rakudo é um compilador de Raku.&#39;</span> ~~ <span class="tok-sr">m/:s Raku/</span> {
     <span class="tok-nb">say</span> <span class="tok-s">&quot;Casou com: &quot;</span> ~ <span class="tok-vg">$/</span>;
     <span class="tok-nb">say</span> <span class="tok-s">&quot;A string que veio antes foi: &quot;</span> ~ <span class="tok-vg">$/</span>.<span class="tok-nb">prematch</span>;
     <span class="tok-nb">say</span> <span class="tok-s">&quot;A string que veio depois foi: &quot;</span> ~ <span class="tok-vg">$/</span>.<span class="tok-nb">postmatch</span>;
@@ -4572,7 +4608,7 @@ Propriedades Unicode são definidas entre <code>&lt;:</code> e <code>&gt;</code>
 <div class="listingblock">
 <div class="title">Saída</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-n">Casou</span> <span class="tok-n">com:</span> <span class="tok-nb">Perl</span> <span class="tok-mi">6</span>
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-n">Casou</span> <span class="tok-n">com:</span> <span class="tok-n">Raku</span>
 <span class="tok-n">A</span> <span class="tok-n">string</span> <span class="tok-n">que</span> <span class="tok-n">veio</span> <span class="tok-n">antes</span> <span class="tok-n">foi:</span> <span class="tok-n">Rakudo</span> <span class="tok-n">é</span> <span class="tok-n">um</span> <span class="tok-n">compilador</span> <span class="tok-n">de</span>
 <span class="tok-n">A</span> <span class="tok-n">string</span> <span class="tok-n">que</span> <span class="tok-n">veio</span> <span class="tok-n">depois</span> <span class="tok-n">foi:</span> .
 <span class="tok-n">A</span> <span class="tok-n">string</span> <span class="tok-n">encontrada</span> <span class="tok-n">começa</span> <span class="tok-n">na</span> <span class="tok-n">posição:</span> <span class="tok-mi">26</span>
@@ -4597,7 +4633,7 @@ Os seguintes métodos podem ser chamados no <em>Objeto de Match</em>:<br>
 <td class="content">
 Por padrão os espaços em branco numa definição de regex são irrelevantes.<br>
 Se queremos casar uma expressão regular contendo espaços temos que dizer isso explicitamente.<br>
-O <code>:s</code> na regex <code>m/:s Perl 6/</code> força que espaços em branco sejam considerados e não descartados.<br>
+O <code>:s</code> na regex <code>m/:s Raku/</code> força que espaços em branco sejam considerados e não descartados.<br>
 Poderíamos ter escrito essa regex como <code>m/ Perl\s6 /</code> e usado <code>\s</code> que, como vimos antes, é um placeholder para espaços.<br>
 Se uma regex contém mais de um espaço em branco, usar <code>:s</code> torna-se mais eficiente em vez de usar <code>\s</code> para cada caractere de espaço.
 </td>
@@ -4620,7 +4656,7 @@ primeiro nome [ponto] último nome [arroba] empresa [ponto] (com/org/net)</p>
 </td>
 <td class="content">
 a regex usada nesse exemplo não é muito precisa para validação de emails.<br>
-Seu único propósito é demonstrar a funcionalidade das regexes em Perl 6.<br>
+Seu único propósito é demonstrar a funcionalidade das regexes em Raku.<br>
 Não use como está aqui em ambientes de produção.
 </td>
 </tr>
@@ -4629,7 +4665,7 @@ Não use como está aqui em ambientes de produção.
 <div class="listingblock">
 <div class="title">Script</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">$email</span> = <span class="tok-s">&#39;mario.silva@perl6.org&#39;</span>;
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-k">my</span> <span class="tok-nv">$email</span> = <span class="tok-s">&#39;mario.silva@raku.org&#39;</span>;
 <span class="tok-k">my</span> <span class="tok-nv">$regex</span> =<span class="tok-sr"> / &lt;:L&gt;+\.&lt;:L&gt;+\@&lt;:L+:N&gt;+\.&lt;:L&gt;+ /</span>;
 
 <span class="tok-k">if</span> <span class="tok-nv">$email</span> ~~ <span class="tok-nv">$regex</span> {
@@ -4641,7 +4677,7 @@ Não use como está aqui em ambientes de produção.
 </div>
 <div class="paragraph">
 <div class="title">Saída</div>
-<p><code>mario.silva@perl6.org é um email válido</code></p>
+<p><code>mario.silva@raku.org é um email válido</code></p>
 </div>
 <div class="paragraph">
 <div class="title">Explicação</div>
@@ -4683,7 +4719,7 @@ Não use como está aqui em ambientes de produção.
 <div class="listingblock">
 <div class="title">A regex também pode ser dividida em múltiplas regexes rotuladas</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">$email</span> = <span class="tok-s">&#39;mario.silva@perl6.org&#39;</span>;
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-k">my</span> <span class="tok-nv">$email</span> = <span class="tok-s">&#39;mario.silva@raku.org&#39;</span>;
 <span class="tok-k">my</span> <span class="tok-k">regex</span><span class="tok-n"> muitas-letras</span> {<span class="tok-sr"> &lt;:L&gt;+ </span>};
 <span class="tok-k">my</span> <span class="tok-k">regex</span><span class="tok-n"> ponto</span> {<span class="tok-sr"> \. </span>};
 <span class="tok-k">my</span> <span class="tok-k">regex</span><span class="tok-n"> arroba</span> {<span class="tok-sr"> \@ </span>};
@@ -4707,7 +4743,7 @@ Uma regex rotulada pode ser chamada usando a seguinte sintaxe: <code>&lt;nome-da
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Para mais informações sobre regexes, veja <a href="https://docs.perl6.org/language/regexes" class="bare">https://docs.perl6.org/language/regexes</a>
+Para mais informações sobre regexes, veja <a href="https://docs.raku.org/language/regexes" class="bare">https://docs.raku.org/language/regexes</a>
 </td>
 </tr>
 </table>
@@ -4716,17 +4752,17 @@ Para mais informações sobre regexes, veja <a href="https://docs.perl6.org/lang
 </div>
 </div>
 <div class="sect1">
-<h2 id="_módulos_em_perl_6">12. Módulos em Perl 6</h2>
+<h2 id="_módulos_em_raku">12. Módulos em Raku</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Perl 6 é uma linguagem de uso geral. Ela pode ser usada para resolver uma série de tarefas incluindo:
+<p>Raku é uma linguagem de uso geral. Ela pode ser usada para resolver uma série de tarefas incluindo:
 manipulação de textos, gráficos, web, bancos de dados, protocolos de rede, etc.</p>
 </div>
 <div class="paragraph">
 <p>Reusabilidade é um conceito muito importante onde programadores não precisam reinventar a roda cada vez que querem fazer uma nova tarefa.</p>
 </div>
 <div class="paragraph">
-<p>Perl 6 permite a criação e redistribuição de <strong>módulos</strong>. Cada módulo é um conjunto de funcionalidades que pode ser reutilizado após instalado.</p>
+<p>Raku permite a criação e redistribuição de <strong>módulos</strong>. Cada módulo é um conjunto de funcionalidades que pode ser reutilizado após instalado.</p>
 </div>
 <div class="paragraph">
 <p><em>Zef</em> é uma ferramenta de gestão de módulos que vem com o Rakudo Star.</p>
@@ -4744,7 +4780,7 @@ manipulação de textos, gráficos, web, bancos de dados, protocolos de rede, et
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-O diretório de módulos Perl 6 pode ser encontrado em: <a href="https://modules.perl6.org/" class="bare">https://modules.perl6.org/</a>
+O diretório de módulos Raku pode ser encontrado em: <a href="https://modules.raku.org/" class="bare">https://modules.raku.org/</a>
 </td>
 </tr>
 </table>
@@ -4761,7 +4797,7 @@ O raciocínio por trás disso é que se o banco de dados for comprometido, quem 
 <p>Digamos que você precise de um script que gere um hash MD5 de uma senha antes de guardá-la no banco de dados.</p>
 </div>
 <div class="paragraph">
-<p>Felizmente existe um módulo em Perl 6 que já implementa o algoritmo MD5. Vamos instalá-lo:<br>
+<p>Felizmente existe um módulo em Raku que já implementa o algoritmo MD5. Vamos instalá-lo:<br>
 <code>zef install Digest::MD5</code></p>
 </div>
 <div class="paragraph">
@@ -4769,7 +4805,7 @@ O raciocínio por trás disso é que se o banco de dados for comprometido, quem 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">use</span> <span class="tok-n">Digest::MD5</span>;
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-k">use</span> <span class="tok-n">Digest::MD5</span>;
 <span class="tok-k">my</span> <span class="tok-nv">$senha</span> = <span class="tok-s">&quot;senha123&quot;</span>;
 <span class="tok-k">my</span> <span class="tok-nv">$hash-da-senha</span> = <span class="tok-n">Digest::MD5</span>.<span class="tok-nb">new</span>.<span class="tok-n">md5_hex</span>(<span class="tok-nv">$senha</span>);
 
@@ -4813,7 +4849,7 @@ UTF-8 é uma codificação de caracteres capaz de codificar todos os caracteres 
 <div class="listingblock">
 <div class="title">Vejamos como podemos exibir caracteres usando Unicode</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-nb">say</span> <span class="tok-s">&quot;a&quot;</span>;
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-nb">say</span> <span class="tok-s">&quot;a&quot;</span>;
 <span class="tok-nb">say</span> <span class="tok-s">&quot;\x0061&quot;</span>;
 <span class="tok-nb">say</span> <span class="tok-s">&quot;\c[LATIN SMALL LETTER A]&quot;</span>;</code></pre>
 </div>
@@ -4837,7 +4873,7 @@ UTF-8 é uma codificação de caracteres capaz de codificar todos os caracteres 
 <div class="listingblock">
 <div class="title">Agora vamos exibir um smiley</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-nb">say</span> <span class="tok-s">&quot;☺&quot;</span>;
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-nb">say</span> <span class="tok-s">&quot;☺&quot;</span>;
 <span class="tok-nb">say</span> <span class="tok-s">&quot;\x263a&quot;</span>;
 <span class="tok-nb">say</span> <span class="tok-s">&quot;\c[WHITE SMILING FACE]&quot;</span>;</code></pre>
 </div>
@@ -4845,7 +4881,7 @@ UTF-8 é uma codificação de caracteres capaz de codificar todos os caracteres 
 <div class="listingblock">
 <div class="title">Outro exemplo combinando dois code points</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-nb">say</span> <span class="tok-s">&quot;á&quot;</span>;
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-nb">say</span> <span class="tok-s">&quot;á&quot;</span>;
 <span class="tok-nb">say</span> <span class="tok-s">&quot;\x00e1&quot;</span>;
 <span class="tok-nb">say</span> <span class="tok-s">&quot;\x0061\x0301&quot;</span>;
 <span class="tok-nb">say</span> <span class="tok-s">&quot;\c[LATIN SMALL LETTER A WITH ACUTE]&quot;</span>;</code></pre>
@@ -4867,7 +4903,7 @@ UTF-8 é uma codificação de caracteres capaz de codificar todos os caracteres 
 <div class="listingblock">
 <div class="title">Alguns dos métodos que podem ser usados:</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-nb">say</span> <span class="tok-s">&quot;á&quot;</span>.<span class="tok-nb">NFC</span>;
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-nb">say</span> <span class="tok-s">&quot;á&quot;</span>.<span class="tok-nb">NFC</span>;
 <span class="tok-nb">say</span> <span class="tok-s">&quot;á&quot;</span>.<span class="tok-nb">NFD</span>;
 <span class="tok-nb">say</span> <span class="tok-s">&quot;á&quot;</span>.<span class="tok-nb">uniname</span>;</code></pre>
 </div>
@@ -4875,7 +4911,7 @@ UTF-8 é uma codificação de caracteres capaz de codificar todos os caracteres 
 <div class="listingblock">
 <div class="title"><code>Saída</code></div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-n">NFC:0x</span><span class="tok-s">&lt;00e1&gt;</span>
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-n">NFC:0x</span><span class="tok-s">&lt;00e1&gt;</span>
 <span class="tok-n">NFD:0x</span><span class="tok-s">&lt;0061 0301&gt;</span>
 <span class="tok-n">LATIN</span> <span class="tok-n">SMALL</span> <span class="tok-n">LETTER</span> <span class="tok-n">A</span> <span class="tok-n">WITH</span> <span class="tok-n">ACUTE</span></code></pre>
 </div>
@@ -4888,7 +4924,7 @@ UTF-8 é uma codificação de caracteres capaz de codificar todos os caracteres 
 <div class="listingblock">
 <div class="title">Letras em Unicode podem ser usadas como identificadores:</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">$Δ</span> = <span class="tok-mi">1</span>;
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-k">my</span> <span class="tok-nv">$Δ</span> = <span class="tok-mi">1</span>;
 <span class="tok-nv">$Δ</span>++;
 <span class="tok-nb">say</span> <span class="tok-nv">$Δ</span>;</code></pre>
 </div>
@@ -4896,7 +4932,7 @@ UTF-8 é uma codificação de caracteres capaz de codificar todos os caracteres 
 <div class="listingblock">
 <div class="title">Unicode pode ser usado para operações matemáticas:</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">$var</span> = <span class="tok-mi">2</span> + <span class="tok-n">⅒</span>;
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-k">my</span> <span class="tok-nv">$var</span> = <span class="tok-mi">2</span> + <span class="tok-n">⅒</span>;
 <span class="tok-nb">say</span> <span class="tok-nv">$var</span>;</code></pre>
 </div>
 </div>
@@ -4913,7 +4949,7 @@ UTF-8 é uma codificação de caracteres capaz de codificar todos os caracteres 
 Isso pode não ser um problema, a menos que o que esteja tentando fazer consuma muito tempo.</p>
 </div>
 <div class="paragraph">
-<p>Perl 6 possui recursos que permitem que você execute tarefas em paralelo.<br>
+<p>Raku possui recursos que permitem que você execute tarefas em paralelo.<br>
 Nesse ponto, é importante notar que paralelismo pode significar uma dessas duas coisas:</p>
 </div>
 <div class="ulist">
@@ -4933,7 +4969,7 @@ Nesse ponto, é importante notar que paralelismo pode significar uma dessas duas
 <h4 id="_paralelismo_de_dados">14.1.1. Paralelismo de Dados</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">@array</span> = (<span class="tok-mi">0</span><span class="tok-o">..</span><span class="tok-mi">50000</span>);                     <span class="tok-c1"># Populando o array</span>
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-k">my</span> <span class="tok-nv">@array</span> = (<span class="tok-mi">0</span><span class="tok-o">..</span><span class="tok-mi">50000</span>);                     <span class="tok-c1"># Populando o array</span>
 <span class="tok-k">my</span> <span class="tok-nv">@result</span> = <span class="tok-nv">@array</span>.<span class="tok-n">map</span>({ <span class="tok-nb">is-prime</span> <span class="tok-nv">$_</span> });   <span class="tok-c1"># chame is-prime para cada elemento do array</span>
 <span class="tok-nb">say</span> <span class="tok-nb">now</span> - <span class="tok-k">INIT</span> <span class="tok-nb">now</span>;                         <span class="tok-c1"># Exibe o tempo que o script levou pra rodar</span></code></pre>
 </div>
@@ -4947,7 +4983,7 @@ A sub-rotina <code>is-prime</code> está sendo chamada para cada elemento do arr
 <div class="listingblock">
 <div class="title">Felizmente podemos chamar <code>is-prime</code> em múltiplos elementos do array ao mesmo tempo:</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">@array</span> = (<span class="tok-mi">0</span><span class="tok-o">..</span><span class="tok-mi">50000</span>);                         <span class="tok-c1"># Populando o array</span>
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-k">my</span> <span class="tok-nv">@array</span> = (<span class="tok-mi">0</span><span class="tok-o">..</span><span class="tok-mi">50000</span>);                         <span class="tok-c1"># Populando o array</span>
 <span class="tok-k">my</span> <span class="tok-nv">@result</span> = <span class="tok-nv">@array</span>.<span class="tok-nb">race</span>.<span class="tok-n">map</span>({ <span class="tok-nb">is-prime</span> <span class="tok-nv">$_</span> });  <span class="tok-c1"># chame is-prime para cada elemento do array</span>
 <span class="tok-nb">say</span> <span class="tok-nb">now</span> - <span class="tok-k">INIT</span> <span class="tok-nb">now</span>;                             <span class="tok-c1"># exiba o tempo que o script levou pra rodar</span></code></pre>
 </div>
@@ -4972,7 +5008,7 @@ Esse método vai ativar a iteração em paralelo dos elementos do array.</p>
 <div class="listingblock">
 <div class="title">race</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">@array</span> = (<span class="tok-mi">1</span><span class="tok-o">..</span><span class="tok-mi">1000</span>);
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-k">my</span> <span class="tok-nv">@array</span> = (<span class="tok-mi">1</span><span class="tok-o">..</span><span class="tok-mi">1000</span>);
 <span class="tok-k">my</span> <span class="tok-nv">@result</span> = <span class="tok-nv">@array</span>.<span class="tok-nb">race</span>.<span class="tok-n">map</span>( {<span class="tok-nv">$_</span> + <span class="tok-mi">1</span>} );
 .<span class="tok-nb">say</span> <span class="tok-k">for</span> <span class="tok-nv">@result</span>;</code></pre>
 </div>
@@ -4980,7 +5016,7 @@ Esse método vai ativar a iteração em paralelo dos elementos do array.</p>
 <div class="listingblock">
 <div class="title">hyper</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">@array</span> = (<span class="tok-mi">1</span><span class="tok-o">..</span><span class="tok-mi">1000</span>);
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-k">my</span> <span class="tok-nv">@array</span> = (<span class="tok-mi">1</span><span class="tok-o">..</span><span class="tok-mi">1000</span>);
 <span class="tok-k">my</span> <span class="tok-nv">@result</span> = <span class="tok-nv">@array</span>.<span class="tok-nb">hyper</span>.<span class="tok-n">map</span>( {<span class="tok-nv">$_</span> + <span class="tok-mi">1</span>} );
 .<span class="tok-nb">say</span> <span class="tok-k">for</span> <span class="tok-nv">@result</span>;</code></pre>
 </div>
@@ -4997,7 +5033,7 @@ Esse método vai ativar a iteração em paralelo dos elementos do array.</p>
 <h4 id="_paralelismo_de_tarefas">14.1.2. Paralelismo de Tarefas</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">@array1</span> = (<span class="tok-mi">0</span><span class="tok-o">..</span><span class="tok-mi">49999</span>);
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-k">my</span> <span class="tok-nv">@array1</span> = (<span class="tok-mi">0</span><span class="tok-o">..</span><span class="tok-mi">49999</span>);
 <span class="tok-k">my</span> <span class="tok-nv">@array2</span> = (<span class="tok-mi">2</span><span class="tok-o">..</span><span class="tok-mi">50001</span>);
 
 <span class="tok-k">my</span> <span class="tok-nv">@result1</span> = <span class="tok-nv">@array1</span>.<span class="tok-n">map</span>( {<span class="tok-nb">is-prime</span>(<span class="tok-nv">$_</span> + <span class="tok-mi">1</span>)} );
@@ -5032,7 +5068,7 @@ e só então começa <code>@array2.map( {is-prime($_ - 1)} )</code></p>
 <div class="listingblock">
 <div class="title">Por que não executá-las em paralelo?</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">@array1</span> = (<span class="tok-mi">0</span><span class="tok-o">..</span><span class="tok-mi">49999</span>);
+<pre class="pygments highlight"><code data-lang="raku"><span></span><span class="tok-k">my</span> <span class="tok-nv">@array1</span> = (<span class="tok-mi">0</span><span class="tok-o">..</span><span class="tok-mi">49999</span>);
 <span class="tok-k">my</span> <span class="tok-nv">@array2</span> = (<span class="tok-mi">2</span><span class="tok-o">..</span><span class="tok-mi">50001</span>);
 
 <span class="tok-k">my</span> <span class="tok-nv">$promise1</span> = <span class="tok-nb">start</span> <span class="tok-nv">@array1</span>.<span class="tok-n">map</span>( {<span class="tok-nb">is-prime</span>(<span class="tok-nv">$_</span> + <span class="tok-mi">1</span>)} ).<span class="tok-nb">eager</span>;
@@ -5084,7 +5120,7 @@ Paralelismo sempre adiciona um custo (overhead) de threading. Se esse overhead n
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-Para mais informações sobre Concorrência e Programação Assíncrona, veja <a href="https://docs.perl6.org/language/concurrency" class="bare">https://docs.perl6.org/language/concurrency</a>
+Para mais informações sobre Concorrência e Programação Assíncrona, veja <a href="https://docs.raku.org/language/concurrency" class="bare">https://docs.raku.org/language/concurrency</a>
 </td>
 </tr>
 </table>
@@ -5098,13 +5134,13 @@ Para mais informações sobre Concorrência e Programação Assíncrona, veja <a
 <div class="ulist">
 <ul>
 <li>
-<p>Canal de IRC <a href="https://web.libera.chat/#raku">#perl6</a>. Muita discussão acontece no canal de IRC. Esse deve ser seu lugar de destino para qualquer questão: <a href="https://perl6.org/community/irc" class="bare">https://perl6.org/community/irc</a></p>
+<p>Canal de IRC <a href="https://web.libera.chat/#raku">#raku</a>. Muita discussão acontece no canal de IRC. Esse deve ser seu lugar de destino para qualquer questão: <a href="https://raku.org/community/irc" class="bare">https://raku.org/community/irc</a></p>
 </li>
 <li>
-<p>Agregador de blogs <a href="http://pl6anet.org">pl6anet</a>. Fique em dia lendo blog posts com foco em Perl 6.</p>
+<p>Agregador de blogs <a href="http://pl6anet.org">pl6anet</a>. Fique em dia lendo blog posts com foco em Raku.</p>
 </li>
 <li>
-<p><a href="https://www.reddit.com/r/perl6/">/r/perl6</a>. Assine a subreddit do Perl 6.</p>
+<p><a href="https://www.reddit.com/r/raku/">/r/raku</a>. Assine a subreddit do Raku.</p>
 </li>
 </ul>
 </div>
@@ -5113,7 +5149,7 @@ Para mais informações sobre Concorrência e Programação Assíncrona, veja <a
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2022-05-05 17:20:43 +0300
+Last updated 2023-03-24 13:41:23 +0200
 </div>
 </div>
 </body>
