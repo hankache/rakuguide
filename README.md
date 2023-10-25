@@ -18,6 +18,7 @@ For online reading navigate to:
 * Turkish: https://raku.guide/tr
 * Indonesian: https://raku.guide/id
 * Russian: https://raku.guide/ru
+* Ukrainian: https://raku.guide/ua
 
 ### Building the document
 The document is written in asciidoc format and generated using
@@ -69,6 +70,7 @@ Kindly prefix your commit title with the language it is targeting. For example, 
 * Turkish Translation: [Yalın Pala](https://github.com/yplog)
 * Indonesian Translation: [Heince Kurniawan](https://github.com/heince)
 * Russian Translation: [Alexander Kiryuhin](https://github.com/Altai-man)
+* Ukrainian Translation: [Dmytro Iaskolko](https://github.com/s0t0na)
 
 For the full list of contributors: https://github.com/hankache/rakuguide/graphs/contributors
 

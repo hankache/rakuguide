@@ -54,6 +54,7 @@ link:https://github.com/hankache/rakuguide[Github].
 * Spanish: https://raku.guide/es
 * Turkish: https://raku.guide/tr
 * Russian: https://raku.guide/ru
+* Ukrainian: https://raku.guide/ua
 
 :sectnums:
 == Introduction
