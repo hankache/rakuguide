@@ -1,5 +1,5 @@
-= Вступ до Perl6
-Naoum Hankache <naoum@hankache.com>; Дмитро Ясколко <mescalito.ua@gmail.com>;
+= Вступ до Raku
+Naoum Hankache <naoum@hankache.com>; Dmytro Iaskolko <mescalito.ua@gmail.com>;
 :description:  Загальна інтродукція до Raku
 :keywords: perl6, Raku, introduction, perl6intro, Raku introduction, Raku tutorial, Raku intro, raku, raku introduction, raku guide, raku tutorial, вступ, введення до Raku, інтродукція до 6, вивчення perl6
 :Email: naoum@hankache.com
