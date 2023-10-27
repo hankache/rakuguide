@@ -43,16 +43,17 @@ Bu eseri beğendiyseniz, kaynağına göz atabilirsiniz
 link:https://github.com/hankache/perl6intro[Github].
 
 .Çeviriler
-* Almanca: http://de.perl6intro.com
-* Bulgarca: http://bg.perl6intro.com
-* Çince: http://zh.perl6intro.com
-* Flemenkçe: http://nl.perl6intro.com
-* Fransızca: http://fr.perl6intro.com
-* İngilizce: http://perl6intro.com
-* İspanyolca: http://es.perl6intro.com
-* İtalyanca: http://it.perl6intro.com
-* Japonca: http://ja.perl6intro.com
-* Portekizce: http://pt.perl6intro.com
+* Almanca: https://raku.guide/de
+* Bulgarca: https://raku.guide/bg
+* Çince: https://raku.guide/zh
+* Flemenkçe: https://raku.guide/nl
+* Fransızca: https://raku.guide/fr
+* İngilizce: https://raku.guide
+* İspanyolca: https://raku.guide/es
+* İtalyanca: https://raku.guide/it
+* Japonca: https://raku.guide/ja
+* Portekizce: https://raku.guide/pt
+* Ukraynaca: https://raku.guide/uk
 
 :sectnums:
 == Giriş

@@ -55,6 +55,7 @@ Se você gostou desse trabalho, clique na _estrela_ do repositório no link:http
 * Português: https://raku.guide/pt
 * Russo: https://raku.guide/ru
 * Turco: https://raku.guide/tr
+* Ucraniano: https://raku.guide/uk
 
 :sectnums:
 == Introdução

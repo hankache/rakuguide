@@ -18,7 +18,7 @@ For online reading navigate to:
 * Turkish: https://raku.guide/tr
 * Indonesian: https://raku.guide/id
 * Russian: https://raku.guide/ru
-* Ukrainian: https://raku.guide/ua
+* Ukrainian: https://raku.guide/uk
 
 ### Building the document
 The document is written in asciidoc format and generated using

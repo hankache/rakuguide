@@ -45,15 +45,16 @@ link:https://github.com/hankache/perl6intro[Github]
 grazie!
 
 .Altre versioni disponibili
-* Bulgaro: http://bg.perl6intro.com
-* Cinese: http://zh.perl6intro.com
-* Francese: http://fr.perl6intro.com
-* Giapponese: http://ja.perl6intro.com
-* Inglese: http://perl6intro.com
-* Olandese: http://nl.perl6intro.com
-* Portoghese: http://pt.perl6intro.com
-* Spagnolo: http://es.perl6intro.com
-* Tedesco: http://de.perl6intro.com
+* Bulgaro: https://raku.guide/bg
+* Cinese: https://raku.guide/zh
+* Francese: https://raku.guide/fr
+* Giapponese: https://raku.guide/ja
+* Inglese: https://raku.guide
+* Olandese: https://raku.guide/nl
+* Portoghese: https://raku.guide/pt
+* Spagnolo: https://raku.guide/es
+* Tedesco: https://raku.guide/de
+* Ucraniano: https://raku.guide/uk
 
 
 :sectnums:

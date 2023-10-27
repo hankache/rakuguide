@@ -52,6 +52,7 @@ link:https://github.com/hankache/rakuguide[Github] 给这个仓库点赞。
 * 西班牙语: https://raku.guide/es
 * 土耳其语: https://raku.guide/tr
 * 俄语: https://raku.guide/ru
+* 烏克蘭: https://raku.guide/uk
 
 :sectnums:
 == 序言
