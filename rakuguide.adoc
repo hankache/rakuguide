@@ -73,6 +73,9 @@ Implementations that pass the specification test suite are considered Raku.
 * *Rakudo Star*: Is a bundle that includes Rakudo, Zef, a collection of Raku modules, and documentation.
 
 === Installing Raku
+
+https://rakubrew.org is a platform independent environment manager (think pyenv for Raku)
+
 .Linux
 
 To install Rakudo Star, run the following commands from your terminal:
@@ -88,7 +91,7 @@ rm -fr rakudo-star-*
 echo "export PATH=$(pwd)/bin/:$(pwd)/share/perl6/site/bin:$(pwd)/share/perl6/vendor/bin:$(pwd)/share/perl6/core/bin:\$PATH" >> ~/.bashrc
 source ~/.bashrc
 ----
-For other options, go to https://rakudo.org/star/source
+For other Unix options, go to https://rakudo.org/star/source
 
 .macOS
 Four options are available:
