@@ -53,7 +53,7 @@ Naoum Hankache <naoum@hankache.com>; Dmytro Iaskolko <mescalito.ua@gmail.com>;
 * Португальський: https://raku.guide/pt
 * Іспаньский: https://raku.guide/es
 * Турецький: https://raku.guide/tr
-* Украінський: https://raku.guide/ua
+* Украінський: https://raku.guide/uk
 
 :sectnums:
 

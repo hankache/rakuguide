@@ -48,14 +48,15 @@ link:https://github.com/hankache/perl6intro[Github].
 
 .Преводи
 
-* Български: http://bg.perl6intro.com
-* Испански: http://es.perl6intro.com
-* Китайски: http://zh.perl6intro.com
-* Немски: http://de.perl6intro.com
-* Португалски: http://pt.perl6intro.com
-* Френски: http://fr.perl6intro.com
-* Холандски: http://nl.perl6intro.com
-* Японски: http://ja.perl6intro.com
+* Български: https://raku.guide/bg
+* Испански: https://raku.guide/es
+* Китайски: https://raku.guide/zh
+* Немски: https://raku.guide/de
+* Португалски: https://raku.guide/pt
+* Френски: https://raku.guide/fr
+* Холандски: https://raku.guide/nl
+* Японски: https://raku.guide/ja
+* Украински: https://raku.guide/uk
 
 :sectnums:
 == Увод
