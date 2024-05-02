@@ -2843,7 +2843,7 @@ my $hashed-password = md5( $password );
 say $hashed-password;
 ----
 In order to run the `md5_hex()` function that creates hashes, we need to load the required module. +
-The `use` keyword loads the module for use in the script whic provides an `md5` subroutine.
+The `use` keyword loads the module for use in the script which provides an `md5` subroutine.
 
 WARNING: In practice MD5 hashing alone is not sufficient, because it is prone to dictionary attacks. +
 It should be combined with a salt link:https://en.wikipedia.org/wiki/Salt_(cryptography)[https://en.wikipedia.org/wiki/Salt_(cryptography)].
