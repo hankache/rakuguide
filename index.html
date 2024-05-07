@@ -4971,15 +4971,16 @@ The rationale behind this is that if the DB gets compromised, the attacker will 
 <div class="listingblock">
 <div class="content">
 <pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">use</span> <span class="tok-n">Digest::MD5</span>;
+
 <span class="tok-k">my</span> <span class="tok-nv">$password</span> = <span class="tok-s">&quot;password123&quot;</span>;
-<span class="tok-k">my</span> <span class="tok-nv">$hashed-password</span> = <span class="tok-n">Digest::MD5</span>.<span class="tok-nb">new</span>.<span class="tok-n">md5_hex</span>(<span class="tok-nv">$password</span>);
+<span class="tok-k">my</span> <span class="tok-nv">$hashed-password</span> = <span class="tok-n">md5</span>( <span class="tok-nv">$password</span> );
 
 <span class="tok-nb">say</span> <span class="tok-nv">$hashed-password</span>;</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>In order to run the <code>md5_hex()</code> function that creates hashes, we need to load the required module.<br>
-The <code>use</code> keyword loads the module for use in the script.</p>
+<p>In order to run the <code>md5()</code> function that creates hashes, we need to load the required module.<br>
+The <code>use</code> keyword loads the module for use in the script which provides an <code>md5</code> subroutine.</p>
 </div>
 <div class="admonitionblock warning">
 <table>
@@ -5691,7 +5692,7 @@ This should be your go to place for any enquiry for which you want an immediate 
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-01-05 23:23:34 +0200
+Last updated 2024-05-07 19:09:01 +0300
 </div>
 </div>
 </body>
