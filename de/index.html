@@ -1,15 +1,22 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-70405289-1"></script>
+<!-- Matomo -->
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-70405289-1');
+  var _paq = window._paq = window._paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//hankache.com/matomo/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '2']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
 </script>
+<!-- End Matomo Code -->
+
 <link rel="shortcut icon" type="image/x-icon" href="../favicon.ico">
 
 <meta charset="UTF-8">
@@ -4782,7 +4789,7 @@ Für mehr Information über Parallele Programmierung und Ungleichzeitigkeit, sie
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2024-05-07 19:09:00 +0300
+Last updated 2024-05-15 01:16:02 +0300
 </div>
 </div>
 </body>
