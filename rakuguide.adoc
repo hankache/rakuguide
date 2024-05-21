@@ -7,7 +7,7 @@
 :icons: font
 :source-highlighter: pygments
 //:pygments-style: manni
-:source-language: perl6
+:source-language: raku
 :pygments-linenums-mode: table
 :toc: left
 :doctype: book
@@ -79,6 +79,7 @@ https://rakubrew.org is a platform independent environment manager (think pyenv 
 .Linux
 
 To install Rakudo Star, run the following commands from your terminal:
+[source,shell]
 ----
 mkdir ~/rakudo && cd $_
 curl -LJO https://rakudo.org/latest/star/src
@@ -165,12 +166,12 @@ The community also uses frequently the following editors:
 === Hello World!
 We shall begin with The `hello world` ritual.
 
-[source,perl6]
+[source,raku]
 say 'hello world';
 
 that can also be written as:
 
-[source,perl6]
+[source,raku]
 'hello world'.say;
 
 === Syntax overview
@@ -178,7 +179,7 @@ Raku is *free form*: Most of the time you are free to use any amount of whitespa
 cases whitespace carries meaning.
 
 *Statements* are typically a single line of code separated with semicolons:
-[source,perl6]
+[source,raku]
 ----
 say "Hello" if True;
 say "World" if False;
@@ -189,7 +190,7 @@ practice to include them anyway.
 
 *Blocks* can contain a collection of statements. Surround statements with curly braces to create a
 block:
-[source,perl6]
+[source,raku]
 ----
 {
     say "First statement in the block.";
@@ -273,17 +274,17 @@ Comments are divided into 3 types:
 
 * Single line:
 +
-[source,perl6]
+[source,raku]
 # This is a single line comment
 
 * Embedded:
 +
-[source,perl6]
+[source,raku]
 say #`(This is an embedded comment) "Hello World."
 
 * Multi line:
 +
-[source,perl6]
+[source,raku]
 -----------------------------
 =begin comment
 This is a multi line comment.
@@ -301,7 +302,7 @@ Always use double quotes:
 
 * if your string contains a variable that needs to be interpolated.
 
-[source,perl6]
+[source,raku]
 -----------------------------------
 say 'Hello World';   # Hello World
 say "Hello World";   # Hello World
@@ -501,7 +502,7 @@ https://docs.raku.org/language/containers
 === Scalars
 A scalar holds one value or reference.
 
-[source,perl6]
+[source,raku]
 ----
 # String
 my $name = 'John Doe';
@@ -514,7 +515,7 @@ say $age;
 
 A specific set of operations can be performed on a scalar, depending on the value it holds.
 
-[source,perl6]
+[source,raku]
 .String
 ----
 my $name = 'John Doe';
@@ -531,7 +532,7 @@ eoD nhoJ
 
 NOTE: For the complete list of methods applicable to Strings, see https://docs.raku.org/type/Str
 
-[source,perl6]
+[source,raku]
 .Integer
 ----
 my $age = 17;
@@ -544,7 +545,7 @@ True
 
 NOTE: For the complete list of methods applicable to Integers, see https://docs.raku.org/type/Int
 
-[source,perl6]
+[source,raku]
 .Rational Number
 ----
 my $age = 2.3;
@@ -564,7 +565,7 @@ NOTE: For the complete list of methods applicable to Rational Numbers, see https
 === Arrays
 Arrays are lists containing multiple values.
 
-[source,perl6]
+[source,raku]
 ----
 my @animals = 'camel','llama','owl';
 say @animals;
@@ -574,7 +575,7 @@ Many operations can be performed on arrays as shown in the below example:
 
 TIP: The tilde `~` is used for string concatenation.
 
-[source,perl6]
+[source,raku]
 .`Script`
 ----
 my @animals = 'camel','vicuña','llama';
@@ -611,7 +612,7 @@ We can access a specific element in the array by specifying its position `@anima
 
 ==== Fixed-size arrays
 A basic array is declared as following:
-[source,perl6]
+[source,raku]
 my @array;
 
 The basic array can have indefinite length and thus is called auto-extending. +
@@ -621,12 +622,12 @@ In contrast, we can also create fixed-size arrays. +
 These arrays cannot be accessed beyond their defined size.
 
 To declare an array of fixed size, specify its maximum number of elements in square brackets immediately after its name:
-[source,perl6]
+[source,raku]
 my @array[3];
 
 This array will be able to hold a maximum of 3 values, indexed from 0 to 2.
 
-[source,perl6]
+[source,raku]
 ----
 my @array[3];
 @array[0] = "first value";
@@ -635,7 +636,7 @@ my @array[3];
 ----
 
 You will not be able to add a fourth value to this array:
-[source,perl6]
+[source,raku]
 ----
 my @array[3];
 @array[0] = "first value";
@@ -652,7 +653,7 @@ Index 3 for dimension 1 out of range (must be 0..2)
 The arrays we saw until now are one-dimensional. +
 Fortunately, we can define multi-dimensional arrays in Raku.
 
-[source,perl6]
+[source,raku]
 my @tbl[3;2];
 
 This array is two-dimensional.
@@ -660,7 +661,7 @@ The first dimension can have a maximum of 3 values and the second dimension a ma
 
 Think of it as a 3x2 grid.
 
-[source,perl6]
+[source,raku]
 ----
 my @tbl[3;2];
 @tbl[0;0] = 1;
@@ -686,14 +687,14 @@ say @tbl
 NOTE: For the complete Array reference, see https://docs.raku.org/type/Array
 
 === Hashes
-[source,perl6]
+[source,raku]
 .A Hash is a set of Key/Value pairs.
 ----
 my %capitals = 'UK','London','Germany','Berlin';
 say %capitals;
 ----
 
-[source,perl6]
+[source,raku]
 .Another succinct way of filling the hash:
 ----
 my %capitals = UK => 'London', Germany => 'Berlin';
@@ -701,7 +702,7 @@ say %capitals;
 ----
 
 Some of the methods that can be called on hashes are:
-[source,perl6]
+[source,raku]
 .`Script`
 ----
 my %capitals = UK => 'London', Germany => 'Berlin';
@@ -734,7 +735,7 @@ In the previous examples, we did not specify what type of values the variables s
 
 TIP: `.WHAT` will return the type of value held in a variable.
 
-[source,perl6]
+[source,raku]
 ----
 my $var = 'Text';
 say $var;
@@ -752,7 +753,7 @@ This style of programming is called dynamic typing. Dynamic in the sense that va
 Now try running the below example: +
 Notice `Int` before the variable name.
 
-[source,perl6]
+[source,raku]
 ----
 my Int $var = 'Text';
 say $var;
@@ -769,7 +770,7 @@ This style of programming is called static typing. Static in the sense that vari
 Raku is classified as *gradually typed*; it allows both *static* and *dynamic* typing.
 
 .Arrays and hashes can also be statically typed:
-[source,perl6]
+[source,raku]
 ----
 my Int @array = 1,2,3;
 say @array;
@@ -817,7 +818,7 @@ You will most probably never use the first two but they are listed for informati
 Introspection is the process of getting information about an object properties like its type. +
 In one of the previous example we used `.WHAT` to return the type of the variable.
 
-[source,perl6]
+[source,raku]
 ----
 my Int $var;
 say $var.WHAT;    # (Int)
@@ -843,7 +844,7 @@ Before using a variable for the first time, it needs to be declared.
 
 Several declarators are used in Raku. We've been using `my`, so far.
 
-[source,perl6]
+[source,raku]
 my $var=1;
 
 The `my` declarator give the variable *lexical* scope.
@@ -852,7 +853,7 @@ In other words, the variable will only be accessible in the same block it was de
 A block in Raku is delimited by `{ }`.
 If no block is found, the variable will be available in the whole Raku script.
 
-[source,perl6]
+[source,raku]
 ----
 {
   my Str $var = 'Text';
@@ -863,7 +864,7 @@ say $var;   # is not accessible, returns an error
 
 Since a variable is only accessible in the block where it is defined, the same variable name can be used in another block.
 
-[source,perl6]
+[source,raku]
 ----
 {
   my Str $var = 'Text';
@@ -876,7 +877,7 @@ say $var;
 === Assignment vs. Binding
 We've seen in the previous examples, how to *assign* values to variables. +
 *Assignment* is done using the `=` operator.
-[source,perl6]
+[source,raku]
 ----
 my Int $var = 123;
 say $var;
@@ -884,7 +885,7 @@ say $var;
 
 We can change the value assigned to a variable:
 
-[source,perl6]
+[source,raku]
 .Assignment
 ----
 my Int $var = 123;
@@ -902,7 +903,7 @@ say $var;
 On the other hand, we cannot change the value *bound* to a variable. +
 *Binding* is done using the `:=` operator.
 
-[source,perl6]
+[source,raku]
 .Binding
 ----
 my Int $var := 123;
@@ -917,7 +918,7 @@ say $var;
 Cannot assign to an immutable value
 ----
 
-[source,perl6]
+[source,raku]
 .Variables can also be bound to other variables:
 ----
 my $a;
@@ -946,7 +947,7 @@ It is important to differentiate between functions and mutators. +
 Functions do not change the state of the object they were called on. +
 Mutators modify the state of the object.
 
-[source,perl6,linenums]
+[source,raku,linenums]
 .`Script`
 ----
 my @numbers = [7,2,4,9,11,3];
@@ -986,7 +987,7 @@ Raku has many conditional and looping constructs.
 === if
 The code runs only if a condition has been met; i.e., an expression evaluates to `True`.
 
-[source,perl6]
+[source,raku]
 ----
 my $age = 19;
 
@@ -998,7 +999,7 @@ if $age > 18 {
 In Raku, we can invert the code and the condition. +
 Even if the code and the condition have been inverted, the condition is always evaluated first.
 
-[source,perl6]
+[source,raku]
 ----
 my $age = 19;
 
@@ -1010,7 +1011,7 @@ If the condition is not met, we can specify alternate blocks for execution by us
 * `else`
 * `elsif`
 
-[source,perl6]
+[source,raku]
 ----
 # run the same code for different values of the variable
 my $number-of-seats = 9;
@@ -1029,7 +1030,7 @@ The negated version of an if statement can be written using `unless`.
 
 The following code:
 
-[source,perl6]
+[source,raku]
 ----
 my $clean-shoes = False;
 
@@ -1039,7 +1040,7 @@ if not $clean-shoes {
 ----
 can be written as:
 
-[source,perl6]
+[source,raku]
 ----
 my $clean-shoes = False;
 
@@ -1058,7 +1059,7 @@ Negation in Raku is done using either `!` or `not`.
 
 `with` behaves like the `if` statement, but checks if the variable is defined.
 
-[source,perl6]
+[source,raku]
 ----
 my Int $var=1;
 
@@ -1068,7 +1069,7 @@ with $var {
 ----
 
 If you run the code without assigning a value to the variable, nothing should happen.
-[source,perl6]
+[source,raku]
 ----
 my Int $var;
 
@@ -1086,7 +1087,7 @@ If the first `with` condition is not met, an alternate path can be specified usi
 
 The `for` loop iterates over multiple values.
 
-[source,perl6]
+[source,raku]
 ----
 my @array = 1,2,3;
 
@@ -1102,7 +1103,7 @@ Notice that we created an iteration variable `$array-item` and then performed th
 `given` is the Raku equivalent of the switch statement in other languages,
 but much more powerful.
 
-[source,perl6]
+[source,raku]
 ----
 my $var = 42;
 
@@ -1117,7 +1118,7 @@ given $var {
 After a successful match, the matching process will stop.
 
 Alternatively `proceed` will instruct Raku to continue matching even after a successful match.
-[source,perl6]
+[source,raku]
 ----
 my $var = 42;
 
@@ -1137,7 +1138,7 @@ Actually, `loop` is how `for` loops are  written in C-family programming languag
 
 Raku belongs to the C-family languages.
 
-[source,perl6]
+[source,raku]
 ----
 loop (my $i = 0; $i < 5; $i++) {
   say "The current number is $i"
@@ -1154,7 +1155,7 @@ In Raku, two of the most common _Input/Output_ interfaces are the _Terminal_ and
 ==== say
 `say` writes to the standard output. It appends a newline at the end. In other words, the following code:
 
-[source,perl6]
+[source,raku]
 ----
 say 'Hello Mam.';
 say 'Hello Sir.';
@@ -1169,7 +1170,7 @@ Try replacing `say` with `print` and compare the results.
 ==== get
 `get` is used to capture input from the terminal.
 
-[source,perl6]
+[source,raku]
 ----
 my $name;
 
@@ -1187,7 +1188,7 @@ Subsequently, it will greet you.
 
 The above example can be written like this:
 
-[source,perl6]
+[source,raku]
 ----
 my $name = prompt "Hi, what's your name? ";
 
@@ -1202,7 +1203,7 @@ Two subroutines can be used to run shell commands:
 * `shell` Runs a command through the system shell. It is platform and shell dependent.
 All shell meta characters are interpreted by the shell, including pipes, redirects, environment variable substitutions and so on.
 
-[source,perl6]
+[source,raku]
 .Run this if you're on Linux/macOS
 ----
 my $name = 'Neo';
@@ -1210,7 +1211,7 @@ run 'echo', "hello $name";
 shell "ls";
 ----
 
-[source,perl6]
+[source,raku]
 .Run this if you're on Windows
 ----
 shell "dir";
@@ -1235,7 +1236,7 @@ Johnnie 7
 Jane 8
 Joanna 7
 ----
-[source,perl6]
+[source,raku]
 ----
 my $data = slurp "datafile.txt";
 say $data;
@@ -1244,7 +1245,7 @@ say $data;
 ==== spurt
 `spurt` is used to write data to a file.
 
-[source,perl6]
+[source,raku]
 ----
 my $newdata = "New scores:
 Paul 10
@@ -1259,7 +1260,7 @@ After running the above code, a new file named _newdatafile.txt_ will be created
 === Working with files and directories
 Raku can list the contents of a directory without resorting to shell commands (by using `ls`, for example).
 
-[source,perl6]
+[source,raku]
 ----
 say dir;                # List files and folders in the current directory
 say dir "/Documents";   # List files and folders in the specified directory
@@ -1267,7 +1268,7 @@ say dir "/Documents";   # List files and folders in the specified directory
 
 In addition, you can create and delete directories.
 
-[source,perl6]
+[source,raku]
 ----
 mkdir "newfolder";
 rmdir "newfolder";
@@ -1280,7 +1281,7 @@ You can also check if a path exists; if it is a file; or a directory:
 
 In the directory where you will be running the below script, create an empty folder `folder123` and an empty raku file `script123.raku`
 
-[source,perl6]
+[source,raku]
 ----
 say "script123.raku".IO.e;
 say "folder123".IO.e;
@@ -1309,7 +1310,7 @@ NOTE: For more info on I/O, see https://docs.raku.org/type/IO
 A subroutine definition begins with the keyword `sub`. After their definition, they can be called by their handle. +
 Check out the below example:
 
-[source,perl6]
+[source,raku]
 ----
 sub alien-greeting {
   say "Hello earthlings";
@@ -1327,7 +1328,7 @@ The number and type of parameters that a subroutine defines is called its *signa
 
 The below subroutine accepts a string argument.
 
-[source,perl6]
+[source,raku]
 ----
 sub say-hello (Str $name) {
     say "Hello " ~ $name ~ "!!!!"
@@ -1340,7 +1341,7 @@ say-hello "Paula";
 It is possible to define multiple subroutines that have the same name but different signatures.
 When the subroutine is called, the runtime environment will decide which version to use based on the number and type of supplied arguments. This type of subroutine is defined the same way as normal subs except that we use the `multi` keyword instead of `sub`.
 
-[source,perl6]
+[source,raku]
 ----
 multi greet($name) {
     say "Good morning $name";
@@ -1363,7 +1364,7 @@ Raku provides us the ability to define subroutines with:
 
 Optional parameters are defined by appending `?` to the parameter name.
 
-[source,perl6]
+[source,raku]
 ----
 sub say-hello($name?) {
   with $name { say "Hello " ~ $name }
@@ -1376,7 +1377,7 @@ say-hello("Laura");
 If the user doesn't need to supply an argument, a default value can be defined. +
 This is done by assigning a value to the parameter within the subroutine definition.
 
-[source,perl6]
+[source,raku]
 ----
 sub say-hello($name="Matt") {
   say "Hello " ~ $name;
@@ -1392,7 +1393,7 @@ Sometimes, though, we execute a subroutine for its *return* value so we can use 
 
 If a function is allowed to run through it's block to the end, the last statement or expression will determine the return value.
 
-[source,perl6]
+[source,raku]
 .Implicit return
 ----
 sub squared ($x) {
@@ -1403,7 +1404,7 @@ say "7 squared is equal to " ~ squared(7);
 
 For the sake of clarity, it might be a good idea to _explicitly_ specify what we want returned.
 This can be done using the `return` keyword.
-[source,perl6]
+[source,raku]
 .Explicit return
 ----
 sub squared ($x) {
@@ -1417,7 +1418,7 @@ The same can be done with return values.
 
 To restrict the return value to a certain type, we use the arrow notation `-\->` in the signature.
 
-[source,perl6]
+[source,raku]
 .Indicating return type
 ----
 sub squared ($x --> Int) {
@@ -1443,7 +1444,7 @@ We could also have specified that the returned `Int` should be strictly defined 
 That being said, it is good practice to use those type constraints. +
 Below is the modified version of the previous example that uses `:D` to force the returned `Int` to be defined.
 
-[source,perl6]
+[source,raku]
 ----
 sub squared ($x --> Int:D) {
   return $x ** 2;
@@ -1469,7 +1470,7 @@ Functions/subroutines are first-class citizens:
 A great example is the `map` function. +
 `map` is a _higher order function_, it can accept another function as an argument.
 
-[source,perl6]
+[source,raku]
 .Script
 ----
 my @array = <1 2 3 4 5>;
@@ -1496,7 +1497,7 @@ An *anonymous function* is also called a *lambda*. +
 An anonymous function is not bound to an identifier (it has no name).
 
 Let's rewrite the `map` example and have it use an anonymous function
-[source,perl6]
+[source,raku]
 ----
 my @array = <1 2 3 4 5>;
 say map(-> $x {$x ** 2},@array);
@@ -1506,7 +1507,7 @@ it within the anonymous subroutine as `\-> $x {$x ** 2}`.
 
 In Raku parlance, we call this notation a *pointy block*
 
-[source,perl6]
+[source,raku]
 .A pointy block may also be used to assign functions to variables:
 ----
 my $squared = -> $x {
@@ -1522,7 +1523,7 @@ To illustrate: Given an array, you may need to return the unique values of the a
 
 Here's a non-chained solution:
 
-[source,perl6]
+[source,raku]
 ----
 my @array = <7 8 9 0 1 2 4 3 5 6 7 8 9>;
 my @final-array = reverse(sort(unique(@array)));
@@ -1532,7 +1533,7 @@ Here, we call `unique` on `@array`, pass the result as an argument to `sort`, an
 
 In contrast, with chained methods, the above example can be rewritten as:
 
-[source,perl6]
+[source,raku]
 ----
 my @array = <7 8 9 0 1 2 4 3 5 6 7 8 9>;
 my @final-array = @array.unique.sort.reverse;
@@ -1545,7 +1546,7 @@ You can already see that chaining methods is _easier on the eye_.
 The *feed operator*, called _pipe_ in some functional programming languages, further illustrates
 method chaining.
 
-[source,perl6]
+[source,raku]
 .Forward Feed
 ----
 my @array = <7 8 9 0 1 2 4 3 5 6 7 8 9>;
@@ -1566,7 +1567,7 @@ Start with `@array` then return a list of unique elements
 Note that the flow of the method calls is top-down -- from first to final step.
 
 
-[source,perl6]
+[source,raku]
 .Backward Feed
 ----
 my @array = <7 8 9 0 1 2 4 3 5 6 7 8 9>;
@@ -1583,7 +1584,7 @@ The flow of the method calls is bottom-up -- from final to first step.
 
 === Hyper operator
 The *hyper operator* `>>.` will call a method on all elements of a list and return a list of the results.
-[source,perl6]
+[source,raku]
 ----
 my @array = <0 1 2 3 4 5 6 7 8 9 10>;
 sub is-even($var) { $var %% 2 };
@@ -1604,7 +1605,7 @@ However, there is *no guarantee* that Raku will actually call the methods in lis
 A *junction* is a logical superposition of values.
 
 In the below example `1|2|3` is a junction.
-[source,perl6]
+[source,raku]
 ----
 my $var = 2;
 if $var == 1|2|3 {
@@ -1629,7 +1630,7 @@ The benefits include:
 To build a lazy list we use the infix operator `...` +
 A lazy list has *initial element(s)*, a *generator* and an *endpoint*.
 
-[source,perl6]
+[source,raku]
 .Simple lazy list
 ----
 my $lazylist = (1 ... 10);
@@ -1638,7 +1639,7 @@ say $lazylist;
 The initial element is 1 and the endpoint is 10. No generator was defined so the default generator is the successor (+1) +
 In other words this lazy list may return (if requested) the following elements (1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
 
-[source,perl6]
+[source,raku]
 .Infinite lazy list
 ----
 my $lazylist = (1 ... Inf);
@@ -1646,7 +1647,7 @@ say $lazylist;
 ----
 This list may return (if requested) any integer between 1 and infinity, in other words any integer number.
 
-[source,perl6]
+[source,raku]
 .Lazy list built using a deduced generator
 ----
 my $lazylist = (0,2 ... 10);
@@ -1656,7 +1657,7 @@ The initial elements are 0 and 2 and the endpoint is 10.
 No generator was defined, but using the initial elements, Raku will deduce that the generator is (+2) +
 This lazy list may return (if requested) the following elements (0, 2, 4, 6, 8, 10)
 
-[source,perl6]
+[source,raku]
 .Lazy list built using a defined generator
 ----
 my $lazylist = (0, { $_ + 3 } ... 12);
@@ -1674,14 +1675,14 @@ The generator _jumps over_ the endpoint.
 Alternatively you can replace `0 ... 10` with `0 ...^ * > 10` +
 You can read it as: From 0 until the first value greater than 10 (excluding it)
 
-[source,perl6]
+[source,raku]
 .This will not stop the generator
 ----
 my $lazylist = (0, { $_ + 3 } ... 10);
 say $lazylist;
 ----
 
-[source,perl6]
+[source,raku]
 .This will stop the generator
 ----
 my $lazylist = (0, { $_ + 3 } ...^ * > 10);
@@ -1692,7 +1693,7 @@ say $lazylist;
 === Closures
 All code objects in Raku are closures, which means they can reference lexical variables from an outer scope.
 
-[source,perl6]
+[source,raku]
 ----
 sub generate-greeting {
     my $name = "John Doe";
@@ -1720,7 +1721,7 @@ The environment consists of any local variable that was in-scope at the time tha
 In this case, `$generated` is a closure that incorporates both the `greeting` subroutine and the `John Doe` string that existed when the closure was created.
 
 Let's take a look at a more interesting example.
-[source,perl6]
+[source,raku]
 ----
 sub greeting-generator($period) {
   return sub ($name) {
@@ -1770,7 +1771,7 @@ In order to understand the relationship consider the below example:
 In _object oriented_ parlance, we say that objects are *instances* of a class.
 
 Consider the below script:
-[source,perl6]
+[source,raku]
 ----
 class Human {
   has $.name;
@@ -1790,7 +1791,7 @@ In the above script, a new variable `$john` holds a reference to a new instance 
 The arguments passed to the `.new()` method are used to set the attributes of the underlying object.
 
 A class can be given _lexical scope_ using `my`:
-[source,perl6]
+[source,raku]
 ----
 my class Human {
 
@@ -1805,14 +1806,14 @@ In order to access the attributes from outside the object, we use methods called
 The below two scripts have the same result.
 
 .Direct access to the variable:
-[source,perl6]
+[source,raku]
 ----
 my $var = 7;
 say $var;
 ----
 
 .Encapsulation:
-[source,perl6]
+[source,raku]
 ----
 my $var = 7;
 sub sayvar {
@@ -1832,7 +1833,7 @@ Two twigils are used in classes:
 By default, all attributes are private but it is a good habit to always use the `!` twigil.
 
 Therefore, we should rewrite the above class as:
-[source,perl6]
+[source,raku]
 ----
 class Human {
   has $!name;
@@ -1865,7 +1866,7 @@ In our example above, notice that the arguments supplied to `.new()` are defined
 What if I do not want to supply the name of each attribute each time I want to create an object? +
 Then I need to create another constructor that accepts *positional arguments*.
 
-[source,perl6]
+[source,raku]
 ----
 class Human {
   has $.name;
@@ -1893,7 +1894,7 @@ In normal circumstances, methods are required to perform some sort of action on 
 This enforces the concept of encapsulation. Object attributes can only be manipulated from within the object using methods.
 The outside world can only interact with the object methods, and has no direct access to its attributes.
 
-[source,perl6]
+[source,raku]
 ----
 class Human {
   has $.name;
@@ -1941,7 +1942,7 @@ We do not want users to call it directly, so we declare it as private.
 The declaration of a private method requires the use of the `!` twigil before its name. +
 Private methods are called with `!` instead of `.`
 
-[source,perl6]
+[source,raku]
 ----
 method !iamprivate {
   # code goes in here
@@ -1960,7 +1961,7 @@ They can be initialized during definition. +
 Class attributes are declared using `my` instead of `has`. +
 They are called on the class itself instead of its objects.
 
-[source,perl6]
+[source,raku]
 ----
 class Human {
   has $.name;
@@ -1981,7 +1982,7 @@ Until now, all the examples that we've seen have used accessors to *get* informa
 
 What if we need to modify the value of an attribute? +
 We need to label it as _read/write_ using the keywords `is rw`
-[source,perl6]
+[source,raku]
 ----
 class Human {
   has $.name;
@@ -2008,7 +2009,7 @@ Human beings have 2 attributes: name and age. +
 Employees have 4 attributes: name, age, company and salary
 
 One would be tempted to define the classes as:
-[source,perl6]
+[source,raku]
 ----
 class Human {
   has $.name;
@@ -2025,7 +2026,7 @@ class Employee {
 While technically correct, the above piece of code is considered conceptually poor.
 
 A better way to write this would be:
-[source,perl6]
+[source,raku]
 ----
 class Human {
   has $.name;
@@ -2050,7 +2051,7 @@ This concept is called *overriding*.
 
 In the below example, the method `introduce-yourself` is inherited by the Employee class.
 
-[source,perl6]
+[source,raku]
 ----
 class Human {
   has $.name;
@@ -2073,7 +2074,7 @@ $jane.introduce-yourself;
 ----
 Overriding works like this:
 
-[source,perl6]
+[source,raku]
 ----
 class Human {
   has $.name;
@@ -2109,7 +2110,7 @@ They are defined using the `submethod` keyword.
 === Multiple Inheritance
 Multiple inheritance is allowed in Raku. A class can inherit from multiple other classes.
 
-[source,perl6]
+[source,raku]
 ----
 class bar-chart {
   has Int @.bar-values;
@@ -2164,7 +2165,7 @@ When we call that method on `combo-chart` Raku internals will try to resolve the
 .Correction
 In order to behave correctly, we should have overridden the method `plot` in the `combo-chart`.
 
-[source,perl6]
+[source,raku]
 ----
 class bar-chart {
   has Int @.bar-values;
@@ -2217,7 +2218,7 @@ Actual vs Forecast:
 Roles are declared with the keyword `role`. Classes that wish to implement a role, do so using the `does` keyword.
 
 .Let's rewrite the multiple inheritance example using roles:
-[source,perl6]
+[source,raku]
 ----
 role bar-chart {
   has Int @.bar-values;
@@ -2259,7 +2260,7 @@ By now you're asking yourself: If roles behave like classes, what's their use? +
 To answer your question, modify the first script used to showcase multiple inheritance,
 the one where we _forgot_ to override the `plot` method.
 
-[source,perl6]
+[source,raku]
 ----
 role bar-chart {
   has Int @.bar-values;
@@ -2306,7 +2307,7 @@ Roles will warn you that there's a conflict.
 === Introspection
 *Introspection* is the process of getting information about an object, like its type, attributes or methods.
 
-[source,perl6]
+[source,raku]
 ----
 class Human {
   has Str $.name;
@@ -2364,7 +2365,7 @@ We say that exceptions are _thrown_.
 
 Consider the below script that runs correctly:
 
-[source,perl6]
+[source,raku]
 ----
 my Str $name;
 $name = "Joanna";
@@ -2380,7 +2381,7 @@ How are you doing today?
 
 Now consider this script that throws an exception:
 
-[source,perl6]
+[source,raku]
 ----
 my Str $name;
 $name = 123;
@@ -2398,7 +2399,7 @@ Notice that whenever an error occurs (in this case, assigning a number to a stri
 
 *Exception handling* is the process of _catching_ an exception that has been _thrown_ in order for the script to continue working.
 
-[source,perl6]
+[source,raku]
 ----
 my Str $name;
 try {
@@ -2421,7 +2422,7 @@ How are you doing today?
 
 Exception handling is done by using a `try-catch` block.
 
-[source,perl6]
+[source,raku]
 ----
 try {
   # code goes in here
@@ -2438,7 +2439,7 @@ try {
 The `CATCH` block can be defined the same way a `given` block is defined.
 This means we can _catch_ and handle differently many types of exceptions.
 
-[source,perl6]
+[source,raku]
 ----
 try {
   # code goes in here
@@ -2461,14 +2462,14 @@ Two types of exceptions can be thrown:
 
 * typed exceptions
 
-[source,perl6]
+[source,raku]
 .ad-hoc
 ----
 my Int $age = 21;
 die "Error !";
 ----
 
-[source,perl6]
+[source,raku]
 .typed
 ----
 my Int $age = 21;
@@ -2491,7 +2492,7 @@ NOTE: For a complete list of exception types and their associated methods, go to
 A regular expression, or _regex_, is a sequence of characters that is used for pattern matching. +
 Think of it as a pattern.
 
-[source,perl6]
+[source,raku]
 ----
 if 'enlightenment' ~~ m/ light / {
     say "enlightenment contains the word light";
@@ -2517,7 +2518,7 @@ Unless specified explicitly, white space is ignored; `m/light/` and `m/ light /`
 Alphanumeric characters and the underscore `_` are written as is. +
 All other characters have to be escaped using a backslash or surrounded by quotes.
 
-[source,perl6]
+[source,raku]
 .Backslash
 ----
 if 'Temperature: 13' ~~ m/ \: / {
@@ -2525,7 +2526,7 @@ if 'Temperature: 13' ~~ m/ \: / {
 }
 ----
 
-[source,perl6]
+[source,raku]
 .Single quotes
 ----
 if 'Age = 13' ~~ m/ '=' / {
@@ -2533,7 +2534,7 @@ if 'Age = 13' ~~ m/ '=' / {
 }
 ----
 
-[source,perl6]
+[source,raku]
 .Double quotes
 ----
 if 'name@company.com' ~~ m/ "@" / {
@@ -2565,7 +2566,7 @@ We can also match against the inverse of that category (everything except it):
 
 |===
 
-[source,perl6]
+[source,raku]
 ----
 if "John123" ~~ / \d / {
   say "This is not a valid name, numbers are not allowed";
@@ -2586,7 +2587,7 @@ This allows you to match against categories of characters inside and outside of 
 the ASCII standard. +
 Unicode properties are enclosed in `<: >`
 
-[source,perl6]
+[source,raku]
 ----
 if "Devanagari Numbers १२३" ~~ / <:N> / {
   say "Contains a number";
@@ -2610,7 +2611,7 @@ Wildcards can also be used in a regex.
 
 The dot `.` means any single character.
 
-[source,perl6]
+[source,raku]
 ----
 if 'abc' ~~ m/ a.c / {
     say "Match";
@@ -2630,7 +2631,7 @@ Quantifiers come after a character and are used to specify how many times we are
 
 The question mark `?` means zero or one time.
 
-[source,perl6]
+[source,raku]
 ----
 if 'ac' ~~ m/ a?c / {
     say "Match";
@@ -2646,7 +2647,7 @@ if 'c' ~~ m/ a?c / {
 
 The star `*` means zero or multiple times.
 
-[source,perl6]
+[source,raku]
 ----
 if 'az' ~~ m/ a*z / {
     say "Match";
@@ -2672,7 +2673,7 @@ if 'z' ~~ m/ a*z / {
 
 The `+` means at least one time.
 
-[source,perl6]
+[source,raku]
 ----
 if 'az' ~~ m/ a+z / {
     say "Match";
@@ -2700,7 +2701,7 @@ if 'z' ~~ m/ a+z / {
 Whenever the process of matching a string against a regex is successful,
 the match result is stored in a special variable `$/`
 
-[source,perl6]
+[source,raku]
 .Script
 ----
 if 'Rakudo is a Perl 6 compiler' ~~ m/:s Perl 6/ {
@@ -2744,7 +2745,7 @@ WARNING: The regex used in this example for email validation is not very accurat
 Its sole purpose is to demonstrate regex functionality in Raku. +
 Do not use it as-is in production.
 
-[source,perl6]
+[source,raku]
 .Script
 ----
 my $email = 'john.doe@perl6.org';
@@ -2784,7 +2785,7 @@ The regex can be decomposed as following:
 
 * *com/org/net* `<:L>+`
 
-[source,perl6]
+[source,raku]
 .Alternatively, a regex can be broken down into multiple named regexes
 ----
 my $email = 'john.doe@perl6.org';
@@ -2833,7 +2834,7 @@ Let's install it: +
 `zef install Digest::MD5`
 
 Now, run the below script:
-[source,perl6]
+[source,raku]
 ----
 use Digest::MD5;
 
@@ -2861,7 +2862,7 @@ Characters are defined by a: +
 === Using Unicode
 
 .Let's look at how we can output characters using Unicode
-[source,perl6]
+[source,raku]
 ----
 say "a";
 say "\x0061";
@@ -2876,7 +2877,7 @@ The above 3 lines showcase different ways of building a character:
 . Using `\c` and the code point name
 
 .Now lets output a smiley
-[source,perl6]
+[source,raku]
 ----
 say "☺";
 say "\x263a";
@@ -2884,7 +2885,7 @@ say "\c[WHITE SMILING FACE]";
 ----
 
 .Another example combining two code points
-[source,perl6]
+[source,raku]
 ----
 say "á";
 say "\x00e1";
@@ -2899,7 +2900,7 @@ The letter `á` can be written:
 * or as a combination of the code points of `a` and acute `\x0061\x0301`
 
 .Some of the methods that can be used:
-[source,perl6]
+[source,raku]
 ----
 say "á".NFC;
 say "á".NFD;
@@ -2918,7 +2919,7 @@ LATIN SMALL LETTER A WITH ACUTE
 `uniname` returns the code point name.
 
 .Unicode letters can be used as identifiers:
-[source,perl6]
+[source,raku]
 ----
 my $Δ = 1;
 $Δ++;
@@ -2926,7 +2927,7 @@ say $Δ;
 ----
 
 .Unicode can be used to do math:
-[source,perl6]
+[source,raku]
 ----
 my $var = 2 + ⅒;
 say $var;
@@ -2944,7 +2945,7 @@ Nonetheless different sets of numerals are used to a lesser extent in different 
 No special care needs to be taken when using a numeral set different than the Arabic numerals.
 All methods/operators work as expected.
 
-[source,perl6]
+[source,raku]
 ----
 say (٤,٥,٦,1,2,3).sort; # (1 2 3 4 5 6)
 say 1 + ٩;              # 10
@@ -2956,7 +2957,7 @@ especially when comparing or sorting.
 
 ===== Comparison
 
-[source,perl6]
+[source,raku]
 ----
 say 'a' cmp 'B'; # More
 ----
@@ -2967,7 +2968,7 @@ While technically correct, this is probably not what we were looking for.
 
 Luckily Raku has methods/operators that implement the link:http://unicode.org/reports/tr10/[Unicode Collation Algorithm]. +
 One of them is `unicmp` that behaves like the above showcased `cmp` but is unicode-aware.
-[source,perl6]
+[source,raku]
 ----
 say 'a' unicmp 'B'; # Less
 ----
@@ -2976,7 +2977,7 @@ As you can see, using the `unicmp` operator now yields the expected result that 
 ===== Sorting
 As an alternative to the `sort` method that sorts using code points, Raku provides a `collate`
 method that implements the link:http://unicode.org/reports/tr10/[Unicode Collation Algorithm].
-[source,perl6]
+[source,raku]
 ----
 say ('a','b','c','D','E','F').sort;    # (D E F a b c)
 say ('a','b','c','D','E','F').collate; # (a b c D E F)
@@ -2998,7 +2999,7 @@ At this stage, it is important to note that parallelism can mean one of two thin
 Let's begin with the latter.
 
 ==== Data Parallelism
-[source,perl6]
+[source,raku]
 ----
 my @array = 0..50000;                       # Array population
 my @result = @array.map({ is-prime $_ });   # call is-prime for each array element
@@ -3011,7 +3012,7 @@ The `is-prime` subroutine is being called for each array element sequentially: +
 `is-prime @array[0]` then `is-prime @array[1]` then `is-prime @array[2]` etc.
 
 .Fortunately we can call `is-prime` on multiple array elements at the same time:
-[source,perl6]
+[source,raku]
 ----
 my @array = 0..50000;                           # Array population
 my @result = @array.race.map({ is-prime $_ });  # call is-prime for each array element
@@ -3027,7 +3028,7 @@ After running both examples (with and without `race`), compare the time it took 
 ====
 `race` will not preserve the order of elements. If you wish to do, so use `hyper` instead.
 
-[source,perl6]
+[source,raku]
 .race
 ----
 my @array = 1..1000;
@@ -3035,7 +3036,7 @@ my @result = @array.race.map( {$_ + 1} );
 .say for @result;
 ----
 
-[source,perl6]
+[source,raku]
 .hyper
 ----
 my @array = 1..1000;
@@ -3049,7 +3050,7 @@ If you run both examples, you should notice that one is sorted and the other is 
 
 ==== Task Parallelism
 
-[source,perl6]
+[source,raku]
 ----
 my @array1 = 0..49999;
 my @array2 = 2..50001;
@@ -3076,7 +3077,7 @@ and then evaluates `@array2.map( {is-prime($_ - 1)} )`
 Both operations applied to each array do not depend on each other.
 
 .Why not do both in parallel?
-[source,perl6]
+[source,raku]
 ----
 my @array1 = 0..49999;
 my @array2 = 2..50001;
@@ -3133,18 +3134,21 @@ void hellofromc () {
 
 Depending on your OS run the following commands to compile the above C code into a library.
 
+[source,bash]
 .On Linux:
 ----
 gcc -c -fpic ncitest.c
 gcc -shared -o libncitest.so ncitest.o
 ----
 
+[source,bat]
 .On Windows:
 ----
 gcc -c ncitest.c
 gcc -shared -o ncitest.dll ncitest.o
 ----
 
+[source,bash]
 .On macOS:
 ----
 gcc -dynamiclib -o libncitest.dylib ncitest.c
@@ -3153,7 +3157,7 @@ gcc -dynamiclib -o libncitest.dylib ncitest.c
 Within the same directory where you compiled your C library, create a new Raku
 file that contains the below code and run it.
 
-[source,perl6]
+[source,raku]
 .ncitest.raku
 ----
 use NativeCall;
@@ -3187,7 +3191,7 @@ To do so, we use the `is symbol` trait.
 Lets modify the above Raku script and rename the Raku subroutine `hello`
 instead of `hellofromc`
 
-[source,perl6]
+[source,raku]
 .ncitest.raku
 ----
 use NativeCall;
@@ -3217,7 +3221,7 @@ void hellofromc (char* name) {
 }
 ----
 
-[source,perl6]
+[source,raku]
 .ncitest.raku
 ----
 use NativeCall;
@@ -3242,7 +3246,7 @@ int add (int a, int b) {
 }
 ----
 
-[source,perl6]
+[source,raku]
 .ncitest.raku
 ----
 use NativeCall;
