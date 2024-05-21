@@ -149,11 +149,7 @@ Consider running the following command and you shall be all set:
 Since most of the time we will be writing and storing our Raku programs in files, we should have
 a decent text editor that recognizes Raku syntax.
 
-https://commaide.com/[Comma] is the Integrated Development Environment designed specifically for Raku.
-
-The community also uses frequently the following editors:
-
-* https://atom.io/[Atom]: better syntax highlighting enabled using https://atom.io/packages/language-perl6[Perl 6 FE]
+The community uses frequently the following editors:
 
 * https://code.visualstudio.com/[Visual Studio Code]: syntax highlighting and error checking enabled using https://marketplace.visualstudio.com/items?itemName=bscan.raku-navigator[raku-navigator]
 
@@ -162,6 +158,10 @@ The community also uses frequently the following editors:
 * https://www.gnu.org/software/emacs/[Emacs]: syntax highlighting enabled using https://github.com/Raku/raku-mode[raku-mode]
 
 * https://www.nano-editor.org/[Nano]: syntax highlighting enabled using https://github.com/hankache/raku.nanorc[raku.nanorc]
+
+* https://notepad-plus-plus.org/[Notepad++]: syntax highlighting available out of the box
+
+* https://kate-editor.org//[Kate]: syntax highlighting available out of the box
 
 === Hello World!
 We shall begin with The `hello world` ritual.
