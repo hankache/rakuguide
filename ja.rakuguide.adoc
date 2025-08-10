@@ -154,15 +154,19 @@ Rakudo StarはREPLを使い倒すためのラインエディタをバンドル�
 ほとんどの場合、Rakuのプログラムを書いて保存することになります。
 そのため、Rakuの文法を認識できるまともなテキストエディタを持っているべきです。
 
-私が個人的に使っていておすすめのエディタは https://atom.io/[Atom] です。
-モダンなテキストエディタであり、革新的なRakuのシンタックスハイライティング機能を持っています。
-別の選択肢として、 https://atom.io/packages/language-perl6[Perl 6 FE] というAtomのためのシンタックスハイライターがあります。
-オリジナルのパッケージから派生したものですが、多くのバグフィックスと追加機能を含んでいます。
+コミュニティではよく、以下のエディタが使われています。
 
-http://www.vim.org/[Vim], https://www.gnu.org/software/emacs/[Emacs], http://padre.perlide.org/[Padre] もまた、Rakuコミュニティの他の人々によって使われています。
+* https://code.visualstudio.com/[Visual Studio Code]: https://marketplace.visualstudio.com/items?itemName=bscan.raku-navigator[raku-navigator]を使うと、シンタックスハイライトとエラー検査が有効になります。
 
-最近のバージョンのVimは、はじめから革新的なシンタックスハイライティング機能を持っています。
-EmacsとPadreは追加のパッケージのインストールが必要になるでしょう。
+* https://www.vim.org/[Vim]: https://github.com/Raku/vim-raku[vim-raku]を使うと、より良いシンタックスハイライトが有効になります
+
+* https://www.gnu.org/software/emacs/[Emacs]: https://github.com/Raku/raku-mode[raku-mode]を使うとシンタックスハイライトが有効になります
+
+* https://www.nano-editor.org/[Nano]: https://github.com/hankache/raku.nanorc[raku.nanorc]を使うとシンタックスハイライトが有効になります
+
+* https://notepad-plus-plus.org/[Notepad++]: そのままシンタックスハイライトが使えます
+
+* https://kate-editor.org//[Kate]: そのままシンタックスハイライトが使えます
 
 === こんにちは世界!
 おなじみの `こんにちは世界` の儀式をはじめましょう。
