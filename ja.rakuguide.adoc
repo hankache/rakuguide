@@ -48,6 +48,21 @@ To view a copy of this license, visit
 もし、このRaku入門を気に入ったのなら、 _Star_ を押していただければ幸いです。
 link:https://github.com/hankache/rakuguide[Github].
 
+.翻訳
+* ブルガリア語： https://raku.guide/bg
+* 中国語： https://raku.guide/zh
+* オランダ語： https://raku.guide/nl
+* フランス語： https://raku.guide/fr
+* ドイツ語： https://raku.guide/de
+* インドネシア語： https://raku.guide/id
+* イタリア語： https://raku.guide/it
+* 日本語： https://raku.guide/ja
+* ポルトガル語： https://raku.guide/pt
+* スペイン語： https://raku.guide/es
+* トルコ語： https://raku.guide/tr
+* ロシア語： https://raku.guide/ru
+* ウクライナ語： https://raku.guide/uk
+
 :sectnums:
 == イントロダクション
 === Raku とは
