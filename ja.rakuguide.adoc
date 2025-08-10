@@ -1,17 +1,21 @@
 = Raku 入門
-Naoum Hankache <naoum@hankache.com>; Itsuki Toyota <titsuki@cpan.org>
 :description: Raku 入門
+:Author: Naoum Hankache
+:Author_2: Itsuki Toyota
 :keywords: perl6, perl 6, introduction, イントロダクション, perl6intro, perl 6 introduction, perl 6 tutorial, perl 6 intro, perl 6 入門, perl 6 イントロダクション, perl 6 イントロ, raku イントロダクション, raku ガイド, raku チュートリアル, raku 入門
+:Email: naoum@hankache.com
+:Email_2: titsuki@cpan.org
 :Revision: 1.0
 :icons: font
 :source-highlighter: pygments
 //:pygments-style: manni
-:source-language: perl6
+:source-language: raku
 :pygments-linenums-mode: table
 :toc: left
 :toc-title: 目次
 :doctype: book
 :lang: ja
+
 
 この文書はプログラミング言語Rakuの全体像を素早くつかんでもらうことを目的として書かれたものです。 +
 まだRakuを触ったことのない読者の方々が、ここからRakuをはじめてもらうことを狙いとしています。
@@ -44,6 +48,21 @@ To view a copy of this license, visit
 もし、このRaku入門を気に入ったのなら、 _Star_ を押していただければ幸いです。
 link:https://github.com/hankache/rakuguide[Github].
 
+.翻訳
+* ブルガリア語： https://raku.guide/bg
+* 中国語： https://raku.guide/zh
+* オランダ語： https://raku.guide/nl
+* フランス語： https://raku.guide/fr
+* ドイツ語： https://raku.guide/de
+* インドネシア語： https://raku.guide/id
+* イタリア語： https://raku.guide/it
+* 日本語： https://raku.guide/ja
+* ポルトガル語： https://raku.guide/pt
+* スペイン語： https://raku.guide/es
+* トルコ語： https://raku.guide/tr
+* ロシア語： https://raku.guide/ru
+* ウクライナ語： https://raku.guide/uk
+
 :sectnums:
 == イントロダクション
 === Raku とは
@@ -61,8 +80,13 @@ Rakuはマルチパラダイム言語です。手続き型、オブジェクト�
 * *Rakudo Star*: はRakudo, Zef, Rakuのモジュールのコレクション, 文書を含んだバンドルソフトです。
 
 === Rakuのインストール
+
+https://rakubrew.org はプロットフォームによらない環境管理ツールです（pyenvのRaku版と考えてください）
+
 .Linux
+
 Rakudo Starをインストールするには、次のコマンドをターミナルで実行してください:
+[source, shell]
 ----
 mkdir ~/rakudo && cd $_
 curl -LJO https://rakudo.org/latest/star/src
@@ -75,8 +99,7 @@ rm -fr rakudo-star-*
 echo "export PATH=$(pwd)/bin/:$(pwd)/share/perl6/site/bin:$(pwd)/share/perl6/vendor/bin:$(pwd)/share/perl6/core/bin:\$PATH" >> ~/.bashrc
 source ~/.bashrc
 ----
-
-他のインストール方法を知りたければ次のリンクを参照してください。 https://rakudo.org/star/source
+Unixでの他のインストール方法を知りたければ次のリンクを参照してください。 https://rakudo.org/star/source
 
 .macOS
 四つの選択肢から選んでください:
@@ -84,7 +107,7 @@ source ~/.bashrc
 * Linuxにおけるインストール手順と同じステップを踏む
 * homebrewによるインストール: `brew install rakudo-star`
 * MacPortsによるインストール: `sudo port install rakudo`
-* 次のURLから最新のインストーラー(.dmg拡張子のついたファイル)をダウンロードする https://rakudo.perl6.org/downloads/star/
+* 次のURLから最新のインストーラー(.dmg拡張子のついたファイル)をダウンロードする https://rakudo.org/latest/star/macos
 
 .Windows
 . 64bit版の場合: 最新のインストーラー(.msi拡張子のついたファイル)を次からダウンロードする https://rakudo.org/latest/star/win
@@ -97,7 +120,7 @@ source ~/.bashrc
 === Rakuのコードを実行する
 
 Rakuのコードの実行はREPL (Read-Eval-Print Loop)を用いることによって行うことができます。
-この実行を行うために、ターミナルを開き、ターミナルの窓に向かって `perl6` と打ち、[Enter]ボタンを押してください。
+この実行を行うために、ターミナルを開き、ターミナルの窓に向かって `raku` と打ち、[Enter]ボタンを押してください。
 そうすると、コマンドプロンプトから `>` が表示されるはずです。
 次に、コードの行を打って[Enter]を押してください。
 REPL はこの行の値を出力するでしょう。
@@ -105,14 +128,15 @@ REPL はこの行の値を出力するでしょう。
 
 あるいは、ファイルの中にコードを書いて、保存して実行してください。
 Rakuのスクリプトは `.raku` 拡張子を持つことが推奨されています。
-ターミナルの窓に対して `perl6 filename.raku` と打ち、[Enter]を押してください。
-REPLとは違って、それぞれの行の結果が自動的に出力されるでしょう。: 出力を行うには、 `say` のような命令が含まれている必要があります。
+ターミナルの窓に対して `raku ファイル名.raku` と打ち、[Enter]を押してください。
+REPLとは違って、それぞれの行の結果が自動的に出力されるでしょう。
+出力を行うには、 `say` のような命令が含まれている必要があります。
 
 REPLは多くの場合、特定のコードを実行するために用いられ、そのコードは一般的には一行です。
 一行以上のプログラムに対しては、ファイルに保存してから実行することをおすすめします。
 
 一行のコードはコマンドラインで非対話的に実行することもできます。
-`perl6 -e 'あなたの書いたコード'` と打ち [Enter]を押してください.
+`raku -e 'あなたの書いたコード'` と打ち [Enter]を押してください.
 
 [TIP]
 --
@@ -130,35 +154,57 @@ Rakudo StarはREPLを使い倒すためのラインエディタをバンドル�
 ほとんどの場合、Rakuのプログラムを書いて保存することになります。
 そのため、Rakuの文法を認識できるまともなテキストエディタを持っているべきです。
 
-私が個人的に使っていておすすめのエディタは https://atom.io/[Atom] です。
-モダンなテキストエディタであり、革新的なRakuのシンタックスハイライティング機能を持っています。
-別の選択肢として、 https://atom.io/packages/language-perl6[Perl 6 FE] というAtomのためのシンタックスハイライターがあります。
-オリジナルのパッケージから派生したものですが、多くのバグフィックスと追加機能を含んでいます。
+コミュニティではよく、以下のエディタが使われています。
 
-http://www.vim.org/[Vim], https://www.gnu.org/software/emacs/[Emacs], http://padre.perlide.org/[Padre] もまた、Rakuコミュニティの他の人々によって使われています。
+* https://code.visualstudio.com/[Visual Studio Code]: https://marketplace.visualstudio.com/items?itemName=bscan.raku-navigator[raku-navigator]を使うと、シンタックスハイライトとエラー検査が有効になります。
 
-最近のバージョンのVimは、はじめから革新的なシンタックスハイライティング機能を持っています。
-EmacsとPadreは追加のパッケージのインストールが必要になるでしょう。
+* https://www.vim.org/[Vim]: https://github.com/Raku/vim-raku[vim-raku]を使うと、より良いシンタックスハイライトが有効になります
+
+* https://www.gnu.org/software/emacs/[Emacs]: https://github.com/Raku/raku-mode[raku-mode]を使うとシンタックスハイライトが有効になります
+
+* https://www.nano-editor.org/[Nano]: https://github.com/hankache/raku.nanorc[raku.nanorc]を使うとシンタックスハイライトが有効になります
+
+* https://notepad-plus-plus.org/[Notepad++]: そのままシンタックスハイライトが使えます
+
+* https://kate-editor.org//[Kate]: そのままシンタックスハイライトが使えます
 
 === こんにちは世界!
 おなじみの `こんにちは世界` の儀式をはじめましょう。
 
-[source,perl6]
+[source, raku]
 say 'こんにちは世界';
 
 これはこういう風に書くこともできます:
 
-[source,perl6]
+[source, raku]
 'こんにちは世界'.say;
 
 === 文法の概要
 Raku は *自由形式*: ほとんどの場合、空白文字をどれだけの量つかっても良いです。ただし、空白文字が意味を持つ場合もあります。
 
-*命令文* は一般的にはコードの論理的な行です。最後にセミコロンがついている必要があります:
-`say "Hello" if True;`
+*命令文* は普通1行のコードで、セミコロン区切りです。
+[source, raku]
+----
+say "Hello" if True;
+say "World" if False;
+----
+
+ファイルやコードのブロックの最後の命令文の後は、セミコロンは必須ではありません。
+しかし、その場合も書いておくと良いでしょう。
+
+*ブロック* には命令文の集まりを含められます。
+命令文を波括弧で囲むとブロックが作られます。
+[source, raku]
+----
+{
+    say "ブロックの1つ目の命令文です。";
+    say "ブロックの2つ目の命令文です。";
+}
+----
 
 *式* は値を返すような特殊なタイプの命令文です:
 `1+2` は `3` を返すでしょう。
+
 式は *項* と *演算子* でできています。
 
 *項* は:
@@ -193,7 +239,7 @@ Raku は *自由形式*: ほとんどの場合、空白文字をどれだけの�
 
 * 数字をふくむことができる。(ただし先頭文字は除く)
 
-* アルファベットがダッシュやアポストロフィ(ただし最初と最後の文字は除く)の右側にあるなら、ダッシュやアポストロフィをふくむことができる。
+* ダッシュやアポストロフィをふくむことができる（ただし最初と最後の文字は除く）。 このとき、アルファベットがダッシュやアポストロフィの右側になくてはならない。
 
 |===
 
@@ -220,7 +266,7 @@ Raku は *自由形式*: ほとんどの場合、空白文字をどれだけの�
 
 識別子には好きなように名前をつけることができます。しかし、一貫して一つの命名規則を適用していくのがグッドプラクティスです。
 
-ちゃんと意味のある名前をつければプログラミング人生を楽なものにしてくれるかもしれません。
+ちゃんと意味のある名前をつければ、あなた自身の（そして他の人に）プログラミング人生を楽なものにしてくれるかもしれません。
 
 * `var1 = var2 * var3` は文法的には正しいですが目的が明白ではありません。
 * `monthly-salary = daily-rate * working-days` のほうが変数名としてふさわしいでしょう。
@@ -232,27 +278,26 @@ Raku は *自由形式*: ほとんどの場合、空白文字をどれだけの�
 
 * 一行:
 +
-[source,perl6]
+[source, raku]
 # これは一行のコメントです
 
 * 埋め込み:
 +
-[source,perl6]
+[source, raku]
 say #`(これは埋めこまれたコメントです) "Hello World."
 
 * 複数行:
 +
-[source,perl6]
-----
+[source, raku]
+-----------------------------
 =begin comment
 これは複数行のコメントです。
 コメント1
 コメント2
 =end comment
-----
+-----------------------------
 
 ==== クォート
-
 文字列はダブルクォートかシングルクォートのどちらかで囲まれていなければなりません。
 
 下記に該当する場合は常にダブルクォートを使うべきです:
@@ -261,20 +306,19 @@ say #`(これは埋めこまれたコメントです) "Hello World."
 
 * 文字列が展開される必要のある変数を含んでいる
 
-[source,perl6]
-----
+[source, raku]
+-----------------------------------
 say 'Hello World';   # Hello World
 say "Hello World";   # Hello World
 say "Don't";         # Don't
 my $name = 'John Doe';
 say 'Hello $name';   # Hello $name
 say "Hello $name";   # Hello John Doe
-----
+-----------------------------------
 
 == 演算子
 
 === 一般的な演算子
-
 下記の表は最も一般的に使われている演算子を掲載しています。
 [cols="^.^5m,^.^5m,.^20,.^20m,.^20m", options="header"]
 |===
@@ -455,10 +499,12 @@ Rakuの変数は三つのカテゴリに分類されます: スカラ、配列�
 * `@` は配列のために使われます
 * `%` はハッシュのために使われます
 
+NOTE: 本手引きでは、Rakuの基本を学ぶ上で相応しい、単純化された変数のモデルを示します。 より深く変数を理解したいときは、 https://docs.raku.org/language/containers をご参照ください。
+
 === スカラ
 スカラはある値や参照を持っています。
 
-[source,perl6]
+[source, raku]
 ----
 # 文字列
 my $name = 'John Doe';
@@ -471,7 +517,7 @@ say $age;
 
 あるスカラに対して行うことのできる演算の種類は、そのスカラが保持している値に依存しています。
 
-[source,perl6]
+[source, raku]
 .文字列
 ----
 my $name = 'John Doe';
@@ -488,7 +534,7 @@ eoD nhoJ
 
 NOTE: もし文字列に対して適用できるすべてのメソッドのリストを知りたいのであれば、次のURLを参照することをすすめます https://docs.raku.org/type/Str
 
-[source,perl6]
+[source, raku]
 .整数
 ----
 my $age = 17;
@@ -501,7 +547,7 @@ True
 
 NOTE: もし整数に対して適用できるすべてのメソッドのリストを知りたいのであれば、次のURLを参照することをすすめます https://docs.raku.org/type/Int
 
-[source,perl6]
+[source, raku]
 .有理数
 ----
 my $age = 2.3;
@@ -521,7 +567,7 @@ NOTE: もし有理数に対して適用できるすべてのメソッドのリ�
 === 配列
 配列は複数の値を含んだリストです。
 
-[source,perl6]
+[source, raku]
 ----
 my @animals = 'camel','llama','owl';
 say @animals;
@@ -531,7 +577,7 @@ say @animals;
 
 TIP: チルダ `~` は文字列の結合のために使われています。
 
-[source,perl6]
+[source, raku]
 .`スクリプト`
 ----
 my @animals = 'camel','vicuña','llama';
@@ -568,7 +614,7 @@ We're going to let go: vicuña llama and keep the camel
 
 ==== 固定サイズの配列
 基本的な配列は次のように宣言されます:
-[source,perl6]
+[source, raku]
 my @array;
 
 基本的な配列は不定の長さを持つことができ、それゆえにこの機能は自動拡張とよばれています。 +
@@ -578,27 +624,27 @@ my @array;
 あらかじめ定義されたサイズを超えたところにアクセスすることはできません。
 
 固定サイズの配列を宣言するためには、名前のすぐ後の角括弧の中にその最大要素数を指定してください。:
-[source,perl6]
+[source, raku]
 my @array[3];
 
 この配列は三つの値を保持することができ、その添え字は0から2までの値をとります。
 
-[source,perl6]
+[source, raku]
 ----
 my @array[3];
-@array[0] = "first value";
-@array[1] = "second value";
-@array[2] = "third value";
+@array[0] = "1つ目の値";
+@array[1] = "2つ目の値";
+@array[2] = "3つ目の値";
 ----
 
 四つ目の値をこの配列に対して追加することはできません。:
-[source,perl6]
+[source, raku]
 ----
 my @array[3];
-@array[0] = "first value";
-@array[1] = "second value";
-@array[2] = "third value";
-@array[3] = "fourth value";
+@array[0] = "1つ目の値";
+@array[1] = "2つ目の値";
+@array[2] = "3つ目の値";
+@array[3] = "4つ目の値";
 ----
 
 ----
@@ -609,7 +655,7 @@ Index 3 for dimension 1 out of range (must be 0..2)
 今まで見てきた配列は一次元配列でした。 +
 幸運なことに、Rakuでは多次元配列を定義することができます。
 
-[source,perl6]
+[source, raku]
 my @tbl[3;2];
 
 この配列は二次元です。
@@ -617,7 +663,7 @@ my @tbl[3;2];
 
 3x2の格子だと考えてください。
 
-[source,perl6]
+[source, raku]
 ----
 my @tbl[3;2];
 @tbl[0;0] = 1;
@@ -643,14 +689,14 @@ say @tbl
 NOTE: もし配列に関するすべての情報を知りたいのであれば、次のURLを参照することをすすめます https://docs.raku.org/type/Array
 
 === ハッシュ
-[source,perl6]
+[source, raku]
 .ハッシュはキー/値のペアの集合です。
 ----
 my %capitals = 'UK','London','Germany','Berlin';
 say %capitals;
 ----
 
-[source,perl6]
+[source, raku]
 .ハッシュに対して要素を入れるための別の簡潔な方法:
 ----
 my %capitals = UK => 'London', Germany => 'Berlin';
@@ -658,7 +704,7 @@ say %capitals;
 ----
 
 ハッシュに対して呼び出すことのできるいくつかのメソッド:
-[source,perl6]
+[source, raku]
 .`スクリプト`
 ----
 my %capitals = UK => 'London', Germany => 'Berlin';
@@ -691,7 +737,7 @@ NOTE: もしハッシュに関するすべての情報を知りたいのであ�
 
 TIP: `.WHAT` は変数が保持している値の型を返します。
 
-[source,perl6]
+[source, raku]
 ----
 my $var = 'Text';
 say $var;
@@ -710,7 +756,7 @@ say $var.WHAT;
 では、下記の例を実行してみましょう: +
 変数名の前の `Int` に注目してください。
 
-[source,perl6]
+[source, raku]
 ----
 my Int $var = 'Text';
 say $var;
@@ -728,7 +774,7 @@ say $var.WHAT;
 Rakuは *漸進的型付け* に分類されます; *静的* 型付けと *動的* 型付けの両方を使うことができるのです。
 
 .配列とハッシュもまた静的型付けを行うことができます:
-[source,perl6]
+[source, raku]
 ----
 my Int @array = 1,2,3;
 say @array;
@@ -750,7 +796,7 @@ say %country-codes.WHAT;
 .下記は最も一般的に使われている型のリストです:
 最初の二つの型は使わないかもしれませんが情報提供のために掲載しておきます。
 
-[cols="^.^1m,.^3m,.^2m,.^1m, options="header"]
+[cols="^.^1m,.^3m,.^2m,.^1m, options=", header"]
 |===
 
 | *型* | *説明* | *例* | *結果*
@@ -776,7 +822,7 @@ say %country-codes.WHAT;
 イントロスペクションはその型といったオブジェクトのプロパティについて情報を得るための処理です。 +
 前節の例の一つでは変数の型を返すために `.WHAT` を使いました。
 
-[source,perl6]
+[source, raku]
 ----
 my Int $var;
 say $var.WHAT;    # (Int)
@@ -802,17 +848,16 @@ say $var2.WHAT;   # (Any)
 
 様々な宣言子がRakuでは使われています。今までのところ、使ってきたのは `my` です。
 
-[source,perl6]
+[source, raku]
 my $var=1;
 
 `my` 宣言子は変数に対して *レキシカル* スコープを与えます。
 つまり、その変数はそれが宣言されたのと同じブロックの中でしかアクセスできなくなります。
 
-
 Rakuのブロックは `{ }` で囲まれます。
-もしブロックがみつからないのなら、その変数はRakuのスクリプト全体で使える状態になっています。
+ブロックがなければ、その変数はRakuのスクリプト全体で使えます。
 
-[source,perl6]
+[source, raku]
 ----
 {
   my Str $var = 'Text';
@@ -823,7 +868,7 @@ say $var; # はアクセス可能ではありません。エラーを返しま�
 
 変数はその変数が定義されたブロックの中でのみアクセスが可能なので、別のブロックでは同じ変数名で使用できます。
 
-[source,perl6]
+[source, raku]
 ----
 {
   my Str $var = 'Text';
@@ -836,7 +881,7 @@ say $var;
 === 代入と束縛
 前節の例では、どうやって変数に値を *代入* するかをみてきました。 +
 *代入* は `=` 演算子を用いて行われます。
-[source,perl6]
+[source, raku]
 ----
 my Int $var = 123;
 say $var;
@@ -844,7 +889,7 @@ say $var;
 
 変数に代入された値は変更することができます:
 
-[source,perl6]
+[source, raku]
 .代入
 ----
 my Int $var = 123;
@@ -862,7 +907,7 @@ say $var;
 一方、変数に *束縛* された値は変えることはできません。 +
 *束縛* は `:=` 演算子を用いて行われます。
 
-[source,perl6]
+[source, raku]
 .束縛
 ----
 my Int $var := 123;
@@ -877,8 +922,8 @@ say $var;
 Cannot assign to an immutable value
 ----
 
-[source,perl6]
-.変数はほかの変数により束縛することができます:
+[source, raku]
+.変数は他の変数にも束縛できます。
 ----
 my $a;
 my $b;
@@ -906,7 +951,7 @@ NOTE: もし変数に関する情報をもっと知りたいのであれば、�
 関数はそれが呼ばれたときのオブジェクトの状態を変更しません。 +
 ミューテータはオブジェクトの状態を変更します。
 
-[source,perl6,linenums]
+[source, raku, linenums]
 .`スクリプト`
 ----
 my @numbers = [7,2,4,9,11,3];
@@ -929,7 +974,7 @@ say @numbers;      #4
 [2 3 4 7 9 11 99] #4
 ----
 
-.Explanation
+.説明
 `.push` はミューテータです。配列の状態を変更します。 (#1)
 
 `.sort` は関数です。ソートされた配列を返しますが、配列の初期状態を変更するわけではありません。:
@@ -941,12 +986,12 @@ say @numbers;      #4
 関数にミューテータとしてふるまうように強制するために `.` のかわりに `.=` を使っています。(#4) (スクリプトの9行目)
 
 == ループと条件文
-Rakuは多数の条件文とループ構文を持っています。
+Rakuには多数の条件文とループ構文があります。
 
 === if
 条件が満たされた時、つまり式が `True` と評価された時だけコードが実行されます。
 
-[source,perl6]
+[source, raku]
 ----
 my $age = 19;
 
@@ -958,7 +1003,7 @@ if $age > 18 {
 Rakuでは、コードと条件は反転することができます。 +
 コードと条件が反転されていたとしても、いつも先に条件が評価されます。
 
-[source,perl6]
+[source, raku]
 ----
 my $age = 19;
 
@@ -970,7 +1015,7 @@ say 'Welcome' if $age > 18;
 * `else`
 * `elsif`
 
-[source,perl6]
+[source, raku]
 ----
 # 変数の値を変えて同じコードを実行
 my $number-of-seats = 9;
@@ -989,7 +1034,7 @@ if $number-of-seats <= 5 {
 
 次のコード:
 
-[source,perl6]
+[source, raku]
 ----
 my $clean-shoes = False;
 
@@ -999,7 +1044,7 @@ if not $clean-shoes {
 ----
 は次のように書くことができます:
 
-[source,perl6]
+[source, raku]
 ----
 my $clean-shoes = False;
 
@@ -1018,7 +1063,7 @@ Rakuでの否定は `!` か `not` を使って行われます。
 
 `with` は `if` 命令のようにふるまいます。しかし変数が定義されているかどうかを調べます。
 
-[source,perl6]
+[source, raku]
 ----
 my Int $var=1;
 
@@ -1028,7 +1073,7 @@ with $var {
 ----
 
 変数に対して値を代入しないでコードを実行した場合何も起こらないでしょう。
-[source,perl6]
+[source, raku]
 ----
 my Int $var;
 
@@ -1046,7 +1091,7 @@ with $var {
 
 `for` ループは複数の値に対する反復処理を行うことができます。
 
-[source,perl6]
+[source, raku]
 ----
 my @array = 1,2,3;
 
@@ -1062,7 +1107,7 @@ for @array -> $array-item {
 `given` は他の言語においてswitch命令と呼ばれているものと等価なRakuの命令です。
 しかし、他の言語よりも強力です。
 
-[source,perl6]
+[source, raku]
 ----
 my $var = 42;
 
@@ -1077,7 +1122,7 @@ given $var {
 条件が満たされると、条件が満たされるかどうか調べる処理は止まります。
 
 別の選択肢として、 `proceed` を使うと、Rakuは条件が満たされた後も、この調べる処理の実行を続けます。
-[source,perl6]
+[source, raku]
 ----
 my $var = 42;
 
@@ -1097,7 +1142,7 @@ given $var {
 
 RakuはC言語族の一員なのです。
 
-[source,perl6]
+[source, raku]
 ----
 loop (my $i = 0; $i < 5; $i++) {
   say "The current number is $i"
@@ -1114,7 +1159,7 @@ Rakuにおいて、二つの最も一般的な _入力/出力_ のインタフ�
 ==== say
 `say` は標準出力に対する書き込みを行います。その最後に改行を付加します。つまり、次のようなコードは:
 
-[source,perl6]
+[source, raku]
 ----
 say 'Hello Mam.';
 say 'Hello Sir.';
@@ -1129,7 +1174,7 @@ say 'Hello Sir.';
 ==== get
 `get` はターミナルからの入力を取得するために使われます。
 
-[source,perl6]
+[source, raku]
 ----
 my $name;
 
@@ -1147,7 +1192,7 @@ say "Dear $name welcome to Raku";
 
 上の例は次のように書くことができます:
 
-[source,perl6]
+[source, raku]
 ----
 my $name = prompt "Hi, what's your name? ";
 
@@ -1159,10 +1204,12 @@ say "Dear $name welcome to Raku";
 
 * `run` シェルを介在せずに外部コマンドを実行します
 
-* `shell` システムシェルを通じてコマンドを実行します。プラットフォームとシェル依存です。
-すべてのシェルのメタ文字はシェルによって解釈されます。これには、パイプ、リダイレクト、ユーザー環境変数などが含まれます。
+* `shell` システムシェルを通じてコマンドを実行します。
+  プラットフォームとシェルに依存します。
+  すべてのシェルのメタ文字はシェルによって解釈されます。
+  これには、パイプ、リダイレクト、環境変数の置換などが含まれます。
 
-[source,perl6]
+[source, raku]
 .もし Linux/macOS 環境にいるなら、次のコードを実行してください。
 ----
 my $name = 'Neo';
@@ -1170,7 +1217,7 @@ run 'echo', "hello $name";
 shell "ls";
 ----
 
-[source,perl6]
+[source, raku]
 .もし Windows 環境にいるなら、次のコードを実行してください。
 ----
 shell "dir";
@@ -1180,6 +1227,7 @@ shell "dir";
 `ls` はカレントディレクトリのすべてのファイルとフォルダを表示します。
 
 `dir` はWindowsにおける `ls` と等価なキーワードです。
+
 
 === ファイル I/O
 ==== slurp
@@ -1194,7 +1242,7 @@ Johnnie 7
 Jane 8
 Joanna 7
 ----
-[source,perl6]
+[source, raku]
 ----
 my $data = slurp "datafile.txt";
 say $data;
@@ -1203,7 +1251,7 @@ say $data;
 ==== spurt
 `spurt` はデータをファイルに書き込むために使われます。
 
-[source,perl6]
+[source, raku]
 ----
 my $newdata = "New scores:
 Paul 10
@@ -1219,7 +1267,7 @@ spurt "newdatafile.txt", $newdata;
 === ファイルとディレクトリの操作
 Rakuはシェルコマンドに頼らなくてもディレクトリの内容を表示することができます( シェルコマンドの例としては `ls` が挙げられます )。
 
-[source,perl6]
+[source, raku]
 ----
 say dir;              # カレントディレクトリのファイルとフォルダを表示する
 say dir "/Documents"; # 指定されたディレクトリのファイルとフォルダを表示する
@@ -1227,7 +1275,7 @@ say dir "/Documents"; # 指定されたディレクトリのファイルとフ�
 
 加えて、新しいディレクトリを作ったり削除したりすることもできます。
 
-[source,perl6]
+[source, raku]
 ----
 mkdir "newfolder";
 rmdir "newfolder";
@@ -1240,7 +1288,7 @@ rmdir "newfolder";
 
 下記のスクリプトを実行するディレクトリで、 `folder123` という空のフォルダと `script123.raku` という空のrakuファイルを生成してください。
 
-[source,perl6]
+[source, raku]
 ----
 say "script123.raku".IO.e;
 say "folder123".IO.e;
@@ -1269,7 +1317,7 @@ NOTE: もしI/Oに関する情報をもっと知りたいのであれば、次�
 サブルーチンの定義は `sub` というキーワードから始まります。定義の後、つけた名前を使って呼び出すことができます。 +
 下記の例をよく見てください:
 
-[source,perl6]
+[source, raku]
 ----
 sub alien-greeting {
   say "Hello earthlings";
@@ -1287,7 +1335,7 @@ alien-greeting;
 
 下記のサブルーチンは引数として文字列を受け取っています。
 
-[source,perl6]
+[source, raku]
 ----
 sub say-hello (Str $name) {
     say "Hello " ~ $name ~ "!!!!"
@@ -1301,7 +1349,7 @@ say-hello "Paula";
 サブルーチンが呼ばれると、ランタイム環境は与えられた引数の数と型をもとにしてどれを使うべきであるか決定します。
 このタイプのサブルーチンは普通のサブルーチンと同じように定義できます。ただし、このとき `sub` のかわりに `multi` というキーワードを用います。
 
-[source,perl6]
+[source, raku]
 ----
 multi greet($name) {
     say "Good morning $name";
@@ -1324,7 +1372,7 @@ Rakuでは次のような引数をともなったサブルーチンを定義す�
 
 オプションパラメータはパラメータの名前に対して `?` を付加することで定義できます。
 
-[source,perl6]
+[source, raku]
 ----
 sub say-hello($name?) {
   with $name { say "Hello " ~ $name }
@@ -1337,7 +1385,7 @@ say-hello("Laura");
 もしユーザーが引数を与える必要がないのであれば、デフォルト値を定義することができます。 +
 これは、サブルーチンの定義内でパラメータに対して値を代入することで行うことができます。
 
-[source,perl6]
+[source, raku]
 ----
 sub say-hello($name="Matt") {
   say "Hello " ~ $name;
@@ -1347,13 +1395,13 @@ say-hello("Laura");
 ----
 
 === 値の返却
-
 今まで見てきたすべてのサブルーチンは、ターミナルにテキストを出力するといった具合に *何かをするもの* でした 。
+
 でも時には、プログラムの後段の処理で利用できるような何らかの値を *返して* もらうためにサブルーチンを実行することもあるでしょう。
 
-
 もし関数がそのブロックの最後まで実行されるなら、最後の文や式が返り値を決定するでしょう。
-[source,perl6]
+
+[source, raku]
 .暗黙的な返却
 ----
 sub squared ($x) {
@@ -1364,7 +1412,7 @@ say "7 squared is equal to " ~ squared(7);
 
 コードが大きくなってしまったなら _明示的に_ 何を返そうとしているのかを指定することは良い対処法かもしれません。
 `return` キーワードを用いることでこれを行うことができます。
-[source,perl6]
+[source, raku]
 .明示的な返却
 ----
 sub squared ($x) {
@@ -1378,7 +1426,7 @@ say "7 squared is equal to " ~ squared(7);
 
 返り値をある型に制限するには、矢印記号 `-\->` をシグネチャで使ってください。
 
-[source,perl6]
+[source, raku]
 .返り値の型を示す
 ----
 sub squared ($x --> Int) {
@@ -1404,7 +1452,7 @@ Type check failed for return value; expected Int but got Rat (1.44)
 それはそれとして、これらの型の制限をつかうことはとても実用的です。 +
 下記は以前の例の修正版です。返り値の `Int` が定義されているように強制するために `:D` を使っています。
 
-[source,perl6]
+[source, raku]
 ----
 sub squared ($x --> Int:D) {
   return $x ** 2;
@@ -1430,7 +1478,7 @@ NOTE: もしサブルーチンと関数に関する情報をもっと知りた�
 この概念を説明するためのよい例は `map` 関数です。 +
 `map` は _高階関数_ です。ほかの関数を引数として受け取ることができます。
 
-[source,perl6]
+[source, raku]
 .スクリプト
 ----
 my @array = <1 2 3 4 5>;
@@ -1454,21 +1502,19 @@ say map(&squared,@array);
 
 === 無名関数
 *無名関数* は *ラムダ* とも呼ばれています。 +
-
 無名関数は識別子に束縛されません。(名前をもっていないため）
 
 `map` の例を書き換えて無名関数を使うようにしましょう
-[source,perl6]
+[source, raku]
 ----
 my @array = <1 2 3 4 5>;
 say map(-> $x {$x ** 2},@array);
 ----
-サブルーチンを宣言して `map` の引数として渡す代わりに、 `map` の中で直接定義していることに注意してください。 +
-無名関数の中で `\-> $x {$x ** 2}` のように定義しています。
+平方を取るサブルーチンを宣言して `map` へ引数として渡すのではなく、 `\-> $x {$x ** 2}` のように無名サブルーチンで定義していることがわかります。
 
 Rakuではこのような使われ方の無名関数を *ポインティブロック* と呼びます。
 
-[source,perl6]
+[source, raku]
 .ポインティブロックは関数を変数に代入するときにも使われます:
 ----
 my $squared = -> $x {
@@ -1481,8 +1527,10 @@ say $squared(9);
 Rakuでは、メソッドはチェインすることができます。メソッドの結果を引数としてほかのメソッドに渡す必要はありません。
 
 例題: 配列が与えられているとして、値の重複が無いように降順にソートしてください。 +
+
 これはチェインを使わなかった場合の解答です:
-[source,perl6]
+
+[source, raku]
 ----
 my @array = <7 8 9 0 1 2 4 3 5 6 7 8 9>;
 my @final-array = reverse(sort(unique(@array)));
@@ -1492,7 +1540,7 @@ say @final-array;
 
 対照的に、上記の例は *メソッドチェイン* を利用して、次のように書くことができます。:
 
-[source,perl6]
+[source, raku]
 ----
 my @array = <7 8 9 0 1 2 4 3 5 6 7 8 9>;
 my @final-array = @array.unique.sort.reverse;
@@ -1503,7 +1551,8 @@ say @final-array;
 
 === フィード演算子
 *フィード演算子* は、関数型言語では _パイプ_ と呼ばれ、メソッドチェインをさらに分かりやすくしてくれます。
-[source,perl6]
+
+[source, raku]
 .前方フィード
 ----
 my @array = <7 8 9 0 1 2 4 3 5 6 7 8 9>;
@@ -1524,7 +1573,7 @@ say @final-array;
 メソッドの呼び出し順は、最初から最後のステップへのトップダウンであることに注目してください。
 
 
-[source,perl6]
+[source, raku]
 .後方フィード
 ----
 my @array = <7 8 9 0 1 2 4 3 5 6 7 8 9>;
@@ -1541,8 +1590,7 @@ say @final-array-v2;
 
 === ハイパー演算子
 *ハイパー演算子* `>>.` はリストの要素のすべてに対してメソッドの呼び出しを行い、その結果のリストを返します。
-
-[source,perl6]
+[source, raku]
 ----
 my @array = <0 1 2 3 4 5 6 7 8 9 10>;
 sub is-even($var) { $var %% 2 };
@@ -1564,7 +1612,7 @@ WARNING: Rakuは元の値の並びと結果の値の並びが同じになるこ�
 *ジャンクション* は値の論理的な重ね合わせです。
 
 下記の例では `1|2|3` がジャンクションです。
-[source,perl6]
+[source, raku]
 ----
 my $var = 2;
 if $var == 1|2|3 {
@@ -1589,7 +1637,7 @@ if $var == 1|2|3 {
 遅延リストをつくるためには接中辞演算子 `...` を用います。 +
 遅延リストは、*初期要素(複数可)* 、*ジェネレータ* 、*終点* を持っています。
 
-[source,perl6]
+[source, raku]
 .シンプルな遅延リスト
 ----
 my $lazylist = (1 ... 10);
@@ -1598,7 +1646,7 @@ say $lazylist;
 初期要素は1、終点は10です。ジェネレータは定義されていないので、デフォルトのジェネレータは次の値(+1)です +
 つまり、この遅延リストは(もし要求されれば)、(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)という要素のリストを返すでしょう。
 
-[source,perl6]
+[source, raku]
 .無限遅延リスト
 ----
 my $lazylist = (1 ... Inf);
@@ -1606,7 +1654,7 @@ say $lazylist;
 ----
 この遅延リストは(もし要求されれば)1から無限までの間のすべての整数、つまり任意の整数を返します。
 
-[source,perl6]
+[source, raku]
 .演繹的に作られたジェネレータによる遅延リスト
 ----
 my $lazylist = (0,2 ... 10);
@@ -1616,7 +1664,7 @@ say $lazylist;
 ジェネレータは定義されていませんが、初期要素を使ってRakuはジェネレータは(+2)であると演繹します。 +
 この遅延リストは(もし要求されれば)次のような要素を返します。(0, 2, 4, 6, 8, 10)
 
-[source,perl6]
+[source, raku]
 .定義されたジェネレータによる遅延リスト
 ----
 my $lazylist = (0, { $_ + 3 } ... 12);
@@ -1635,14 +1683,14 @@ say $lazylist;
 別の選択肢として、`0 ... 10` を `0 ...^ * > 10` に置き換えることもできます +
 このように読みます: 0から10を超えるような最初の値まで(10は除く)
 
-[source,perl6]
+[source, raku]
 .これではジェネレータは止まりません
 ----
 my $lazylist = (0, { $_ + 3 } ... 10);
 say $lazylist;
 ----
 
-[source,perl6]
+[source, raku]
 .これならジェネレータは止まります
 ----
 my $lazylist = (0, { $_ + 3 } ...^ * > 10);
@@ -1653,7 +1701,7 @@ say $lazylist;
 === クロージャ
 RakuのすべてのCode型のオブジェクトはクロージャです。これは外のスコープのレキシカル変数を参照できるということを意味しています。
 
-[source,perl6]
+[source, raku]
 ----
 sub generate-greeting {
     my $name = "John Doe";
@@ -1681,7 +1729,7 @@ $generated();
 この場合、 `$generated` はサブルーチン `greeting` と文字列 `John Doe` の両方を結びつけたクロージャといえます。
 
 では、もっと面白い例を見てみましょう。
-[source,perl6]
+[source, raku]
 ----
 sub greeting-generator($period) {
   return sub ($name) {
@@ -1731,7 +1779,7 @@ _オブジェクト指向_ プログラミングは昨今広く使われてい�
 _オブジェクト指向_ の用語では、これらのオブジェクトはクラスの *インスタンス* と呼ばれています。
 
 下記のスクリプトについて考えてみてください:
-[source,perl6]
+[source, raku]
 ----
 class Human {
   has $.name;
@@ -1748,8 +1796,10 @@ say $john;
 `.new()` メソッドは *コンストラクタ* と呼ばれるものです。そのメソッドの呼ばれたクラスのインスタンスとしてオブジェクトを生成します。
 
 上記のスクリプトでは、新しい変数 `$john` は、 `Human.new()` によって定義された"Human"の新しいインスタンスを持っています。
+`.new()` メソッドに渡された引数は背後にあるオブジェクトの属性の設定に使われます。
+
 クラスは `my` を使うことで _レキシカルスコープ_ とすることもできます:
-[source,perl6]
+[source, raku]
 ----
 my class Human {
 
@@ -1764,14 +1814,14 @@ my class Human {
 下記の二つのスクリプトは同じ結果を返します。
 
 .変数への直接のアクセス:
-[source,perl6]
+[source, raku]
 ----
 my $var = 7;
 say $var;
 ----
 
 .カプセル化:
-[source,perl6]
+[source, raku]
 ----
 my $var = 7;
 sub sayvar {
@@ -1791,7 +1841,7 @@ Rakuでは *トゥイジル* の使用によって楽にカプセル化を行う
 デフォルトでは、すべての属性はプライベートですが、いつも `!` トゥイジルを使うことはよい習慣です。
 
 したがって、上のクラスは次のように書き換えるべきです:
-[source,perl6]
+[source, raku]
 ----
 class Human {
   has $!name;
@@ -1820,10 +1870,11 @@ Rakuでは、すべてのクラスはデフォルトの `.new()` コンストラ
 
 * age \=> 23
 
+
 では、もしオブジェクトを生成するときにいちいち属性の名前を指定したくなかったらどうしたらいいでしょう？ +
 そういう場合は、 *固定引数* を受け取るような別のコンストラクタを作る必要があります。
 
-[source,perl6]
+[source, raku]
 ----
 class Human {
   has $.name;
@@ -1851,7 +1902,7 @@ say $john;
 これはカプセル化の考え方を強化します。オブジェクトの属性はメソッドを通じてオブジェクトの中からしか操作できません。
 外の世界からはオブジェクトのメソッドとしかやりとりすることができず、そのオブジェクトの属性に直接アクセスすることはできません。
 
-[source,perl6]
+[source, raku]
 ----
 class Human {
   has $.name;
@@ -1899,7 +1950,7 @@ _オブジェクト_ *.* _メソッド_ として、上記の例のように: `$
 プライベートメソッドの宣言では名前の前で `!` トゥイジルを使う必要があります。 +
 プライベートメソッドは `.` の代わりに `!` によって呼び出します。
 
-[source,perl6]
+[source, raku]
 ----
 method !iamprivate {
   # コードはここに
@@ -1918,7 +1969,7 @@ method iampublic {
 クラス属性は `has` の代わりに `my` をつかうことで宣言します。
 クラス属性はそのオブジェクトではなくクラスそれ自身を呼び出します。
 
-[source,perl6]
+[source, raku]
 ----
 class Human {
   has $.name;
@@ -1939,7 +1990,7 @@ say Human.counter;
 
 属性の値を変更する必要があるとしたらどうでしょう？ +
 `is rw` キーワードを使って、_読み/書き_ ラベルを付与する必要があります。
-[source,perl6]
+[source, raku]
 ----
 class Human {
   has $.name;
@@ -1966,7 +2017,7 @@ say $john.age;
 従業員は四つの属性を持っています: 名前、年齢、会社、給料
 
 次のようにクラスを定義しようとするかもしれません:
-[source,perl6]
+[source, raku]
 ----
 class Human {
   has $.name;
@@ -1983,7 +2034,7 @@ class Employee {
 理屈の上では正しいですが、上記のコードの考え方はお粗末です。
 
 次のような書き方のほうが良いでしょう:
-[source,perl6]
+[source, raku]
 ----
 class Human {
   has $.name;
@@ -2008,7 +2059,7 @@ class Employee is Human {
 
 下記の例では、`introduce-yourself` メソッドが従業員クラスによって継承されています。
 
-[source,perl6]
+[source, raku]
 ----
 class Human {
   has $.name;
@@ -2031,7 +2082,7 @@ $jane.introduce-yourself;
 ----
 オーバーライドは次のように実行されます:
 
-[source,perl6]
+[source, raku]
 ----
 class Human {
   has $.name;
@@ -2062,12 +2113,12 @@ $jane.introduce-yourself;
 ==== サブメソッド
 *サブメソッド* は子クラスによって継承されないメソッドです。 +
 宣言されたクラスからのみアクセスすることができます。 +
- `submethod` キーワードを使って定義されます。
+`submethod` キーワードを使って定義されます。
 
 === 多重継承
 Rakuでは多重継承を行うことができます。あるクラスは複数の他のクラスから継承を行うことができます。
 
-[source,perl6]
+[source, raku]
 ----
 class bar-chart {
   has Int @.bar-values;
@@ -2121,7 +2172,8 @@ Actual vs Forecast:
 
 .修正
 正しくふるまうようにするには、 `combo-chart` の中の `plot` メソッドをオーバーライドするべきでした。
-[source,perl6]
+
+[source, raku]
 ----
 class bar-chart {
   has Int @.bar-values;
@@ -2174,7 +2226,7 @@ Actual vs Forecast:
 ロールは `role` キーワードによって宣言されます。ロールを実装したいクラスは `does` キーワードを使って宣言します。
 
 .ロールを使って多重継承を書き換えてみましょう:
-[source,perl6]
+[source, raku]
 ----
 role bar-chart {
   has Int @.bar-values;
@@ -2216,7 +2268,7 @@ $actual-vs-forecast.plot;
 この質問に答えるために、多重継承の例を見せるために使われた最初のスクリプトを修正してください。
 `plot` メソッドをオーバーライドするのを _忘れた_ 例のスクリプトです。
 
-[source,perl6]
+[source, raku]
 ----
 role bar-chart {
   has Int @.bar-values;
@@ -2263,7 +2315,7 @@ Method 'plot' must be resolved by class combo-chart because it exists in multipl
 === イントロスペクション
 *イントロスペクション* は、オブジェクトの型、オブジェクトの属性、オブジェクトのメソッドといったオブジェクトの情報を得るための処理です。
 
-[source,perl6]
+[source, raku]
 ----
 class Human {
   has Str $.name;
@@ -2313,7 +2365,6 @@ if $jane ~~ Human {say 'Jane is a Human'};
 * https://docs.raku.org/language/classtut
 * https://docs.raku.org/language/objects
 --
-
 == 例外処理
 
 === 例外のキャッチ
@@ -2322,7 +2373,7 @@ if $jane ~~ Human {say 'Jane is a Human'};
 
 正しく実行される下記のスクリプトについて考えてみてください:
 
-[source,perl6]
+[source, raku]
 ----
 my Str $name;
 $name = "Joanna";
@@ -2338,7 +2389,7 @@ How are you doing today?
 
 では、例外を投げる次のスクリプトについて考えてみてください:
 
-[source,perl6]
+[source, raku]
 ----
 my Str $name;
 $name = 123;
@@ -2356,7 +2407,7 @@ Type check failed in assignment to $name; expected Str but got Int
 
 *エラー処理* は _投げられた_ 例外の _キャッチ_ 処理を行うことでスクリプトが実行を続けられるようにすることです。
 
-[source,perl6]
+[source, raku]
 ----
 my Str $name;
 try {
@@ -2379,7 +2430,7 @@ How are you doing today?
 
 例外処理は `try-catch` ブロックを用いることで行われます。
 
-[source,perl6]
+[source, raku]
 ----
 try {
   # コードはここに
@@ -2396,7 +2447,7 @@ try {
 `CATCH` ブロックは `given` ブロックが定義されるときと同じように定義できます。
 これは様々なタイプの例外を _キャッチ_ して扱うことができることを意味しています。
 
-[source,perl6]
+[source, raku]
 ----
 try {
   # コードはここに
@@ -2419,14 +2470,14 @@ Rakuは明示的に例外を投げることができます。 +
 
 * 型付き例外
 
-[source,perl6]
+[source, raku]
 .アドホック
 ----
 my Int $age = 21;
 die "Error !";
 ----
 
-[source,perl6]
+[source, raku]
 .型付き
 ----
 my Int $age = 21;
@@ -2442,13 +2493,14 @@ X::AdHoc.new(payload => 'Error !').throw;
 `X::OS` はOSエラーに関する例外です +
 `X::Str::Numeric` は文字列を数値にしようとすることに関する例外です
 
-NOTE: もし例外の型と、関連するメソッドのすべてのリストを知りたいのであれば、次のURLを参照することをすすめます https://docs.raku.org/type.html
+NOTE: もし例外の型と、関連するメソッドのすべてのリストを知りたいのであれば、次のURLを参照することをすすめます https://docs.raku.org/type-exceptions.html
+
 
 == 正規表現
 正規表現、または _regex_ はパターンマッチングのための文字のシーケンスです。
 パターンだと思ってください。
 
-[source,perl6]
+[source, raku]
 ----
 if 'enlightenment' ~~ m/ light / {
     say "enlightenment contains the word light";
@@ -2474,7 +2526,7 @@ if 'enlightenment' ~~ m/ light / {
 アルファベット文字とアンダースコア `_` はそのまま書かれます。 +
 他の文字はバックスラッシュを使うかクォートで囲むことでエスケープされている必要があります。
 
-[source,perl6]
+[source, raku]
 .バックスラッシュ
 ----
 if 'Temperature: 13' ~~ m/ \: / {
@@ -2482,7 +2534,7 @@ if 'Temperature: 13' ~~ m/ \: / {
 }
 ----
 
-[source,perl6]
+[source, raku]
 .シングルクォート
 ----
 if 'Age = 13' ~~ m/ '=' / {
@@ -2490,7 +2542,7 @@ if 'Age = 13' ~~ m/ '=' / {
 }
 ----
 
-[source,perl6]
+[source, raku]
 .ダブルクォート
 ----
 if 'name@company.com' ~~ m/ "@" / {
@@ -2522,7 +2574,7 @@ if 'name@company.com' ~~ m/ "@" / {
 
 |===
 
-[source,perl6]
+[source, raku]
 ----
 if "John123" ~~ / \d / {
   say "This is not a valid name, numbers are not allowed";
@@ -2542,7 +2594,7 @@ if "John-Doe" ~~ / \s / {
 標準ASCII文字コードの範囲内の文字種に対しても、そうでない文字種に対してもマッチングができるようになります。 +
 ユニコードのプロパティは `<: >` で囲まれます。
 
-[source,perl6]
+[source, raku]
 ----
 if "Devangari Numbers १२३" ~~ / <:N> / {
   say "Contains a number";
@@ -2566,7 +2618,7 @@ if "John-Doe" ~~ / <:Pd> / {
 
 ドット `.` は任意の一文字を意味します。
 
-[source,perl6]
+[source, raku]
 ----
 if 'abc' ~~ m/ a.c / {
     say "Match";
@@ -2586,7 +2638,7 @@ if 'ac' ~~ m/ a.c / {
 
 クエスチョンマーク `?` は0か1回を意味します。
 
-[source,perl6]
+[source, raku]
 ----
 if 'ac' ~~ m/ a?c / {
     say "Match";
@@ -2602,7 +2654,7 @@ if 'c' ~~ m/ a?c / {
 
 スター `*` は0か複数回を意味します。
 
-[source,perl6]
+[source, raku]
 ----
 if 'az' ~~ m/ a*z / {
     say "Match";
@@ -2628,7 +2680,7 @@ if 'z' ~~ m/ a*z / {
 
 `+` は少なくとも一回を意味します。
 
-[source,perl6]
+[source, raku]
 ----
 if 'az' ~~ m/ a+z / {
     say "Match";
@@ -2656,7 +2708,7 @@ if 'z' ~~ m/ a+z / {
 正規表現に対する文字列のマッチング処理が成功したときはいつでも、
 そのマッチ結果は特別な変数 `$/` に格納されます。
 
-[source,perl6]
+[source, raku]
 .スクリプト
 ----
 if 'Rakudo is a Perl 6 compiler' ~~ m/:s Perl 6/ {
@@ -2700,7 +2752,7 @@ WARNING: この例で使われている正規表現はあまり正確ではあ�
 Rakuにおける正規表現の機能を説明することが唯一の目的です。
 プロダクションでそのまま使わないでください。
 
-[source,perl6]
+[source, raku]
 .スクリプト
 ----
 my $email = 'john.doe@perl6.org';
@@ -2740,7 +2792,7 @@ if $email ~~ $regex {
 
 * *com/org/net* `<:L>+`
 
-[source,perl6]
+[source, raku]
 .また、ある正規表現は複数の名前付き正規表現に分解することができます
 ----
 my $email = 'john.doe@perl6.org';
@@ -2775,30 +2827,31 @@ _Zef_ はRakudo Starに付属しているモジュール管理ツールです。
 
 `zef install "モジュールの名前"`
 
-NOTE: Rakuのモジュールの一覧を見るには次のURLを参照してください: https://modules.perl6.org/
+NOTE: Rakuのモジュールの一覧を見るには次のURLを参照してください: https://raku.land/
 
 === モジュールの使用
-MD5は128ビットのハッシュ値を生成する暗号学的ハッシュ関数です。 +
-MD5は、データベースに格納されているパスワードの暗号化など様々なアプリケーションで使われています。
+MD5は128ビットのハッシュ値を生成する暗号学的ハッシュ関数です。
+MD5は、データベースに格納されているパスワードの暗号化などの様々な活用がされています。
 新たなユーザーが登録されるとき、資格情報は平文として保存されずに _ハッシュ_ 化されます。
 この背景にある根拠は、もしDBがハッキングの被害にあっていたとしても、攻撃者はパスワードが何であるかを知ることができないということです。
 
-
 幸運なことに、MD5アルゴリズムを実装する必要はありません。MD5アルゴリズムを実装したRakuモジュールがすでにあります。 +
+
 インストールしましょう: +
 `zef install Digest::MD5`
 
 では、次のスクリプトを実行してください:
-[source,perl6]
+[source, raku]
 ----
 use Digest::MD5;
+
 my $password = "password123";
-my $hashed-password = Digest::MD5.new.md5_hex($password);
+my $hashed-password = md5( $password );
 
 say $hashed-password;
 ----
-ハッシュを生成する `md5_hex()` 関数を実行するために、この関数の実行に必要なモジュールをロードしなくてはなりません。 +
- `use` キーワードはスクリプトの中で使いたいモジュールをロードします。
+ハッシュを生成する `md5()` 関数を実行するために、この関数の実行に必要なモジュールをロードしなくてはなりません。 +
+`use` キーワードはスクリプトの中で使いたいモジュールをロードし、そのモジュールから `md5` サブルーチンが提供されます。
 
 WARNING: 実用的にはMD5ハッシュ単独では不十分です、なぜなら辞書攻撃を受けやすいからです。 +
 サルトと組み合わせるべきです。 link:https://en.wikipedia.org/wiki/Salt_(cryptography)[https://en.wikipedia.org/wiki/Salt_(cryptography)].
@@ -2816,7 +2869,7 @@ UTF-8は、ユニコードにおける、すべての文字や符号位置をエ
 === ユニコードの使用
 
 .ユニコードを使ってどうやって文字を出力することができるのか見てみましょう
-[source,perl6]
+[source, raku]
 ----
 say "a";
 say "\x0061";
@@ -2831,7 +2884,7 @@ say "\c[LATIN SMALL LETTER A]";
 . `\c` と符号位置の名前を使う
 
 .では、スマイリーを出力してみましょう
-[source,perl6]
+[source, raku]
 ----
 say "☺";
 say "\x263a";
@@ -2839,7 +2892,7 @@ say "\c[WHITE SMILING FACE]";
 ----
 
 .二つの符号位置を組み合わせている例です
-[source,perl6]
+[source, raku]
 ----
 say "á";
 say "\x00e1";
@@ -2847,14 +2900,14 @@ say "\x0061\x0301";
 say "\c[LATIN SMALL LETTER A WITH ACUTE]";
 ----
 
-`a` は次のように書けます:
+`á` は次のように書けます:
 
 * ユニークな符号位置 `\x00e1` を使う
 
 * もしくは `a` とアキュート・アクセントの符号位置を組み合わせる `\x0061\x0301`
 
 .いくつかのメソッドを使うことができます:
-[source,perl6]
+[source, raku]
 ----
 say "á".NFC;
 say "á".NFD;
@@ -2873,7 +2926,7 @@ LATIN SMALL LETTER A WITH ACUTE
 `uniname` は符号位置の名前を返します。
 
 .ユニコード文字は識別子として用いることができます:
-[source,perl6]
+[source, raku]
 ----
 my $Δ = 1;
 $Δ++;
@@ -2881,7 +2934,7 @@ say $Δ;
 ----
 
 .ユニコード文字で算数をすることができます:
-[source,perl6]
+[source, raku]
 ----
 my $var = 2 + ⅒;
 say $var;
@@ -2899,7 +2952,7 @@ say $var;
 アラビア数字以外の数字を使うときに特別な注意は必要ありません。
 すべてのメソッド/演算子は期待通りに動きます。
 
-[source,perl6]
+[source, raku]
 ----
 say (٤,٥,٦,1,2,3).sort; # (1 2 3 4 5 6)
 say 1 + ٩;              # 10
@@ -2910,7 +2963,7 @@ say 1 + ٩;              # 10
 
 ===== 比較
 
-[source,perl6]
+[source, raku]
 ----
 say 'a' cmp 'B'; # More
 ----
@@ -2921,18 +2974,15 @@ say 'a' cmp 'B'; # More
 
 幸運なことにRakuは link:http://unicode.org/reports/tr10/[ユニコード照合アルゴリズム] を実装したメソッド/演算子を持っています。 +
 その一つが `unicmp` です。これは上記で示した `cmp` のようにふるまいますがこのアルゴリズムを使用する点が異なります。
-
-[source,perl6]
+[source, raku]
 ----
 say 'a' unicmp 'B'; # Less
 ----
-
 見てわかる通り、 `unicmp` 演算子を使うことで `a` は `B` より小さいという期待通りの結果が得られました。
 
 ===== ソート
 符号位置を利用したソートにおいて `sort` メソッドの他の選択肢として、Rakuは link:http://unicode.org/reports/tr10/[ユニコード照合アルゴリズム] を実装した `collate` メソッドを提供しています。
-
-[source,perl6]
+[source, raku]
 ----
 say ('a','b','c','D','E','F').sort;    # (D E F a b c)
 say ('a','b','c','D','E','F').collate; # (a b c D E F)
@@ -2948,12 +2998,13 @@ say ('a','b','c','D','E','F').collate; # (a b c D E F)
 現在のところ、次の二つの事柄のうちの一つを意味するということを頭にとどめておくことが重要です:
 
 * *タスクの並列処理*: 二つ(もしくはそれ以上)の独立した式が並列実行されます。
+
 * *データの並列処理*: 一つの式が要素のリストに対して並列的に反復処理を行います。
 
 まずは後者の方から始めましょう.
 
 ==== データの並列処理
-[source,perl6]
+[source, raku]
 ----
 my @array = 0..50000;                     # 配列の作成
 my @result = @array.map({ is-prime $_ });   # それぞれの配列の要素に対して is-prime を呼ぶ
@@ -2966,7 +3017,7 @@ say now - INIT now;                         # スクリプトの処理が完了�
 `is-prime @array[0]`、`is-prime @array[1]` 、`is-prime @array[2]` ・・・の順です
 
 .幸運なことに `is-prime` を複数の配列の要素に対して同時に呼び出すことができます:
-[source,perl6]
+[source, raku]
 ----
 my @array = 0..50000;                         # 配列の作成
 my @result = @array.race.map({ is-prime $_ });  # それぞれの配列の要素に対して is-prime を呼ぶ
@@ -2982,7 +3033,7 @@ say now - INIT now;                             # スクリプトの処理が完
 ====
 `race` は要素の順番を保ちません。もし要素の順番を保ちたいのであれば、代わりに `hyper` を用いてください。
 
-[source,perl6]
+[source, raku]
 .race
 ----
 my @array = 1..1000;
@@ -2990,7 +3041,7 @@ my @result = @array.race.map( {$_ + 1} );
 .say for @result;
 ----
 
-[source,perl6]
+[source, raku]
 .hyper
 ----
 my @array = 1..1000;
@@ -3004,7 +3055,7 @@ my @result = @array.hyper.map( {$_ + 1} );
 
 ==== タスクの並列処理
 
-[source,perl6]
+[source, raku]
 ----
 my @array1 = 0..49999;
 my @array2 = 2..50001;
@@ -3017,7 +3068,7 @@ say @result1 eqv @result2;
 say now - INIT now;
 ----
 
-.上記の例について考えてみてください:
+.上記の例について考えてみましょう。
 
 . 二つの配列を定義しました
 
@@ -3031,7 +3082,7 @@ say now - INIT now;
 それぞれの配列に対して適用された操作の両方が互いに依存していません。
 
 .同時に実行してみたらどうでしょう？
-[source,perl6]
+[source, raku]
 ----
 my @array1 = 0..49999;
 my @array2 = 2..50001;
@@ -3068,7 +3119,7 @@ NOTE: 並行/非同期プログラミングについてもっと情報を知り�
 
 Rakuではネイティブコール (Native Call) インタフェースを用いて、Cのライブラリを使うことができます。
 
-`NativeCall` はRakuと一緒に提供されている標準モジュールです
+`NativeCall` はRakuと一緒に提供されている標準モジュールで、RakuとCでやり取りする作業を簡単にする機能が色々と提供されています。
 
 === 関数の呼び出し
 
@@ -3076,7 +3127,7 @@ Rakuではネイティブコール (Native Call) インタフェースを用い�
 この関数はターミナルに `Hello from C` と表示します。
 この関数は引数を受け付けませんし返り値もありません。
 
-[source,c]
+[source, c]
 .ncitest.c
 ----
 #include <stdio.h>
@@ -3088,26 +3139,29 @@ void hellofromc () {
 
 OSに応じて、次のコマンドを実行し、上記のCのコードをライブラリへとコンパイルしてください。
 
+[source, bash]
 .Linux:
 ----
 gcc -c -fpic ncitest.c
 gcc -shared -o libncitest.so ncitest.o
 ----
 
+[source, bat]
 .Windows:
 ----
 gcc -c ncitest.c
 gcc -shared -o ncitest.dll ncitest.o
 ----
 
-.On macOS:
+[source, bash]
+.macOS:
 ----
 gcc -dynamiclib -o libncitest.dylib ncitest.c
 ----
 
 Cのライブラリをコンパイルしたのと同じディレクトリで、次のコードを含むRakuのファイルを作り、実行してください。
 
-[source,perl6]
+[source, raku]
 .ncitest.raku
 ----
 use NativeCall;
@@ -3138,7 +3192,7 @@ hellofromc();
 
 上記のRakuのスクリプトを変更し、 Rakuのサブルーチンの名前を `hellofromc` の代わりに `hello` と付けてみましょう。
 
-[source,perl6]
+[source, raku]
 .ncitest.raku
 ----
 use NativeCall;
@@ -3158,7 +3212,7 @@ hello();
 次の改変されたCのライブラリをコンパイルし、その下のRakuのスクリプトを実行しましょう。 +
 どのようにしてCとRakuのコードの両方を、文字列を受け取るために改変したかについて注目してください。 (Cでは `char*` で、Rakuでは `Str` です)
 
-[source,c]
+[source, c]
 .ncitest.c
 ----
 #include <stdio.h>
@@ -3168,7 +3222,7 @@ void hellofromc (char* name) {
 }
 ----
 
-[source,perl6]
+[source, raku]
 .ncitest.raku
 ----
 use NativeCall;
@@ -3184,7 +3238,7 @@ hello('Jane');
 さっきと同じことをもう一度行い、ふたつの整数を受け取って足し合わせる単純な計算機を生成しましょう。 +
 CのライブラリをコンパイルしてRakuのスクリプトを実行してください。
 
-[source,c]
+[source, c]
 .ncitest.c
 ----
 int add (int a, int b) {
@@ -3192,7 +3246,7 @@ int add (int a, int b) {
 }
 ----
 
-[source,perl6]
+[source, raku]
 .ncitest.raku
 ----
 use NativeCall;
@@ -3213,7 +3267,7 @@ Rakuで使う型はCの型と同じでなければなりません。
 
 幸運なことに、RakuはCでその型に相当する型と対応付けられた型を提供しています。
 
-[cols="^.^,^.^",options="header"]
+[cols="^.^,^.^", options="header"]
 |===
 
 | Cの型 | Rakuの型
@@ -3258,7 +3312,7 @@ Rakuで使う型はCの型と同じでなければなりません。
 
 | `bool` | `bool`
 
-| `char*` (String) | `Str`
+| `char*` （文字列） | `Str`
 
 | 配列: 例えば `int*` (intの配列) や `double*` (doubleの配列) | `CArray`: 例えば `CArray[int32]` や `CArray[num64]`
 
@@ -3270,12 +3324,14 @@ NOTE: ネイティブコール インタフェースについてより詳しく�
 
 * link:https://web.libera.chat/#raku[#raku] IRCチャンネルです。活発な議論が行われています。何でも気軽に質問してください。簡単でよいからすぐに回答がほしい場合に適しています。: https://raku.org/community/irc
 
-* link:https://stackoverflow.com/questions/tagged/raku[StackOverflow Raku questions] はIRCよりももっと詳しい回答がほしい場合に適しています。
+* link:https://stackoverflow.com/questions/tagged/raku[StackOverflow Raku questions] はRakuについてもっと詳しい回答が来る可能性がある場所です。
 
-* link:https://rakudoweekly.wordpress.com[rakudoweekly] Rakudoとその周辺の出来事について今週のダイジェストをお伝えします。
+* link:https://rakudoweekly.blog[rakudoweekly] Rakudoとその周辺の出来事について今週のダイジェストをお伝えします。
 
-* link:http://pl6anet.org[pl6anet] Rakuのブログを集約しています。Rakuにフォーカスしたブログ記事にこうご期待ください。
+* link:http://planet.raku.org[Planet Raku] Rakuのブログを集約しています。 Rakuにフォーカスしたブログ記事にこうご期待ください。
 
 * link:https://www.reddit.com/r/rakulang/[/r/rakulang] Rakuのsubredditを購読しましょう。
 
-* link:https://twitter.com/raku_news[@raku_news] twitterでコミュニティをフォローしましょう。
+* link:https://x.com/raku_news[@raku_news] Xでコミュニティをフォローしましょう。
+
+* link:https://fosstodon.org/@rakulang[@rakulang] Mastodonでコミュニティをフォローしましょう。
