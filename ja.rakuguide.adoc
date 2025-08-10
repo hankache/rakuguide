@@ -3324,12 +3324,14 @@ NOTE: ネイティブコール インタフェースについてより詳しく�
 
 * link:https://web.libera.chat/#raku[#raku] IRCチャンネルです。活発な議論が行われています。何でも気軽に質問してください。簡単でよいからすぐに回答がほしい場合に適しています。: https://raku.org/community/irc
 
-* link:https://stackoverflow.com/questions/tagged/raku[StackOverflow Raku questions] はIRCよりももっと詳しい回答がほしい場合に適しています。
+* link:https://stackoverflow.com/questions/tagged/raku[StackOverflow Raku questions] はRakuについてもっと詳しい回答が来る可能性がある場所です。
 
-* link:https://rakudoweekly.wordpress.com[rakudoweekly] Rakudoとその周辺の出来事について今週のダイジェストをお伝えします。
+* link:https://rakudoweekly.blog[rakudoweekly] Rakudoとその周辺の出来事について今週のダイジェストをお伝えします。
 
-* link:http://pl6anet.org[pl6anet] Rakuのブログを集約しています。Rakuにフォーカスしたブログ記事にこうご期待ください。
+* link:http://planet.raku.org[Planet Raku] Rakuのブログを集約しています。 Rakuにフォーカスしたブログ記事にこうご期待ください。
 
 * link:https://www.reddit.com/r/rakulang/[/r/rakulang] Rakuのsubredditを購読しましょう。
 
-* link:https://twitter.com/raku_news[@raku_news] twitterでコミュニティをフォローしましょう。
+* link:https://x.com/raku_news[@raku_news] Xでコミュニティをフォローしましょう。
+
+* link:https://fosstodon.org/@rakulang[@rakulang] Mastodonでコミュニティをフォローしましょう。
