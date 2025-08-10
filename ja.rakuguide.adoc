@@ -1,17 +1,21 @@
 = Raku 入門
-Naoum Hankache <naoum@hankache.com>; Itsuki Toyota <titsuki@cpan.org>
 :description: Raku 入門
+:Author: Naoum Hankache
+:Author_2: Itsuki Toyota
 :keywords: perl6, perl 6, introduction, イントロダクション, perl6intro, perl 6 introduction, perl 6 tutorial, perl 6 intro, perl 6 入門, perl 6 イントロダクション, perl 6 イントロ, raku イントロダクション, raku ガイド, raku チュートリアル, raku 入門
+:Email: naoum@hankache.com
+:Email_2: titsuki@cpan.org
 :Revision: 1.0
 :icons: font
 :source-highlighter: pygments
 //:pygments-style: manni
-:source-language: perl6
+:source-language: raku
 :pygments-linenums-mode: table
 :toc: left
 :toc-title: 目次
 :doctype: book
 :lang: ja
+
 
 この文書はプログラミング言語Rakuの全体像を素早くつかんでもらうことを目的として書かれたものです。 +
 まだRakuを触ったことのない読者の方々が、ここからRakuをはじめてもらうことを狙いとしています。
