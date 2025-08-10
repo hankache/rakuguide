@@ -80,8 +80,13 @@ Rakuはマルチパラダイム言語です。手続き型、オブジェクト�
 * *Rakudo Star*: はRakudo, Zef, Rakuのモジュールのコレクション, 文書を含んだバンドルソフトです。
 
 === Rakuのインストール
+
+https://rakubrew.org はプロットフォームによらない環境管理ツールです（pyenvのRaku版と考えてください）
+
 .Linux
+
 Rakudo Starをインストールするには、次のコマンドをターミナルで実行してください:
+[source, shell]
 ----
 mkdir ~/rakudo && cd $_
 curl -LJO https://rakudo.org/latest/star/src
@@ -94,8 +99,7 @@ rm -fr rakudo-star-*
 echo "export PATH=$(pwd)/bin/:$(pwd)/share/perl6/site/bin:$(pwd)/share/perl6/vendor/bin:$(pwd)/share/perl6/core/bin:\$PATH" >> ~/.bashrc
 source ~/.bashrc
 ----
-
-他のインストール方法を知りたければ次のリンクを参照してください。 https://rakudo.org/star/source
+Unixでの他のインストール方法を知りたければ次のリンクを参照してください。 https://rakudo.org/star/source
 
 .macOS
 四つの選択肢から選んでください:
@@ -103,7 +107,7 @@ source ~/.bashrc
 * Linuxにおけるインストール手順と同じステップを踏む
 * homebrewによるインストール: `brew install rakudo-star`
 * MacPortsによるインストール: `sudo port install rakudo`
-* 次のURLから最新のインストーラー(.dmg拡張子のついたファイル)をダウンロードする https://rakudo.perl6.org/downloads/star/
+* 次のURLから最新のインストーラー(.dmg拡張子のついたファイル)をダウンロードする https://rakudo.org/latest/star/macos
 
 .Windows
 . 64bit版の場合: 最新のインストーラー(.msi拡張子のついたファイル)を次からダウンロードする https://rakudo.org/latest/star/win
