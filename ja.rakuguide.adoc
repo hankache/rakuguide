@@ -1159,7 +1159,7 @@ Rakuにおいて、二つの最も一般的な _入力/出力_ のインタフ�
 ==== say
 `say` は標準出力に対する書き込みを行います。その最後に改行を付加します。つまり、次のようなコードは:
 
-[source,perl6]
+[source, raku]
 ----
 say 'Hello Mam.';
 say 'Hello Sir.';
@@ -1174,7 +1174,7 @@ say 'Hello Sir.';
 ==== get
 `get` はターミナルからの入力を取得するために使われます。
 
-[source,perl6]
+[source, raku]
 ----
 my $name;
 
@@ -1192,7 +1192,7 @@ say "Dear $name welcome to Raku";
 
 上の例は次のように書くことができます:
 
-[source,perl6]
+[source, raku]
 ----
 my $name = prompt "Hi, what's your name? ";
 
@@ -1204,10 +1204,12 @@ say "Dear $name welcome to Raku";
 
 * `run` シェルを介在せずに外部コマンドを実行します
 
-* `shell` システムシェルを通じてコマンドを実行します。プラットフォームとシェル依存です。
-すべてのシェルのメタ文字はシェルによって解釈されます。これには、パイプ、リダイレクト、ユーザー環境変数などが含まれます。
+* `shell` システムシェルを通じてコマンドを実行します。
+  プラットフォームとシェルに依存します。
+  すべてのシェルのメタ文字はシェルによって解釈されます。
+  これには、パイプ、リダイレクト、環境変数の置換などが含まれます。
 
-[source,perl6]
+[source, raku]
 .もし Linux/macOS 環境にいるなら、次のコードを実行してください。
 ----
 my $name = 'Neo';
@@ -1215,7 +1217,7 @@ run 'echo', "hello $name";
 shell "ls";
 ----
 
-[source,perl6]
+[source, raku]
 .もし Windows 環境にいるなら、次のコードを実行してください。
 ----
 shell "dir";
@@ -1225,6 +1227,7 @@ shell "dir";
 `ls` はカレントディレクトリのすべてのファイルとフォルダを表示します。
 
 `dir` はWindowsにおける `ls` と等価なキーワードです。
+
 
 === ファイル I/O
 ==== slurp
@@ -1239,7 +1242,7 @@ Johnnie 7
 Jane 8
 Joanna 7
 ----
-[source,perl6]
+[source, raku]
 ----
 my $data = slurp "datafile.txt";
 say $data;
@@ -1248,7 +1251,7 @@ say $data;
 ==== spurt
 `spurt` はデータをファイルに書き込むために使われます。
 
-[source,perl6]
+[source, raku]
 ----
 my $newdata = "New scores:
 Paul 10
@@ -1264,7 +1267,7 @@ spurt "newdatafile.txt", $newdata;
 === ファイルとディレクトリの操作
 Rakuはシェルコマンドに頼らなくてもディレクトリの内容を表示することができます( シェルコマンドの例としては `ls` が挙げられます )。
 
-[source,perl6]
+[source, raku]
 ----
 say dir;              # カレントディレクトリのファイルとフォルダを表示する
 say dir "/Documents"; # 指定されたディレクトリのファイルとフォルダを表示する
@@ -1272,7 +1275,7 @@ say dir "/Documents"; # 指定されたディレクトリのファイルとフ�
 
 加えて、新しいディレクトリを作ったり削除したりすることもできます。
 
-[source,perl6]
+[source, raku]
 ----
 mkdir "newfolder";
 rmdir "newfolder";
@@ -1285,7 +1288,7 @@ rmdir "newfolder";
 
 下記のスクリプトを実行するディレクトリで、 `folder123` という空のフォルダと `script123.raku` という空のrakuファイルを生成してください。
 
-[source,perl6]
+[source, raku]
 ----
 say "script123.raku".IO.e;
 say "folder123".IO.e;
