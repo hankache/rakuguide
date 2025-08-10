@@ -2998,12 +2998,13 @@ say ('a','b','c','D','E','F').collate; # (a b c D E F)
 現在のところ、次の二つの事柄のうちの一つを意味するということを頭にとどめておくことが重要です:
 
 * *タスクの並列処理*: 二つ(もしくはそれ以上)の独立した式が並列実行されます。
+
 * *データの並列処理*: 一つの式が要素のリストに対して並列的に反復処理を行います。
 
 まずは後者の方から始めましょう.
 
 ==== データの並列処理
-[source,perl6]
+[source, raku]
 ----
 my @array = 0..50000;                     # 配列の作成
 my @result = @array.map({ is-prime $_ });   # それぞれの配列の要素に対して is-prime を呼ぶ
@@ -3016,7 +3017,7 @@ say now - INIT now;                         # スクリプトの処理が完了�
 `is-prime @array[0]`、`is-prime @array[1]` 、`is-prime @array[2]` ・・・の順です
 
 .幸運なことに `is-prime` を複数の配列の要素に対して同時に呼び出すことができます:
-[source,perl6]
+[source, raku]
 ----
 my @array = 0..50000;                         # 配列の作成
 my @result = @array.race.map({ is-prime $_ });  # それぞれの配列の要素に対して is-prime を呼ぶ
@@ -3032,7 +3033,7 @@ say now - INIT now;                             # スクリプトの処理が完
 ====
 `race` は要素の順番を保ちません。もし要素の順番を保ちたいのであれば、代わりに `hyper` を用いてください。
 
-[source,perl6]
+[source, raku]
 .race
 ----
 my @array = 1..1000;
@@ -3040,7 +3041,7 @@ my @result = @array.race.map( {$_ + 1} );
 .say for @result;
 ----
 
-[source,perl6]
+[source, raku]
 .hyper
 ----
 my @array = 1..1000;
@@ -3054,7 +3055,7 @@ my @result = @array.hyper.map( {$_ + 1} );
 
 ==== タスクの並列処理
 
-[source,perl6]
+[source, raku]
 ----
 my @array1 = 0..49999;
 my @array2 = 2..50001;
@@ -3067,7 +3068,7 @@ say @result1 eqv @result2;
 say now - INIT now;
 ----
 
-.上記の例について考えてみてください:
+.上記の例について考えてみましょう。
 
 . 二つの配列を定義しました
 
@@ -3081,7 +3082,7 @@ say now - INIT now;
 それぞれの配列に対して適用された操作の両方が互いに依存していません。
 
 .同時に実行してみたらどうでしょう？
-[source,perl6]
+[source, raku]
 ----
 my @array1 = 0..49999;
 my @array2 = 2..50001;
