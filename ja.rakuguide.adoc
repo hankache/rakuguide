@@ -2373,7 +2373,7 @@ if $jane ~~ Human {say 'Jane is a Human'};
 
 正しく実行される下記のスクリプトについて考えてみてください:
 
-[source,perl6]
+[source, raku]
 ----
 my Str $name;
 $name = "Joanna";
@@ -2389,7 +2389,7 @@ How are you doing today?
 
 では、例外を投げる次のスクリプトについて考えてみてください:
 
-[source,perl6]
+[source, raku]
 ----
 my Str $name;
 $name = 123;
@@ -2407,7 +2407,7 @@ Type check failed in assignment to $name; expected Str but got Int
 
 *エラー処理* は _投げられた_ 例外の _キャッチ_ 処理を行うことでスクリプトが実行を続けられるようにすることです。
 
-[source,perl6]
+[source, raku]
 ----
 my Str $name;
 try {
@@ -2430,7 +2430,7 @@ How are you doing today?
 
 例外処理は `try-catch` ブロックを用いることで行われます。
 
-[source,perl6]
+[source, raku]
 ----
 try {
   # コードはここに
@@ -2447,7 +2447,7 @@ try {
 `CATCH` ブロックは `given` ブロックが定義されるときと同じように定義できます。
 これは様々なタイプの例外を _キャッチ_ して扱うことができることを意味しています。
 
-[source,perl6]
+[source, raku]
 ----
 try {
   # コードはここに
@@ -2470,14 +2470,14 @@ Rakuは明示的に例外を投げることができます。 +
 
 * 型付き例外
 
-[source,perl6]
+[source, raku]
 .アドホック
 ----
 my Int $age = 21;
 die "Error !";
 ----
 
-[source,perl6]
+[source, raku]
 .型付き
 ----
 my Int $age = 21;
@@ -2493,7 +2493,8 @@ X::AdHoc.new(payload => 'Error !').throw;
 `X::OS` はOSエラーに関する例外です +
 `X::Str::Numeric` は文字列を数値にしようとすることに関する例外です
 
-NOTE: もし例外の型と、関連するメソッドのすべてのリストを知りたいのであれば、次のURLを参照することをすすめます https://docs.raku.org/type.html
+NOTE: もし例外の型と、関連するメソッドのすべてのリストを知りたいのであれば、次のURLを参照することをすすめます https://docs.raku.org/type-exceptions.html
+
 
 == 正規表現
 正規表現、または _regex_ はパターンマッチングのための文字のシーケンスです。
