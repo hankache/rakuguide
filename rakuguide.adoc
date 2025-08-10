@@ -48,7 +48,7 @@ link:https://github.com/hankache/rakuguide[Github].
 * French: https://raku.guide/fr
 * German: https://raku.guide/de
 * Indonesian: https://raku.guide/id
-* Italian https://raku.guide/it
+* Italian: https://raku.guide/it
 * Japanese: https://raku.guide/ja
 * Portuguese: https://raku.guide/pt
 * Spanish: https://raku.guide/es
