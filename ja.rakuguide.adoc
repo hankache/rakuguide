@@ -986,12 +986,12 @@ say @numbers;      #4
 関数にミューテータとしてふるまうように強制するために `.` のかわりに `.=` を使っています。(#4) (スクリプトの9行目)
 
 == ループと条件文
-Rakuは多数の条件文とループ構文を持っています。
+Rakuには多数の条件文とループ構文があります。
 
 === if
 条件が満たされた時、つまり式が `True` と評価された時だけコードが実行されます。
 
-[source,perl6]
+[source, raku]
 ----
 my $age = 19;
 
@@ -1003,7 +1003,7 @@ if $age > 18 {
 Rakuでは、コードと条件は反転することができます。 +
 コードと条件が反転されていたとしても、いつも先に条件が評価されます。
 
-[source,perl6]
+[source, raku]
 ----
 my $age = 19;
 
@@ -1015,7 +1015,7 @@ say 'Welcome' if $age > 18;
 * `else`
 * `elsif`
 
-[source,perl6]
+[source, raku]
 ----
 # 変数の値を変えて同じコードを実行
 my $number-of-seats = 9;
@@ -1034,7 +1034,7 @@ if $number-of-seats <= 5 {
 
 次のコード:
 
-[source,perl6]
+[source, raku]
 ----
 my $clean-shoes = False;
 
@@ -1044,7 +1044,7 @@ if not $clean-shoes {
 ----
 は次のように書くことができます:
 
-[source,perl6]
+[source, raku]
 ----
 my $clean-shoes = False;
 
@@ -1063,7 +1063,7 @@ Rakuでの否定は `!` か `not` を使って行われます。
 
 `with` は `if` 命令のようにふるまいます。しかし変数が定義されているかどうかを調べます。
 
-[source,perl6]
+[source, raku]
 ----
 my Int $var=1;
 
@@ -1073,7 +1073,7 @@ with $var {
 ----
 
 変数に対して値を代入しないでコードを実行した場合何も起こらないでしょう。
-[source,perl6]
+[source, raku]
 ----
 my Int $var;
 
@@ -1091,7 +1091,7 @@ with $var {
 
 `for` ループは複数の値に対する反復処理を行うことができます。
 
-[source,perl6]
+[source, raku]
 ----
 my @array = 1,2,3;
 
@@ -1107,7 +1107,7 @@ for @array -> $array-item {
 `given` は他の言語においてswitch命令と呼ばれているものと等価なRakuの命令です。
 しかし、他の言語よりも強力です。
 
-[source,perl6]
+[source, raku]
 ----
 my $var = 42;
 
@@ -1122,7 +1122,7 @@ given $var {
 条件が満たされると、条件が満たされるかどうか調べる処理は止まります。
 
 別の選択肢として、 `proceed` を使うと、Rakuは条件が満たされた後も、この調べる処理の実行を続けます。
-[source,perl6]
+[source, raku]
 ----
 my $var = 42;
 
@@ -1142,7 +1142,7 @@ given $var {
 
 RakuはC言語族の一員なのです。
 
-[source,perl6]
+[source, raku]
 ----
 loop (my $i = 0; $i < 5; $i++) {
   say "The current number is $i"
