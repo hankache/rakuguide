@@ -319,7 +319,6 @@ say "Hello $name";   # Hello John Doe
 == 演算子
 
 === 一般的な演算子
-
 下記の表は最も一般的に使われている演算子を掲載しています。
 [cols="^.^5m,^.^5m,.^20,.^20m,.^20m", options="header"]
 |===
@@ -500,10 +499,12 @@ Rakuの変数は三つのカテゴリに分類されます: スカラ、配列�
 * `@` は配列のために使われます
 * `%` はハッシュのために使われます
 
+NOTE: 本手引きでは、Rakuの基本を学ぶ上で相応しい、単純化された変数のモデルを示します。 より深く変数を理解したいときは、 https://docs.raku.org/language/containers をご参照ください。
+
 === スカラ
 スカラはある値や参照を持っています。
 
-[source,perl6]
+[source, raku]
 ----
 # 文字列
 my $name = 'John Doe';
@@ -516,7 +517,7 @@ say $age;
 
 あるスカラに対して行うことのできる演算の種類は、そのスカラが保持している値に依存しています。
 
-[source,perl6]
+[source, raku]
 .文字列
 ----
 my $name = 'John Doe';
@@ -533,7 +534,7 @@ eoD nhoJ
 
 NOTE: もし文字列に対して適用できるすべてのメソッドのリストを知りたいのであれば、次のURLを参照することをすすめます https://docs.raku.org/type/Str
 
-[source,perl6]
+[source, raku]
 .整数
 ----
 my $age = 17;
@@ -546,7 +547,7 @@ True
 
 NOTE: もし整数に対して適用できるすべてのメソッドのリストを知りたいのであれば、次のURLを参照することをすすめます https://docs.raku.org/type/Int
 
-[source,perl6]
+[source, raku]
 .有理数
 ----
 my $age = 2.3;
@@ -566,7 +567,7 @@ NOTE: もし有理数に対して適用できるすべてのメソッドのリ�
 === 配列
 配列は複数の値を含んだリストです。
 
-[source,perl6]
+[source, raku]
 ----
 my @animals = 'camel','llama','owl';
 say @animals;
@@ -576,7 +577,7 @@ say @animals;
 
 TIP: チルダ `~` は文字列の結合のために使われています。
 
-[source,perl6]
+[source, raku]
 .`スクリプト`
 ----
 my @animals = 'camel','vicuña','llama';
@@ -613,7 +614,7 @@ We're going to let go: vicuña llama and keep the camel
 
 ==== 固定サイズの配列
 基本的な配列は次のように宣言されます:
-[source,perl6]
+[source, raku]
 my @array;
 
 基本的な配列は不定の長さを持つことができ、それゆえにこの機能は自動拡張とよばれています。 +
@@ -623,27 +624,27 @@ my @array;
 あらかじめ定義されたサイズを超えたところにアクセスすることはできません。
 
 固定サイズの配列を宣言するためには、名前のすぐ後の角括弧の中にその最大要素数を指定してください。:
-[source,perl6]
+[source, raku]
 my @array[3];
 
 この配列は三つの値を保持することができ、その添え字は0から2までの値をとります。
 
-[source,perl6]
+[source, raku]
 ----
 my @array[3];
-@array[0] = "first value";
-@array[1] = "second value";
-@array[2] = "third value";
+@array[0] = "1つ目の値";
+@array[1] = "2つ目の値";
+@array[2] = "3つ目の値";
 ----
 
 四つ目の値をこの配列に対して追加することはできません。:
-[source,perl6]
+[source, raku]
 ----
 my @array[3];
-@array[0] = "first value";
-@array[1] = "second value";
-@array[2] = "third value";
-@array[3] = "fourth value";
+@array[0] = "1つ目の値";
+@array[1] = "2つ目の値";
+@array[2] = "3つ目の値";
+@array[3] = "4つ目の値";
 ----
 
 ----
@@ -654,7 +655,7 @@ Index 3 for dimension 1 out of range (must be 0..2)
 今まで見てきた配列は一次元配列でした。 +
 幸運なことに、Rakuでは多次元配列を定義することができます。
 
-[source,perl6]
+[source, raku]
 my @tbl[3;2];
 
 この配列は二次元です。
@@ -662,7 +663,7 @@ my @tbl[3;2];
 
 3x2の格子だと考えてください。
 
-[source,perl6]
+[source, raku]
 ----
 my @tbl[3;2];
 @tbl[0;0] = 1;
@@ -688,14 +689,14 @@ say @tbl
 NOTE: もし配列に関するすべての情報を知りたいのであれば、次のURLを参照することをすすめます https://docs.raku.org/type/Array
 
 === ハッシュ
-[source,perl6]
+[source, raku]
 .ハッシュはキー/値のペアの集合です。
 ----
 my %capitals = 'UK','London','Germany','Berlin';
 say %capitals;
 ----
 
-[source,perl6]
+[source, raku]
 .ハッシュに対して要素を入れるための別の簡潔な方法:
 ----
 my %capitals = UK => 'London', Germany => 'Berlin';
@@ -703,7 +704,7 @@ say %capitals;
 ----
 
 ハッシュに対して呼び出すことのできるいくつかのメソッド:
-[source,perl6]
+[source, raku]
 .`スクリプト`
 ----
 my %capitals = UK => 'London', Germany => 'Berlin';
@@ -736,7 +737,7 @@ NOTE: もしハッシュに関するすべての情報を知りたいのであ�
 
 TIP: `.WHAT` は変数が保持している値の型を返します。
 
-[source,perl6]
+[source, raku]
 ----
 my $var = 'Text';
 say $var;
@@ -755,7 +756,7 @@ say $var.WHAT;
 では、下記の例を実行してみましょう: +
 変数名の前の `Int` に注目してください。
 
-[source,perl6]
+[source, raku]
 ----
 my Int $var = 'Text';
 say $var;
@@ -773,7 +774,7 @@ say $var.WHAT;
 Rakuは *漸進的型付け* に分類されます; *静的* 型付けと *動的* 型付けの両方を使うことができるのです。
 
 .配列とハッシュもまた静的型付けを行うことができます:
-[source,perl6]
+[source, raku]
 ----
 my Int @array = 1,2,3;
 say @array;
@@ -795,7 +796,7 @@ say %country-codes.WHAT;
 .下記は最も一般的に使われている型のリストです:
 最初の二つの型は使わないかもしれませんが情報提供のために掲載しておきます。
 
-[cols="^.^1m,.^3m,.^2m,.^1m, options="header"]
+[cols="^.^1m,.^3m,.^2m,.^1m, options=", header"]
 |===
 
 | *型* | *説明* | *例* | *結果*
@@ -821,7 +822,7 @@ say %country-codes.WHAT;
 イントロスペクションはその型といったオブジェクトのプロパティについて情報を得るための処理です。 +
 前節の例の一つでは変数の型を返すために `.WHAT` を使いました。
 
-[source,perl6]
+[source, raku]
 ----
 my Int $var;
 say $var.WHAT;    # (Int)
@@ -847,17 +848,16 @@ say $var2.WHAT;   # (Any)
 
 様々な宣言子がRakuでは使われています。今までのところ、使ってきたのは `my` です。
 
-[source,perl6]
+[source, raku]
 my $var=1;
 
 `my` 宣言子は変数に対して *レキシカル* スコープを与えます。
 つまり、その変数はそれが宣言されたのと同じブロックの中でしかアクセスできなくなります。
 
-
 Rakuのブロックは `{ }` で囲まれます。
-もしブロックがみつからないのなら、その変数はRakuのスクリプト全体で使える状態になっています。
+ブロックがなければ、その変数はRakuのスクリプト全体で使えます。
 
-[source,perl6]
+[source, raku]
 ----
 {
   my Str $var = 'Text';
@@ -868,7 +868,7 @@ say $var; # はアクセス可能ではありません。エラーを返しま�
 
 変数はその変数が定義されたブロックの中でのみアクセスが可能なので、別のブロックでは同じ変数名で使用できます。
 
-[source,perl6]
+[source, raku]
 ----
 {
   my Str $var = 'Text';
@@ -881,7 +881,7 @@ say $var;
 === 代入と束縛
 前節の例では、どうやって変数に値を *代入* するかをみてきました。 +
 *代入* は `=` 演算子を用いて行われます。
-[source,perl6]
+[source, raku]
 ----
 my Int $var = 123;
 say $var;
@@ -889,7 +889,7 @@ say $var;
 
 変数に代入された値は変更することができます:
 
-[source,perl6]
+[source, raku]
 .代入
 ----
 my Int $var = 123;
@@ -907,7 +907,7 @@ say $var;
 一方、変数に *束縛* された値は変えることはできません。 +
 *束縛* は `:=` 演算子を用いて行われます。
 
-[source,perl6]
+[source, raku]
 .束縛
 ----
 my Int $var := 123;
@@ -922,8 +922,8 @@ say $var;
 Cannot assign to an immutable value
 ----
 
-[source,perl6]
-.変数はほかの変数により束縛することができます:
+[source, raku]
+.変数は他の変数にも束縛できます。
 ----
 my $a;
 my $b;
