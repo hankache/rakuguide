@@ -3119,7 +3119,7 @@ NOTE: 並行/非同期プログラミングについてもっと情報を知り�
 
 Rakuではネイティブコール (Native Call) インタフェースを用いて、Cのライブラリを使うことができます。
 
-`NativeCall` はRakuと一緒に提供されている標準モジュールです
+`NativeCall` はRakuと一緒に提供されている標準モジュールで、RakuとCでやり取りする作業を簡単にする機能が色々と提供されています。
 
 === 関数の呼び出し
 
@@ -3127,7 +3127,7 @@ Rakuではネイティブコール (Native Call) インタフェースを用い�
 この関数はターミナルに `Hello from C` と表示します。
 この関数は引数を受け付けませんし返り値もありません。
 
-[source,c]
+[source, c]
 .ncitest.c
 ----
 #include <stdio.h>
@@ -3139,26 +3139,29 @@ void hellofromc () {
 
 OSに応じて、次のコマンドを実行し、上記のCのコードをライブラリへとコンパイルしてください。
 
+[source, bash]
 .Linux:
 ----
 gcc -c -fpic ncitest.c
 gcc -shared -o libncitest.so ncitest.o
 ----
 
+[source, bat]
 .Windows:
 ----
 gcc -c ncitest.c
 gcc -shared -o ncitest.dll ncitest.o
 ----
 
-.On macOS:
+[source, bash]
+.macOS:
 ----
 gcc -dynamiclib -o libncitest.dylib ncitest.c
 ----
 
 Cのライブラリをコンパイルしたのと同じディレクトリで、次のコードを含むRakuのファイルを作り、実行してください。
 
-[source,perl6]
+[source, raku]
 .ncitest.raku
 ----
 use NativeCall;
@@ -3189,7 +3192,7 @@ hellofromc();
 
 上記のRakuのスクリプトを変更し、 Rakuのサブルーチンの名前を `hellofromc` の代わりに `hello` と付けてみましょう。
 
-[source,perl6]
+[source, raku]
 .ncitest.raku
 ----
 use NativeCall;
@@ -3209,7 +3212,7 @@ hello();
 次の改変されたCのライブラリをコンパイルし、その下のRakuのスクリプトを実行しましょう。 +
 どのようにしてCとRakuのコードの両方を、文字列を受け取るために改変したかについて注目してください。 (Cでは `char*` で、Rakuでは `Str` です)
 
-[source,c]
+[source, c]
 .ncitest.c
 ----
 #include <stdio.h>
@@ -3219,7 +3222,7 @@ void hellofromc (char* name) {
 }
 ----
 
-[source,perl6]
+[source, raku]
 .ncitest.raku
 ----
 use NativeCall;
@@ -3235,7 +3238,7 @@ hello('Jane');
 さっきと同じことをもう一度行い、ふたつの整数を受け取って足し合わせる単純な計算機を生成しましょう。 +
 CのライブラリをコンパイルしてRakuのスクリプトを実行してください。
 
-[source,c]
+[source, c]
 .ncitest.c
 ----
 int add (int a, int b) {
@@ -3243,7 +3246,7 @@ int add (int a, int b) {
 }
 ----
 
-[source,perl6]
+[source, raku]
 .ncitest.raku
 ----
 use NativeCall;
@@ -3264,7 +3267,7 @@ Rakuで使う型はCの型と同じでなければなりません。
 
 幸運なことに、RakuはCでその型に相当する型と対応付けられた型を提供しています。
 
-[cols="^.^,^.^",options="header"]
+[cols="^.^,^.^", options="header"]
 |===
 
 | Cの型 | Rakuの型
@@ -3309,7 +3312,7 @@ Rakuで使う型はCの型と同じでなければなりません。
 
 | `bool` | `bool`
 
-| `char*` (String) | `Str`
+| `char*` （文字列） | `Str`
 
 | 配列: 例えば `int*` (intの配列) や `double*` (doubleの配列) | `CArray`: 例えば `CArray[int32]` や `CArray[num64]`
 
