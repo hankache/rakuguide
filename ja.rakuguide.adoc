@@ -1779,7 +1779,7 @@ _オブジェクト指向_ プログラミングは昨今広く使われてい�
 _オブジェクト指向_ の用語では、これらのオブジェクトはクラスの *インスタンス* と呼ばれています。
 
 下記のスクリプトについて考えてみてください:
-[source,perl6]
+[source, raku]
 ----
 class Human {
   has $.name;
@@ -1796,8 +1796,10 @@ say $john;
 `.new()` メソッドは *コンストラクタ* と呼ばれるものです。そのメソッドの呼ばれたクラスのインスタンスとしてオブジェクトを生成します。
 
 上記のスクリプトでは、新しい変数 `$john` は、 `Human.new()` によって定義された"Human"の新しいインスタンスを持っています。
+`.new()` メソッドに渡された引数は背後にあるオブジェクトの属性の設定に使われます。
+
 クラスは `my` を使うことで _レキシカルスコープ_ とすることもできます:
-[source,perl6]
+[source, raku]
 ----
 my class Human {
 
@@ -1812,14 +1814,14 @@ my class Human {
 下記の二つのスクリプトは同じ結果を返します。
 
 .変数への直接のアクセス:
-[source,perl6]
+[source, raku]
 ----
 my $var = 7;
 say $var;
 ----
 
 .カプセル化:
-[source,perl6]
+[source, raku]
 ----
 my $var = 7;
 sub sayvar {
@@ -1839,7 +1841,7 @@ Rakuでは *トゥイジル* の使用によって楽にカプセル化を行う
 デフォルトでは、すべての属性はプライベートですが、いつも `!` トゥイジルを使うことはよい習慣です。
 
 したがって、上のクラスは次のように書き換えるべきです:
-[source,perl6]
+[source, raku]
 ----
 class Human {
   has $!name;
@@ -1868,10 +1870,11 @@ Rakuでは、すべてのクラスはデフォルトの `.new()` コンストラ
 
 * age \=> 23
 
+
 では、もしオブジェクトを生成するときにいちいち属性の名前を指定したくなかったらどうしたらいいでしょう？ +
 そういう場合は、 *固定引数* を受け取るような別のコンストラクタを作る必要があります。
 
-[source,perl6]
+[source, raku]
 ----
 class Human {
   has $.name;
@@ -1899,7 +1902,7 @@ say $john;
 これはカプセル化の考え方を強化します。オブジェクトの属性はメソッドを通じてオブジェクトの中からしか操作できません。
 外の世界からはオブジェクトのメソッドとしかやりとりすることができず、そのオブジェクトの属性に直接アクセスすることはできません。
 
-[source,perl6]
+[source, raku]
 ----
 class Human {
   has $.name;
@@ -1947,7 +1950,7 @@ _オブジェクト_ *.* _メソッド_ として、上記の例のように: `$
 プライベートメソッドの宣言では名前の前で `!` トゥイジルを使う必要があります。 +
 プライベートメソッドは `.` の代わりに `!` によって呼び出します。
 
-[source,perl6]
+[source, raku]
 ----
 method !iamprivate {
   # コードはここに
@@ -1966,7 +1969,7 @@ method iampublic {
 クラス属性は `has` の代わりに `my` をつかうことで宣言します。
 クラス属性はそのオブジェクトではなくクラスそれ自身を呼び出します。
 
-[source,perl6]
+[source, raku]
 ----
 class Human {
   has $.name;
@@ -1987,7 +1990,7 @@ say Human.counter;
 
 属性の値を変更する必要があるとしたらどうでしょう？ +
 `is rw` キーワードを使って、_読み/書き_ ラベルを付与する必要があります。
-[source,perl6]
+[source, raku]
 ----
 class Human {
   has $.name;
@@ -2014,7 +2017,7 @@ say $john.age;
 従業員は四つの属性を持っています: 名前、年齢、会社、給料
 
 次のようにクラスを定義しようとするかもしれません:
-[source,perl6]
+[source, raku]
 ----
 class Human {
   has $.name;
@@ -2031,7 +2034,7 @@ class Employee {
 理屈の上では正しいですが、上記のコードの考え方はお粗末です。
 
 次のような書き方のほうが良いでしょう:
-[source,perl6]
+[source, raku]
 ----
 class Human {
   has $.name;
@@ -2056,7 +2059,7 @@ class Employee is Human {
 
 下記の例では、`introduce-yourself` メソッドが従業員クラスによって継承されています。
 
-[source,perl6]
+[source, raku]
 ----
 class Human {
   has $.name;
@@ -2079,7 +2082,7 @@ $jane.introduce-yourself;
 ----
 オーバーライドは次のように実行されます:
 
-[source,perl6]
+[source, raku]
 ----
 class Human {
   has $.name;
@@ -2110,12 +2113,12 @@ $jane.introduce-yourself;
 ==== サブメソッド
 *サブメソッド* は子クラスによって継承されないメソッドです。 +
 宣言されたクラスからのみアクセスすることができます。 +
- `submethod` キーワードを使って定義されます。
+`submethod` キーワードを使って定義されます。
 
 === 多重継承
 Rakuでは多重継承を行うことができます。あるクラスは複数の他のクラスから継承を行うことができます。
 
-[source,perl6]
+[source, raku]
 ----
 class bar-chart {
   has Int @.bar-values;
@@ -2169,7 +2172,8 @@ Actual vs Forecast:
 
 .修正
 正しくふるまうようにするには、 `combo-chart` の中の `plot` メソッドをオーバーライドするべきでした。
-[source,perl6]
+
+[source, raku]
 ----
 class bar-chart {
   has Int @.bar-values;
@@ -2222,7 +2226,7 @@ Actual vs Forecast:
 ロールは `role` キーワードによって宣言されます。ロールを実装したいクラスは `does` キーワードを使って宣言します。
 
 .ロールを使って多重継承を書き換えてみましょう:
-[source,perl6]
+[source, raku]
 ----
 role bar-chart {
   has Int @.bar-values;
@@ -2264,7 +2268,7 @@ $actual-vs-forecast.plot;
 この質問に答えるために、多重継承の例を見せるために使われた最初のスクリプトを修正してください。
 `plot` メソッドをオーバーライドするのを _忘れた_ 例のスクリプトです。
 
-[source,perl6]
+[source, raku]
 ----
 role bar-chart {
   has Int @.bar-values;
@@ -2311,7 +2315,7 @@ Method 'plot' must be resolved by class combo-chart because it exists in multipl
 === イントロスペクション
 *イントロスペクション* は、オブジェクトの型、オブジェクトの属性、オブジェクトのメソッドといったオブジェクトの情報を得るための処理です。
 
-[source,perl6]
+[source, raku]
 ----
 class Human {
   has Str $.name;
@@ -2361,7 +2365,6 @@ if $jane ~~ Human {say 'Jane is a Human'};
 * https://docs.raku.org/language/classtut
 * https://docs.raku.org/language/objects
 --
-
 == 例外処理
 
 === 例外のキャッチ
