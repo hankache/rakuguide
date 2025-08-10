@@ -2869,7 +2869,7 @@ UTF-8は、ユニコードにおける、すべての文字や符号位置をエ
 === ユニコードの使用
 
 .ユニコードを使ってどうやって文字を出力することができるのか見てみましょう
-[source,perl6]
+[source, raku]
 ----
 say "a";
 say "\x0061";
@@ -2884,7 +2884,7 @@ say "\c[LATIN SMALL LETTER A]";
 . `\c` と符号位置の名前を使う
 
 .では、スマイリーを出力してみましょう
-[source,perl6]
+[source, raku]
 ----
 say "☺";
 say "\x263a";
@@ -2892,7 +2892,7 @@ say "\c[WHITE SMILING FACE]";
 ----
 
 .二つの符号位置を組み合わせている例です
-[source,perl6]
+[source, raku]
 ----
 say "á";
 say "\x00e1";
@@ -2900,14 +2900,14 @@ say "\x0061\x0301";
 say "\c[LATIN SMALL LETTER A WITH ACUTE]";
 ----
 
-`a` は次のように書けます:
+`á` は次のように書けます:
 
 * ユニークな符号位置 `\x00e1` を使う
 
 * もしくは `a` とアキュート・アクセントの符号位置を組み合わせる `\x0061\x0301`
 
 .いくつかのメソッドを使うことができます:
-[source,perl6]
+[source, raku]
 ----
 say "á".NFC;
 say "á".NFD;
@@ -2926,7 +2926,7 @@ LATIN SMALL LETTER A WITH ACUTE
 `uniname` は符号位置の名前を返します。
 
 .ユニコード文字は識別子として用いることができます:
-[source,perl6]
+[source, raku]
 ----
 my $Δ = 1;
 $Δ++;
@@ -2934,7 +2934,7 @@ say $Δ;
 ----
 
 .ユニコード文字で算数をすることができます:
-[source,perl6]
+[source, raku]
 ----
 my $var = 2 + ⅒;
 say $var;
@@ -2952,7 +2952,7 @@ say $var;
 アラビア数字以外の数字を使うときに特別な注意は必要ありません。
 すべてのメソッド/演算子は期待通りに動きます。
 
-[source,perl6]
+[source, raku]
 ----
 say (٤,٥,٦,1,2,3).sort; # (1 2 3 4 5 6)
 say 1 + ٩;              # 10
@@ -2963,7 +2963,7 @@ say 1 + ٩;              # 10
 
 ===== 比較
 
-[source,perl6]
+[source, raku]
 ----
 say 'a' cmp 'B'; # More
 ----
@@ -2974,18 +2974,15 @@ say 'a' cmp 'B'; # More
 
 幸運なことにRakuは link:http://unicode.org/reports/tr10/[ユニコード照合アルゴリズム] を実装したメソッド/演算子を持っています。 +
 その一つが `unicmp` です。これは上記で示した `cmp` のようにふるまいますがこのアルゴリズムを使用する点が異なります。
-
-[source,perl6]
+[source, raku]
 ----
 say 'a' unicmp 'B'; # Less
 ----
-
 見てわかる通り、 `unicmp` 演算子を使うことで `a` は `B` より小さいという期待通りの結果が得られました。
 
 ===== ソート
 符号位置を利用したソートにおいて `sort` メソッドの他の選択肢として、Rakuは link:http://unicode.org/reports/tr10/[ユニコード照合アルゴリズム] を実装した `collate` メソッドを提供しています。
-
-[source,perl6]
+[source, raku]
 ----
 say ('a','b','c','D','E','F').sort;    # (D E F a b c)
 say ('a','b','c','D','E','F').collate; # (a b c D E F)
