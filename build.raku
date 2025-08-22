@@ -58,7 +58,7 @@ sub MAIN(Str $language = 'all') {
       $html .= subst("<head>","<head>" ~ $gtag ~ $favicon-en);
       spurt 'index.html',$html;
       say "en generated.";
-      for indir 'Src',{ map(*.substr(0..1), grep({ .Str ne ('rakuguide.adoc','.git','.gitignore','LICENSE','README.md').any }, dir)).sort } -> $translation {
+      for indir 'Src',{ map(*.substr(0..1), grep({ .Str ne ('rakuguide.adoc','.git','.gitignore','LICENSE','README.md','.github').any }, dir)).sort } -> $translation {
           mkdir $translation;
           shell "asciidoctor -D $translation -o index.html Src/$translation.rakuguide.adoc";
           my $html = slurp "$translation/index.html";
