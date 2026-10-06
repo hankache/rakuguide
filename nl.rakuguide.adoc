@@ -4,10 +4,7 @@ Naoum Hankache <naoum@hankache.com>; Elizabeth Mattijsen <rakuguide@liz.nl>
 :keywords: perl6, perl 6, inleiding, perl6intro, perl 6 inleiding, perl 6 tutorial, perl 6 intro, raku, raku inleiding, raku tutorial
 :Revision: 1.0
 :icons: font
-:source-highlighter: pygments
-//:pygments-style: manni
-:source-language: perl6
-:pygments-linenums-mode: table
+:source-highlighter: rouge
 :toc: left
 :doctype: book
 :lang: nl
@@ -56,6 +53,7 @@ Een implementatie van Raku die al deze tests succesvol kan uitvoeren, mag zich e
 === Installeren van Raku
 .Linux
 Voer de volgende commando's uit in een Terminal venster om Rakudo Star te installeren:
+[source,shell]
 ----
 mkdir ~/rakudo && cd $_
 curl -LJO https://rakudo.org/latest/star/src
@@ -126,12 +124,12 @@ Recente versies van Vim worden standaard uitgeleverd met een syntax-markeerder. 
 === Hello World!
 Laten we beginnen met het `hello world` ritueel.
 
-[source,perl6]
+[source,raku]
 say 'hello world';
 
 hetgeen ook geschreven kan worden als:
 
-[source,perl6]
+[source,raku]
 'hello world'.say;
 
 === Syntax overview
@@ -216,17 +214,17 @@ Er zijn 3 manieren om commentaren in een programma te stoppen:
 
 * Enkele regel:
 +
-[source,perl6]
+[source,raku]
 # Dit is een regel met commentaar
 
 * Als onderdeel van een regel (embedded):
 +
-[source,perl6]
+[source,raku]
 say #`(Dit is een ingebed commentaar) "Hallo wereld."
 
 * Meer dan één regel
 +
-[source,perl6]
+[source,raku]
 -----------------------------
 =begin comment
 Dit is een commentaar over meer dan één regel
@@ -244,7 +242,7 @@ Gebruik altijd dubbele aanhalingstekens:
 
 * als de string een variabele bevat die geïnterpoleerd moet worden.
 
-[source,perl6]
+[source,raku]
 ---------------------------------------
 say 'Hallo Wereld';   # Hallo Wereld
 say "Hallo Wereld";   # Hallo Wereld
@@ -440,7 +438,7 @@ Een *sigil* is een karakter dat als prefix gebruikt wordt om aan te geven in wel
 === Scalars
 Een scalar kan één waarde bevatten.
 
-[source,perl6]
+[source,raku]
 ----
 #String
 my $naam = 'Jan Jansen';
@@ -453,7 +451,7 @@ say $leeftijd;
 
 Afhankelijk van het type waarde dat een scalar bevat, kun je daar bepaalde operaties op uitvoeren.
 
-[source,perl6]
+[source,raku]
 .String
 ----
 my $naam = 'Jan Jansen';
@@ -470,7 +468,7 @@ nesnaJ naJ
 
 NOTE: Bekijk https://docs.raku.org/type/Str voor de complete lijst van methoden die men op een string kan uitvoeren.
 
-[source,perl6]
+[source,raku]
 .Integer
 ----
 my $leeftijd = 17;
@@ -483,7 +481,7 @@ True
 
 NOTE: Bekijk https://docs.raku.org/type/Int voor de complete lijst van methoden die men op een geheel getal (integer) kan uitvoeren.
 
-[source,perl6]
+[source,raku]
 .Rational Number
 ----
 my $leeftijd = 2.3;
@@ -503,7 +501,7 @@ NOTE: Bekijk https://docs.raku.org/type/Rat voor de complete lijst van methoden 
 === Arrays
 Arrays bestaan uit een lijst van scalar variabelen.
 
-[source,perl6]
+[source,raku]
 ----
 my @dieren = 'kameel','lama','uil';
 say @dieren;
@@ -513,7 +511,7 @@ Vele operaties kunnen op arrays uitgevoerd worden, zoals getoond in onderstaand 
 
 TIP: De tilde `~` wordt gebruikt om strings aan elkaar te plakken.
 
-[source,perl6]
+[source,raku]
 .`Script`
 ----
 my @dieren = 'kameel','vicuña','lama';
@@ -550,7 +548,7 @@ We kunnen een specifiek element van een array bekijken door de positie aan te ge
 
 ==== Arrays met beperkt aantal elementen
 Een gewoon array kun je als volgt specificeren:
-[source,perl6]
+[source,raku]
 my @array;
 
 Een gewoon array is niet beperkt wat betreft aantal elementen, het past zichzelf aan (auto-extending). +
@@ -560,12 +558,12 @@ Daarentegen is het ook mogelijk om een array aan te maken met een beperkt aantal
 Dit soort arrays verbieden toegang tot niet-bestaande elementen.
 
 Specificeer het aantal elementen in vierkante haken direct achter de naam van een array om een array met beperkt aantal elementen te specificeren:
-[source,perl6]
+[source,raku]
 my @array[3];
 
 Dit array kan hoogstens 3 waarden bevatten, met als indexwaarden 0 t/m 2.
 
-[source,perl6]
+[source,raku]
 ----
 my @array[3];
 @array[0] = "eerste waarde";
@@ -574,7 +572,7 @@ my @array[3];
 ----
 
 Het is niet mogelijk om een vierde waarde aan dit array toe te voegen:
-[source,perl6]
+[source,raku]
 ----
 my @array[3];
 @array[0] = "eerste waarde";
@@ -591,7 +589,7 @@ Index 3 for dimension 1 out of range (must be 0..2)
 De arrays die we tot nu toe gezien hebben, hadden maar één dimensie. +
 We kunnen echter ook arrays met meer dan één dimensie in Raku specificeren.
 
-[source,perl6]
+[source,raku]
 my @tbl[3;2];
 
 Dit array heeft 2 dimensies.
@@ -599,7 +597,7 @@ De eerste dimensie kan maximaal 3 waarden hebben, en de tweede dimensie maximaal
 
 Zie het als een rooster van 3x2.
 
-[source,perl6]
+[source,raku]
 ----
 my @tbl[3;2];
 @tbl[0;0] = 1;
@@ -625,7 +623,7 @@ say @tbl
 NOTE: Zie https://docs.raku.org/type/Array voor volledige informatie over arrays.
 
 === Hashes
-[source,perl6]
+[source,raku]
 .Een Hash is een verzameling van naam/waarde paren (key/value pairs)
 ----
 my %hoofdsteden = 'VK','Londen','Duitsland','Berlijn';
@@ -637,7 +635,7 @@ say %hoofdsteden;
 {Duitsland => Berlijn, VK => Londen}
 ----
 
-[source,perl6]
+[source,raku]
 .Een andere manier om een hash te vullen:
 ----
 my %hoofdsteden = VK => 'Londen', Duitsland => 'Berlijn';
@@ -650,7 +648,7 @@ say %hoofdsteden;
 ----
 
 Dit zijn een aantal van de methoden die men op een hash kan uitvoeren:
-[source,perl6]
+[source,raku]
 .`Script`
 ----
 my %hoofdsteden = VK => 'Londen', Duitsland => 'Berlijn';
@@ -683,7 +681,7 @@ In de voorafgaande voorbeelden hebben we niet het type van de waarde aangegeven 
 
 TIP: `.WHAT` geeft het type van de waarde in een variabele terug.
 
-[source,perl6]
+[source,raku]
 ----
 my $var = 'Tekst';
 say $var;
@@ -701,7 +699,7 @@ Deze stijl van programmeren wordt dynamische typering (dynamic typing) genoemd. 
 Probeer nu onderstaand voorbeeld uit te voeren: +
 Merk op dat we `Int` voor de naam van de variabele hebben geplaatst.
 
-[source,perl6]
+[source,raku]
 ----
 my Int $var = 'Tekst';
 say $var;
@@ -718,7 +716,7 @@ Deze stijl van programmeren wordt "statische typering" (static typing) genoemd. 
 Raku wordt aangeduid met "graduele typering": het laat namelijk zowel *statische* als *dynamische* typering toe.
 
 .Arrays en hashes kunnen ook statisch getypeerd worden:
-[source,perl6]
+[source,raku]
 ----
 my Int @array = 1,2,3;
 say @array;
@@ -766,7 +764,7 @@ Je zult hoogstwaarschijnlijk de eerste twee nooit gebruiken, maar we laten ze hi
 Met introspectie bedoelen we het process waarmee we informatie over de eigenschappen van een object kunnen bekijken, zoals het type. +
 In een van de vorige voorbeelden gebruikten we `.WHAT` om het type van een variabele te achterhalen.
 
-[source,perl6]
+[source,raku]
 ----
 my Int $var;
 say $var.WHAT;    # (Int)
@@ -792,7 +790,7 @@ Voordat men een variabele voor de eerste keer kan gebruiken, moet deze worden ge
 
 Dit kan op diverse manieren in Raku, `my` is wat we tot nu toe in de bovenstaande voorbeelden hebben gebruikt.
 
-[source,perl6]
+[source,raku]
 my $var = 1;
 
 Met `my` geeft men de variabele een *statisch* bereik (ook wel *lexicaal* bereik genoemd).
@@ -801,7 +799,7 @@ In andere woorden, de variabele zal alleen maar toegankelijk zijn in het gebied 
 Zo'n gebied (scope) wordt in Raku begrensd door `{ }`.
 Een variabele zal toegankelijk zijn in het gehele Raku script als er geen gebiedsbegrenzing gevonden wordt.
 
-[source,perl6]
+[source,raku]
 ----
 {
     my Str $var = 'Tekst';
@@ -812,7 +810,7 @@ say $var; #is niet toegankelijk, geeft een foutmelding
 
 Aangezien zo'n variabele alleen toegankelijk is in het gebied waarin het was gedefinieerd, kan men dezelfde naam voor een variabele gebruiken in een ander gebied.
 
-[source,perl6]
+[source,raku]
 ----
 {
     my Str $var = 'Tekst';
@@ -826,7 +824,7 @@ say $var;
 We hebben in de vorige voorbeelden gezien hoe we waarden aan variabelen kunnen *toewijzen*. +
 *Toewijzing* wordt gedaan met de `=` operator.
 
-[source,perl6]
+[source,raku]
 ----
 my Int $var = 123;
 say $var;
@@ -834,7 +832,7 @@ say $var;
 
 We kunnen de waarde van een variabele veranderen:
 
-[source,perl6]
+[source,raku]
 .Toewijzing
 ----
 my Int $var = 123;
@@ -852,7 +850,7 @@ say $var;
 Daarentegen kunnen we de waarde van een variabele niet veranderen als deze is *verbonden* met een waarde. +
 *Verbinding* wordt gedaan met de `:=` operator.
 
-[source,perl6]
+[source,raku]
 .Verbinden
 ----
 my Int $var := 123;
@@ -867,7 +865,7 @@ say $var;
 Cannot assign to an immutable value
 ----
 
-[source,perl6]
+[source,raku]
 .Variabelen kunnen ook verbonden worden met andere variabelen:
 ----
 my $a;
@@ -896,7 +894,7 @@ Het is belangrijk om verschil te maken tussen functies en mutators. +
 Functies veranderen de toestand van een object waarop ze worden uitgevoerd *niet*. +
 Mutators veranderen de toestand van een object *wel*.
 
-[source,perl6,linenums]
+[source,raku,linenums]
 .`Script`
 ----
 my @nummers = [7,2,4,9,11,3];
@@ -936,7 +934,7 @@ Raku heeft een veelheid aan conditionele- en lusconstructies.
 === if
 De code in het bereik van de conditionele constructie  wordt alleen maar uitgevoerd *als* de conditie waar (`True`) is.
 
-[source,perl6]
+[source,raku]
 ----
 my $leeftijd = 19;
 
@@ -948,7 +946,7 @@ if $leeftijd > 18 {
 In Raku kunnen we de volgorde van de code en de conditie omkeren. +
 Maar zelfs als de volgorde is omgekeerd, zal de conditie altijd eerst worden uitgevoerd.
 
-[source,perl6]
+[source,raku]
 ----
 my $leeftijd = 19;
 
@@ -960,7 +958,7 @@ We kunnen alternatieve bereiken voor uitvoering aangeven voor het geval dat de c
 * `else`
 * `elsif`
 
-[source,perl6]
+[source,raku]
 ----
 #voer deze code uit voor verschillende waarden van de variabele
 my $aantal-stoelen = 9;
@@ -979,7 +977,7 @@ De tegenovergestelde, ontkennende versie van een if command is `unless` (tenzij)
 
 Deze code:
 
-[source,perl6]
+[source,raku]
 ----
 my $schone-schoenen = False;
 
@@ -989,7 +987,7 @@ if not $schone-schoenen {
 ----
 Kan geschreven worden als:
 
-[source,perl6]
+[source,raku]
 ----
 my $schone-schoenen = False;
 
@@ -1008,7 +1006,7 @@ Ontkenning (negation) wordt in Raku gedaan met `!` of `not`.
 
 `with` gedraagt zich als een `if` commando, maar kijkt of de variabele een waarde heeft.
 
-[source,perl6]
+[source,raku]
 ----
 my Int $var=1;
 
@@ -1019,7 +1017,7 @@ with $var {
 
 Als je deze code uitvoert zonder dat je een waarde aan de variabele hebt toegekend, dan zou je geen uitvoer moeten zien.
 
-[source,perl6]
+[source,raku]
 ----
 my Int $var;
 
@@ -1037,7 +1035,7 @@ Je kunt `with` en `orwith` zien als een soort `if` en `elsif`.
 
 Met het `for` commando kun je over een aantal waarden repeteren.
 
-[source,perl6]
+[source,raku]
 ----
 my @array = 1,2,3;
 
@@ -1052,7 +1050,7 @@ Merk op dat we een lusvariabele `$array-item` aanmaken om de operatie `*100` op 
 
 `given` is het Raku equivalent van het `switch` commando in andere programmeertalen, maar het is veel krachtiger.
 
-[source,perl6]
+[source,raku]
 ----
 my $var = 42;
 
@@ -1067,7 +1065,7 @@ given $var {
 Het testen van condities stops zodra een conditie van een `when` waar is geweest.
 
 Met `proceed` kun je in Raku aangeven dat je door wilt gaan met testen van condities nadat een conditie waar was.
-[source,perl6]
+[source,raku]
 ----
 my $var = 42;
 
@@ -1087,7 +1085,7 @@ In feite is `loop` precies zoals `for` lussen geschreven worden in de familie C-
 
 Raku hoort bij de familie C-programmeertalen.
 
-[source,perl6]
+[source,raku]
 ----
 loop (my $i = 0; $i < 5; $i++) {
     say "Het huidige nummer is $i"
@@ -1104,7 +1102,7 @@ De twee meest voorkomende manieren van _Invoer/Uitvoer_ zijn _Terminal_ en _Best
 ==== say
 `say` schrijft naar de standaard uitvoer.  Het voegt een regeleinde (newline) toe aan het einde.  In andere woorden, de volgende code:
 
-[source,perl6]
+[source,raku]
 ----
 say 'Hallo mevrouw.';
 say 'Hallo meneer.';
@@ -1119,7 +1117,7 @@ Probeer eens om de `say` door een `print` te vervangen en vergelijk de resultate
 ==== get
 Men kan `get` gebruiken om invoer van de terminal te krijgen.
 
-[source,perl6]
+[source,raku]
 ----
 my $naam;
 
@@ -1137,7 +1135,7 @@ Vervolgens zal het je begroeten.
 
 Het bovenstaande voorbeeld kan ook worden geschreven als:
 
-[source,perl6]
+[source,raku]
 ----
 my $naam = prompt "Hoi, hoe heet je? ";
 
@@ -1152,7 +1150,7 @@ Deze twee subroutines kunnen worden gebruikt om externe commando's uit te voeren
 * `shell` voert een extern commando uit alsof je het hebt ingetypt op een commando regel (via een z.g. "shell").  Het hangt af van de systeem software die je gebruikt.
 Alle meta-karakters worden geïnterpreteerd door de shell, inclusief z.g. "pipes", "redirects" en specificaties van environment variabelen.
 
-[source,perl6]
+[source,raku]
 .Voer dit uit als je met Linux/OS X werkt
 ----
 my $naam = 'Neo';
@@ -1160,7 +1158,7 @@ run 'echo', "hallo $naam";
 shell "ls";
 ----
 
-[source,perl6]
+[source,raku]
 .Voer dit uit als je met Windows werkt
 ----
 shell "dir";
@@ -1185,7 +1183,7 @@ Japie 7
 Jolanda 8
 Jessica 7
 ----
-[source,perl6]
+[source,raku]
 ----
 my $data = slurp "scores.txt";
 say $data;
@@ -1194,7 +1192,7 @@ say $data;
 ==== spurt
 Men kan `spurt` gebruiken om data naar een bestand te schrijven.
 
-[source,perl6]
+[source,raku]
 ----
 my $nieuw = "Nieuwe scores:
 Paul 10
@@ -1209,7 +1207,7 @@ Nadat je de bovenstaande code hebt uitgevoerd, bestaat er een bestand _nieuwesco
 === Werken met bestanden en directories
 Raku kan de inhoud van een directory ook direct tonen zonder dat er externe commando's voor hoeven te worden uitgevoerd, net zoals in een van de vorige voorbeelden.
 
-[source,perl6]
+[source,raku]
 ----
 say dir;              # Laat bestanden/directories uit de huidige directory zien
 say dir "/Documents"; # Laat bestanden/directories zien van de gegeven directory
@@ -1217,7 +1215,7 @@ say dir "/Documents"; # Laat bestanden/directories zien van de gegeven directory
 
 Tevens kun je ook nieuwe directories aanmaken en verwijderen.
 
-[source,perl6]
+[source,raku]
 ----
 mkdir "nieuwdir";
 rmdir "nieuwdir";
@@ -1230,7 +1228,7 @@ Je kunt ook kijken of een specifieke naam bestaat, en of het een bestand of een 
 
 Maak in de directory waar je dit script gaat uitvoeren een lege directory `dir123` en een leeg bestand genaamd `script123.raku`
 
-[source,perl6]
+[source,raku]
 ----
 say "script123.raku".IO.e;
 say "dir123".IO.e;
@@ -1259,7 +1257,7 @@ NOTE: Zie https://docs.raku.org/type/IO voor meer informatie over invoer en uitv
 De definitie van een subroutine begint met het sleutelwoord `sub`.  Na de definitie kun je het aanroepen met de naam die je het gegeven hebt. +
 Bekijk onderstaand voorbeeld:
 
-[source,perl6]
+[source,raku]
 ----
 sub buitenaardse-groet {
     say "Hallo aardlingen";
@@ -1277,7 +1275,7 @@ Het aantal en het type van de parameters die door een subroutine worden gedefini
 
 Onderstaande subroutine accepteert een string argument.
 
-[source,perl6]
+[source,raku]
 ----
 sub zeg-hallo (Str $naam) {
     say "Hallo " ~ $naam ~ "!!!!"
@@ -1292,7 +1290,7 @@ Het is mogelijk om meer dan één subroutine met dezelfde naam, maar met een ver
 Op het moment dat de subroutine wordt aangeroepen, zal de uitvoerder besluiten welke versie van de subroutine werkelijk zal worden aangeroepen, afhankelijk van het aantal en het type van de gegeven argumenten.
 Dit soort subroutines wordt op dezelfde manier gedefinieerd als normale subroutines, maar in plaats van `sub` worden ze gedefinieerd met `multi`.
 
-[source,perl6]
+[source,raku]
 ----
 multi groet($naam) {
     say "Good morning $naam";
@@ -1315,7 +1313,7 @@ Als alternatief biedt Raku de mogelijk om subroutines te definiëren met:
 
 Je kunt een optionele parameter aangeven door een `?` achter de naam te plaatsen.
 
-[source,perl6]
+[source,raku]
 ----
 sub zeg-hallo($naam?) {
     with $naam { say "Hallo " ~ $naam }
@@ -1328,7 +1326,7 @@ zeg-hallo("Laura");
 Als de gebruiker een bepaald argument niet meegeeft, dan wordt de eventuele default waarde van de parameter gebruikt. +
 Dit wordt aangegeven door een waarde toe te wijzen aan de parameter in de definitie van de subroutine.
 
-[source,perl6]
+[source,raku]
 ----
 sub zeg-hallo($naam="Mens") {
     say "Hallo " ~ $naam;
@@ -1343,7 +1341,7 @@ Alle subroutines die we tot nu toe hebben gezien *doen iets* en laten dan het re
 Ook al is dit heel normaal, soms willen we dat een subroutine een waarde *teruggeeft* dat we later in het programma kunnen gebruiken.
 
 Onder normal omstandigheden is de waarde van de laatste regel van een subroutine de waarde die door de subroutine terug wordt gegeven.
-[source,perl6]
+[source,raku]
 .Impliciet teruggeven
 ----
 sub kwadrateer ($x) {
@@ -1354,7 +1352,7 @@ say "7 gekwadrateerd is gelijk aan " ~ kwadrateer(7);
 
 Voor de duidelijkheid is het wellicht een goed idee om _expliciet_ aan te geven wat we terug willen geven.
 Dit kunnen we doen met het `return` sleutelwoord.
-[source,perl6]
+[source,raku]
 .Expliciete teruggave
 ----
 sub kwadrateer ($x) {
@@ -1368,7 +1366,7 @@ Hetzelfde kan worden gedaan met waarden die we teruggeven.
 
 Om de teruggeven waarde te beperken tot een bepaald type, kunnen we de pijlnotatie `-\->` in de signatuur gebruiken.
 
-[source,perl6]
+[source,raku]
 .Beperken van mogelijke waarden
 ----
 sub kwadrateer ($x --> Int) {
@@ -1393,7 +1391,7 @@ We zouden ook hebben kunnen aangeven dat de teruggegeven `Int` wel of niet gedef
 Het is een goede gewoonte om dit soort typebeperkingen te gebruiken. +
 Hieronder is een aangepaste versie van het vorige voorbeeld die `:D` gebruikt om aan te geven dat de teruggegeven `Int` gedefinieerd moet zijn.
 
-[source,perl6]
+[source,raku]
 ----
 sub kwadrateer ($x --> Int:D) {
     return $x ** 2;
@@ -1419,7 +1417,7 @@ Functies en subroutines zijn ook objecten, net als alle andere:
 Een prachtig voorbeeld om dit concept te demonstreren is de `map` functie. +
 `map` is een zogenaamde *hogere orde functie*, want het accepteert een andere functie als argument.
 
-[source,perl6]
+[source,raku]
 .Script
 ----
 my @array = <1 2 3 4 5>;
@@ -1446,7 +1444,7 @@ Een *anonieme functie* wordt ook wel een *lambda* genoemd. +
 Een anonieme functie is niet bekend onder een naam (want die heeft het niet).
 
 Laten we het `map` voorbeeld herschrijven met een anonieme functie
-[source,perl6]
+[source,raku]
 ----
 my @array = <1 2 3 4 5>;
 say map(-> $x { $x ** 2 },@array);
@@ -1456,7 +1454,7 @@ De anonieme subroutine `\-> $x { $x ** 2 }` kan niet als zodanig worden aangeroe
 
 In Raku noemen we deze notatie een *pointy block*.
 
-[source,perl6]
+[source,raku]
 .Een pointy block kan ook aan een variabele worden toegekend:
 ----
 my $kwadrateer = -> $x {
@@ -1472,7 +1470,7 @@ Laten we het geval bekijken waarbij we een array met waarden kregen.
 Je wordt gevraagd om alle unieke (maar een keer voorkomende) waarden uit het array te halen en te sorteren van hoog naar laag.
 
 Je zou dit probleem kunnen oplossen door iets te schrijven als:
-[source,perl6]
+[source,raku]
 ----
 my @array = <7 8 9 0 1 2 4 3 5 6 7 8 9>;
 my @resultaat = reverse(sort(unique(@array)));
@@ -1483,7 +1481,7 @@ Eerst roepen we de `unique` functie aan op `@array`.  Het resultaat daarvan geve
 In tegenstelling tot bovenstaand voorbeeld mag je methodes aan elkaar koppelen in Raku. +
 Bovenstaand voorbeeld kan dus als volgt worden geschreven, waarbij we gebruik maken van het *aankoppelen van methoden* (method chaining):
 
-[source,perl6]
+[source,raku]
 ----
 my @array = <7 8 9 0 1 2 4 3 5 6 7 8 9>;
 my @resultaat = @array.unique.sort.reverse;
@@ -1494,7 +1492,7 @@ Je kunt zien dat het aankoppelen van methoden _veel beter leest_.
 
 === Aanvoer Operator
 De *aanvoer operator*, ook wel _pipe_ genoemd in sommige functioneel programmeertalen, geeft een nog beter visualisatie van het aankoppelen van methoden.
-[source,perl6]
+[source,raku]
 .Voorwaardse Aanvoer
 ----
 my @array = <7 8 9 0 1 2 4 3 5 6 7 8 9>;
@@ -1515,7 +1513,7 @@ Start met `array` en geef een lijst van unieke elementen
 Zoals je kunt zien is de volgorde van de aanroepen van de methoden van voor naar achter.
 
 
-[source,perl6]
+[source,raku]
 .Achterwaardse Aanvoer
 ----
 my @array = <7 8 9 0 1 2 4 3 5 6 7 8 9>;
@@ -1532,7 +1530,7 @@ De volgorde van de aanroepen van de methoden is van achteren naar voren.
 
 === Hyper Operator
 De *hyper operator* `>>.` roept de methode aan op elke element van een lijst en geeft een lijst terug met het resultaat van die aanroepen.
-[source,perl6]
+[source,raku]
 ----
 my @array = <0 1 2 3 4 5 6 7 8 9 10>;
 sub is-even($var) { $var %% 2 };
@@ -1554,7 +1552,7 @@ Men moet dus voorzichtig zijn bij het aanroepen van methoden met neveneffecten, 
 Een *junctie* is een logische superpositie van waarden.
 
 In onderstaand voorbeeld is `1|2|3` een junctie.
-[source,perl6]
+[source,raku]
 ----
 my $var = 2;
 if $var == 1|2|3 {
@@ -1579,7 +1577,7 @@ De voordelen zijn:
 Om een luie lijst te maken gebruiken we de `...` infix operator. +
 Een luie lijst heeft een of meer *startelementen*, een *generator* en een *eindpunt*.
 
-[source,perl6]
+[source,raku]
 .Simpele luie lijst
 ----
 my $luielijst = (1 ... 10);
@@ -1588,7 +1586,7 @@ say $luielijst;
 Het start element is 1 en het eindpunt is 10.  Er is geen generator aangegeven, dus de default generator wordt gebruikt (+1). +
 In andere woorden, deze luie lijst zal de volgende waarden teruggeven (als daarom wordt gevraagd): (1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
 
-[source,perl6]
+[source,raku]
 .Oneindige luie lijst
 ----
 my $luielijst = (1 ... Inf);
@@ -1596,7 +1594,7 @@ say $luielijst;
 ----
 Deze luie lijst kan een getal tussen 1 en oneindig geven, in andere woorden alle natuurlijke getallen.
 
-[source,perl6]
+[source,raku]
 .Luie lijst met een afgeleide generator
 ----
 my $luielijst = (0,2 ... 10);
@@ -1606,7 +1604,7 @@ De startelementen zijn 0 en 2 en het eindpunt is 10.
 Er is geen generator aangegeven, maar door de aangegeven startelementen kan Raku deduceren dat de generator (+2) is +
 Deze luie lijst zal de volgende waarden teruggeven (als daarom wordt gevraagd): (0, 2, 4, 6, 8, 10)
 
-[source,perl6]
+[source,raku]
 .Luie lijst met een specifieke generator
 ----
 my $luielijst = (0, { $_ + 3 } ... 12);
@@ -1623,14 +1621,14 @@ De generator springt dan _over_ het eindpunt.
 
 In plaats van `0 ...^ * > 10` kun je ook `0 ... 10` schrijven +
 Je kunt dat lezen als: vanaf 0 tot de eerste waarde die groter is dan 10 (maar sluit die dan uit)
-[source,perl6]
+[source,raku]
 .Deze generator zal nooit stoppen
 ----
 my $luielijst = (0, { $_ + 3 } ... 10);
 say $luielijst;
 ----
 
-[source,perl6]
+[source,raku]
 .Deze generator zal wel stoppen
 ----
 my $luielijst = (0, { $_ + 3 } ...^ * > 10);
@@ -1641,7 +1639,7 @@ say $luielijst;
 === Closures
 Alle code objecten in Raku zijn zogenaamde `closures`, hetgeen betekent dat ze kunnen refereren aan lokale variabelen die zichtbaar zijn buiten het directe eigen bereik.
 
-[source,perl6]
+[source,raku]
 ----
 sub maak-begroeting {
     my $naam = "Jan Jansen";
@@ -1669,7 +1667,7 @@ Die omgeving bestaat uit elke lokale variabele die "zichtbaar" (in-scope) was op
 In dit geval, `$groeter` is een closure waarin zich zowel de `begroeting` subroutine bevat als ook de `Jan Jansen` string die bestond toen de closure werd aangemaakt.
 
 Laten we eens naar een interessanter voorbeeld kijken:
-[source,perl6]
+[source,raku]
 ----
 sub groeter-generator($periode) {
   return sub ($naam) {
@@ -1717,7 +1715,7 @@ Bijkijk onderstaand voorbeeld om deze relatie beter te begrijpen:
 In het taalgebruik van _object georiënteerd_ programmeren zeggen we dat de objecten *instanties* zijn van een klasse.
 
 Bekijk het onderstaande script:
-[source,perl6]
+[source,raku]
 ----
 class Mens {
     has $.naam;
@@ -1737,7 +1735,7 @@ In het bovenstaande script, bevat de variabele `$jan` de nieuwe instantie van "M
 De argumenten op naam die we aan de `.new()` methode meegeven, worden gebruikt om de attributen van het nieuwe object te initialiseren.
 
 We kunnen een klasse ook een _lexicaal gebied_ geven door middel van `my`:
-[source,perl6]
+[source,raku]
 ----
 my class Mens {
 
@@ -1752,14 +1750,14 @@ Om toegang te verlenen aan de attributen vanaf buiten het object, gebruiken we m
 Onderstaande scripts geven hetzelfde resultaat.
 
 .Directe toegang tot een variabele
-[source,perl6]
+[source,raku]
 ----
 my $var = 7;
 say $var;
 ----
 
 .Inkapseling
-[source,perl6]
+[source,raku]
 ----
 my $var = 7;
 sub geef-var {
@@ -1779,7 +1777,7 @@ Bij klassen kunnen twee sigils worden gebruikt:
 Als men geen twigil meegeeft, is een attribuut privé.  Voor de leesbaarheid is het een goede gewoonte om in zo'n geval altijd de `!` twigil te gebruiken.
 
 Met wat we zojuist gezien hebben, zouden we bovenstaande klasse moeten herschrijven als:
-[source,perl6]
+[source,raku]
 ----
 class Mens {
     has $!naam;
@@ -1811,7 +1809,7 @@ Als je bovenstaande voorbeelden bekijkt, dan zul je zien dat alle argumenten die
 Wat als ik niet telkens de naam van elk attribuut wil meegeven als ik een nieuw object wil maken? +
 In dat geval moeten we een andere constructeur maken die *argumenten op positie* accepteert.
 
-[source,perl6]
+[source,raku]
 ----
 class Mens {
     has $.naam;
@@ -1839,7 +1837,7 @@ Normaal gesproken zijn methoden nodig om bepaalde acties op de attributen van ee
 Dit bekrachtigt het concept van inkapseling.  De attributen van een object kunnen alleen worden gemanipuleerd vanaf binnen de klasse van het object door gebruik van methoden.
 De buitenwereld kan alleen maar gebruik maken van de methoden van het object en heeft geen toegang tot de attributen van het object.
 
-[source,perl6]
+[source,raku]
 ----
 class Mens {
     has $.naam;
@@ -1886,7 +1884,7 @@ Aangezien we niet willen dat gebruikers die methode direct kunnen aanroepen, def
 Door een `!` voor de naam van een methode te plaatsen, geven we aan dat het om een privé methode gaat.
 Privé methoden moeten worden aangeroepen met een `!` in plaats van met `.`
 
-[source,perl6]
+[source,raku]
 ----
 method !ikbenprivé {
     #code waar het over gaat
@@ -1905,7 +1903,7 @@ Zij kunnen worden geïnitialiseerd bij de definitie. +
 Klasse attributen worden gedefinieerd met `my` in plaats van met `has`. +
 Zij worden aangeroepen op de klasse zelf in plaats van op haar objecten.
 
-[source,perl6]
+[source,raku]
 ----
 class Mens {
     has $.naam;
@@ -1926,7 +1924,7 @@ In alle voorbeelden die we tot nu toe hebben gezien, hebben we accessors alleen 
 
 Maar wat nu als we de waarde van een attribuut willen veranderen? +
 In dat geval moeten we die attribuut als _lees/schrijf_ markeren met de sleutelwoorden `is rw` (read/write).
-[source,perl6]
+[source,raku]
 ----
 class Mens {
     has $.naam;
@@ -1953,7 +1951,7 @@ Mensen hebben twee attributen: naam en leeftijd. +
 Werknemers hebben 4 attributen: naam, leeftijd, bedrijf en salaris
 
 Men zou geneigd kunnen zijn om de klassen als volgt te definiëren:
-[source,perl6]
+[source,raku]
 ----
 class Mens {
     has $.naam;
@@ -1970,7 +1968,7 @@ class Werknemer {
 Hoewel bovenstaande code technisch gezien correct is, is het qua concept van lage kwaliteit.
 
 Een betere manier om zoiets te schrijven is:
-[source,perl6]
+[source,raku]
 ----
 class Mens {
     has $.naam;
@@ -1995,7 +1993,7 @@ We noemen dit concept *overnemen* (overriding).
 
 In het onderstaande voorbeeld wordt de method `stel-jezelf-voor` geërfd door de Werknemer klasse.
 
-[source,perl6]
+[source,raku]
 ----
 class Mens {
     has $.naam;
@@ -2018,7 +2016,7 @@ $jessica.stel-jezelf-voor;
 ----
 Het overnemen werkt als volgt:
 
-[source,perl6]
+[source,raku]
 ----
 class Mens {
     has $.naam;
@@ -2053,7 +2051,7 @@ Ze worden gedefinieerd met het `submethod` sleutelwoord.
 === Meervoudige Overerving
 Meervoudige overerving is toegestaan in Raku.  Een klasse kan van meer dan één andere klasse erven.
 
-[source,perl6]
+[source,raku]
 ----
 class staafdiagram {
     has Int @.staaf-waarden;
@@ -2108,7 +2106,7 @@ Als we die methode op `combo-diagram` aanroepen zal Raku dit conflict proberen o
 .Correctie
 Om ervoor te zorgen dat dit correct functioneert, hadden we een methode `plot` in de `combo-diagram` klasse moeten definiëren.
 
-[source,perl6]
+[source,raku]
 ----
 class staafdiagram {
     has Int @.staaf-waarden;
@@ -2162,7 +2160,7 @@ Verkocht vs Voorspeld:
 Rollen kunnen worden gedefinieerd met het sleutelwoord `role` en klassen die een rol willen "spelen" kunnen dat aangeven met het `does` sleutelwoord.
 
 .Laten we het voorbeeld van meervoudige overerving herschrijven met rollen:
-[source,perl6]
+[source,raku]
 ----
 role staafdiagram {
     has Int @.staaf-waarden;
@@ -2205,7 +2203,7 @@ Nu zul je jezelf afvragen: als rollen net als klassen werken, wat is dan hun nut
 Om deze vraag te beantwoorden passen we het eerste script dat we gebruikten om meervodige overerving te laten zien,
 degene waarin we hadden _vergeten_ om de `plot` methode te definiëren.
 
-[source,perl6]
+[source,raku]
 ----
 role staafdiagram {
     has Int @.staaf-waarden;
@@ -2254,7 +2252,7 @@ Rollen waarschuwen je wanneer er een conflict is.
 *Introspectie* is het verkrijgen van informatie over de eigenschappen van een object, zoals het type, haar attributen of haar methoden.
 
 
-[source,perl6]
+[source,raku]
 ----
 class Mens {
     has $.naam;
@@ -2312,7 +2310,7 @@ We zeggen dat exceptions worden _geworpen_ (thrown).
 
 Bekijk onderstaand script dat correct kan worden uitgevoerd:
 
-[source,perl6]
+[source,raku]
 ----
 my Str $naam;
 $naam = "Joanna";
@@ -2328,7 +2326,7 @@ Hoe gaat het?
 
 Bekijk nu onderstaand script dat een exception werpt:
 
-[source,perl6]
+[source,raku]
 ----
 my Str $naam;
 $naam = 123;
@@ -2346,7 +2344,7 @@ Je zou hebben moeten zien dat zodra er een fout optreedt (in dit geval het toewi
 
 *Exception handling* is het proces van het _opvangen_ van de exceptions die worden _geworpen_ om ervoor te zorgen dat het script blijft werken.
 
-[source,perl6]
+[source,raku]
 ----
 my Str $naam;
 try {
@@ -2369,7 +2367,7 @@ Hoe gaat het?
 
 Exception handling wordt gedaan door middel van een `try-catch` block.
 
-[source,perl6]
+[source,raku]
 ----
 try {
     # voer hier de code in
@@ -2386,7 +2384,7 @@ try {
 Het `CATCH` block kan worden gedefinieerd op dezelfde manier als een `given` block.
 Dat betekent dat we verschillende soorten van exceptions kunnen _opvangen_ en afhandelen.
 
-[source,perl6]
+[source,raku]
 ----
 try {
     # voer hier de code in
@@ -2409,14 +2407,14 @@ Man kan twee soorten van exceptions werpen:
 
 * getypeerde exceptions
 
-[source,perl6]
+[source,raku]
 .ad-hoc
 ----
 my Int $leeftijd = 21;
 die "Fout !";
 ----
 
-[source,perl6]
+[source,raku]
 .getypeerd
 ----
 my Int $age = 21;
@@ -2439,7 +2437,7 @@ NOTE: Zie https://docs.raku.org/type-exceptions.html voor een complete lijst van
 Een reguliere expressie, of _regex_, is een reeks van karakters die worden gebruikt voor patroonherkenning. +
 De gemakkelijkste manier om dit te begrijpen, is om het te beschouwen als een patroon.
 
-[source,perl6]
+[source,raku]
 ----
 if 'verlichting' ~~ m/ licht / {
     say "verlichting bevat het woord licht";
@@ -2465,7 +2463,7 @@ Tenzij het specifiek wordt aangeduid, is witruimte zonder betekenis, dus `m/lich
 Alphanumerieke karakters en het liggend streepje `_` mogen als zichzelf worden geschreven. +
 Alle andere karakters moeten speciaal worden behandeld door er een backslash `\\` voor te plaatsen of door ze te omgeven door aanhalingstekens.
 
-[source,perl6]
+[source,raku]
 .Backslash
 ----
 if 'Temperatuur: 13' ~~ m/ \: / {
@@ -2473,7 +2471,7 @@ if 'Temperatuur: 13' ~~ m/ \: / {
 }
 ----
 
-[source,perl6]
+[source,raku]
 .Enkele Aanhalingstekens
 ----
 if 'Leeftijd = 13' ~~ m/ '=' / {
@@ -2481,7 +2479,7 @@ if 'Leeftijd = 13' ~~ m/ '=' / {
 }
 ----
 
-[source,perl6]
+[source,raku]
 .Dubbele Aanhalingstekens
 ----
 if 'naam@bedrijf.nl' ~~ m/ "@" / {
@@ -2513,7 +2511,7 @@ We kunnen ook vergelijken met de inverse van een categorie (alle karakters behal
 
 |===
 
-[source,perl6]
+[source,raku]
 ----
 if "Jan123" ~~ / \d / {
     say "Deze naam is niet toegestaan want het bevat cijfers";
@@ -2532,7 +2530,7 @@ Het vergelijken van categorieën van karakters zoals we in de vorige sectie zage
 Maar wellicht is het gebruik van Unicode eigenschappen een meer systematische aanpak. +
 Unicode eigenschappen worden omgeven door `<: >`
 
-[source,perl6]
+[source,raku]
 ----
 if "Jan123" ~~ / <:N> / {
     say "Bevat een cijfer";
@@ -2556,7 +2554,7 @@ Jokers (wildcards) kunnen ook in een regex worden gebruikt.
 
 De punt `.` betekent elk enkel karakter.
 
-[source,perl6]
+[source,raku]
 ----
 if 'abc' ~~ m/ a.c / {
     say "Komt overeen";
@@ -2576,7 +2574,7 @@ Factoren (quantifiers) komen na een karakter en worden gebruikt om aan te geven 
 
 Het vraagteken `?` betekent nul of één keer.
 
-[source,perl6]
+[source,raku]
 ----
 if 'ac' ~~ m/ a?c / {
     say "Komt overeen";
@@ -2592,7 +2590,7 @@ if 'c' ~~ m/ a?c / {
 
 De asterisk `*` betekent nul of meer keer.
 
-[source,perl6]
+[source,raku]
 ----
 if 'az' ~~ m/ a*z / {
     say "Komt overeen";
@@ -2618,7 +2616,7 @@ if 'z' ~~ m/ a*z / {
 
 Het plusteken `+` betekent tenminste één keer.
 
-[source,perl6]
+[source,raku]
 ----
 if 'az' ~~ m/ a+z / {
     say "Komt overeen";
@@ -2645,7 +2643,7 @@ if 'z' ~~ m/ a+z / {
 === Resultaten van een Vergelijking
 Elke keer wanneer het vergelijken van een string met een regex succesvol is, wordt het resultaat in een speciale variable `$/` geplaatst.
 
-[source,perl6]
+[source,raku]
 .Script
 ----
 if 'Rakudo is een Raku compiler waarmee...' ~~ m/:s Raku compiler / {
@@ -2689,7 +2687,7 @@ WARNING: De regex die in dit voorbeeld wordt gebruikt voor het valideren van een
 Het is alleen bedoeld om de functionaliteit van een regex in Raku te tonen. +
 Gebruik deze regex niet in deze vorm in productie.
 
-[source,perl6]
+[source,raku]
 .Script
 ----
 my $email = 'jan.met@raku.org';
@@ -2729,7 +2727,7 @@ De regex kan als volgt uit elkaar worden gehaald:
 
 * *top-niveau* `<:L>+`
 
-[source,perl6]
+[source,raku]
 .We kunnen een regex ook in aparte regexen op naam opdelen
 ----
 my $email = 'jan.met@raku.org';
@@ -2778,7 +2776,7 @@ Gelukkig is er al een Raku module geimplementeerd voor het MD5 algoritme.  Laten
 `zef install Digest::MD5`
 
 Voer daarna onderstaand script uit:
-[source,perl6]
+[source,raku]
 ----
 use Digest::MD5;
 my $wachtwoord = "wachtwoord123";
@@ -2804,7 +2802,7 @@ Karakters zijn gedefinieerd door een: +
 === Het gebruik van Unicode
 
 .Laten we eens zien hoe we met Unicode karakters kunnen laten zien
-[source,perl6]
+[source,raku]
 ----
 say "a";
 say "\x0061";
@@ -2819,7 +2817,7 @@ Bovenstaande 3 regels laten verschillende manieren zien om een karakter op te bo
 . Door `\c` te gebruiken en de naam van het codepoint aan te geven.
 
 .Laten we eens proberen om een smiley te tonen:
-[source,perl6]
+[source,raku]
 ----
 say "☺";
 say "\x263a";
@@ -2827,7 +2825,7 @@ say "\c[WHITE SMILING FACE]";
 ----
 
 .Voorbeeld van het gebruik van twee codepoints
-[source,perl6]
+[source,raku]
 ----
 say "á";
 say "\x00e1";
@@ -2842,7 +2840,7 @@ De letter `á` kan  worden geschreven als:
 * door combinatie van codepoints voor `a` en acute `\x0061\x0301`
 
 .Sommige van de methoden die kunnen worden gebruikt:
-[source,perl6]
+[source,raku]
 ----
 say "á".NFC;
 say "á".NFD;
@@ -2861,7 +2859,7 @@ LATIN SMALL LETTER A WITH ACUTE
 `uniname` geeft de naam van de codepoint.
 
 .Unicode letters kunnen ook gebruikt worden in namen:
-[source,perl6]
+[source,raku]
 ----
 my $Δ = 1;
 $Δ++;
@@ -2869,7 +2867,7 @@ say $Δ;
 ----
 
 .Unicode kan ook worden gebruikt in berekeningen
-[source,perl6]
+[source,raku]
 ----
 my $var = 2 + ⅒;
 say $var;
@@ -2886,7 +2884,7 @@ In sommige delen van de wereld worden soms andere verzamelingen van cijfers gebr
 
 Je hoeft niets speciaals te doen om cijfers uit deze andere verzamelingen te ondersteunen: alle methodes en operatoren werken zoals te verwachten valt.
 
-[source,perl6]
+[source,raku]
 ----
 say (٤,٥,٦,1,2,3).sort; # (1 2 3 4 5 6)
 say 1 + ٩;              # 10
@@ -2897,7 +2895,7 @@ Indien we de algemene string operatoren gebruiken, kan het zijn dat we niet alti
 
 ===== Vergelijking
 
-[source,perl6]
+[source,raku]
 ----
 say 'a' cmp 'B'; # More
 ----
@@ -2908,7 +2906,7 @@ Hoewel dit technisch gezien juist is, is het waarschijnlijk niet waar we op uit 
 Gelukkig heeft Raku methoden en operator die het link:http://unicode.org/reports/tr10/[Unicode Collation Algorithm] implementeren. +
 Eén daarvan is `unicmp` dat zich net zo gedraagt als `cmp`, maar kijkt naar de unicode-eigenschappen.
 
-[source,perl6]
+[source,raku]
 ----
 say 'a' unicmp 'B'; # Less
 ----
@@ -2917,7 +2915,7 @@ Zoals je kunt zien geeft het gebruik van de `unicmp` operator het resultaat dat 
 ===== Sorteren
 De `sort` methode sorteert op basis van "code points".  Raku geeft je ook een `collate` methode die sorteert volgens het link:http://unicode.org/reports/tr10/[Unicode Collation Algorithm].
 
-[source,perl6]
+[source,raku]
 ----
 say ('a','b','c','D','E','F').sort;    # (D E F a b c)
 say ('a','b','c','D','E','F').collate; # (a b c D E F)
@@ -2939,7 +2937,7 @@ Op dit moment is het belangrijk om op te merken dat parallelisme twee dingen kan
 Laten we beginnen met de laatste.
 
 ==== Data Parallelisme
-[source,perl6]
+[source,raku]
 ----
 my @array = 0..50000;                        # vullen van het Array
 my @resultaat = @array.map({ is-prime $_ }); # roep is-prime aan op elk element van het Array
@@ -2952,7 +2950,7 @@ De `is-prime` subroutine wordt voor elk element van het array achter elkaar aang
 `is-prime @array[0]` en dan `is-prime @array[1]` en dan `is-prime @array[2]` etc.
 
 .Gelukkig kunnen we `is-prime` tegelijkertijd op meer dan één array element aanroepen:
-[source,perl6]
+[source,raku]
 ----
 my @array = 0..50000;                             # vullen van het Array
 my @resultaat = @array.race.map({ is-prime $_ }); # roep is-prime aan op elk element van het Array
@@ -2968,7 +2966,7 @@ Nadat je beide voorbeelden (met en zonder `race`) hebt uitgevoerd, vergelijk dan
 ====
 `race` behoudt de volgorde van de elementen niet.  Als je de volgorde wilt behouden, dan moet je `hyper` gebruiken.
 
-[source,perl6]
+[source,raku]
 .race
 ----
 my @array = 1..1000;
@@ -2976,7 +2974,7 @@ my @resultaat = @array.race.map( {$_ + 1} );
 .say for @resultaat;
 ----
 
-[source,perl6]
+[source,raku]
 .hyper
 ----
 my @array = 1..1000;
@@ -2990,7 +2988,7 @@ Als je beide voorbeelden uitvoert, zul je zien dat de ene wel gesorteerd is en d
 
 ==== Taak Parallelisme
 
-[source,perl6]
+[source,raku]
 ----
 my @array1 = (0..49999);
 my @array2 = (2..50001);
@@ -3017,7 +3015,7 @@ en gaat dan `@array2.map( {is-prime($_ - 1)} )` uitvoeren.
 De operaties die we op elk array uitvoeren zijn niet afhankelijk van elkaar.
 
 .Dus waarom niet in parallel?
-[source,perl6]
+[source,raku]
 ----
 my @array1 = (0..49999);
 my @array2 = (2..50001);
@@ -3092,7 +3090,7 @@ gcc -dynamiclib -o libncitest.dylib ncitest.c
 
 Maak vervolgens een bestand aan met het volgende Raku programma, in dezelfde directory waar je de C-bibliotheek hebt gecompileerd.  En voer dat programma dan uit.
 
-[source,perl6]
+[source,raku]
 .ncitest.raku
 ----
 use NativeCall;
@@ -3122,7 +3120,7 @@ Dat kun je doen door het gebruik van de `is symbol` eigenschap.
 
 Laten we bovenstaand Raku programma aanpassen en de Raku subroutine de naam `hallo` geven in plaats van `hallovanc`.
 
-[source,perl6]
+[source,raku]
 .ncitest.raku
 ----
 use NativeCall;
@@ -3151,7 +3149,7 @@ void hallovanc (char* naam) {
 }
 ----
 
-[source,perl6]
+[source,raku]
 .ncitest.raku
 ----
 use NativeCall;
@@ -3175,7 +3173,7 @@ int telop (int a, int b) {
 }
 ----
 
-[source,perl6]
+[source,raku]
 .ncitest.raku
 ----
 use NativeCall;

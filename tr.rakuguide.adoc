@@ -4,10 +4,7 @@ Naoum Hankache <naoum@hankache.com>; Yalın Pala <yalinpala@protonmail.com>
 :keywords: perl6, perl 6, giriş, perl6giriş, perl 6'ya giriş, perl 6 öğretici
 :Revision: 1.0
 :icons: font
-:source-highlighter: pygments
-//:pygments-style: manni
-:source-language: perl6
-:pygments-linenums-mode: table
+:source-highlighter: rouge
 :toc: left
 :doctype: book
 :lang: tr
@@ -76,6 +73,7 @@ Raku prosedürel, nesne yönelimli ve fonksiyonel programlamayı destekler. _(mu
 .Linux
 
 Rakudo Star kurulumu için komutları takip edin:
+[source,shell]
 ----
 mkdir ~/rakudo && cd $_
 curl -LJO https://rakudo.org/latest/star/src
@@ -137,12 +135,12 @@ Bu editörlerden herhangi birisini kullanabilirsiniz.
 === Merhaba Dünya!
 `Merhaba Dünya` ritüelini yerine getirerek başlayalım.
 
-[source,perl6]
+[source,raku]
 say 'Merhaba Dünya';
 
 Ayrıca şu şekilde de yazılabilir:
 
-[source,perl6]
+[source,raku]
 'Merhaba Dünya'.say;
 
 === Söz Dizimine Genel Bakış
@@ -225,17 +223,17 @@ Yorumlar üç tipe ayrılmışlardır:
 
 * Tek satırlık yorumlar:
 +
-[source,perl6]
+[source,raku]
 # Bu tek satırlık bir yorumdur
 
 * Gömülü yorumlar:
 +
-[source,perl6]
+[source,raku]
 say #`(Bu gömülü bir yorumdur.) "Merhaba"
 
 * Çok satırlı yorumlar:
 +
-[source,perl6]
+[source,raku]
 -----------------------------
 =begin yorum
 Bu bir çok satırlı yorumdur.
@@ -254,7 +252,7 @@ String veri tipinin tek veya çift tırnak işareti ile sınırlandırılması g
 * İşleme tabii tutulması gereken bir değişken içeriyorsa.
 
 Örneğin:
-[source,perl6]
+[source,raku]
 -----------------------------------
 say 'Hello World';   # Hello World
 say "Hello World";   # Hello World
@@ -426,7 +424,7 @@ Değişkenlerin başın da, değişkenleri kategorize etmek için kullanılan ka
 === Skalar Değişkenler
 Bir skalar değeri veya referansı tutar.
 
-[source,perl6]
+[source,raku]
 ----
 # String
 my $name = 'Cahit Sıtkı Tarancı';
@@ -439,7 +437,7 @@ say $age;
 
 Bir skaların tuttuğu değere göre bazı operasyonlar gerçekleştirebiliriz.
 
-[source,perl6]
+[source,raku]
 .String
 ----
 my $name = 'Cahit Sıtkı Tarancı';
@@ -456,7 +454,7 @@ CAHIT SITKI TARANCI
 
 NOTE: String verilere uygulanabilen metotların listesi için https://docs.perl6.org/type/Str adresine bakabilirsiniz.
 
-[source,perl6]
+[source,raku]
 .Integer
 ----
 my $age = 17;
@@ -469,7 +467,7 @@ True
 
 NOTE: Integer verilere uygulanabilen metotların listesi için https://docs.perl6.org/type/Int adresine bakabilirsiniz.
 
-[source,perl6]
+[source,raku]
 .Rational Number
 ----
 my $age = 2.3;
@@ -489,7 +487,7 @@ NOTE: Rational number verilere uygulanabilen metotların listesi için https://d
 === Diziler
 Diziler birden fazla veri içerebilen listelerdir.
 
-[source,perl6]
+[source,raku]
 ----
 my @animals = 'camel','llama','owl';
 say @animals;
@@ -499,7 +497,7 @@ Diziler ile yapılabilecek işlemler:
 
 TIP: `~` operatörü ile string birleştirme yapabiliyorduk.
 
-[source,perl6]
+[source,raku]
 .`Betik`
 ----
 my @animals = 'camel','vicuña','llama';
@@ -535,19 +533,19 @@ We're going to let go: vicuña llama and keep the camel
 
 ==== Sabit Boyutlu Diziler
 Temel bir dizi tanımı aşağıdaki gibidir:
-[source,perl6]
+[source,raku]
 my @array;
 
 Temel bir dizi sonsuz uzunlukta olabilir ve uzunluğu eleman ekledikçe otomatik arttırılır. Herhangi bir sayıda elemanı kabul eder.
 Buna karşılık sabit boyutlu diziler de oluşturulabilir. Bu diziler tanımlanan uzunluğun dışına çıkamaz.
 
 Sabit boyutlu bir dizi tanımlamak için, adından hemen sonra köşeli parantez içerisinde tutabileceği eleman sayısı belirtilir.
-[source,perl6]
+[source,raku]
 my @array[3];
 
 Bu dizi 0'dan 2'ye indexlenen en fazla 3 elemana sahip olabilecektir.
 
-[source,perl6]
+[source,raku]
 ----
 my @array[3];
 @array[0] = "first value";
@@ -556,7 +554,7 @@ my @array[3];
 ----
 
 Bu diziye dördüncü bir eleman eklemeye çalıştığımızda:
-[source,perl6]
+[source,raku]
 ----
 my @array[3];
 @array[0] = "first value";
@@ -574,13 +572,13 @@ hatasını döndürecektir.
 Şimdiye kadar görüğümüz diziler tek boyutluydu.
 Raku çok boyutlu diziler tanımlamamıza izin verir.
 
-[source,perl6]
+[source,raku]
 my @tbl[3;2];
 
 Bu dizi iki boyutludur. İlk boyut maksimum 3 değer, ikinci boyut maksimum 2 değer içerebilir.
 3x2'lik bir tablo gibi düşünülebilir.
 
-[source,perl6]
+[source,raku]
 ----
 my @tbl[3;2];
 @tbl[0;0] = 1;
@@ -606,14 +604,14 @@ say @tbl
 NOTE: Diziler hakkında daha fazla bilgiye https://docs.perl6.org/type/Array adresinden ulaşabilirsiniz.
 
 === Hashler
-[source,perl6]
+[source,raku]
 .Bir hash Anahtar/Değer çiftlerinden oluşur.
 ----
 my %capitals = ('UK','London','Germany','Berlin');
 say %capitals;
 ----
 
-[source,perl6]
+[source,raku]
 .Hash oluşturmanın farklı bir yolu:
 ----
 my %capitals = (UK => 'London', Germany => 'Berlin');
@@ -621,7 +619,7 @@ say %capitals;
 ----
 
 Hashler üzerinde çalıştırılabilecek bazı metotlar şöyle:
-[source,perl6]
+[source,raku]
 .`Betik`
 ----
 my %capitals = (UK => 'London', Germany => 'Berlin');
@@ -654,7 +652,7 @@ NOTE: Hashler hakkında daha fazla bilgiye https://docs.perl6.org/type/Hash adre
 
 TIP: `.WHAT` değişkende tutulan değerin tipini döndürür.
 
-[source,perl6]
+[source,raku]
 ----
 my $var = 'Text';
 say $var;
@@ -671,7 +669,7 @@ Bu programlama tarzına dinamik yazım denir. Dinamik değişkenlerin herhangi b
 
 Şimdi aşağıdaki örneği çalıştırmayı deneyelim, değişken adından önce `Int` olduğunu tanımlayalım.
 
-[source,perl6]
+[source,raku]
 ----
 my Int $var = 'Text';
 say $var;
@@ -687,7 +685,7 @@ Bu programlama tarzına statik yazım denir. Değişkenin tipinin atama öncesi 
 Raku *kadelemeli* _-gradually typed_ olarak yazılan bir dil olarak tanımlanmıştır; hem *statik* hem de *dinamik* yazıma izin verir.
 
 .Diziler ve hashler statik olarak yazılabilir:
-[source,perl6]
+[source,raku]
 ----
 my Int @array = 1,2,3;
 say @array;
@@ -734,7 +732,7 @@ say %country-codes.WHAT;
 Veri tipi gibi nesne özellikleri hakkında bilgi alma sürecidir. +
 Önceki örneklerde değişken tipini döndürmek için `.WHAT` kullanmıştık.
 
-[source,perl6]
+[source,raku]
 ----
 my Int $var;
 say $var.WHAT;    # (Int)
@@ -758,7 +756,7 @@ Bir değişkenin tipini temizlemek için `Nil` ataması yapılır.
 Kullanılmadan önce bir değişkenin tanımlanması gerekir.
 Raku'da birçok tanımlama kullanılmaktadır. Biz şuana kadar `my` kullanıyorduk.
 
-[source,perl6]
+[source,raku]
 my $var=1;
 
 `my` bildirimi kapsamı verir. Başka bir deyişle `my` ile tanımlanan bir değişken yalnızca tanımladığı blokta erişilebilir olacaktır.
@@ -767,7 +765,7 @@ Raku'da bir blok `{ }` ile sınırlandırılmış alandır.
 Eğer yazdığımız kodda blok blunmuyorsa, değişken Raku betiğinin tamamında kullanılabilir olacaktır.
 
 
-[source,perl6]
+[source,raku]
 ----
 {
   my Str $var = 'Text';
@@ -778,7 +776,7 @@ say $var;   # Erişilemez ve hata döndürür
 
 Bir değişkene yalnızca tanımlandığı blokta erişilebildiğinden, aynı değişken adı farklı bir blokta kullanılabilir.
 
-source,perl6]
+[source,raku]
 ----
 {
   my Str $var = 'Text';
@@ -791,7 +789,7 @@ say $var;
 === Atama ve Bağlama (_Assignment vs. Binding_)
 Önceki örneklerde, değişkenlere değer atamanın nasıl yapıldığını gördük.
 *Atama* `=` operatörü ile yapılır.
-[source,perl6]
+[source,raku]
 ----
 my Int $var = 123;
 say $var;
@@ -799,7 +797,7 @@ say $var;
 
 Bir değişkene atanan değeri değiştirebiliriz:
 
-[source,perl6]
+[source,raku]
 .Atama
 ----
 my Int $var = 123;
@@ -817,7 +815,7 @@ say $var;
 Öte yandan bir değişkene *bağlanan* veriyi değiştiremeyiz.
 *Bağlama* `:=` operatörü ile yapılır.
 
-[source,perl6]
+[source,raku]
 .Bağlama
 ----
 my Int $var := 123;
@@ -832,7 +830,7 @@ say $var;
 Cannot assign to an immutable value
 ----
 
-[source,perl6]
+[source,raku]
 .Değişkenler diğer değişkenlere de bağlanabilir:
 ----
 my $a;
@@ -861,7 +859,7 @@ Fonksiyonlar ile mutatörler arasında ayrım yapmak önemlidir.
 Fonksiyonlar çağırıldıkları nesnenin durumunu değiştirmezler.
 Mutatörler nesnenin durumunu değiştirirler ve metotlar gibi düşünülebilir.
 
-[source,perl6,linenums]
+[source,raku,linenums]
 .`Betik`
 ----
 my @numbers = [7,2,4,9,11,3];
@@ -901,7 +899,7 @@ Raku birçok döngü ve koşul yapısına sahiptir.
 === if
 Kod ancak bir koşul sağlandığında çalışır. Yani bir ifadenin `True` olarak değerlendirilmesi gerekir.
 
-[source,perl6]
+[source,raku]
 ----
 my $age = 19;
 
@@ -915,7 +913,7 @@ Koşul olumsuz `False` olarak değerlendirildiğinde yürütülecek alternatif b
 * `else`
 * `elsif`
 
-[source,perl6]
+[source,raku]
 ----
 # değişkenin farklı değerleri için aynı kodu çalıştırın
 my $number-of-seats = 9;
@@ -934,7 +932,7 @@ if ifadesinin, olumsuz halini yazarken kullanılabilir.
 
 örnek:
 
-[source,perl6]
+[source,raku]
 ----
 my $clean-shoes = False;
 
@@ -944,7 +942,7 @@ if not $clean-shoes {
 ----
 Yukarıdaki kod aşağıdaki şekilde yazılabilir:
 
-[source,perl6]
+[source,raku]
 ----
 my $clean-shoes = False;
 
@@ -963,7 +961,7 @@ Raku'da bir ifadeyi olumsuzlamak için `!` veya `not` kullanılır.
 
 `if` ifadesi gibi kullanılır ancak değişkenin tanımlanıp tanımlanmadığını kontrol eder.
 
-[source,perl6]
+[source,raku]
 ----
 my Int $var=1;
 
@@ -973,7 +971,7 @@ with $var {
 ----
 
 Kodu değişkene değer atamadan kullandığınızda birşey olmamalı.
-[source,perl6]
+[source,raku]
 ----
 my Int $var;
 
@@ -990,7 +988,7 @@ Koşullu olan ilk `with` gerçekleşemez ise `orwith` kullanılarak alternatif b
 === for
 `for` döngüsü birden fazla değeri tek tek ele alır. Yineleme yapar.
 
-[source,perl6]
+[source,raku]
 ----
 my @array = [1,2,3];
 
@@ -1005,7 +1003,7 @@ Bir yineleme değişkeni `$array-item` oluşturduğumuza ve her bir dizi eleman�
 
 Diğer dillerdeki `switch` ifadesinin Raku'daki daha güçlü ifadesidir.
 
-[source,perl6]
+[source,raku]
 ----
 my $var = 42;
 
@@ -1020,7 +1018,7 @@ given $var {
 Başarılı bir eşleme sonrasında eşleme işlemi durdurulur ve `given` sonlanır.
 
 Alternatif olarak `proceed` ifadesi ile Perl 6'ya başarılı bir eşleme sonrasında bile eşlemeye devam etmesi söylenebilir.
-[source,perl6]
+[source,raku]
 ----
 my $var = 42;
 
@@ -1040,7 +1038,7 @@ Aslında `loop` C programlama dili ailesinde `for` döngüsü yazmaya benzer.
 
 Raku, C ailesi dillerindendir.
 
-[source,perl6]
+[source,raku]
 ----
 loop (my $i = 0; $i < 5; $i++) {
   say "The current number is $i"
@@ -1057,7 +1055,7 @@ Raku'da en yaygın _Girdi/Çıktı_ arabirimlerinden ikisi _Terminal_ ve _Dosyad
 ==== say
 `say` standart çıktıya sonuna satır sonu karakteri ekleyerek yazar.
 
-[source,perl6]
+[source,raku]
 ----
 say 'Hello Mam.';
 say 'Hello Sir.';
@@ -1072,7 +1070,7 @@ Yukarıdaki `say` ifadesini `print` ile değiştirin ve sonuçları karşılaşt
 ==== get
 `get` terminal ekranından giriş almanızı sağlar.
 
-[source,perl6]
+[source,raku]
 ----
 my $name;
 
@@ -1089,7 +1087,7 @@ Yukarıdaki kod çalıştırıldığında terminal adınızı girmenizi bekliyor
 
 Yukarıdaki kod şu şekilde yazılabilir:
 
-[source,perl6]
+[source,raku]
 ----
 my $name = prompt "Hi, what's your name? ";
 
@@ -1103,7 +1101,7 @@ Kabuk komutlarını çalıştırmak için iki altyordam kullanılabilir:
 
 * `shell` Sistem kabuğu aracılığı ile bir komut çalıştırır. Platform ve kabuk bağımlıdır.
 
-[source,perl6]
+[source,raku]
 .Eğer Linux/macOS kullanıyorsanız
 ----
 my $name = 'Neo';
@@ -1111,7 +1109,7 @@ run 'echo', "hello $name";
 shell "ls";
 ----
 
-[source,perl6]
+[source,raku]
 .Eğer Windows kullanıyorsanız
 ----
 shell "dir";
@@ -1135,7 +1133,7 @@ Johnnie 7
 Jane 8
 Joanna 7
 ----
-[source,perl6]
+[source,raku]
 ----
 my $data = slurp "datafile.txt";
 say $data;
@@ -1144,7 +1142,7 @@ say $data;
 ==== spurt
 Dosyaya veri yazılmasını sağlar.
 
-[source,perl6]
+[source,raku]
 ----
 my $newdata = "New scores:
 Paul 10
@@ -1159,7 +1157,7 @@ Kod çalıştırıldıktan sonra _newdatafile.txt_ isminde yeni bir dosya oluşt
 === Dosya ve Dizinler ile Çalışmak
 Raku kabuk komutlarına başvurmadan(örneğin `ls`) bir dizinin içeriğini listeleyebilir.
 
-[source,perl6]
+[source,raku]
 ----
 say dir;                # Mevcut dizindeki dosya ve klasörleri listeler
 say dir "/Documents";   # Özel bir dizindeki dosya ve klasörleri listeler
@@ -1167,7 +1165,7 @@ say dir "/Documents";   # Özel bir dizindeki dosya ve klasörleri listeler
 
 Buna ek olarak dizinleri oluşturabilir ve silebiliriz.
 
-[source,perl6]
+[source,raku]
 ----
 mkdir "newfolder";
 rmdir "newfolder";
@@ -1180,7 +1178,7 @@ Yolun bir dizin veya bir dosya olup olmadığını kontrol edebilirsiniz.
 
 Aşağıdaki betiği çalıştırdığınız dizinde `folder123` adında boş bir klasör ve `script123.pl6` adında boş bir pl6 dosyası oluşturun.
 
-[source,perl6]
+[source,raku]
 ----
 say "script123.pl6".IO.e;
 say "folder123".IO.e;
@@ -1209,7 +1207,7 @@ NOTE: G/Ç hakkında daha fazla bilgiye https://docs.perl6.org/type/IO adresinde
 Altprogram tanımlaması `sub` anahtarıyla başlar. Tanımlandıktan sonra adı ile çağırılabilir.
 Aşağıdaki örneği inceleyin:
 
-[source,perl6]
+[source,raku]
 ----
 sub alien-greeting {
   say "Hello earthlings";
@@ -1226,7 +1224,7 @@ Bir altyordamın tanımladığı parametre türü ve sayısına imzası denir.
 
 Aşağıdaki altprogram bir string değişkeni parametre olarak kabul eder.
 
-[source,perl6]
+[source,raku]
 ----
 sub say-hello (Str $name) {
     say "Hello " ~ $name ~ "!!!!"
@@ -1240,7 +1238,7 @@ Aynı adı taşıyan ancak imzaları farklı olan birden fazla altprogram tanım
 Altprogram çağrıldığında, çalışma zamanı ortamı, verilen bağımsız değişkenlerin sayısı ve türüne göre hangi sürümü kullanacağına karar verecektir.
 Bu tür bir altprogram `sub` yerine `multi` anahtar sözcüğü kullanılması dışında altyordamlar ile aynı şekilde tanımlanır.
 
-[source,perl6]
+[source,raku]
 ----
 multi greet($name) {
     say "Good morning $name";
@@ -1260,7 +1258,7 @@ Raku bize opsiyonel ve varsayılan parametreli olmak üzere iki altyordam tanım
 
 Opsiyonel parametreleri belirtmek için sonuna `?` karakteri koyulur.
 
-[source,perl6]
+[source,raku]
 ----
 sub say-hello($name?) {
   with $name { say "Hello " ~ $name }
@@ -1273,7 +1271,7 @@ say-hello("Laura");
 Kullanıcı isteğe bağlı parametreyi sağlamazsa parametre için varsayılan değer kullanılabilir.
 Bu altyordam tanımında belirtilen parametreye değer atayarak yapılır.
 
-[source,perl6]
+[source,raku]
 ----
 sub say-hello($name="Matt") {
   say "Hello " ~ $name;
@@ -1287,7 +1285,7 @@ say-hello("Laura");
 
 Bazen dönüş değeri için bir altprogram yürütürüz, böylece daha sonra program akışında bunu kullanabiliriz.
 
-[source,perl6]
+[source,raku]
 .Belirtilmemiş dönüş
 ----
 sub squared ($x) {
@@ -1298,7 +1296,7 @@ say "7 squared is equal to " ~ squared(7);
 
 Netlik açısından dönüşü açıkça belirtmek iyi bir fikirdir. Bunun için `return` anahtar kelimesi kullanılır.
 
-[source,perl6]
+[source,raku]
 .Belirtilmiş dönüş
 ----
 sub squared ($x) {
@@ -1311,7 +1309,7 @@ say "7 squared is equal to " ~ squared(7);
 Önceki örneklerde parametrenin belirli bir türde olmasını nasıl sınırlayabileceğimizi gördük. Aynı şey dönüş değeri için de yapılabilir.
 Dönüş değerini belirli bir tür ile sınırlamak için imza içinde `returns` veya `-\->` işareti kullanabiliriz.
 
-[source,perl6]
+[source,raku]
 .returns kullanarak
 ----
 sub squared ($x) returns Int {
@@ -1320,7 +1318,7 @@ sub squared ($x) returns Int {
 say "1.2 squared is equal to " ~ squared(1.2);
 ----
 
-[source,perl6]
+[source,raku]
 .Ok kullanarak
 ----
 sub squared ($x --> Int) {
@@ -1341,7 +1339,7 @@ Tip kısıtlamaları dönüş değerinin türünü denetlemekle kalmaz, tanımla
 Önceki örneklerde dönüş değerinin `Int` olması gerektiğini belirttik.
 Aşağıda önceki örneğin değiştirilmiş bir hali verilmiştir, `:D` ifadesi döndürülen `Int`’in tanımlanmasını zorlamak için kullanılır.
 
-[source,perl6]
+[source,raku]
 ----
 sub squared ($x --> Int:D) {
   return $x ** 2;
@@ -1367,7 +1365,7 @@ Fonksiyonlar/Altyordamlar birinci sınıf vatandaşlardır:
 Harika bir örnek `map` fonksiyonudur.
 `map` yüksek seviyeli bir fonksiyondur, başka bir fonksiyonu argüman olarak kabul edebilir.
 
-[source,perl6]
+[source,raku]
 .Betik
 ----
 my @array = <1 2 3 4 5>;
@@ -1394,7 +1392,7 @@ Anonim fonksiyonlara lambda denir. +
 Anonim fonksiyonların tanımlayıcısı(adı) yoktur.
 
 map örneğini anonim fonksiyon kullanarak tekrar yazalım.
-[source,perl6]
+[source,raku]
 ----
 my @array = <1 2 3 4 5>;
 say map(-> $x {$x ** 2},@array);
@@ -1405,7 +1403,7 @@ Raku dilinde bu gösterimi *sivri blok* olarak adlandırıyoruz.
 
 Değişkenlere fonksiyon atamak için de sivri blok kullanılabilir:
 
-[source,perl6]
+[source,raku]
 ----
 my $squared = -> $x {
   $x ** 2
@@ -1420,7 +1418,7 @@ Raku’da fonksiyonlar zincirlenebilir, bu sayede bir fonksiyonun sonucunu argü
 
 Zincirsiz çözüm:
 
-[source,perl6]
+[source,raku]
 ----
 my @array = <7 8 9 0 1 2 4 3 5 6 7 8 9>;
 my @final-array = reverse(sort(unique(@array)));
@@ -1429,7 +1427,7 @@ say @final-array;
 
 Buna karşı zincirleme yöntemde aynı örnek şu şekilde yazılabilir:
 
-[source,perl6]
+[source,raku]
 ----
 my @array = <7 8 9 0 1 2 4 3 5 6 7 8 9>;
 my @final-array = @array.unique.sort.reverse;
@@ -1441,7 +1439,7 @@ Zincirleme yönteminin anlaşılması daha kolay olduğunu görebilirsiniz.
 === Besleme Operatörü(_Feed Operator_)
 Bazı fonksiyonel programlama dillerinde boru(pipe) olarak adlandırılan besleme operatörü, zincirleme işlemini daha da görselleştirir.
 
-[source,perl6]
+[source,raku]
 .İleriye doğru besleme
 ----
 my @array = <7 8 9 0 1 2 4 3 5 6 7 8 9>;
@@ -1462,7 +1460,7 @@ say @final-array;
 ---
 İlk adımdan son adıma kadar işlem akışı yukarıdan aşşağıya iner.
 
-[source,perl6]
+[source,raku]
 .Geriye doğru besleme
 ----
 my @array = <7 8 9 0 1 2 4 3 5 6 7 8 9>;
@@ -1479,7 +1477,7 @@ Akış son adımdan ilk adıma kadar aşağıdan yukarıya doğrudur.
 
 === Hiper Operatörü(_Hyper operator_)
 `>>` ile temsil edilir. Listenin tüm elemanları üzerinde fonksiyon çağıracağından sonuçların bir listesini döndürür.
-[source,perl6]
+[source,raku]
 ----
 my @array = <0 1 2 3 4 5 6 7 8 9 10>;
 sub is-even($var) { $var %% 2 };
@@ -1495,7 +1493,7 @@ Bu her bir değeri yenilemek için for döngüsü yazmamıza gerek kalmadığı 
 Bir kavşak, değerlerin mantıksal bir süperpozisyonudur.
 
 Aşağıdaki örnekte 1|2|3 kavşaktır.
-[source,perl6]
+[source,raku]
 ----
 my $var = 2;
 if $var == 1|2|3 {
@@ -1520,7 +1518,7 @@ Yararları:
 Tembel liste oluşturmak için `…` operatörü kullanılır.
 Tembel liste başlangıç elemanları, arttırım ve son nokta içerir.
 
-[source,perl6]
+[source,raku]
 .Basit bir tembel liste
 ----
 my $lazylist = (1 ... 10);
@@ -1529,7 +1527,7 @@ say $lazylist;
 Başlangıç noktası 1 ve bitiş noktası 10’dur. Arttırım tanımlanmadığı için varsayılan olarak +1 artar.
 Diğer bir deyişle, bu tembel liste talep edilirse (1, 2, 3, 4, 5, 6, 7, 8, 9, 10) elamanları döndürebilir.
 
-[source,perl6]
+[source,raku]
 .Sonsuz tembel liste
 ----
 my $lazylist = (1 ... Inf);
@@ -1537,7 +1535,7 @@ say $lazylist;
 ----
 Bu liste 1’den sonsuza kadar olan herhangi bir tam sayıyı istendiği takdirde döndürebilir.
 
-[source,perl6]
+[source,raku]
 .Artış değeri çıkarsanmış tembel liste
 ----
 my $lazylist = (0,2 ... 10);
@@ -1546,7 +1544,7 @@ say $lazylist;
 
 Bu tembel liste istediği takdirde (0, 2, 4, 6, 8, 10) elamaları döndürebilir.
 
-[source,perl6]
+[source,raku]
 .Artış değeri belirlenmiş tembel liste
 ----
 my $lazylist = (0, { $_ + 3 } ... 12);
@@ -1561,14 +1559,14 @@ Son nokta artış değerinin geri dönebileceği değerlerden biri olmalıdır.
 Yukarıdaki örneği bitiş noktası 12 yerine 10 yazarsak durmaz. Artış değeri bitiş değerinin üzerinden zıplayacaktır.
 Alternatif olarak `0 … 10` yerine `0 …^* > 10` yazılabilir.
 
-[source,perl6]
+[source,raku]
 .Durmaz
 ----
 my $lazylist = (0, { $_ + 3 } ... 10);
 say $lazylist;
 ----
 
-[source,perl6]
+[source,raku]
 .Durur
 ----
 my $lazylist = (0, { $_ + 3 } ...^ * > 10);
@@ -1579,7 +1577,7 @@ say $lazylist;
 === Closures
 Closures bir fonksiyonun içinde verilen değere göre döndürülen başka fonksiyonlardır.
 
-[source,perl6]
+[source,raku]
 ----
 sub generate-greeting {
     my $name = "John Doe";
@@ -1607,7 +1605,7 @@ Ortam, closure'un oluşturduğu kapsamdaki herhangi bir yerel değişkenden olu�
 Bu durumda `$generated`, closure oluşturulduğunda var olan `greeting` altyordamını ve `Jhon Doe` dizisini birleştiren bir closure olur.
 
 Şimdi daha ilginç bir örneği inceleyelim.
-[source,perl6]
+[source,raku]
 ----
 sub greeting-generator($period) {
   return sub ($name) {
@@ -1658,7 +1656,7 @@ Bir *class* *nesneler* oluşturmak için şablondur. +
 _Nesneye yönelik_ programlamada nesnelerin sınıfların örnekleri olduğunu söyleriz.
 
 Aşağıdaki betiğe bakalım:
-[source,perl6]
+[source,raku]
 ----
 class Human {
   has $.name;
@@ -1678,7 +1676,7 @@ Betiğimizde, `$john` adında yeni bir "Human" örneği tanımladık `Human.new(
 `.new()` içinde belirtilen değişkenler temel alınan sınıfın niteliklerini belirtmek için kullanılır.
 
 Bir sınıfa `my` kullanılarak _kapsamı_ belirtilebilir:
-[source,perl6]
+[source,raku]
 ----
 my class Human {
 
@@ -1691,14 +1689,14 @@ Sınıf(_class_) özelliklerinin dışarıya kapalı olması ve bu sınıfın he
 Aşağıdaki betikler aynı sonuca sahiptir.
 
 .Değişkene doğrudan erişim:
-[source,perl6]
+[source,raku]
 ----
 my $var = 7;
 say $var;
 ----
 
 .Kapsülleme:
-[source,perl6]
+[source,raku]
 ----
 my $var = 7;
 sub sayvar {
@@ -1717,7 +1715,7 @@ Raku kapsülleme kullanımını kolaylaştırılmıştır:
 Varsayılan olarak tüm özellikler özel(_private_)dir. Ancak her zaman `!` kullanılması iyi bir alışkanlıktır.
 
 Yukarıdaki sınıfı şu şekilde yeniden yazabiliriz:
-[source,perl6]
+[source,raku]
 ----
 class Human {
   has $!name;
@@ -1748,7 +1746,7 @@ Yukarıdaki örneğimizde, `.new()` verilen parametreler ile tanımlanmıştır 
 Peki konum göstermeden kullanmak isteseydik?
 Bunun için yeni bir yapıcı metot şu şekilde tanımlanabilir.
 
-[source,perl6]
+[source,raku]
 ----
 class Human {
   has $.name;
@@ -1777,7 +1775,7 @@ Bu kapsülleme kavramının kullanımını zorlar. Nesne nitelikleri, yalnızca 
 
 Nesne niteliklerine dışarıdan yalnızca nesne metotları ile iletişime geçilebilir. Niteliklere doğrudan erişim yoktur.
 
-[source,perl6]
+[source,raku]
 ----
 class Human {
  has $.name;
@@ -1820,7 +1818,7 @@ Olası kullanım durumu, belirli bir işlem için başka bir metot çağıran bi
 Özel metot tanımlanırken `!` kullanılmalıdır. +
 Özel metotlar `.` yerine `!` ile çağırılır.
 
-[source,perl6]
+[source,raku]
 ----
 method !iamprivate {
   # kodlar
@@ -1837,7 +1835,7 @@ method iampublic {
 Oluşturma sırasında başlatılabilirler. +
 Sınıf Nitelikleri `has` yerine `my` kullanılarak tanımlanır. +
 
-[source,perl6]
+[source,raku]
 ----
 class Human {
   has $.name;
@@ -1858,7 +1856,7 @@ say Human.counter;
 
 Bir niteliğin değerini değiştirmemiz gerekiryorsa ne olur? +
 Bunun için `is rw` anahtar kelimesini kullanarak özelliği _read/write(okuma/yazma)_ olarak etiketlemeliyiz.
-[source,perl6]
+[source,raku]
 ----
 class Human {
   has $.name;
@@ -1884,7 +1882,7 @@ Bu durumda kodu tekrar tekrar yazmak yerine *miras* kavramını kullanacağız.
 Çalışanlar ise dört niteliğe sahip olsun: adı, yaşı, şirketi ve maaşı.
 
 Bu sınıflar şu şekilde tanımlanabilir:
-[source,perl6]
+[source,raku]
 ----
 class Human {
   has $.name;
@@ -1901,7 +1899,7 @@ class Employee {
 Yukarıdaki kod teknik olarak doğru olmakla birlikte, kavramsal olarak zayıf olduğu kabul edilir.
 
 Bunu yazmanın daha iyi bir yolu şöyledir:
-[source,perl6]
+[source,raku]
 ----
 class Human {
   has $.name;
@@ -1926,7 +1924,7 @@ Bu kavrama *Overriding(ezme, geçersiz kılma)* denir.
 
 Aşağıdaki örnekte, `introduce-yourself` yöntemi Çalışan sınıfı tarafından devralınır.
 
-[source,perl6]
+[source,raku]
 ----
 class Human {
   has $.name;
@@ -1949,7 +1947,7 @@ $jane.introduce-yourself;
 ----
 Ezme şöyle çalışır:
 
-[source,perl6]
+[source,raku]
 ----
 class Human {
   has $.name;
@@ -1985,7 +1983,7 @@ Tanımlamak için `submethod` anahtar kelimesi kullanılır.
 === Çoklu Miras
 Raku'da çoklu kalıtıma izin verilir. Bir sınıf birden çok sınıftan miras alabilir.
 
-[source,perl6]
+[source,raku]
 ----
 class bar-chart {
   has Int @.bar-values;
@@ -2040,7 +2038,7 @@ Raku, miras alınan metotlardan birini çağırarak çakışmayı çözmeye çal
 .Düzeltme
 Doğru davranışı sağlamak için `combo-chart` üzerinde `plot` yöntemini geçersiz kıldık.
 
-[source,perl6]
+[source,raku]
 ----
 class bar-chart {
   has Int @.bar-values;
@@ -2093,7 +2091,7 @@ Roller, özelliklerin ve metotların bir koleksiyonu oldukları için sınıflar
 Roller `role` anahtar sözcüğü ile tanımlanır. Bir rol uygulanmak istenen sınıf `do` anahtar kelimesini kullanır.
 
 .Rolleri kullanarak çoklu miras örneğini tekrar yazalım:
-[source,perl6]
+[source,raku]
 ----
 role bar-chart {
   has Int @.bar-values;
@@ -2133,7 +2131,7 @@ $actual-vs-forecast.plot;
 Şimdi kendimize şu soruyu soralım: Roller sınıflar gibi kullanılıyorsa, bunların kullanım amacı nedir? +
 Sorumuza cevap verebilmesi için birden fazla miras alması için kullandığımız ilk betiği değiştirelim, `plot` metodunu geçersiz kıldık.
 
-[source,perl6]
+[source,raku]
 ----
 role bar-chart {
   has Int @.bar-values;
@@ -2180,7 +2178,7 @@ Roller bir çakışma olduğunda sizi uyaracaktır.
 === İçgözlem
 Nesnenin tipi, nitelikleri veya metotları hakkında bilgi alma sürecidir.
 
-[source,perl6]
+[source,raku]
 ----
 class Human {
   has Str $.name;
@@ -2239,7 +2237,7 @@ Nesne yönelimli programlama hakkında daha fazla bilgiye ulaşmak için:
 
 Doğru çalışan aşağıdaki betik dosyasını göz önünde bulundurursak:
 
-[source,perl6]
+[source,raku]
 ----
 my Str $name;
 $name = "Joanna";
@@ -2255,7 +2253,7 @@ How are you doing today?
 
 Şimdi bir istisna fırlatan aşağıdaki betik dosyasını göz önünde bulunduralım:
 
-[source,perl6]
+[source,raku]
 ----
 my Str $name;
 $name = 123;
@@ -2273,7 +2271,7 @@ Bir hata oluştuğunda (bu durumda string değişkenine tam sayı atamak) progra
 
 *İstisna işleme*, betik dosyasının çalışmaya devam etmesi için atılan bir istisnayı yakalama işlemidir.
 
-[source,perl6]
+[source,raku]
 ----
 my Str $name;
 try {
@@ -2296,7 +2294,7 @@ How are you doing today?
 
 İstisna yakalama `try-catch` bloğu kullanılarak yapılır.
 
-[source,perl6]
+[source,raku]
 ----
 try {
   # kodlar
@@ -2313,7 +2311,7 @@ try {
 `CATCH` bloğu `given` bloğu tanımlandığı gibi tanımlanabilir.
 Bu birçok istisna türünü farklı şekillerde ele alıp tutabiliriz demektir.
 
-[source,perl6]
+[source,raku]
 ----
 try {
   # kodlar
@@ -2336,14 +2334,14 @@ Raku da açıkça istisnaları atmanızı sağlar.
 
 * typed(_Yazılan_) İstisnalar
 
-[source,perl6]
+[source,raku]
 .ad-hoc
 ----
 my Int $age = 21;
 die "Error !";
 ----
 
-[source,perl6]
+[source,raku]
 .typed
 ----
 my Int $age = 21;
@@ -2366,7 +2364,7 @@ NOTE: İstisnalar ile ilgili daha fazla bilgiye https://docs.perl6.org/type-exce
 Düzenli ifadeler veya _regex_, desen eşleştirmesi için kullanılan bir dizi karakterdir.
 Bir desen olarak düşünün.
 
-[source,perl6]
+[source,raku]
 ----
 if 'enlightenment' ~~ m/ light / {
     say "enlightenment contains the word light";
@@ -2391,7 +2389,7 @@ Açıkça belirtilmediği sürece boşluklar göz ardı edilir; `m/light/` ve `m
 Alfanumerik karakterler ve altçizgi `_` olduğu gibi yazılı.
 Diğer tüm karakterler ters eğik çizgi kullanılarak veya tırnak işareti ile çevrilmelidir.
 
-[source,perl6]
+[source,raku]
 .Ters Eğik Çizgi
 ----
 if 'Temperature: 13' ~~ m/ \: / {
@@ -2399,7 +2397,7 @@ if 'Temperature: 13' ~~ m/ \: / {
 }
 ----
 
-[source,perl6]
+[source,raku]
 .Tek Tırnak
 ----
 if 'Age = 13' ~~ m/ '=' / {
@@ -2407,7 +2405,7 @@ if 'Age = 13' ~~ m/ '=' / {
 }
 ----
 
-[source,perl6]
+[source,raku]
 .Çift Tırnak
 ----
 if 'name@company.com' ~~ m/ "@" / {
@@ -2439,7 +2437,7 @@ Bir kategori veya tersi ile karşılaşabiliriz.
 
 |===
 
-[source,perl6]
+[source,raku]
 ----
 if "John123" ~~ / \d / {
   say "This is not a valid name, numbers are not allowed";
@@ -2459,7 +2457,7 @@ Sistematik bir yaklaşım Unicode özeliklerini kullanmak olacaktır. +
 Bu yöntem ASCII standardı içindeki ve dışındaki karakter kategorileri ile eşleyebilmemizi sağlar.
 Unicode özellikleri `<: >` ile belirtilir.
 
-[source,perl6]
+[source,raku]
 ----
 if "Devanagari Numbers १२३" ~~ / <:N> / {
   say "Contains a number";
@@ -2483,7 +2481,7 @@ Joker karakterler regex ifadeler ile kullanılabilir.
 
 Örneğin nokta `.` herhangi bir tek karakter anlamına gelir.
 
-[source,perl6]
+[source,raku]
 ----
 if 'abc' ~~ m/ a.c / {
     say "Match";
@@ -2503,7 +2501,7 @@ Nicelik belirteçleri, bir karakterin peşinden gelir ve bunu kaç kere bekledi�
 
 Örneğin soru işareti `?`, sıfır veya bir kez demektir.
 
-[source,perl6]
+[source,raku]
 ----
 if 'ac' ~~ m/ a?c / {
     say "Match";
@@ -2519,7 +2517,7 @@ if 'c' ~~ m/ a?c / {
 
 Yıldız `*`, sıfır veya birden çok kez anlamına gelir.
 
-[source,perl6]
+[source,raku]
 ----
 if 'az' ~~ m/ a*z / {
     say "Match";
@@ -2545,7 +2543,7 @@ if 'z' ~~ m/ a*z / {
 
 Artı `+`, en az bir kez demektir.
 
-[source,perl6]
+[source,raku]
 ----
 if 'az' ~~ m/ a+z / {
     say "Match";
@@ -2572,7 +2570,7 @@ if 'z' ~~ m/ a+z / {
 === Eşleme Sonuçları
 Bir string eşleştirme işlemi her regex'e karşı başarılı ise, eşeleme sonucu `$/` özel karakterinde saklanır.
 
-[source,perl6]
+[source,raku]
 .Betik
 ----
 if 'Rakudo is a Raku compiler' ~~ m/:s Raku/ {
@@ -2616,7 +2614,7 @@ WARNING: Bu örnekte kullanılan e-posta doğrulaması pek doğru değildir. +
 Tek amacı Raku'da düzenli ifadelerin kullanımını göstermektir. +
 Ürününüzde olduğu gibi kullanmayın.
 
-[source,perl6]
+[source,raku]
 .Betik
 ----
 my $email = 'john.doe@perl6.org';
@@ -2656,7 +2654,7 @@ Regex aşağıdaki gibi parçalanabilir:
 
 * *com/org/net* `<:L>+`
 
-[source,perl6]
+[source,raku]
 .Alternatif olarak bir regex adlandırılmış regexlere bölünebilir.
 ----
 my $email = 'john.doe@perl6.org';
@@ -2705,7 +2703,7 @@ MD5 algoritmasını kendiniz uygulamak zorunda değilsiniz, bunun için Raku mod
 `zef install Digest::MD5`
 
 Şimdi betiğimizi çalıştıralım:
-[source,perl6]
+[source,raku]
 ----
 use Digest::MD5;
 my $password = "password123";
@@ -2730,7 +2728,7 @@ Karakterler şu şekilde tanımlanır: +
 === Unicode Kullanmak
 
 .Unicode kullanarak karakterleri nasıl yazdırabileceğimizi görelim
-[source,perl6]
+[source,raku]
 ----
 say "a";
 say "\x0061";
@@ -2745,7 +2743,7 @@ Yukarıdaki üç satır, bir karakteri oluşturmak için farklı yollar gösteri
 . `\c` kullanarak ve yanına _code point_ adı
 
 .Şimdi bir gülen surat yazdıralım
-[source,perl6]
+[source,raku]
 ----
 say "☺";
 say "\x263a";
@@ -2753,7 +2751,7 @@ say "\c[WHITE SMILING FACE]";
 ----
 
 .İki -code points'i birleştiren örnek
-[source,perl6]
+[source,raku]
 ----
 say "á";
 say "\x00e1";
@@ -2768,7 +2766,7 @@ say "\c[LATIN SMALL LETTER A WITH ACUTE]";
 * veya _code points_ ve `a` karakterinin kombosu şeklinde `\x0061\x0301`
 
 .Bazı örnekler:
-[source,perl6]
+[source,raku]
 ----
 say "á".NFC;
 say "á".NFD;
@@ -2787,7 +2785,7 @@ LATIN SMALL LETTER A WITH ACUTE
 `uniname` _code point_ adı döndürülür.
 
 .Değişken adı olarak Unicode karakterler kullanılabilir:
-[source,perl6]
+[source,raku]
 ----
 my $Δ = 1;
 $Δ++;
@@ -2795,7 +2793,7 @@ say $Δ;
 ----
 
 .Unicode matematiksel ifadeler için kullanılabilir:
-[source,perl6]
+[source,raku]
 ----
 my $var = 2 + ⅒;
 say $var;
@@ -2817,7 +2815,7 @@ Bu aşamada paralellik aşağıdaki şeylerden biri anlamına gelebilir:
 İkincisi ile başlayalım.
 
 ==== Veri Paralelliği (_Data Parallelism_)
-[source,perl6]
+[source,raku]
 ----
 my @array = (0..50000);                     # Dizi nüfusu
 my @result = @array.map({ is-prime $_ });   # Dizi üzerindeki her bir eleman için is-prime çağrılıyor
@@ -2830,7 +2828,7 @@ Sadece tek bir işlem yapıyoruz: `@array.map({ is-prime $_ })` +
 `is-prime @array[0]`, `is-prime @array[1]` şeklinde.
 
 .Aynı anda birden çok dizi elamanı için `is-prime` çağırabiliriz.
-[source,perl6]
+[source,raku]
 ----
 my @array = (0..50000);                         # Dizi nüfusu
 my @result = @array.race.map({ is-prime $_ });  # Dizi üzerindeki her bir eleman için is-prime çağrılıyor
@@ -2846,7 +2844,7 @@ Her iki örneğide çalıştırdıktan sonra süreleri karşılaştırın.
 ====
 `race` elemanların sırasını koruyamaz. Eğer bunu istiyorsanız `race` yerine `hyper` kullanın.
 
-[source,perl6]
+[source,raku]
 .race
 ----
 my @array = (1..1000);
@@ -2854,7 +2852,7 @@ my @result = @array.race.map( {$_ + 1} );
 .say for @result;
 ----
 
-[source,perl6]
+[source,raku]
 .hyper
 ----
 my @array = (1..1000);
@@ -2868,7 +2866,7 @@ Her iki örneğide çalıştırırsanız birinin sıralı diğerinin sırasız o
 
 ==== Görev Paralelliği (_Task Parallelism_)
 
-[source,perl6]
+[source,raku]
 ----
 my @array1 = (0..49999);
 my @array2 = (2..50001);
@@ -2895,7 +2893,7 @@ ve `@array2.map( {is-prime($_ - 1)} )` işlemine geçer.
 Dizilere uygulanan işlemler birbirine bağlı değildir.
 
 .O halde paralel kullanabiliriz.
-[source,perl6]
+[source,raku]
 ----
 my @array1 = (0..49999);
 my @array2 = (2..50001);
@@ -2962,7 +2960,7 @@ gcc -shared -o ncitest.dll ncitest.o
 
 C kütüphanemiz derlendiği dizinde oluşturulmuş oldu, şimdi bir Raku dosyası oluşturalım ve aşağıdaki kodu yazarak çalıştıralım.
 
-[source,perl6]
+[source,raku]
 .ncitest.pl6
 ----
 use NativeCall;
@@ -2990,7 +2988,7 @@ Bunu yapmak için `is symbol` özelliğini kullanırız.
 
 Yukarıdaki Raku betiğini değiştirelim ve altyordamımızın adını `hellofromc` yerine `hello` yapalım.
 
-[source,perl6]
+[source,raku]
 .ncitest.pl6
 ----
 use NativeCall;
@@ -3019,7 +3017,7 @@ void hellofromc (char* name) {
 }
 ----
 
-[source,perl6]
+[source,raku]
 .ncitest.pl6
 ----
 use NativeCall;
@@ -3043,7 +3041,7 @@ int add (int a, int b) {
 }
 ----
 
-[source,perl6]
+[source,raku]
 .ncitest.pl6
 ----
 use NativeCall;

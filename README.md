@@ -22,24 +22,32 @@ For online reading navigate to:
 
 ### Building the document
 The document is written in asciidoc format and generated using
-asciidoctor and pygments.  You will need a current version of **ruby**,
-**asciidoctor**, **pygments**, and a special gem that provides a pre-release version
-of **asciidoctor-pdf**.
+asciidoctor, with syntax highlighting by rouge.  You will need a current
+version of **ruby**, **asciidoctor**, **asciidoctor-pdf**, **rouge**, and
+**rouge-raku**, the plugin that teaches rouge to highlight Raku.
 
 Install the required tools:
 
-    $ sudo pip install Pygments
     $ sudo gem install asciidoctor
     $ sudo gem install asciidoctor-pdf
-    $ sudo gem install pygments.rb
-
-To produce **rakuguide.pdf**, run:
-
-    $ asciidoctor-pdf rakuguide.adoc
+    $ sudo gem install rouge
+    $ sudo gem install rouge-raku
 
 To produce **rakuguide.html**, run:
 
-    $ asciidoctor rakuguide.adoc
+    $ asciidoctor -r rouge-raku rakuguide.adoc
+
+To produce **rakuguide.pdf**, run:
+
+    $ asciidoctor-pdf -r rouge-raku rakuguide.adoc
+
+The `-r rouge-raku` option is required. Without it the build still succeeds,
+but the Raku code is left unhighlighted.
+
+To build a translation, use its file instead. For example, for the French
+version:
+
+    $ asciidoctor -r rouge-raku fr.rakuguide.adoc
 
 ### Feedback
 All feedback is welcomed:
