@@ -2,3 +2,4 @@
 *.pdf
 .vscode
 !.github/docinfo.html
+pdf/fonts/

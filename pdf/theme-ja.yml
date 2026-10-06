@@ -1,0 +1,4 @@
+# Same as theme.yml, but Japanese text is drawn with the Japanese font first.
+extends: ./theme.yml
+font:
+  fallbacks: [M+ 1p Fallback, Noto Emoji, Noto Sans SC, Noto Sans KR, Noto Sans Arabic, Noto Sans]

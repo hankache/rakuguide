@@ -20,16 +20,32 @@ For online reading navigate to:
 * Russian: https://raku.guide/ru
 * Ukrainian: https://raku.guide/uk
 
-### Building the document
+### PDF
+For offline reading download:
+* English: https://github.com/hankache/rakuguide/releases/download/pdf/rakuguide.pdf
+* French: https://github.com/hankache/rakuguide/releases/download/pdf/rakuguide-fr.pdf
+* German: https://github.com/hankache/rakuguide/releases/download/pdf/rakuguide-de.pdf
+* Japanese: https://github.com/hankache/rakuguide/releases/download/pdf/rakuguide-ja.pdf
+* Spanish: https://github.com/hankache/rakuguide/releases/download/pdf/rakuguide-es.pdf
+* Portuguese: https://github.com/hankache/rakuguide/releases/download/pdf/rakuguide-pt.pdf
+* Dutch: https://github.com/hankache/rakuguide/releases/download/pdf/rakuguide-nl.pdf
+* Bulgarian: https://github.com/hankache/rakuguide/releases/download/pdf/rakuguide-bg.pdf
+* Chinese: https://github.com/hankache/rakuguide/releases/download/pdf/rakuguide-zh.pdf
+* Italian: https://github.com/hankache/rakuguide/releases/download/pdf/rakuguide-it.pdf
+* Turkish: https://github.com/hankache/rakuguide/releases/download/pdf/rakuguide-tr.pdf
+* Indonesian: https://github.com/hankache/rakuguide/releases/download/pdf/rakuguide-id.pdf
+* Russian: https://github.com/hankache/rakuguide/releases/download/pdf/rakuguide-ru.pdf
+* Ukrainian: https://github.com/hankache/rakuguide/releases/download/pdf/rakuguide-uk.pdf
+
+### Building the HTML
 The document is written in asciidoc format and generated using
 asciidoctor, with syntax highlighting by rouge.  You will need a current
-version of **ruby**, **asciidoctor**, **asciidoctor-pdf**, **rouge**, and
-**rouge-raku**, the plugin that teaches rouge to highlight Raku.
+version of **ruby**, **asciidoctor**, **rouge**, and **rouge-raku**, the
+plugin that teaches rouge to highlight Raku.
 
 Install the required tools:
 
     $ sudo gem install asciidoctor
-    $ sudo gem install asciidoctor-pdf
     $ sudo gem install rouge
     $ sudo gem install rouge-raku
 
@@ -37,17 +53,55 @@ To produce **rakuguide.html**, run:
 
     $ asciidoctor -r rouge-raku rakuguide.adoc
 
+The `-r rouge-raku` option is required. Without it the build still succeeds,
+but the Raku code is left unhighlighted.
+
+### Building the PDF
+In addition to the tools above, you will need **asciidoctor-pdf**:
+
+    $ sudo gem install asciidoctor-pdf
+
 To produce **rakuguide.pdf**, run:
 
     $ asciidoctor-pdf -r rouge-raku rakuguide.adoc
 
-The `-r rouge-raku` option is required. Without it the build still succeeds,
-but the Raku code is left unhighlighted.
+The PDF only shows characters found in the fonts it is built with, and the
+fonts that come with asciidoctor-pdf do not cover all the scripts used in
+the guide. With the command above, some characters in the Unicode examples
+appear as empty boxes, and the Japanese and Chinese translations are mostly
+unreadable.
 
-To build a translation, use its file instead. For example, for the French
-version:
+To get a complete PDF, download these fonts from
+[Google Fonts](https://fonts.google.com/noto):
 
-    $ asciidoctor -r rouge-raku fr.rakuguide.adoc
+* Noto Sans
+* Noto Sans Arabic
+* Noto Sans KR
+* Noto Sans SC
+
+Create a folder named `fonts` inside the `pdf` folder and copy the Regular weight
+of each font into it. In each download it is inside the `static` folder:
+
+    pdf/fonts/NotoSans-Regular.ttf
+    pdf/fonts/NotoSansArabic-Regular.ttf
+    pdf/fonts/NotoSansKR-Regular.ttf
+    pdf/fonts/NotoSansSC-Regular.ttf
+
+Then build with the theme provided in this repository:
+
+    $ asciidoctor-pdf -r rouge-raku -a pdf-theme=pdf/theme.yml rakuguide.adoc
+
+For the Chinese translation, also pass `-a scripts=cjk` so that lines wrap
+correctly:
+
+    $ asciidoctor-pdf -r rouge-raku -a pdf-theme=pdf/theme.yml -a scripts=cjk zh.rakuguide.adoc
+
+The Japanese translation has its own theme, which draws Japanese text with a
+Japanese font:
+
+    $ asciidoctor-pdf -r rouge-raku -a pdf-theme=pdf/theme-ja.yml -a scripts=cjk ja.rakuguide.adoc
+
+Add `-v` to any of these commands to list characters that are still missing.
 
 ### Feedback
 All feedback is welcomed:

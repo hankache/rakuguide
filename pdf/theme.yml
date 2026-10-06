@@ -1,0 +1,11 @@
+# Adds fallback fonts so that the PDF can show every character used in the guide.
+# The fonts are not part of this repository. See README.md for how to get them.
+extends: default-with-font-fallbacks
+font:
+  catalog:
+    merge: true
+    Noto Sans SC: fonts/NotoSansSC-Regular.ttf
+    Noto Sans KR: fonts/NotoSansKR-Regular.ttf
+    Noto Sans Arabic: fonts/NotoSansArabic-Regular.ttf
+    Noto Sans: fonts/NotoSans-Regular.ttf
+  fallbacks: [Noto Sans SC, M+ 1p Fallback, Noto Emoji, Noto Sans KR, Noto Sans Arabic, Noto Sans]
