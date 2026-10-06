@@ -1,25 +1,14 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-BKRLVLW1G0"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-BKRLVLW1G0');
-</script>
-
-<link rel="shortcut icon" type="image/x-icon" href="../favicon.ico">
-
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 2.0.23">
+<meta name="generator" content="Asciidoctor 2.0.26">
 <meta name="description" content="Загальна інтродукція до Raku">
 <meta name="keywords" content="perl6, Raku, introduction, perl6intro, Raku introduction, Raku tutorial, Raku intro, raku, raku introduction, raku guide, raku tutorial, вступ, введення до Raku, інтродукція до 6, вивчення perl6">
 <meta name="author" content="Naoum Hankache, Dmytro Iaskolko">
+<link rel="icon" type="image/x-icon" href="../favicon.ico">
 <title>Вступ до Raku</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
@@ -131,7 +120,6 @@ h1 strong,h2 strong,h3 strong,#toctitle strong,.sidebarblock>.content>.title str
 :not(pre):not([class^=L])>code{font-size:.9375em;font-style:normal!important;letter-spacing:0;padding:.1em .5ex;word-spacing:-.15em;background:#f7f7f8;border-radius:4px;line-height:1.45;text-rendering:optimizeSpeed}
 pre{color:rgba(0,0,0,.9);font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;line-height:1.45;text-rendering:optimizeSpeed}
 pre code,pre pre{color:inherit;font-size:inherit;line-height:inherit}
-pre>code{display:block}
 pre.nowrap,pre.nowrap pre{white-space:pre;word-wrap:normal}
 em em{font-style:normal}
 strong strong{font-weight:400}
@@ -234,6 +222,7 @@ table.tableblock.fit-content>caption.title{white-space:nowrap;width:0}
 .literalblock pre,.listingblock>.content>pre:not(.highlight),.listingblock>.content>pre[class=highlight],.listingblock>.content>pre[class^="highlight "]{background:#f7f7f8}
 .literalblock.output pre{color:#f7f7f8;background:rgba(0,0,0,.9)}
 .listingblock>.content{position:relative}
+.listingblock pre>code{display:block}
 .listingblock code[data-lang]::before{display:none;content:attr(data-lang);position:absolute;font-size:.75em;top:.425rem;right:.5rem;line-height:1;text-transform:uppercase;color:inherit;opacity:.5}
 .listingblock:hover code[data-lang]::before{display:block}
 .listingblock.terminal pre .command::before{content:attr(data-prompt);padding-right:.5em;color:inherit;opacity:.5}
@@ -450,77 +439,132 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
-pre.pygments .hll { background-color: #ffffcc }
-pre.pygments { background: #f8f8f8; }
-pre.pygments .tok-c { color: #3D7B7B; font-style: italic } /* Comment */
-pre.pygments .tok-err { border: 1px solid #F00 } /* Error */
-pre.pygments .tok-k { color: #008000; font-weight: bold } /* Keyword */
-pre.pygments .tok-o { color: #666 } /* Operator */
-pre.pygments .tok-ch { color: #3D7B7B; font-style: italic } /* Comment.Hashbang */
-pre.pygments .tok-cm { color: #3D7B7B; font-style: italic } /* Comment.Multiline */
-pre.pygments .tok-cp { color: #9C6500 } /* Comment.Preproc */
-pre.pygments .tok-cpf { color: #3D7B7B; font-style: italic } /* Comment.PreprocFile */
-pre.pygments .tok-c1 { color: #3D7B7B; font-style: italic } /* Comment.Single */
-pre.pygments .tok-cs { color: #3D7B7B; font-style: italic } /* Comment.Special */
-pre.pygments .tok-gd { color: #A00000 } /* Generic.Deleted */
-pre.pygments .tok-ge { font-style: italic } /* Generic.Emph */
-pre.pygments .tok-ges { font-weight: bold; font-style: italic } /* Generic.EmphStrong */
-pre.pygments .tok-gr { color: #E40000 } /* Generic.Error */
-pre.pygments .tok-gh { color: #000080; font-weight: bold } /* Generic.Heading */
-pre.pygments .tok-gi { color: #008400 } /* Generic.Inserted */
-pre.pygments .tok-go { color: #717171 } /* Generic.Output */
-pre.pygments .tok-gp { color: #000080; font-weight: bold } /* Generic.Prompt */
-pre.pygments .tok-gs { font-weight: bold } /* Generic.Strong */
-pre.pygments .tok-gu { color: #800080; font-weight: bold } /* Generic.Subheading */
-pre.pygments .tok-gt { color: #04D } /* Generic.Traceback */
-pre.pygments .tok-kc { color: #008000; font-weight: bold } /* Keyword.Constant */
-pre.pygments .tok-kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
-pre.pygments .tok-kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
-pre.pygments .tok-kp { color: #008000 } /* Keyword.Pseudo */
-pre.pygments .tok-kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
-pre.pygments .tok-kt { color: #B00040 } /* Keyword.Type */
-pre.pygments .tok-m { color: #666 } /* Literal.Number */
-pre.pygments .tok-s { color: #BA2121 } /* Literal.String */
-pre.pygments .tok-na { color: #687822 } /* Name.Attribute */
-pre.pygments .tok-nb { color: #008000 } /* Name.Builtin */
-pre.pygments .tok-nc { color: #00F; font-weight: bold } /* Name.Class */
-pre.pygments .tok-no { color: #800 } /* Name.Constant */
-pre.pygments .tok-nd { color: #A2F } /* Name.Decorator */
-pre.pygments .tok-ni { color: #717171; font-weight: bold } /* Name.Entity */
-pre.pygments .tok-ne { color: #CB3F38; font-weight: bold } /* Name.Exception */
-pre.pygments .tok-nf { color: #00F } /* Name.Function */
-pre.pygments .tok-nl { color: #767600 } /* Name.Label */
-pre.pygments .tok-nn { color: #00F; font-weight: bold } /* Name.Namespace */
-pre.pygments .tok-nt { color: #008000; font-weight: bold } /* Name.Tag */
-pre.pygments .tok-nv { color: #19177C } /* Name.Variable */
-pre.pygments .tok-ow { color: #A2F; font-weight: bold } /* Operator.Word */
-pre.pygments .tok-w { color: #BBB } /* Text.Whitespace */
-pre.pygments .tok-mb { color: #666 } /* Literal.Number.Bin */
-pre.pygments .tok-mf { color: #666 } /* Literal.Number.Float */
-pre.pygments .tok-mh { color: #666 } /* Literal.Number.Hex */
-pre.pygments .tok-mi { color: #666 } /* Literal.Number.Integer */
-pre.pygments .tok-mo { color: #666 } /* Literal.Number.Oct */
-pre.pygments .tok-sa { color: #BA2121 } /* Literal.String.Affix */
-pre.pygments .tok-sb { color: #BA2121 } /* Literal.String.Backtick */
-pre.pygments .tok-sc { color: #BA2121 } /* Literal.String.Char */
-pre.pygments .tok-dl { color: #BA2121 } /* Literal.String.Delimiter */
-pre.pygments .tok-sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
-pre.pygments .tok-s2 { color: #BA2121 } /* Literal.String.Double */
-pre.pygments .tok-se { color: #AA5D1F; font-weight: bold } /* Literal.String.Escape */
-pre.pygments .tok-sh { color: #BA2121 } /* Literal.String.Heredoc */
-pre.pygments .tok-si { color: #A45A77; font-weight: bold } /* Literal.String.Interpol */
-pre.pygments .tok-sx { color: #008000 } /* Literal.String.Other */
-pre.pygments .tok-sr { color: #A45A77 } /* Literal.String.Regex */
-pre.pygments .tok-s1 { color: #BA2121 } /* Literal.String.Single */
-pre.pygments .tok-ss { color: #19177C } /* Literal.String.Symbol */
-pre.pygments .tok-bp { color: #008000 } /* Name.Builtin.Pseudo */
-pre.pygments .tok-fm { color: #00F } /* Name.Function.Magic */
-pre.pygments .tok-vc { color: #19177C } /* Name.Variable.Class */
-pre.pygments .tok-vg { color: #19177C } /* Name.Variable.Global */
-pre.pygments .tok-vi { color: #19177C } /* Name.Variable.Instance */
-pre.pygments .tok-vm { color: #19177C } /* Name.Variable.Magic */
-pre.pygments .tok-il { color: #666 } /* Literal.Number.Integer.Long */
+pre.rouge table td { padding: 5px; }
+pre.rouge table pre { margin: 0; }
+pre.rouge, pre.rouge .w {
+  color: #24292f;
+  background-color: #f6f8fa;
+}
+pre.rouge .k, pre.rouge .kd, pre.rouge .kn, pre.rouge .kp, pre.rouge .kr, pre.rouge .kt, pre.rouge .kv {
+  color: #cf222e;
+}
+pre.rouge .gr {
+  color: #f6f8fa;
+}
+pre.rouge .gd {
+  color: #82071e;
+  background-color: #ffebe9;
+}
+pre.rouge .nb {
+  color: #953800;
+}
+pre.rouge .nc {
+  color: #953800;
+}
+pre.rouge .no {
+  color: #953800;
+}
+pre.rouge .nn {
+  color: #953800;
+}
+pre.rouge .sr {
+  color: #116329;
+}
+pre.rouge .na {
+  color: #116329;
+}
+pre.rouge .nt {
+  color: #116329;
+}
+pre.rouge .gi {
+  color: #116329;
+  background-color: #dafbe1;
+}
+pre.rouge .ges {
+  font-weight: bold;
+  font-style: italic;
+}
+pre.rouge .kc {
+  color: #0550ae;
+}
+pre.rouge .l, pre.rouge .ld, pre.rouge .m, pre.rouge .mb, pre.rouge .mf, pre.rouge .mh, pre.rouge .mi, pre.rouge .il, pre.rouge .mo, pre.rouge .mx {
+  color: #0550ae;
+}
+pre.rouge .sb {
+  color: #0550ae;
+}
+pre.rouge .bp {
+  color: #0550ae;
+}
+pre.rouge .ne {
+  color: #0550ae;
+}
+pre.rouge .nl {
+  color: #0550ae;
+}
+pre.rouge .py {
+  color: #0550ae;
+}
+pre.rouge .nv, pre.rouge .vc, pre.rouge .vg, pre.rouge .vi, pre.rouge .vm {
+  color: #0550ae;
+}
+pre.rouge .o, pre.rouge .ow {
+  color: #0550ae;
+}
+pre.rouge .gh {
+  color: #0550ae;
+  font-weight: bold;
+}
+pre.rouge .gu {
+  color: #0550ae;
+  font-weight: bold;
+}
+pre.rouge .s, pre.rouge .sa, pre.rouge .sc, pre.rouge .dl, pre.rouge .sd, pre.rouge .s2, pre.rouge .se, pre.rouge .sh, pre.rouge .sx, pre.rouge .s1, pre.rouge .ss {
+  color: #0a3069;
+}
+pre.rouge .nd {
+  color: #8250df;
+}
+pre.rouge .nf, pre.rouge .fm {
+  color: #8250df;
+}
+pre.rouge .err {
+  color: #f6f8fa;
+  background-color: #82071e;
+}
+pre.rouge .c, pre.rouge .ch, pre.rouge .cd, pre.rouge .cm, pre.rouge .cp, pre.rouge .cpf, pre.rouge .c1, pre.rouge .cs {
+  color: #6e7781;
+}
+pre.rouge .gl {
+  color: #6e7781;
+}
+pre.rouge .gt {
+  color: #6e7781;
+}
+pre.rouge .ni {
+  color: #24292f;
+}
+pre.rouge .si {
+  color: #24292f;
+}
+pre.rouge .ge {
+  color: #24292f;
+  font-style: italic;
+}
+pre.rouge .gs {
+  color: #24292f;
+  font-weight: bold;
+}
 </style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BKRLVLW1G0"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-BKRLVLW1G0');
+</script>
 </head>
 <body class="book toc2 toc-left">
 <div id="header">
@@ -724,16 +768,16 @@ Raku є багатопарадигмальною мовою, яка підтри
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-nb">mkdir</span> ~/<span class="tok-n">rakudo</span> &amp;&amp; <span class="tok-n">cd</span> <span class="tok-nv">$_</span>
-<span class="tok-n">curl</span> -<span class="tok-n">LJO</span> <span class="tok-n">https:</span>//<span class="tok-n">rakudo</span>.<span class="tok-n">org</span><span class="tok-o">/</span><span class="tok-n">latest</span><span class="tok-o">/</span><span class="tok-n">star</span><span class="tok-o">/</span><span class="tok-n">src</span>
-<span class="tok-n">tar</span> -<span class="tok-n">xzf</span> <span class="tok-n">rakudo-star-</span>*.<span class="tok-n">tar</span>.<span class="tok-n">gz</span>
-<span class="tok-n">mv</span> <span class="tok-n">rakudo-star-</span>*/* .
-<span class="tok-n">rm</span> -<span class="tok-n">fr</span> <span class="tok-n">rakudo-star-</span>*
+<pre class="rouge highlight"><code data-lang="shell"><span class="nb">mkdir</span> ~/rakudo <span class="o">&amp;&amp;</span> <span class="nb">cd</span> <span class="nv">$_</span>
+curl <span class="nt">-LJO</span> https://rakudo.org/latest/star/src
+<span class="nb">tar</span> <span class="nt">-xzf</span> rakudo-star-<span class="k">*</span>.tar.gz
+<span class="nb">mv </span>rakudo-star-<span class="k">*</span>/<span class="k">*</span> <span class="nb">.</span>
+<span class="nb">rm</span> <span class="nt">-fr</span> rakudo-star-<span class="k">*</span>
 
-./<span class="tok-n">bin</span><span class="tok-o">/</span><span class="tok-n">rstar</span> <span class="tok-n">install</span>
+./bin/rstar <span class="nb">install
 
-<span class="tok-n">echo</span> <span class="tok-s">&quot;export PATH=$(pwd)/bin/:$(pwd)/share/perl6/site/bin:$(pwd)/share/perl6/vendor/bin:$(pwd)/share/perl6/core/bin:\$PATH&quot;</span> &gt;&gt; ~/.<span class="tok-n">bashrc</span>
-<span class="tok-nb">source</span> ~/.<span class="tok-n">bashrc</span></code></pre>
+echo</span> <span class="s2">"export PATH=</span><span class="si">$(</span><span class="nb">pwd</span><span class="si">)</span><span class="s2">/bin/:</span><span class="si">$(</span><span class="nb">pwd</span><span class="si">)</span><span class="s2">/share/perl6/site/bin:</span><span class="si">$(</span><span class="nb">pwd</span><span class="si">)</span><span class="s2">/share/perl6/vendor/bin:</span><span class="si">$(</span><span class="nb">pwd</span><span class="si">)</span><span class="s2">/share/perl6/core/bin:</span><span class="se">\$</span><span class="s2">PATH"</span> <span class="o">&gt;&gt;</span> ~/.bashrc
+<span class="nb">source</span> ~/.bashrc</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -847,7 +891,7 @@ Raku є багатопарадигмальною мовою, яка підтри
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-nb">say</span> <span class="tok-s">&#39;Вітання Світові!&#39;</span>;</code></pre>
+<pre class="rouge highlight"><code data-lang="raku"><span class="nb">say</span><span class="w"> </span><span class="s1">'Вітання Світові!'</span><span class="p">;</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -855,7 +899,7 @@ Raku є багатопарадигмальною мовою, яка підтри
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-s">&#39;Вітаю світ!&#39;</span>.<span class="tok-nb">say</span>;</code></pre>
+<pre class="rouge highlight"><code data-lang="raku"><span class="s1">'Вітаю світ!'</span><span class="o">.</span><span class="nb">say</span><span class="p">;</span></code></pre>
 </div>
 </div>
 </div>
@@ -869,8 +913,8 @@ Raku є багатопарадигмальною мовою, яка підтри
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-nb">say</span> <span class="tok-s">&quot;Hello&quot;</span> <span class="tok-k">if</span> <span class="tok-nb">True</span>;
-<span class="tok-nb">say</span> <span class="tok-s">&quot;World&quot;</span> <span class="tok-k">if</span> <span class="tok-nb">False</span>;</code></pre>
+<pre class="rouge highlight"><code data-lang="raku"><span class="nb">say</span><span class="w"> </span><span class="s2">"Hello"</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="kc">True</span><span class="p">;</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="s2">"World"</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="kc">False</span><span class="p">;</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -881,10 +925,10 @@ Raku є багатопарадигмальною мовою, яка підтри
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span>{
-    <span class="tok-nb">say</span> <span class="tok-s">&quot;Перше твердження у блоці.&quot;</span>;
-    <span class="tok-nb">say</span> <span class="tok-s">&quot;Друге треврдження у блоці.&quot;</span>;
-}</code></pre>
+<pre class="rouge highlight"><code data-lang="raku"><span class="p">{</span><span class="w">
+    </span><span class="nb">say</span><span class="w"> </span><span class="s2">"Перше твердження у блоці."</span><span class="p">;</span><span class="w">
+    </span><span class="nb">say</span><span class="w"> </span><span class="s2">"Друге треврдження у блоці."</span><span class="p">;</span><span class="w">
+</span><span class="p">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1044,7 +1088,7 @@ Raku є багатопарадигмальною мовою, яка підтри
 <p>Однорядкові:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-c1"># Це коментар в один рядок</span></code></pre>
+<pre class="rouge highlight"><code data-lang="raku"><span class="c1"># Це коментар в один рядок</span></code></pre>
 </div>
 </div>
 </li>
@@ -1052,23 +1096,23 @@ Raku є багатопарадигмальною мовою, яка підтри
 <p>Вбудовані:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-nb">say</span> <span class="tok-cm">#`(Це вбудований коментар)</span> <span class="tok-s">&quot;Hello World.&quot;</span></code></pre>
+<pre class="rouge highlight"><code data-lang="raku"><span class="nb">say</span><span class="w"> </span><span class="cm">#`(Це вбудований коментар)</span><span class="w"> </span><span class="s2">"Hello World."</span></code></pre>
 </div>
 </div>
 </li>
 <li>
 <p>Багаторядкові:</p>
-</li>
-</ul>
-</div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-cm">=begin comment</span>
-<span class="tok-cm">Це багаторядковий коментар.</span>
-<span class="tok-cm">Коментар 1</span>
-<span class="tok-cm">Коментар 2</span>
-<span class="tok-cm">=end comment</span></code></pre>
+<pre class="rouge highlight"><code data-lang="raku"><span class="cp">=begin</span><span class="w"> </span><span class="nn">comment</span><span class="w">
+</span><span class="cm">Це багаторядковий коментар.</span><span class="w">
+</span><span class="cm">Коментар 1</span><span class="w">
+</span><span class="cm">Коментар 2</span><span class="w">
+</span><span class="cp">=end</span><span class="w"> </span><span class="nn">comment</span></code></pre>
 </div>
+</div>
+</li>
+</ul>
 </div>
 </div>
 <div class="sect3">
@@ -1091,12 +1135,12 @@ Raku є багатопарадигмальною мовою, яка підтри
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-nb">say</span> <span class="tok-s">&#39;Вітаю, Світ&#39;</span>;   <span class="tok-c1"># Вітаю, Світ</span>
-<span class="tok-nb">say</span> <span class="tok-s">&quot;Вітаю, світ&quot;</span>;   <span class="tok-c1"># Вітаю, Світ</span>
-<span class="tok-nb">say</span> <span class="tok-s">&quot;Об&#39;єм&quot;</span>;         <span class="tok-c1"># Об&#39;єм</span>
-<span class="tok-k">my</span> <span class="tok-nv">$name</span> = <span class="tok-s">&#39;Андрій Кузьменко&#39;</span>;
-<span class="tok-nb">say</span> <span class="tok-s">&#39;Вітаю $name&#39;</span>;   <span class="tok-c1"># Вітаю $name</span>
-<span class="tok-nb">say</span> <span class="tok-s">&quot;Вітаю $name&quot;</span>;   <span class="tok-c1"># Вітаю Андрій Кузьменко</span></code></pre>
+<pre class="rouge highlight"><code data-lang="raku"><span class="nb">say</span><span class="w"> </span><span class="s1">'Вітаю, Світ'</span><span class="p">;</span><span class="w">   </span><span class="c1"># Вітаю, Світ</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="s2">"Вітаю, світ"</span><span class="p">;</span><span class="w">   </span><span class="c1"># Вітаю, Світ</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="s2">"Об'єм"</span><span class="p">;</span><span class="w">         </span><span class="c1"># Об'єм</span><span class="w">
+</span><span class="kd">my</span><span class="w"> </span><span class="nv">$name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'Андрій Кузьменко'</span><span class="p">;</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="s1">'Вітаю $name'</span><span class="p">;</span><span class="w">   </span><span class="c1"># Вітаю $name</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="s2">"Вітаю </span><span class="nv">$name</span><span class="s2">"</span><span class="p">;</span><span class="w">   </span><span class="c1"># Вітаю Андрій Кузьменко</span></code></pre>
 </div>
 </div>
 </div>
@@ -1572,13 +1616,13 @@ Raku є багатопарадигмальною мовою, яка підтри
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-c1"># Рядок</span>
-<span class="tok-k">my</span> <span class="tok-nv">$name</span> = <span class="tok-s">&#39;Андрій Кузьменко&#39;</span>;
-<span class="tok-nb">say</span> <span class="tok-nv">$name</span>;
+<pre class="rouge highlight"><code data-lang="raku"><span class="c1"># Рядок</span><span class="w">
+</span><span class="kd">my</span><span class="w"> </span><span class="nv">$name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'Андрій Кузьменко'</span><span class="p">;</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="nv">$name</span><span class="p">;</span><span class="w">
 
-<span class="tok-c1"># Ціле число</span>
-<span class="tok-k">my</span> <span class="tok-nv">$age</span> = <span class="tok-mi">99</span>;
-<span class="tok-nb">say</span> <span class="tok-nv">$age</span>;</code></pre>
+</span><span class="c1"># Ціле число</span><span class="w">
+</span><span class="kd">my</span><span class="w"> </span><span class="nv">$age</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">99</span><span class="p">;</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="nv">$age</span><span class="p">;</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1587,17 +1631,17 @@ Raku є багатопарадигмальною мовою, яка підтри
 <div class="listingblock">
 <div class="title">Рядок</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">$name</span> = <span class="tok-s">&#39;Андрій Кузьменко&#39;</span>;
-<span class="tok-nb">say</span> <span class="tok-nv">$name</span>.<span class="tok-nb">uc</span>;
-<span class="tok-nb">say</span> <span class="tok-nv">$name</span>.<span class="tok-nb">chars</span>;
-<span class="tok-nb">say</span> <span class="tok-nv">$name</span>.<span class="tok-nb">flip</span>;</code></pre>
+<pre class="rouge highlight"><code data-lang="raku"><span class="kd">my</span><span class="w"> </span><span class="nv">$name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'Андрій Кузьменко'</span><span class="p">;</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="nv">$name</span><span class="o">.</span><span class="nb">uc</span><span class="p">;</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="nv">$name</span><span class="o">.</span><span class="nb">chars</span><span class="p">;</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="nv">$name</span><span class="o">.</span><span class="nb">flip</span><span class="p">;</span></code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-n">АНДРІЙ</span> <span class="tok-n">КУЗЬМЕНКО</span>
-<span class="tok-mi">16</span>
-<span class="tok-n">окнемьзуК</span> <span class="tok-n">йірднА</span></code></pre>
+<pre>АНДРІЙ КУЗЬМЕНКО
+16
+окнемьзуК йірднА</pre>
 </div>
 </div>
 <div class="admonitionblock note">
@@ -1615,13 +1659,13 @@ Raku є багатопарадигмальною мовою, яка підтри
 <div class="listingblock">
 <div class="title">Ціле число</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">$age</span> = <span class="tok-mi">17</span>;
-<span class="tok-nb">say</span> <span class="tok-nv">$age</span>.<span class="tok-nb">is-prime</span>;</code></pre>
+<pre class="rouge highlight"><code data-lang="raku"><span class="kd">my</span><span class="w"> </span><span class="nv">$age</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">17</span><span class="p">;</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="nv">$age</span><span class="o">.</span><span class="nb">is-prime</span><span class="p">;</span></code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-nb">True</span></code></pre>
+<pre>True</pre>
 </div>
 </div>
 <div class="admonitionblock note">
@@ -1639,17 +1683,17 @@ Raku є багатопарадигмальною мовою, яка підтри
 <div class="listingblock">
 <div class="title">Раціональне число</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">$age</span> = <span class="tok-mf">2.3</span>;
-<span class="tok-nb">say</span> <span class="tok-nv">$age</span>.<span class="tok-nb">numerator</span>;
-<span class="tok-nb">say</span> <span class="tok-nv">$age</span>.<span class="tok-nb">denominator</span>;
-<span class="tok-nb">say</span> <span class="tok-nv">$age</span>.<span class="tok-nb">nude</span>;</code></pre>
+<pre class="rouge highlight"><code data-lang="raku"><span class="kd">my</span><span class="w"> </span><span class="nv">$age</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">2.3</span><span class="p">;</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="nv">$age</span><span class="o">.</span><span class="nb">numerator</span><span class="p">;</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="nv">$age</span><span class="o">.</span><span class="nb">denominator</span><span class="p">;</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="nv">$age</span><span class="o">.</span><span class="nb">nude</span><span class="p">;</span></code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-mi">23</span>
-<span class="tok-mi">10</span>
-(<span class="tok-mi">23</span> <span class="tok-mi">10</span>)</code></pre>
+<pre>23
+10
+(23 10)</pre>
 </div>
 </div>
 <div class="admonitionblock note">
@@ -1672,8 +1716,8 @@ Raku є багатопарадигмальною мовою, яка підтри
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">@animals</span> = <span class="tok-s">&#39;верблюд&#39;</span>,<span class="tok-s">&#39;лама&#39;</span>,<span class="tok-s">&#39;сова&#39;</span>;
-<span class="tok-nb">say</span> <span class="tok-nv">@animals</span>;</code></pre>
+<pre class="rouge highlight"><code data-lang="raku"><span class="kd">my</span><span class="w"> </span><span class="nv">@animals</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'верблюд'</span><span class="p">,</span><span class="s1">'лама'</span><span class="p">,</span><span class="s1">'сова'</span><span class="p">;</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="nv">@animals</span><span class="p">;</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1694,30 +1738,30 @@ Raku є багатопарадигмальною мовою, яка підтри
 <div class="listingblock">
 <div class="title"><code>Програма</code></div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">@animals</span> = <span class="tok-s">&#39;верблюд&#39;</span>,<span class="tok-s">&#39;вікунья&#39;</span>,<span class="tok-s">&#39;лама&#39;</span>;
-<span class="tok-nb">say</span> <span class="tok-s">&quot;У зоопарку є &quot;</span> ~ <span class="tok-nv">@animals</span>.<span class="tok-nb">elems</span> ~ <span class="tok-s">&quot; тварин&quot;</span>;
-<span class="tok-nb">say</span> <span class="tok-s">&quot;Ці тварини: &quot;</span> ~ <span class="tok-nv">@animals</span>;
-<span class="tok-nb">say</span> <span class="tok-s">&quot;Я маю намір віддати до зоопарку сову&quot;</span>;
-<span class="tok-nv">@animals</span>.<span class="tok-nb">push</span>(<span class="tok-s">&quot;сова&quot;</span>);
-<span class="tok-nb">say</span> <span class="tok-s">&quot;Тепер у зоопарку є: &quot;</span> ~ <span class="tok-nv">@animals</span>;
-<span class="tok-nb">say</span> <span class="tok-s">&quot;Перша тварина, яка в нас з&#39;явилася, це &quot;</span> ~ <span class="tok-nv">@animals</span>[<span class="tok-mi">0</span>];
-<span class="tok-nv">@animals</span>.<span class="tok-nb">pop</span>;
-<span class="tok-nb">say</span> <span class="tok-s">&quot;На жаль сова втекла та в нас лишилися: &quot;</span> ~ <span class="tok-nv">@animals</span>;
-<span class="tok-nb">say</span> <span class="tok-s">&quot;Ми закриваємо зоопарк та залишаемо собі лише одну тварину&quot;</span>;
-<span class="tok-nb">say</span> <span class="tok-s">&quot;Ми плануємо віддати: &quot;</span> ~ <span class="tok-nv">@animals</span>.<span class="tok-nb">splice</span>(<span class="tok-mi">1</span>,<span class="tok-mi">2</span>) ~ <span class="tok-s">&quot; та залишити &quot;</span> ~ <span class="tok-nv">@animals</span>;</code></pre>
+<pre class="rouge highlight"><code data-lang="raku"><span class="kd">my</span><span class="w"> </span><span class="nv">@animals</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'верблюд'</span><span class="p">,</span><span class="s1">'вікунья'</span><span class="p">,</span><span class="s1">'лама'</span><span class="p">;</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="s2">"У зоопарку є "</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="nv">@animals</span><span class="o">.</span><span class="nb">elems</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="s2">" тварин"</span><span class="p">;</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="s2">"Ці тварини: "</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="nv">@animals</span><span class="p">;</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="s2">"Я маю намір віддати до зоопарку сову"</span><span class="p">;</span><span class="w">
+</span><span class="nv">@animals</span><span class="o">.</span><span class="nb">push</span><span class="p">(</span><span class="s2">"сова"</span><span class="p">);</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="s2">"Тепер у зоопарку є: "</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="nv">@animals</span><span class="p">;</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="s2">"Перша тварина, яка в нас з'явилася, це "</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="nv">@animals</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span><span class="w">
+</span><span class="nv">@animals</span><span class="o">.</span><span class="nb">pop</span><span class="p">;</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="s2">"На жаль сова втекла та в нас лишилися: "</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="nv">@animals</span><span class="p">;</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="s2">"Ми закриваємо зоопарк та залишаемо собі лише одну тварину"</span><span class="p">;</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="s2">"Ми плануємо віддати: "</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="nv">@animals</span><span class="o">.</span><span class="nb">splice</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="s2">" та залишити "</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="nv">@animals</span><span class="p">;</span></code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title"><code>Вивід</code></div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-n">У</span> <span class="tok-n">зоопарку</span> <span class="tok-n">є</span> <span class="tok-mi">3</span> <span class="tok-n">тварини</span>
-<span class="tok-n">Ці</span> <span class="tok-n">тварини:</span> <span class="tok-n">верблюд</span> <span class="tok-n">вікунья</span> <span class="tok-n">лама</span>
-<span class="tok-n">Я</span> <span class="tok-n">маю</span> <span class="tok-n">намір</span> <span class="tok-n">віддати</span> <span class="tok-n">до</span> <span class="tok-n">зоопарку</span> <span class="tok-n">сову</span>
-<span class="tok-n">Тепер</span> <span class="tok-n">у</span> <span class="tok-n">зоопарку</span> <span class="tok-n">є:</span> <span class="tok-n">верблюд</span> <span class="tok-n">вікунья</span> <span class="tok-n">лама</span> <span class="tok-n">сова</span>
-<span class="tok-n">Перша</span> <span class="tok-n">тварина</span>, <span class="tok-n">яка</span> <span class="tok-n">в</span> <span class="tok-n">нас</span> <span class="tok-n">з&#39;явилася</span>, <span class="tok-n">це</span> <span class="tok-n">верблюд</span>
-<span class="tok-n">На</span> <span class="tok-n">жаль</span> <span class="tok-n">сова</span> <span class="tok-n">втекла</span> <span class="tok-n">та</span> <span class="tok-n">в</span> <span class="tok-n">нас</span> <span class="tok-n">лишилися:</span> <span class="tok-n">верблюд</span> <span class="tok-n">вікунья</span> <span class="tok-n">лама</span>
-<span class="tok-n">Ми</span> <span class="tok-n">закриваємо</span> <span class="tok-n">зоопарк</span> <span class="tok-n">та</span> <span class="tok-n">залишаємо</span> <span class="tok-n">собі</span> <span class="tok-n">лише</span> <span class="tok-n">одну</span> <span class="tok-n">тварину</span>
-<span class="tok-n">Ми</span> <span class="tok-n">плануємо</span> <span class="tok-n">віддати:</span> <span class="tok-n">вікунья</span> <span class="tok-n">лама</span> <span class="tok-n">та</span> <span class="tok-n">залишити</span> <span class="tok-n">верблюд</span></code></pre>
+<pre>У зоопарку є 3 тварини
+Ці тварини: верблюд вікунья лама
+Я маю намір віддати до зоопарку сову
+Тепер у зоопарку є: верблюд вікунья лама сова
+Перша тварина, яка в нас з'явилася, це верблюд
+На жаль сова втекла та в нас лишилися: верблюд вікунья лама
+Ми закриваємо зоопарк та залишаємо собі лише одну тварину
+Ми плануємо віддати: вікунья лама та залишити верблюд</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1735,7 +1779,7 @@ Raku є багатопарадигмальною мовою, яка підтри
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">@array</span>;</code></pre>
+<pre class="rouge highlight"><code data-lang="raku"><span class="kd">my</span><span class="w"> </span><span class="nv">@array</span><span class="p">;</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1748,7 +1792,7 @@ Raku є багатопарадигмальною мовою, яка підтри
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">@array</span>[<span class="tok-mi">3</span>];</code></pre>
+<pre class="rouge highlight"><code data-lang="raku"><span class="kd">my</span><span class="w"> </span><span class="nv">@array</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1756,10 +1800,10 @@ Raku є багатопарадигмальною мовою, яка підтри
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">@array</span>[<span class="tok-mi">3</span>];
-<span class="tok-nv">@array</span>[<span class="tok-mi">0</span>] = <span class="tok-s">&quot;перше значення&quot;</span>;
-<span class="tok-nv">@array</span>[<span class="tok-mi">1</span>] = <span class="tok-s">&quot;друге значення&quot;</span>;
-<span class="tok-nv">@array</span>[<span class="tok-mi">2</span>] = <span class="tok-s">&quot;третє значення&quot;</span>;</code></pre>
+<pre class="rouge highlight"><code data-lang="raku"><span class="kd">my</span><span class="w"> </span><span class="nv">@array</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span><span class="w">
+</span><span class="nv">@array</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"перше значення"</span><span class="p">;</span><span class="w">
+</span><span class="nv">@array</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"друге значення"</span><span class="p">;</span><span class="w">
+</span><span class="nv">@array</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"третє значення"</span><span class="p">;</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1767,16 +1811,16 @@ Raku є багатопарадигмальною мовою, яка підтри
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">@array</span>[<span class="tok-mi">3</span>];
-<span class="tok-nv">@array</span>[<span class="tok-mi">0</span>] = <span class="tok-s">&quot;перше значення&quot;</span>;
-<span class="tok-nv">@array</span>[<span class="tok-mi">1</span>] = <span class="tok-s">&quot;друге значення&quot;</span>;
-<span class="tok-nv">@array</span>[<span class="tok-mi">2</span>] = <span class="tok-s">&quot;третє значення&quot;</span>;
-<span class="tok-nv">@array</span>[<span class="tok-mi">3</span>] = <span class="tok-s">&quot;четверте значення&quot;</span>;</code></pre>
+<pre class="rouge highlight"><code data-lang="raku"><span class="kd">my</span><span class="w"> </span><span class="nv">@array</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span><span class="w">
+</span><span class="nv">@array</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"перше значення"</span><span class="p">;</span><span class="w">
+</span><span class="nv">@array</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"друге значення"</span><span class="p">;</span><span class="w">
+</span><span class="nv">@array</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"третє значення"</span><span class="p">;</span><span class="w">
+</span><span class="nv">@array</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"четверте значення"</span><span class="p">;</span></code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-n">Index</span> <span class="tok-mi">3</span> <span class="tok-k">for</span> <span class="tok-n">dimension</span> <span class="tok-mi">1</span> <span class="tok-n">out</span> <span class="tok-nb">of</span> <span class="tok-nb">range</span> (<span class="tok-n">must</span> <span class="tok-n">be</span> <span class="tok-mi">0</span><span class="tok-o">..</span><span class="tok-mi">2</span>)</code></pre>
+<pre>Index 3 for dimension 1 out of range (must be 0..2)</pre>
 </div>
 </div>
 </div>
@@ -1788,7 +1832,7 @@ Raku є багатопарадигмальною мовою, яка підтри
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">@tbl</span>[<span class="tok-mi">3</span>;<span class="tok-mi">2</span>];</code></pre>
+<pre class="rouge highlight"><code data-lang="raku"><span class="kd">my</span><span class="w"> </span><span class="nv">@tbl</span><span class="p">[</span><span class="mi">3</span><span class="p">;</span><span class="mi">2</span><span class="p">];</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1800,27 +1844,27 @@ Raku є багатопарадигмальною мовою, яка підтри
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">@tbl</span>[<span class="tok-mi">3</span>;<span class="tok-mi">2</span>];
-<span class="tok-nv">@tbl</span>[<span class="tok-mi">0</span>;<span class="tok-mi">0</span>] = <span class="tok-mi">1</span>;
-<span class="tok-nv">@tbl</span>[<span class="tok-mi">0</span>;<span class="tok-mi">1</span>] = <span class="tok-s">&quot;x&quot;</span>;
-<span class="tok-nv">@tbl</span>[<span class="tok-mi">1</span>;<span class="tok-mi">0</span>] = <span class="tok-mi">2</span>;
-<span class="tok-nv">@tbl</span>[<span class="tok-mi">1</span>;<span class="tok-mi">1</span>] = <span class="tok-s">&quot;y&quot;</span>;
-<span class="tok-nv">@tbl</span>[<span class="tok-mi">2</span>;<span class="tok-mi">0</span>] = <span class="tok-mi">3</span>;
-<span class="tok-nv">@tbl</span>[<span class="tok-mi">2</span>;<span class="tok-mi">1</span>] = <span class="tok-s">&quot;z&quot;</span>;
-<span class="tok-nb">say</span> <span class="tok-nv">@tbl</span></code></pre>
+<pre class="rouge highlight"><code data-lang="raku"><span class="kd">my</span><span class="w"> </span><span class="nv">@tbl</span><span class="p">[</span><span class="mi">3</span><span class="p">;</span><span class="mi">2</span><span class="p">];</span><span class="w">
+</span><span class="nv">@tbl</span><span class="p">[</span><span class="mi">0</span><span class="p">;</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w">
+</span><span class="nv">@tbl</span><span class="p">[</span><span class="mi">0</span><span class="p">;</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"x"</span><span class="p">;</span><span class="w">
+</span><span class="nv">@tbl</span><span class="p">[</span><span class="mi">1</span><span class="p">;</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w">
+</span><span class="nv">@tbl</span><span class="p">[</span><span class="mi">1</span><span class="p">;</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"y"</span><span class="p">;</span><span class="w">
+</span><span class="nv">@tbl</span><span class="p">[</span><span class="mi">2</span><span class="p">;</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span><span class="w">
+</span><span class="nv">@tbl</span><span class="p">[</span><span class="mi">2</span><span class="p">;</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"z"</span><span class="p">;</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="nv">@tbl</span></code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span>[[<span class="tok-mi">1</span> <span class="tok-nb">x</span>] [<span class="tok-mi">2</span> <span class="tok-n">y</span>] [<span class="tok-mi">3</span> <span class="tok-nb">z</span>]]</code></pre>
+<pre>[[1 x] [2 y] [3 z]]</pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title">Візуальна репрезентація масива:</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span>[<span class="tok-mi">1</span> <span class="tok-nb">x</span>]
-[<span class="tok-mi">2</span> <span class="tok-n">y</span>]
-[<span class="tok-mi">3</span> <span class="tok-nb">z</span>]</code></pre>
+<pre>[1 x]
+[2 y]
+[3 z]</pre>
 </div>
 </div>
 <div class="admonitionblock note">
@@ -1841,15 +1885,15 @@ Raku є багатопарадигмальною мовою, яка підтри
 <div class="listingblock">
 <div class="title">Хеш - це набір пар Ключ/Значення.</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">%capitals</span> = (<span class="tok-s">&#39;UK&#39;</span>,<span class="tok-s">&#39;Лондон&#39;</span>,<span class="tok-s">&#39;Ukraine&#39;</span>,<span class="tok-s">&#39;Київ&#39;</span>);
-<span class="tok-nb">say</span> <span class="tok-nv">%capitals</span>;</code></pre>
+<pre class="rouge highlight"><code data-lang="raku"><span class="kd">my</span><span class="w"> </span><span class="nv">%capitals</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="s1">'UK'</span><span class="p">,</span><span class="s1">'Лондон'</span><span class="p">,</span><span class="s1">'Ukraine'</span><span class="p">,</span><span class="s1">'Київ'</span><span class="p">);</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="nv">%capitals</span><span class="p">;</span></code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title">Інший - стислий - спосіб заповнення хеша:</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">%capitals</span> = (<span class="tok-n">UK</span> =&gt; <span class="tok-s">&#39;London&#39;</span>,<span class="tok-n">Ukraine</span> =&gt; <span class="tok-s">&#39;Kyiv&#39;</span>);
-<span class="tok-nb">say</span> <span class="tok-nv">%capitals</span>;</code></pre>
+<pre class="rouge highlight"><code data-lang="raku"><span class="kd">my</span><span class="w"> </span><span class="nv">%capitals</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">UK</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'London'</span><span class="p">,</span><span class="n">Ukraine</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'Kyiv'</span><span class="p">);</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="nv">%capitals</span><span class="p">;</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1858,21 +1902,21 @@ Raku є багатопарадигмальною мовою, яка підтри
 <div class="listingblock">
 <div class="title"><code>Програма</code></div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">%capitals</span> = (<span class="tok-n">UK</span> =&gt; <span class="tok-s">&#39;Лондон&#39;</span>, <span class="tok-n">Ukraine</span> =&gt; <span class="tok-s">&#39;Київ&#39;</span>);
-<span class="tok-nv">%capitals</span>.<span class="tok-n">push:</span> (<span class="tok-n">France</span> =&gt; <span class="tok-s">&#39;Париж&#39;</span>);
-<span class="tok-nb">say</span> <span class="tok-nv">%capitals</span>.<span class="tok-nb">kv</span>;
-<span class="tok-nb">say</span> <span class="tok-nv">%capitals</span>.<span class="tok-nb">keys</span>;
-<span class="tok-nb">say</span> <span class="tok-nv">%capitals</span>.<span class="tok-nb">values</span>;
-<span class="tok-nb">say</span> <span class="tok-s">&quot;Столиця Франції це: &quot;</span> ~ <span class="tok-nv">%capitals&lt;France&gt;</span>;</code></pre>
+<pre class="rouge highlight"><code data-lang="raku"><span class="kd">my</span><span class="w"> </span><span class="nv">%capitals</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">UK</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'Лондон'</span><span class="p">,</span><span class="w"> </span><span class="n">Ukraine</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'Київ'</span><span class="p">);</span><span class="w">
+</span><span class="nv">%capitals</span><span class="o">.</span><span class="nb">push</span><span class="p">:</span><span class="w"> </span><span class="p">(</span><span class="n">France</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'Париж'</span><span class="p">);</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="nv">%capitals</span><span class="o">.</span><span class="nb">kv</span><span class="p">;</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="nv">%capitals</span><span class="o">.</span><span class="nb">keys</span><span class="p">;</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="nv">%capitals</span><span class="o">.</span><span class="nb">values</span><span class="p">;</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="s2">"Столиця Франції це: "</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="nv">%capitals&lt;France&gt;</span><span class="p">;</span></code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title"><code>Вивід</code></div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span>(<span class="tok-n">France</span> <span class="tok-n">Париж</span> <span class="tok-n">UK</span> <span class="tok-n">Лондон</span> <span class="tok-n">Ukraine</span> <span class="tok-n">Київ</span>)
-(<span class="tok-n">France</span> <span class="tok-n">UK</span> <span class="tok-n">Ukraine</span>)
-(<span class="tok-n">Київ</span> <span class="tok-n">Лондон</span> <span class="tok-n">Париж</span>)
-<span class="tok-n">Столиця</span> <span class="tok-n">Франції</span> <span class="tok-n">це:</span> <span class="tok-n">Париж</span></code></pre>
+<pre>(France Париж UK Лондон Ukraine Київ)
+(France UK Ukraine)
+(Київ Лондон Париж)
+Столиця Франції це: Париж</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1916,13 +1960,13 @@ Raku є багатопарадигмальною мовою, яка підтри
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">$var</span> = <span class="tok-s">&#39;Text&#39;</span>;
-<span class="tok-nb">say</span> <span class="tok-nv">$var</span>;
-<span class="tok-nb">say</span> <span class="tok-nv">$var</span>.<span class="tok-nb">WHAT</span>;
+<pre class="rouge highlight"><code data-lang="raku"><span class="kd">my</span><span class="w"> </span><span class="nv">$var</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'Text'</span><span class="p">;</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="nv">$var</span><span class="p">;</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="nv">$var</span><span class="o">.</span><span class="nb">WHAT</span><span class="p">;</span><span class="w">
 
-<span class="tok-nv">$var</span> = <span class="tok-mi">123</span>;
-<span class="tok-nb">say</span> <span class="tok-nv">$var</span>;
-<span class="tok-nb">say</span> <span class="tok-nv">$var</span>.<span class="tok-nb">WHAT</span>;</code></pre>
+</span><span class="nv">$var</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">123</span><span class="p">;</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="nv">$var</span><span class="p">;</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="nv">$var</span><span class="o">.</span><span class="nb">WHAT</span><span class="p">;</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1937,9 +1981,9 @@ Raku є багатопарадигмальною мовою, яка підтри
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nb">Int</span> <span class="tok-nv">$var</span> = <span class="tok-s">&#39;Text&#39;</span>;
-<span class="tok-nb">say</span> <span class="tok-nv">$var</span>;
-<span class="tok-nb">say</span> <span class="tok-nv">$var</span>.<span class="tok-nb">WHAT</span>;</code></pre>
+<pre class="rouge highlight"><code data-lang="raku"><span class="kd">my</span><span class="w"> </span><span class="kt">Int</span><span class="w"> </span><span class="nv">$var</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'Text'</span><span class="p">;</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="nv">$var</span><span class="p">;</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="nv">$var</span><span class="o">.</span><span class="nb">WHAT</span><span class="p">;</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1958,21 +2002,21 @@ Raku є багатопарадигмальною мовою, яка підтри
 <div class="listingblock">
 <div class="title">Масиви та хеши також можуть бути статично типізованими:</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nb">Int</span> <span class="tok-nv">@array</span> = <span class="tok-mi">1</span>,<span class="tok-mi">2</span>,<span class="tok-mi">3</span>;
-<span class="tok-nb">say</span> <span class="tok-nv">@array</span>;
-<span class="tok-nb">say</span> <span class="tok-nv">@array</span>.<span class="tok-nb">WHAT</span>;
+<pre class="rouge highlight"><code data-lang="raku"><span class="kd">my</span><span class="w"> </span><span class="kt">Int</span><span class="w"> </span><span class="nv">@array</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">;</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="nv">@array</span><span class="p">;</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="nv">@array</span><span class="o">.</span><span class="nb">WHAT</span><span class="p">;</span><span class="w">
 
-<span class="tok-k">my</span> <span class="tok-nb">Str</span> <span class="tok-nv">@multilingual</span> = <span class="tok-s">&quot;Hello&quot;</span>,<span class="tok-s">&quot;Вітаю&quot;</span>,<span class="tok-s">&quot;Hallo&quot;</span>,<span class="tok-s">&quot;您好&quot;</span>,<span class="tok-s">&quot;안녕하세요&quot;</span>,<span class="tok-s">&quot;こんにちは&quot;</span>;
-<span class="tok-nb">say</span> <span class="tok-nv">@multilingual</span>;
-<span class="tok-nb">say</span> <span class="tok-nv">@multilingual</span>.<span class="tok-nb">WHAT</span>;
+</span><span class="kd">my</span><span class="w"> </span><span class="kt">Str</span><span class="w"> </span><span class="nv">@multilingual</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Hello"</span><span class="p">,</span><span class="s2">"Вітаю"</span><span class="p">,</span><span class="s2">"Hallo"</span><span class="p">,</span><span class="s2">"您好"</span><span class="p">,</span><span class="s2">"안녕하세요"</span><span class="p">,</span><span class="s2">"こんにちは"</span><span class="p">;</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="nv">@multilingual</span><span class="p">;</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="nv">@multilingual</span><span class="o">.</span><span class="nb">WHAT</span><span class="p">;</span><span class="w">
 
-<span class="tok-k">my</span> <span class="tok-nb">Str</span> <span class="tok-nv">%capitals</span> = (<span class="tok-n">UK</span> =&gt; <span class="tok-s">&#39;London&#39;</span>, <span class="tok-n">Ukraine</span> =&gt; <span class="tok-s">&#39;Kyiv&#39;</span>);
-<span class="tok-nb">say</span> <span class="tok-nv">%capitals</span>;
-<span class="tok-nb">say</span> <span class="tok-nv">%capitals</span>.<span class="tok-nb">WHAT</span>;
+</span><span class="kd">my</span><span class="w"> </span><span class="kt">Str</span><span class="w"> </span><span class="nv">%capitals</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">UK</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'London'</span><span class="p">,</span><span class="w"> </span><span class="n">Ukraine</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'Kyiv'</span><span class="p">);</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="nv">%capitals</span><span class="p">;</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="nv">%capitals</span><span class="o">.</span><span class="nb">WHAT</span><span class="p">;</span><span class="w">
 
-<span class="tok-k">my</span> <span class="tok-nb">Int</span> <span class="tok-nv">%country-codes</span> = (<span class="tok-n">UK</span> =&gt; <span class="tok-mi">44</span>, <span class="tok-n">Ukraine</span> =&gt; <span class="tok-mi">38</span>);
-<span class="tok-nb">say</span> <span class="tok-nv">%country-codes</span>;
-<span class="tok-nb">say</span> <span class="tok-nv">%country-codes</span>.<span class="tok-nb">WHAT</span>;</code></pre>
+</span><span class="kd">my</span><span class="w"> </span><span class="kt">Int</span><span class="w"> </span><span class="nv">%country-codes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">UK</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="mi">44</span><span class="p">,</span><span class="w"> </span><span class="n">Ukraine</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="mi">38</span><span class="p">);</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="nv">%country-codes</span><span class="p">;</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="nv">%country-codes</span><span class="o">.</span><span class="nb">WHAT</span><span class="p">;</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2046,18 +2090,18 @@ Raku є багатопарадигмальною мовою, яка підтри
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nb">Int</span> <span class="tok-nv">$var</span>;
-<span class="tok-nb">say</span> <span class="tok-nv">$var</span>.<span class="tok-nb">WHAT</span>;    <span class="tok-c1"># (Int)</span>
-<span class="tok-k">my</span> <span class="tok-nv">$var2</span>;
-<span class="tok-nb">say</span> <span class="tok-nv">$var2</span>.<span class="tok-nb">WHAT</span>;   <span class="tok-c1"># (Any)</span>
-<span class="tok-nv">$var2</span> = <span class="tok-mi">1</span>;
-<span class="tok-nb">say</span> <span class="tok-nv">$var2</span>.<span class="tok-nb">WHAT</span>;   <span class="tok-c1"># (Int)</span>
-<span class="tok-nv">$var2</span> = <span class="tok-s">&quot;Hello&quot;</span>;
-<span class="tok-nb">say</span> <span class="tok-nv">$var2</span>.<span class="tok-nb">WHAT</span>;   <span class="tok-c1"># (Str)</span>
-<span class="tok-nv">$var2</span> = <span class="tok-nb">True</span>;
-<span class="tok-nb">say</span> <span class="tok-nv">$var2</span>.<span class="tok-nb">WHAT</span>;   <span class="tok-c1"># (Bool)</span>
-<span class="tok-nv">$var2</span> = <span class="tok-nb">Nil</span>;
-<span class="tok-nb">say</span> <span class="tok-nv">$var2</span>.<span class="tok-nb">WHAT</span>;   <span class="tok-c1"># (Any)</span></code></pre>
+<pre class="rouge highlight"><code data-lang="raku"><span class="kd">my</span><span class="w"> </span><span class="kt">Int</span><span class="w"> </span><span class="nv">$var</span><span class="p">;</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="nv">$var</span><span class="o">.</span><span class="nb">WHAT</span><span class="p">;</span><span class="w">    </span><span class="c1"># (Int)</span><span class="w">
+</span><span class="kd">my</span><span class="w"> </span><span class="nv">$var2</span><span class="p">;</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="nv">$var2</span><span class="o">.</span><span class="nb">WHAT</span><span class="p">;</span><span class="w">   </span><span class="c1"># (Any)</span><span class="w">
+</span><span class="nv">$var2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="nv">$var2</span><span class="o">.</span><span class="nb">WHAT</span><span class="p">;</span><span class="w">   </span><span class="c1"># (Int)</span><span class="w">
+</span><span class="nv">$var2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Hello"</span><span class="p">;</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="nv">$var2</span><span class="o">.</span><span class="nb">WHAT</span><span class="p">;</span><span class="w">   </span><span class="c1"># (Str)</span><span class="w">
+</span><span class="nv">$var2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">True</span><span class="p">;</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="nv">$var2</span><span class="o">.</span><span class="nb">WHAT</span><span class="p">;</span><span class="w">   </span><span class="c1"># (Bool)</span><span class="w">
+</span><span class="nv">$var2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">Nil</span><span class="p">;</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="nv">$var2</span><span class="o">.</span><span class="nb">WHAT</span><span class="p">;</span><span class="w">   </span><span class="c1"># (Any)</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2077,7 +2121,7 @@ Raku є багатопарадигмальною мовою, яка підтри
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">$var</span>=<span class="tok-mi">1</span>;</code></pre>
+<pre class="rouge highlight"><code data-lang="raku"><span class="kd">my</span><span class="w"> </span><span class="nv">$var</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2090,11 +2134,11 @@ Raku є багатопарадигмальною мовою, яка підтри
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span>{
-  <span class="tok-k">my</span> <span class="tok-nb">Str</span> <span class="tok-nv">$var</span> = <span class="tok-s">&#39;Text&#39;</span>;
-  <span class="tok-nb">say</span> <span class="tok-nv">$var</span>;   <span class="tok-c1"># is accessible</span>
-}
-<span class="tok-nb">say</span> <span class="tok-nv">$var</span>;   <span class="tok-c1"># is not accessible, returns an error</span></code></pre>
+<pre class="rouge highlight"><code data-lang="raku"><span class="p">{</span><span class="w">
+  </span><span class="kd">my</span><span class="w"> </span><span class="kt">Str</span><span class="w"> </span><span class="nv">$var</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'Text'</span><span class="p">;</span><span class="w">
+  </span><span class="nb">say</span><span class="w"> </span><span class="nv">$var</span><span class="p">;</span><span class="w">   </span><span class="c1"># is accessible</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="nv">$var</span><span class="p">;</span><span class="w">   </span><span class="c1"># is not accessible, returns an error</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2102,12 +2146,12 @@ Raku є багатопарадигмальною мовою, яка підтри
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span>{
-  <span class="tok-k">my</span> <span class="tok-nb">Str</span> <span class="tok-nv">$var</span> = <span class="tok-s">&#39;Text&#39;</span>;
-  <span class="tok-nb">say</span> <span class="tok-nv">$var</span>;
-}
-<span class="tok-k">my</span> <span class="tok-nb">Int</span> <span class="tok-nv">$var</span> = <span class="tok-mi">123</span>;
-<span class="tok-nb">say</span> <span class="tok-nv">$var</span>;</code></pre>
+<pre class="rouge highlight"><code data-lang="raku"><span class="p">{</span><span class="w">
+  </span><span class="kd">my</span><span class="w"> </span><span class="kt">Str</span><span class="w"> </span><span class="nv">$var</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'Text'</span><span class="p">;</span><span class="w">
+  </span><span class="nb">say</span><span class="w"> </span><span class="nv">$var</span><span class="p">;</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="kd">my</span><span class="w"> </span><span class="kt">Int</span><span class="w"> </span><span class="nv">$var</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">123</span><span class="p">;</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="nv">$var</span><span class="p">;</span></code></pre>
 </div>
 </div>
 </div>
@@ -2119,8 +2163,8 @@ Raku є багатопарадигмальною мовою, яка підтри
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nb">Int</span> <span class="tok-nv">$var</span> = <span class="tok-mi">123</span>;
-<span class="tok-nb">say</span> <span class="tok-nv">$var</span>;</code></pre>
+<pre class="rouge highlight"><code data-lang="raku"><span class="kd">my</span><span class="w"> </span><span class="kt">Int</span><span class="w"> </span><span class="nv">$var</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">123</span><span class="p">;</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="nv">$var</span><span class="p">;</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2129,17 +2173,17 @@ Raku є багатопарадигмальною мовою, яка підтри
 <div class="listingblock">
 <div class="title">Привласнення</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nb">Int</span> <span class="tok-nv">$var</span> = <span class="tok-mi">123</span>;
-<span class="tok-nb">say</span> <span class="tok-nv">$var</span>;
-<span class="tok-nv">$var</span> = <span class="tok-mi">999</span>;
-<span class="tok-nb">say</span> <span class="tok-nv">$var</span>;</code></pre>
+<pre class="rouge highlight"><code data-lang="raku"><span class="kd">my</span><span class="w"> </span><span class="kt">Int</span><span class="w"> </span><span class="nv">$var</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">123</span><span class="p">;</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="nv">$var</span><span class="p">;</span><span class="w">
+</span><span class="nv">$var</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">999</span><span class="p">;</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="nv">$var</span><span class="p">;</span></code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title"><code>Виведення</code></div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-mi">123</span>
-<span class="tok-mi">999</span></code></pre>
+<pre>123
+999</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2149,36 +2193,36 @@ Raku є багатопарадигмальною мовою, яка підтри
 <div class="listingblock">
 <div class="title">Зв&#8217;язування.</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nb">Int</span> <span class="tok-nv">$var</span> := <span class="tok-mi">123</span>;
-<span class="tok-nb">say</span> <span class="tok-nv">$var</span>;
-<span class="tok-nv">$var</span> = <span class="tok-mi">999</span>;
-<span class="tok-nb">say</span> <span class="tok-nv">$var</span>;</code></pre>
+<pre class="rouge highlight"><code data-lang="raku"><span class="kd">my</span><span class="w"> </span><span class="kt">Int</span><span class="w"> </span><span class="nv">$var</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="mi">123</span><span class="p">;</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="nv">$var</span><span class="p">;</span><span class="w">
+</span><span class="nv">$var</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">999</span><span class="p">;</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="nv">$var</span><span class="p">;</span></code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title"><code>Виведення</code></div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-mi">123</span>
-<span class="tok-n">Cannot</span> <span class="tok-n">assign</span> <span class="tok-nb">to</span> <span class="tok-n">an</span> <span class="tok-n">immutable</span> <span class="tok-nb">value</span></code></pre>
+<pre>123
+Cannot assign to an immutable value</pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title">Змінні можуть також бути зв&#8217;язаними з іншими змінними:</div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">$a</span>;
-<span class="tok-k">my</span> <span class="tok-nv">$b</span>;
-<span class="tok-nv">$b</span> := <span class="tok-nv">$a</span>;
-<span class="tok-nv">$a</span> = <span class="tok-mi">7</span>;
-<span class="tok-nb">say</span> <span class="tok-nv">$b</span>;
-<span class="tok-nv">$b</span> = <span class="tok-mi">8</span>;
-<span class="tok-nb">say</span> <span class="tok-nv">$a</span>;</code></pre>
+<pre class="rouge highlight"><code data-lang="raku"><span class="kd">my</span><span class="w"> </span><span class="nv">$a</span><span class="p">;</span><span class="w">
+</span><span class="kd">my</span><span class="w"> </span><span class="nv">$b</span><span class="p">;</span><span class="w">
+</span><span class="nv">$b</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nv">$a</span><span class="p">;</span><span class="w">
+</span><span class="nv">$a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">7</span><span class="p">;</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="nv">$b</span><span class="p">;</span><span class="w">
+</span><span class="nv">$b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">8</span><span class="p">;</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="nv">$a</span><span class="p">;</span></code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title"><code>Виведення</code></div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-mi">7</span>
-<span class="tok-mi">8</span></code></pre>
+<pre>7
+8</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2211,35 +2255,36 @@ Raku є багатопарадигмальною мовою, яка підтри
 <div class="listingblock">
 <div class="title"><code>Скрипт</code></div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><div class="lineno"><table class="linenotable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span></pre></div></td><td class="code"><div><pre><span></span><span class="tok-k">my</span> <span class="tok-nv">@numbers</span> = [<span class="tok-mi">7</span>,<span class="tok-mi">2</span>,<span class="tok-mi">4</span>,<span class="tok-mi">9</span>,<span class="tok-mi">11</span>,<span class="tok-mi">3</span>];
+<pre class="rouge highlight"><code data-lang="raku"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno"> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+</pre></td><td class="code"><pre><span class="kd">my</span><span class="w"> </span><span class="nv">@numbers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">7</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">3</span><span class="p">];</span><span class="w">
 
-<span class="tok-nv">@numbers</span>.<span class="tok-nb">push</span>(<span class="tok-mi">99</span>);
-<span class="tok-nb">say</span> <span class="tok-nv">@numbers</span>;      <span class="tok-c1">#1</span>
+</span><span class="nv">@numbers</span><span class="o">.</span><span class="nb">push</span><span class="p">(</span><span class="mi">99</span><span class="p">);</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="nv">@numbers</span><span class="p">;</span><span class="w">      </span><span class="c1">#1</span><span class="w">
 
-<span class="tok-nb">say</span> <span class="tok-nv">@numbers</span>.<span class="tok-nb">sort</span>; <span class="tok-c1">#2</span>
-<span class="tok-nb">say</span> <span class="tok-nv">@numbers</span>;      <span class="tok-c1">#3</span>
+</span><span class="nb">say</span><span class="w"> </span><span class="nv">@numbers</span><span class="o">.</span><span class="nb">sort</span><span class="p">;</span><span class="w"> </span><span class="c1">#2</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="nv">@numbers</span><span class="p">;</span><span class="w">      </span><span class="c1">#3</span><span class="w">
 
-<span class="tok-nv">@numbers</span>.=<span class="tok-nb">sort</span>;
-<span class="tok-nb">say</span> <span class="tok-nv">@numbers</span>;      <span class="tok-c1">#4</span>
-</pre></div></td></tr></table></div></code></pre>
+</span><span class="nv">@numbers</span><span class="o">.=</span><span class="nb">sort</span><span class="p">;</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="nv">@numbers</span><span class="p">;</span><span class="w">      </span><span class="c1">#4</span>
+</pre></td></tr></tbody></table></code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title"><code>Виведення</code></div>
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span>[<span class="tok-mi">7</span> <span class="tok-mi">2</span> <span class="tok-mi">4</span> <span class="tok-mi">9</span> <span class="tok-mi">11</span> <span class="tok-mi">3</span> <span class="tok-mi">99</span>] <span class="tok-c1">#1</span>
-(<span class="tok-mi">2</span> <span class="tok-mi">3</span> <span class="tok-mi">4</span> <span class="tok-mi">7</span> <span class="tok-mi">9</span> <span class="tok-mi">11</span> <span class="tok-mi">99</span>) <span class="tok-c1">#2</span>
-[<span class="tok-mi">7</span> <span class="tok-mi">2</span> <span class="tok-mi">4</span> <span class="tok-mi">9</span> <span class="tok-mi">11</span> <span class="tok-mi">3</span> <span class="tok-mi">99</span>] <span class="tok-c1">#3</span>
-[<span class="tok-mi">2</span> <span class="tok-mi">3</span> <span class="tok-mi">4</span> <span class="tok-mi">7</span> <span class="tok-mi">9</span> <span class="tok-mi">11</span> <span class="tok-mi">99</span>] <span class="tok-c1">#4</span></code></pre>
+<pre>[7 2 4 9 11 3 99] #1
+(2 3 4 7 9 11 99) #2
+[7 2 4 9 11 3 99] #3
+[2 3 4 7 9 11 99] #4</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2277,11 +2322,11 @@ Raku є багатопарадигмальною мовою, яка підтри
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">$age</span> = <span class="tok-mi">19</span>;
+<pre class="rouge highlight"><code data-lang="raku"><span class="kd">my</span><span class="w"> </span><span class="nv">$age</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">19</span><span class="p">;</span><span class="w">
 
-<span class="tok-k">if</span> <span class="tok-nv">$age</span> &gt; <span class="tok-mi">18</span> {
-  <span class="tok-nb">say</span> <span class="tok-s">&#39;Welcome&#39;</span>
-}</code></pre>
+</span><span class="k">if</span><span class="w"> </span><span class="nv">$age</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">18</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="nb">say</span><span class="w"> </span><span class="s1">'Welcome'</span><span class="w">
+</span><span class="p">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2290,9 +2335,9 @@ Raku є багатопарадигмальною мовою, яка підтри
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">$age</span> = <span class="tok-mi">19</span>;
+<pre class="rouge highlight"><code data-lang="raku"><span class="kd">my</span><span class="w"> </span><span class="nv">$age</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">19</span><span class="p">;</span><span class="w">
 
-<span class="tok-nb">say</span> <span class="tok-s">&#39;Welcome&#39;</span> <span class="tok-k">if</span> <span class="tok-nv">$age</span> &gt; <span class="tok-mi">18</span>;</code></pre>
+</span><span class="nb">say</span><span class="w"> </span><span class="s1">'Welcome'</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="nv">$age</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">18</span><span class="p">;</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2310,16 +2355,16 @@ Raku є багатопарадигмальною мовою, яка підтри
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-c1"># run the same code for different values of the variable</span>
-<span class="tok-k">my</span> <span class="tok-nv">$number-of-seats</span> = <span class="tok-mi">9</span>;
+<pre class="rouge highlight"><code data-lang="raku"><span class="c1"># run the same code for different values of the variable</span><span class="w">
+</span><span class="kd">my</span><span class="w"> </span><span class="nv">$number-of-seats</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">9</span><span class="p">;</span><span class="w">
 
-<span class="tok-k">if</span> <span class="tok-nv">$number-of-seats</span> &lt;= <span class="tok-mi">5</span> {
-  <span class="tok-nb">say</span> <span class="tok-s">&#39;I am a sedan&#39;</span>
-} <span class="tok-k">elsif</span> <span class="tok-nv">$number-of-seats</span> &lt;= <span class="tok-mi">7</span> {
-  <span class="tok-nb">say</span> <span class="tok-s">&#39;I am 7 seater&#39;</span>
-} <span class="tok-k">else</span> {
-  <span class="tok-nb">say</span> <span class="tok-s">&#39;I am a van&#39;</span>
-}</code></pre>
+</span><span class="k">if</span><span class="w"> </span><span class="nv">$number-of-seats</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="nb">say</span><span class="w"> </span><span class="s1">'I am a sedan'</span><span class="w">
+</span><span class="p">}</span><span class="w"> </span><span class="k">elsif</span><span class="w"> </span><span class="nv">$number-of-seats</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">7</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="nb">say</span><span class="w"> </span><span class="s1">'I am 7 seater'</span><span class="w">
+</span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="nb">say</span><span class="w"> </span><span class="s1">'I am a van'</span><span class="w">
+</span><span class="p">}</span></code></pre>
 </div>
 </div>
 </div>
@@ -2333,11 +2378,11 @@ Raku є багатопарадигмальною мовою, яка підтри
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">$clean-shoes</span> = <span class="tok-nb">False</span>;
+<pre class="rouge highlight"><code data-lang="raku"><span class="kd">my</span><span class="w"> </span><span class="nv">$clean-shoes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">False</span><span class="p">;</span><span class="w">
 
-<span class="tok-k">if</span> <span class="tok-nb">not</span> <span class="tok-nv">$clean-shoes</span> {
-  <span class="tok-nb">say</span> <span class="tok-s">&#39;Clean your shoes&#39;</span>
-}</code></pre>
+</span><span class="k">if</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="nv">$clean-shoes</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="nb">say</span><span class="w"> </span><span class="s1">'Clean your shoes'</span><span class="w">
+</span><span class="p">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2345,11 +2390,11 @@ Raku є багатопарадигмальною мовою, яка підтри
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">$clean-shoes</span> = <span class="tok-nb">False</span>;
+<pre class="rouge highlight"><code data-lang="raku"><span class="kd">my</span><span class="w"> </span><span class="nv">$clean-shoes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">False</span><span class="p">;</span><span class="w">
 
-<span class="tok-k">unless</span> <span class="tok-nv">$clean-shoes</span> {
-  <span class="tok-nb">say</span> <span class="tok-s">&#39;Clean your shoes&#39;</span>
-}</code></pre>
+</span><span class="k">unless</span><span class="w"> </span><span class="nv">$clean-shoes</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="nb">say</span><span class="w"> </span><span class="s1">'Clean your shoes'</span><span class="w">
+</span><span class="p">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2369,11 +2414,11 @@ Raku є багатопарадигмальною мовою, яка підтри
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nb">Int</span> <span class="tok-nv">$var</span>=<span class="tok-mi">1</span>;
+<pre class="rouge highlight"><code data-lang="raku"><span class="kd">my</span><span class="w"> </span><span class="kt">Int</span><span class="w"> </span><span class="nv">$var</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="w">
 
-<span class="tok-k">with</span> <span class="tok-nv">$var</span> {
-  <span class="tok-nb">say</span> <span class="tok-s">&#39;Hello&#39;</span>
-}</code></pre>
+</span><span class="k">with</span><span class="w"> </span><span class="nv">$var</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="nb">say</span><span class="w"> </span><span class="s1">'Hello'</span><span class="w">
+</span><span class="p">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2381,11 +2426,11 @@ Raku є багатопарадигмальною мовою, яка підтри
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nb">Int</span> <span class="tok-nv">$var</span>;
+<pre class="rouge highlight"><code data-lang="raku"><span class="kd">my</span><span class="w"> </span><span class="kt">Int</span><span class="w"> </span><span class="nv">$var</span><span class="p">;</span><span class="w">
 
-<span class="tok-k">with</span> <span class="tok-nv">$var</span> {
-  <span class="tok-nb">say</span> <span class="tok-s">&#39;Hello&#39;</span>
-}</code></pre>
+</span><span class="k">with</span><span class="w"> </span><span class="nv">$var</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="nb">say</span><span class="w"> </span><span class="s1">'Hello'</span><span class="w">
+</span><span class="p">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2403,11 +2448,11 @@ Raku є багатопарадигмальною мовою, яка підтри
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="pygments highlight"><code data-lang="perl6"><span></span><span class="tok-k">my</span> <span class="tok-nv">@array</span> = [<span class="tok-mi">1</span>,<span class="tok-mi">2</span>,<span class="tok-mi">3</span>];
+<pre class="rouge highlight"><code data-lang="raku"><span class="kd">my</span><span class="w"> </span><span class="nv">@array</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">];</span><span class="w">
 
-<span class="tok-k">for</span> <span class="tok-nv">@array</span> -&gt; <span class="tok-nv">$array-item</span> {
-  <span class="tok-nb">say</span> <span class="tok-nv">$array-item</span> * <span class="tok-mi">100</span>
-}</code></pre>
+</span><span class="k">for</span><span class="w"> </span><span class="nv">@array</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nv">$array-item</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="nb">say</span><span class="w"> </span><span class="nv">$array-item</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">100</span><span class="w">
+</span><span class="p">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2430,7 +2475,7 @@ Raku є багатопарадигмальною мовою, яка підтри
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2025-10-09 19:28:56 +0300
+Last updated 2026-10-06 12:54:52 UTC
 </div>
 </div>
 </body>
