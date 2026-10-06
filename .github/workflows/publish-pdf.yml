@@ -1,0 +1,79 @@
+name: Publish PDFs
+
+# Runs only when started by hand from the Actions tab.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: publish-pdf
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    if: github.repository == 'hankache/rakuguide'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the guide (main)
+        uses: actions/checkout@v5
+        with:
+          ref: main
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.4'
+
+      - name: Install asciidoctor-pdf and rouge
+        run: gem install asciidoctor asciidoctor-pdf rouge rouge-raku
+
+      - name: Download fonts
+        run: |
+          mkdir -p pdf/fonts
+          fetch() {
+            url=$(curl -fsS "https://fonts.googleapis.com/css2?family=$1" | grep -o 'https://[^)]*\.ttf' | head -n 1)
+            if [ -z "$url" ]; then
+              echo "No TrueType file found for $1" >&2
+              exit 1
+            fi
+            curl -fsS -o "pdf/fonts/$2" "$url"
+            echo "$2 downloaded."
+          }
+          fetch "Noto+Sans" NotoSans-Regular.ttf
+          fetch "Noto+Sans+Arabic" NotoSansArabic-Regular.ttf
+          fetch "Noto+Sans+KR" NotoSansKR-Regular.ttf
+          fetch "Noto+Sans+SC" NotoSansSC-Regular.ttf
+
+      # -v reports characters missing from the fonts, and --failure-level WARN
+      # turns any such report into a failed build.
+      - name: Build all languages
+        run: |
+          mkdir -p out
+          for file in *rakuguide.adoc; do
+            lang="${file%rakuguide.adoc}"
+            lang="${lang%.}"
+            theme="pdf/theme.yml"
+            scripts=""
+            case "$lang" in
+              ja) theme="pdf/theme-ja.yml"; scripts="-a scripts=cjk" ;;
+              zh) scripts="-a scripts=cjk" ;;
+            esac
+            asciidoctor-pdf -r rouge-raku -v --failure-level WARN \
+              -a pdf-theme="$theme" $scripts \
+              -o "out/rakuguide${lang:+-$lang}.pdf" "$file"
+            echo "${lang:-en} generated."
+          done
+
+      - name: Upload to the pdf release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          notes="PDF editions of the Raku Guide, built from main@$(git rev-parse --short HEAD) on $(date -u +%Y-%m-%d)."
+          if gh release view pdf > /dev/null 2>&1; then
+            gh release edit pdf --notes "$notes"
+          else
+            gh release create pdf --title "Raku Guide PDF" --notes "$notes"
+          fi
+          gh release upload pdf out/*.pdf --clobber
