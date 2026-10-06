@@ -1,0 +1,71 @@
+name: Publish website
+
+# Runs only when started by hand from the Actions tab.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: publish
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    if: github.repository == 'hankache/rakuguide'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the guide (main)
+        uses: actions/checkout@v5
+        with:
+          ref: main
+          path: src
+
+      - name: Check out the website (gh-pages)
+        uses: actions/checkout@v5
+        with:
+          ref: gh-pages
+          path: site
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.4'
+
+      - name: Install asciidoctor and rouge
+        run: gem install asciidoctor rouge rouge-raku
+
+      - name: Build all languages
+        working-directory: src
+        run: |
+          for file in *rakuguide.adoc; do
+            lang="${file%rakuguide.adoc}"
+            lang="${lang%.}"
+            if [ -z "$lang" ]; then
+              out="../site/index.html"
+              favicon="favicon.ico"
+            else
+              mkdir -p "../site/$lang"
+              out="../site/$lang/index.html"
+              favicon="../favicon.ico"
+            fi
+            asciidoctor -r rouge-raku --failure-level WARN \
+              -a docinfo=shared-head -a docinfodir="$PWD/.github" \
+              -a favicon="$favicon" \
+              -o "$out" "$file"
+            echo "${lang:-en} generated."
+          done
+
+      - name: Commit and push to gh-pages
+        working-directory: site
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "Nothing to publish."
+            exit 0
+          fi
+          git commit -m "Publish main@$(git -C ../src rev-parse --short HEAD)"
+          git push

@@ -1,3 +1,4 @@
 *.html
 *.pdf
 .vscode
+!.github/docinfo.html
