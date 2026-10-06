@@ -4,10 +4,7 @@ Naoum Hankache <naoum@hankache.com>; ohmycloud <http://ohmycloud.github.io>; wen
 :keywords: perl6, Raku, 入门, perl6intro, Raku 入门, Raku 指南, Raku Intro, Raku Guide
 :Revision: 1.0
 :icons: font
-:source-highlighter: pygments
-//:pygments-style: manni
-:source-language: perl6
-:pygments-linenums-mode: table
+:source-highlighter: rouge
 :toc: left
 :doctype: book
 :lang: zh
@@ -75,6 +72,8 @@ Raku 是通过该规范测试套件的实现。
 === 安装 Raku
 .Linux
 . 安装 Rakudo Star: 在终端中运行：
++
+[source,shell]
 ----
 mkdir ~/rakudo && cd $_
 curl -LJO https://rakudo.org/latest/star/src
@@ -149,12 +148,12 @@ https://atom.io/packages/language-perl6[Raku FE] 是相对于 Atom 默认 Raku �
 === Hello World!
 我们会从 `hello world` 惯例程序开始。
 
-[source,perl6]
+[source,raku]
 say 'hello world';
 
 它也可以被写为:
 
-[source,perl6]
+[source,raku]
 'hello world'.say;
 
 === 语法概要
@@ -239,17 +238,17 @@ Raku 是 *形式自由的*, (大多数时候)你可以使用任意数量的空�
 
 * 单行注释:
 +
-[source,perl6]
+[source,raku]
 # This is a single line comment
 
 * 嵌套的注释:
 +
-[source,perl6]
+[source,raku]
 say #`(This is an embedded comment) "Hello World."
 
 * 多行注释:
 +
-[source,perl6]
+[source,raku]
 -----------------------------
 =begin comment
 This is a multi line comment.
@@ -267,7 +266,7 @@ Comment 2
 
 * 你的字符串包含需要被替换的变量。
 
-[source,perl6]
+[source,raku]
 -----------------------------------
 say 'Hello World';   # Hello World
 say "Hello World";   # Hello World
@@ -464,7 +463,7 @@ Raku 中的变量分为 3 类：标量、数组和哈希。
 === 标量
 标量用于存储一项数据或引用。
 
-[source,perl6]
+[source,raku]
 ----
 #字符串
 my $name = 'John Doe';
@@ -477,7 +476,7 @@ say $age;
 
 特定数据类型的标量对应一组作用于它的操作。
 
-[source,perl6]
+[source,raku]
 .字符串
 ----
 my $name = 'John Doe'; # 对于字符串类型
@@ -494,7 +493,7 @@ eoD nhoJ
 
 NOTE: 所有可应用于字符串的方法列表，请参照 https://docs.raku.org/type/Str
 
-[source,perl6]
+[source,raku]
 .整数
 ----
 my $age = 17;
@@ -507,7 +506,7 @@ True
 
 NOTE: 所有可应用于整数的方法列表，请参照 https://docs.raku.org/type/Int
 
-[source,perl6]
+[source,raku]
 .有理数
 ----
 my $age = 2.3;
@@ -527,7 +526,7 @@ NOTE: 所有可应用于有理数的方法列表，请参照 https://docs.raku.o
 === 数组
 数组是储存有多个值的列表。
 
-[source,perl6]
+[source,raku]
 ----
 my @animals = 'camel','llama','owl';
 say @animals;
@@ -537,7 +536,7 @@ say @animals;
 
 TIP: 波浪符 `~` 可用于列表中字符串的连接。
 
-[source,perl6]
+[source,raku]
 .`脚本`
 ----
 my @animals = 'camel','vicuña','llama';
@@ -574,7 +573,7 @@ say "我们要放走: " ~ @animals.splice(1,2) ~ " ，只剩下 " ~ @animals;
 
 ==== 定长数组
 一般数组通过以下方式声明:
-[source,perl6]
+[source,raku]
 my @array;
 
 一般的数组的长度可以无限，因此被叫做自动扩展。 +
@@ -584,12 +583,12 @@ my @array;
 在这种数组中不能访问下标超过定义大小的元素。
 
 可以通过在变量名后的方括号中指定最大元素个数来定义定长数组的长度:
-[source,perl6]
+[source,raku]
 my @array[3];
 
 这个数组最多可以储存 3 个变量，索引从 0 开始, 到 2 结束。
 
-[source,perl6]
+[source,raku]
 ----
 my @array[3];
 @array[0] = "first value";
@@ -598,7 +597,7 @@ my @array[3];
 ----
 
 我们不能在这个数组中添加第四个元素：
-[source,perl6]
+[source,raku]
 ----
 my @array[3];
 @array[0] = "first value";
@@ -615,7 +614,7 @@ Index 3 for dimension 1 out of range (must be 0..2) 第一维的索引值 3 超�
 到现在为止我们看到的数组还都是一维的。 +
 幸运的是，我们在 Raku 中能定义多维数组。
 
-[source,perl6]
+[source,raku]
 my @tbl[3;2];
 
 这是一个二维数组。
@@ -623,7 +622,7 @@ my @tbl[3;2];
 
 可以把它看成 3x2 的矩阵。
 
-[source,perl6]
+[source,raku]
 ----
 my @tbl[3;2];
 @tbl[0;0] = 1;
@@ -649,14 +648,14 @@ say @tbl
 NOTE: 对于完整的数组参考资料，请参照 https://docs.raku.org/type/Array
 
 === Hashes 哈希
-[source,perl6]
+[source,raku]
 .哈希是一组键值对。
 ----
 my %capitals = ('UK','London','Germany','Berlin');
 say %capitals;
 ----
 
-[source,perl6]
+[source,raku]
 .另一种填充哈希的方法:
 ----
 my %capitals = (UK => 'London', Germany => 'Berlin');
@@ -664,7 +663,7 @@ say %capitals;
 ----
 
 一些能应用于哈希的方法:
-[source,perl6]
+[source,raku]
 .`脚本`
 ----
 my %capitals = (UK => 'London', Germany => 'Berlin');
@@ -697,7 +696,7 @@ NOTE: 完整的哈希参考资料，请参照 https://docs.raku.org/type/Hash
 
 TIP: `.WHAT` 会返回变量中值的类型。
 
-[source,perl6]
+[source,raku]
 ----
 my $var = 'Text';
 say $var;
@@ -715,7 +714,7 @@ say $var.WHAT;
 接下来试着运行下面的例子: +
 注意在变量名前的 `Int`。
 
-[source,perl6]
+[source,raku]
 ----
 my Int $var = 'Text';
 say $var;
@@ -731,7 +730,7 @@ say $var.WHAT;
 Raku 属于 *渐进类型* ;它同时支持 *静态* 和 *动态* 类型。
 
 .数组和哈希同样可以为静态类型:
-[source,perl6]
+[source,raku]
 ----
 my Int @array = 1,2,3;
 say @array;
@@ -783,7 +782,7 @@ say %student-name.WHAT;
 自省是获取对象属性信息的过程，比如获取对象的类型。 +
 在前面的一个例子中我们使用 `.WHAT` 来获取变量的类型。
 
-[source,perl6]
+[source,raku]
 ----
 my Int $var;
 say $var.WHAT;    # (Int)
@@ -809,7 +808,7 @@ say $var2.WHAT;   # (Any)
 
 在 Raku 中可以使用使用多种声明方式。其中 `my` 已经在上述例子中使用到。
 
-[source,perl6]
+[source,raku]
 my $var=1;
 
 `my` 声明指定了变量上下文作用域。
@@ -818,7 +817,7 @@ my $var=1;
 Raku 中块有 `{}` 界定。
 如果没有块存在，那么变量就在整个 Raku 脚本中可用。
 
-[source,perl6]
+[source,raku]
 ----
 {
   my Str $var = 'Text';
@@ -829,7 +828,7 @@ say $var;   # 不能使用, 会报错
 
 因为一个变量只有在定义它的块中有效，所以同样的变量名可以在另一个块中使用。
 
-[source,perl6]
+[source,raku]
 ----
 {
   my Str $var = 'Text';
@@ -842,7 +841,7 @@ say $var;
 === 赋值 vs. 绑定
 我们已经在前面的例子中看到如何将值 *赋* 给变量。 +
 *赋值* 通过 `=` 操作符完成。
-[source,perl6]
+[source,raku]
 ----
 my Int $var = 123;
 say $var;
@@ -850,7 +849,7 @@ say $var;
 
 我们可以改变赋给变量的值:
 
-[source,perl6]
+[source,raku]
 .赋值
 ----
 my Int $var = 123;
@@ -868,7 +867,7 @@ say $var;
 我们不能改变 *绑定* 到变量上的值 +
 *绑定* 通过 `:=` 操作符实现。
 
-[source,perl6]
+[source,raku]
 .绑定
 ----
 my Int $var := 123;
@@ -883,7 +882,7 @@ say $var;
 Cannot assign to an immutable value 不允许赋值到一个不可变值
 ----
 
-[source,perl6]
+[source,raku]
 .变量也可以绑定到其他变量:
 ----
 my $a;
@@ -912,7 +911,7 @@ NOTE: 关于变量的更多信息，请参见 https://docs.raku.org/language/var
 函数在调用的时候不改变对象的初始状态。 +
 修改器改变对象的状态。
 
-[source,perl6,linenums]
+[source,raku,linenums]
 .`脚本`
 ----
 my @numbers = [7,2,4,9,11,3];
@@ -952,7 +951,7 @@ Raku 有多种条件和循环结构。
 === if
 仅在条件满足（条件表达式结果为 `True`）时运行代码。
 
-[source,perl6]
+[source,raku]
 ----
 my $age = 19;
 
@@ -964,7 +963,7 @@ if $age > 18 {
 在 Raku 中我们能倒装条件语句和待运行的代码。 +
 将待运行的代码和条件语句倒装后，条件语句总是优先被执行。
 
-[source,perl6]
+[source,raku]
 ----
 my $age = 19;
 
@@ -976,7 +975,7 @@ say 'Welcome' if $age > 18;
 * `else`
 * `elsif`
 
-[source,perl6]
+[source,raku]
 ----
 # 为变量不同的值运行相同的代码
 my $座位数 = 9;
@@ -995,7 +994,7 @@ if $座位数 <= 5 {
 
 下面这些代码：
 
-[source,perl6]
+[source,raku]
 ----
 my $clean-shoes = False;
 
@@ -1005,7 +1004,7 @@ if not $clean-shoes {
 ----
 可以改写成：
 
-[source,perl6]
+[source,raku]
 ----
 my $clean-shoes = False;
 
@@ -1025,7 +1024,7 @@ unless $clean-shoes {
 `with` 的用法和 `if` 相同, 不过 `with` 会检查变量是否已经定义。 +
 如果变量没有定义，那么就不会执行块中的代码。
 
-[source,perl6]
+[source,raku]
 ----
 my Int $var=1;
 
@@ -1035,7 +1034,7 @@ with $var {
 ----
 
 以下代码中，如果你没有给 `$var` 赋值，那么代码块就不会被执行。
-[source,perl6]
+[source,raku]
 ----
 my Int $var;
 
@@ -1053,7 +1052,7 @@ with $var {
 
 `for` 循环可以迭代多个值。
 
-[source,perl6]
+[source,raku]
 ----
 my @array = [1,2,3];
 
@@ -1068,7 +1067,7 @@ for @array -> $array-item {
 
 在 Raku 中的 `given`  类似其他语言中的 switch，但是要更加地强大。
 
-[source,perl6]
+[source,raku]
 ----
 my $var = 42;
 
@@ -1084,7 +1083,7 @@ given $var {
 
 如果在匹配成功后运行的代码块中加了 `proceed`，那么就要在下一次成功匹配后才停止匹配。
 
-[source,perl6]
+[source,raku]
 ----
 my $var = 42;
 
@@ -1102,7 +1101,7 @@ given $var {
 Raku 中 C 语言家族的 `for` 循环使用 `loop` 来表示。 +
 Raku 是 C 语言家族中的一员。
 
-[source,perl6]
+[source,raku]
 ----
 loop (my $i = 0; $i < 5; $i++) {
   say "The current number is $i"
@@ -1120,7 +1119,7 @@ NOTE: 更多关于循环和条件语句的信息，参见 https://docs.raku.org/
 ==== say
 `say` 能输出到标准输出，而且它还会在输出的最后添加一个换行符，请见下面的示例代码：
 
-[source,perl6]
+[source,raku]
 ----
 say 'Hello Mam.';
 say 'Hello Sir.';
@@ -1135,7 +1134,7 @@ say 'Hello Sir.';
 ==== get
 `get` 用来获取终端中的输入。
 
-[source,perl6]
+[source,raku]
 ----
 my $name;
 
@@ -1153,7 +1152,7 @@ say "Dear $name welcome to Raku";
 
 以上的例子可以改写成以下方式：
 
-[source,perl6]
+[source,raku]
 ----
 my $name = prompt "Hi, what's your name? ";
 
@@ -1168,7 +1167,7 @@ say "Dear $name welcome to Raku";
 * `shell` 通过系统 shell 来运行命令。它依赖系统平台和它的 shell。
 所有的保留字(meta chracters) 会被 shell 解释，包括管道(pipes)、重定向、环境变量替换等等。
 
-[source,perl6]
+[source,raku]
 .如果你用的是 Linux 或 OSX 请运行以下代码：
 ----
 my $name = 'Neo';
@@ -1176,7 +1175,7 @@ run 'echo', "hello $name";
 shell "ls";
 ----
 
-[source,perl6]
+[source,raku]
 .如果你用的是 Windows 请运行下面这段代码：
 ----
 shell "dir";
@@ -1201,7 +1200,7 @@ Johnnie 7
 Jane 8
 Joanna 7
 ----
-[source,perl6]
+[source,raku]
 ----
 my $data = slurp "datafile.txt";
 say $data;
@@ -1210,7 +1209,7 @@ say $data;
 ==== spurt
 `spurt` 用来向文件写入数据。
 
-[source,perl6]
+[source,raku]
 ----
 my $newdata = "New scores:
 Paul 10
@@ -1225,7 +1224,7 @@ spurt "newdatafile.txt", $newdata;
 === 文件和文件目录操作
 在先前的例子中，Raku 能不使用 shell 命令的情况下列出一个目录下所有的内容。
 
-[source,perl6]
+[source,raku]
 ----
 say dir;              # 列出当前目录下的文件和文件夹
 say dir "/Documents"; # 列出特定目录下的文件和文件夹
@@ -1233,7 +1232,7 @@ say dir "/Documents"; # 列出特定目录下的文件和文件夹
 
 另外你还能创建和删除目录。
 
-[source,perl6]
+[source,raku]
 ----
 mkdir "newfolder";
 rmdir "newfolder";
@@ -1246,7 +1245,7 @@ rmdir "newfolder";
 
 在你要运行以下脚本的目录中，建立一个叫 `folder123` 的空文件夹和一个文件 `script123.raku`
 
-[source,perl6]
+[source,raku]
 ----
 say "script123.raku".IO.e;
 say "folder123".IO.e;
@@ -1275,7 +1274,7 @@ NOTE: 更多关于 I/O，详见 https://docs.raku.org/type/IO
 定义子例程时以关键字 `sub` 起始。在定义之后你能通过子例程名来进行调用。 +
 让我们来看下面的例子：
 
-[source,perl6]
+[source,raku]
 ----
 sub alien-greeting {
   say "Hello earthlings";
@@ -1293,7 +1292,7 @@ alien-greeting;
 
 下面的子例程接收一个字符串参数。
 
-[source,perl6]
+[source,raku]
 ----
 sub say-hello (Str $name) {
     say "Hello " ~ $name ~ "!!!!"
@@ -1307,7 +1306,7 @@ say-hello "Paula";
 当这样的子例程被调用的时候，运行环境会根据提供的参数之数量和类型判断那个版本的同名子例程来运行。
 这种子例程和普通的子例程的定义方法是一样的，不过我们需要使用 `multi` 来代替原先的 `sub`。
 
-[source,perl6]
+[source,raku]
 ----
 multi greet($name) {
     say "Good morning $name";
@@ -1330,7 +1329,7 @@ greet "Laura","Mrs.";
 
 可选参数在定义的时候需要在参数名后加 `?`。
 
-[source,perl6]
+[source,raku]
 ----
 sub say-hello($name?) {
   with $name { say "Hello " ~ $name }
@@ -1343,7 +1342,7 @@ say-hello("Laura");
 如果使用者没有提供参数，那么它就默认使用预先给定的值。 +
 上面是通过在子例程中给参数赋值的方式实现的。
 
-[source,perl6]
+[source,raku]
 ----
 sub say-hello($name="Matt") {
   say "Hello " ~ $name;
@@ -1358,7 +1357,7 @@ say-hello("Laura");
 一些时候我们需要让子例程 *返回* 值让我们能在我们的程序中能重复使用。
 
 在一般的情景下，子例程代码的最后一行被默认为返回值。
-[source,perl6]
+[source,raku]
 .隐式返回
 ----
 sub squared ($x) {
@@ -1369,7 +1368,7 @@ say "7 squared is equal to " ~ squared(7);
 
 一旦我们的代码变多，清楚地指明我们需要返回的变量是很有用的。
 可以使用 `return` 关键字来指明返回变量。
-[source,perl6]
+[source,raku]
 .显式返回
 ----
 sub squared ($x) {
@@ -1383,7 +1382,7 @@ say "7 squared is equal to " ~ squared(7);
 
 为了将返回值限定为特定类型，我们可以使用 `returns` 特征 (trait) 或在函数签名中使用箭标。
 
-[source,perl6]
+[source,raku]
 .使用 rerurns 特征
 ----
 sub squared ($x) returns Int {
@@ -1392,7 +1391,7 @@ sub squared ($x) returns Int {
 say "1.2 squared is equal to " ~ squared(1.2);
 ----
 
-[source,perl6]
+[source,raku]
 .使用箭头
 ----
 sub squared ($x --> Int) {
@@ -1417,7 +1416,7 @@ Type check failed for return value; expected Int but got Rat (1.44) 返回值类
 使用类型限制是一个好的习惯。 +
 以下是将前面的例子修改后的结果，其中使用 `:D` 强制返回已定义的 `Int`。
 
-[source,perl6]
+[source,raku]
 ----
 sub squared ($x --> Int:D) {
   return $x ** 2;
@@ -1444,7 +1443,7 @@ NOTE: 关于更多子例程和函数的资料，详见 https://docs.raku.org/lan
 `map` 函数是用来说明这个概念的极好例子。 +
 `map` 是 *高阶函数*, 它接收另外一个函数作为参数。
 
-[source,perl6]
+[source,raku]
 .脚本
 ----
 my @array = <1 2 3 4 5>;
@@ -1473,7 +1472,7 @@ say map(&squared, @array);
 匿名函数没有绑定到标识符(匿名函数没有名字)。
 
 让我们使用匿名函数重写 `map` 那个例子。
-[source,perl6]
+[source,raku]
 ----
 my @array = <1 2 3 4 5>;
 say map(-> $x {$x ** 2}, @array);
@@ -1483,7 +1482,7 @@ say map(-> $x {$x ** 2}, @array);
 
 按照 Raku 的说法我们把这个标记叫做 *pointy block*。
 
-[source,perl6]
+[source,raku]
 .pointy block 也能用于把函数赋值给变量:
 ----
 my $squared = -> $x {
@@ -1499,7 +1498,7 @@ say $squared(9);
 我们假设你有一个数组。你被要求返回该数组的唯一值, 并且按从大到小的顺序排序。
 
 下面是没有使用链式调用的代码：
-[source,perl6]
+[source,raku]
 ----
 my @array       = <7 8 9 0 1 2 4 3 5 6 7 8 9 >;
 my @final-array = reverse(sort(unique(@array)));
@@ -1510,7 +1509,7 @@ say @final-array;
 和上面的例子相比, Raku 允许链式方法。 +
 上面的例子可以像下面这样写, 利用 *方法链* 的优点:
 
-[source,perl6]
+[source,raku]
 ----
 my @array       = <7 8 9 0 1 2 4 3 5 6 7 8 9 >;
 my @final-array = @array.unique.sort.reverse;
@@ -1521,7 +1520,7 @@ say @final-array;
 
 === Feed 操作符
 *feed 操作符*, 在有些函数式编程语言中也叫 _管道_, 然而它是链式方法的一个更好的可视化产出。
-[source,perl6]
+[source,raku]
 .正向流（Forward Feed）
 ----
 my @array = <7 8 9 0 1 2 4 3 5 6>;
@@ -1542,7 +1541,7 @@ say @final-array;
 就像你看到的那样, 方法的流向是自上而下的。
 
 
-[source,perl6]
+[source,raku]
 .反向流（Backward Feed）
 ----
 my @array = <7 8 9 0 1 2 4 3 5 6>;
@@ -1561,7 +1560,7 @@ say @final-array-v2;
 
 ===  Hyper 操作符
 *hyper 操作符* `>>.` 对列表的所有元素调用同一方法，返回其结果的列表。
-[source,perl6]
+[source,raku]
 ----
 my @array = <0 1 2 3 4 5 6 7 8 9 10>;
 sub is-even($var) { $var %% 2 };
@@ -1584,7 +1583,7 @@ WARNING: Raku 会保证结果的顺序与原始值的顺序相同。 +
 *junction* 是值的逻辑叠加。
 
 在下面的例子中 `1|2|3` 是一个junction。
-[source,perl6]
+[source,raku]
 ----
 my $var = 2;
 if $var == 1|2|3 {
@@ -1608,7 +1607,7 @@ if $var == 1|2|3 {
 我们使用中缀操作符 `\...` 来创建惰性列表。 +
 惰性列表具有 *初始元素*, *生成器* 和 *结束点*。
 
-[source,perl6]
+[source,raku]
 . 简单惰性列表
 ----
 my  $lazylist = (1 ... 10);
@@ -1618,7 +1617,7 @@ say $lazylist;
 初始元素为 1 而结束点为 10。因为没有定义生成器所以默认的生成器为后继生成器(+1)。 +
 换句话说, 这个惰性列表可能返回(如果需要的话)下面的元素 (1, 2, 3, 4, 5, 6, 7, 8, 9, 10)。
 
-[source,perl6]
+[source,raku]
 . 无穷惰性列表
 ----
 my  $lazylist = (1 ... Inf);
@@ -1627,7 +1626,7 @@ say $lazylist;
 
 该列表可能返回(如果需要的话) 1 到无穷大之间的任何整数, 换句话说, 可以返回任何整数。
 
-[source,perl6]
+[source,raku]
 .使用推断生成器创建惰性列表
 ----
 my  $lazylist = (0,2 ... 10);
@@ -1637,7 +1636,7 @@ say $lazylist;
 初始的元素是 0 和 2 而结束点是 10。虽然没有定义生成器, 但是使用了初始元素, Raku 会把生成器推断为 (+2)。 +
 
 这个惰性列表可能返回(如果需要的话)下面的元素 (0, 2, 4, 6, 8, 10)。
-[source,perl6]
+[source,raku]
 .使用定义的生成器创建惰性列表
 ----
 my  $lazylist = (0, { $_ + 3 } ... 12);
@@ -1656,14 +1655,14 @@ say $lazylist;
 
 你可以使用 `0 \...^ * > 10` 代替 `0 \... 10`。 +
 你可以把它读作: 从 0 直到第一个大于 10 的值（不包含该值）。
-[source,perl6]
+[source,raku]
 .这不会使生成器停止
 ----
 my  $lazylist = (0, { $_ + 3 } ... 10);
 say $lazylist;
 ----
 
-[source,perl6]
+[source,raku]
 .这会使生成器停止
 ----
 my  $lazylist = (0, { $_ + 3 } ...^ * > 10);
@@ -1675,7 +1674,7 @@ say $lazylist;
 
 在 Raku 中所有的代码对象都是闭包, 这意味着它们能从外部作用域(outer scope)引用词法变量(lexical variables)。
 
-[source,perl6]
+[source,raku]
 ----
 sub generate-greeting {
     my $name = "John Doe";
@@ -1703,7 +1702,7 @@ $generated();
 在这种情况下，`$generated` 是一个闭包，它包含在创建闭包时存在的 `greeting` 子例程和 `John Doe` 字符串。
 
 让我们来看一个更有趣的例子。
-[source,perl6]
+[source,raku]
 ----
 sub greeting-generator($period) {
   return sub ($name) {
@@ -1750,7 +1749,7 @@ _面向对象_ 编程是当今广泛使用的范式之一。 +
 按 _面向对象_ 的说法, 对象是类的 *实例*。
 
 考虑下面的脚本:
-[source,perl6]
+[source,raku]
 ----
 class Human {
   has $.name;
@@ -1770,7 +1769,7 @@ say $john;
 在上面的例子中, 新的变量 `$john` 保存了由 `Human.new()` 所定义的新 "Human" 实例。 +
 传递给 `.new()` 方法的参数用于设置底层对象的属性。
 类可以使用 `my` 来声明一个 _本地作用域_:
-[source,perl6]
+[source,raku]
 ----
 my class Human {
 
@@ -1785,14 +1784,14 @@ my class Human {
 下面两个脚本拥有同样的结果。
 
 .直接访问变量:
-[source,perl6]
+[source,raku]
 ----
 my  $var = 7;
 say $var;
 ----
 
 .封装:
-[source,perl6]
+[source,raku]
 ----
 my $var = 7;
 sub sayvar {
@@ -1812,7 +1811,7 @@ twigil 是次级的 _魔符(sigil)_ ，用于魔符和属性名之间。 +
 默认地, 所有的属性都是私有的, 但是总是用 `!` twigil 是一个好习惯。
 
 因此, 我们应该把上面的类重写成下面这样:
-[source,perl6]
+[source,raku]
 ----
 class Human {
     has $!name;
@@ -1845,7 +1844,7 @@ say $john;
 假如我不想在每次创建新对象的时候为每个属性提供一个名字呢? +
 那么我需要创建另外一个接收 *位置参数* 的构造函数。
 
-[source,perl6]
+[source,raku]
 ----
 class Human {
     has $.name;
@@ -1873,7 +1872,7 @@ say $john;
 方法是使用关键字 `method` 来定义的。 +
 正常情况下, 方法被要求在对象的属性身上执行一些动作。这强制了封装的概念。对象的属性只能在对象里面使用方法来操作。在对象外面, 只能和对象的方法交互, 并且不能访问它的属性。
 
-[source,perl6]
+[source,raku]
 ----
 class Human {
   has $.name;
@@ -1920,7 +1919,7 @@ _object_ *.* _method_  或像上面的例子那样: `$john.assess-eligibility`�
 私有方法的声明需要在方法的名字前使用 `!` twigil。 +
 私有方法是使用 `!` 而非 `.` 调用的。
 
-[source,perl6]
+[source,raku]
 ----
 method !iamprivate {
     # code goes in here
@@ -1939,7 +1938,7 @@ method iampublic {
 类属性是使用 `my` 关键字而非 `has` 关键字声明的。 +
 它们是在类自己身上而非它的对象身上调用的。
 
-[source,perl6]
+[source,raku]
 ----
 class Human {
     has $.name;
@@ -1962,7 +1961,7 @@ say Human.counter;
 假如我们需要修改属性的值呢?  +
 
 我们需要使用下面的 `is rw` 关键字把它标记为 _read/write_。
-[source,perl6]
+[source,raku]
 ----
 class Human {
     has $.name;
@@ -1991,7 +1990,7 @@ Human 拥有两个属性: name 和 age。 +
 Employees 拥有 4  个属性: name, age, company 和 salary。
 
 尝试按照下面的方式定义类:
-[source,perl6]
+[source,raku]
 ----
 class Human {
     has $.name;
@@ -2009,7 +2008,7 @@ class Employee {
 虽然上面的代码技术上是正确的, 但是概念上差。
 
 更好的写法是下面这样:
-[source,perl6]
+[source,raku]
 ----
 class Human {
     has $.name;
@@ -2035,7 +2034,7 @@ class Employee is Human {
 
 在下面的例子中, `introduce-yourself` 方法被 Employee 类继承。
 
-[source,perl6]
+[source,raku]
 ----
 class Human {
     has $.name;
@@ -2059,7 +2058,7 @@ $jane.introduce-yourself;
 
 重写工作如下:
 
-[source,perl6]
+[source,raku]
 ----
 class Human {
     has $.name;
@@ -2096,7 +2095,7 @@ $jane.introduce-yourself;
 
 在 Raku 中允许多重继承。一个类可以继承自多个其它的类。
 
-[source,perl6]
+[source,raku]
 ----
 class bar-chart {
   has Int @.bar-values;
@@ -2152,7 +2151,7 @@ $actual-vs-forecast.plot;
 
 为了表现得正确, 我们应该在 `combo-chart` 中重写 `plot` 方法。
 
-[source,perl6]
+[source,raku]
 ----
 class bar-chart {
   has Int @.bar-values;
@@ -2206,7 +2205,7 @@ $actual-vs-forecast.plot;
 role 使用关键字 `role` 声明, 而想实现该 role 的类可以使用 `does` 关键字。
 
 .使用 role 重写多重继承的例子
-[source,perl6]
+[source,raku]
 ----
 role bar-chart {
   has Int @.bar-values;
@@ -2248,7 +2247,7 @@ $actual-vs-forecast.plot;
 
 要回答你的问题, 修改第一个用于展示多重继承的脚本,  这个脚本中我们 _忘记_ 重写 `plot` 方法了。
 
-[source,perl6]
+[source,raku]
 ----
 role bar-chart {
   has Int @.bar-values;
@@ -2295,7 +2294,7 @@ Method 'plot' must be resolved by class combo-chart because it exists in multipl
 
 role 会提醒你有冲突。
 
-[source,perl6]
+[source,raku]
 ----
 class Human {
   has Str $.name;
@@ -2330,7 +2329,7 @@ if $jane ~~ Human {say 'Jane is a Human'};
 
 *内省* 是获取诸如对象的类型、属性或方法等对象属性的信息的过程。
 
-[source,perl6]
+[source,raku]
 ----
 class Human {
   has Str $.name;
@@ -2391,7 +2390,7 @@ if $jane ~~ Human {say 'Jane is a Human'};
 
 考虑下面这个运行正确的脚本:
 
-[source,perl6]
+[source,raku]
 ----
 my Str $name;
 $name = "Joanna";
@@ -2408,7 +2407,7 @@ How are you doing today?
 
 现在考虑这个抛出异常的脚本:
 
-[source,perl6]
+[source,raku]
 ----
 my Str $name;
 $name = 123;
@@ -2427,7 +2426,7 @@ Type check failed in assignment to $name; expected Str but got Int 赋值给$nam
 
 *异常处理* 是捕获已经抛出的异常的过程以使脚本能继续工作。
 
-[source,perl6]
+[source,raku]
 ----
 my Str $name;
 try {
@@ -2451,7 +2450,7 @@ say "今天过得怎么样？";
 
 异常处理是使用 `try-catch` 块完成的。
 
-[source,perl6]
+[source,raku]
 ----
 try {
   # 代码在这里运行
@@ -2468,7 +2467,7 @@ try {
 `CATCH` 块能像定义 `given` 块那样定义。
 这意味着我们能捕获并处理各种不同类型的异常。
 
-[source,perl6]
+[source,raku]
 ----
 try {
   # 代码在这里运行
@@ -2492,14 +2491,14 @@ Perl  6 也允许你显式地抛出异常。 +
 
 * 类型化异常（typed exceptions）
 
-[source,perl6]
+[source,raku]
 .特设
 ----
 my Int $age = 21;
 die "Error !";
 ----
 
-[source,perl6]
+[source,raku]
 .类型化
 ----
 my Int $age = 21;
@@ -2525,7 +2524,7 @@ NOTE: 查看异常类型和相关方法的完整列表请到  https://docs.raku.
 （译注，regular expression和regex都是“正则表达式”，后者是前者的缩写。本文中的regex同时也是Perl6的类名，它包含“Perl6专属”的用法，与其他语言甚至Perl5中的正则语法不完全一致，故不翻译，以示区分。）
 
 理解它最简单的一种方式是把它看作模式。
-[source,perl6]
+[source,raku]
 ----
 if 'enlightenment' ~~ m/ light / {
     say "enlightenment 包含单词 light";
@@ -2552,7 +2551,7 @@ if 'enlightenment' ~~ m/ light / {
 字母数字字符和下划线 `_` 在表达式中是按原样写出的。 +
 所有其它字符必须使用反斜线或用引号围起来以转义。
 
-[source,perl6]
+[source,raku]
 .反斜线
 ----
 if 'Temperature: 13' ~~ m/ \: / {
@@ -2560,7 +2559,7 @@ if 'Temperature: 13' ~~ m/ \: / {
 }
 ----
 
-[source,perl6]
+[source,raku]
 .单引号
 ----
 if 'Age = 13' ~~ m/ '=' / {
@@ -2568,7 +2567,7 @@ if 'Age = 13' ~~ m/ '=' / {
 }
 ----
 
-[source,perl6]
+[source,raku]
 .双引号
 ----
 if 'name@company.com' ~~ m/ "@" / {
@@ -2600,7 +2599,7 @@ if 'name@company.com' ~~ m/ "@" / {
 
 |===
 
-[source,perl6]
+[source,raku]
 ----
 if "John123" ~~ / \d / {
   say "这不是有效名称，不允许使用数字";
@@ -2620,7 +2619,7 @@ if "John-Doe" ~~ / \s / {
 这样就可以让你匹配在 ASCII 标准内和标准外的字符集。
 Unicode 属性闭合在 `<: >` 中。
 
-[source,perl6]
+[source,raku]
 ----
 if "Devanagari Numbers १२३" ~~ / <:N> / {
   say "包含数字";
@@ -2646,7 +2645,7 @@ if "John-Doe" ~~ / <:Pd> / {
 
 点 `.` 意味着任何单个字符。
 
-[source,perl6]
+[source,raku]
 ----
 if 'abc' ~~ m/ a.c / {
     say "匹配";
@@ -2669,7 +2668,7 @@ if 'ac' ~~ m/ a.c / {
 
 问号 `?` 意思是 0 或 1 次。
 
-[source,perl6]
+[source,raku]
 ----
 if 'ac' ~~ m/ a?c / {
     say "匹配";
@@ -2686,7 +2685,7 @@ if 'c' ~~ m/ a?c / {
 
 星号 `*` 意思是 0 或多次。
 
-[source,perl6]
+[source,raku]
 ----
 if 'az' ~~ m/ a*z / {
     say "匹配";
@@ -2715,7 +2714,7 @@ if 'z' ~~ m/ a*z / {
 
 `+` 意思是至少匹配 1 次。
 
-[source,perl6]
+[source,raku]
 ----
 if 'az' ~~ m/ a+z / {
     say "匹配";
@@ -2747,7 +2746,7 @@ if 'z' ~~ m/ a+z / {
 当匹配字符串的regex成功时,
 匹配结果被存储在一个特殊的变量 `$/` 中。
 
-[source,perl6]
+[source,raku]
 .脚本
 ----
 if 'Rakudo is a Raku compiler' ~~ m/:s Raku/ {
@@ -2796,7 +2795,7 @@ WARNING:  这个例子中用于电子邮件检测的 regex 不是很准确。 +
 它的核心意图是用来解释 Raku 中的 regex 的功能的。 +
 不要在生产中原样使用它。
 
-[source,perl6]
+[source,raku]
 .脚本
 ----
 my $email = 'john.doe@perl6.org';
@@ -2838,7 +2837,7 @@ if $email ~~ $regex {
 
 * *com/org/net* `<:L>+`
 
-[source,perl6]
+[source,raku]
 .可选的, 一个 regex 可以被分解成多个具名 regex  。
 ----
 my $email = 'john.doe@perl6.org';
@@ -2888,7 +2887,7 @@ MD5 有多种加密存储在数据库中的口令的应用程序。
 `zef install Digest::MD5`
 
 现在运行下面的脚本:
-[source,perl6]
+[source,raku]
 ----
 use Digest::MD5;
 my $password = "password123";
@@ -2917,7 +2916,7 @@ UTF-8 是能够以Unicode编码所有可能的字符或代码点的字符编码�
 === 使用 Unicode
 
 .让我们看一下使用 Unicode 能输出什么
-[source,perl6]
+[source,raku]
 ----
 say "a";
 say "\x0061";
@@ -2933,7 +2932,7 @@ say "\c[LATIN SMALL LETTER A]";
 . 使用 `\c` 和代码点名字
 
 .现在我们来输出笑脸
-[source,perl6]
+[source,raku]
 ----
 say "☺";
 say "\x263a";
@@ -2941,7 +2940,7 @@ say "\c[WHITE SMILING FACE]";
 ----
 
 .组合两个代码点的另外一个例子
-[source,perl6]
+[source,raku]
 ----
 say "á";
 say "\x00e1";
@@ -2956,7 +2955,7 @@ say "\c[LATIN SMALL LETTER A WITH ACUTE]";
 * 或作为 `a` 和 重音符号 `\x0061\x0301` 代码点的组合
 
 .有些方法可以使用
-[source,perl6]
+[source,raku]
 ----
 say "á".NFC;
 say "á".NFD;
@@ -2975,7 +2974,7 @@ LATIN SMALL LETTER A WITH ACUTE
 `uniname` 返回代码点的名字。
 
 .Unicode 字符可以用作标识符:
-[source,perl6]
+[source,raku]
 ----
 my $Δ = 1;
 $Δ++;
@@ -2983,7 +2982,7 @@ say $Δ;
 ----
 
 .Unicode 可以用作做算术:
-[source,perl6]
+[source,raku]
 ----
 my $var = 2 + ⅒;
 say $var;
@@ -2999,7 +2998,7 @@ say $var;
 
 在使用不同数字字符集的时候，不需要特别的留意。所有方法、操作符都会像在阿拉伯数字上那样工作。
 
-[source,perl6]
+[source,raku]
 ----
 say (٤,٥,٦,1,2,3).sort;  # (1 2 3 4 5 6)
 say 1 + ٩;               # 10
@@ -3011,7 +3010,7 @@ say 1 + ٩;               # 10
 
 ===== 比较
 
-[source,perl6]
+[source,raku]
 ----
 say 'a' cmp 'B'; # More
 ----
@@ -3022,7 +3021,7 @@ say 'a' cmp 'B'; # More
 幸运的是 Raku 拥有一套应用了 link:http://unicode.org/reports/tr10/[Unicode 排序算法]的操作符。 +
 `unicmp` 是其中一个，它的功能和上面的 `cmp` 相似，不过是 unicode 相关的。
 
-[source,perl6]
+[source,raku]
 ----
 say 'a' unicmp 'B'; # Less
 ----
@@ -3030,7 +3029,7 @@ say 'a' unicmp 'B'; # Less
 
 ===== 排序
 Raku 提供了 `collate` 方法来替代代码点排序方法 `sort` 应用于 unicode，`collate` 应用了 link:http://unicode.org/reports/tr10/[Unicode 排序算法]。
-[source,perl6]
+[source,raku]
 ----
 say ('a','b','c','D','E','F').sort;    # (D E F a b c)
 say ('a','b','c','D','E','F').collate; # (a b c D E F)
@@ -3054,7 +3053,7 @@ say ('a','b','c','D','E','F').collate; # (a b c D E F)
 让我们从后者开始。
 
 ==== 数据并行化
-[source,perl6]
+[source,raku]
 ----
 my @array = (0..50000);                     # 数组总体
 my @result = @array.map({ is-prime $_ });   # 为每个数组元素调用 is-prime（判断是否为质数）
@@ -3068,7 +3067,7 @@ say now - INIT now;                         # 输出脚本完成花费的时间
 `is-prime @array[0]` 然后是 `is-prime @array[1]` 然后是 `is-prime @array[2]` 等等。
 
 .幸运的是, 我们能同时在多个数组元素身上调用 `is-prime` 函数:
-[source,perl6]
+[source,raku]
 ----
 my @array = (0..50000);                         # 数组总体
 my @result = @array.race.map({ is-prime $_ });  # 为每个数组元素调用 is-prime（判断是否为质数）
@@ -3083,7 +3082,7 @@ say now - INIT now;                             # 输出完成所花费的时间
 ====
 `race` 不会保存元素的顺序。如果你想那样做, 使用 `hyper` 代替。
 
-[source,perl6]
+[source,raku]
 .race
 ----
 my @array = (1..1000);
@@ -3091,7 +3090,7 @@ my @result = @array.race.map( {$_ + 1} );
 @result».say;
 ----
 
-[source,perl6]
+[source,raku]
 .hyper
 ----
 my @array = (1..1000);
@@ -3104,7 +3103,7 @@ my @result = @array.hyper.map( {$_ + 1} );
 ====
 
 ==== 任务并行化
-[source,perl6]
+[source,raku]
 ----
 my @array1 = (0..49999);
 my @array2 = (2..50001);
@@ -3131,7 +3130,7 @@ say now - INIT now;
 应用到每个数组的俩个操作彼此间没有依赖。
 
 .为什么不并行地执行呢?
-[source,perl6]
+[source,raku]
 ----
 my @array1 = (0..49999);
 my @array2 = (2..50001);
@@ -3202,7 +3201,7 @@ gcc -shared -o ncitest.dll ncitest.o
 
 在你编译 C 库的路径下新建一个包含下面代码的 Raku 文件，并运行它。
 
-[source,perl6]
+[source,raku]
 .ncitest.raku
 ----
 use NativeCall;
@@ -3232,7 +3231,7 @@ hellofromc();
 
 下面就来修改上面的 Raku 脚本，将 Raku 子例程 `hellofromc` 重命名为 `hello`。
 
-[source,perl6]
+[source,raku]
 .ncitest.raku
 ----
 use NativeCall;
@@ -3261,7 +3260,7 @@ void hellofromc (char* name) {
 }
 ----
 
-[source,perl6]
+[source,raku]
 .ncitest.raku
 ----
 use NativeCall;
@@ -3285,7 +3284,7 @@ int add (int a, int b) {
 }
 ----
 
-[source,perl6]
+[source,raku]
 .ncitest.raku
 ----
 use NativeCall;

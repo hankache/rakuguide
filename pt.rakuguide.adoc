@@ -4,10 +4,7 @@ Naoum Hankache <naoum@hankache.com>; Breno de_Oliveira <garu@cpan.org>; Humberto
 :keywords: raku, introdução, rakuguide, introdução ao raku, tutorial raku, raku intro
 :Revision: 1.0
 :icons: font
-:source-highlighter: pygments
-//:pygments-style: manni
-:source-language: raku
-:pygments-linenums-mode: table
+:source-highlighter: rouge
 :toc: left
 :doctype: book
 :lang: pt
@@ -78,6 +75,7 @@ Implementações que passem na suite de testes da especificação são considera
 === Instalando Raku
 .Linux
 Para instalar o Rakudo Star, execute os seguintes comandos no terminal:
+[source,shell]
 ----
 mkdir ~/rakudo && cd $_
 curl -LJO https://rakudo.org/latest/star/src

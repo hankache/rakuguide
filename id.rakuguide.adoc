@@ -4,10 +4,7 @@ Naoum Hankache <naoum@hankache.com>; Heince Kurniawan <heince@cpan.org>
 :keywords: raku, raku, introduction, rakuintro, perkenalan raku, raku tutorial, raku intro
 :Revision: 1.0
 :icons: font
-:source-highlighter: pygments
-//:pygments-style: manni
-:source-language: raku
-:pygments-linenums-mode: table
+:source-highlighter: rouge
 :toc: left
 :doctype: book
 :lang: id
@@ -62,6 +59,7 @@ Implementasi yang lulus uji spesifikasi dari rangkaian test dianggap Raku.
 .Linux
 
 Untuk menginstall "Rakudo Star", jalankan perintah berikut diterminal anda:
+[source,shell]
 ----
 mkdir ~/rakudo && cd $_
 curl -LJO https://rakudo.org/latest/star/src
