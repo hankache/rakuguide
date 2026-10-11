@@ -752,7 +752,7 @@ Tipi tanımlanan boş bir değişkenin tipi, tanımlanan tip olur. +
 Tipi tanımlanmayan boş bir değişkenin tipi `(Any)` olur. +
 Bir değişkenin tipini temizlemek için `Nil` ataması yapılır.
 
-=== Kapsam (_Scoping_)
+=== Kapsam (Scoping)
 Kullanılmadan önce bir değişkenin tanımlanması gerekir.
 Raku'da birçok tanımlama kullanılmaktadır. Biz şuana kadar `my` kullanıyorduk.
 
@@ -786,7 +786,7 @@ my Int $var = 123;
 say $var;
 ----
 
-=== Atama ve Bağlama (_Assignment vs. Binding_)
+=== Atama ve Bağlama (Assignment vs. Binding)
 Önceki örneklerde, değişkenlere değer atamanın nasıl yapıldığını gördük.
 *Atama* `=` operatörü ile yapılır.
 [source,raku]
@@ -853,7 +853,7 @@ Değişkenleri bağlama iki yönlüdür +
 
 NOTE: Değişkenler ile ilgili daha fazla bilgiye https://docs.perl6.org/language/variables adresinden ulaşabilirsiniz.
 
-== Fonksiyonlar ve Mutatörler(_Mutators_)
+== Fonksiyonlar ve Mutatörler(Mutators)
 
 Fonksiyonlar ile mutatörler arasında ayrım yapmak önemlidir.
 Fonksiyonlar çağırıldıkları nesnenin durumunu değiştirmezler.
@@ -1047,7 +1047,7 @@ loop (my $i = 0; $i < 5; $i++) {
 
 NOTE: Döngüler ve koşullar hakkında daha fazla bilgiye https://docs.perl6.org/language/control adresinden ulaşabilirsiniz.
 
-== G/Ç (_I/O_)
+== G/Ç (I/O)
 Raku'da en yaygın _Girdi/Çıktı_ arabirimlerinden ikisi _Terminal_ ve _Dosyadır_.
 
 === Terminal Kullanarak Basit G/Ç
@@ -1233,7 +1233,7 @@ say-hello "Paul";
 say-hello "Paula";
 ----
 
-=== Çoklu Altyordam(_Multiple dispatch_)
+=== Çoklu Altyordam(Multiple dispatch)
 Aynı adı taşıyan ancak imzaları farklı olan birden fazla altprogram tanımlamak mümkündür.
 Altprogram çağrıldığında, çalışma zamanı ortamı, verilen bağımsız değişkenlerin sayısı ve türüne göre hangi sürümü kullanacağına karar verecektir.
 Bu tür bir altprogram `sub` yerine `multi` anahtar sözcüğü kullanılması dışında altyordamlar ile aynı şekilde tanımlanır.
@@ -1436,7 +1436,7 @@ say @final-array;
 
 Zincirleme yönteminin anlaşılması daha kolay olduğunu görebilirsiniz.
 
-=== Besleme Operatörü(_Feed Operator_)
+=== Besleme Operatörü(Feed Operator)
 Bazı fonksiyonel programlama dillerinde boru(pipe) olarak adlandırılan besleme operatörü, zincirleme işlemini daha da görselleştirir.
 
 [source,raku]
@@ -1475,7 +1475,7 @@ say @final-array-v2;
 Geriye doğru besleme ileriye doğru beslemeye benzer ancak tam tersidir.
 Akış son adımdan ilk adıma kadar aşağıdan yukarıya doğrudur.
 
-=== Hiper Operatörü(_Hyper operator_)
+=== Hiper Operatörü(Hyper operator)
 `>>` ile temsil edilir. Listenin tüm elemanları üzerinde fonksiyon çağıracağından sonuçların bir listesini döndürür.
 [source,raku]
 ----
@@ -1489,7 +1489,7 @@ say @array>>.&is-even;
 Hiper operatörü ile dizinin her bir elemanı için tek olma veya çift olma durumunu kontrol ettik.
 Bu her bir değeri yenilemek için for döngüsü yazmamıza gerek kalmadığı için pratiktir.
 
-=== Kavşaklar (_-Junctions_)
+=== Kavşaklar (Junctions)
 Bir kavşak, değerlerin mantıksal bir süperpozisyonudur.
 
 Aşağıdaki örnekte 1|2|3 kavşaktır.
@@ -1683,7 +1683,7 @@ my class Human {
 }
 ----
 
-=== Kapsülleme (_Encapsulation_)
+=== Kapsülleme (Encapsulation)
 Sınıf(_class_) özelliklerinin dışarıya kapalı olması ve bu sınıfın her türlü veri iletişiminin kontrol altındaki metotlar ile yapılmasıdır. +
 
 Aşağıdaki betikler aynı sonuca sahiptir.
@@ -1809,7 +1809,7 @@ Yukarıdaki örnekte `if self.age < 21` ve `if $!age < 21` aynı etkiye sahiptir
 Alternatif olarak `$.age` olarak yazılabilir.
 * `$!age` değişkenin doğrudan çağrısıdır.
 
-==== Özel(_Private_) Metotlar
+==== Özel(Private) Metotlar
 Metotlar sınıf dışından çağırılabilir.
 
 *Özel metotlar* ise yalnızca Sınıf içerisinden çağırılabilir. +
@@ -1830,7 +1830,7 @@ method iampublic {
 }
 ----
 
-=== Sınıf Özellikleri(_Class attributes_)
+=== Sınıf Özellikleri(Class attributes)
 *Sınıf Özellikleri* nesnenin değil sınıfın kendisine ait özelliklerddir. +
 Oluşturma sırasında başlatılabilirler. +
 Sınıf Nitelikleri `has` yerine `my` kullanılarak tanımlanır. +
@@ -1871,7 +1871,7 @@ say $john.age;
 
 Varsayılan olarak tüm nitelikler _read only(yalnız okuma)_ olarak bildirilir ancak bunu açık olarak `readonly` kullanarak yapabiliriz.
 
-=== Miras Alma(_Inheritance_)
+=== Miras Alma(Inheritance)
 Miras, nesne yönelimli programlamının başka bir kabulüdür.
 
 Sınıfları tanımlarken, bazı özelliklerin/metotların birçok sınıfa ait olduğunu farkedeceğiz. +
@@ -1916,7 +1916,7 @@ Bu şu şekilde ifade edilir, Çalışanlar sınıfı İnsanlar sınıfının *�
 
 Tüm çocuk sınıflar, ebeveyn sınıfın niteliklerini ve metotlarını devralırlar. Dolayısı ile tekrar tanımlanmalarına gerek yoktur.
 
-==== Metotların Ezilmesi(_Overriding_)
+==== Metotların Ezilmesi(Overriding)
 Sınıflar, tüm nitelikleri ve metotları ebeveyn sınıflarından devralır. +
 Çocuk sınıfındaki metodun devralınan metottan farklı davranması gereken durumlar olabilir. +
 Bunun üstesinden gelmek için, metodu çocuk sınıfta yeniden tanımlarız. +
@@ -2085,7 +2085,7 @@ Actual vs Forecast:
 [9 8 10 7 6 9]
 ----
 
-=== Roller(_Roles_)
+=== Roller(Roles)
 Roller, özelliklerin ve metotların bir koleksiyonu oldukları için sınıflara benzerler.
 
 Roller `role` anahtar sözcüğü ile tanımlanır. Bir rol uygulanmak istenen sınıf `do` anahtar kelimesini kullanır.
@@ -2229,9 +2229,9 @@ Nesne yönelimli programlama hakkında daha fazla bilgiye ulaşmak için:
 * https://docs.perl6.org/language/objects
 --
 
-== İstisna İşleme(_Exception Handling_)
+== İstisna İşleme(Exception Handling)
 
-=== İstisna Yakalama(_Catching Exceptions_)
+=== İstisna Yakalama(Catching Exceptions)
 
 İstisna, çalışma anında gerçekleşen beklenmedik durumlardır. İstisna yakalama ise beklenmedik bir olayı algılayıp buna karşı bir kod parçasının çalıştırılmasıdır.
 
@@ -2326,7 +2326,7 @@ try {
 }
 ----
 
-=== İstisna Fırlatma(_Throwing Exceptions_)
+=== İstisna Fırlatma(Throwing Exceptions)
 Raku da açıkça istisnaları atmanızı sağlar.
 İstisna fırlatmanın iki türü vardır:
 
@@ -2360,7 +2360,7 @@ Yazılan tüm istisnalar `X` sınıfından alınır, birkaç örnek: +
 NOTE: İstisnalar ile ilgili daha fazla bilgiye https://docs.perl6.org/type-exceptions.html adresinden ulaşabilirsiniz.
 
 
-== Düzenli İfadeler (_Regular Expression_)
+== Düzenli İfadeler (Regular Expression)
 Düzenli ifadeler veya _regex_, desen eşleştirmesi için kullanılan bir dizi karakterdir.
 Bir desen olarak düşünün.
 
@@ -2814,7 +2814,7 @@ Bu aşamada paralellik aşağıdaki şeylerden biri anlamına gelebilir:
 
 İkincisi ile başlayalım.
 
-==== Veri Paralelliği (_Data Parallelism_)
+==== Veri Paralelliği (Data Parallelism)
 [source,raku]
 ----
 my @array = (0..50000);                     # Dizi nüfusu
@@ -2864,7 +2864,7 @@ Her iki örneğide çalıştırırsanız birinin sıralı diğerinin sırasız o
 
 ====
 
-==== Görev Paralelliği (_Task Parallelism_)
+==== Görev Paralelliği (Task Parallelism)
 
 [source,raku]
 ----
@@ -2924,7 +2924,7 @@ Bu nedenle, basit betikler için `race`, `hyper`, `start` ve `await` kullanmak a
 === Eşzamanlılık ve Asenkron
 NOTE: Eşzamanlılık ve asenkron programlama hakkında bilgi için https://docs.perl6.org/language/concurrency adresine bakınız.
 
-== Native Çağrı Arayüzü (_Native Calling Interface_)
+== Native Çağrı Arayüzü (Native Calling Interface)
 
 Raku bize C kütüphanelerini kullanma imkanı verir, bunu _Native Calling Interface_ kullanarak yaparız.
 `NativeCall`, Raku ile gelen standart bir modüldür ve işi kolaylaştırmak için işlevsellik sunar.
