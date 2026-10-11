@@ -1,4 +1,4 @@
-name: Publish PDFs
+name: Publish PDFs and EPUBs
 
 # Runs only when started by hand from the Actions tab.
 on:
@@ -8,7 +8,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: publish-pdf
+  group: publish-pdf-epub
   cancel-in-progress: false
 
 jobs:
@@ -28,8 +28,18 @@ jobs:
         with:
           ruby-version: '3.4'
 
-      - name: Install asciidoctor-pdf and rouge
-        run: gem install asciidoctor asciidoctor-pdf rouge rouge-raku
+      - name: Install asciidoctor-pdf, asciidoctor-epub3 and rouge
+        run: gem install asciidoctor asciidoctor-pdf asciidoctor-epub3 rouge rouge-raku
+
+      # pdftoppm turns the first page of a PDF into the cover of its EPUB, and
+      # epubcheck validates each EPUB.
+      - name: Install the EPUB tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y poppler-utils
+          curl -fsSL -o "$RUNNER_TEMP/epubcheck.zip" \
+            https://github.com/w3c/epubcheck/releases/download/v5.4.0/epubcheck-5.4.0.zip
+          unzip -q "$RUNNER_TEMP/epubcheck.zip" -d "$RUNNER_TEMP"
 
       - name: Download fonts
         run: |
@@ -56,7 +66,7 @@ jobs:
       # turns any such report into a failed build. Each cover gets a greeting in
       # its own language and the month of the file's last commit, which is
       # spelled out in the English edition only.
-      - name: Build all languages
+      - name: Build all PDFs
         run: |
           mkdir -p out
           for file in *rakuguide.adoc; do
@@ -78,6 +88,24 @@ jobs:
             echo "${lang:-en} generated."
           done
 
+      # Each EPUB takes its cover from the PDF built above. epubcheck fails the
+      # build when an EPUB is not valid.
+      - name: Build all EPUBs
+        run: |
+          for file in *rakuguide.adoc; do
+            lang="${file%rakuguide.adoc}"
+            lang="${lang%.}"
+            name="rakuguide${lang:+-$lang}"
+            pdftoppm -f 1 -l 1 -jpeg -jpegopt quality=88 -r 200 -singlefile "out/$name.pdf" out/cover
+            asciidoctor-epub3 -r rouge-raku --failure-level WARN \
+              -a rouge-style=github -a 'listing-caption!' \
+              -a 'front-cover-image=image:out/cover.jpg[]' \
+              -o "out/$name.epub" "$file"
+            java -jar "$RUNNER_TEMP/epubcheck-5.4.0/epubcheck.jar" --quiet "out/$name.epub"
+            echo "${lang:-en} generated."
+          done
+          rm out/cover.jpg
+
       - name: Upload to the latest release
         env:
           GH_TOKEN: ${{ github.token }}
@@ -88,4 +116,4 @@ jobs:
           else
             gh release create latest --title "Raku Guide (latest)" --notes "$notes"
           fi
-          gh release upload latest out/*.pdf --clobber
+          gh release upload latest out/*.pdf out/*.epub --clobber

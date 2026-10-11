@@ -4,3 +4,5 @@
 !.github/docinfo.html
 pdf/fonts/
 pdf/cover-front.svg
+*.epub
+out/

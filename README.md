@@ -1,7 +1,7 @@
 # Raku Guide
 
 [![Publish website](https://github.com/hankache/rakuguide/actions/workflows/publish.yml/badge.svg)](https://github.com/hankache/rakuguide/actions/workflows/publish.yml)
-[![Publish PDFs](https://github.com/hankache/rakuguide/actions/workflows/publish-pdf.yml/badge.svg)](https://github.com/hankache/rakuguide/actions/workflows/publish-pdf.yml)
+[![Publish PDFs and EPUBs](https://github.com/hankache/rakuguide/actions/workflows/publish-pdf-epub.yml/badge.svg)](https://github.com/hankache/rakuguide/actions/workflows/publish-pdf-epub.yml)
 [![Languages: 14](https://img.shields.io/badge/languages-14-0b7cbd)](#read-the-guide)
 [![License: CC BY-SA 4.0](https://img.shields.io/badge/license-CC%20BY--SA%204.0-lightgrey)](LICENSE)
 
@@ -10,22 +10,22 @@ For those who are new to Raku it should get you up and running.
 
 ### Read the guide
 
-| Language | Online | PDF |
-|---|---|---|
-| English | [raku.guide](https://raku.guide) | [Download](https://github.com/hankache/rakuguide/releases/download/latest/rakuguide.pdf) |
-| French | [raku.guide/fr](https://raku.guide/fr) | [Download](https://github.com/hankache/rakuguide/releases/download/latest/rakuguide-fr.pdf) |
-| German | [raku.guide/de](https://raku.guide/de) | [Download](https://github.com/hankache/rakuguide/releases/download/latest/rakuguide-de.pdf) |
-| Japanese | [raku.guide/ja](https://raku.guide/ja) | [Download](https://github.com/hankache/rakuguide/releases/download/latest/rakuguide-ja.pdf) |
-| Spanish | [raku.guide/es](https://raku.guide/es) | [Download](https://github.com/hankache/rakuguide/releases/download/latest/rakuguide-es.pdf) |
-| Portuguese | [raku.guide/pt](https://raku.guide/pt) | [Download](https://github.com/hankache/rakuguide/releases/download/latest/rakuguide-pt.pdf) |
-| Dutch | [raku.guide/nl](https://raku.guide/nl) | [Download](https://github.com/hankache/rakuguide/releases/download/latest/rakuguide-nl.pdf) |
-| Bulgarian | [raku.guide/bg](https://raku.guide/bg) | [Download](https://github.com/hankache/rakuguide/releases/download/latest/rakuguide-bg.pdf) |
-| Chinese | [raku.guide/zh](https://raku.guide/zh) | [Download](https://github.com/hankache/rakuguide/releases/download/latest/rakuguide-zh.pdf) |
-| Italian | [raku.guide/it](https://raku.guide/it) | [Download](https://github.com/hankache/rakuguide/releases/download/latest/rakuguide-it.pdf) |
-| Turkish | [raku.guide/tr](https://raku.guide/tr) | [Download](https://github.com/hankache/rakuguide/releases/download/latest/rakuguide-tr.pdf) |
-| Indonesian | [raku.guide/id](https://raku.guide/id) | [Download](https://github.com/hankache/rakuguide/releases/download/latest/rakuguide-id.pdf) |
-| Russian | [raku.guide/ru](https://raku.guide/ru) | [Download](https://github.com/hankache/rakuguide/releases/download/latest/rakuguide-ru.pdf) |
-| Ukrainian | [raku.guide/uk](https://raku.guide/uk) | [Download](https://github.com/hankache/rakuguide/releases/download/latest/rakuguide-uk.pdf) |
+| Language | Online | PDF | EPUB |
+|---|---|---|---|
+| English | [raku.guide](https://raku.guide) | [Download](https://github.com/hankache/rakuguide/releases/download/latest/rakuguide.pdf) | [Download](https://github.com/hankache/rakuguide/releases/download/latest/rakuguide.epub) |
+| French | [raku.guide/fr](https://raku.guide/fr) | [Download](https://github.com/hankache/rakuguide/releases/download/latest/rakuguide-fr.pdf) | [Download](https://github.com/hankache/rakuguide/releases/download/latest/rakuguide-fr.epub) |
+| German | [raku.guide/de](https://raku.guide/de) | [Download](https://github.com/hankache/rakuguide/releases/download/latest/rakuguide-de.pdf) | [Download](https://github.com/hankache/rakuguide/releases/download/latest/rakuguide-de.epub) |
+| Japanese | [raku.guide/ja](https://raku.guide/ja) | [Download](https://github.com/hankache/rakuguide/releases/download/latest/rakuguide-ja.pdf) | [Download](https://github.com/hankache/rakuguide/releases/download/latest/rakuguide-ja.epub) |
+| Spanish | [raku.guide/es](https://raku.guide/es) | [Download](https://github.com/hankache/rakuguide/releases/download/latest/rakuguide-es.pdf) | [Download](https://github.com/hankache/rakuguide/releases/download/latest/rakuguide-es.epub) |
+| Portuguese | [raku.guide/pt](https://raku.guide/pt) | [Download](https://github.com/hankache/rakuguide/releases/download/latest/rakuguide-pt.pdf) | [Download](https://github.com/hankache/rakuguide/releases/download/latest/rakuguide-pt.epub) |
+| Dutch | [raku.guide/nl](https://raku.guide/nl) | [Download](https://github.com/hankache/rakuguide/releases/download/latest/rakuguide-nl.pdf) | [Download](https://github.com/hankache/rakuguide/releases/download/latest/rakuguide-nl.epub) |
+| Bulgarian | [raku.guide/bg](https://raku.guide/bg) | [Download](https://github.com/hankache/rakuguide/releases/download/latest/rakuguide-bg.pdf) | [Download](https://github.com/hankache/rakuguide/releases/download/latest/rakuguide-bg.epub) |
+| Chinese | [raku.guide/zh](https://raku.guide/zh) | [Download](https://github.com/hankache/rakuguide/releases/download/latest/rakuguide-zh.pdf) | [Download](https://github.com/hankache/rakuguide/releases/download/latest/rakuguide-zh.epub) |
+| Italian | [raku.guide/it](https://raku.guide/it) | [Download](https://github.com/hankache/rakuguide/releases/download/latest/rakuguide-it.pdf) | [Download](https://github.com/hankache/rakuguide/releases/download/latest/rakuguide-it.epub) |
+| Turkish | [raku.guide/tr](https://raku.guide/tr) | [Download](https://github.com/hankache/rakuguide/releases/download/latest/rakuguide-tr.pdf) | [Download](https://github.com/hankache/rakuguide/releases/download/latest/rakuguide-tr.epub) |
+| Indonesian | [raku.guide/id](https://raku.guide/id) | [Download](https://github.com/hankache/rakuguide/releases/download/latest/rakuguide-id.pdf) | [Download](https://github.com/hankache/rakuguide/releases/download/latest/rakuguide-id.epub) |
+| Russian | [raku.guide/ru](https://raku.guide/ru) | [Download](https://github.com/hankache/rakuguide/releases/download/latest/rakuguide-ru.pdf) | [Download](https://github.com/hankache/rakuguide/releases/download/latest/rakuguide-ru.epub) |
+| Ukrainian | [raku.guide/uk](https://raku.guide/uk) | [Download](https://github.com/hankache/rakuguide/releases/download/latest/rakuguide-uk.pdf) | [Download](https://github.com/hankache/rakuguide/releases/download/latest/rakuguide-uk.epub) |
 
 ### Building the HTML
 The document is written in asciidoc format and generated using
@@ -127,6 +127,28 @@ and Chinese keep `-a scripts=cjk`.
 This gives you the inside of the book with a front and back page. It is not
 a cover file for a print service: there is no spine, and the artwork does
 not extend past the edge of the page.
+
+### Building the EPUB
+In addition to the tools for the HTML, you will need **asciidoctor-epub3**:
+
+    $ sudo gem install asciidoctor-epub3
+
+To produce **rakuguide.epub**, run:
+
+    $ asciidoctor-epub3 -r rouge-raku -a rouge-style=github -a listing-caption! rakuguide.adoc
+
+`-a listing-caption!` stops the code examples that have a title from being
+numbered as "Listing 1", "Listing 2" and so on.
+
+The published EPUBs use the first page of the PDF as their cover. To do the
+same, build the PDF first, save its first page as an image with `pdftoppm`,
+which is part of poppler-utils, and pass that image to the build:
+
+    $ pdftoppm -f 1 -l 1 -jpeg -r 200 -singlefile rakuguide.pdf cover
+    $ asciidoctor-epub3 -r rouge-raku -a rouge-style=github -a listing-caption! -a front-cover-image=image:cover.jpg[] rakuguide.adoc
+
+To check that the result is a valid EPUB, run it through
+[EPUBCheck](https://www.w3.org/publishing/epubcheck/).
 
 ### Feedback
 All feedback is welcomed:
