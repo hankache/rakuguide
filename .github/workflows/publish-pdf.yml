@@ -78,14 +78,14 @@ jobs:
             echo "${lang:-en} generated."
           done
 
-      - name: Upload to the pdf release
+      - name: Upload to the latest release
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          notes="PDF editions of the Raku Guide, built from main@$(git rev-parse --short HEAD) on $(date -u +%Y-%m-%d)."
-          if gh release view pdf > /dev/null 2>&1; then
-            gh release edit pdf --notes "$notes"
+          notes="The Raku Guide for offline reading, built from main@$(git rev-parse --short HEAD) on $(date -u +%Y-%m-%d)."
+          if gh release view latest > /dev/null 2>&1; then
+            gh release edit latest --notes "$notes"
           else
-            gh release create pdf --title "Raku Guide PDF" --notes "$notes"
+            gh release create latest --title "Raku Guide (latest)" --notes "$notes"
           fi
-          gh release upload pdf out/*.pdf --clobber
+          gh release upload latest out/*.pdf --clobber

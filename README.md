@@ -12,20 +12,20 @@ For those who are new to Raku it should get you up and running.
 
 | Language | Online | PDF |
 |---|---|---|
-| English | [raku.guide](https://raku.guide) | [Download](https://github.com/hankache/rakuguide/releases/download/pdf/rakuguide.pdf) |
-| French | [raku.guide/fr](https://raku.guide/fr) | [Download](https://github.com/hankache/rakuguide/releases/download/pdf/rakuguide-fr.pdf) |
-| German | [raku.guide/de](https://raku.guide/de) | [Download](https://github.com/hankache/rakuguide/releases/download/pdf/rakuguide-de.pdf) |
-| Japanese | [raku.guide/ja](https://raku.guide/ja) | [Download](https://github.com/hankache/rakuguide/releases/download/pdf/rakuguide-ja.pdf) |
-| Spanish | [raku.guide/es](https://raku.guide/es) | [Download](https://github.com/hankache/rakuguide/releases/download/pdf/rakuguide-es.pdf) |
-| Portuguese | [raku.guide/pt](https://raku.guide/pt) | [Download](https://github.com/hankache/rakuguide/releases/download/pdf/rakuguide-pt.pdf) |
-| Dutch | [raku.guide/nl](https://raku.guide/nl) | [Download](https://github.com/hankache/rakuguide/releases/download/pdf/rakuguide-nl.pdf) |
-| Bulgarian | [raku.guide/bg](https://raku.guide/bg) | [Download](https://github.com/hankache/rakuguide/releases/download/pdf/rakuguide-bg.pdf) |
-| Chinese | [raku.guide/zh](https://raku.guide/zh) | [Download](https://github.com/hankache/rakuguide/releases/download/pdf/rakuguide-zh.pdf) |
-| Italian | [raku.guide/it](https://raku.guide/it) | [Download](https://github.com/hankache/rakuguide/releases/download/pdf/rakuguide-it.pdf) |
-| Turkish | [raku.guide/tr](https://raku.guide/tr) | [Download](https://github.com/hankache/rakuguide/releases/download/pdf/rakuguide-tr.pdf) |
-| Indonesian | [raku.guide/id](https://raku.guide/id) | [Download](https://github.com/hankache/rakuguide/releases/download/pdf/rakuguide-id.pdf) |
-| Russian | [raku.guide/ru](https://raku.guide/ru) | [Download](https://github.com/hankache/rakuguide/releases/download/pdf/rakuguide-ru.pdf) |
-| Ukrainian | [raku.guide/uk](https://raku.guide/uk) | [Download](https://github.com/hankache/rakuguide/releases/download/pdf/rakuguide-uk.pdf) |
+| English | [raku.guide](https://raku.guide) | [Download](https://github.com/hankache/rakuguide/releases/download/latest/rakuguide.pdf) |
+| French | [raku.guide/fr](https://raku.guide/fr) | [Download](https://github.com/hankache/rakuguide/releases/download/latest/rakuguide-fr.pdf) |
+| German | [raku.guide/de](https://raku.guide/de) | [Download](https://github.com/hankache/rakuguide/releases/download/latest/rakuguide-de.pdf) |
+| Japanese | [raku.guide/ja](https://raku.guide/ja) | [Download](https://github.com/hankache/rakuguide/releases/download/latest/rakuguide-ja.pdf) |
+| Spanish | [raku.guide/es](https://raku.guide/es) | [Download](https://github.com/hankache/rakuguide/releases/download/latest/rakuguide-es.pdf) |
+| Portuguese | [raku.guide/pt](https://raku.guide/pt) | [Download](https://github.com/hankache/rakuguide/releases/download/latest/rakuguide-pt.pdf) |
+| Dutch | [raku.guide/nl](https://raku.guide/nl) | [Download](https://github.com/hankache/rakuguide/releases/download/latest/rakuguide-nl.pdf) |
+| Bulgarian | [raku.guide/bg](https://raku.guide/bg) | [Download](https://github.com/hankache/rakuguide/releases/download/latest/rakuguide-bg.pdf) |
+| Chinese | [raku.guide/zh](https://raku.guide/zh) | [Download](https://github.com/hankache/rakuguide/releases/download/latest/rakuguide-zh.pdf) |
+| Italian | [raku.guide/it](https://raku.guide/it) | [Download](https://github.com/hankache/rakuguide/releases/download/latest/rakuguide-it.pdf) |
+| Turkish | [raku.guide/tr](https://raku.guide/tr) | [Download](https://github.com/hankache/rakuguide/releases/download/latest/rakuguide-tr.pdf) |
+| Indonesian | [raku.guide/id](https://raku.guide/id) | [Download](https://github.com/hankache/rakuguide/releases/download/latest/rakuguide-id.pdf) |
+| Russian | [raku.guide/ru](https://raku.guide/ru) | [Download](https://github.com/hankache/rakuguide/releases/download/latest/rakuguide-ru.pdf) |
+| Ukrainian | [raku.guide/uk](https://raku.guide/uk) | [Download](https://github.com/hankache/rakuguide/releases/download/latest/rakuguide-uk.pdf) |
 
 ### Building the HTML
 The document is written in asciidoc format and generated using
