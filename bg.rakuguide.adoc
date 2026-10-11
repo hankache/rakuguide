@@ -86,7 +86,7 @@ There is more than one way to do it.
 изданието Rakudo Star. Изпълнете следната команда в терминал `zef install Task::Star`
 
 За да видите други възможности за инсталация, посетете
- http://rakudo.org/how-to-get-rakudo/\#Installing-Rakudo-Star-Linux
+ http://rakudo.org/how-to-get-rakudo/#Installing-Rakudo-Star-Linux
 
 .OSX
 Имате четири възможности:
