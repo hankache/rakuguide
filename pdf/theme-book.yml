@@ -1,0 +1,28 @@
+# Book-sized edition, 7 x 9.25 in, for printing and binding. It is not built by
+# the workflow. See README.md for how to use it.
+extends: ./theme.yml
+page:
+  size: [7in, 9.25in]
+  margin: [0.85in, 0.6in, 0.6in, 0.6in]
+  # Used with -a media=prepress: more room on the binding side.
+  margin-inner: 0.8in
+  margin-outer: 0.55in
+cover:
+  back:
+    image: image:cover-back.svg[fit=cover]
+title-page:
+  background-image: image:cover-front.svg[fit=cover]
+  title:
+    top: 90.5%
+# Right-hand pages show the chapter and left-hand pages the guide, on the outer edge.
+header:
+  recto:
+    left:
+      content: ~
+    right:
+      content: '{chapter-title}'
+  verso:
+    left:
+      content: '{document-title}'
+    right:
+      content: ~

@@ -1,4 +1,5 @@
-# Adds fallback fonts so that the PDF can show every character used in the guide.
+# Theme for the PDF editions: cover, colours, running header, code font and
+# fallback fonts so that the PDF can show every character used in the guide.
 # The fonts are not part of this repository. See README.md for how to get them.
 extends: default-with-font-fallbacks
 font:
@@ -8,4 +9,69 @@ font:
     Noto Sans KR: fonts/NotoSansKR-Regular.ttf
     Noto Sans Arabic: fonts/NotoSansArabic-Regular.ttf
     Noto Sans: fonts/NotoSans-Regular.ttf
+    JetBrains Mono:
+      normal: fonts/JetBrainsMono-Regular.ttf
+      bold: fonts/JetBrainsMono-Bold.ttf
+      italic: fonts/JetBrainsMono-Italic.ttf
+      bold_italic: fonts/JetBrainsMono-BoldItalic.ttf
   fallbacks: [Noto Sans SC, M+ 1p Fallback, Noto Emoji, Noto Sans KR, Noto Sans Arabic, Noto Sans]
+page:
+  margin: [0.9in, 0.67in, 0.67in, 0.67in]
+heading:
+  font-color: 14284B
+  h2:
+    border-width: [0, 0, 1, 0]
+    border-color: 8DB4C9
+    padding: [0, 0, 6, 0]
+link:
+  font-color: 2B5FA8
+codespan:
+  font-family: JetBrains Mono
+  font-color: 14284B
+  font-size: 0.9em
+code:
+  font-family: JetBrains Mono
+  font-size: 9.5
+  background-color: F4F7FA
+  border-color: D9E1EA
+table:
+  font-size: 9.5
+  cell-padding: [3, 2, 3, 2]
+cover:
+  back:
+    image: image:cover-back.svg[]
+title-page:
+  background-image: image:cover-front.svg[]
+  text-align: center
+  # The wordmark on the cover image is the title, so the title text is hidden.
+  # Its position still sets where the authors and date start.
+  title:
+    display: none
+    top: 86.5%
+  authors:
+    font-family: M+ 1mn
+    font-size: 12.5
+    font-color: E6EEF8
+    text-transform: uppercase
+    margin-top: 8
+  revision:
+    font-family: M+ 1mn
+    font-size: 10
+    font-color: 8DB4C9
+    margin-top: 6
+header:
+  height: 0.7in
+  font-size: 9
+  font-color: 7A8699
+  border-width: 0
+  vertical-align: middle
+  recto:
+    left:
+      content: '{document-title}'
+    right:
+      content: '{chapter-title}'
+  verso:
+    left:
+      content: '{document-title}'
+    right:
+      content: '{chapter-title}'

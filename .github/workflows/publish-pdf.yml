@@ -20,6 +20,8 @@ jobs:
         uses: actions/checkout@v5
         with:
           ref: main
+          # Full history, so each cover can show the date of the file's last commit.
+          fetch-depth: 0
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
@@ -45,9 +47,15 @@ jobs:
           fetch "Noto+Sans+Arabic" NotoSansArabic-Regular.ttf
           fetch "Noto+Sans+KR" NotoSansKR-Regular.ttf
           fetch "Noto+Sans+SC" NotoSansSC-Regular.ttf
+          fetch "JetBrains+Mono:ital,wght@0,400" JetBrainsMono-Regular.ttf
+          fetch "JetBrains+Mono:ital,wght@0,700" JetBrainsMono-Bold.ttf
+          fetch "JetBrains+Mono:ital,wght@1,400" JetBrainsMono-Italic.ttf
+          fetch "JetBrains+Mono:ital,wght@1,700" JetBrainsMono-BoldItalic.ttf
 
       # -v reports characters missing from the fonts, and --failure-level WARN
-      # turns any such report into a failed build.
+      # turns any such report into a failed build. Each cover gets a greeting in
+      # its own language and the month of the file's last commit, which is
+      # spelled out in the English edition only.
       - name: Build all languages
         run: |
           mkdir -p out
@@ -56,12 +64,16 @@ jobs:
             lang="${lang%.}"
             theme="pdf/theme.yml"
             scripts=""
+            date=$(git log -1 --format=%cs -- "$file")
+            revdate="${date%-*}"
             case "$lang" in
+              "") revdate=$(LC_ALL=C date -d "$date" '+%B %Y') ;;
               ja) theme="pdf/theme-ja.yml"; scripts="-a scripts=cjk" ;;
               zh) scripts="-a scripts=cjk" ;;
             esac
+            pdf/make-cover.sh "${lang:-en}"
             asciidoctor-pdf -r rouge-raku -v --failure-level WARN \
-              -a pdf-theme="$theme" $scripts \
+              -a pdf-theme="$theme" -a rouge-style=github -a revdate="$revdate" $scripts \
               -o "out/rakuguide${lang:+-$lang}.pdf" "$file"
             echo "${lang:-en} generated."
           done

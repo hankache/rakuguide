@@ -1,0 +1,14 @@
+en=Hello, World!
+bg=Здравей, свят!
+de=Hallo, Welt!
+es=¡Hola, mundo!
+fr=Bonjour, le monde !
+id=Halo, Dunia!
+it=Ciao, mondo!
+ja=こんにちは、世界！
+nl=Hallo, wereld!
+pt=Alô, Mundo!
+ru=Привет, мир!
+tr=Merhaba Dünya!
+uk=Привіт, світе!
+zh=你好，世界！

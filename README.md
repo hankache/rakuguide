@@ -1,41 +1,31 @@
 # Raku Guide
 
+[![Publish website](https://github.com/hankache/rakuguide/actions/workflows/publish.yml/badge.svg)](https://github.com/hankache/rakuguide/actions/workflows/publish.yml)
+[![Publish PDFs](https://github.com/hankache/rakuguide/actions/workflows/publish-pdf.yml/badge.svg)](https://github.com/hankache/rakuguide/actions/workflows/publish-pdf.yml)
+[![Languages: 14](https://img.shields.io/badge/languages-14-0b7cbd)](#read-the-guide)
+[![License: CC BY-SA 4.0](https://img.shields.io/badge/license-CC%20BY--SA%204.0-lightgrey)](LICENSE)
+
 This document is intended to give you a quick overview of the Raku programming language.  
 For those who are new to Raku it should get you up and running.
 
-### Website
-For online reading navigate to:  
-* English: https://raku.guide
-* French: https://raku.guide/fr
-* German: https://raku.guide/de
-* Japanese: https://raku.guide/ja
-* Spanish: https://raku.guide/es
-* Portuguese: https://raku.guide/pt
-* Dutch: https://raku.guide/nl
-* Bulgarian: https://raku.guide/bg
-* Chinese: https://raku.guide/zh
-* Italian: https://raku.guide/it
-* Turkish: https://raku.guide/tr
-* Indonesian: https://raku.guide/id
-* Russian: https://raku.guide/ru
-* Ukrainian: https://raku.guide/uk
+### Read the guide
 
-### PDF
-For offline reading download:
-* English: https://github.com/hankache/rakuguide/releases/download/pdf/rakuguide.pdf
-* French: https://github.com/hankache/rakuguide/releases/download/pdf/rakuguide-fr.pdf
-* German: https://github.com/hankache/rakuguide/releases/download/pdf/rakuguide-de.pdf
-* Japanese: https://github.com/hankache/rakuguide/releases/download/pdf/rakuguide-ja.pdf
-* Spanish: https://github.com/hankache/rakuguide/releases/download/pdf/rakuguide-es.pdf
-* Portuguese: https://github.com/hankache/rakuguide/releases/download/pdf/rakuguide-pt.pdf
-* Dutch: https://github.com/hankache/rakuguide/releases/download/pdf/rakuguide-nl.pdf
-* Bulgarian: https://github.com/hankache/rakuguide/releases/download/pdf/rakuguide-bg.pdf
-* Chinese: https://github.com/hankache/rakuguide/releases/download/pdf/rakuguide-zh.pdf
-* Italian: https://github.com/hankache/rakuguide/releases/download/pdf/rakuguide-it.pdf
-* Turkish: https://github.com/hankache/rakuguide/releases/download/pdf/rakuguide-tr.pdf
-* Indonesian: https://github.com/hankache/rakuguide/releases/download/pdf/rakuguide-id.pdf
-* Russian: https://github.com/hankache/rakuguide/releases/download/pdf/rakuguide-ru.pdf
-* Ukrainian: https://github.com/hankache/rakuguide/releases/download/pdf/rakuguide-uk.pdf
+| Language | Online | PDF |
+|---|---|---|
+| English | [raku.guide](https://raku.guide) | [Download](https://github.com/hankache/rakuguide/releases/download/pdf/rakuguide.pdf) |
+| French | [raku.guide/fr](https://raku.guide/fr) | [Download](https://github.com/hankache/rakuguide/releases/download/pdf/rakuguide-fr.pdf) |
+| German | [raku.guide/de](https://raku.guide/de) | [Download](https://github.com/hankache/rakuguide/releases/download/pdf/rakuguide-de.pdf) |
+| Japanese | [raku.guide/ja](https://raku.guide/ja) | [Download](https://github.com/hankache/rakuguide/releases/download/pdf/rakuguide-ja.pdf) |
+| Spanish | [raku.guide/es](https://raku.guide/es) | [Download](https://github.com/hankache/rakuguide/releases/download/pdf/rakuguide-es.pdf) |
+| Portuguese | [raku.guide/pt](https://raku.guide/pt) | [Download](https://github.com/hankache/rakuguide/releases/download/pdf/rakuguide-pt.pdf) |
+| Dutch | [raku.guide/nl](https://raku.guide/nl) | [Download](https://github.com/hankache/rakuguide/releases/download/pdf/rakuguide-nl.pdf) |
+| Bulgarian | [raku.guide/bg](https://raku.guide/bg) | [Download](https://github.com/hankache/rakuguide/releases/download/pdf/rakuguide-bg.pdf) |
+| Chinese | [raku.guide/zh](https://raku.guide/zh) | [Download](https://github.com/hankache/rakuguide/releases/download/pdf/rakuguide-zh.pdf) |
+| Italian | [raku.guide/it](https://raku.guide/it) | [Download](https://github.com/hankache/rakuguide/releases/download/pdf/rakuguide-it.pdf) |
+| Turkish | [raku.guide/tr](https://raku.guide/tr) | [Download](https://github.com/hankache/rakuguide/releases/download/pdf/rakuguide-tr.pdf) |
+| Indonesian | [raku.guide/id](https://raku.guide/id) | [Download](https://github.com/hankache/rakuguide/releases/download/pdf/rakuguide-id.pdf) |
+| Russian | [raku.guide/ru](https://raku.guide/ru) | [Download](https://github.com/hankache/rakuguide/releases/download/pdf/rakuguide-ru.pdf) |
+| Ukrainian | [raku.guide/uk](https://raku.guide/uk) | [Download](https://github.com/hankache/rakuguide/releases/download/pdf/rakuguide-uk.pdf) |
 
 ### Building the HTML
 The document is written in asciidoc format and generated using
@@ -71,37 +61,72 @@ the guide. With the command above, some characters in the Unicode examples
 appear as empty boxes, and the Japanese and Chinese translations are mostly
 unreadable.
 
-To get a complete PDF, download these fonts from
-[Google Fonts](https://fonts.google.com/noto):
+To get a complete PDF, with the cover and styling of the published
+editions, download these fonts from [Google Fonts](https://fonts.google.com):
 
 * Noto Sans
 * Noto Sans Arabic
 * Noto Sans KR
 * Noto Sans SC
+* JetBrains Mono
 
-Create a folder named `fonts` inside the `pdf` folder and copy the Regular weight
-of each font into it. In each download it is inside the `static` folder:
+Create a folder named `fonts` inside the `pdf` folder and copy these files
+into it. In each download they are inside the `static` folder:
 
     pdf/fonts/NotoSans-Regular.ttf
     pdf/fonts/NotoSansArabic-Regular.ttf
     pdf/fonts/NotoSansKR-Regular.ttf
     pdf/fonts/NotoSansSC-Regular.ttf
+    pdf/fonts/JetBrainsMono-Regular.ttf
+    pdf/fonts/JetBrainsMono-Bold.ttf
+    pdf/fonts/JetBrainsMono-Italic.ttf
+    pdf/fonts/JetBrainsMono-BoldItalic.ttf
 
-Then build with the theme provided in this repository:
+Then create the cover and build with the theme provided in this repository:
 
-    $ asciidoctor-pdf -r rouge-raku -a pdf-theme=pdf/theme.yml rakuguide.adoc
+    $ pdf/make-cover.sh en
+    $ asciidoctor-pdf -r rouge-raku -a pdf-theme=pdf/theme.yml -a rouge-style=github rakuguide.adoc
+
+`make-cover.sh` writes the cover for one language. It takes the greeting
+shown under the title from `pdf/greetings.txt`, so run it with the code of
+the language you are about to build:
+
+    $ pdf/make-cover.sh fr
+    $ asciidoctor-pdf -r rouge-raku -a pdf-theme=pdf/theme.yml -a rouge-style=github fr.rakuguide.adoc
 
 For the Chinese translation, also pass `-a scripts=cjk` so that lines wrap
 correctly:
 
-    $ asciidoctor-pdf -r rouge-raku -a pdf-theme=pdf/theme.yml -a scripts=cjk zh.rakuguide.adoc
+    $ pdf/make-cover.sh zh
+    $ asciidoctor-pdf -r rouge-raku -a pdf-theme=pdf/theme.yml -a rouge-style=github -a scripts=cjk zh.rakuguide.adoc
 
 The Japanese translation has its own theme, which draws Japanese text with a
 Japanese font:
 
-    $ asciidoctor-pdf -r rouge-raku -a pdf-theme=pdf/theme-ja.yml -a scripts=cjk ja.rakuguide.adoc
+    $ pdf/make-cover.sh ja
+    $ asciidoctor-pdf -r rouge-raku -a pdf-theme=pdf/theme-ja.yml -a rouge-style=github -a scripts=cjk ja.rakuguide.adoc
 
-Add `-v` to any of these commands to list characters that are still missing.
+Add `-a revdate="October 2026"` to print a date on the cover, and `-v` to list
+characters that are still missing.
+
+### Printing the PDF as a book
+The published PDFs are A4. To print and bind the guide, build it with
+`pdf/theme-book.yml` instead. It produces a 7 × 9.25 in (178 × 235 mm) book,
+the usual size for programming books:
+
+    $ pdf/make-cover.sh en
+    $ asciidoctor-pdf -r rouge-raku -a pdf-theme=pdf/theme-book.yml -a rouge-style=github -a media=prepress rakuguide.adoc
+
+`-a media=prepress` lays the pages out for double-sided printing: the margin
+is wider on the binding side, every chapter starts on a right-hand page, and
+a blank page follows the cover. Leave it out for single-sided printing.
+
+For the Japanese translation use `pdf/theme-book-ja.yml`, and for Japanese
+and Chinese keep `-a scripts=cjk`.
+
+This gives you the inside of the book with a front and back page. It is not
+a cover file for a print service: there is no spine, and the artwork does
+not extend past the edge of the page.
 
 ### Feedback
 All feedback is welcomed:

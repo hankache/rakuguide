@@ -7,6 +7,7 @@ Naoum Hankache <naoum@hankache.com>; Romuald Nuguet <kolikov@free.fr>
 :source-highlighter: rouge
 :toc: left
 :toc-title: Table des Matières
+:doctype: book
 :lang: fr
 
 L'objectif de ce document est de vous donner un aperçu rapide du langage de programmation Raku. +
