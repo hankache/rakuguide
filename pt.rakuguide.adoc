@@ -909,7 +909,7 @@ NOTE: Para mais informações sobre variáveis, veja https://docs.raku.org/langu
 Funções não mudam o estado inicial do objeto onde foram chamadas. +
 Já modificadores mudam o estado de um objeto ao serem invocados.
 
-[source,raku,linenums]
+[source,raku]
 .`Script`
 ----
 my @números = [7,2,4,9,11,3];
@@ -941,7 +941,7 @@ say @números;      #4
 
 * (#3) mostra que o array inicial não foi modificado.
 
-Para forçar uma função a agir como um modificador, usamos `.=` em vez de `.` (#4) (Linha 9 do script)
+Para forçar uma função a agir como um modificador, usamos `.=` em vez de `.` (#4)
 
 == Laços (loops) e condicionais
 Raku possui uma série de construções para loops e condicionais.

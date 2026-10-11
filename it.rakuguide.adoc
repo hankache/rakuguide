@@ -903,7 +903,7 @@ Ci sono differenze tra funzioni e modificatori. +
 Le funzioni non cambiano lo stato dell'oggetto su cui vengono chiamate ad operare. +
 I modificatori sì.
 
-[source,raku,linenums]
+[source,raku]
 .`Script`
 ----
 my @numeri = [7,2,4,9,11,3];
@@ -935,7 +935,7 @@ say @numeri;      #4
 
 * (#3) mostra che l'array iniziale è rimasto immutato.
 
-Per forzare una funzione a comportarsi da modificatore usiamo `.=` invece di `.` (#4) (linea 9 dello script)
+Per forzare una funzione a comportarsi da modificatore usiamo `.=` invece di `.` (#4)
 
 == Cicli e condizioni
 Perl 6 ha molti costrutti condizionali e ciclici.

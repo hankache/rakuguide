@@ -813,7 +813,7 @@ Der Unterschied zwischen Funktionen und Mutatoren ist wichtig. +
 Funktionen ändern den Ursprungszustand des Objekts, auf das man sie anwendet, nicht. +
 Mutatoren ändern den Zustand des Objekts.
 
-[source,raku,linenums]
+[source,raku]
 .`Skript`
 ----
 my @zahlen = [7,2,4,9,11,3];
@@ -845,7 +845,7 @@ say @zahlen;      #4
 
 * (#3) zeigt, dass das ursprüngliche Array unverändert geblieben ist.
 
-Um eine Funktion als Mutator zu verwenden, wird `.=` anstelle von `.` benutzt (#4) (Zeile 9 im Skript)
+Um eine Funktion als Mutator zu verwenden, wird `.=` anstelle von `.` benutzt (#4)
 
 == Schleifen (loops) und Bedingungen (conditions)
 Perl 6 hat viele Bedingungs- und Schleifenkonstrukte.

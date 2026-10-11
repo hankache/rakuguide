@@ -813,7 +813,7 @@ Il est important de différencier entre les fonctions normales et les fonctions 
 Les fonctions normales ne changent pas l'état initial de l'objet. +
 Les fonctions mutatrices modifient l'état de l'objet.
 
-[source,raku,linenums]
+[source,raku]
 .`Script`
 ----
 my @numeros = [7,2,4,9,11,3];
@@ -845,7 +845,7 @@ say @numeros;      #4
 
 * (#3) démontre que le tableau initial reste non modifié.
 
-Afin de forcer une fonction normale à agir comme une fonction mutatrice, nous pouvons utiliser `.=` a la place de `.` (#4) (Ligne 9 du script)
+Afin de forcer une fonction normale à agir comme une fonction mutatrice, nous pouvons utiliser `.=` a la place de `.` (#4)
 
 == Structures conditionnelles et boucles
 Raku possède une multitude de structures conditionnelles et structures de boucles.

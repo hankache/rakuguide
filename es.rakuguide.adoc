@@ -859,7 +859,7 @@ Las funciones no cambian el estado del objeto donde se aplica. +
 
 Los mutadores modifican el estado del objeto.
 
-[source,raku,linenums]
+[source,raku]
 .`Script`
 ----
 my @números = [7,2,4,9,11,3];
@@ -891,7 +891,7 @@ say @números;      #4
 
 * (#3) muestra que el estado inicial del array no ha cambiado.
 
-Puedes hacer que una función se comporte como un mutador utilizando `.=` en lugar de `.` (#4) (línea 9 del script)
+Puedes hacer que una función se comporte como un mutador utilizando `.=` en lugar de `.` (#4)
 
 == Bucles y condiciones
 Raku tiene muchos constructores de bucles y condiciones.

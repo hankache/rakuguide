@@ -894,7 +894,7 @@ Het is belangrijk om verschil te maken tussen functies en mutators. +
 Functies veranderen de toestand van een object waarop ze worden uitgevoerd *niet*. +
 Mutators veranderen de toestand van een object *wel*.
 
-[source,raku,linenums]
+[source,raku]
 .`Script`
 ----
 my @nummers = [7,2,4,9,11,3];
@@ -926,7 +926,7 @@ say @nummers;      #4
 
 * (#3) laat zien dat het array zelf onveranderd is.
 
-Men kan een functie als een mutator laten optreden door `.=` in plaats van `.` te gebruiken (#4) (regel 9 van het script)
+Men kan een functie als een mutator laten optreden door `.=` in plaats van `.` te gebruiken (#4)
 
 == Lussen en condities
 Raku heeft een veelheid aan conditionele- en lusconstructies.

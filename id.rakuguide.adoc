@@ -873,7 +873,7 @@ Penting untuk mengetahui perbedaan fungsi dan mutator. +
 Fungsi tidak mengubah status dari objek atau variabel yang dipanggil / digunakan. +
 Mutator memodifikasi status dari objek atau variabel.
 
-[source,raku,linenums]
+[source,raku]
 .`Script`
 ----
 my @numbers = [7,2,4,9,11,3];
@@ -905,7 +905,7 @@ say @numbers;      #4
 
 * (#3) menunjukkan bahwa array tidak termodifikasi, masih seperti status diawal.
 
-Untuk memaksa fungsi menjadi mutator, kita gunakan `.=` sebagai pengganti `.` (#4) (Baris ke 9)
+Untuk memaksa fungsi menjadi mutator, kita gunakan `.=` sebagai pengganti `.` (#4)
 
 == Loops and conditions (pengulangan dan syarat / kondisi)
 Perl6 mempunyai banyak sintaks atau cara untuk melakukan persyaratan dan pengulangan

@@ -859,7 +859,7 @@ Fonksiyonlar ile mutatörler arasında ayrım yapmak önemlidir.
 Fonksiyonlar çağırıldıkları nesnenin durumunu değiştirmezler.
 Mutatörler nesnenin durumunu değiştirirler ve metotlar gibi düşünülebilir.
 
-[source,raku,linenums]
+[source,raku]
 .`Betik`
 ----
 my @numbers = [7,2,4,9,11,3];
@@ -891,7 +891,7 @@ say @numbers;      #4
 
 * (#3) Dizinin ilk halinin hala değişmediğini gösterir.
 
-Bir fonksiyonun mutatör görevi görmesi için `.=` kullanın. (#4) (Betiğimizin 9. satırında)
+Bir fonksiyonun mutatör görevi görmesi için `.=` kullanın. (#4)
 
 == Döngüler ve Koşullar
 Raku birçok döngü ve koşul yapısına sahiptir.
