@@ -3663,6 +3663,101 @@ WARNING: Parallelism always adds a threading overhead. If that overhead is not o
 This is why, using `race`, `hyper`, `start` and `await` for fairly simple scripts can actually slow them down.
 
 === Concurrency and Asynchrony
+In the previous section, we used parallelism to make a computation faster. +
+*Concurrency* and *asynchrony* answer a different need. A program often has to wait: for a timer, for a file or for a reply from the network. +
+Instead of doing nothing while it waits, the program can carry on with something else and come back to the task once it is ready.
+
+==== Promises
+We have already used promises with `start` and `await`. +
+A *promise* stands for a result that is not available yet, but will be at some point.
+
+[source,raku]
+.`Script`
+----
+my $coffee = start { sleep 2; "Coffee is ready" };
+my $toast  = start { sleep 1; "Toast is ready" };
+
+say "Preparing breakfast";
+say await $toast;
+say await $coffee;
+----
+
+.`Output`
+----
+Preparing breakfast
+Toast is ready
+Coffee is ready
+----
+
+.Explanation
+`sleep` pauses for the given number of seconds. We use it here to imitate a task that takes time. +
+`start` launches a task and returns a promise immediately. It does not wait for the task to finish.
+This is why `Preparing breakfast` is displayed first. +
+`await` waits for a promise and returns its result. +
+Both tasks run at the same time, so the script takes about 2 seconds instead of 3.
+
+==== Supplies
+A promise delivers a single result. A *supply* delivers many values, one after the other, over a period of time.
+
+`Supply.interval(1)` is a supply that produces a new number every second: 0, 1, 2 and so on. +
+To act on each value as it arrives, we use `react` and `whenever`.
+
+[source,raku]
+.`Script`
+----
+react {
+  whenever Supply.interval(1) -> $second {
+    say "Tick $second";
+    done if $second == 3;
+  }
+}
+say "Finished";
+----
+
+.`Output`
+----
+Tick 0
+Tick 1
+Tick 2
+Tick 3
+Finished
+----
+
+.Explanation
+`whenever` runs its block each time the supply produces a value. +
+`react` keeps the script waiting for new values until `done` is called. +
+`done if $second == 3` stops the `react` block after the fourth value. Without it, the script would never end.
+
+A `react` block can contain more than one `whenever`. This allows a script to wait for several things at once.
+
+[source,raku]
+.`Script`
+----
+react {
+  whenever Supply.interval(1) -> $second {
+    say "Tick $second";
+  }
+  whenever Promise.in(3.5) {
+    say "Time is up";
+    done;
+  }
+}
+----
+
+.`Output`
+----
+Tick 0
+Tick 1
+Tick 2
+Tick 3
+Time is up
+----
+
+.Explanation
+`Promise.in(3.5)` is a promise that is kept after 3.5 seconds. +
+The first `whenever` displays a line every second. +
+The second `whenever` waits for the promise, and then stops the `react` block.
+
 NOTE: For more info on Concurrency and Asynchronous Programming, see https://docs.raku.org/language/concurrency
 
 == Native Calling Interface
