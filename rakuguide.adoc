@@ -1,7 +1,7 @@
 = Raku Guide
-:description: A general introduction to Raku
+:description: A beginner friendly introduction to the Raku programming language
 :Author: Naoum Hankache
-:keywords: perl6, perl 6, introduction, perl6intro, perl 6 introduction, perl 6 tutorial, perl 6 intro, raku, raku introduction, raku guide, raku tutorial
+:keywords: raku, raku programming language, raku tutorial, raku guide, raku introduction, rakudo
 :Email: naoum@hankache.com
 :publisher: raku.guide
 :copyright: CC BY-SA 4.0
