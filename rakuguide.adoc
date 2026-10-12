@@ -358,7 +358,7 @@ The below table lists the most commonly used operators.
 
 <| 1 +<=>+ 2 <| Less
 
-<| 3 +<=> 2+ <| More
+<| 3 +<=>+ 2 <| More
 
 | eq | Infix | String equal | "John" eq "John"  | True
 
@@ -791,7 +791,7 @@ say %country-codes.WHAT;
 .Below is a list of the most commonly used types:
 You will most probably never use the first two but they are listed for informational purpose.
 
-[cols="^.^1m,.^3m,.^2m,.^1m, options="header"]
+[cols="^.^1m,.^3,.^2m,.^1m", options="header"]
 |===
 
 | *Type* | *Description* | *Example* | *Result*
@@ -2482,7 +2482,7 @@ All typed exceptions descend from class `X` , below are a few examples: +
 `X::OS` is related to OS errors +
 `X::Str::Numeric` related to trying to coerce a string to a number
 
-NOTE: For a complete list of exception types and their associated methods, go to https://docs.raku.org/type-exceptions.html
+NOTE: For a complete list of exception types and their associated methods, go to https://docs.raku.org/types#Exception_classes
 
 
 == Regular Expressions
@@ -3321,7 +3321,7 @@ NOTE: For more info on the Native Calling Interface, see https://docs.raku.org/l
 == The Community
 
 * link:https://web.libera.chat/#raku[#raku] IRC channel. Much discussion happens on IRC. +
-This should be your go to place for any enquiry for which you want an immediate answer: https://raku.org/community/irc
+This should be your go to place for any enquiry for which you want an immediate answer.
 
 * link:https://stackoverflow.com/questions/tagged/raku[StackOverflow Raku questions] is a place where questions about Raku can be answered more in-depth.
 
