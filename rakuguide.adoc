@@ -609,6 +609,50 @@ We can access a specific element in the array by specifying its position `@anima
 `.pop` removes the last element from the array and returns it. +
 `.splice(a,b)` will remove `b` elements starting at position `a`.
 
+==== Changing an array in place
+Some methods change the array they are called on. Others leave it as it is and return a new value. +
+It is important to know which is which.
+
+[source,raku]
+.`Script`
+----
+my @numbers = 7,2,4,9,11,3;
+
+@numbers.push(99);
+say @numbers;      #1
+
+say @numbers.sort; #2
+say @numbers;      #3
+
+@numbers .= sort;
+say @numbers;      #4
+----
+
+.`Output`
+----
+[7 2 4 9 11 3 99] #1
+(2 3 4 7 9 11 99) #2
+[7 2 4 9 11 3 99] #3
+[2 3 4 7 9 11 99] #4
+----
+
+.Explanation
+`.push` changes the array. A method that does this is called a *mutator* (#1)
+
+`.sort` does not change the array. It returns the sorted values and leaves the original as it was:
+
+* (#2) shows the sorted values that it returned.
+
+* (#3) shows that the array is still unmodified.
+
+To store the result back in the array, we use `.=` instead of `.` (#4) +
+`@numbers .= sort` is a shorter way of writing `@numbers = @numbers.sort`
+
+NOTE: The result in #2 is shown between parentheses instead of square brackets because `.sort` returns a sequence, not an array.
+Once it is stored back in `@numbers` it is an array again.
+
+TIP: `.=` works with any method and on any variable. For example, `$name .= uc` replaces the value of `$name` with its uppercase version.
+
 ==== Fixed-size arrays
 A basic array is declared as following:
 [source,raku]
@@ -939,46 +983,6 @@ After `$b := $a`, both names refer to the same variable. A change made through o
 The direction matters when the variables already hold values: `$b := $a` makes `$b` refer to what `$a` holds, and `$a := $b` does the opposite.
 
 NOTE: For more info on variables, see https://docs.raku.org/language/variables
-
-== Functions and mutators
-
-It is important to differentiate between functions and mutators. +
-Functions do not change the state of the object they were called on. +
-Mutators modify the state of the object.
-
-[source,raku]
-.`Script`
-----
-my @numbers = [7,2,4,9,11,3];
-
-@numbers.push(99);
-say @numbers;      #1
-
-say @numbers.sort; #2
-say @numbers;      #3
-
-@numbers.=sort;
-say @numbers;      #4
-----
-
-.`Output`
-----
-[7 2 4 9 11 3 99] #1
-(2 3 4 7 9 11 99) #2
-[7 2 4 9 11 3 99] #3
-[2 3 4 7 9 11 99] #4
-----
-
-.Explanation
-`.push` is a mutator; it changes the state of the array (#1)
-
-`.sort` is a function; it returns a sorted array but doesn't modify the state of the initial array:
-
-* (#2) shows that it returned a sorted array.
-
-* (#3) shows that the initial array is still unmodified.
-
-In order to enforce a function to act as a mutator, we use `.=` instead of `.` (#4)
 
 == Loops and conditions
 Raku has many conditional and looping constructs.
