@@ -2701,7 +2701,7 @@ the match result is stored in a special variable `$/`
 [source,raku]
 .Script
 ----
-if 'Rakudo is a Perl 6 compiler' ~~ m/:s Perl 6/ {
+if 'I am learning Raku regexes today' ~~ m/:s Raku regexes/ {
     say "The match is: " ~ $/;
     say "The string before the match is: " ~ $/.prematch;
     say "The string after the match is: " ~ $/.postmatch;
@@ -2712,11 +2712,11 @@ if 'Rakudo is a Perl 6 compiler' ~~ m/:s Perl 6/ {
 
 .Output
 ----
-The match is: Perl 6
-The string before the match is: Rakudo is a
-The string after the match is: compiler
-The matching string starts at position: 12
-The matching string ends at position: 18
+The match is: Raku regexes
+The string before the match is: I am learning
+The string after the match is: today
+The matching string starts at position: 14
+The matching string ends at position: 26
 ----
 
 .Explanation
@@ -2729,8 +2729,8 @@ The following methods can be called on the _Match Object_: +
 
 TIP: By default, whitespace in a regex definition is ignored. +
 If we want to match against a regex containing whitespace, we have to do so explicitly. +
-The `:s` in the regex `m/:s Perl 6/` forces whitespace to be considered. +
-Alternatively, we could have written the regex as `m/ Perl\s6 /` and used `\s` which represents a whitespace. +
+The `:s` in the regex `m/:s Raku regexes/` forces whitespace to be considered. +
+Alternatively, we could have written the regex as `m/ Raku\sregexes /` and used `\s` which represents a whitespace. +
 If a regex contains more than a single whitespace, using `:s` is a better option than using `\s` for each and every whitespace.
 
 === Example
@@ -2745,7 +2745,7 @@ Do not use it as-is in production.
 [source,raku]
 .Script
 ----
-my $email = 'john.doe@perl6.org';
+my $email = 'john.doe@route66.org';
 my $regex = / <:L>+\.<:L>+\@<:L+:N>+\.<:L>+ /;
 
 if $email ~~ $regex {
@@ -2756,7 +2756,7 @@ if $email ~~ $regex {
 ----
 
 .Output
-`john.doe@perl6.org is a valid email`
+`john.doe@route66.org is a valid email`
 
 .Explanation
 `<:L>` matches a single letter +
@@ -2785,7 +2785,7 @@ The regex can be decomposed as following:
 [source,raku]
 .Alternatively, a regex can be broken down into multiple named regexes
 ----
-my $email = 'john.doe@perl6.org';
+my $email = 'john.doe@route66.org';
 my regex many-letters { <:L>+ };
 my regex dot { \. };
 my regex at { \@ };
