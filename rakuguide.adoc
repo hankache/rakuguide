@@ -1087,6 +1087,169 @@ The direction matters when the variables already hold values: `$b := $a` makes `
 
 NOTE: For more info on variables, see https://docs.raku.org/language/variables
 
+== Strings
+We have already used strings in many of the previous examples. +
+In this chapter, we will take a closer look at what can be done with them.
+
+=== Interpolation
+A string delimited by double quotes replaces the variables it contains with their values. +
+This is called *interpolation*.
+
+[source,raku]
+----
+my $name = 'John';
+my $age = 23;
+say "$name is $age years old";
+----
+
+Interpolation is not limited to variables. Code that is enclosed in curly braces is run, and its result is inserted in the string.
+
+[source,raku]
+.`Script`
+----
+my $name = 'John';
+my $age = 23;
+say "Next year $name will be {$age + 1} years old";
+say "The name $name has {$name.chars} letters";
+say 'The name $name has {$name.chars} letters';
+----
+
+.`Output`
+----
+Next year John will be 24 years old
+The name John has 4 letters
+The name $name has {$name.chars} letters
+----
+
+The last string is delimited by single quotes, so nothing is interpolated.
+
+=== Word lists
+A list of words can be written without quotes and without commas, by enclosing it in angle brackets.
+
+[source,raku]
+----
+my @animals = <camel llama owl>;
+say @animals;
+----
+
+It is a shorter way of writing:
+
+[source,raku]
+----
+my @animals = 'camel','llama','owl';
+say @animals;
+----
+
+NOTE: The words are separated by spaces. This notation cannot be used for a value that contains a space.
+
+=== Common methods
+Many methods can be called on a string, as shown in the below example:
+
+[source,raku]
+.`Script`
+----
+my $text = 'Raku is fun';
+say $text.chars;
+say $text.uc;
+say $text.lc;
+say $text.flip;
+say $text.contains('fun');
+say $text.starts-with('Raku');
+say $text.ends-with('boring');
+say $text.substr(0, 4);
+say $text.index('is');
+say '   Raku   '.trim;
+----
+
+.`Output`
+----
+11
+RAKU IS FUN
+raku is fun
+nuf si ukaR
+True
+True
+False
+Raku
+5
+Raku
+----
+
+.Explanation
+`.chars` returns the number of characters in the string. +
+`.uc` and `.lc` return the string in uppercase and in lowercase. +
+`.flip` returns the string reversed. +
+`.contains()` checks if the string contains another string. +
+`.starts-with()` and `.ends-with()` check how the string begins and how it ends. +
+`.substr(a,b)` returns `b` characters starting at position `a`. +
+`.index()` returns the position of another string inside the string. +
+`.trim` removes the whitespace at the beginning and at the end of the string.
+
+TIP: None of these methods change the original string. To store the result back in the variable, use `.=` as we did with arrays.
+
+=== Splitting and joining
+A string can be split into a list, and a list can be joined into a string.
+
+[source,raku]
+.`Script`
+----
+my $sentence = 'The quick brown fox';
+my @words = $sentence.words;
+say @words;
+say @words.elems;
+say @words.join('-');
+
+my $record = 'John,23,American';
+my @fields = $record.split(',');
+say @fields;
+say @fields[0];
+
+say 'Raku'.comb;
+----
+
+.`Output`
+----
+[The quick brown fox]
+4
+The-quick-brown-fox
+[John 23 American]
+John
+(R a k u)
+----
+
+.Explanation
+`.words` splits a string into its words. +
+`.join()` joins the elements of a list into a single string, using the given separator. +
+`.split()` splits a string wherever the given separator is found. +
+`.comb` splits a string into its characters.
+
+=== Formatting
+`sprintf` builds a string from a template. +
+The template contains *placeholders* that start with `%`. Each placeholder is replaced by one of the values that follow the template.
+
+[source,raku]
+.`Script`
+----
+say sprintf('%s is %d years old', 'John', 23);
+say sprintf('The price is %.2f', 3.14159);
+say sprintf('Ticket number %05d', 42);
+----
+
+.`Output`
+----
+John is 23 years old
+The price is 3.14
+Ticket number 00042
+----
+
+.Explanation
+`%s` is replaced by a string. +
+`%d` is replaced by an integer. +
+`%.2f` is replaced by a number rounded to 2 decimal places. +
+`%05d` is replaced by an integer, padded with zeros to a width of 5 digits.
+
+NOTE: For the complete list of methods applicable to Strings, see https://docs.raku.org/type/Str
+
 == Loops and conditions
 Raku has many conditional and looping constructs.
 
