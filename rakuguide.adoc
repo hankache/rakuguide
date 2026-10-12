@@ -2449,10 +2449,10 @@ try {
   # if anything goes wrong, the script will enter the below CATCH block
   # if nothing goes wrong, the CATCH block will be ignored
   CATCH {
-    when X::AdHoc   { # do something if exception of type X::AdHoc is thrown }
-    when X::IO      { # do something if exception of type X::IO is thrown }
-    when X::OS      { # do something if exception of type X::OS is thrown }
-    default         { # do something if exception is thrown and doesn't belong to the above types }
+    when X::AdHoc   { #`(do something if exception of type X::AdHoc is thrown) }
+    when X::IO      { #`(do something if exception of type X::IO is thrown) }
+    when X::OS      { #`(do something if exception of type X::OS is thrown) }
+    default         { #`(do something if exception is thrown and doesn't belong to the above types) }
   }
 }
 ----
@@ -2482,7 +2482,7 @@ X::AdHoc.new(payload => 'Error !').throw;
 Ad-hoc exceptions are thrown using the `die` subroutine, followed by the exception message.
 
 Typed exceptions are objects, hence the use of the `.new()` constructor in the above example. +
-All typed exceptions descend from class `X` , below are a few examples: +
+All typed exceptions descend from the class `Exception`. The names of the built-in ones start with `X::`, below are a few examples: +
 `X::AdHoc` is the simplest exception type +
 `X::IO` is related to IO errors +
 `X::OS` is related to OS errors +
