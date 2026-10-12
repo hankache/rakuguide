@@ -1471,6 +1471,29 @@ spurt "newdatafile.txt", $newdata;
 
 After running the above code, a new file named _newdatafile.txt_ will be created. It will contain the new scores.
 
+==== lines
+`lines` is used to read data from a file one line at a time.
+
+We will read the same _datafile.txt_ that we used with `slurp`.
+
+[source,raku]
+----
+for "datafile.txt".IO.lines -> $line {
+  say "Score: $line";
+}
+----
+
+.`Output`
+----
+Score: John 9
+Score: Johnnie 7
+Score: Jane 8
+Score: Joanna 7
+----
+
+`.IO` turns the name of the file into an object that represents the file. +
+`.lines` returns the lines of that file, and the `for` loop goes through them one by one.
+
 === Working with files and directories
 Raku can list the contents of a directory without resorting to shell commands (by using `ls`, for example).
 
