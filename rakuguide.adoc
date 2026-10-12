@@ -454,6 +454,53 @@ The below table lists the most commonly used operators.
 
 |===
 
+=== Logical Operators
+Logical operators combine conditions or choose between two values.
+
+[cols="^.^5m,^.^7m,.^20,.^20m,.^18m", options="header"]
+|===
+
+| Operator | Type | Description | Example | Result
+
+.2+| and .2+| Infix .2+| True if both operands are true | True and True | True
+
+<| True and False <| False
+
+.2+| or .2+| Infix .2+| True if at least one operand is true | True or False | True
+
+<| False or False <| False
+
+| && | Infix | Same as `and` written as a symbol | True && False | False
+
+| {vbar}{vbar} | Infix | Same as `or` written as a symbol | True {vbar}{vbar} False | True
+
+.2+| // .2+| Infix .2+| Defined-or: the left operand if it has a value, otherwise the right operand | my $var; $var // 5; | 5
+
+<| my $var = 3; $var // 5; <| 3
+
+.2+| ?? !! .2+| Ternary .2+| Conditional: if the condition is true the first value, otherwise the second | 7 > 5 ?? "yes" !! "no" | yes
+
+<| 7 < 5 ?? "yes" !! "no" <| no
+
+|===
+
+Logical operators are mostly used to combine comparisons:
+
+[source,raku]
+----
+my $age = 30;
+say $age >= 18 && $age <= 65;   # True
+say $age < 18 || $age > 65;     # False
+----
+
+The defined-or operator `//` is a convenient way of providing a default value:
+
+[source,raku]
+----
+my $name;
+say $name // 'Anonymous';       # Anonymous
+----
+
 === Reversed Operators
 
 Adding `R` before any operator will have the effect of reversing its operands.
