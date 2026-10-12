@@ -1132,7 +1132,7 @@ if $number-of-seats <= 5 {
 ----
 
 === unless
-The negated version of an if statement can be written using `unless`.
+The negated version of an `if` statement can be written using `unless`.
 
 The following code:
 
@@ -1204,6 +1204,47 @@ for @array -> $array-item {
 
 Notice that we created an iteration variable `$array-item` and then performed the operation `*100` on each array item.
 
+If we do not create an iteration variable, each value is placed in a special variable called `$_`, also known as the *topic variable*.
+
+[source,raku]
+----
+my @array = 1,2,3;
+
+for @array {
+  say $_ * 100
+}
+----
+
+The values can also come from a range:
+
+[source,raku]
+----
+for 1..5 -> $number {
+  say $number
+}
+----
+
+Calling a method without writing anything before the dot calls it on the topic variable. +
+In other words, `.say` is a shorter way of writing `$_.say`
+
+[source,raku]
+----
+for 1..5 {
+  .say
+}
+----
+
+To iterate over a hash, we can ask for its keys and values and create two iteration variables:
+
+[source,raku]
+----
+my %capitals = UK => 'London', Germany => 'Berlin';
+
+for %capitals.kv -> $country, $city {
+  say "The capital of $country is $city"
+}
+----
+
 === given
 
 `given` is the Raku equivalent of the switch statement in other languages,
@@ -1248,6 +1289,75 @@ loop (my $i = 0; $i < 5; $i++) {
   say "The current number is $i"
 }
 ----
+
+=== while and until
+
+The `while` loop repeats a block of code as long as a condition is true.
+
+[source,raku]
+----
+my $countdown = 3;
+
+while $countdown > 0 {
+  say $countdown;
+  $countdown--;
+}
+say 'Liftoff!';
+----
+
+.`Output`
+----
+3
+2
+1
+Liftoff!
+----
+
+`until` is the negated version of `while`. It repeats the block as long as the condition is false. +
+You should be able to relate it to `unless`.
+
+The above example can be written as:
+
+[source,raku]
+----
+my $countdown = 3;
+
+until $countdown == 0 {
+  say $countdown;
+  $countdown--;
+}
+say 'Liftoff!';
+----
+
+WARNING: Make sure that the condition changes at some point, otherwise the loop will never stop.
+
+=== next and last
+
+`next` and `last` give us more control over a loop. They can be used in `for`, `loop`, `while` and `until`.
+
+* `next` skips the rest of the block and continues with the next value.
+* `last` stops the loop.
+
+[source,raku]
+----
+for 1..10 -> $number {
+  next unless $number %% 2;
+  last if $number > 8;
+  say $number;
+}
+----
+
+.`Output`
+----
+2
+4
+6
+8
+----
+
+.Explanation
+`next unless $number %% 2` skips the numbers that are not divisible by 2 +
+`last if $number > 8` stops the loop as soon as the number is greater than 8, so `10` is never displayed.
 
 NOTE: For more info on loops and conditions, see https://docs.raku.org/language/control
 
