@@ -656,6 +656,37 @@ We can access a specific element in the array by specifying its position `@anima
 `.pop` removes the last element from the array and returns it. +
 `.splice(a,b)` will remove `b` elements starting at position `a`.
 
+Below are a few more operations that can be performed on arrays:
+
+[source,raku]
+.`Script`
+----
+my @animals = 'camel','vicuña','llama';
+say "The last animal is the " ~ @animals[*-1];
+say "The first two animals are: " ~ @animals[0,1];
+say "All the animals: " ~ @animals.join(', ');
+@animals.unshift("owl");
+say "An owl joined at the front: " ~ @animals;
+@animals.shift;
+say "The owl got away again: " ~ @animals;
+----
+
+.`Output`
+----
+The last animal is the llama
+The first two animals are: camel vicuña
+All the animals: camel, vicuña, llama
+An owl joined at the front: owl camel vicuña llama
+The owl got away again: camel vicuña llama
+----
+
+.Explanation
+`+@animals[*-1]+` returns the last element of the array. +
+`@animals[0,1]` returns several elements at once. This is called a *slice*. +
+`.join(', ')` returns a single string made of all the elements, separated by a comma and a space. +
+`.unshift()` adds one or more elements to the beginning of the array. +
+`.shift` removes the first element from the array and returns it.
+
 ==== Changing an array in place
 Some methods change the array they are called on. Others leave it as it is and return a new value. +
 It is important to know which is which.
@@ -817,6 +848,31 @@ The capital of France is: Paris
 `.keys` returns a list that contains all keys. +
 `.values` returns a list that contains all values. +
 We can access a specific value in the hash by specifying its key `%hash<key>`
+
+WARNING: Raku does not keep the keys of a hash in a fixed order.
+The order of the countries in your output can be different from the one above, and it can change each time the script runs.
+
+We can also check if a key exists and remove a key from the hash:
+[source,raku]
+.`Script`
+----
+my %capitals = UK => 'London', Germany => 'Berlin';
+say %capitals<Germany>:exists;
+say %capitals<France>:exists;
+%capitals<Germany>:delete;
+say %capitals;
+----
+
+.`Output`
+----
+True
+False
+{UK => London}
+----
+
+.Explanation
+`%hash<key>:exists` returns `True` if the key is in the hash. +
+`%hash<key>:delete` removes the key and its value from the hash.
 
 NOTE: For the complete Hash reference, see https://docs.raku.org/type/Hash
 
