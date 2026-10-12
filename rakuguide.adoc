@@ -1623,6 +1623,93 @@ say-hello;
 say-hello("Laura");
 ----
 
+=== Named Parameters
+The parameters we have used so far are called *positional parameters*.
+The arguments are matched to them by position: the first argument goes to the first parameter, the second argument to the second parameter and so on.
+
+A *named parameter* is matched by its name instead. It is defined by adding a colon `:` before the parameter.
+
+[source,raku]
+----
+sub greet(:$name, :$title) {
+  say "Good morning $title $name";
+}
+
+greet(name => "Laura", title => "Mrs.");
+greet(title => "Mr.", name => "Johnnie");
+----
+
+.`Output`
+----
+Good morning Mrs. Laura
+Good morning Mr. Johnnie
+----
+
+Since the arguments are matched by name, they can be supplied in any order.
+
+[TIP]
+====
+If a variable has the same name as the parameter, the argument can be written in a shorter way: `:$name` instead of `name \=> $name`
+
+[source,raku]
+----
+sub greet(:$name, :$title) {
+  say "Good morning $title $name";
+}
+
+my $name = "Laura";
+my $title = "Mrs.";
+greet(name => $name, title => $title);   # regular
+greet(:$name, :$title);                  # shorthand
+----
+====
+
+=== Slurpy Parameters
+A subroutine can accept any number of arguments by using a *slurpy parameter*. +
+A slurpy parameter is an array preceded by an asterisk, like `+*@names+`. It collects all the remaining arguments.
+
+[source,raku]
+----
+sub greet-all(*@names) {
+  for @names -> $name {
+    say "Hello $name";
+  }
+}
+
+greet-all("Paul");
+greet-all("Paul", "Paula", "Laura");
+----
+
+.`Output`
+----
+Hello Paul
+Hello Paul
+Hello Paula
+Hello Laura
+----
+
+=== Constraints
+We have seen that a parameter can be restricted to a type, like `Str $name`. +
+It can be restricted further by adding the keyword `where` followed by a condition.
+
+[source,raku]
+----
+sub register(Int $age where $age >= 18) {
+  say "You are registered";
+}
+
+register(21);
+register(15);
+----
+
+.`Output`
+----
+You are registered
+Constraint type check failed in binding to parameter '$age'; expected anonymous constraint to be met but got Int (15)
+----
+
+The first call succeeds. The second call fails because `15` is an `Int` but does not meet the condition.
+
 === Returning values
 All the subroutines we've seen so far *do something* -- they display some text on the terminal.
 
