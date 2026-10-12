@@ -2,6 +2,8 @@
 Naoum Hankache <naoum@hankache.com>; Romuald Nuguet <kolikov@free.fr>
 :description: Une introduction générale à Raku
 :keywords: perl6, Raku, introduction, rakuguide, Raku introduction, Introduction à Raku
+:publisher: raku.guide
+:copyright: CC BY-SA 4.0
 :Revision: 1.0
 :icons: font
 :source-highlighter: rouge

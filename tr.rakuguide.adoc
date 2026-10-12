@@ -2,6 +2,8 @@
 Naoum Hankache <naoum@hankache.com>; Yalın Pala <yalinpala@protonmail.com>
 :description: Perl 6'ya genel Giriş
 :keywords: perl6, perl 6, giriş, perl6giriş, perl 6'ya giriş, perl 6 öğretici
+:publisher: raku.guide
+:copyright: CC BY-SA 4.0
 :Revision: 1.0
 :icons: font
 :source-highlighter: rouge

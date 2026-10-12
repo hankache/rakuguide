@@ -2,6 +2,8 @@
 Naoum Hankache <naoum@hankache.com>; Itsuki Toyota <titsuki@cpan.org>
 :description: Raku 入門
 :keywords: perl6, perl 6, introduction, イントロダクション, perl6intro, perl 6 introduction, perl 6 tutorial, perl 6 intro, perl 6 入門, perl 6 イントロダクション, perl 6 イントロ, raku イントロダクション, raku ガイド, raku チュートリアル, raku 入門
+:publisher: raku.guide
+:copyright: CC BY-SA 4.0
 :Revision: 1.0
 :icons: font
 :source-highlighter: rouge

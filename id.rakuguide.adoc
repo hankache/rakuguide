@@ -2,6 +2,8 @@
 Naoum Hankache <naoum@hankache.com>; Heince Kurniawan <heince@cpan.org>
 :description: Pengenalan secara umum untuk bahasa pemrograman Raku
 :keywords: raku, raku, introduction, rakuintro, perkenalan raku, raku tutorial, raku intro
+:publisher: raku.guide
+:copyright: CC BY-SA 4.0
 :Revision: 1.0
 :icons: font
 :source-highlighter: rouge

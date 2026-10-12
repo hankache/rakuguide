@@ -2,6 +2,8 @@
 Naoum Hankache <naoum@hankache.com>; ohmycloud <http://ohmycloud.github.io>; wenjie1991 <https://github.com/wenjie1991>
 :description: Raku 入门
 :keywords: perl6, Raku, 入门, perl6intro, Raku 入门, Raku 指南, Raku Intro, Raku Guide
+:publisher: raku.guide
+:copyright: CC BY-SA 4.0
 :Revision: 1.0
 :icons: font
 :source-highlighter: rouge

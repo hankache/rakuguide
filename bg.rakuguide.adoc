@@ -2,6 +2,8 @@
 Naoum Hankache <naoum@hankache.com>; Красимир Беров <berov@cpan.org>
 :description: Общо въведение в Perl 6
 :keywords: perl6, perl 6, въведение, perl6intro, въведение в perl 6, урок по пърл 6, увод в perl 6
+:publisher: raku.guide
+:copyright: CC BY-SA 4.0
 :Revision: 1.0
 :icons: font
 :source-highlighter: rouge

@@ -2,6 +2,8 @@
 Naoum Hankache <naoum@hankache.com>; Breno de_Oliveira <garu@cpan.org>; Humberto Massa <massa@cpan.org>
 :description: Uma introdução geral ao Raku
 :keywords: raku, introdução, rakuguide, introdução ao raku, tutorial raku, raku intro
+:publisher: raku.guide
+:copyright: CC BY-SA 4.0
 :Revision: 1.0
 :icons: font
 :source-highlighter: rouge
