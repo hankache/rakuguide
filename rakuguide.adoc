@@ -2826,31 +2826,56 @@ To install a specific module, type the below command in your terminal:
 NOTE: The Raku modules directory can be found on: https://raku.land/
 
 === Using Modules
-MD5 is a cryptographic hash function that produces a 128-bit hash value. +
-MD5 has a variety of applications, including the encryption of stored passwords in a database.
-When a new user registers, their credentials are not stored as plain text but rather _hashed_.
-The rationale behind this is that if the DB gets compromised, the attacker will not be able to know what the passwords are.
+JSON is a text format for storing and exchanging data. +
+It is used by many web services and applications, so sooner or later your program will have to read it or produce it. +
+A JSON document is made of key/value pairs and lists. They map naturally to the hashes and arrays of Raku.
 
-Luckily, you don't need to implement the MD5 algorithm yourself; there's a Raku module already implemented.
+Luckily, you don't need to write a JSON parser yourself; there's a Raku module already implemented.
 
 Let's install it: +
-`zef install Digest::MD5`
+`zef install JSON::Fast`
 
 Now, run the below script:
 [source,raku]
 ----
-use Digest::MD5;
+use JSON::Fast;
 
-my $password = "password123";
-my $hashed-password = md5( $password );
+my %user = name => 'John', age => 23;
+my $json = to-json(%user);
 
-say $hashed-password;
+say $json;
 ----
-In order to run the `md5()` function that creates hashes, we need to load the required module. +
-The `use` keyword loads the module for use in the script which provides an `md5` subroutine.
 
-WARNING: In practice MD5 hashing alone is not sufficient, because it is prone to dictionary attacks. +
-It should be combined with a salt link:https://en.wikipedia.org/wiki/Salt_(cryptography)[https://en.wikipedia.org/wiki/Salt_(cryptography)].
+.`Output`
+----
+{
+  "name": "John",
+  "age": 23
+}
+----
+
+In order to run the `to-json()` function that turns a hash into JSON, we need to load the required module. +
+The `use` keyword loads the module for use in the script which provides a `to-json` subroutine.
+
+NOTE: Raku does not keep the keys of a hash in a fixed order, so `age` might come before `name` when you run the script. The order can change each time the script runs.
+
+The same module provides a `from-json()` subroutine that works in the opposite direction.
+[source,raku]
+----
+use JSON::Fast;
+
+my $json = '{ "name": "Jane", "age": 25 }';
+my %user = from-json($json);
+
+say %user<name>;
+say %user<age>;
+----
+
+.`Output`
+----
+Jane
+25
+----
 
 == Unicode
 
