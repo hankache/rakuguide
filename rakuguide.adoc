@@ -69,45 +69,73 @@ Raku is multi-paradigmatic. It supports Procedural, Object Oriented, and Functio
 Implementations that pass the specification test suite are considered Raku.
 * *Rakudo*: Is a compiler for Raku.
 * *Zef*: Is a Raku module installer.
-* *Rakudo Star*: Is a bundle that includes Rakudo, Zef, a collection of Raku modules, and documentation.
+* *Rakubrew*: Is a Raku installer and version manager.
 
 === Installing Raku
+There are several ways of installing Raku.
 
-https://rakubrew.org is a platform independent environment manager (think pyenv for Raku)
+==== Rakubrew
+The recommended way of installing Raku is through https://rakubrew.org[Rakubrew], a Raku installer and version manager. +
+It downloads a ready to use version of Rakudo, and it works on Linux, macOS and Windows.
 
-.Linux
+First install Rakubrew by running one of the following commands, depending on your OS.
 
-To install Rakudo Star, run the following commands from your terminal:
+[source,shell]
+.On Linux, from your terminal:
+----
+curl https://rakubrew.org/install-on-perl.sh | sh
+----
+
+[source,shell]
+.On macOS, from your terminal:
+----
+curl https://rakubrew.org/install-on-macos.sh | sh
+----
+
+[source,powershell]
+.On Windows, from a PowerShell window:
+----
+. {iwr -useb https://rakubrew.org/install-on-powershell.ps1 } | iex
+----
+
+The script ends by displaying a command that makes Rakubrew available each time you open a terminal. +
+Copy that command and run it, then close your terminal and open a new one.
+
+Now install the latest version of Raku:
 [source,shell]
 ----
-mkdir ~/rakudo && cd $_
-curl -LJO https://rakudo.org/latest/star/src
-tar -xzf rakudo-star-*.tar.gz
-mv rakudo-star-*/* .
-rm -fr rakudo-star-*
-
-./bin/rstar install
-
-echo "export PATH=$(pwd)/bin/:$(pwd)/share/perl6/site/bin:$(pwd)/share/perl6/vendor/bin:$(pwd)/share/perl6/core/bin:\$PATH" >> ~/.bashrc
-source ~/.bashrc
+rakubrew download
 ----
-For other Unix options, go to https://rakudo.org/star/source
 
-.macOS
-Four options are available:
+To make sure that Raku is installed, run:
+[source,shell]
+----
+raku --version
+----
 
-* Follow the same steps listed for installing on Linux
-* Install with homebrew: `brew install rakudo-star`
-* Install with MacPorts: `sudo port install rakudo`
-* Get the latest installer (file with .dmg extension) from https://rakudo.org/latest/star/macos
+==== Binary releases
+Rakudo also provides binary releases for Linux, macOS and Windows. +
+They can be downloaded from https://rakudo.org/downloads
 
 .Windows
-. For 64-bit architectures: Get the latest installer (file with .msi extension) from https://rakudo.org/latest/star/win
-. After installation, make sure `C:\rakudo\bin` is in the PATH
+Get the installer (file with .msi extension) and run it. +
+The installer adds Raku and Zef to the PATH.
 
-.Docker
-. Get the official Docker image `docker pull rakudo-star`
-. Then run a container with the image `docker run -it rakudo-star`
+.Linux and macOS
+Get the archive (file with .tar.gz extension) and extract it. +
+The executables are located in the `bin` and `share/perl6/site/bin` folders of the archive. Add both folders to your PATH.
+
+==== Rakudo Star
+Rakudo Star is a bundle that includes Rakudo, Zef, a collection of Raku modules, and documentation. +
+It can be installed using one of the following third party packages:
+
+* Docker: `docker pull rakudo-star`
+
+* Scoop on Windows: `scoop install rakudo-star`
+
+* Homebrew on macOS: `brew install rakudo-star`
+
+NOTE: For other options, go to https://raku.org/install
 
 === Running Raku code
 
@@ -134,14 +162,11 @@ typing `raku -e 'your code here'` and hitting [Enter].
 
 [TIP]
 --
-Rakudo Star bundles a line editor that helps you get the most out of the REPL.
+A line editor helps you get the most out of the REPL. It lets you use the up and down arrows for history, left and right to edit input, and TAB for completion.
 
-If you installed plain Rakudo instead of Rakudo Star then you probably don't have line editing features enabled (using the up and down arrows for history, left and right to edit input, TAB completion).
-Consider running the following command and you shall be all set:
+If these features are not enabled, consider running the following command and you shall be all set:
 
-* `zef install Linenoise` would work on Windows, Linux and macOS
-
-* `zef install Readline` if you are on Linux and prefer the _Readline_ library
+`zef install Terminal::LineEditor`
 --
 
 === Editors
@@ -3603,7 +3628,7 @@ Reusability is a very important concept whereby programmers don't have to reinve
 
 Raku allows the creation and redistribution of *modules*. Each module is a packaged set of functionality that can be reused once installed.
 
-_Zef_ is a module management tool that comes with Rakudo Star.
+_Zef_ is a module management tool that is installed along with Rakudo.
 
 To install a specific module, type the below command in your terminal:
 
