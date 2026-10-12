@@ -8,6 +8,7 @@
 <meta name="description" content="Uma introdução geral ao Raku">
 <meta name="keywords" content="raku, introdução, rakuguide, introdução ao raku, tutorial raku, raku intro">
 <meta name="author" content="Naoum Hankache, Breno de Oliveira, Humberto Massa">
+<meta name="copyright" content="CC BY-SA 4.0">
 <link rel="icon" type="image/x-icon" href="../favicon.ico">
 <title>Introdução ao Raku</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
@@ -1210,11 +1211,11 @@ uma nota.</p>
 <p>Multi linhas:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="raku"><span class="cp">=begin</span><span class="w"> </span><span class="nn">comment</span><span class="w">
-</span><span class="cm">Esse é um comentário de várias linhas.</span><span class="w">
-</span><span class="cm">Comentário 1</span><span class="w">
-</span><span class="cm">Comentário 2</span><span class="w">
-</span><span class="cp">=end</span><span class="w"> </span><span class="nn">comment</span></code></pre>
+<pre class="rouge highlight"><code data-lang="raku"><span class="cp">=begin</span><span class="w"> </span><span class="cp">comment</span><span class="w">
+</span><span class="cm">Esse é um comentário de várias linhas.
+Comentário 1
+Comentário 2
+</span><span class="cp">=end</span><span class="w"> </span><span class="cp">comment</span></code></pre>
 </div>
 </div>
 </li>
@@ -2019,7 +2020,7 @@ Para uma referência completa sobre Arrays, veja <a href="https://docs.raku.org/
 </span><span class="nb">say</span><span class="w"> </span><span class="nv">%capitais</span><span class="o">.</span><span class="nb">kv</span><span class="p">;</span><span class="w">
 </span><span class="nb">say</span><span class="w"> </span><span class="nv">%capitais</span><span class="o">.</span><span class="nb">keys</span><span class="p">;</span><span class="w">
 </span><span class="nb">say</span><span class="w"> </span><span class="nv">%capitais</span><span class="o">.</span><span class="nb">values</span><span class="p">;</span><span class="w">
-</span><span class="nb">say</span><span class="w"> </span><span class="s2">"A capital da França é: "</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="nv">%capitais&lt;França&gt;</span><span class="p">;</span></code></pre>
+</span><span class="nb">say</span><span class="w"> </span><span class="s2">"A capital da França é: "</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="nv">%capitais</span><span class="s">&lt;França&gt;</span><span class="p">;</span></code></pre>
 </div>
 </div>
 <div class="listingblock">
@@ -2366,17 +2367,7 @@ Já modificadores mudam o estado de um objeto ao serem invocados.</p>
 <div class="listingblock">
 <div class="title"><code>Script</code></div>
 <div class="content">
-<pre class="rouge highlight"><code data-lang="raku"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno"> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-</pre></td><td class="code"><pre><span class="kd">my</span><span class="w"> </span><span class="nv">@números</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">7</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">3</span><span class="p">];</span><span class="w">
+<pre class="rouge highlight"><code data-lang="raku"><span class="kd">my</span><span class="w"> </span><span class="nv">@números</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">7</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">3</span><span class="p">];</span><span class="w">
 
 </span><span class="nv">@números</span><span class="o">.</span><span class="nb">push</span><span class="p">(</span><span class="mi">99</span><span class="p">);</span><span class="w">
 </span><span class="nb">say</span><span class="w"> </span><span class="nv">@números</span><span class="p">;</span><span class="w">      </span><span class="c1">#1</span><span class="w">
@@ -2385,8 +2376,7 @@ Já modificadores mudam o estado de um objeto ao serem invocados.</p>
 </span><span class="nb">say</span><span class="w"> </span><span class="nv">@números</span><span class="p">;</span><span class="w">      </span><span class="c1">#3</span><span class="w">
 
 </span><span class="nv">@números</span><span class="o">.=</span><span class="nb">sort</span><span class="p">;</span><span class="w">
-</span><span class="nb">say</span><span class="w"> </span><span class="nv">@números</span><span class="p">;</span><span class="w">      </span><span class="c1">#4</span>
-</pre></td></tr></tbody></table></code></pre>
+</span><span class="nb">say</span><span class="w"> </span><span class="nv">@números</span><span class="p">;</span><span class="w">      </span><span class="c1">#4</span></code></pre>
 </div>
 </div>
 <div class="listingblock">
@@ -2416,7 +2406,7 @@ Já modificadores mudam o estado de um objeto ao serem invocados.</p>
 </ul>
 </div>
 <div class="paragraph">
-<p>Para forçar uma função a agir como um modificador, usamos <code>.=</code> em vez de <code>.</code> (#4) (Linha 9 do script)</p>
+<p>Para forçar uma função a agir como um modificador, usamos <code>.=</code> em vez de <code>.</code> (#4)</p>
 </div>
 </div>
 </div>
@@ -4980,7 +4970,7 @@ LATIN SMALL LETTER A WITH ACUTE</pre>
 <div class="listingblock">
 <div class="title">Unicode pode ser usado para operações matemáticas:</div>
 <div class="content">
-<pre class="rouge highlight"><code data-lang="raku"><span class="kd">my</span><span class="w"> </span><span class="nv">$var</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">⅒</span><span class="p">;</span><span class="w">
+<pre class="rouge highlight"><code data-lang="raku"><span class="kd">my</span><span class="w"> </span><span class="nv">$var</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">⅒</span><span class="p">;</span><span class="w">
 </span><span class="nb">say</span><span class="w"> </span><span class="nv">$var</span><span class="p">;</span></code></pre>
 </div>
 </div>
@@ -5197,7 +5187,7 @@ Para mais informações sobre Concorrência e Programação Assíncrona, veja <a
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-10-06 12:54:52 UTC
+Last updated 2026-10-12 21:49:14 UTC
 </div>
 </div>
 </body>

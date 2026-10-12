@@ -8,6 +8,7 @@
 <meta name="description" content="Общо въведение в Perl 6">
 <meta name="keywords" content="perl6, perl 6, въведение, perl6intro, въведение в perl 6, урок по пърл 6, увод в perl 6">
 <meta name="author" content="Naoum Hankache, Красимир Беров">
+<meta name="copyright" content="CC BY-SA 4.0">
 <link rel="icon" type="image/x-icon" href="../favicon.ico">
 <title>Увод в Perl 6</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
@@ -858,7 +859,7 @@ There is more than one way to do it.</p>
 </div>
 <div class="paragraph">
 <p>За да видите други възможности за инсталация, посетете
- <a href="http://rakudo.org/how-to-get-rakudo/\#Installing-Rakudo-Star-Linux" class="bare">http://rakudo.org/how-to-get-rakudo/\#Installing-Rakudo-Star-Linux</a></p>
+ <a href="http://rakudo.org/how-to-get-rakudo/#Installing-Rakudo-Star-Linux" class="bare">http://rakudo.org/how-to-get-rakudo/#Installing-Rakudo-Star-Linux</a></p>
 </div>
 <div class="paragraph">
 <div class="title">OSX</div>
@@ -1194,11 +1195,11 @@ filename.pl6</code> и натиснете  [Enter]. За разлика от и�
 <p>Многоредови:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="raku"><span class="cp">=begin</span><span class="w"> </span><span class="nn">comment</span><span class="w">
-</span><span class="cm">Това е многоредов коментар.</span><span class="w">
-</span><span class="cm">Първа бележка</span><span class="w">
-</span><span class="cm">Второ пояснение</span><span class="w">
-</span><span class="cp">=end</span><span class="w"> </span><span class="nn">comment</span></code></pre>
+<pre class="rouge highlight"><code data-lang="raku"><span class="cp">=begin</span><span class="w"> </span><span class="cp">comment</span><span class="w">
+</span><span class="cm">Това е многоредов коментар.
+Първа бележка
+Второ пояснение
+</span><span class="cp">=end</span><span class="w"> </span><span class="cp">comment</span></code></pre>
 </div>
 </div>
 </li>
@@ -2028,7 +2029,7 @@ We're going to let go: vicuña llama and keep the camel</pre>
 </span><span class="nb">say</span><span class="w"> </span><span class="nv">%capitals</span><span class="o">.</span><span class="nb">kv</span><span class="p">;</span><span class="w">
 </span><span class="nb">say</span><span class="w"> </span><span class="nv">%capitals</span><span class="o">.</span><span class="nb">keys</span><span class="p">;</span><span class="w">
 </span><span class="nb">say</span><span class="w"> </span><span class="nv">%capitals</span><span class="o">.</span><span class="nb">values</span><span class="p">;</span><span class="w">
-</span><span class="nb">say</span><span class="w"> </span><span class="s2">"The capital of France is: "</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="nv">%capitals&lt;France&gt;</span><span class="p">;</span></code></pre>
+</span><span class="nb">say</span><span class="w"> </span><span class="s2">"The capital of France is: "</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="nv">%capitals</span><span class="s">&lt;France&gt;</span><span class="p">;</span></code></pre>
 </div>
 </div>
 <div class="listingblock">
@@ -2382,17 +2383,7 @@ Cannot assign to an immutable value
 <div class="listingblock">
 <div class="title"><code>Скрипт</code></div>
 <div class="content">
-<pre class="rouge highlight"><code data-lang="raku"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno"> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-</pre></td><td class="code"><pre><span class="kd">my</span><span class="w"> </span><span class="nv">@числа</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">7</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">3</span><span class="p">];</span><span class="w">
+<pre class="rouge highlight"><code data-lang="raku"><span class="kd">my</span><span class="w"> </span><span class="nv">@числа</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">7</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">3</span><span class="p">];</span><span class="w">
 
 </span><span class="nv">@числа</span><span class="o">.</span><span class="nb">push</span><span class="p">(</span><span class="mi">99</span><span class="p">);</span><span class="w">
 </span><span class="nb">say</span><span class="w"> </span><span class="nv">@числа</span><span class="p">;</span><span class="w">      </span><span class="c1">#1</span><span class="w">
@@ -2401,8 +2392,7 @@ Cannot assign to an immutable value
 </span><span class="nb">say</span><span class="w"> </span><span class="nv">@числа</span><span class="p">;</span><span class="w">      </span><span class="c1">#3</span><span class="w">
 
 </span><span class="nv">@числа</span><span class="o">.=</span><span class="nb">sort</span><span class="p">;</span><span class="w">
-</span><span class="nb">say</span><span class="w"> </span><span class="nv">@числа</span><span class="p">;</span><span class="w">      </span><span class="c1">#4</span>
-</pre></td></tr></tbody></table></code></pre>
+</span><span class="nb">say</span><span class="w"> </span><span class="nv">@числа</span><span class="p">;</span><span class="w">      </span><span class="c1">#4</span></code></pre>
 </div>
 </div>
 <div class="listingblock">
@@ -2432,7 +2422,7 @@ Cannot assign to an immutable value
 </ul>
 </div>
 <div class="paragraph">
-<p>За да накараме дадена функция да действа като мутатор, използуваме <code>.=</code> вместо <code>.</code> (#4) (ред 9 от скрипта)</p>
+<p>За да накараме дадена функция да действа като мутатор, използуваме <code>.=</code> вместо <code>.</code> (#4)</p>
 </div>
 </div>
 </div>
@@ -5219,7 +5209,7 @@ LATIN SMALL LETTER A WITH ACUTE</pre>
 <div class="listingblock">
 <div class="title">Уникод знаци могат да се ползват при математически изчисления:</div>
 <div class="content">
-<pre class="rouge highlight"><code data-lang="raku"><span class="kd">my</span><span class="w"> </span><span class="nv">$var</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">⅒</span><span class="p">;</span><span class="w">
+<pre class="rouge highlight"><code data-lang="raku"><span class="kd">my</span><span class="w"> </span><span class="nv">$var</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">⅒</span><span class="p">;</span><span class="w">
 </span><span class="nb">say</span><span class="w"> </span><span class="nv">$var</span><span class="p">;</span></code></pre>
 </div>
 </div>
@@ -5444,7 +5434,7 @@ LATIN SMALL LETTER A WITH ACUTE</pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-10-06 12:54:52 UTC
+Last updated 2026-10-12 21:49:14 UTC
 </div>
 </div>
 </body>

@@ -5,9 +5,10 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 2.0.26">
-<meta name="description" content="A general introduction to Raku">
-<meta name="keywords" content="perl6, perl 6, introduction, perl6intro, perl 6 introduction, perl 6 tutorial, perl 6 intro, raku, raku introduction, raku guide, raku tutorial">
+<meta name="description" content="A beginner friendly introduction to the Raku programming language">
+<meta name="keywords" content="raku, raku programming language, raku tutorial, raku guide, raku introduction, rakudo">
 <meta name="author" content="Naoum Hankache">
+<meta name="copyright" content="CC BY-SA 4.0">
 <link rel="icon" type="image/x-icon" href="favicon.ico">
 <title>Raku Guide</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
@@ -590,8 +591,9 @@ pre.rouge .gs {
 <li><a href="#_operators">2. Operators</a>
 <ul class="sectlevel2">
 <li><a href="#_common_operators">2.1. Common Operators</a></li>
-<li><a href="#_reversed_operators">2.2. Reversed Operators</a></li>
-<li><a href="#_reduction_operators">2.3. Reduction Operators</a></li>
+<li><a href="#_logical_operators">2.2. Logical Operators</a></li>
+<li><a href="#_reversed_operators">2.3. Reversed Operators</a></li>
+<li><a href="#_reduction_operators">2.4. Reduction Operators</a></li>
 </ul>
 </li>
 <li><a href="#_variables">3. Variables</a>
@@ -605,7 +607,15 @@ pre.rouge .gs {
 <li><a href="#_assignment_vs_binding">3.7. Assignment vs. Binding</a></li>
 </ul>
 </li>
-<li><a href="#_functions_and_mutators">4. Functions and mutators</a></li>
+<li><a href="#_strings">4. Strings</a>
+<ul class="sectlevel2">
+<li><a href="#_interpolation">4.1. Interpolation</a></li>
+<li><a href="#_word_lists">4.2. Word lists</a></li>
+<li><a href="#_common_methods">4.3. Common methods</a></li>
+<li><a href="#_splitting_and_joining">4.4. Splitting and joining</a></li>
+<li><a href="#_formatting">4.5. Formatting</a></li>
+</ul>
+</li>
 <li><a href="#_loops_and_conditions">5. Loops and conditions</a>
 <ul class="sectlevel2">
 <li><a href="#_if">5.1. if</a></li>
@@ -614,6 +624,8 @@ pre.rouge .gs {
 <li><a href="#_for">5.4. for</a></li>
 <li><a href="#_given">5.5. given</a></li>
 <li><a href="#_loop">5.6. loop</a></li>
+<li><a href="#_while_and_until">5.7. while and until</a></li>
+<li><a href="#_next_and_last">5.8. next and last</a></li>
 </ul>
 </li>
 <li><a href="#_io">6. I/O</a>
@@ -630,7 +642,10 @@ pre.rouge .gs {
 <li><a href="#_signature">7.2. Signature</a></li>
 <li><a href="#_multiple_dispatch">7.3. Multiple dispatch</a></li>
 <li><a href="#_default_and_optional_parameters">7.4. Default and Optional Parameters</a></li>
-<li><a href="#_returning_values">7.5. Returning values</a></li>
+<li><a href="#_named_parameters">7.5. Named Parameters</a></li>
+<li><a href="#_slurpy_parameters">7.6. Slurpy Parameters</a></li>
+<li><a href="#_constraints">7.7. Constraints</a></li>
+<li><a href="#_returning_values">7.8. Returning values</a></li>
 </ul>
 </li>
 <li><a href="#_functional_programming">8. Functional Programming</a>
@@ -641,7 +656,7 @@ pre.rouge .gs {
 <li><a href="#_feed_operator">8.4. Feed Operator</a></li>
 <li><a href="#_hyper_operator">8.5. Hyper operator</a></li>
 <li><a href="#_junctions">8.6. Junctions</a></li>
-<li><a href="#_lazy_lists">8.7. Lazy Lists</a></li>
+<li><a href="#_sequences_and_lazy_lists">8.7. Sequences and Lazy Lists</a></li>
 <li><a href="#_closures">8.8. Closures</a></li>
 </ul>
 </li>
@@ -650,13 +665,14 @@ pre.rouge .gs {
 <li><a href="#_introduction_2">9.1. Introduction</a></li>
 <li><a href="#_encapsulation">9.2. Encapsulation</a></li>
 <li><a href="#_named_vs_positional_parameters">9.3. Named vs. Positional Parameters</a></li>
-<li><a href="#_methods">9.4. Methods</a></li>
-<li><a href="#_class_attributes">9.5. Class Attributes</a></li>
-<li><a href="#_access_type">9.6. Access Type</a></li>
-<li><a href="#_inheritance">9.7. Inheritance</a></li>
-<li><a href="#_multiple_inheritance">9.8. Multiple Inheritance</a></li>
-<li><a href="#_roles">9.9. Roles</a></li>
-<li><a href="#_introspection_2">9.10. Introspection</a></li>
+<li><a href="#_default_and_required_attributes">9.4. Default and Required Attributes</a></li>
+<li><a href="#_methods">9.5. Methods</a></li>
+<li><a href="#_class_attributes">9.6. Class Attributes</a></li>
+<li><a href="#_access_type">9.7. Access Type</a></li>
+<li><a href="#_inheritance">9.8. Inheritance</a></li>
+<li><a href="#_multiple_inheritance">9.9. Multiple Inheritance</a></li>
+<li><a href="#_roles">9.10. Roles</a></li>
+<li><a href="#_introspection_2">9.11. Introspection</a></li>
 </ul>
 </li>
 <li><a href="#_exception_handling">10. Exception Handling</a>
@@ -673,37 +689,48 @@ pre.rouge .gs {
 <li><a href="#_unicode_properties">11.4. Unicode properties</a></li>
 <li><a href="#_wildcards">11.5. Wildcards</a></li>
 <li><a href="#_quantifiers">11.6. Quantifiers</a></li>
-<li><a href="#_match_results">11.7. Match Results</a></li>
-<li><a href="#_example">11.8. Example</a></li>
+<li><a href="#_anchors">11.7. Anchors</a></li>
+<li><a href="#_alternation">11.8. Alternation</a></li>
+<li><a href="#_match_results">11.9. Match Results</a></li>
+<li><a href="#_captures">11.10. Captures</a></li>
+<li><a href="#_substitution">11.11. Substitution</a></li>
+<li><a href="#_example">11.12. Example</a></li>
 </ul>
 </li>
-<li><a href="#_raku_modules">12. Raku Modules</a>
+<li><a href="#_grammars">12. Grammars</a>
 <ul class="sectlevel2">
-<li><a href="#_using_modules">12.1. Using Modules</a></li>
+<li><a href="#_defining_a_grammar">12.1. Defining a grammar</a></li>
+<li><a href="#_parsing">12.2. Parsing</a></li>
+<li><a href="#_extracting_data">12.3. Extracting data</a></li>
 </ul>
 </li>
-<li><a href="#_unicode">13. Unicode</a>
+<li><a href="#_raku_modules">13. Raku Modules</a>
 <ul class="sectlevel2">
-<li><a href="#_using_unicode">13.1. Using Unicode</a></li>
-<li><a href="#_unicode_aware_operations">13.2. Unicode-aware Operations</a></li>
+<li><a href="#_using_modules">13.1. Using Modules</a></li>
 </ul>
 </li>
-<li><a href="#_parallelism_concurrency_and_asynchrony">14. Parallelism, Concurrency and Asynchrony</a>
+<li><a href="#_unicode">14. Unicode</a>
 <ul class="sectlevel2">
-<li><a href="#_parallelism">14.1. Parallelism</a></li>
-<li><a href="#_concurrency_and_asynchrony">14.2. Concurrency and Asynchrony</a></li>
+<li><a href="#_using_unicode">14.1. Using Unicode</a></li>
+<li><a href="#_unicode_aware_operations">14.2. Unicode-aware Operations</a></li>
 </ul>
 </li>
-<li><a href="#_native_calling_interface">15. Native Calling Interface</a>
+<li><a href="#_parallelism_concurrency_and_asynchrony">15. Parallelism, Concurrency and Asynchrony</a>
 <ul class="sectlevel2">
-<li><a href="#_calling_a_function">15.1. Calling a function</a></li>
-<li><a href="#_renaming_a_function">15.2. Renaming a function</a></li>
-<li><a href="#_passing_arguments">15.3. Passing Arguments</a></li>
-<li><a href="#_returning_values_2">15.4. Returning values</a></li>
-<li><a href="#_types_2">15.5. Types</a></li>
+<li><a href="#_parallelism">15.1. Parallelism</a></li>
+<li><a href="#_concurrency_and_asynchrony">15.2. Concurrency and Asynchrony</a></li>
 </ul>
 </li>
-<li><a href="#_the_community">16. The Community</a></li>
+<li><a href="#_native_calling_interface">16. Native Calling Interface</a>
+<ul class="sectlevel2">
+<li><a href="#_calling_a_function">16.1. Calling a function</a></li>
+<li><a href="#_renaming_a_function">16.2. Renaming a function</a></li>
+<li><a href="#_passing_arguments">16.3. Passing Arguments</a></li>
+<li><a href="#_returning_values_2">16.4. Returning values</a></li>
+<li><a href="#_types_2">16.5. Types</a></li>
+</ul>
+</li>
+<li><a href="#_the_community">17. The Community</a></li>
 </ul>
 </div>
 </div>
@@ -752,7 +779,7 @@ To view a copy of this license, visit</p>
 </div>
 <div class="paragraph">
 <p>If you liked this work, <em>Star</em> the repository on
-<a href="https://github.com/hankache/rakuguide">Github</a>.</p>
+<a href="https://github.com/hankache/rakuguide">GitHub</a>.</p>
 </div>
 <div class="ulist">
 <div class="title">Translations</div>
@@ -833,7 +860,7 @@ Implementations that pass the specification test suite are considered Raku.</p>
 <p><strong>Zef</strong>: Is a Raku module installer.</p>
 </li>
 <li>
-<p><strong>Rakudo Star</strong>: Is a bundle that includes Rakudo, Zef, a collection of Raku modules, and documentation.</p>
+<p><strong>Rakubrew</strong>: Is a Raku installer and version manager.</p>
 </li>
 </ul>
 </div>
@@ -841,70 +868,104 @@ Implementations that pass the specification test suite are considered Raku.</p>
 <div class="sect2">
 <h3 id="_installing_raku">1.3. Installing Raku</h3>
 <div class="paragraph">
-<p><a href="https://rakubrew.org" class="bare">https://rakubrew.org</a> is a platform independent environment manager (think pyenv for Raku)</p>
+<p>There are several ways of installing Raku.</p>
+</div>
+<div class="sect3">
+<h4 id="_rakubrew">1.3.1. Rakubrew</h4>
+<div class="paragraph">
+<p>The recommended way of installing Raku is through <a href="https://rakubrew.org">Rakubrew</a>, a Raku installer and version manager.<br>
+It downloads a ready to use version of Rakudo, and it works on Linux, macOS and Windows.</p>
 </div>
 <div class="paragraph">
-<div class="title">Linux</div>
-<p>To install Rakudo Star, run the following commands from your terminal:</p>
+<p>First install Rakubrew by running one of the following commands, depending on your OS.</p>
+</div>
+<div class="listingblock">
+<div class="title">On Linux, from your terminal:</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="shell">curl https://rakubrew.org/install-on-perl.sh | sh</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">On macOS, from your terminal:</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="shell">curl https://rakubrew.org/install-on-macos.sh | sh</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">On Windows, from a PowerShell window:</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="powershell"><span class="o">.</span><span class="w"> </span><span class="p">{</span><span class="n">iwr</span><span class="w"> </span><span class="nt">-useb</span><span class="w"> </span><span class="nx">https://rakubrew.org/install-on-powershell.ps1</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">iex</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The script ends by displaying a command that makes Rakubrew available each time you open a terminal.<br>
+Copy that command and run it, then close your terminal and open a new one.</p>
+</div>
+<div class="paragraph">
+<p>Now install the latest version of Raku:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="shell"><span class="nb">mkdir</span> ~/rakudo <span class="o">&amp;&amp;</span> <span class="nb">cd</span> <span class="nv">$_</span>
-curl <span class="nt">-LJO</span> https://rakudo.org/latest/star/src
-<span class="nb">tar</span> <span class="nt">-xzf</span> rakudo-star-<span class="k">*</span>.tar.gz
-<span class="nb">mv </span>rakudo-star-<span class="k">*</span>/<span class="k">*</span> <span class="nb">.</span>
-<span class="nb">rm</span> <span class="nt">-fr</span> rakudo-star-<span class="k">*</span>
-
-./bin/rstar <span class="nb">install
-
-echo</span> <span class="s2">"export PATH=</span><span class="si">$(</span><span class="nb">pwd</span><span class="si">)</span><span class="s2">/bin/:</span><span class="si">$(</span><span class="nb">pwd</span><span class="si">)</span><span class="s2">/share/perl6/site/bin:</span><span class="si">$(</span><span class="nb">pwd</span><span class="si">)</span><span class="s2">/share/perl6/vendor/bin:</span><span class="si">$(</span><span class="nb">pwd</span><span class="si">)</span><span class="s2">/share/perl6/core/bin:</span><span class="se">\$</span><span class="s2">PATH"</span> <span class="o">&gt;&gt;</span> ~/.bashrc
-<span class="nb">source</span> ~/.bashrc</code></pre>
+<pre class="rouge highlight"><code data-lang="shell">rakubrew download</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>For other Unix options, go to <a href="https://rakudo.org/star/source" class="bare">https://rakudo.org/star/source</a></p>
+<p>To make sure that Raku is installed, run:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="shell">raku <span class="nt">--version</span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_binary_releases">1.3.2. Binary releases</h4>
+<div class="paragraph">
+<p>Rakudo also provides binary releases for Linux, macOS and Windows.<br>
+They can be downloaded from <a href="https://rakudo.org/downloads" class="bare">https://rakudo.org/downloads</a></p>
 </div>
 <div class="paragraph">
-<div class="title">macOS</div>
-<p>Four options are available:</p>
+<div class="title">Windows</div>
+<p>Get the installer (file with .msi extension) and run it.<br>
+The installer adds Raku and Zef to the PATH.</p>
+</div>
+<div class="paragraph">
+<div class="title">Linux and macOS</div>
+<p>Get the archive (file with .tar.gz extension) and extract it.<br>
+The executables are located in the <code>bin</code> and <code>share/perl6/site/bin</code> folders of the archive. Add both folders to your PATH.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_rakudo_star">1.3.3. Rakudo Star</h4>
+<div class="paragraph">
+<p>Rakudo Star is a bundle that includes Rakudo, Zef, a collection of Raku modules, and documentation.<br>
+It can be installed using one of the following third party packages:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Follow the same steps listed for installing on Linux</p>
+<p>Docker: <code>docker pull rakudo-star</code></p>
 </li>
 <li>
-<p>Install with homebrew: <code>brew install rakudo-star</code></p>
+<p>Scoop on Windows: <code>scoop install rakudo-star</code></p>
 </li>
 <li>
-<p>Install with MacPorts: <code>sudo port install rakudo</code></p>
-</li>
-<li>
-<p>Get the latest installer (file with .dmg extension) from <a href="https://rakudo.org/latest/star/macos" class="bare">https://rakudo.org/latest/star/macos</a></p>
+<p>Homebrew on macOS: <code>brew install rakudo-star</code></p>
 </li>
 </ul>
 </div>
-<div class="olist arabic">
-<div class="title">Windows</div>
-<ol class="arabic">
-<li>
-<p>For 64-bit architectures: Get the latest installer (file with .msi extension) from <a href="https://rakudo.org/latest/star/win" class="bare">https://rakudo.org/latest/star/win</a></p>
-</li>
-<li>
-<p>After installation, make sure <code>C:\rakudo\bin</code> is in the PATH</p>
-</li>
-</ol>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+For other options, go to <a href="https://raku.org/install" class="bare">https://raku.org/install</a>
+</td>
+</tr>
+</table>
 </div>
-<div class="olist arabic">
-<div class="title">Docker</div>
-<ol class="arabic">
-<li>
-<p>Get the official Docker image <code>docker pull rakudo-star</code></p>
-</li>
-<li>
-<p>Then run a container with the image <code>docker run -it rakudo-star</code></p>
-</li>
-</ol>
 </div>
 </div>
 <div class="sect2">
@@ -919,7 +980,7 @@ and hit [Enter] to leave the REPL.</p>
 </div>
 <div class="paragraph">
 <p>Alternatively, write your code in a file, save it and run it.
-It is recommended that Raku scripts have a  <code>.raku</code> file name extension.
+It is recommended that Raku scripts have a <code>.raku</code> file name extension.
 Run the file by typing <code>raku filename.raku</code> into the terminal window
 and hitting [Enter]. Unlike the REPL, this will not automatically print
 the result of each line: the code must contain a statement like <code>say</code>
@@ -942,21 +1003,13 @@ typing <code>raku -e 'your code here'</code> and hitting [Enter].</p>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Rakudo Star bundles a line editor that helps you get the most out of the REPL.</p>
+<p>A line editor helps you get the most out of the REPL. It lets you use the up and down arrows for history, left and right to edit input, and TAB for completion.</p>
 </div>
 <div class="paragraph">
-<p>If you installed plain Rakudo instead of Rakudo Star then you probably don&#8217;t have line editing features enabled (using the up and down arrows for history, left and right to edit input, TAB completion).
-Consider running the following command and you shall be all set:</p>
+<p>If these features are not enabled, consider running the following command and you shall be all set:</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>zef install Linenoise</code> would work on Windows, Linux and macOS</p>
-</li>
-<li>
-<p><code>zef install Readline</code> if you are on Linux and prefer the <em>Readline</em> library</p>
-</li>
-</ul>
+<div class="paragraph">
+<p><code>zef install Terminal::LineEditor</code></p>
 </div>
 </td>
 </tr>
@@ -970,12 +1023,15 @@ Consider running the following command and you shall be all set:</p>
 a decent text editor that recognizes Raku syntax.</p>
 </div>
 <div class="paragraph">
-<p>The community uses frequently the following editors:</p>
+<p>The community frequently uses the following editors:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
 <p><a href="https://code.visualstudio.com/">Visual Studio Code</a>: syntax highlighting and error checking enabled using <a href="https://marketplace.visualstudio.com/items?itemName=bscan.raku-navigator">raku-navigator</a></p>
+</li>
+<li>
+<p><a href="https://www.jetbrains.com/idea/">IntelliJ IDEA</a>: Raku support enabled using <a href="https://github.com/ab5tract/raku-intellij-plugin">raku-intellij-plugin</a></p>
 </li>
 <li>
 <p><a href="https://www.vim.org/">Vim</a>: better syntax highlighting enabled using <a href="https://github.com/Raku/vim-raku">vim-raku</a></p>
@@ -990,7 +1046,10 @@ a decent text editor that recognizes Raku syntax.</p>
 <p><a href="https://notepad-plus-plus.org/">Notepad++</a>: syntax highlighting available out of the box</p>
 </li>
 <li>
-<p><a href="https://kate-editor.org//">Kate</a>: syntax highlighting available out of the box</p>
+<p><a href="https://kate-editor.org/">Kate</a>: syntax highlighting available out of the box</p>
+</li>
+<li>
+<p><a href="https://www.geany.org/">Geany</a>: syntax highlighting available out of the box</p>
 </li>
 </ul>
 </div>
@@ -998,7 +1057,7 @@ a decent text editor that recognizes Raku syntax.</p>
 <div class="sect2">
 <h3 id="_hello_world">1.6. Hello World!</h3>
 <div class="paragraph">
-<p>We shall begin with The <code>hello world</code> ritual.</p>
+<p>We shall begin with the <code>hello world</code> ritual.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1176,7 +1235,7 @@ block:</p>
 <p>You are free to name your identifiers as you like, but it is good practice to adopt one naming convention consistently.</p>
 </div>
 <div class="paragraph">
-<p>Using meaningful names will ease your (and other&#8217;s) programming life.</p>
+<p>Using meaningful names will ease your (and others') programming life.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -1219,11 +1278,11 @@ block:</p>
 <p>Multi line:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="raku"><span class="cp">=begin</span><span class="w"> </span><span class="nn">comment</span><span class="w">
-</span><span class="cm">This is a multi line comment.</span><span class="w">
-</span><span class="cm">Comment 1</span><span class="w">
-</span><span class="cm">Comment 2</span><span class="w">
-</span><span class="cp">=end</span><span class="w"> </span><span class="nn">comment</span></code></pre>
+<pre class="rouge highlight"><code data-lang="raku"><span class="cp">=begin</span><span class="w"> </span><span class="cp">comment</span><span class="w">
+</span><span class="cm">This is a multi line comment.
+Comment 1
+Comment 2
+</span><span class="cp">=end</span><span class="w"> </span><span class="cp">comment</span></code></pre>
 </div>
 </div>
 </li>
@@ -1665,10 +1724,10 @@ block:</p>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>Same as 0..^5 Creates a range of the interval [0, 5) <sup class="footnoteref">[<a class="footnote" href="#_footnotedef_1" title="View footnote.">1</a>]</sup></code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>&#8230;&#8203;</code></p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>...</code></p></td>
 <td class="tableblock halign-center valign-middle"><p class="tableblock"><code>Infix</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Lazy List Constructor</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>0&#8230;&#8203;9999</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Sequence Constructor</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>0...9999</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>return the elements only if requested</code></p></td>
 </tr>
 <tr>
@@ -1686,7 +1745,110 @@ block:</p>
 </table>
 </div>
 <div class="sect2">
-<h3 id="_reversed_operators">2.2. Reversed Operators</h3>
+<h3 id="_logical_operators">2.2. Logical Operators</h3>
+<div class="paragraph">
+<p>Logical operators combine conditions or choose between two values.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 7.1428%;">
+<col style="width: 10%;">
+<col style="width: 28.5714%;">
+<col style="width: 28.5714%;">
+<col style="width: 25.7144%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-middle">Operator</th>
+<th class="tableblock halign-center valign-middle">Type</th>
+<th class="tableblock halign-left valign-middle">Description</th>
+<th class="tableblock halign-left valign-middle">Example</th>
+<th class="tableblock halign-left valign-middle">Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-middle" rowspan="2"><p class="tableblock"><code>and</code></p></td>
+<td class="tableblock halign-center valign-middle" rowspan="2"><p class="tableblock"><code>Infix</code></p></td>
+<td class="tableblock halign-left valign-middle" rowspan="2"><p class="tableblock">True if both operands are true</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>True and True</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>True</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>True and False</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>False</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-middle" rowspan="2"><p class="tableblock"><code>or</code></p></td>
+<td class="tableblock halign-center valign-middle" rowspan="2"><p class="tableblock"><code>Infix</code></p></td>
+<td class="tableblock halign-left valign-middle" rowspan="2"><p class="tableblock">True if at least one operand is true</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>True or False</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>True</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>False or False</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>False</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>&amp;&amp;</code></p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>Infix</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Same as <code>and</code> written as a symbol</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>True &amp;&amp; False</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>False</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>||</code></p></td>
+<td class="tableblock halign-center valign-middle"><p class="tableblock"><code>Infix</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Same as <code>or</code> written as a symbol</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>True || False</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>True</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-middle" rowspan="2"><p class="tableblock"><code>//</code></p></td>
+<td class="tableblock halign-center valign-middle" rowspan="2"><p class="tableblock"><code>Infix</code></p></td>
+<td class="tableblock halign-left valign-middle" rowspan="2"><p class="tableblock">Defined-or: the left operand if it has a value, otherwise the right operand</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>my $var; $var // 5;</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>5</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>my $var = 3; $var // 5;</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>3</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-middle" rowspan="2"><p class="tableblock"><code>?? !!</code></p></td>
+<td class="tableblock halign-center valign-middle" rowspan="2"><p class="tableblock"><code>Ternary</code></p></td>
+<td class="tableblock halign-left valign-middle" rowspan="2"><p class="tableblock">Conditional: if the condition is true the first value, otherwise the second</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>7 &gt; 5 ?? "yes" !! "no"</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>yes</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>7 &lt; 5 ?? "yes" !! "no"</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>no</code></p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Logical operators are mostly used to combine comparisons:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="raku"><span class="kd">my</span><span class="w"> </span><span class="nv">$age</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">30</span><span class="p">;</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="nv">$age</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">18</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nv">$age</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">65</span><span class="p">;</span><span class="w">   </span><span class="c1"># True</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="nv">$age</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">18</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nv">$age</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">65</span><span class="p">;</span><span class="w">     </span><span class="c1"># False</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The defined-or operator <code>//</code> is a convenient way of providing a default value:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="raku"><span class="kd">my</span><span class="w"> </span><span class="nv">$name</span><span class="p">;</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="nv">$name</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="s1">'Anonymous'</span><span class="p">;</span><span class="w">       </span><span class="c1"># Anonymous</span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_reversed_operators">2.3. Reversed Operators</h3>
 <div class="paragraph">
 <p>Adding <code>R</code> before any operator will have the effect of reversing its operands.</p>
 </div>
@@ -1722,7 +1884,7 @@ block:</p>
 </table>
 </div>
 <div class="sect2">
-<h3 id="_reduction_operators">2.3. Reduction Operators</h3>
+<h3 id="_reduction_operators">2.4. Reduction Operators</h3>
 <div class="paragraph">
 <p>Reduction operators work on lists of values.
 They are formed by surrounding the operator with brackets <code>[]</code></p>
@@ -1971,8 +2133,119 @@ We can access a specific element in the array by specifying its position <code>@
 <code>.pop</code> removes the last element from the array and returns it.<br>
 <code>.splice(a,b)</code> will remove <code>b</code> elements starting at position <code>a</code>.</p>
 </div>
+<div class="paragraph">
+<p>Below are a few more operations that can be performed on arrays:</p>
+</div>
+<div class="listingblock">
+<div class="title"><code>Script</code></div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="raku"><span class="kd">my</span><span class="w"> </span><span class="nv">@animals</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'camel'</span><span class="p">,</span><span class="s1">'vicuña'</span><span class="p">,</span><span class="s1">'llama'</span><span class="p">;</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="s2">"The last animal is the "</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="nv">@animals</span><span class="p">[</span><span class="o">*-</span><span class="mi">1</span><span class="p">];</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="s2">"The first two animals are: "</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="nv">@animals</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">];</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="s2">"All the animals: "</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="nv">@animals</span><span class="o">.</span><span class="nb">join</span><span class="p">(</span><span class="s1">', '</span><span class="p">);</span><span class="w">
+</span><span class="nv">@animals</span><span class="o">.</span><span class="nb">unshift</span><span class="p">(</span><span class="s2">"owl"</span><span class="p">);</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="s2">"An owl joined at the front: "</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="nv">@animals</span><span class="p">;</span><span class="w">
+</span><span class="nv">@animals</span><span class="o">.</span><span class="nb">shift</span><span class="p">;</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="s2">"The owl got away again: "</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="nv">@animals</span><span class="p">;</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title"><code>Output</code></div>
+<div class="content">
+<pre>The last animal is the llama
+The first two animals are: camel vicuña
+All the animals: camel, vicuña, llama
+An owl joined at the front: owl camel vicuña llama
+The owl got away again: camel vicuña llama</pre>
+</div>
+</div>
+<div class="paragraph">
+<div class="title">Explanation</div>
+<p><code>@animals[*-1]</code> returns the last element of the array.<br>
+<code>@animals[0,1]</code> returns several elements at once. This is called a <strong>slice</strong>.<br>
+<code>.join(', ')</code> returns a single string made of all the elements, separated by a comma and a space.<br>
+<code>.unshift()</code> adds one or more elements to the beginning of the array.<br>
+<code>.shift</code> removes the first element from the array and returns it.</p>
+</div>
 <div class="sect3">
-<h4 id="_fixed_size_arrays">3.2.1. Fixed-size arrays</h4>
+<h4 id="_changing_an_array_in_place">3.2.1. Changing an array in place</h4>
+<div class="paragraph">
+<p>Some methods change the array they are called on. Others leave it as it is and return a new value.<br>
+It is important to know which is which.</p>
+</div>
+<div class="listingblock">
+<div class="title"><code>Script</code></div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="raku"><span class="kd">my</span><span class="w"> </span><span class="nv">@numbers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">3</span><span class="p">;</span><span class="w">
+
+</span><span class="nv">@numbers</span><span class="o">.</span><span class="nb">push</span><span class="p">(</span><span class="mi">99</span><span class="p">);</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="nv">@numbers</span><span class="p">;</span><span class="w">      </span><span class="c1">#1</span><span class="w">
+
+</span><span class="nb">say</span><span class="w"> </span><span class="nv">@numbers</span><span class="o">.</span><span class="nb">sort</span><span class="p">;</span><span class="w"> </span><span class="c1">#2</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="nv">@numbers</span><span class="p">;</span><span class="w">      </span><span class="c1">#3</span><span class="w">
+
+</span><span class="nv">@numbers</span><span class="w"> </span><span class="o">.=</span><span class="w"> </span><span class="nb">sort</span><span class="p">;</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="nv">@numbers</span><span class="p">;</span><span class="w">      </span><span class="c1">#4</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title"><code>Output</code></div>
+<div class="content">
+<pre>[7 2 4 9 11 3 99] #1
+(2 3 4 7 9 11 99) #2
+[7 2 4 9 11 3 99] #3
+[2 3 4 7 9 11 99] #4</pre>
+</div>
+</div>
+<div class="paragraph">
+<div class="title">Explanation</div>
+<p><code>.push</code> changes the array. A method that does this is called a <strong>mutator</strong> (#1)</p>
+</div>
+<div class="paragraph">
+<p><code>.sort</code> does not change the array. It returns the sorted values and leaves the original as it was:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>(#2) shows the sorted values that it returned.</p>
+</li>
+<li>
+<p>(#3) shows that the array is still unmodified.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>To store the result back in the array, we use <code>.=</code> instead of <code>.</code> (#4)<br>
+<code>@numbers .= sort</code> is a shorter way of writing <code>@numbers = @numbers.sort</code></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The result in #2 is shown between parentheses instead of square brackets because <code>.sort</code> returns a sequence, not an array.
+Once it is stored back in <code>@numbers</code> it is an array again.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<code>.=</code> works with any method and on any variable. For example, <code>$name .= uc</code> replaces the value of <code>$name</code> with its uppercase version.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_fixed_size_arrays">3.2.2. Fixed-size arrays</h4>
 <div class="paragraph">
 <p>A basic array is declared as following:</p>
 </div>
@@ -2027,7 +2300,7 @@ These arrays cannot be accessed beyond their defined size.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_multidimensional_arrays">3.2.2. Multidimensional arrays</h4>
+<h4 id="_multidimensional_arrays">3.2.3. Multidimensional arrays</h4>
 <div class="paragraph">
 <p>The arrays we saw until now are one-dimensional.<br>
 Fortunately, we can define multi-dimensional arrays in Raku.</p>
@@ -2110,7 +2383,7 @@ For the complete Array reference, see <a href="https://docs.raku.org/type/Array"
 </span><span class="nb">say</span><span class="w"> </span><span class="nv">%capitals</span><span class="o">.</span><span class="nb">kv</span><span class="p">;</span><span class="w">
 </span><span class="nb">say</span><span class="w"> </span><span class="nv">%capitals</span><span class="o">.</span><span class="nb">keys</span><span class="p">;</span><span class="w">
 </span><span class="nb">say</span><span class="w"> </span><span class="nv">%capitals</span><span class="o">.</span><span class="nb">values</span><span class="p">;</span><span class="w">
-</span><span class="nb">say</span><span class="w"> </span><span class="s2">"The capital of France is: "</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="nv">%capitals&lt;France&gt;</span><span class="p">;</span></code></pre>
+</span><span class="nb">say</span><span class="w"> </span><span class="s2">"The capital of France is: "</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="nv">%capitals</span><span class="s">&lt;France&gt;</span><span class="p">;</span></code></pre>
 </div>
 </div>
 <div class="listingblock">
@@ -2129,6 +2402,45 @@ The capital of France is: Paris</pre>
 <code>.keys</code> returns a list that contains all keys.<br>
 <code>.values</code> returns a list that contains all values.<br>
 We can access a specific value in the hash by specifying its key <code>%hash&lt;key&gt;</code></p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+Raku does not keep the keys of a hash in a fixed order.
+The order of the countries in your output can be different from the one above, and it can change each time the script runs.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>We can also check if a key exists and remove a key from the hash:</p>
+</div>
+<div class="listingblock">
+<div class="title"><code>Script</code></div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="raku"><span class="kd">my</span><span class="w"> </span><span class="nv">%capitals</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UK</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'London'</span><span class="p">,</span><span class="w"> </span><span class="n">Germany</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'Berlin'</span><span class="p">;</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="nv">%capitals</span><span class="s">&lt;Germany&gt;</span><span class="p">:</span><span class="na">exists</span><span class="p">;</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="nv">%capitals</span><span class="s">&lt;France&gt;</span><span class="p">:</span><span class="na">exists</span><span class="p">;</span><span class="w">
+</span><span class="nv">%capitals</span><span class="s">&lt;Germany&gt;</span><span class="p">:</span><span class="na">delete</span><span class="p">;</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="nv">%capitals</span><span class="p">;</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title"><code>Output</code></div>
+<div class="content">
+<pre>True
+False
+{UK =&gt; London}</pre>
+</div>
+</div>
+<div class="paragraph">
+<div class="title">Explanation</div>
+<p><code>%hash&lt;key&gt;:exists</code> returns <code>True</code> if the key is in the hash.<br>
+<code>%hash&lt;key&gt;:delete</code> removes the key and its value from the hash.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -2193,7 +2505,7 @@ Notice <code>Int</code> before the variable name.</p>
 </div>
 <div class="paragraph">
 <p>What happened is that we specified beforehand that the variable should be of type (Int).
-When we tried to assign an (Str) to it, it failed.</p>
+When we tried to assign a (Str) to it, it failed.</p>
 </div>
 <div class="paragraph">
 <p>This style of programming is called static typing. Static in the sense that variable types are defined before assignment and cannot change.</p>
@@ -2232,52 +2544,54 @@ When we tried to assign an (Str) to it, it failed.</p>
 <col style="width: 28.5714%;">
 <col style="width: 14.2858%;">
 </colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-center valign-middle"><strong>Type</strong></th>
+<th class="tableblock halign-left valign-middle"><strong>Description</strong></th>
+<th class="tableblock halign-left valign-middle"><strong>Example</strong></th>
+<th class="tableblock halign-left valign-middle"><strong>Result</strong></th>
+</tr>
+</thead>
 <tbody>
 <tr>
-<td class="tableblock halign-center valign-middle"><p class="tableblock"><code><strong>Type</strong></code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><code><strong>Description</strong></code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><code><strong>Example</strong></code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><code><strong>Result</strong></code></p></td>
-</tr>
-<tr>
 <td class="tableblock halign-center valign-middle"><p class="tableblock"><code>Mu</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>The root of the Raku type hierarchy</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The root of the Raku type hierarchy</p></td>
 <td class="tableblock halign-left valign-middle"></td>
 <td class="tableblock halign-left valign-middle"></td>
 </tr>
 <tr>
 <td class="tableblock halign-center valign-middle"><p class="tableblock"><code>Any</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>Default base class for new classes and for most built-in classes</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Default base class for new classes and for most built-in classes</p></td>
 <td class="tableblock halign-left valign-middle"></td>
 <td class="tableblock halign-left valign-middle"></td>
 </tr>
 <tr>
 <td class="tableblock halign-center valign-middle"><p class="tableblock"><code>Cool</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>Value that can be treated as a string or number interchangeably</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Value that can be treated as a string or number interchangeably</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>my Cool $var = 31; say $var.flip; say $var * 2;</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>13 62</code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-center valign-middle"><p class="tableblock"><code>Str</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>String of characters</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">String of characters</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>my Str $var = "NEON"; say $var.flip;</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>NOEN</code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-center valign-middle"><p class="tableblock"><code>Int</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>Integer (arbitrary-precision)</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Integer (arbitrary-precision)</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>7 + 7</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>14</code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-center valign-middle"><p class="tableblock"><code>Rat</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>Rational number (limited-precision)</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Rational number (limited-precision)</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>0.1 + 0.2</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>0.3</code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-center valign-middle"><p class="tableblock"><code>Bool</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><code>Boolean</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Boolean</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>!True</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><code>False</code></p></td>
 </tr>
@@ -2287,8 +2601,8 @@ When we tried to assign an (Str) to it, it failed.</p>
 <div class="sect2">
 <h3 id="_introspection">3.5. Introspection</h3>
 <div class="paragraph">
-<p>Introspection is the process of getting information about an object properties like its type.<br>
-In one of the previous example we used <code>.WHAT</code> to return the type of the variable.</p>
+<p>Introspection is the process of getting information about an object&#8217;s properties, like its type.<br>
+In one of the previous examples we used <code>.WHAT</code> to return the type of the variable.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2327,7 +2641,7 @@ To clear the value of a variable, assign <code>Nil</code> to it.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>The <code>my</code> declarator give the variable <strong>lexical</strong> scope.
+<p>The <code>my</code> declarator gives the variable <strong>lexical</strong> scope.
 In other words, the variable will only be accessible in the same block it was declared.</p>
 </div>
 <div class="paragraph">
@@ -2428,8 +2742,8 @@ Cannot assign to an immutable value</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Binding variables is bi-directional.<br>
-<code>$a := $b</code> and <code>$b := $a</code> have the same effect.</p>
+<p>After <code>$b := $a</code>, both names refer to the same variable. A change made through one is visible through the other.<br>
+The direction matters when the variables already hold values: <code>$b := $a</code> makes <code>$b</code> refer to what <code>$a</code> holds, and <code>$a := $b</code> does the opposite.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -2447,67 +2761,225 @@ For more info on variables, see <a href="https://docs.raku.org/language/variable
 </div>
 </div>
 <div class="sect1">
-<h2 id="_functions_and_mutators">4. Functions and mutators</h2>
+<h2 id="_strings">4. Strings</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>It is important to differentiate between functions and mutators.<br>
-Functions do not change the state of the object they were called on.<br>
-Mutators modify the state of the object.</p>
+<p>We have already used strings in many of the previous examples.<br>
+In this chapter, we will take a closer look at what can be done with them.</p>
+</div>
+<div class="sect2">
+<h3 id="_interpolation">4.1. Interpolation</h3>
+<div class="paragraph">
+<p>A string delimited by double quotes replaces the variables it contains with their values.<br>
+This is called <strong>interpolation</strong>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="raku"><span class="kd">my</span><span class="w"> </span><span class="nv">$name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'John'</span><span class="p">;</span><span class="w">
+</span><span class="kd">my</span><span class="w"> </span><span class="nv">$age</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">23</span><span class="p">;</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="s2">"</span><span class="nv">$name</span><span class="s2"> is </span><span class="nv">$age</span><span class="s2"> years old"</span><span class="p">;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Interpolation is not limited to variables. Code that is enclosed in curly braces is run, and its result is inserted in the string.</p>
 </div>
 <div class="listingblock">
 <div class="title"><code>Script</code></div>
 <div class="content">
-<pre class="rouge highlight"><code data-lang="raku"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno"> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-</pre></td><td class="code"><pre><span class="kd">my</span><span class="w"> </span><span class="nv">@numbers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">7</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">3</span><span class="p">];</span><span class="w">
-
-</span><span class="nv">@numbers</span><span class="o">.</span><span class="nb">push</span><span class="p">(</span><span class="mi">99</span><span class="p">);</span><span class="w">
-</span><span class="nb">say</span><span class="w"> </span><span class="nv">@numbers</span><span class="p">;</span><span class="w">      </span><span class="c1">#1</span><span class="w">
-
-</span><span class="nb">say</span><span class="w"> </span><span class="nv">@numbers</span><span class="o">.</span><span class="nb">sort</span><span class="p">;</span><span class="w"> </span><span class="c1">#2</span><span class="w">
-</span><span class="nb">say</span><span class="w"> </span><span class="nv">@numbers</span><span class="p">;</span><span class="w">      </span><span class="c1">#3</span><span class="w">
-
-</span><span class="nv">@numbers</span><span class="o">.=</span><span class="nb">sort</span><span class="p">;</span><span class="w">
-</span><span class="nb">say</span><span class="w"> </span><span class="nv">@numbers</span><span class="p">;</span><span class="w">      </span><span class="c1">#4</span>
-</pre></td></tr></tbody></table></code></pre>
+<pre class="rouge highlight"><code data-lang="raku"><span class="kd">my</span><span class="w"> </span><span class="nv">$name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'John'</span><span class="p">;</span><span class="w">
+</span><span class="kd">my</span><span class="w"> </span><span class="nv">$age</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">23</span><span class="p">;</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="s2">"Next year </span><span class="nv">$name</span><span class="s2"> will be </span><span class="p">{</span><span class="nv">$age</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">}</span><span class="s2"> years old"</span><span class="p">;</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="s2">"The name </span><span class="nv">$name</span><span class="s2"> has </span><span class="p">{</span><span class="nv">$name</span><span class="o">.</span><span class="nb">chars</span><span class="p">}</span><span class="s2"> letters"</span><span class="p">;</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="s1">'The name $name has {$name.chars} letters'</span><span class="p">;</span></code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="title"><code>Output</code></div>
 <div class="content">
-<pre>[7 2 4 9 11 3 99] #1
-(2 3 4 7 9 11 99) #2
-[7 2 4 9 11 3 99] #3
-[2 3 4 7 9 11 99] #4</pre>
+<pre>Next year John will be 24 years old
+The name John has 4 letters
+The name $name has {$name.chars} letters</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The last string is delimited by single quotes, so nothing is interpolated.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_word_lists">4.2. Word lists</h3>
+<div class="paragraph">
+<p>A list of words can be written without quotes and without commas, by enclosing it in angle brackets.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="raku"><span class="kd">my</span><span class="w"> </span><span class="nv">@animals</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&lt;camel llama owl&gt;</span><span class="p">;</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="nv">@animals</span><span class="p">;</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>It is a shorter way of writing:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="raku"><span class="kd">my</span><span class="w"> </span><span class="nv">@animals</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'camel'</span><span class="p">,</span><span class="s1">'llama'</span><span class="p">,</span><span class="s1">'owl'</span><span class="p">;</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="nv">@animals</span><span class="p">;</span></code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The words are separated by spaces. This notation cannot be used for a value that contains a space.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_common_methods">4.3. Common methods</h3>
+<div class="paragraph">
+<p>Many methods can be called on a string, as shown in the below example:</p>
+</div>
+<div class="listingblock">
+<div class="title"><code>Script</code></div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="raku"><span class="kd">my</span><span class="w"> </span><span class="nv">$text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'Raku is fun'</span><span class="p">;</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="nv">$text</span><span class="o">.</span><span class="nb">chars</span><span class="p">;</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="nv">$text</span><span class="o">.</span><span class="nb">uc</span><span class="p">;</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="nv">$text</span><span class="o">.</span><span class="nb">lc</span><span class="p">;</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="nv">$text</span><span class="o">.</span><span class="nb">flip</span><span class="p">;</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="nv">$text</span><span class="o">.</span><span class="nb">contains</span><span class="p">(</span><span class="s1">'fun'</span><span class="p">);</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="nv">$text</span><span class="o">.</span><span class="nb">starts-with</span><span class="p">(</span><span class="s1">'Raku'</span><span class="p">);</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="nv">$text</span><span class="o">.</span><span class="nb">ends-with</span><span class="p">(</span><span class="s1">'boring'</span><span class="p">);</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="nv">$text</span><span class="o">.</span><span class="nb">substr</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">);</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="nv">$text</span><span class="o">.</span><span class="nb">index</span><span class="p">(</span><span class="s1">'is'</span><span class="p">);</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="s1">'   Raku   '</span><span class="o">.</span><span class="nb">trim</span><span class="p">;</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title"><code>Output</code></div>
+<div class="content">
+<pre>11
+RAKU IS FUN
+raku is fun
+nuf si ukaR
+True
+True
+False
+Raku
+5
+Raku</pre>
 </div>
 </div>
 <div class="paragraph">
 <div class="title">Explanation</div>
-<p><code>.push</code> is a mutator; it changes the state of the array (#1)</p>
+<p><code>.chars</code> returns the number of characters in the string.<br>
+<code>.uc</code> and <code>.lc</code> return the string in uppercase and in lowercase.<br>
+<code>.flip</code> returns the string reversed.<br>
+<code>.contains()</code> checks if the string contains another string.<br>
+<code>.starts-with()</code> and <code>.ends-with()</code> check how the string begins and how it ends.<br>
+<code>.substr(a,b)</code> returns <code>b</code> characters starting at position <code>a</code>.<br>
+<code>.index()</code> returns the position of another string inside the string.<br>
+<code>.trim</code> removes the whitespace at the beginning and at the end of the string.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+None of these methods change the original string. To store the result back in the variable, use <code>.=</code> as we did with arrays.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_splitting_and_joining">4.4. Splitting and joining</h3>
+<div class="paragraph">
+<p>A string can be split into a list, and a list can be joined into a string.</p>
+</div>
+<div class="listingblock">
+<div class="title"><code>Script</code></div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="raku"><span class="kd">my</span><span class="w"> </span><span class="nv">$sentence</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'The quick brown fox'</span><span class="p">;</span><span class="w">
+</span><span class="kd">my</span><span class="w"> </span><span class="nv">@words</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">$sentence</span><span class="o">.</span><span class="nb">words</span><span class="p">;</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="nv">@words</span><span class="p">;</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="nv">@words</span><span class="o">.</span><span class="nb">elems</span><span class="p">;</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="nv">@words</span><span class="o">.</span><span class="nb">join</span><span class="p">(</span><span class="s1">'-'</span><span class="p">);</span><span class="w">
+
+</span><span class="kd">my</span><span class="w"> </span><span class="nv">$record</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'John,23,American'</span><span class="p">;</span><span class="w">
+</span><span class="kd">my</span><span class="w"> </span><span class="nv">@fields</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">$record</span><span class="o">.</span><span class="nb">split</span><span class="p">(</span><span class="s1">','</span><span class="p">);</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="nv">@fields</span><span class="p">;</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="nv">@fields</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span><span class="w">
+
+</span><span class="nb">say</span><span class="w"> </span><span class="s1">'Raku'</span><span class="o">.</span><span class="nb">comb</span><span class="p">;</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title"><code>Output</code></div>
+<div class="content">
+<pre>[The quick brown fox]
+4
+The-quick-brown-fox
+[John 23 American]
+John
+(R a k u)</pre>
+</div>
 </div>
 <div class="paragraph">
-<p><code>.sort</code> is a function; it returns a sorted array but doesn&#8217;t modify the state of the initial array:</p>
+<div class="title">Explanation</div>
+<p><code>.words</code> splits a string into its words.<br>
+<code>.join()</code> joins the elements of a list into a single string, using the given separator.<br>
+<code>.split()</code> splits a string wherever the given separator is found.<br>
+<code>.comb</code> splits a string into its characters.</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p>(#2) shows that it returned a sorted array.</p>
-</li>
-<li>
-<p>(#3) shows that the initial array is still unmodified.</p>
-</li>
-</ul>
+</div>
+<div class="sect2">
+<h3 id="_formatting">4.5. Formatting</h3>
+<div class="paragraph">
+<p><code>sprintf</code> builds a string from a template.<br>
+The template contains <strong>placeholders</strong> that start with <code>%</code>. Each placeholder is replaced by one of the values that follow the template.</p>
+</div>
+<div class="listingblock">
+<div class="title"><code>Script</code></div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="raku"><span class="nb">say</span><span class="w"> </span><span class="nb">sprintf</span><span class="p">(</span><span class="s1">'%s is %d years old'</span><span class="p">,</span><span class="w"> </span><span class="s1">'John'</span><span class="p">,</span><span class="w"> </span><span class="mi">23</span><span class="p">);</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="nb">sprintf</span><span class="p">(</span><span class="s1">'The price is %.2f'</span><span class="p">,</span><span class="w"> </span><span class="mf">3.14159</span><span class="p">);</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="nb">sprintf</span><span class="p">(</span><span class="s1">'Ticket number %05d'</span><span class="p">,</span><span class="w"> </span><span class="mi">42</span><span class="p">);</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title"><code>Output</code></div>
+<div class="content">
+<pre>John is 23 years old
+The price is 3.14
+Ticket number 00042</pre>
+</div>
 </div>
 <div class="paragraph">
-<p>In order to enforce a function to act as a mutator, we use <code>.=</code> instead of <code>.</code> (#4) (Line 9 of the script)</p>
+<div class="title">Explanation</div>
+<p><code>%s</code> is replaced by a string.<br>
+<code>%d</code> is replaced by an integer.<br>
+<code>%.2f</code> is replaced by a number rounded to 2 decimal places.<br>
+<code>%05d</code> is replaced by an integer, padded with zeros to a width of 5 digits.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+For the complete list of methods applicable to Strings, see <a href="https://docs.raku.org/type/Str" class="bare">https://docs.raku.org/type/Str</a>
+</td>
+</tr>
+</table>
+</div>
 </div>
 </div>
 </div>
@@ -2573,7 +3045,7 @@ Even if the code and the condition have been inverted, the condition is always e
 <div class="sect2">
 <h3 id="_unless">5.2. unless</h3>
 <div class="paragraph">
-<p>The negated version of an if statement can be written using <code>unless</code>.</p>
+<p>The negated version of an <code>if</code> statement can be written using <code>unless</code>.</p>
 </div>
 <div class="paragraph">
 <p>The following code:</p>
@@ -2660,6 +3132,51 @@ Even if the code and the condition have been inverted, the condition is always e
 <div class="paragraph">
 <p>Notice that we created an iteration variable <code>$array-item</code> and then performed the operation <code>*100</code> on each array item.</p>
 </div>
+<div class="paragraph">
+<p>If we do not create an iteration variable, each value is placed in a special variable called <code>$_</code>, also known as the <strong>topic variable</strong>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="raku"><span class="kd">my</span><span class="w"> </span><span class="nv">@array</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">;</span><span class="w">
+
+</span><span class="k">for</span><span class="w"> </span><span class="nv">@array</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="nb">say</span><span class="w"> </span><span class="nv">$_</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">100</span><span class="w">
+</span><span class="p">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The values can also come from a range:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="raku"><span class="k">for</span><span class="w"> </span><span class="mi">1</span><span class="o">..</span><span class="mi">5</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nv">$number</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="nb">say</span><span class="w"> </span><span class="nv">$number</span><span class="w">
+</span><span class="p">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Calling a method without writing anything before the dot calls it on the topic variable.<br>
+In other words, <code>.say</code> is a shorter way of writing <code>$_.say</code></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="raku"><span class="k">for</span><span class="w"> </span><span class="mi">1</span><span class="o">..</span><span class="mi">5</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="o">.</span><span class="nb">say</span><span class="w">
+</span><span class="p">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To iterate over a hash, we can ask for its keys and values and create two iteration variables:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="raku"><span class="kd">my</span><span class="w"> </span><span class="nv">%capitals</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UK</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'London'</span><span class="p">,</span><span class="w"> </span><span class="n">Germany</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'Berlin'</span><span class="p">;</span><span class="w">
+
+</span><span class="k">for</span><span class="w"> </span><span class="nv">%capitals</span><span class="o">.</span><span class="nb">kv</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nv">$country</span><span class="p">,</span><span class="w"> </span><span class="nv">$city</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="nb">say</span><span class="w"> </span><span class="s2">"The capital of </span><span class="nv">$country</span><span class="s2"> is </span><span class="nv">$city</span><span class="s2">"</span><span class="w">
+</span><span class="p">}</span></code></pre>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_given">5.5. given</h3>
@@ -2704,10 +3221,7 @@ but much more powerful.</p>
 <p><code>loop</code> is another way of writing a <code>for</code> loop.</p>
 </div>
 <div class="paragraph">
-<p>Actually, <code>loop</code> is how <code>for</code> loops are  written in C-family programming languages.</p>
-</div>
-<div class="paragraph">
-<p>Raku belongs to the C-family languages.</p>
+<p>Actually, <code>loop</code> is how <code>for</code> loops are written in C-family programming languages.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2715,6 +3229,101 @@ but much more powerful.</p>
   </span><span class="nb">say</span><span class="w"> </span><span class="s2">"The current number is </span><span class="nv">$i</span><span class="s2">"</span><span class="w">
 </span><span class="p">}</span></code></pre>
 </div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_while_and_until">5.7. while and until</h3>
+<div class="paragraph">
+<p>The <code>while</code> loop repeats a block of code as long as a condition is true.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="raku"><span class="kd">my</span><span class="w"> </span><span class="nv">$countdown</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span><span class="w">
+
+</span><span class="k">while</span><span class="w"> </span><span class="nv">$countdown</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="nb">say</span><span class="w"> </span><span class="nv">$countdown</span><span class="p">;</span><span class="w">
+  </span><span class="nv">$countdown</span><span class="o">--</span><span class="p">;</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="s1">'Liftoff!'</span><span class="p">;</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title"><code>Output</code></div>
+<div class="content">
+<pre>3
+2
+1
+Liftoff!</pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>until</code> is the negated version of <code>while</code>. It repeats the block as long as the condition is false.<br>
+You should be able to relate it to <code>unless</code>.</p>
+</div>
+<div class="paragraph">
+<p>The above example can be written as:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="raku"><span class="kd">my</span><span class="w"> </span><span class="nv">$countdown</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span><span class="w">
+
+</span><span class="k">until</span><span class="w"> </span><span class="nv">$countdown</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="nb">say</span><span class="w"> </span><span class="nv">$countdown</span><span class="p">;</span><span class="w">
+  </span><span class="nv">$countdown</span><span class="o">--</span><span class="p">;</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="s1">'Liftoff!'</span><span class="p">;</span></code></pre>
+</div>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+Make sure that the condition changes at some point, otherwise the loop will never stop.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_next_and_last">5.8. next and last</h3>
+<div class="paragraph">
+<p><code>next</code> and <code>last</code> give us more control over a loop. They can be used in <code>for</code>, <code>loop</code>, <code>while</code> and <code>until</code>.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>next</code> skips the rest of the block and continues with the next value.</p>
+</li>
+<li>
+<p><code>last</code> stops the loop.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="raku"><span class="k">for</span><span class="w"> </span><span class="mi">1</span><span class="o">..</span><span class="mi">10</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nv">$number</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="k">next</span><span class="w"> </span><span class="k">unless</span><span class="w"> </span><span class="nv">$number</span><span class="w"> </span><span class="o">%%</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w">
+  </span><span class="k">last</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="nv">$number</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">8</span><span class="p">;</span><span class="w">
+  </span><span class="nb">say</span><span class="w"> </span><span class="nv">$number</span><span class="p">;</span><span class="w">
+</span><span class="p">}</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title"><code>Output</code></div>
+<div class="content">
+<pre>2
+4
+6
+8</pre>
+</div>
+</div>
+<div class="paragraph">
+<div class="title">Explanation</div>
+<p><code>next unless $number %% 2</code> skips the numbers that are not divisible by 2<br>
+<code>last if $number &gt; 8</code> stops the loop as soon as the number is greater than 8, so <code>10</code> is never displayed.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -2746,8 +3355,8 @@ For more info on loops and conditions, see <a href="https://docs.raku.org/langua
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="raku"><span class="nb">say</span><span class="w"> </span><span class="s1">'Hello Mam.'</span><span class="p">;</span><span class="w">
-</span><span class="nb">say</span><span class="w"> </span><span class="s1">'Hello Sir.'</span><span class="p">;</span></code></pre>
+<pre class="rouge highlight"><code data-lang="raku"><span class="nb">say</span><span class="w"> </span><span class="s2">"Hello Ma'am."</span><span class="p">;</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="s2">"Hello Sir."</span><span class="p">;</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2882,6 +3491,35 @@ Paulo 11"</span><span class="p">;</span><span class="w">
 </div>
 <div class="paragraph">
 <p>After running the above code, a new file named <em>newdatafile.txt</em> will be created. It will contain the new scores.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_lines">6.3.3. lines</h4>
+<div class="paragraph">
+<p><code>lines</code> is used to read data from a file one line at a time.</p>
+</div>
+<div class="paragraph">
+<p>We will read the same <em>datafile.txt</em> that we used with <code>slurp</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="raku"><span class="k">for</span><span class="w"> </span><span class="s2">"datafile.txt"</span><span class="o">.</span><span class="nb">IO</span><span class="o">.</span><span class="nb">lines</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nv">$line</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="nb">say</span><span class="w"> </span><span class="s2">"Score: </span><span class="nv">$line</span><span class="s2">"</span><span class="p">;</span><span class="w">
+</span><span class="p">}</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title"><code>Output</code></div>
+<div class="content">
+<pre>Score: John 9
+Score: Johnnie 7
+Score: Jane 8
+Score: Joanna 7</pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>.IO</code> turns the name of the file into an object that represents the file.<br>
+<code>.lines</code> returns the lines of that file, and the <code>for</code> loop goes through them one by one.</p>
 </div>
 </div>
 </div>
@@ -3072,7 +3710,118 @@ This is done by assigning a value to the parameter within the subroutine definit
 </div>
 </div>
 <div class="sect2">
-<h3 id="_returning_values">7.5. Returning values</h3>
+<h3 id="_named_parameters">7.5. Named Parameters</h3>
+<div class="paragraph">
+<p>The parameters we have used so far are called <strong>positional parameters</strong>.
+The arguments are matched to them by position: the first argument goes to the first parameter, the second argument to the second parameter and so on.</p>
+</div>
+<div class="paragraph">
+<p>A <strong>named parameter</strong> is matched by its name instead. It is defined by adding a colon <code>:</code> before the parameter.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="raku"><span class="kd">sub</span><span class="w"> </span><span class="nf">greet</span><span class="p">(:</span><span class="nv">$name</span><span class="p">,</span><span class="w"> </span><span class="p">:</span><span class="nv">$title</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="nb">say</span><span class="w"> </span><span class="s2">"Good morning </span><span class="nv">$title</span><span class="s2"> </span><span class="nv">$name</span><span class="s2">"</span><span class="p">;</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span><span class="nf">greet</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s2">"Laura"</span><span class="p">,</span><span class="w"> </span><span class="n">title</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s2">"Mrs."</span><span class="p">);</span><span class="w">
+</span><span class="nf">greet</span><span class="p">(</span><span class="n">title</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s2">"Mr."</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s2">"Johnnie"</span><span class="p">);</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title"><code>Output</code></div>
+<div class="content">
+<pre>Good morning Mrs. Laura
+Good morning Mr. Johnnie</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Since the arguments are matched by name, they can be supplied in any order.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>If a variable has the same name as the parameter, the argument can be written in a shorter way: <code>:$name</code> instead of <code>name =&gt; $name</code></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="raku"><span class="kd">sub</span><span class="w"> </span><span class="nf">greet</span><span class="p">(:</span><span class="nv">$name</span><span class="p">,</span><span class="w"> </span><span class="p">:</span><span class="nv">$title</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="nb">say</span><span class="w"> </span><span class="s2">"Good morning </span><span class="nv">$title</span><span class="s2"> </span><span class="nv">$name</span><span class="s2">"</span><span class="p">;</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span><span class="kd">my</span><span class="w"> </span><span class="nv">$name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Laura"</span><span class="p">;</span><span class="w">
+</span><span class="kd">my</span><span class="w"> </span><span class="nv">$title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"Mrs."</span><span class="p">;</span><span class="w">
+</span><span class="nf">greet</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="nv">$name</span><span class="p">,</span><span class="w"> </span><span class="n">title</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="nv">$title</span><span class="p">);</span><span class="w">   </span><span class="c1"># regular</span><span class="w">
+</span><span class="nf">greet</span><span class="p">(:</span><span class="nv">$name</span><span class="p">,</span><span class="w"> </span><span class="p">:</span><span class="nv">$title</span><span class="p">);</span><span class="w">                  </span><span class="c1"># shorthand</span></code></pre>
+</div>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_slurpy_parameters">7.6. Slurpy Parameters</h3>
+<div class="paragraph">
+<p>A subroutine can accept any number of arguments by using a <strong>slurpy parameter</strong>.<br>
+A slurpy parameter is an array preceded by an asterisk, like <code>*@names</code>. It collects all the remaining arguments.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="raku"><span class="kd">sub</span><span class="w"> </span><span class="nf">greet-all</span><span class="p">(</span><span class="o">*</span><span class="nv">@names</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="k">for</span><span class="w"> </span><span class="nv">@names</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nv">$name</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nb">say</span><span class="w"> </span><span class="s2">"Hello </span><span class="nv">$name</span><span class="s2">"</span><span class="p">;</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span><span class="nf">greet-all</span><span class="p">(</span><span class="s2">"Paul"</span><span class="p">);</span><span class="w">
+</span><span class="nf">greet-all</span><span class="p">(</span><span class="s2">"Paul"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Paula"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Laura"</span><span class="p">);</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title"><code>Output</code></div>
+<div class="content">
+<pre>Hello Paul
+Hello Paul
+Hello Paula
+Hello Laura</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_constraints">7.7. Constraints</h3>
+<div class="paragraph">
+<p>We have seen that a parameter can be restricted to a type, like <code>Str $name</code>.<br>
+It can be restricted further by adding the keyword <code>where</code> followed by a condition.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="raku"><span class="kd">sub</span><span class="w"> </span><span class="nf">register</span><span class="p">(</span><span class="kt">Int</span><span class="w"> </span><span class="nv">$age</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="nv">$age</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">18</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="nb">say</span><span class="w"> </span><span class="s2">"You are registered"</span><span class="p">;</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span><span class="nf">register</span><span class="p">(</span><span class="mi">21</span><span class="p">);</span><span class="w">
+</span><span class="nf">register</span><span class="p">(</span><span class="mi">15</span><span class="p">);</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title"><code>Output</code></div>
+<div class="content">
+<pre>You are registered
+Constraint type check failed in binding to parameter '$age'; expected anonymous constraint to be met but got Int (15)</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The first call succeeds. The second call fails because <code>15</code> is an <code>Int</code> but does not meet the condition.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_returning_values">7.8. Returning values</h3>
 <div class="paragraph">
 <p>All the subroutines we&#8217;ve seen so far <strong>do something</strong>&#8201;&#8212;&#8201;they display some text on the terminal.</p>
 </div>
@@ -3080,7 +3829,7 @@ This is done by assigning a value to the parameter within the subroutine definit
 <p>Sometimes, though, we execute a subroutine for its <strong>return</strong> value so we can use it later in the flow of our program.</p>
 </div>
 <div class="paragraph">
-<p>If a function is allowed to run through it&#8217;s block to the end, the last statement or expression will determine the return value.</p>
+<p>If a function is allowed to run through its block to the end, the last statement or expression will determine the return value.</p>
 </div>
 <div class="listingblock">
 <div class="title">Implicit return</div>
@@ -3105,7 +3854,7 @@ This can be done using the <code>return</code> keyword.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_restricting_return_values">7.5.1. Restricting return values</h4>
+<h4 id="_restricting_return_values">7.8.1. Restricting return values</h4>
 <div class="paragraph">
 <p>In one of the previous examples, we saw how we can restrict the accepted argument to be of a certain type.
 The same can be done with return values.</p>
@@ -3255,6 +4004,31 @@ it within the anonymous subroutine as <code>-&gt; $x {$x ** 2}</code>.</p>
 <div class="paragraph">
 <p>In Raku parlance, we call this notation a <strong>pointy block</strong></p>
 </div>
+<div class="paragraph">
+<p>A pointy block that takes a single argument can be written in two shorter ways.</p>
+</div>
+<div class="paragraph">
+<p>A block written without <code>-&gt;</code> and without a parameter receives its argument in the topic variable <code>$_</code></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="raku"><span class="kd">my</span><span class="w"> </span><span class="nv">@array</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&lt;1 2 3 4 5&gt;</span><span class="p">;</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="nb">map</span><span class="p">({</span><span class="w"> </span><span class="nv">$_</span><span class="w"> </span><span class="o">**</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="p">},</span><span class="w"> </span><span class="nv">@array</span><span class="p">);</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>An asterisk used in an expression stands for the argument, and the braces are not needed.<br>
+<code>* ** 2</code> is a shorter way of writing <code>{ $_ ** 2 }</code></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="raku"><span class="kd">my</span><span class="w"> </span><span class="nv">@array</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&lt;1 2 3 4 5&gt;</span><span class="p">;</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="nb">map</span><span class="p">(</span><span class="o">*</span><span class="w"> </span><span class="o">**</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="nv">@array</span><span class="p">);</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The three notations give the same result: <code>(1 4 9 16 25)</code></p>
+</div>
 <div class="listingblock">
 <div class="title">A pointy block may also be used to assign functions to variables:</div>
 <div class="content">
@@ -3403,7 +4177,7 @@ the operation is carried out for each junction element, and all the results are 
 </div>
 </div>
 <div class="sect2">
-<h3 id="_lazy_lists">8.7. Lazy Lists</h3>
+<h3 id="_sequences_and_lazy_lists">8.7. Sequences and Lazy Lists</h3>
 <div class="paragraph">
 <p>A <strong>lazy list</strong> is a list that is lazily evaluated.<br>
 Lazy evaluation delays the evaluation of an expression until required, and avoids repeating evaluations by storing results in a lookup table.</p>
@@ -3425,8 +4199,8 @@ Lazy evaluation delays the evaluation of an expression until required, and avoid
 </ul>
 </div>
 <div class="paragraph">
-<p>To build a lazy list we use the infix operator <code>&#8230;&#8203;</code><br>
-A lazy list has <strong>initial element(s)</strong>, a <strong>generator</strong> and an <strong>endpoint</strong>.</p>
+<p>To build a lazy list we use the infix operator <code>...</code> called the <strong>sequence operator</strong>. What it builds is called a <strong>sequence</strong>.<br>
+A sequence has <strong>initial element(s)</strong>, a <strong>generator</strong> and an <strong>endpoint</strong>.</p>
 </div>
 <div class="listingblock">
 <div class="title">Simple lazy list</div>
@@ -3481,11 +4255,12 @@ This lazy list may return (if requested) the following elements (0, 3, 6, 9, 12)
 <td class="content">
 <div class="paragraph">
 <p>When using an explicit generator, the endpoint must be one of the values that the generator can return.<br>
-If we reproduce the above example with the endpoint being 10 instead of 12, it will not stop.
-The generator <em>jumps over</em> the endpoint.</p>
+If we reproduce the above example with the endpoint being 10 instead of 12, the sequence will never end.
+The generator <em>jumps over</em> the endpoint.<br>
+Although the sequence goes on forever, <code>say</code> displays its first 100 elements and ends them with <code>...</code></p>
 </div>
 <div class="paragraph">
-<p>Alternatively you can replace <code>0 &#8230;&#8203; 10</code> with <code>0 &#8230;&#8203;^ * &gt; 10</code><br>
+<p>Alternatively you can replace <code>0 ... 10</code> with <code>0 ...^ * &gt; 10</code><br>
 You can read it as: From 0 until the first value greater than 10 (excluding it)</p>
 </div>
 <div class="listingblock">
@@ -3707,10 +4482,10 @@ Two twigils are used in classes:</p>
 </ul>
 </div>
 <div class="paragraph">
-<p>By default, all attributes are private but it is a good habit to always use the <code>!</code> twigil.</p>
+<p>By default, all attributes are private. The <code>.</code> twigil is what makes an attribute readable from outside the object.</p>
 </div>
 <div class="paragraph">
-<p>Therefore, we should rewrite the above class as:</p>
+<p>To see the difference, let&#8217;s declare the attributes of our class with <code>!</code> instead of <code>.</code></p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -3726,13 +4501,21 @@ Two twigils are used in classes:</p>
 </div>
 </div>
 <div class="paragraph">
+<p>Run it and <code>say $john</code> will print <code>Human.new</code>. The object is empty.<br>
+The default constructor only sets the attributes that have an accessor, so the values we passed to it were ignored.</p>
+</div>
+<div class="paragraph">
 <p>Append to the script the following statement: <code>say $john.age;</code><br>
-It will return this error: <code>Method 'age' not found for invocant of class 'Human'</code>
+It will return this error: <code>No such method 'age' for invocant of type 'Human'</code>
 because <code>$!age</code> is private and can only be used within the object.
 Trying to access it outside the object will return an error.</p>
 </div>
 <div class="paragraph">
-<p>Now replace <code>has $!age</code> with <code>has $.age</code> and observe the result of <code>say $john.age;</code></p>
+<p>Now replace <code>has $!age</code> with <code>has $.age</code> and run the script again.<br>
+<code>say $john</code> will print <code>Human.new(age &#8658; 23)</code> and <code>say $john.age</code> will print <code>23</code></p>
+</div>
+<div class="paragraph">
+<p>Private attributes are set and used from within the class. We will see how in the section about methods.</p>
 </div>
 </div>
 <div class="sect2">
@@ -3776,9 +4559,47 @@ Then I need to create another constructor that accepts <strong>positional argume
 </div>
 </div>
 <div class="sect2">
-<h3 id="_methods">9.4. Methods</h3>
+<h3 id="_default_and_required_attributes">9.4. Default and Required Attributes</h3>
+<div class="paragraph">
+<p>We have seen that a subroutine fails if it is called without one of its arguments.<br>
+The default constructor behaves differently. An attribute that is not supplied to <code>.new()</code> is simply left empty.</p>
+</div>
+<div class="paragraph">
+<p>Like the parameters of a subroutine, an attribute can be given a default value.<br>
+This is done by assigning a value to the attribute within the class definition.</p>
+</div>
+<div class="paragraph">
+<p>If an attribute must always be supplied, we label it using the keywords <code>is required</code></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="raku"><span class="kd">class</span><span class="w"> </span><span class="nc">Human</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="kd">has</span><span class="w"> </span><span class="vi">$.name</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="k">required</span><span class="p">;</span><span class="w">
+  </span><span class="kd">has</span><span class="w"> </span><span class="vi">$.nationality</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'Unknown'</span><span class="p">;</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span><span class="kd">my</span><span class="w"> </span><span class="nv">$john</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Human</span><span class="o">.</span><span class="nb">new</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'John'</span><span class="p">);</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="nv">$john</span><span class="o">.</span><span class="nf">nationality</span><span class="p">;</span><span class="w">
+
+</span><span class="kd">my</span><span class="w"> </span><span class="nv">$nobody</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Human</span><span class="o">.</span><span class="nb">new</span><span class="p">;</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title"><code>Output</code></div>
+<div class="content">
+<pre>Unknown
+The attribute '$!name' is required, but you did not provide a value for it.</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The nationality of <code>$john</code> was not supplied, so the default value was used.<br>
+<code>$nobody</code> could not be created because a name is required.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_methods">9.5. Methods</h3>
 <div class="sect3">
-<h4 id="_introduction_3">9.4.1. Introduction</h4>
+<h4 id="_introduction_3">9.5.1. Introduction</h4>
 <div class="paragraph">
 <p>Methods are the <em>subroutines</em> of an object.<br>
 Like subroutines, they are a means of packaging a set of functionality, they accept <strong>arguments</strong>, have a <strong>signature</strong> and can be defined as <strong>multi</strong>.</p>
@@ -3839,7 +4660,7 @@ Can be written alternatively as <code>$.age</code></p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_private_methods">9.4.2. Private methods</h4>
+<h4 id="_private_methods">9.5.2. Private methods</h4>
 <div class="paragraph">
 <p>Normal methods can be called on objects from outside the class.</p>
 </div>
@@ -3868,7 +4689,7 @@ Private methods are called with <code>!</code> instead of <code>.</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_class_attributes">9.5. Class Attributes</h3>
+<h3 id="_class_attributes">9.6. Class Attributes</h3>
 <div class="paragraph">
 <p><strong>Class attributes</strong> are attributes that belong to the class itself and not to its objects.<br>
 They can be initialized during definition.<br>
@@ -3893,7 +4714,7 @@ They are called on the class itself instead of its objects.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_access_type">9.6. Access Type</h3>
+<h3 id="_access_type">9.7. Access Type</h3>
 <div class="paragraph">
 <p>Until now, all the examples that we&#8217;ve seen have used accessors to <strong>get</strong> information from the objects' attributes.</p>
 </div>
@@ -3919,9 +4740,9 @@ We need to label it as <em>read/write</em> using the keywords <code>is rw</code>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_inheritance">9.7. Inheritance</h3>
+<h3 id="_inheritance">9.8. Inheritance</h3>
 <div class="sect3">
-<h4 id="_introduction_4">9.7.1. Introduction</h4>
+<h4 id="_introduction_4">9.8.1. Introduction</h4>
 <div class="paragraph">
 <p><strong>Inheritance</strong> is another concept of object oriented programming.</p>
 </div>
@@ -3981,7 +4802,7 @@ In object oriented parlance, we say Employee is a <strong>child</strong> of Huma
 </div>
 </div>
 <div class="sect3">
-<h4 id="_overriding">9.7.2. Overriding</h4>
+<h4 id="_overriding">9.8.2. Overriding</h4>
 <div class="paragraph">
 <p>Classes inherit all attributes and methods from their parent classes.<br>
 There are cases where we need the method in the child class to behave differently than the one inherited.<br>
@@ -4030,7 +4851,7 @@ This concept is called <strong>overriding</strong>.</p>
   </span><span class="kd">has</span><span class="w"> </span><span class="vi">$.company</span><span class="p">;</span><span class="w">
   </span><span class="kd">has</span><span class="w"> </span><span class="vi">$.salary</span><span class="p">;</span><span class="w">
   </span><span class="kd">method</span><span class="w"> </span><span class="nf">introduce-yourself</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nb">say</span><span class="w"> </span><span class="s1">'Hi I am a employee, my name is '</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="bp">self</span><span class="o">.</span><span class="nb">name</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="s1">' and I work at: '</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="bp">self</span><span class="o">.</span><span class="nf">company</span><span class="p">;</span><span class="w">
+    </span><span class="nb">say</span><span class="w"> </span><span class="s1">'Hi I am an employee, my name is '</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="bp">self</span><span class="o">.</span><span class="nb">name</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="s1">' and I work at: '</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="bp">self</span><span class="o">.</span><span class="nf">company</span><span class="p">;</span><span class="w">
   </span><span class="p">}</span><span class="w">
 
 </span><span class="p">}</span><span class="w">
@@ -4043,11 +4864,11 @@ This concept is called <strong>overriding</strong>.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Depending of which class the object is, the right method will be called.</p>
+<p>Depending on the class of the object, the right method will be called.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_submethods">9.7.3. Submethods</h4>
+<h4 id="_submethods">9.8.3. Submethods</h4>
 <div class="paragraph">
 <p><strong>Submethods</strong> are a type of method that are not inherited by child classes.<br>
 They are only accessible from the class they were declared in.<br>
@@ -4056,7 +4877,7 @@ They are defined using the <code>submethod</code> keyword.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_multiple_inheritance">9.8. Multiple Inheritance</h3>
+<h3 id="_multiple_inheritance">9.9. Multiple Inheritance</h3>
 <div class="paragraph">
 <p>Multiple inheritance is allowed in Raku. A class can inherit from multiple other classes.</p>
 </div>
@@ -4168,7 +4989,7 @@ Actual vs Forecast:
 </div>
 </div>
 <div class="sect2">
-<h3 id="_roles">9.9. Roles</h3>
+<h3 id="_roles">9.10. Roles</h3>
 <div class="paragraph">
 <p><strong>Roles</strong> are similar to classes in that they are a collection of attributes and methods.</p>
 </div>
@@ -4269,7 +5090,7 @@ This is a much safer approach than multiple inheritance, where conflicts are not
 </div>
 </div>
 <div class="sect2">
-<h3 id="_introspection_2">9.10. Introspection</h3>
+<h3 id="_introspection_2">9.11. Introspection</h3>
 <div class="paragraph">
 <p><strong>Introspection</strong> is the process of getting information about an object, like its type, attributes or methods.</p>
 </div>
@@ -4287,7 +5108,7 @@ This is a much safer approach than multiple inheritance, where conflicts are not
   </span><span class="kd">has</span><span class="w"> </span><span class="kt">Str</span><span class="w"> </span><span class="vi">$.company</span><span class="p">;</span><span class="w">
   </span><span class="kd">has</span><span class="w"> </span><span class="kt">Int</span><span class="w"> </span><span class="vi">$.salary</span><span class="p">;</span><span class="w">
   </span><span class="kd">method</span><span class="w"> </span><span class="nf">introduce-yourself</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nb">say</span><span class="w"> </span><span class="s1">'Hi I am a employee, my name is '</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="bp">self</span><span class="o">.</span><span class="nb">name</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="s1">' and I work at: '</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="bp">self</span><span class="o">.</span><span class="nf">company</span><span class="p">;</span><span class="w">
+    </span><span class="nb">say</span><span class="w"> </span><span class="s1">'Hi I am an employee, my name is '</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="bp">self</span><span class="o">.</span><span class="nb">name</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="s1">' and I work at: '</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="bp">self</span><span class="o">.</span><span class="nf">company</span><span class="p">;</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
@@ -4455,13 +5276,64 @@ This means we can <em>catch</em> and handle differently many types of exceptions
   </span><span class="c1"># if anything goes wrong, the script will enter the below CATCH block</span><span class="w">
   </span><span class="c1"># if nothing goes wrong, the CATCH block will be ignored</span><span class="w">
   </span><span class="k">CATCH</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="k">when</span><span class="w"> </span><span class="kt">X::AdHoc</span><span class="w">   </span><span class="p">{</span><span class="w"> </span><span class="c1"># do something if exception of type X::AdHoc is thrown }</span><span class="w">
-    </span><span class="k">when</span><span class="w"> </span><span class="kt">X::IO</span><span class="w">      </span><span class="p">{</span><span class="w"> </span><span class="c1"># do something if exception of type X::IO is thrown }</span><span class="w">
-    </span><span class="k">when</span><span class="w"> </span><span class="kt">X::OS</span><span class="w">      </span><span class="p">{</span><span class="w"> </span><span class="c1"># do something if exception of type X::OS is thrown }</span><span class="w">
-    </span><span class="k">default</span><span class="w">         </span><span class="p">{</span><span class="w"> </span><span class="c1"># do something if exception is thrown and doesn't belong to the above types }</span><span class="w">
+    </span><span class="k">when</span><span class="w"> </span><span class="kt">X::AdHoc</span><span class="w">   </span><span class="p">{</span><span class="w"> </span><span class="cm">#`(do something if exception of type X::AdHoc is thrown)</span><span class="w"> </span><span class="p">}</span><span class="w">
+    </span><span class="k">when</span><span class="w"> </span><span class="kt">X::IO</span><span class="w">      </span><span class="p">{</span><span class="w"> </span><span class="cm">#`(do something if exception of type X::IO is thrown)</span><span class="w"> </span><span class="p">}</span><span class="w">
+    </span><span class="k">when</span><span class="w"> </span><span class="kt">X::OS</span><span class="w">      </span><span class="p">{</span><span class="w"> </span><span class="cm">#`(do something if exception of type X::OS is thrown)</span><span class="w"> </span><span class="p">}</span><span class="w">
+    </span><span class="k">default</span><span class="w">         </span><span class="p">{</span><span class="w"> </span><span class="cm">#`(do something if exception is thrown and doesn't belong to the above types)</span><span class="w"> </span><span class="p">}</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span></code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>Within the <code>CATCH</code> block, the exception that was thrown is found in the topic variable <code>$_</code><br>
+Calling <code>.message</code> on it returns the description of the error.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="raku"><span class="kd">my</span><span class="w"> </span><span class="kt">Str</span><span class="w"> </span><span class="nv">$name</span><span class="p">;</span><span class="w">
+</span><span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="nv">$name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">123</span><span class="p">;</span><span class="w">
+  </span><span class="nb">say</span><span class="w"> </span><span class="s2">"Hello "</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="nv">$name</span><span class="p">;</span><span class="w">
+  </span><span class="k">CATCH</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="k">default</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nb">say</span><span class="w"> </span><span class="s2">"Something went wrong: "</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="o">.</span><span class="nb">message</span><span class="p">;</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="s2">"How are you doing today?"</span><span class="p">;</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title"><code>Output</code></div>
+<div class="content">
+<pre>Something went wrong: Type check failed in assignment to $name; expected Str but got Int (123)
+How are you doing today?</pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>try</code> can also be used without a <code>CATCH</code> block. In that case, the exception is stored in the special variable <code>$!</code></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="raku"><span class="kd">my</span><span class="w"> </span><span class="kt">Str</span><span class="w"> </span><span class="nv">$name</span><span class="p">;</span><span class="w">
+</span><span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="nv">$name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">123</span><span class="p">;</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="k">if</span><span class="w"> </span><span class="vg">$!</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="nb">say</span><span class="w"> </span><span class="s2">"Something went wrong: "</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="vg">$!</span><span class="o">.</span><span class="nb">message</span><span class="p">;</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="s2">"How are you doing today?"</span><span class="p">;</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title"><code>Output</code></div>
+<div class="content">
+<pre>Something went wrong: Type check failed in assignment to $name; expected Str but got Int (123)
+How are you doing today?</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If nothing goes wrong inside the <code>try</code> block, <code>$!</code> stays empty and the <code>if</code> block is skipped.</p>
 </div>
 </div>
 <div class="sect2">
@@ -4499,7 +5371,7 @@ Two types of exceptions can be thrown:</p>
 </div>
 <div class="paragraph">
 <p>Typed exceptions are objects, hence the use of the <code>.new()</code> constructor in the above example.<br>
-All typed exceptions descend from class <code>X</code> , below are a few examples:<br>
+All typed exceptions descend from the class <code>Exception</code>. The names of the built-in ones start with <code>X::</code>, below are a few examples:<br>
 <code>X::AdHoc</code> is the simplest exception type<br>
 <code>X::IO</code> is related to IO errors<br>
 <code>X::OS</code> is related to OS errors<br>
@@ -4512,7 +5384,7 @@ All typed exceptions descend from class <code>X</code> , below are a few example
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-For a complete list of exception types and their associated methods, go to <a href="https://docs.raku.org/type-exceptions.html" class="bare">https://docs.raku.org/type-exceptions.html</a>
+For a complete list of exception types and their associated methods, go to <a href="https://docs.raku.org/types#Exception_classes" class="bare">https://docs.raku.org/types#Exception_classes</a>
 </td>
 </tr>
 </table>
@@ -4801,7 +5673,62 @@ Unicode properties are enclosed in <code>&lt;: &gt;</code></p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_match_results">11.7. Match Results</h3>
+<h3 id="_anchors">11.7. Anchors</h3>
+<div class="paragraph">
+<p>By default, a regex can match anywhere in a string. <strong>Anchors</strong> tie the match to a position in the string.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>^</code> matches the beginning of the string.</p>
+</li>
+<li>
+<p><code>$</code> matches the end of the string.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="raku"><span class="k">if</span><span class="w"> </span><span class="s1">'raku guide'</span><span class="w"> </span><span class="o">~~</span><span class="w"> </span><span class="sr">m/</span><span class="w"> </span><span class="o">^</span><span class="w"> </span><span class="sr">raku</span><span class="w"> </span><span class="sr">/</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nb">say</span><span class="w"> </span><span class="s2">"Match"</span><span class="p">;</span><span class="w">
+</span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nb">say</span><span class="w"> </span><span class="s2">"No Match"</span><span class="p">;</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="k">if</span><span class="w"> </span><span class="s1">'the raku guide'</span><span class="w"> </span><span class="o">~~</span><span class="w"> </span><span class="sr">m/</span><span class="w"> </span><span class="o">^</span><span class="w"> </span><span class="sr">raku</span><span class="w"> </span><span class="sr">/</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nb">say</span><span class="w"> </span><span class="s2">"Match"</span><span class="p">;</span><span class="w">
+</span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nb">say</span><span class="w"> </span><span class="s2">"No Match"</span><span class="p">;</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="k">if</span><span class="w"> </span><span class="s1">'the raku guide'</span><span class="w"> </span><span class="o">~~</span><span class="w"> </span><span class="sr">m/</span><span class="w"> </span><span class="sr">guide</span><span class="w"> </span><span class="o">$</span><span class="w"> </span><span class="sr">/</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nb">say</span><span class="w"> </span><span class="s2">"Match"</span><span class="p">;</span><span class="w">
+</span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nb">say</span><span class="w"> </span><span class="s2">"No Match"</span><span class="p">;</span><span class="w">
+</span><span class="p">}</span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_alternation">11.8. Alternation</h3>
+<div class="paragraph">
+<p>The vertical bar <code>|</code> means <em>or</em>. It is used to match one of several alternatives.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="raku"><span class="k">if</span><span class="w"> </span><span class="s1">'raku.org'</span><span class="w"> </span><span class="o">~~</span><span class="w"> </span><span class="sr">m/</span><span class="w"> </span><span class="sr">com</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="sr">org</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="sr">net</span><span class="w"> </span><span class="sr">/</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nb">say</span><span class="w"> </span><span class="s2">"Match"</span><span class="p">;</span><span class="w">
+</span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nb">say</span><span class="w"> </span><span class="s2">"No Match"</span><span class="p">;</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="k">if</span><span class="w"> </span><span class="s1">'raku.dev'</span><span class="w"> </span><span class="o">~~</span><span class="w"> </span><span class="sr">m/</span><span class="w"> </span><span class="sr">com</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="sr">org</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="sr">net</span><span class="w"> </span><span class="sr">/</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nb">say</span><span class="w"> </span><span class="s2">"Match"</span><span class="p">;</span><span class="w">
+</span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nb">say</span><span class="w"> </span><span class="s2">"No Match"</span><span class="p">;</span><span class="w">
+</span><span class="p">}</span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_match_results">11.9. Match Results</h3>
 <div class="paragraph">
 <p>Whenever the process of matching a string against a regex is successful,
 the match result is stored in a special variable <code>$/</code></p>
@@ -4809,7 +5736,7 @@ the match result is stored in a special variable <code>$/</code></p>
 <div class="listingblock">
 <div class="title">Script</div>
 <div class="content">
-<pre class="rouge highlight"><code data-lang="raku"><span class="k">if</span><span class="w"> </span><span class="s1">'Rakudo is a Perl 6 compiler'</span><span class="w"> </span><span class="o">~~</span><span class="w"> </span><span class="sr">m/</span><span class="p">:</span><span class="na">s</span><span class="w"> </span><span class="sr">Perl</span><span class="w"> </span><span class="sr">6/</span><span class="w"> </span><span class="p">{</span><span class="w">
+<pre class="rouge highlight"><code data-lang="raku"><span class="k">if</span><span class="w"> </span><span class="s1">'I am learning Raku regexes today'</span><span class="w"> </span><span class="o">~~</span><span class="w"> </span><span class="sr">m/</span><span class="p">:</span><span class="na">s</span><span class="w"> </span><span class="sr">Raku</span><span class="w"> </span><span class="sr">regexes/</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nb">say</span><span class="w"> </span><span class="s2">"The match is: "</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="vg">$/</span><span class="p">;</span><span class="w">
     </span><span class="nb">say</span><span class="w"> </span><span class="s2">"The string before the match is: "</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="vg">$/</span><span class="o">.</span><span class="nb">prematch</span><span class="p">;</span><span class="w">
     </span><span class="nb">say</span><span class="w"> </span><span class="s2">"The string after the match is: "</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="vg">$/</span><span class="o">.</span><span class="nb">postmatch</span><span class="p">;</span><span class="w">
@@ -4821,11 +5748,11 @@ the match result is stored in a special variable <code>$/</code></p>
 <div class="listingblock">
 <div class="title">Output</div>
 <div class="content">
-<pre>The match is: Perl 6
-The string before the match is: Rakudo is a
-The string after the match is: compiler
-The matching string starts at position: 12
-The matching string ends at position: 18</pre>
+<pre>The match is: Raku regexes
+The string before the match is: I am learning
+The string after the match is: today
+The matching string starts at position: 14
+The matching string ends at position: 26</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -4846,8 +5773,8 @@ The following methods can be called on the <em>Match Object</em>:<br>
 <td class="content">
 By default, whitespace in a regex definition is ignored.<br>
 If we want to match against a regex containing whitespace, we have to do so explicitly.<br>
-The <code>:s</code> in the regex <code>m/:s Perl 6/</code> forces whitespace to be considered.<br>
-Alternatively, we could have written the regex as <code>m/ Perl\s6 /</code> and used <code>\s</code> which represents a whitespace.<br>
+The <code>:s</code> in the regex <code>m/:s Raku regexes/</code> forces whitespace to be considered.<br>
+Alternatively, we could have written the regex as <code>m/ Raku\sregexes /</code> and used <code>\s</code> which represents a whitespace.<br>
 If a regex contains more than a single whitespace, using <code>:s</code> is a better option than using <code>\s</code> for each and every whitespace.
 </td>
 </tr>
@@ -4855,7 +5782,65 @@ If a regex contains more than a single whitespace, using <code>:s</code> is a be
 </div>
 </div>
 <div class="sect2">
-<h3 id="_example">11.8. Example</h3>
+<h3 id="_captures">11.10. Captures</h3>
+<div class="paragraph">
+<p>Surrounding a part of a regex with parentheses <strong>captures</strong> the part of the string that it matches.<br>
+The captures are numbered starting from zero. They are stored in the variables <code>$0</code>, <code>$1</code>, <code>$2</code> and so on.</p>
+</div>
+<div class="listingblock">
+<div class="title">Script</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="raku"><span class="k">if</span><span class="w"> </span><span class="s1">'John is 23 years old'</span><span class="w"> </span><span class="o">~~</span><span class="w"> </span><span class="sr">m/</span><span class="w"> </span><span class="p">(</span><span class="se">\w</span><span class="o">+</span><span class="p">)</span><span class="w"> </span><span class="se">\s</span><span class="w"> </span><span class="sr">is</span><span class="w"> </span><span class="se">\s</span><span class="w"> </span><span class="p">(</span><span class="se">\d</span><span class="o">+</span><span class="p">)</span><span class="w"> </span><span class="sr">/</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nb">say</span><span class="w"> </span><span class="s2">"Name: "</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="nv">$0</span><span class="p">;</span><span class="w">
+    </span><span class="nb">say</span><span class="w"> </span><span class="s2">"Age: "</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="nv">$1</span><span class="p">;</span><span class="w">
+</span><span class="p">}</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre>Name: John
+Age: 23</pre>
+</div>
+</div>
+<div class="paragraph">
+<div class="title">Explanation</div>
+<p><code>(\w+)</code> is the first capture. It matches <code>John</code> and stores it in <code>$0</code><br>
+<code>(\d+)</code> is the second capture. It matches <code>23</code> and stores it in <code>$1</code></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_substitution">11.11. Substitution</h3>
+<div class="paragraph">
+<p>A regex can also be used to replace the part of a string that it matches.<br>
+This is done using the <code>.subst</code> method. It is given a regex and a replacement, and it returns a new string.</p>
+</div>
+<div class="listingblock">
+<div class="title">Script</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="raku"><span class="kd">my</span><span class="w"> </span><span class="nv">$text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'I drink tea, tea is good'</span><span class="p">;</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="nv">$text</span><span class="o">.</span><span class="nb">subst</span><span class="p">(</span><span class="sr">/tea/</span><span class="p">,</span><span class="w"> </span><span class="s1">'coffee'</span><span class="p">);</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="nv">$text</span><span class="o">.</span><span class="nb">subst</span><span class="p">(</span><span class="sr">/tea/</span><span class="p">,</span><span class="w"> </span><span class="s1">'coffee'</span><span class="p">,</span><span class="w"> </span><span class="p">:</span><span class="na">g</span><span class="p">);</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="nv">$text</span><span class="p">;</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Output</div>
+<div class="content">
+<pre>I drink coffee, tea is good
+I drink coffee, coffee is good
+I drink tea, tea is good</pre>
+</div>
+</div>
+<div class="paragraph">
+<div class="title">Explanation</div>
+<p><code>.subst</code> replaces the first match only.<br>
+Adding <code>:g</code> (short for <em>global</em>) replaces all the matches.<br>
+<code>.subst</code> does not change the original string, as shown by the last line.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_example">11.12. Example</h3>
 <div class="paragraph">
 <p>Let&#8217;s check if an email is valid or not.<br>
 For the sake of this example we will assume that a valid email address has this format:<br>
@@ -4878,8 +5863,8 @@ Do not use it as-is in production.
 <div class="listingblock">
 <div class="title">Script</div>
 <div class="content">
-<pre class="rouge highlight"><code data-lang="raku"><span class="kd">my</span><span class="w"> </span><span class="nv">$email</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'john.doe@perl6.org'</span><span class="p">;</span><span class="w">
-</span><span class="kd">my</span><span class="w"> </span><span class="nv">$regex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sr">/</span><span class="w"> </span><span class="nb">&lt;:L&gt;</span><span class="o">+</span><span class="se">\.</span><span class="nb">&lt;:L&gt;</span><span class="o">+</span><span class="se">\@</span><span class="nb">&lt;:L+:N&gt;</span><span class="o">+</span><span class="se">\.</span><span class="nb">&lt;:L&gt;</span><span class="o">+</span><span class="w"> </span><span class="sr">/</span><span class="p">;</span><span class="w">
+<pre class="rouge highlight"><code data-lang="raku"><span class="kd">my</span><span class="w"> </span><span class="nv">$email</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'john.doe@route66.org'</span><span class="p">;</span><span class="w">
+</span><span class="kd">my</span><span class="w"> </span><span class="nv">$regex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sr">/</span><span class="w"> </span><span class="o">^</span><span class="w"> </span><span class="nb">&lt;:L&gt;</span><span class="o">+</span><span class="se">\.</span><span class="nb">&lt;:L&gt;</span><span class="o">+</span><span class="se">\@</span><span class="nb">&lt;:L+:N&gt;</span><span class="o">+</span><span class="se">\.</span><span class="p">(</span><span class="sr">com</span><span class="o">|</span><span class="sr">org</span><span class="o">|</span><span class="sr">net</span><span class="p">)</span><span class="w"> </span><span class="o">$</span><span class="w"> </span><span class="sr">/</span><span class="p">;</span><span class="w">
 
 </span><span class="k">if</span><span class="w"> </span><span class="nv">$email</span><span class="w"> </span><span class="o">~~</span><span class="w"> </span><span class="nv">$regex</span><span class="w"> </span><span class="p">{</span><span class="w">
   </span><span class="nb">say</span><span class="w"> </span><span class="vg">$/</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="s2">" is a valid email"</span><span class="p">;</span><span class="w">
@@ -4890,16 +5875,36 @@ Do not use it as-is in production.
 </div>
 <div class="paragraph">
 <div class="title">Output</div>
-<p><code>john.doe@perl6.org is a valid email</code></p>
+<p><code>john.doe@route66.org is a valid email</code></p>
 </div>
-<div class="paragraph">
+<div class="ulist">
 <div class="title">Explanation</div>
-<p><code>&lt;:L&gt;</code> matches a single letter<br>
-<code>&lt;:L&gt;` matches one or more letters +
-`\.` matches a single [dot] character +
-`\@` matches a single [at] character +
-`&lt;:L:N&gt;</code> matches a letter or a single number<br>
-<code>&lt;:L+:N&gt;+</code> matches one or more letters or numbers<br></p>
+<ul>
+<li>
+<p><code>&lt;:L&gt;</code> matches a single letter</p>
+</li>
+<li>
+<p><code>&lt;:L&gt;+</code> matches one or more letters</p>
+</li>
+<li>
+<p><code>\.</code> matches a single [dot] character</p>
+</li>
+<li>
+<p><code>\@</code> matches a single [at] character</p>
+</li>
+<li>
+<p><code>&lt;:L+:N&gt;</code> matches a letter or a single number</p>
+</li>
+<li>
+<p><code>&lt;:L+:N&gt;+</code> matches one or more letters or numbers</p>
+</li>
+<li>
+<p><code>(com|org|net)</code> matches one of the three alternatives</p>
+</li>
+<li>
+<p><code>^</code> and <code>$</code> make sure that nothing comes before or after the email</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
 <p>The regex can be decomposed as following:</p>
@@ -4925,20 +5930,21 @@ Do not use it as-is in production.
 <p><strong>[dot]</strong> <code>\.</code></p>
 </li>
 <li>
-<p><strong>com/org/net</strong> <code>&lt;:L&gt;+</code></p>
+<p><strong>com/org/net</strong> <code>(com|org|net)</code></p>
 </li>
 </ul>
 </div>
 <div class="listingblock">
 <div class="title">Alternatively, a regex can be broken down into multiple named regexes</div>
 <div class="content">
-<pre class="rouge highlight"><code data-lang="raku"><span class="kd">my</span><span class="w"> </span><span class="nv">$email</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'john.doe@perl6.org'</span><span class="p">;</span><span class="w">
+<pre class="rouge highlight"><code data-lang="raku"><span class="kd">my</span><span class="w"> </span><span class="nv">$email</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'john.doe@route66.org'</span><span class="p">;</span><span class="w">
 </span><span class="kd">my</span><span class="w"> </span><span class="kd">regex</span><span class="w"> </span><span class="nf">many-letters</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nb">&lt;:L&gt;</span><span class="o">+</span><span class="w"> </span><span class="p">};</span><span class="w">
 </span><span class="kd">my</span><span class="w"> </span><span class="kd">regex</span><span class="w"> </span><span class="nf">dot</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="se">\.</span><span class="w"> </span><span class="p">};</span><span class="w">
 </span><span class="kd">my</span><span class="w"> </span><span class="kd">regex</span><span class="w"> </span><span class="nf">at</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="se">\@</span><span class="w"> </span><span class="p">};</span><span class="w">
 </span><span class="kd">my</span><span class="w"> </span><span class="kd">regex</span><span class="w"> </span><span class="nf">many-letters-numbers</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nb">&lt;:L+:N&gt;</span><span class="o">+</span><span class="w"> </span><span class="p">};</span><span class="w">
+</span><span class="kd">my</span><span class="w"> </span><span class="kd">regex</span><span class="w"> </span><span class="nf">domain</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="sr">com</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="sr">org</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="sr">net</span><span class="w"> </span><span class="p">};</span><span class="w">
 
-</span><span class="k">if</span><span class="w"> </span><span class="nv">$email</span><span class="w"> </span><span class="o">~~</span><span class="w"> </span><span class="sr">/</span><span class="w"> </span><span class="p">&lt;</span><span class="nf">many-letters</span><span class="p">&gt;</span><span class="w"> </span><span class="p">&lt;</span><span class="nf">dot</span><span class="p">&gt;</span><span class="w"> </span><span class="p">&lt;</span><span class="nf">many-letters</span><span class="p">&gt;</span><span class="w"> </span><span class="p">&lt;</span><span class="nb">at</span><span class="p">&gt;</span><span class="w"> </span><span class="p">&lt;</span><span class="nf">many-letters-numbers</span><span class="p">&gt;</span><span class="w"> </span><span class="p">&lt;</span><span class="nf">dot</span><span class="p">&gt;</span><span class="w"> </span><span class="p">&lt;</span><span class="nf">many-letters</span><span class="p">&gt;</span><span class="w"> </span><span class="sr">/</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="k">if</span><span class="w"> </span><span class="nv">$email</span><span class="w"> </span><span class="o">~~</span><span class="w"> </span><span class="sr">/</span><span class="w"> </span><span class="o">^</span><span class="w"> </span><span class="p">&lt;</span><span class="nf">many-letters</span><span class="p">&gt;</span><span class="w"> </span><span class="p">&lt;</span><span class="nf">dot</span><span class="p">&gt;</span><span class="w"> </span><span class="p">&lt;</span><span class="nf">many-letters</span><span class="p">&gt;</span><span class="w"> </span><span class="p">&lt;</span><span class="nb">at</span><span class="p">&gt;</span><span class="w"> </span><span class="p">&lt;</span><span class="nf">many-letters-numbers</span><span class="p">&gt;</span><span class="w"> </span><span class="p">&lt;</span><span class="nf">dot</span><span class="p">&gt;</span><span class="w"> </span><span class="p">&lt;</span><span class="nf">domain</span><span class="p">&gt;</span><span class="w"> </span><span class="o">$</span><span class="w"> </span><span class="sr">/</span><span class="w"> </span><span class="p">{</span><span class="w">
   </span><span class="nb">say</span><span class="w"> </span><span class="vg">$/</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="s2">" is a valid email"</span><span class="p">;</span><span class="w">
 </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w">
   </span><span class="nb">say</span><span class="w"> </span><span class="s2">"This is not a valid email"</span><span class="p">;</span><span class="w">
@@ -4965,7 +5971,135 @@ For more info on regexes, see <a href="https://docs.raku.org/language/regexes" c
 </div>
 </div>
 <div class="sect1">
-<h2 id="_raku_modules">12. Raku Modules</h2>
+<h2 id="_grammars">12. Grammars</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In the previous chapter, we broke down the email regex into multiple named regexes.<br>
+A <strong>grammar</strong> takes this idea further. It groups named regexes together in order to describe the format of a whole text.</p>
+</div>
+<div class="paragraph">
+<p>Grammars are used to <strong>parse</strong> text: to check that it follows the expected format, and to extract the parts we are interested in.</p>
+</div>
+<div class="sect2">
+<h3 id="_defining_a_grammar">12.1. Defining a grammar</h3>
+<div class="paragraph">
+<p>A grammar is defined using the keyword <code>grammar</code>. It contains named regexes that are defined using the keyword <code>token</code>.<br>
+The token named <code>TOP</code> is special. It describes the text as a whole, using the other tokens.</p>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s rewrite the email example as a grammar.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="raku"><span class="kd">grammar</span><span class="w"> </span><span class="nc">Email</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="kd">token</span><span class="w"> </span><span class="nf">TOP</span><span class="w">        </span><span class="p">{</span><span class="w"> </span><span class="p">&lt;</span><span class="nf">first-name</span><span class="p">&gt;</span><span class="w"> </span><span class="s1">'.'</span><span class="w"> </span><span class="p">&lt;</span><span class="nf">last-name</span><span class="p">&gt;</span><span class="w"> </span><span class="s1">'@'</span><span class="w"> </span><span class="p">&lt;</span><span class="nf">company</span><span class="p">&gt;</span><span class="w"> </span><span class="s1">'.'</span><span class="w"> </span><span class="p">&lt;</span><span class="nf">domain</span><span class="p">&gt;</span><span class="w"> </span><span class="p">}</span><span class="w">
+  </span><span class="kd">token</span><span class="w"> </span><span class="nf">first-name</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nb">&lt;:L&gt;</span><span class="o">+</span><span class="w"> </span><span class="p">}</span><span class="w">
+  </span><span class="kd">token</span><span class="w"> </span><span class="nf">last-name</span><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nb">&lt;:L&gt;</span><span class="o">+</span><span class="w"> </span><span class="p">}</span><span class="w">
+  </span><span class="kd">token</span><span class="w"> </span><span class="nf">company</span><span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nb">&lt;:L+:N&gt;</span><span class="o">+</span><span class="w"> </span><span class="p">}</span><span class="w">
+  </span><span class="kd">token</span><span class="w"> </span><span class="nf">domain</span><span class="w">     </span><span class="p">{</span><span class="w"> </span><span class="sr">com</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="sr">org</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="sr">net</span><span class="w"> </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<div class="title">Explanation</div>
+<p><code>TOP</code> states that an email is made of a first name, a dot, a last name, an at sign, a company, a dot and a domain.<br>
+The other tokens define what each of these parts looks like.<br>
+The dot and the at sign are surrounded by quotes because they are not alphanumeric characters.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_parsing">12.2. Parsing</h3>
+<div class="paragraph">
+<p>A grammar is used by calling its <code>.parse()</code> method on a string.</p>
+</div>
+<div class="listingblock">
+<div class="title"><code>Script</code></div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="raku"><span class="kd">grammar</span><span class="w"> </span><span class="nc">Email</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="kd">token</span><span class="w"> </span><span class="nf">TOP</span><span class="w">        </span><span class="p">{</span><span class="w"> </span><span class="p">&lt;</span><span class="nf">first-name</span><span class="p">&gt;</span><span class="w"> </span><span class="s1">'.'</span><span class="w"> </span><span class="p">&lt;</span><span class="nf">last-name</span><span class="p">&gt;</span><span class="w"> </span><span class="s1">'@'</span><span class="w"> </span><span class="p">&lt;</span><span class="nf">company</span><span class="p">&gt;</span><span class="w"> </span><span class="s1">'.'</span><span class="w"> </span><span class="p">&lt;</span><span class="nf">domain</span><span class="p">&gt;</span><span class="w"> </span><span class="p">}</span><span class="w">
+  </span><span class="kd">token</span><span class="w"> </span><span class="nf">first-name</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nb">&lt;:L&gt;</span><span class="o">+</span><span class="w"> </span><span class="p">}</span><span class="w">
+  </span><span class="kd">token</span><span class="w"> </span><span class="nf">last-name</span><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nb">&lt;:L&gt;</span><span class="o">+</span><span class="w"> </span><span class="p">}</span><span class="w">
+  </span><span class="kd">token</span><span class="w"> </span><span class="nf">company</span><span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nb">&lt;:L+:N&gt;</span><span class="o">+</span><span class="w"> </span><span class="p">}</span><span class="w">
+  </span><span class="kd">token</span><span class="w"> </span><span class="nf">domain</span><span class="w">     </span><span class="p">{</span><span class="w"> </span><span class="sr">com</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="sr">org</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="sr">net</span><span class="w"> </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span><span class="kd">my</span><span class="w"> </span><span class="nv">$email</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'john.doe@route66.org'</span><span class="p">;</span><span class="w">
+
+</span><span class="k">if</span><span class="w"> </span><span class="n">Email</span><span class="o">.</span><span class="nb">parse</span><span class="p">(</span><span class="nv">$email</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="nb">say</span><span class="w"> </span><span class="s2">"</span><span class="nv">$email</span><span class="s2"> is a valid email"</span><span class="p">;</span><span class="w">
+</span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="nb">say</span><span class="w"> </span><span class="s2">"This is not a valid email"</span><span class="p">;</span><span class="w">
+</span><span class="p">}</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title"><code>Output</code></div>
+<div class="content">
+<pre>john.doe@route66.org is a valid email</pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>.parse()</code> succeeds only if the whole string matches <code>TOP</code>. This is why we did not need the anchors <code>^</code> and <code>$</code> that we used in the regex.</p>
+</div>
+<div class="paragraph">
+<p>Now replace the email with <code>john.doe@route66.xyz</code> and run the script again.<br>
+It will display <code>This is not a valid email</code> because <code>xyz</code> is not one of the three domains.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_extracting_data">12.3. Extracting data</h3>
+<div class="paragraph">
+<p>When it succeeds, <code>.parse()</code> returns a single match object, which we store in a scalar.<br>
+The part of the text that was matched by a token can be accessed using the name of that token, with the same angle brackets that are used with a hash.</p>
+</div>
+<div class="listingblock">
+<div class="title"><code>Script</code></div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="raku"><span class="kd">grammar</span><span class="w"> </span><span class="nc">Email</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="kd">token</span><span class="w"> </span><span class="nf">TOP</span><span class="w">        </span><span class="p">{</span><span class="w"> </span><span class="p">&lt;</span><span class="nf">first-name</span><span class="p">&gt;</span><span class="w"> </span><span class="s1">'.'</span><span class="w"> </span><span class="p">&lt;</span><span class="nf">last-name</span><span class="p">&gt;</span><span class="w"> </span><span class="s1">'@'</span><span class="w"> </span><span class="p">&lt;</span><span class="nf">company</span><span class="p">&gt;</span><span class="w"> </span><span class="s1">'.'</span><span class="w"> </span><span class="p">&lt;</span><span class="nf">domain</span><span class="p">&gt;</span><span class="w"> </span><span class="p">}</span><span class="w">
+  </span><span class="kd">token</span><span class="w"> </span><span class="nf">first-name</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nb">&lt;:L&gt;</span><span class="o">+</span><span class="w"> </span><span class="p">}</span><span class="w">
+  </span><span class="kd">token</span><span class="w"> </span><span class="nf">last-name</span><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nb">&lt;:L&gt;</span><span class="o">+</span><span class="w"> </span><span class="p">}</span><span class="w">
+  </span><span class="kd">token</span><span class="w"> </span><span class="nf">company</span><span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nb">&lt;:L+:N&gt;</span><span class="o">+</span><span class="w"> </span><span class="p">}</span><span class="w">
+  </span><span class="kd">token</span><span class="w"> </span><span class="nf">domain</span><span class="w">     </span><span class="p">{</span><span class="w"> </span><span class="sr">com</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="sr">org</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="sr">net</span><span class="w"> </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span><span class="kd">my</span><span class="w"> </span><span class="nv">$match</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Email</span><span class="o">.</span><span class="nb">parse</span><span class="p">(</span><span class="s1">'john.doe@route66.org'</span><span class="p">);</span><span class="w">
+
+</span><span class="nb">say</span><span class="w"> </span><span class="s2">"First name: "</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="nv">$match</span><span class="s">&lt;first-name&gt;</span><span class="p">;</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="s2">"Last name: "</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="nv">$match</span><span class="s">&lt;last-name&gt;</span><span class="p">;</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="s2">"Company: "</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="nv">$match</span><span class="s">&lt;company&gt;</span><span class="p">;</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="s2">"Domain: "</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="nv">$match</span><span class="s">&lt;domain&gt;</span><span class="p">;</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title"><code>Output</code></div>
+<div class="content">
+<pre>First name: john
+Last name: doe
+Company: route66
+Domain: org</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>With a single definition, the grammar both validated the email and gave us each of its parts.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+For more info on grammars, see <a href="https://docs.raku.org/language/grammars" class="bare">https://docs.raku.org/language/grammars</a>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_raku_modules">13. Raku Modules</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Raku is a general purpose programming language. It can be used to tackle a multitude of tasks including:
@@ -4978,7 +6112,7 @@ text manipulation, graphics, web, databases, network protocols etc.</p>
 <p>Raku allows the creation and redistribution of <strong>modules</strong>. Each module is a packaged set of functionality that can be reused once installed.</p>
 </div>
 <div class="paragraph">
-<p><em>Zef</em> is a module management tool that comes with Rakudo Star.</p>
+<p><em>Zef</em> is a module management tool that is installed along with Rakudo.</p>
 </div>
 <div class="paragraph">
 <p>To install a specific module, type the below command in your terminal:</p>
@@ -4999,55 +6133,83 @@ The Raku modules directory can be found on: <a href="https://raku.land/" class="
 </table>
 </div>
 <div class="sect2">
-<h3 id="_using_modules">12.1. Using Modules</h3>
+<h3 id="_using_modules">13.1. Using Modules</h3>
 <div class="paragraph">
-<p>MD5 is a cryptographic hash function that produces a 128-bit hash value.<br>
-MD5 has a variety of applications, including the encryption of stored passwords in a database.
-When a new user registers, their credentials are not stored as plain text but rather <em>hashed</em>.
-The rationale behind this is that if the DB gets compromised, the attacker will not be able to know what the passwords are.</p>
+<p>JSON is a text format for storing and exchanging data.<br>
+It is used by many web services and applications, so sooner or later your program will have to read it or produce it.<br>
+A JSON document is made of key/value pairs and lists. They map naturally to the hashes and arrays of Raku.</p>
 </div>
 <div class="paragraph">
-<p>Luckily, you don&#8217;t need to implement the MD5 algorithm yourself; there&#8217;s a Raku module already implemented.</p>
+<p>Luckily, you don&#8217;t need to write a JSON parser yourself; there&#8217;s a Raku module already implemented.</p>
 </div>
 <div class="paragraph">
 <p>Let&#8217;s install it:<br>
-<code>zef install Digest::MD5</code></p>
+<code>zef install JSON::Fast</code></p>
 </div>
 <div class="paragraph">
 <p>Now, run the below script:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="raku"><span class="kn">use</span><span class="w"> </span><span class="nn">Digest::MD5</span><span class="p">;</span><span class="w">
+<pre class="rouge highlight"><code data-lang="raku"><span class="kn">use</span><span class="w"> </span><span class="nn">JSON::Fast</span><span class="p">;</span><span class="w">
 
-</span><span class="kd">my</span><span class="w"> </span><span class="nv">$password</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"password123"</span><span class="p">;</span><span class="w">
-</span><span class="kd">my</span><span class="w"> </span><span class="nv">$hashed-password</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">md5</span><span class="p">(</span><span class="w"> </span><span class="nv">$password</span><span class="w"> </span><span class="p">);</span><span class="w">
+</span><span class="kd">my</span><span class="w"> </span><span class="nv">%user</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">'John'</span><span class="p">,</span><span class="w"> </span><span class="n">age</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="mi">23</span><span class="p">;</span><span class="w">
+</span><span class="kd">my</span><span class="w"> </span><span class="nv">$json</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">to-json</span><span class="p">(</span><span class="nv">%user</span><span class="p">);</span><span class="w">
 
-</span><span class="nb">say</span><span class="w"> </span><span class="nv">$hashed-password</span><span class="p">;</span></code></pre>
+</span><span class="nb">say</span><span class="w"> </span><span class="nv">$json</span><span class="p">;</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title"><code>Output</code></div>
+<div class="content">
+<pre>{
+  "name": "John",
+  "age": 23
+}</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>In order to run the <code>md5()</code> function that creates hashes, we need to load the required module.<br>
-The <code>use</code> keyword loads the module for use in the script which provides an <code>md5</code> subroutine.</p>
+<p>In order to run the <code>to-json()</code> function that turns a hash into JSON, we need to load the required module.<br>
+The <code>use</code> keyword loads the module for use in the script which provides a <code>to-json</code> subroutine.</p>
 </div>
-<div class="admonitionblock warning">
+<div class="admonitionblock note">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-warning" title="Warning"></i>
+<i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-In practice MD5 hashing alone is not sufficient, because it is prone to dictionary attacks.<br>
-It should be combined with a salt <a href="https://en.wikipedia.org/wiki/Salt_(cryptography)">https://en.wikipedia.org/wiki/Salt_(cryptography)</a>.
+Raku does not keep the keys of a hash in a fixed order, so <code>age</code> might come before <code>name</code> when you run the script. The order can change each time the script runs.
 </td>
 </tr>
 </table>
+</div>
+<div class="paragraph">
+<p>The same module provides a <code>from-json()</code> subroutine that works in the opposite direction.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="raku"><span class="kn">use</span><span class="w"> </span><span class="nn">JSON::Fast</span><span class="p">;</span><span class="w">
+
+</span><span class="kd">my</span><span class="w"> </span><span class="nv">$json</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'{ "name": "Jane", "age": 25 }'</span><span class="p">;</span><span class="w">
+</span><span class="kd">my</span><span class="w"> </span><span class="nv">%user</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">from-json</span><span class="p">(</span><span class="nv">$json</span><span class="p">);</span><span class="w">
+
+</span><span class="nb">say</span><span class="w"> </span><span class="nv">%user</span><span class="s">&lt;name&gt;</span><span class="p">;</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="nv">%user</span><span class="s">&lt;age&gt;</span><span class="p">;</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title"><code>Output</code></div>
+<div class="content">
+<pre>Jane
+25</pre>
+</div>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_unicode">13. Unicode</h2>
+<h2 id="_unicode">14. Unicode</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Unicode is a standard for encoding and representing text for most writing systems in the world.<br>
@@ -5060,7 +6222,7 @@ UTF-8 is a character encoding capable of encoding all possible characters, or co
 <strong>Code point name</strong>: A name assigned to the character.</p>
 </div>
 <div class="sect2">
-<h3 id="_using_unicode">13.1. Using Unicode</h3>
+<h3 id="_using_unicode">14.1. Using Unicode</h3>
 <div class="listingblock">
 <div class="title">Let&#8217;s look at how we can output characters using Unicode</div>
 <div class="content">
@@ -5086,7 +6248,7 @@ UTF-8 is a character encoding capable of encoding all possible characters, or co
 </ol>
 </div>
 <div class="listingblock">
-<div class="title">Now lets output a smiley</div>
+<div class="title">Now let&#8217;s output a smiley</div>
 <div class="content">
 <pre class="rouge highlight"><code data-lang="raku"><span class="nb">say</span><span class="w"> </span><span class="s2">"☺"</span><span class="p">;</span><span class="w">
 </span><span class="nb">say</span><span class="w"> </span><span class="s2">"</span><span class="se">\x263a</span><span class="s2">"</span><span class="p">;</span><span class="w">
@@ -5133,7 +6295,7 @@ LATIN SMALL LETTER A WITH ACUTE</pre>
 </div>
 <div class="paragraph">
 <p><code>NFC</code> returns the unique code point.<br>
-<code>NFD</code> decomposes the character and return the code point of each part.<br>
+<code>NFD</code> decomposes the character and returns the code point of each part.<br>
 <code>uniname</code> returns the code point name.</p>
 </div>
 <div class="listingblock">
@@ -5147,15 +6309,15 @@ LATIN SMALL LETTER A WITH ACUTE</pre>
 <div class="listingblock">
 <div class="title">Unicode can be used to do math:</div>
 <div class="content">
-<pre class="rouge highlight"><code data-lang="raku"><span class="kd">my</span><span class="w"> </span><span class="nv">$var</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">⅒</span><span class="p">;</span><span class="w">
+<pre class="rouge highlight"><code data-lang="raku"><span class="kd">my</span><span class="w"> </span><span class="nv">$var</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">⅒</span><span class="p">;</span><span class="w">
 </span><span class="nb">say</span><span class="w"> </span><span class="nv">$var</span><span class="p">;</span></code></pre>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_unicode_aware_operations">13.2. Unicode-aware Operations</h3>
+<h3 id="_unicode_aware_operations">14.2. Unicode-aware Operations</h3>
 <div class="sect3">
-<h4 id="_numbers">13.2.1. Numbers</h4>
+<h4 id="_numbers">14.2.1. Numbers</h4>
 <div class="paragraph">
 <p>Arabic numerals are the ten digits: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9.
 This numeral set is the most used worldwide.</p>
@@ -5175,7 +6337,7 @@ All methods/operators work as expected.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_strings">13.2.2. Strings</h4>
+<h4 id="_strings_2">14.2.2. Strings</h4>
 <div class="paragraph">
 <p>If we were to use generic string operations, we might not always get the result that we were looking for,
 especially when comparing or sorting.</p>
@@ -5225,10 +6387,10 @@ method that implements the <a href="http://unicode.org/reports/tr10/">Unicode Co
 </div>
 </div>
 <div class="sect1">
-<h2 id="_parallelism_concurrency_and_asynchrony">14. Parallelism, Concurrency and Asynchrony</h2>
+<h2 id="_parallelism_concurrency_and_asynchrony">15. Parallelism, Concurrency and Asynchrony</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_parallelism">14.1. Parallelism</h3>
+<h3 id="_parallelism">15.1. Parallelism</h3>
 <div class="paragraph">
 <p>Under normal circumstances, all tasks in a program run sequentially.<br>
 This might not be a problem, unless what you&#8217;re trying to do takes a lot of time.</p>
@@ -5251,7 +6413,7 @@ At this stage, it is important to note that parallelism can mean one of two thin
 <p>Let&#8217;s begin with the latter.</p>
 </div>
 <div class="sect3">
-<h4 id="_data_parallelism">14.1.1. Data Parallelism</h4>
+<h4 id="_data_parallelism">15.1.1. Data Parallelism</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="raku"><span class="kd">my</span><span class="w"> </span><span class="nv">@array</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="o">..</span><span class="mi">50000</span><span class="p">;</span><span class="w">                       </span><span class="c1"># Array population</span><span class="w">
@@ -5288,7 +6450,7 @@ This method will enable parallel iteration of the array elements.</p>
 </td>
 <td class="content">
 <div class="paragraph">
-<p><code>race</code> will not preserve the order of elements. If you wish to do, so use <code>hyper</code> instead.</p>
+<p><code>race</code> will not preserve the order of elements. If you wish to do so, use <code>hyper</code> instead.</p>
 </div>
 <div class="listingblock">
 <div class="title">race</div>
@@ -5315,7 +6477,7 @@ This method will enable parallel iteration of the array elements.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_task_parallelism">14.1.2. Task Parallelism</h4>
+<h4 id="_task_parallelism">15.1.2. Task Parallelism</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="raku"><span class="kd">my</span><span class="w"> </span><span class="nv">@array1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="o">..</span><span class="mi">49999</span><span class="p">;</span><span class="w">
@@ -5397,7 +6559,116 @@ This is why, using <code>race</code>, <code>hyper</code>, <code>start</code> and
 </div>
 </div>
 <div class="sect2">
-<h3 id="_concurrency_and_asynchrony">14.2. Concurrency and Asynchrony</h3>
+<h3 id="_concurrency_and_asynchrony">15.2. Concurrency and Asynchrony</h3>
+<div class="paragraph">
+<p>In the previous section, we used parallelism to make a computation faster.<br>
+<strong>Concurrency</strong> and <strong>asynchrony</strong> answer a different need. A program often has to wait: for a timer, for a file or for a reply from the network.<br>
+Instead of doing nothing while it waits, the program can carry on with something else and come back to the task once it is ready.</p>
+</div>
+<div class="sect3">
+<h4 id="_promises">15.2.1. Promises</h4>
+<div class="paragraph">
+<p>We have already used promises with <code>start</code> and <code>await</code>.<br>
+A <strong>promise</strong> stands for a result that is not available yet, but will be at some point.</p>
+</div>
+<div class="listingblock">
+<div class="title"><code>Script</code></div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="raku"><span class="kd">my</span><span class="w"> </span><span class="nv">$coffee</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">start</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nb">sleep</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"> </span><span class="s2">"Coffee is ready"</span><span class="w"> </span><span class="p">};</span><span class="w">
+</span><span class="kd">my</span><span class="w"> </span><span class="nv">$toast</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="k">start</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nb">sleep</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="s2">"Toast is ready"</span><span class="w"> </span><span class="p">};</span><span class="w">
+
+</span><span class="nb">say</span><span class="w"> </span><span class="s2">"Preparing breakfast"</span><span class="p">;</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="nb">await</span><span class="w"> </span><span class="nv">$toast</span><span class="p">;</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="nb">await</span><span class="w"> </span><span class="nv">$coffee</span><span class="p">;</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title"><code>Output</code></div>
+<div class="content">
+<pre>Preparing breakfast
+Toast is ready
+Coffee is ready</pre>
+</div>
+</div>
+<div class="paragraph">
+<div class="title">Explanation</div>
+<p><code>sleep</code> pauses for the given number of seconds. We use it here to imitate a task that takes time.<br>
+<code>start</code> launches a task and returns a promise immediately. It does not wait for the task to finish.
+This is why <code>Preparing breakfast</code> is displayed first.<br>
+<code>await</code> waits for a promise and returns its result.<br>
+Both tasks run at the same time, so the script takes about 2 seconds instead of 3.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_supplies">15.2.2. Supplies</h4>
+<div class="paragraph">
+<p>A promise delivers a single result. A <strong>supply</strong> delivers many values, one after the other, over a period of time.</p>
+</div>
+<div class="paragraph">
+<p><code>Supply.interval(1)</code> is a supply that produces a new number every second: 0, 1, 2 and so on.<br>
+To act on each value as it arrives, we use <code>react</code> and <code>whenever</code>.</p>
+</div>
+<div class="listingblock">
+<div class="title"><code>Script</code></div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="raku"><span class="k">react</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="k">whenever</span><span class="w"> </span><span class="kt">Supply</span><span class="o">.</span><span class="nb">interval</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nv">$second</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nb">say</span><span class="w"> </span><span class="s2">"Tick </span><span class="nv">$second</span><span class="s2">"</span><span class="p">;</span><span class="w">
+    </span><span class="nb">done</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="nv">$second</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="s2">"Finished"</span><span class="p">;</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title"><code>Output</code></div>
+<div class="content">
+<pre>Tick 0
+Tick 1
+Tick 2
+Tick 3
+Finished</pre>
+</div>
+</div>
+<div class="paragraph">
+<div class="title">Explanation</div>
+<p><code>whenever</code> runs its block each time the supply produces a value.<br>
+<code>react</code> keeps the script waiting for new values until <code>done</code> is called.<br>
+<code>done if $second == 3</code> stops the <code>react</code> block after the fourth value. Without it, the script would never end.</p>
+</div>
+<div class="paragraph">
+<p>A <code>react</code> block can contain more than one <code>whenever</code>. This allows a script to wait for several things at once.</p>
+</div>
+<div class="listingblock">
+<div class="title"><code>Script</code></div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="raku"><span class="k">react</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="k">whenever</span><span class="w"> </span><span class="kt">Supply</span><span class="o">.</span><span class="nb">interval</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nv">$second</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nb">say</span><span class="w"> </span><span class="s2">"Tick </span><span class="nv">$second</span><span class="s2">"</span><span class="p">;</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+  </span><span class="k">whenever</span><span class="w"> </span><span class="kt">Promise</span><span class="o">.</span><span class="nb">in</span><span class="p">(</span><span class="mf">3.5</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nb">say</span><span class="w"> </span><span class="s2">"Time is up"</span><span class="p">;</span><span class="w">
+    </span><span class="nb">done</span><span class="p">;</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title"><code>Output</code></div>
+<div class="content">
+<pre>Tick 0
+Tick 1
+Tick 2
+Tick 3
+Time is up</pre>
+</div>
+</div>
+<div class="paragraph">
+<div class="title">Explanation</div>
+<p><code>Promise.in(3.5)</code> is a promise that is kept after 3.5 seconds.<br>
+The first <code>whenever</code> displays a line every second.<br>
+The second <code>whenever</code> waits for the promise, and then stops the <code>react</code> block.</p>
+</div>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -5413,8 +6684,9 @@ For more info on Concurrency and Asynchronous Programming, see <a href="https://
 </div>
 </div>
 </div>
+</div>
 <div class="sect1">
-<h2 id="_native_calling_interface">15. Native Calling Interface</h2>
+<h2 id="_native_calling_interface">16. Native Calling Interface</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Raku gives us the ability to use C libraries, using the Native Calling Interface.</p>
@@ -5424,7 +6696,7 @@ For more info on Concurrency and Asynchronous Programming, see <a href="https://
 of interfacing Raku and C.</p>
 </div>
 <div class="sect2">
-<h3 id="_calling_a_function">15.1. Calling a function</h3>
+<h3 id="_calling_a_function">16.1. Calling a function</h3>
 <div class="paragraph">
 <p>Consider the below C code that defines a function called <code>hellofromc</code>.
 This function prints on the terminal <code>Hello from C</code>. It doesn&#8217;t accept any argument nor return any value.</p>
@@ -5493,7 +6765,7 @@ Finally we called our Raku subroutine.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_renaming_a_function">15.2. Renaming a function</h3>
+<h3 id="_renaming_a_function">16.2. Renaming a function</h3>
 <div class="paragraph">
 <p>In the above part, we saw how we can call a very simple C function by wrapping
 it with a Raku subroutine having the same name, using the <code>is native</code> trait.</p>
@@ -5503,7 +6775,7 @@ it with a Raku subroutine having the same name, using the <code>is native</code>
 To do so, we use the <code>is symbol</code> trait.</p>
 </div>
 <div class="paragraph">
-<p>Lets modify the above Raku script and rename the Raku subroutine <code>hello</code>
+<p>Let&#8217;s modify the above Raku script and rename the Raku subroutine <code>hello</code>
 instead of <code>hellofromc</code></p>
 </div>
 <div class="listingblock">
@@ -5524,7 +6796,7 @@ should use the <code>is symbol</code> trait with the name of the original C func
 </div>
 </div>
 <div class="sect2">
-<h3 id="_passing_arguments">15.3. Passing Arguments</h3>
+<h3 id="_passing_arguments">16.3. Passing Arguments</h3>
 <div class="paragraph">
 <p>Compile the following modified C library and run the Raku script found below again.<br>
 Notice how we modified both C and Raku code to accept a string (<code>char*</code> in C and <code>Str</code> in Raku)</p>
@@ -5552,10 +6824,10 @@ Notice how we modified both C and Raku code to accept a string (<code>char*</cod
 </div>
 </div>
 <div class="sect2">
-<h3 id="_returning_values_2">15.4. Returning values</h3>
+<h3 id="_returning_values_2">16.4. Returning values</h3>
 <div class="paragraph">
-<p>Lets repeat the process one more time and create a simple calculator that takes
-2 integers and add them.<br>
+<p>Let&#8217;s repeat the process one more time and create a simple calculator that takes
+2 integers and adds them.<br>
 Compile the C library and run the Raku script.</p>
 </div>
 <div class="listingblock">
@@ -5583,9 +6855,9 @@ Compile the C library and run the Raku script.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_types_2">15.5. Types</h3>
+<h3 id="_types_2">16.5. Types</h3>
 <div class="paragraph">
-<p>You might have asked yourself why did we use <code>int32</code> instead of <code>Int</code> in the latest Raku script.<br>
+<p>You might have asked yourself why we used <code>int32</code> instead of <code>Int</code> in the latest Raku script.<br>
 Some Raku types like <code>Int</code>, <code>Rat</code> etc. can&#8217;t be used as is to pass and receive values from a C function.<br>
 One must use in Raku the same types as the ones in C.</p>
 </div>
@@ -5704,13 +6976,13 @@ For more info on the Native Calling Interface, see <a href="https://docs.raku.or
 </div>
 </div>
 <div class="sect1">
-<h2 id="_the_community">16. The Community</h2>
+<h2 id="_the_community">17. The Community</h2>
 <div class="sectionbody">
 <div class="ulist">
 <ul>
 <li>
 <p><a href="https://web.libera.chat/#raku">#raku</a> IRC channel. Much discussion happens on IRC.<br>
-This should be your go to place for any enquiry for which you want an immediate answer: <a href="https://raku.org/community/irc" class="bare">https://raku.org/community/irc</a></p>
+This should be your go to place for any enquiry for which you want an immediate answer.</p>
 </li>
 <li>
 <p><a href="https://stackoverflow.com/questions/tagged/raku">StackOverflow Raku questions</a> is a place where questions about Raku can be answered more in-depth.</p>
@@ -5743,7 +7015,7 @@ This should be your go to place for any enquiry for which you want an immediate 
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-10-06 12:54:52 UTC
+Last updated 2026-10-12 21:49:14 UTC
 </div>
 </div>
 </body>

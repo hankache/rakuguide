@@ -8,6 +8,7 @@
 <meta name="description" content="Загальна інтродукція до Raku">
 <meta name="keywords" content="perl6, Raku, introduction, perl6intro, Raku introduction, Raku tutorial, Raku intro, raku, raku introduction, raku guide, raku tutorial, вступ, введення до Raku, інтродукція до 6, вивчення perl6">
 <meta name="author" content="Naoum Hankache, Dmytro Iaskolko">
+<meta name="copyright" content="CC BY-SA 4.0">
 <link rel="icon" type="image/x-icon" href="../favicon.ico">
 <title>Вступ до Raku</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
@@ -1104,11 +1105,11 @@ echo</span> <span class="s2">"export PATH=</span><span class="si">$(</span><span
 <p>Багаторядкові:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="raku"><span class="cp">=begin</span><span class="w"> </span><span class="nn">comment</span><span class="w">
-</span><span class="cm">Це багаторядковий коментар.</span><span class="w">
-</span><span class="cm">Коментар 1</span><span class="w">
-</span><span class="cm">Коментар 2</span><span class="w">
-</span><span class="cp">=end</span><span class="w"> </span><span class="nn">comment</span></code></pre>
+<pre class="rouge highlight"><code data-lang="raku"><span class="cp">=begin</span><span class="w"> </span><span class="cp">comment</span><span class="w">
+</span><span class="cm">Це багаторядковий коментар.
+Коментар 1
+Коментар 2
+</span><span class="cp">=end</span><span class="w"> </span><span class="cp">comment</span></code></pre>
 </div>
 </div>
 </li>
@@ -1907,7 +1908,7 @@ echo</span> <span class="s2">"export PATH=</span><span class="si">$(</span><span
 </span><span class="nb">say</span><span class="w"> </span><span class="nv">%capitals</span><span class="o">.</span><span class="nb">kv</span><span class="p">;</span><span class="w">
 </span><span class="nb">say</span><span class="w"> </span><span class="nv">%capitals</span><span class="o">.</span><span class="nb">keys</span><span class="p">;</span><span class="w">
 </span><span class="nb">say</span><span class="w"> </span><span class="nv">%capitals</span><span class="o">.</span><span class="nb">values</span><span class="p">;</span><span class="w">
-</span><span class="nb">say</span><span class="w"> </span><span class="s2">"Столиця Франції це: "</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="nv">%capitals&lt;France&gt;</span><span class="p">;</span></code></pre>
+</span><span class="nb">say</span><span class="w"> </span><span class="s2">"Столиця Франції це: "</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="nv">%capitals</span><span class="s">&lt;France&gt;</span><span class="p">;</span></code></pre>
 </div>
 </div>
 <div class="listingblock">
@@ -2255,17 +2256,7 @@ Cannot assign to an immutable value</pre>
 <div class="listingblock">
 <div class="title"><code>Скрипт</code></div>
 <div class="content">
-<pre class="rouge highlight"><code data-lang="raku"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno"> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-</pre></td><td class="code"><pre><span class="kd">my</span><span class="w"> </span><span class="nv">@numbers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">7</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">3</span><span class="p">];</span><span class="w">
+<pre class="rouge highlight"><code data-lang="raku"><span class="kd">my</span><span class="w"> </span><span class="nv">@numbers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">7</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">3</span><span class="p">];</span><span class="w">
 
 </span><span class="nv">@numbers</span><span class="o">.</span><span class="nb">push</span><span class="p">(</span><span class="mi">99</span><span class="p">);</span><span class="w">
 </span><span class="nb">say</span><span class="w"> </span><span class="nv">@numbers</span><span class="p">;</span><span class="w">      </span><span class="c1">#1</span><span class="w">
@@ -2274,8 +2265,7 @@ Cannot assign to an immutable value</pre>
 </span><span class="nb">say</span><span class="w"> </span><span class="nv">@numbers</span><span class="p">;</span><span class="w">      </span><span class="c1">#3</span><span class="w">
 
 </span><span class="nv">@numbers</span><span class="o">.=</span><span class="nb">sort</span><span class="p">;</span><span class="w">
-</span><span class="nb">say</span><span class="w"> </span><span class="nv">@numbers</span><span class="p">;</span><span class="w">      </span><span class="c1">#4</span>
-</pre></td></tr></tbody></table></code></pre>
+</span><span class="nb">say</span><span class="w"> </span><span class="nv">@numbers</span><span class="p">;</span><span class="w">      </span><span class="c1">#4</span></code></pre>
 </div>
 </div>
 <div class="listingblock">
@@ -2305,7 +2295,7 @@ Cannot assign to an immutable value</pre>
 </ul>
 </div>
 <div class="paragraph">
-<p>Аби змусити функцію  поводитися, як мутатор, ми використовуємо <code>.=</code> замість <code>.</code> (#4) (Рядок 9 скрипта)</p>
+<p>Аби змусити функцію  поводитися, як мутатор, ми використовуємо <code>.=</code> замість <code>.</code> (#4)</p>
 </div>
 </div>
 </div>
@@ -2475,7 +2465,7 @@ Cannot assign to an immutable value</pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-10-06 12:54:52 UTC
+Last updated 2026-10-12 21:49:14 UTC
 </div>
 </div>
 </body>

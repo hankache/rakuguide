@@ -8,6 +8,7 @@
 <meta name="description" content="Een algemene inleiding van Raku">
 <meta name="keywords" content="perl6, perl 6, inleiding, perl6intro, perl 6 inleiding, perl 6 tutorial, perl 6 intro, raku, raku inleiding, raku tutorial">
 <meta name="author" content="Naoum Hankache, Elizabeth Mattijsen">
+<meta name="copyright" content="CC BY-SA 4.0">
 <link rel="icon" type="image/x-icon" href="../favicon.ico">
 <title>Raku Inleiding</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
@@ -1132,11 +1133,11 @@ Voer het volgende commando uit om deze functionaliteit te installeren:</p>
 <p>Meer dan één regel</p>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="raku"><span class="cp">=begin</span><span class="w"> </span><span class="nn">comment</span><span class="w">
-</span><span class="cm">Dit is een commentaar over meer dan één regel</span><span class="w">
-</span><span class="cm">Commentaar 1</span><span class="w">
-</span><span class="cm">Commentaar 2</span><span class="w">
-</span><span class="cp">=end</span><span class="w"> </span><span class="nn">comment</span></code></pre>
+<pre class="rouge highlight"><code data-lang="raku"><span class="cp">=begin</span><span class="w"> </span><span class="cp">comment</span><span class="w">
+</span><span class="cm">Dit is een commentaar over meer dan één regel
+Commentaar 1
+Commentaar 2
+</span><span class="cp">=end</span><span class="w"> </span><span class="cp">comment</span></code></pre>
 </div>
 </div>
 </li>
@@ -2021,7 +2022,7 @@ Zie <a href="https://docs.raku.org/type/Array" class="bare">https://docs.raku.or
 </span><span class="nb">say</span><span class="w"> </span><span class="nv">%hoofdsteden</span><span class="o">.</span><span class="nb">kv</span><span class="p">;</span><span class="w">
 </span><span class="nb">say</span><span class="w"> </span><span class="nv">%hoofdsteden</span><span class="o">.</span><span class="nb">keys</span><span class="p">;</span><span class="w">
 </span><span class="nb">say</span><span class="w"> </span><span class="nv">%hoofdsteden</span><span class="o">.</span><span class="nb">values</span><span class="p">;</span><span class="w">
-</span><span class="nb">say</span><span class="w"> </span><span class="s2">"De hoofdstad van Frankrijk is: "</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="nv">%hoofdsteden&lt;Frankrijk&gt;</span><span class="p">;</span></code></pre>
+</span><span class="nb">say</span><span class="w"> </span><span class="s2">"De hoofdstad van Frankrijk is: "</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="nv">%hoofdsteden</span><span class="s">&lt;Frankrijk&gt;</span><span class="p">;</span></code></pre>
 </div>
 </div>
 <div class="listingblock">
@@ -2368,17 +2369,7 @@ Mutators veranderen de toestand van een object <strong>wel</strong>.</p>
 <div class="listingblock">
 <div class="title"><code>Script</code></div>
 <div class="content">
-<pre class="rouge highlight"><code data-lang="raku"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno"> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-</pre></td><td class="code"><pre><span class="kd">my</span><span class="w"> </span><span class="nv">@nummers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">7</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">3</span><span class="p">];</span><span class="w">
+<pre class="rouge highlight"><code data-lang="raku"><span class="kd">my</span><span class="w"> </span><span class="nv">@nummers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">7</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">3</span><span class="p">];</span><span class="w">
 
 </span><span class="nv">@nummers</span><span class="o">.</span><span class="nb">push</span><span class="p">(</span><span class="mi">99</span><span class="p">);</span><span class="w">
 </span><span class="nb">say</span><span class="w"> </span><span class="nv">@nummers</span><span class="p">;</span><span class="w">      </span><span class="c1">#1</span><span class="w">
@@ -2387,8 +2378,7 @@ Mutators veranderen de toestand van een object <strong>wel</strong>.</p>
 </span><span class="nb">say</span><span class="w"> </span><span class="nv">@nummers</span><span class="p">;</span><span class="w">      </span><span class="c1">#3</span><span class="w">
 
 </span><span class="nv">@nummers</span><span class="w"> </span><span class="o">.=</span><span class="w"> </span><span class="nb">sort</span><span class="p">;</span><span class="w">
-</span><span class="nb">say</span><span class="w"> </span><span class="nv">@nummers</span><span class="p">;</span><span class="w">      </span><span class="c1">#4</span>
-</pre></td></tr></tbody></table></code></pre>
+</span><span class="nb">say</span><span class="w"> </span><span class="nv">@nummers</span><span class="p">;</span><span class="w">      </span><span class="c1">#4</span></code></pre>
 </div>
 </div>
 <div class="listingblock">
@@ -2418,7 +2408,7 @@ Mutators veranderen de toestand van een object <strong>wel</strong>.</p>
 </ul>
 </div>
 <div class="paragraph">
-<p>Men kan een functie als een mutator laten optreden door <code>.=</code> in plaats van <code>.</code> te gebruiken (#4) (regel 9 van het script)</p>
+<p>Men kan een functie als een mutator laten optreden door <code>.=</code> in plaats van <code>.</code> te gebruiken (#4)</p>
 </div>
 </div>
 </div>
@@ -5054,7 +5044,7 @@ LATIN SMALL LETTER A WITH ACUTE</pre>
 <div class="listingblock">
 <div class="title">Unicode kan ook worden gebruikt in berekeningen</div>
 <div class="content">
-<pre class="rouge highlight"><code data-lang="raku"><span class="kd">my</span><span class="w"> </span><span class="nv">$var</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">⅒</span><span class="p">;</span><span class="w">
+<pre class="rouge highlight"><code data-lang="raku"><span class="kd">my</span><span class="w"> </span><span class="nv">$var</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">⅒</span><span class="p">;</span><span class="w">
 </span><span class="nb">say</span><span class="w"> </span><span class="nv">$var</span><span class="p">;</span></code></pre>
 </div>
 </div>
@@ -5624,7 +5614,7 @@ Voor meer informatie over de Native Calling Interface, zie <a href="https://docs
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-10-06 12:54:52 UTC
+Last updated 2026-10-12 21:49:14 UTC
 </div>
 </div>
 </body>

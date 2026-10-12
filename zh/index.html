@@ -8,6 +8,7 @@
 <meta name="description" content="Raku 入门">
 <meta name="keywords" content="perl6, Raku, 入门, perl6intro, Raku 入门, Raku 指南, Raku Intro, Raku Guide">
 <meta name="author" content="Naoum Hankache, ohmycloud, wenjie1991">
+<meta name="copyright" content="CC BY-SA 4.0">
 <link rel="icon" type="image/x-icon" href="../favicon.ico">
 <title>Raku 入门</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
@@ -1188,11 +1189,11 @@ REPL 将会打印出该行的返回值。然后你可以输入另外的行, 或�
 <p>多行注释:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="raku"><span class="cp">=begin</span><span class="w"> </span><span class="nn">comment</span><span class="w">
-</span><span class="cm">This is a multi line comment.</span><span class="w">
-</span><span class="cm">Comment 1</span><span class="w">
-</span><span class="cm">Comment 2</span><span class="w">
-</span><span class="cp">=end</span><span class="w"> </span><span class="nn">comment</span></code></pre>
+<pre class="rouge highlight"><code data-lang="raku"><span class="cp">=begin</span><span class="w"> </span><span class="cp">comment</span><span class="w">
+</span><span class="cm">This is a multi line comment.
+Comment 1
+Comment 2
+</span><span class="cp">=end</span><span class="w"> </span><span class="cp">comment</span></code></pre>
 </div>
 </div>
 </li>
@@ -2069,7 +2070,7 @@ eoD nhoJ</pre>
 </span><span class="nb">say</span><span class="w"> </span><span class="nv">%capitals</span><span class="o">.</span><span class="nb">kv</span><span class="p">;</span><span class="w">
 </span><span class="nb">say</span><span class="w"> </span><span class="nv">%capitals</span><span class="o">.</span><span class="nb">keys</span><span class="p">;</span><span class="w">
 </span><span class="nb">say</span><span class="w"> </span><span class="nv">%capitals</span><span class="o">.</span><span class="nb">values</span><span class="p">;</span><span class="w">
-</span><span class="nb">say</span><span class="w"> </span><span class="s2">"The capital of France is: "</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="nv">%capitals&lt;France&gt;</span><span class="p">;</span></code></pre>
+</span><span class="nb">say</span><span class="w"> </span><span class="s2">"The capital of France is: "</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="nv">%capitals</span><span class="s">&lt;France&gt;</span><span class="p">;</span></code></pre>
 </div>
 </div>
 <div class="listingblock">
@@ -2419,17 +2420,7 @@ Cannot assign to an immutable value 不允许赋值到一个不可变值</pre>
 <div class="listingblock">
 <div class="title"><code>脚本</code></div>
 <div class="content">
-<pre class="rouge highlight"><code data-lang="raku"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno"> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-</pre></td><td class="code"><pre><span class="kd">my</span><span class="w"> </span><span class="nv">@numbers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">7</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">3</span><span class="p">];</span><span class="w">
+<pre class="rouge highlight"><code data-lang="raku"><span class="kd">my</span><span class="w"> </span><span class="nv">@numbers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">7</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">3</span><span class="p">];</span><span class="w">
 
 </span><span class="nv">@numbers</span><span class="o">.</span><span class="nb">push</span><span class="p">(</span><span class="mi">99</span><span class="p">);</span><span class="w">
 </span><span class="nb">say</span><span class="w"> </span><span class="nv">@numbers</span><span class="p">;</span><span class="w">      </span><span class="c1">#1</span><span class="w">
@@ -2438,8 +2429,7 @@ Cannot assign to an immutable value 不允许赋值到一个不可变值</pre>
 </span><span class="nb">say</span><span class="w"> </span><span class="nv">@numbers</span><span class="p">;</span><span class="w">      </span><span class="c1">#3</span><span class="w">
 
 </span><span class="nv">@numbers</span><span class="o">.=</span><span class="nb">sort</span><span class="p">;</span><span class="w">
-</span><span class="nb">say</span><span class="w"> </span><span class="nv">@numbers</span><span class="p">;</span><span class="w">      </span><span class="c1">#4</span>
-</pre></td></tr></tbody></table></code></pre>
+</span><span class="nb">say</span><span class="w"> </span><span class="nv">@numbers</span><span class="p">;</span><span class="w">      </span><span class="c1">#4</span></code></pre>
 </div>
 </div>
 <div class="listingblock">
@@ -2469,7 +2459,7 @@ Cannot assign to an immutable value 不允许赋值到一个不可变值</pre>
 </ul>
 </div>
 <div class="paragraph">
-<p>为了强制一个函数作为修改器那样对原始数据进行修改，而我们可以使用 <code>.=</code> 来代替 <code>.</code> (#4) (脚本的第9行)</p>
+<p>为了强制一个函数作为修改器那样对原始数据进行修改，而我们可以使用 <code>.=</code> 来代替 <code>.</code> (#4)</p>
 </div>
 </div>
 </div>
@@ -5169,7 +5159,7 @@ LATIN SMALL LETTER A WITH ACUTE</pre>
 <div class="listingblock">
 <div class="title">Unicode 可以用作做算术:</div>
 <div class="content">
-<pre class="rouge highlight"><code data-lang="raku"><span class="kd">my</span><span class="w"> </span><span class="nv">$var</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">⅒</span><span class="p">;</span><span class="w">
+<pre class="rouge highlight"><code data-lang="raku"><span class="kd">my</span><span class="w"> </span><span class="nv">$var</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">⅒</span><span class="p">;</span><span class="w">
 </span><span class="nb">say</span><span class="w"> </span><span class="nv">$var</span><span class="p">;</span></code></pre>
 </div>
 </div>
@@ -5740,7 +5730,7 @@ gcc -shared -o ncitest.dll ncitest.o</pre>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-10-06 12:54:52 UTC
+Last updated 2026-10-12 21:49:14 UTC
 </div>
 </div>
 </body>

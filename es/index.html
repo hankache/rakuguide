@@ -8,6 +8,7 @@
 <meta name="description" content="Una introducción general a Raku">
 <meta name="keywords" content="perl6, perl 6, introducción, perl6intro, introducción a perl 6, tutorial de perl 6, perl 6 intro, raku, introducción a raku, guía de raku, tutorial de raku">
 <meta name="author" content="Naoum Hankache, Ramiro Encinas">
+<meta name="copyright" content="CC BY-SA 4.0">
 <link rel="icon" type="image/x-icon" href="../favicon.ico">
 <title>Guía de Raku</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
@@ -1128,11 +1129,11 @@ echo</span> <span class="s2">"export PATH=</span><span class="si">$(</span><span
 <p>De varias líneas:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="raku"><span class="cp">=begin</span><span class="w"> </span><span class="nn">comentario</span><span class="w">
+<pre class="rouge highlight"><code data-lang="raku"><span class="cp">=begin</span><span class="w"> </span><span class="cp">comentario</span><span class="w">
 </span><span class="cm">Esto es un comentario de varias líneas.</span><span class="w">
 </span><span class="cm">Comentario 1</span><span class="w">
 </span><span class="cm">Comentario 2</span><span class="w">
-</span><span class="cp">=end</span><span class="w"> </span><span class="nn">comentario</span></code></pre>
+</span><span class="cp">=end</span><span class="w"> </span><span class="cp">comentario</span></code></pre>
 </div>
 </div>
 </li>
@@ -1935,7 +1936,7 @@ Consulta <a href="https://docs.raku.org/type/Array" class="bare">https://docs.ra
 </span><span class="nb">say</span><span class="w"> </span><span class="nv">%capitales</span><span class="o">.</span><span class="nb">kv</span><span class="p">;</span><span class="w">
 </span><span class="nb">say</span><span class="w"> </span><span class="nv">%capitales</span><span class="o">.</span><span class="nb">keys</span><span class="p">;</span><span class="w">
 </span><span class="nb">say</span><span class="w"> </span><span class="nv">%capitales</span><span class="o">.</span><span class="nb">values</span><span class="p">;</span><span class="w">
-</span><span class="nb">say</span><span class="w"> </span><span class="s2">"La capital de Francia es: "</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="nv">%capitales&lt;Francia&gt;</span><span class="p">;</span></code></pre>
+</span><span class="nb">say</span><span class="w"> </span><span class="s2">"La capital de Francia es: "</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="nv">%capitales</span><span class="s">&lt;Francia&gt;</span><span class="p">;</span></code></pre>
 </div>
 </div>
 <div class="listingblock">
@@ -2289,17 +2290,7 @@ En <a href="https://docs.raku.org/language/variables" class="bare">https://docs.
 <div class="listingblock">
 <div class="title"><code>Script</code></div>
 <div class="content">
-<pre class="rouge highlight"><code data-lang="raku"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno"> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-</pre></td><td class="code"><pre><span class="kd">my</span><span class="w"> </span><span class="nv">@números</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">7</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">3</span><span class="p">];</span><span class="w">
+<pre class="rouge highlight"><code data-lang="raku"><span class="kd">my</span><span class="w"> </span><span class="nv">@números</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">7</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">3</span><span class="p">];</span><span class="w">
 
 </span><span class="nv">@números</span><span class="o">.</span><span class="nb">push</span><span class="p">(</span><span class="mi">99</span><span class="p">);</span><span class="w">
 </span><span class="nb">say</span><span class="w"> </span><span class="nv">@números</span><span class="p">;</span><span class="w">      </span><span class="c1">#1</span><span class="w">
@@ -2308,8 +2299,7 @@ En <a href="https://docs.raku.org/language/variables" class="bare">https://docs.
 </span><span class="nb">say</span><span class="w"> </span><span class="nv">@números</span><span class="p">;</span><span class="w">      </span><span class="c1">#3</span><span class="w">
 
 </span><span class="nv">@números</span><span class="o">.=</span><span class="nb">sort</span><span class="p">;</span><span class="w">
-</span><span class="nb">say</span><span class="w"> </span><span class="nv">@números</span><span class="p">;</span><span class="w">      </span><span class="c1">#4</span>
-</pre></td></tr></tbody></table></code></pre>
+</span><span class="nb">say</span><span class="w"> </span><span class="nv">@números</span><span class="p">;</span><span class="w">      </span><span class="c1">#4</span></code></pre>
 </div>
 </div>
 <div class="listingblock">
@@ -2339,7 +2329,7 @@ En <a href="https://docs.raku.org/language/variables" class="bare">https://docs.
 </ul>
 </div>
 <div class="paragraph">
-<p>Puedes hacer que una función se comporte como un mutador utilizando <code>.=</code> en lugar de <code>.</code> (#4) (línea 9 del script)</p>
+<p>Puedes hacer que una función se comporte como un mutador utilizando <code>.=</code> en lugar de <code>.</code> (#4)</p>
 </div>
 </div>
 </div>
@@ -4953,7 +4943,7 @@ LATIN SMALL LETTER A WITH ACUTE</pre>
 <div class="listingblock">
 <div class="title">Se pueden utilizar símbolos matemáticos Unicode:</div>
 <div class="content">
-<pre class="rouge highlight"><code data-lang="raku"><span class="kd">my</span><span class="w"> </span><span class="nv">$var</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">⅒</span><span class="p">;</span><span class="w">
+<pre class="rouge highlight"><code data-lang="raku"><span class="kd">my</span><span class="w"> </span><span class="nv">$var</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">⅒</span><span class="p">;</span><span class="w">
 </span><span class="nb">say</span><span class="w"> </span><span class="nv">$var</span><span class="p">;</span></code></pre>
 </div>
 </div>
@@ -5531,7 +5521,7 @@ En <a href="https://docs.raku.org/language/nativecall" class="bare">https://docs
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-10-06 12:54:52 UTC
+Last updated 2026-10-12 21:49:14 UTC
 </div>
 </div>
 </body>

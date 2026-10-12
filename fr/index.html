@@ -8,6 +8,7 @@
 <meta name="description" content="Une introduction générale à Raku">
 <meta name="keywords" content="perl6, Raku, introduction, rakuguide, Raku introduction, Introduction à Raku">
 <meta name="author" content="Naoum Hankache, Romuald Nuguet">
+<meta name="copyright" content="CC BY-SA 4.0">
 <link rel="icon" type="image/x-icon" href="../favicon.ico">
 <title>Introduction à Raku</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
@@ -566,7 +567,7 @@ pre.rouge .gs {
   gtag('config', 'G-BKRLVLW1G0');
 </script>
 </head>
-<body class="article toc2 toc-left">
+<body class="book toc2 toc-left">
 <div id="header">
 <h1>Introduction à Raku</h1>
 <div class="details">
@@ -1138,11 +1139,11 @@ mais, pour des raisons de cohérence et de lisibilité, il est recommandé de ch
 <p>multi ligne:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="raku"><span class="cp">=begin</span><span class="w"> </span><span class="nn">comment</span><span class="w">
-</span><span class="cm">Ceci est un commentaire sur plusieurs lignes.</span><span class="w">
-</span><span class="cm">Commentaire 1</span><span class="w">
-</span><span class="cm">Commentaire 2</span><span class="w">
-</span><span class="cp">=end</span><span class="w"> </span><span class="nn">comment</span></code></pre>
+<pre class="rouge highlight"><code data-lang="raku"><span class="cp">=begin</span><span class="w"> </span><span class="cp">comment</span><span class="w">
+</span><span class="cm">Ceci est un commentaire sur plusieurs lignes.
+Commentaire 1
+Commentaire 2
+</span><span class="cp">=end</span><span class="w"> </span><span class="cp">comment</span></code></pre>
 </div>
 </div>
 </li>
@@ -1858,7 +1859,7 @@ Pour la référence complète des tableaux: <a href="https://docs.raku.org/type/
 </span><span class="nb">say</span><span class="w"> </span><span class="nv">%capitales</span><span class="o">.</span><span class="nb">kv</span><span class="p">;</span><span class="w">
 </span><span class="nb">say</span><span class="w"> </span><span class="nv">%capitales</span><span class="o">.</span><span class="nb">keys</span><span class="p">;</span><span class="w">
 </span><span class="nb">say</span><span class="w"> </span><span class="nv">%capitales</span><span class="o">.</span><span class="nb">values</span><span class="p">;</span><span class="w">
-</span><span class="nb">say</span><span class="w"> </span><span class="s2">"La capitale de la France est: "</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="nv">%capitales&lt;France&gt;</span><span class="p">;</span></code></pre>
+</span><span class="nb">say</span><span class="w"> </span><span class="s2">"La capitale de la France est: "</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="nv">%capitales</span><span class="s">&lt;France&gt;</span><span class="p">;</span></code></pre>
 </div>
 </div>
 <div class="listingblock">
@@ -2178,17 +2179,7 @@ Les fonctions mutatrices modifient l&#8217;état de l&#8217;objet.</p>
 <div class="listingblock">
 <div class="title"><code>Script</code></div>
 <div class="content">
-<pre class="rouge highlight"><code data-lang="raku"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno"> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-</pre></td><td class="code"><pre><span class="kd">my</span><span class="w"> </span><span class="nv">@numeros</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">7</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">3</span><span class="p">];</span><span class="w">
+<pre class="rouge highlight"><code data-lang="raku"><span class="kd">my</span><span class="w"> </span><span class="nv">@numeros</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">7</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">3</span><span class="p">];</span><span class="w">
 
 </span><span class="nv">@numeros</span><span class="o">.</span><span class="nb">push</span><span class="p">(</span><span class="mi">99</span><span class="p">);</span><span class="w">
 </span><span class="nb">say</span><span class="w"> </span><span class="nv">@numeros</span><span class="p">;</span><span class="w">      </span><span class="c1">#1</span><span class="w">
@@ -2197,8 +2188,7 @@ Les fonctions mutatrices modifient l&#8217;état de l&#8217;objet.</p>
 </span><span class="nb">say</span><span class="w"> </span><span class="nv">@numeros</span><span class="p">;</span><span class="w">      </span><span class="c1">#3</span><span class="w">
 
 </span><span class="nv">@numeros</span><span class="o">.=</span><span class="nb">sort</span><span class="p">;</span><span class="w">
-</span><span class="nb">say</span><span class="w"> </span><span class="nv">@numeros</span><span class="p">;</span><span class="w">      </span><span class="c1">#4</span>
-</pre></td></tr></tbody></table></code></pre>
+</span><span class="nb">say</span><span class="w"> </span><span class="nv">@numeros</span><span class="p">;</span><span class="w">      </span><span class="c1">#4</span></code></pre>
 </div>
 </div>
 <div class="listingblock">
@@ -2228,7 +2218,7 @@ Les fonctions mutatrices modifient l&#8217;état de l&#8217;objet.</p>
 </ul>
 </div>
 <div class="paragraph">
-<p>Afin de forcer une fonction normale à agir comme une fonction mutatrice, nous pouvons utiliser <code>.=</code> a la place de <code>.</code> (#4) (Ligne 9 du script)</p>
+<p>Afin de forcer une fonction normale à agir comme une fonction mutatrice, nous pouvons utiliser <code>.=</code> a la place de <code>.</code> (#4)</p>
 </div>
 </div>
 </div>
@@ -5176,7 +5166,7 @@ Votre première source d&#8217;infos si vous voulez dez réponses rapides: <a hr
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-10-06 12:54:52 UTC
+Last updated 2026-10-12 21:49:14 UTC
 </div>
 </div>
 </body>

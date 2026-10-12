@@ -8,6 +8,7 @@
 <meta name="description" content="Eine allgemeine Einführung in Perl 6">
 <meta name="keywords" content="perl6, perl 6, Einführung, perl6intro, perl 6 Einführung, perl 6 Tutorial, perl 6 intro">
 <meta name="author" content="Naoum Hankache, Sören Laird Sörries">
+<meta name="copyright" content="CC BY-SA 4.0">
 <link rel="icon" type="image/x-icon" href="../favicon.ico">
 <title>Perl 6 Einführung</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
@@ -1108,11 +1109,11 @@ Das läßt sich mit einem der folgenden Kommandos nachholen:</p>
 <p>Mehrzeilig/multi line:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="raku"><span class="cp">=begin</span><span class="w"> </span><span class="nn">comment</span><span class="w">
-</span><span class="cm">Dies ist ein mehrzeiliger Kommentar.</span><span class="w">
-</span><span class="cm">Kommentar 1</span><span class="w">
-</span><span class="cm">Kommentar 2</span><span class="w">
-</span><span class="cp">=end</span><span class="w"> </span><span class="nn">comment</span></code></pre>
+<pre class="rouge highlight"><code data-lang="raku"><span class="cp">=begin</span><span class="w"> </span><span class="cp">comment</span><span class="w">
+</span><span class="cm">Dies ist ein mehrzeiliger Kommentar.
+Kommentar 1
+Kommentar 2
+</span><span class="cp">=end</span><span class="w"> </span><span class="cp">comment</span></code></pre>
 </div>
 </div>
 </li>
@@ -1813,7 +1814,7 @@ Für die vollständige Referenz zu Arrays, siehe <a href="http://doc.perl6.org/t
 </span><span class="nb">say</span><span class="w"> </span><span class="nv">%hauptstadt</span><span class="o">.</span><span class="nb">kv</span><span class="p">;</span><span class="w">
 </span><span class="nb">say</span><span class="w"> </span><span class="nv">%hauptstadt</span><span class="o">.</span><span class="nb">keys</span><span class="p">;</span><span class="w">
 </span><span class="nb">say</span><span class="w"> </span><span class="nv">%hauptstadt</span><span class="o">.</span><span class="nb">values</span><span class="p">;</span><span class="w">
-</span><span class="nb">say</span><span class="w"> </span><span class="s2">"Die Hauptstadt von Frankreich ist: "</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="nv">%hauptstadt&lt;Frankreich&gt;</span><span class="p">;</span></code></pre>
+</span><span class="nb">say</span><span class="w"> </span><span class="s2">"Die Hauptstadt von Frankreich ist: "</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="nv">%hauptstadt</span><span class="s">&lt;Frankreich&gt;</span><span class="p">;</span></code></pre>
 </div>
 </div>
 <div class="listingblock">
@@ -2160,17 +2161,7 @@ Mutatoren ändern den Zustand des Objekts.</p>
 <div class="listingblock">
 <div class="title"><code>Skript</code></div>
 <div class="content">
-<pre class="rouge highlight"><code data-lang="raku"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno"> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-</pre></td><td class="code"><pre><span class="kd">my</span><span class="w"> </span><span class="nv">@zahlen</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">7</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">3</span><span class="p">];</span><span class="w">
+<pre class="rouge highlight"><code data-lang="raku"><span class="kd">my</span><span class="w"> </span><span class="nv">@zahlen</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">7</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">3</span><span class="p">];</span><span class="w">
 
 </span><span class="nv">@zahlen</span><span class="o">.</span><span class="nb">push</span><span class="p">(</span><span class="mi">99</span><span class="p">);</span><span class="w">
 </span><span class="nb">say</span><span class="w"> </span><span class="nv">@zahlen</span><span class="p">;</span><span class="w">      </span><span class="c1">#1</span><span class="w">
@@ -2179,8 +2170,7 @@ Mutatoren ändern den Zustand des Objekts.</p>
 </span><span class="nb">say</span><span class="w"> </span><span class="nv">@zahlen</span><span class="p">;</span><span class="w">      </span><span class="c1">#3</span><span class="w">
 
 </span><span class="nv">@zahlen</span><span class="o">.=</span><span class="nb">sort</span><span class="p">;</span><span class="w">
-</span><span class="nb">say</span><span class="w"> </span><span class="nv">@zahlen</span><span class="p">;</span><span class="w">      </span><span class="c1">#4</span>
-</pre></td></tr></tbody></table></code></pre>
+</span><span class="nb">say</span><span class="w"> </span><span class="nv">@zahlen</span><span class="p">;</span><span class="w">      </span><span class="c1">#4</span></code></pre>
 </div>
 </div>
 <div class="listingblock">
@@ -2210,7 +2200,7 @@ Mutatoren ändern den Zustand des Objekts.</p>
 </ul>
 </div>
 <div class="paragraph">
-<p>Um eine Funktion als Mutator zu verwenden, wird <code>.=</code> anstelle von <code>.</code> benutzt (#4) (Zeile 9 im Skript)</p>
+<p>Um eine Funktion als Mutator zu verwenden, wird <code>.=</code> anstelle von <code>.</code> benutzt (#4)</p>
 </div>
 </div>
 </div>
@@ -4830,7 +4820,7 @@ Für mehr Information über Parallele Programmierung und Ungleichzeitigkeit, sie
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-10-06 12:54:52 UTC
+Last updated 2026-10-12 21:49:14 UTC
 </div>
 </div>
 </body>

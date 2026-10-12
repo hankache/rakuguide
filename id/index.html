@@ -8,6 +8,7 @@
 <meta name="description" content="Pengenalan secara umum untuk bahasa pemrograman Raku">
 <meta name="keywords" content="raku, raku, introduction, rakuintro, perkenalan raku, raku tutorial, raku intro">
 <meta name="author" content="Naoum Hankache, Heince Kurniawan">
+<meta name="copyright" content="CC BY-SA 4.0">
 <link rel="icon" type="image/x-icon" href="../favicon.ico">
 <title>Perkenalan Bahasa Pemrograman Raku</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
@@ -1145,11 +1146,11 @@ Contohnya Anda bebas untuk menggunakan karakter spasi dibagian manapun, walaupun
 <p>Lebih dari satu baris (multi):</p>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="raku"><span class="cp">=begin</span><span class="w"> </span><span class="nn">komentar</span><span class="w">
+<pre class="rouge highlight"><code data-lang="raku"><span class="cp">=begin</span><span class="w"> </span><span class="cp">komentar</span><span class="w">
 </span><span class="cm">Ini adalah contoh komentar lebih dari satu baris</span><span class="w">
 </span><span class="cm">Komentar 1</span><span class="w">
 </span><span class="cm">Komentar 2</span><span class="w">
-</span><span class="cp">=end</span><span class="w"> </span><span class="nn">komentar</span></code></pre>
+</span><span class="cp">=end</span><span class="w"> </span><span class="cp">komentar</span></code></pre>
 </div>
 </div>
 </li>
@@ -1956,7 +1957,7 @@ Untuk lebih lengkapnya tentang referensi Array, kunjungi <a href="https://docs.r
 </span><span class="nb">say</span><span class="w"> </span><span class="nv">%ibukota</span><span class="o">.</span><span class="nb">kv</span><span class="p">;</span><span class="w">
 </span><span class="nb">say</span><span class="w"> </span><span class="nv">%ibukota</span><span class="o">.</span><span class="nb">keys</span><span class="p">;</span><span class="w">
 </span><span class="nb">say</span><span class="w"> </span><span class="nv">%ibukota</span><span class="o">.</span><span class="nb">values</span><span class="p">;</span><span class="w">
-</span><span class="nb">say</span><span class="w"> </span><span class="s2">"Ibukota dari Perancis adalah: "</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="nv">%ibukota&lt;Perancis&gt;</span><span class="p">;</span></code></pre>
+</span><span class="nb">say</span><span class="w"> </span><span class="s2">"Ibukota dari Perancis adalah: "</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="nv">%ibukota</span><span class="s">&lt;Perancis&gt;</span><span class="p">;</span></code></pre>
 </div>
 </div>
 <div class="listingblock">
@@ -2303,17 +2304,7 @@ Mutator memodifikasi status dari objek atau variabel.</p>
 <div class="listingblock">
 <div class="title"><code>Script</code></div>
 <div class="content">
-<pre class="rouge highlight"><code data-lang="raku"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno"> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-</pre></td><td class="code"><pre><span class="kd">my</span><span class="w"> </span><span class="nv">@numbers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">7</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">3</span><span class="p">];</span><span class="w">
+<pre class="rouge highlight"><code data-lang="raku"><span class="kd">my</span><span class="w"> </span><span class="nv">@numbers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">7</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">3</span><span class="p">];</span><span class="w">
 
 </span><span class="nv">@numbers</span><span class="o">.</span><span class="nb">push</span><span class="p">(</span><span class="mi">99</span><span class="p">);</span><span class="w">
 </span><span class="nb">say</span><span class="w"> </span><span class="nv">@numbers</span><span class="p">;</span><span class="w">      </span><span class="c1">#1</span><span class="w">
@@ -2322,8 +2313,7 @@ Mutator memodifikasi status dari objek atau variabel.</p>
 </span><span class="nb">say</span><span class="w"> </span><span class="nv">@numbers</span><span class="p">;</span><span class="w">      </span><span class="c1">#3</span><span class="w">
 
 </span><span class="nv">@numbers</span><span class="o">.=</span><span class="nb">sort</span><span class="p">;</span><span class="w">
-</span><span class="nb">say</span><span class="w"> </span><span class="nv">@numbers</span><span class="p">;</span><span class="w">      </span><span class="c1">#4</span>
-</pre></td></tr></tbody></table></code></pre>
+</span><span class="nb">say</span><span class="w"> </span><span class="nv">@numbers</span><span class="p">;</span><span class="w">      </span><span class="c1">#4</span></code></pre>
 </div>
 </div>
 <div class="listingblock">
@@ -2353,7 +2343,7 @@ Mutator memodifikasi status dari objek atau variabel.</p>
 </ul>
 </div>
 <div class="paragraph">
-<p>Untuk memaksa fungsi menjadi mutator, kita gunakan <code>.=</code> sebagai pengganti <code>.</code> (#4) (Baris ke 9)</p>
+<p>Untuk memaksa fungsi menjadi mutator, kita gunakan <code>.=</code> sebagai pengganti <code>.</code> (#4)</p>
 </div>
 </div>
 </div>
@@ -5000,7 +4990,7 @@ LATIN SMALL LETTER A WITH ACUTE</pre>
 <div class="listingblock">
 <div class="title">Unicode dapat juga digunakan untuk perhitungan can be used to do math:</div>
 <div class="content">
-<pre class="rouge highlight"><code data-lang="raku"><span class="kd">my</span><span class="w"> </span><span class="nv">$var</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">⅒</span><span class="p">;</span><span class="w">
+<pre class="rouge highlight"><code data-lang="raku"><span class="kd">my</span><span class="w"> </span><span class="nv">$var</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">⅒</span><span class="p">;</span><span class="w">
 </span><span class="nb">say</span><span class="w"> </span><span class="nv">$var</span><span class="p">;</span></code></pre>
 </div>
 </div>
@@ -5498,7 +5488,7 @@ Untuk info lebih lanjut pada Native Calling Interface, kunjungi <a href="https:/
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-10-06 12:54:52 UTC
+Last updated 2026-10-12 21:49:14 UTC
 </div>
 </div>
 </body>

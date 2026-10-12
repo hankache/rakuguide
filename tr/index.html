@@ -8,6 +8,7 @@
 <meta name="description" content="Perl 6'ya genel Giriş">
 <meta name="keywords" content="perl6, perl 6, giriş, perl6giriş, perl 6'ya giriş, perl 6 öğretici">
 <meta name="author" content="Naoum Hankache, Yalın Pala">
+<meta name="copyright" content="CC BY-SA 4.0">
 <link rel="icon" type="image/x-icon" href="../favicon.ico">
 <title>Raku Rehberi</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
@@ -603,11 +604,11 @@ pre.rouge .gs {
 <li><a href="#_hashler">3.3. Hashler</a></li>
 <li><a href="#_veri_tipleri">3.4. Veri Tipleri</a></li>
 <li><a href="#_i̇çgözlem">3.5. İçgözlem</a></li>
-<li><a href="#_kapsam_scoping">3.6. Kapsam (<em>Scoping</em>)</a></li>
-<li><a href="#_atama_ve_bağlama_assignment_vs_binding">3.7. Atama ve Bağlama (<em>Assignment vs. Binding</em>)</a></li>
+<li><a href="#_kapsam_scoping">3.6. Kapsam (Scoping)</a></li>
+<li><a href="#_atama_ve_bağlama_assignment_vs_binding">3.7. Atama ve Bağlama (Assignment vs. Binding)</a></li>
 </ul>
 </li>
-<li><a href="#_fonksiyonlar_ve_mutatörlermutators">4. Fonksiyonlar ve Mutatörler(<em>Mutators</em>)</a></li>
+<li><a href="#_fonksiyonlar_ve_mutatörlermutators">4. Fonksiyonlar ve Mutatörler(Mutators)</a></li>
 <li><a href="#_döngüler_ve_koşullar">5. Döngüler ve Koşullar</a>
 <ul class="sectlevel2">
 <li><a href="#_if">5.1. if</a></li>
@@ -618,7 +619,7 @@ pre.rouge .gs {
 <li><a href="#_loop">5.6. loop</a></li>
 </ul>
 </li>
-<li><a href="#_gç_io">6. G/Ç (<em>I/O</em>)</a>
+<li><a href="#_gç_io">6. G/Ç (I/O)</a>
 <ul class="sectlevel2">
 <li><a href="#_terminal_kullanarak_basit_gç">6.1. Terminal Kullanarak Basit G/Ç</a></li>
 <li><a href="#_kabuk_komutu_çalıştırmak">6.2. Kabuk Komutu Çalıştırmak</a></li>
@@ -630,7 +631,7 @@ pre.rouge .gs {
 <ul class="sectlevel2">
 <li><a href="#_tanımlama">7.1. Tanımlama</a></li>
 <li><a href="#_i̇mza">7.2. İmza</a></li>
-<li><a href="#_çoklu_altyordammultiple_dispatch">7.3. Çoklu Altyordam(<em>Multiple dispatch</em>)</a></li>
+<li><a href="#_çoklu_altyordammultiple_dispatch">7.3. Çoklu Altyordam(Multiple dispatch)</a></li>
 <li><a href="#_varsayılan_ve_i̇steğe_bağlı_parametreler">7.4. Varsayılan ve İsteğe Bağlı Parametreler</a></li>
 <li><a href="#_dönüş_değeri">7.5. Dönüş Değeri</a></li>
 </ul>
@@ -640,9 +641,9 @@ pre.rouge .gs {
 <li><a href="#_fonksiyonlar_birinci_sınıf_vatandaşlardır">8.1. Fonksiyonlar Birinci Sınıf Vatandaşlardır</a></li>
 <li><a href="#_anonim_fonksiyonlar">8.2. Anonim Fonksiyonlar</a></li>
 <li><a href="#_zincirleme">8.3. Zincirleme</a></li>
-<li><a href="#_besleme_operatörüfeed_operator">8.4. Besleme Operatörü(<em>Feed Operator</em>)</a></li>
-<li><a href="#_hiper_operatörühyper_operator">8.5. Hiper Operatörü(<em>Hyper operator</em>)</a></li>
-<li><a href="#_kavşaklar_junctions">8.6. Kavşaklar (<em>-Junctions</em>)</a></li>
+<li><a href="#_besleme_operatörüfeed_operator">8.4. Besleme Operatörü(Feed Operator)</a></li>
+<li><a href="#_hiper_operatörühyper_operator">8.5. Hiper Operatörü(Hyper operator)</a></li>
+<li><a href="#_kavşaklar_junctions">8.6. Kavşaklar (Junctions)</a></li>
 <li><a href="#_tembel_listeler">8.7. Tembel Listeler</a></li>
 <li><a href="#_closures">8.8. Closures</a></li>
 </ul>
@@ -650,24 +651,24 @@ pre.rouge .gs {
 <li><a href="#_sınıflar_ve_nesneler">9. Sınıflar ve Nesneler</a>
 <ul class="sectlevel2">
 <li><a href="#_giriş_2">9.1. Giriş</a></li>
-<li><a href="#_kapsülleme_encapsulation">9.2. Kapsülleme (<em>Encapsulation</em>)</a></li>
+<li><a href="#_kapsülleme_encapsulation">9.2. Kapsülleme (Encapsulation)</a></li>
 <li><a href="#_yapıcı_metot">9.3. Yapıcı Metot</a></li>
 <li><a href="#_metotlar">9.4. Metotlar</a></li>
-<li><a href="#_sınıf_özelliklericlass_attributes">9.5. Sınıf Özellikleri(<em>Class attributes</em>)</a></li>
+<li><a href="#_sınıf_özelliklericlass_attributes">9.5. Sınıf Özellikleri(Class attributes)</a></li>
 <li><a href="#_erişim_türü">9.6. Erişim Türü</a></li>
-<li><a href="#_miras_almainheritance">9.7. Miras Alma(<em>Inheritance</em>)</a></li>
+<li><a href="#_miras_almainheritance">9.7. Miras Alma(Inheritance)</a></li>
 <li><a href="#_çoklu_miras">9.8. Çoklu Miras</a></li>
-<li><a href="#_rollerroles">9.9. Roller(<em>Roles</em>)</a></li>
+<li><a href="#_rollerroles">9.9. Roller(Roles)</a></li>
 <li><a href="#_i̇çgözlem_2">9.10. İçgözlem</a></li>
 </ul>
 </li>
-<li><a href="#_i̇stisna_i̇şlemeexception_handling">10. İstisna İşleme(<em>Exception Handling</em>)</a>
+<li><a href="#_i̇stisna_i̇şlemeexception_handling">10. İstisna İşleme(Exception Handling)</a>
 <ul class="sectlevel2">
-<li><a href="#_i̇stisna_yakalamacatching_exceptions">10.1. İstisna Yakalama(<em>Catching Exceptions</em>)</a></li>
-<li><a href="#_i̇stisna_fırlatmathrowing_exceptions">10.2. İstisna Fırlatma(<em>Throwing Exceptions</em>)</a></li>
+<li><a href="#_i̇stisna_yakalamacatching_exceptions">10.1. İstisna Yakalama(Catching Exceptions)</a></li>
+<li><a href="#_i̇stisna_fırlatmathrowing_exceptions">10.2. İstisna Fırlatma(Throwing Exceptions)</a></li>
 </ul>
 </li>
-<li><a href="#_düzenli_i̇fadeler_regular_expression">11. Düzenli İfadeler (<em>Regular Expression</em>)</a>
+<li><a href="#_düzenli_i̇fadeler_regular_expression">11. Düzenli İfadeler (Regular Expression)</a>
 <ul class="sectlevel2">
 <li><a href="#_regex_tanımlama">11.1. Regex Tanımlama</a></li>
 <li><a href="#_karakter_eşleme">11.2. Karakter Eşleme</a></li>
@@ -695,7 +696,7 @@ pre.rouge .gs {
 <li><a href="#_eşzamanlılık_ve_asenkron">14.2. Eşzamanlılık ve Asenkron</a></li>
 </ul>
 </li>
-<li><a href="#_native_çağrı_arayüzü_native_calling_interface">15. Native Çağrı Arayüzü (<em>Native Calling Interface</em>)</a>
+<li><a href="#_native_çağrı_arayüzü_native_calling_interface">15. Native Çağrı Arayüzü (Native Calling Interface)</a>
 <ul class="sectlevel2">
 <li><a href="#_bir_fonksiyon_çağırmak">15.1. Bir Fonksiyon Çağırmak</a></li>
 <li><a href="#_fonksiyonu_yeniden_adlandırma">15.2. Fonksiyonu Yeniden Adlandırma</a></li>
@@ -1166,11 +1167,11 @@ Herşey yolunda giderse <code>&gt;</code> işareti ile terminalin sizden giriş 
 <p>Çok satırlı yorumlar:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="raku"><span class="cp">=begin</span><span class="w"> </span><span class="nn">yorum</span><span class="w">
+<pre class="rouge highlight"><code data-lang="raku"><span class="cp">=begin</span><span class="w"> </span><span class="cp">yorum</span><span class="w">
 </span><span class="cm">Bu bir çok satırlı yorumdur.</span><span class="w">
 </span><span class="cm">Yorum 1</span><span class="w">
 </span><span class="cm">Yorum 2</span><span class="w">
-</span><span class="cp">=end</span><span class="w"> </span><span class="nn">yorum</span></code></pre>
+</span><span class="cp">=end</span><span class="w"> </span><span class="cp">yorum</span></code></pre>
 </div>
 </div>
 </li>
@@ -1971,7 +1972,7 @@ Diziler hakkında daha fazla bilgiye <a href="https://docs.perl6.org/type/Array"
 </span><span class="nb">say</span><span class="w"> </span><span class="nv">%capitals</span><span class="o">.</span><span class="nb">kv</span><span class="p">;</span><span class="w">
 </span><span class="nb">say</span><span class="w"> </span><span class="nv">%capitals</span><span class="o">.</span><span class="nb">keys</span><span class="p">;</span><span class="w">
 </span><span class="nb">say</span><span class="w"> </span><span class="nv">%capitals</span><span class="o">.</span><span class="nb">values</span><span class="p">;</span><span class="w">
-</span><span class="nb">say</span><span class="w"> </span><span class="s2">"The capital of France is: "</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="nv">%capitals&lt;France&gt;</span><span class="p">;</span></code></pre>
+</span><span class="nb">say</span><span class="w"> </span><span class="s2">"The capital of France is: "</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="nv">%capitals</span><span class="s">&lt;France&gt;</span><span class="p">;</span></code></pre>
 </div>
 </div>
 <div class="listingblock">
@@ -2169,7 +2170,7 @@ Bir değişkenin tipini temizlemek için <code>Nil</code> ataması yapılır.</p
 </div>
 </div>
 <div class="sect2">
-<h3 id="_kapsam_scoping">3.6. Kapsam (<em>Scoping</em>)</h3>
+<h3 id="_kapsam_scoping">3.6. Kapsam (Scoping)</h3>
 <div class="paragraph">
 <p>Kullanılmadan önce bir değişkenin tanımlanması gerekir.
 Raku&#8217;da birçok tanımlama kullanılmaktadır. Biz şuana kadar <code>my</code> kullanıyorduk.</p>
@@ -2210,7 +2211,7 @@ Eğer yazdığımız kodda blok blunmuyorsa, değişken Raku betiğinin tamamın
 </div>
 </div>
 <div class="sect2">
-<h3 id="_atama_ve_bağlama_assignment_vs_binding">3.7. Atama ve Bağlama (<em>Assignment vs. Binding</em>)</h3>
+<h3 id="_atama_ve_bağlama_assignment_vs_binding">3.7. Atama ve Bağlama (Assignment vs. Binding)</h3>
 <div class="paragraph">
 <p>Önceki örneklerde, değişkenlere değer atamanın nasıl yapıldığını gördük.
 <strong>Atama</strong> <code>=</code> operatörü ile yapılır.</p>
@@ -2299,7 +2300,7 @@ Değişkenler ile ilgili daha fazla bilgiye <a href="https://docs.perl6.org/lang
 </div>
 </div>
 <div class="sect1">
-<h2 id="_fonksiyonlar_ve_mutatörlermutators">4. Fonksiyonlar ve Mutatörler(<em>Mutators</em>)</h2>
+<h2 id="_fonksiyonlar_ve_mutatörlermutators">4. Fonksiyonlar ve Mutatörler(Mutators)</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Fonksiyonlar ile mutatörler arasında ayrım yapmak önemlidir.
@@ -2309,17 +2310,7 @@ Mutatörler nesnenin durumunu değiştirirler ve metotlar gibi düşünülebilir
 <div class="listingblock">
 <div class="title"><code>Betik</code></div>
 <div class="content">
-<pre class="rouge highlight"><code data-lang="raku"><table class="linenotable"><tbody><tr><td class="linenos gl"><pre class="lineno"> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-</pre></td><td class="code"><pre><span class="kd">my</span><span class="w"> </span><span class="nv">@numbers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">7</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">3</span><span class="p">];</span><span class="w">
+<pre class="rouge highlight"><code data-lang="raku"><span class="kd">my</span><span class="w"> </span><span class="nv">@numbers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">7</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">3</span><span class="p">];</span><span class="w">
 
 </span><span class="nv">@numbers</span><span class="o">.</span><span class="nb">push</span><span class="p">(</span><span class="mi">99</span><span class="p">);</span><span class="w">
 </span><span class="nb">say</span><span class="w"> </span><span class="nv">@numbers</span><span class="p">;</span><span class="w">      </span><span class="c1">#1</span><span class="w">
@@ -2328,8 +2319,7 @@ Mutatörler nesnenin durumunu değiştirirler ve metotlar gibi düşünülebilir
 </span><span class="nb">say</span><span class="w"> </span><span class="nv">@numbers</span><span class="p">;</span><span class="w">      </span><span class="c1">#3</span><span class="w">
 
 </span><span class="nv">@numbers</span><span class="o">.=</span><span class="nb">sort</span><span class="p">;</span><span class="w">
-</span><span class="nb">say</span><span class="w"> </span><span class="nv">@numbers</span><span class="p">;</span><span class="w">      </span><span class="c1">#4</span>
-</pre></td></tr></tbody></table></code></pre>
+</span><span class="nb">say</span><span class="w"> </span><span class="nv">@numbers</span><span class="p">;</span><span class="w">      </span><span class="c1">#4</span></code></pre>
 </div>
 </div>
 <div class="listingblock">
@@ -2359,7 +2349,7 @@ Mutatörler nesnenin durumunu değiştirirler ve metotlar gibi düşünülebilir
 </ul>
 </div>
 <div class="paragraph">
-<p>Bir fonksiyonun mutatör görevi görmesi için <code>.=</code> kullanın. (#4) (Betiğimizin 9. satırında)</p>
+<p>Bir fonksiyonun mutatör görevi görmesi için <code>.=</code> kullanın. (#4)</p>
 </div>
 </div>
 </div>
@@ -2572,7 +2562,7 @@ Döngüler ve koşullar hakkında daha fazla bilgiye <a href="https://docs.perl6
 </div>
 </div>
 <div class="sect1">
-<h2 id="_gç_io">6. G/Ç (<em>I/O</em>)</h2>
+<h2 id="_gç_io">6. G/Ç (I/O)</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Raku&#8217;da en yaygın <em>Girdi/Çıktı</em> arabirimlerinden ikisi <em>Terminal</em> ve <em>Dosyadır</em>.</p>
@@ -2844,7 +2834,7 @@ Bir altyordamın tanımladığı parametre türü ve sayısına imzası denir.</
 </div>
 </div>
 <div class="sect2">
-<h3 id="_çoklu_altyordammultiple_dispatch">7.3. Çoklu Altyordam(<em>Multiple dispatch</em>)</h3>
+<h3 id="_çoklu_altyordammultiple_dispatch">7.3. Çoklu Altyordam(Multiple dispatch)</h3>
 <div class="paragraph">
 <p>Aynı adı taşıyan ancak imzaları farklı olan birden fazla altprogram tanımlamak mümkündür.
 Altprogram çağrıldığında, çalışma zamanı ortamı, verilen bağımsız değişkenlerin sayısı ve türüne göre hangi sürümü kullanacağına karar verecektir.
@@ -3120,7 +3110,7 @@ Anonim fonksiyonların tanımlayıcısı(adı) yoktur.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_besleme_operatörüfeed_operator">8.4. Besleme Operatörü(<em>Feed Operator</em>)</h3>
+<h3 id="_besleme_operatörüfeed_operator">8.4. Besleme Operatörü(Feed Operator)</h3>
 <div class="paragraph">
 <p>Bazı fonksiyonel programlama dillerinde boru(pipe) olarak adlandırılan besleme operatörü, zincirleme işlemini daha da görselleştirir.</p>
 </div>
@@ -3163,7 +3153,7 @@ Akış son adımdan ilk adıma kadar aşağıdan yukarıya doğrudur.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_hiper_operatörühyper_operator">8.5. Hiper Operatörü(<em>Hyper operator</em>)</h3>
+<h3 id="_hiper_operatörühyper_operator">8.5. Hiper Operatörü(Hyper operator)</h3>
 <div class="paragraph">
 <p><code>&gt;&gt;</code> ile temsil edilir. Listenin tüm elemanları üzerinde fonksiyon çağıracağından sonuçların bir listesini döndürür.</p>
 </div>
@@ -3182,7 +3172,7 @@ Bu her bir değeri yenilemek için for döngüsü yazmamıza gerek kalmadığı 
 </div>
 </div>
 <div class="sect2">
-<h3 id="_kavşaklar_junctions">8.6. Kavşaklar (<em>-Junctions</em>)</h3>
+<h3 id="_kavşaklar_junctions">8.6. Kavşaklar (Junctions)</h3>
 <div class="paragraph">
 <p>Bir kavşak, değerlerin mantıksal bir süperpozisyonudur.</p>
 </div>
@@ -3456,7 +3446,7 @@ Değişkenlere <strong>attributes(özellikler)</strong> denir ve altprogramlara 
 </div>
 </div>
 <div class="sect2">
-<h3 id="_kapsülleme_encapsulation">9.2. Kapsülleme (<em>Encapsulation</em>)</h3>
+<h3 id="_kapsülleme_encapsulation">9.2. Kapsülleme (Encapsulation)</h3>
 <div class="paragraph">
 <p>Sınıf(<em>class</em>) özelliklerinin dışarıya kapalı olması ve bu sınıfın her türlü veri iletişiminin kontrol altındaki metotlar ile yapılmasıdır.<br></p>
 </div>
@@ -3626,7 +3616,7 @@ Alternatif olarak <code>$.age</code> olarak yazılabilir.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_özelprivate_metotlar">9.4.2. Özel(<em>Private</em>) Metotlar</h4>
+<h4 id="_özelprivate_metotlar">9.4.2. Özel(Private) Metotlar</h4>
 <div class="paragraph">
 <p>Metotlar sınıf dışından çağırılabilir.</p>
 </div>
@@ -3653,7 +3643,7 @@ Olası kullanım durumu, belirli bir işlem için başka bir metot çağıran bi
 </div>
 </div>
 <div class="sect2">
-<h3 id="_sınıf_özelliklericlass_attributes">9.5. Sınıf Özellikleri(<em>Class attributes</em>)</h3>
+<h3 id="_sınıf_özelliklericlass_attributes">9.5. Sınıf Özellikleri(Class attributes)</h3>
 <div class="paragraph">
 <p><strong>Sınıf Özellikleri</strong> nesnenin değil sınıfın kendisine ait özelliklerddir.<br>
 Oluşturma sırasında başlatılabilirler.<br>
@@ -3703,7 +3693,7 @@ Bunun için <code>is rw</code> anahtar kelimesini kullanarak özelliği <em>read
 </div>
 </div>
 <div class="sect2">
-<h3 id="_miras_almainheritance">9.7. Miras Alma(<em>Inheritance</em>)</h3>
+<h3 id="_miras_almainheritance">9.7. Miras Alma(Inheritance)</h3>
 <div class="paragraph">
 <p>Miras, nesne yönelimli programlamının başka bir kabulüdür.</p>
 </div>
@@ -3761,7 +3751,7 @@ Bu şu şekilde ifade edilir, Çalışanlar sınıfı İnsanlar sınıfının <s
 <p>Tüm çocuk sınıflar, ebeveyn sınıfın niteliklerini ve metotlarını devralırlar. Dolayısı ile tekrar tanımlanmalarına gerek yoktur.</p>
 </div>
 <div class="sect3">
-<h4 id="_metotların_ezilmesioverriding">9.7.1. Metotların Ezilmesi(<em>Overriding</em>)</h4>
+<h4 id="_metotların_ezilmesioverriding">9.7.1. Metotların Ezilmesi(Overriding)</h4>
 <div class="paragraph">
 <p>Sınıflar, tüm nitelikleri ve metotları ebeveyn sınıflarından devralır.<br>
 Çocuk sınıfındaki metodun devralınan metottan farklı davranması gereken durumlar olabilir.<br>
@@ -3948,7 +3938,7 @@ Actual vs Forecast:
 </div>
 </div>
 <div class="sect2">
-<h3 id="_rollerroles">9.9. Roller(<em>Roles</em>)</h3>
+<h3 id="_rollerroles">9.9. Roller(Roles)</h3>
 <div class="paragraph">
 <p>Roller, özelliklerin ve metotların bir koleksiyonu oldukları için sınıflara benzerler.</p>
 </div>
@@ -4132,10 +4122,10 @@ Nesne karşılaştırıldığı sınıftan veya çocuklarından herhangi biriyle
 </div>
 </div>
 <div class="sect1">
-<h2 id="_i̇stisna_i̇şlemeexception_handling">10. İstisna İşleme(<em>Exception Handling</em>)</h2>
+<h2 id="_i̇stisna_i̇şlemeexception_handling">10. İstisna İşleme(Exception Handling)</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_i̇stisna_yakalamacatching_exceptions">10.1. İstisna Yakalama(<em>Catching Exceptions</em>)</h3>
+<h3 id="_i̇stisna_yakalamacatching_exceptions">10.1. İstisna Yakalama(Catching Exceptions)</h3>
 <div class="paragraph">
 <p>İstisna, çalışma anında gerçekleşen beklenmedik durumlardır. İstisna yakalama ise beklenmedik bir olayı algılayıp buna karşı bir kod parçasının çalıştırılmasıdır.</p>
 </div>
@@ -4241,7 +4231,7 @@ Bu birçok istisna türünü farklı şekillerde ele alıp tutabiliriz demektir.
 </div>
 </div>
 <div class="sect2">
-<h3 id="_i̇stisna_fırlatmathrowing_exceptions">10.2. İstisna Fırlatma(<em>Throwing Exceptions</em>)</h3>
+<h3 id="_i̇stisna_fırlatmathrowing_exceptions">10.2. İstisna Fırlatma(Throwing Exceptions)</h3>
 <div class="paragraph">
 <p>Raku da açıkça istisnaları atmanızı sağlar.
 İstisna fırlatmanın iki türü vardır:</p>
@@ -4297,7 +4287,7 @@ Yazılan tüm istisnalar <code>X</code> sınıfından alınır, birkaç örnek:<
 </div>
 </div>
 <div class="sect1">
-<h2 id="_düzenli_i̇fadeler_regular_expression">11. Düzenli İfadeler (<em>Regular Expression</em>)</h2>
+<h2 id="_düzenli_i̇fadeler_regular_expression">11. Düzenli İfadeler (Regular Expression)</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Düzenli ifadeler veya <em>regex</em>, desen eşleştirmesi için kullanılan bir dizi karakterdir.
@@ -4917,7 +4907,7 @@ LATIN SMALL LETTER A WITH ACUTE</pre>
 <div class="listingblock">
 <div class="title">Unicode matematiksel ifadeler için kullanılabilir:</div>
 <div class="content">
-<pre class="rouge highlight"><code data-lang="raku"><span class="kd">my</span><span class="w"> </span><span class="nv">$var</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">⅒</span><span class="p">;</span><span class="w">
+<pre class="rouge highlight"><code data-lang="raku"><span class="kd">my</span><span class="w"> </span><span class="nv">$var</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">⅒</span><span class="p">;</span><span class="w">
 </span><span class="nb">say</span><span class="w"> </span><span class="nv">$var</span><span class="p">;</span></code></pre>
 </div>
 </div>
@@ -4951,7 +4941,7 @@ Bu aşamada paralellik aşağıdaki şeylerden biri anlamına gelebilir:</p>
 <p>İkincisi ile başlayalım.</p>
 </div>
 <div class="sect3">
-<h4 id="_veri_paralelliği_data_parallelism">14.1.1. Veri Paralelliği (<em>Data Parallelism</em>)</h4>
+<h4 id="_veri_paralelliği_data_parallelism">14.1.1. Veri Paralelliği (Data Parallelism)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="raku"><span class="kd">my</span><span class="w"> </span><span class="nv">@array</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="o">..</span><span class="mi">50000</span><span class="p">);</span><span class="w">                     </span><span class="c1"># Dizi nüfusu</span><span class="w">
@@ -5015,7 +5005,7 @@ Bu metot bize dizi elelamanlarının paralel olarak yinelenmesini sağlayacaktı
 </div>
 </div>
 <div class="sect3">
-<h4 id="_görev_paralelliği_task_parallelism">14.1.2. Görev Paralelliği (<em>Task Parallelism</em>)</h4>
+<h4 id="_görev_paralelliği_task_parallelism">14.1.2. Görev Paralelliği (Task Parallelism)</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="raku"><span class="kd">my</span><span class="w"> </span><span class="nv">@array1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="o">..</span><span class="mi">49999</span><span class="p">);</span><span class="w">
@@ -5111,7 +5101,7 @@ Eşzamanlılık ve asenkron programlama hakkında bilgi için <a href="https://d
 </div>
 </div>
 <div class="sect1">
-<h2 id="_native_çağrı_arayüzü_native_calling_interface">15. Native Çağrı Arayüzü (<em>Native Calling Interface</em>)</h2>
+<h2 id="_native_çağrı_arayüzü_native_calling_interface">15. Native Çağrı Arayüzü (Native Calling Interface)</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Raku bize C kütüphanelerini kullanma imkanı verir, bunu <em>Native Calling Interface</em> kullanarak yaparız.
@@ -5404,7 +5394,7 @@ Kullanılabilmesi için Raku&#8217;da C&#8217;deki ile aynı tipte olması gerek
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-10-06 12:54:52 UTC
+Last updated 2026-10-12 21:49:14 UTC
 </div>
 </div>
 </body>
