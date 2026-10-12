@@ -1827,9 +1827,9 @@ Two twigils are used in classes:
 * `!` is used to explicitly declare that the attribute is private.
 * `.` is used to automatically generate an accessor for the attribute.
 
-By default, all attributes are private but it is a good habit to always use the `!` twigil.
+By default, all attributes are private. The `.` twigil is what makes an attribute readable from outside the object.
 
-Therefore, we should rewrite the above class as:
+To see the difference, let's declare the attributes of our class with `!` instead of `.`
 [source,raku]
 ----
 class Human {
@@ -1842,12 +1842,18 @@ class Human {
 my $john = Human.new(name => 'John', age => 23, sex => 'M', nationality => 'American');
 say $john;
 ----
+Run it and `say $john` will print `Human.new`. The object is empty. +
+The default constructor only sets the attributes that have an accessor, so the values we passed to it were ignored.
+
 Append to the script the following statement: `say $john.age;` +
-It will return this error: `Method 'age' not found for invocant of class 'Human'`
+It will return this error: `No such method 'age' for invocant of type 'Human'`
 because `$!age` is private and can only be used within the object.
 Trying to access it outside the object will return an error.
 
-Now replace `has $!age` with `has $.age` and observe the result of `say $john.age;`
+Now replace `has $!age` with `has $.age` and run the script again. +
+`say $john` will print `Human.new(age => 23)` and `say $john.age` will print `23`
+
+Private attributes are set and used from within the class. We will see how in the section about methods.
 
 === Named vs. Positional Parameters
 In Raku, all classes inherit a default `.new()` constructor. +
