@@ -446,7 +446,7 @@ The below table lists the most commonly used operators.
 
 | ^ | Prefix | Range Constructor |  ^5  | Same as 0..^5 Creates a range of the interval [0, 5) footnote:intervals[]
 
-| ... | Infix | Lazy List Constructor |  0...9999  |  return the elements only if requested
+| +...+ | Infix | Sequence Constructor |  +0...9999+  |  return the elements only if requested
 
 .2+| {vbar} .2+| Prefix .2+| Flattening | {vbar}(0..5)  | (0 1 2 3 4 5)
 
@@ -1831,6 +1831,27 @@ it within the anonymous subroutine as `\-> $x {$x ** 2}`.
 
 In Raku parlance, we call this notation a *pointy block*
 
+A pointy block that takes a single argument can be written in two shorter ways.
+
+A block written without `\->` and without a parameter receives its argument in the topic variable `$_`
+
+[source,raku]
+----
+my @array = <1 2 3 4 5>;
+say map({ $_ ** 2 }, @array);
+----
+
+An asterisk used in an expression stands for the argument, and the braces are not needed. +
+`+* ** 2+` is a shorter way of writing `{ $_ ** 2 }`
+
+[source,raku]
+----
+my @array = <1 2 3 4 5>;
+say map(* ** 2, @array);
+----
+
+The three notations give the same result: `(1 4 9 16 25)`
+
 [source,raku]
 .A pointy block may also be used to assign functions to variables:
 ----
@@ -1939,7 +1960,7 @@ if $var == 1|2|3 {
 The use of junctions usually triggers *autothreading*;
 the operation is carried out for each junction element, and all the results are combined into a new junction and returned.
 
-=== Lazy Lists
+=== Sequences and Lazy Lists
 A *lazy list* is a list that is lazily evaluated. +
 Lazy evaluation delays the evaluation of an expression until required, and avoids repeating evaluations by storing results in a lookup table.
 
@@ -1951,8 +1972,8 @@ The benefits include:
 
 * The ability to define control flow
 
-To build a lazy list we use the infix operator `...` +
-A lazy list has *initial element(s)*, a *generator* and an *endpoint*.
+To build a lazy list we use the infix operator `+...+` called the *sequence operator*. What it builds is called a *sequence*. +
+A sequence has *initial element(s)*, a *generator* and an *endpoint*.
 
 [source,raku]
 .Simple lazy list
@@ -1993,10 +2014,11 @@ This lazy list may return (if requested) the following elements (0, 3, 6, 9, 12)
 [WARNING]
 ====
 When using an explicit generator, the endpoint must be one of the values that the generator can return. +
-If we reproduce the above example with the endpoint being 10 instead of 12, it will not stop.
-The generator _jumps over_ the endpoint.
+If we reproduce the above example with the endpoint being 10 instead of 12, the sequence will never end.
+The generator _jumps over_ the endpoint. +
+Although the sequence goes on forever, `say` displays its first 100 elements and ends them with `+...+`
 
-Alternatively you can replace `0 ... 10` with `0 ...^ * > 10` +
+Alternatively you can replace `+0 ... 10+` with `+0 ...^ * > 10+` +
 You can read it as: From 0 until the first value greater than 10 (excluding it)
 
 [source,raku]
