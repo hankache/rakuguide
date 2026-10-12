@@ -935,8 +935,8 @@ say $a;
 8
 ----
 
-Binding variables is bi-directional. +
-`$a := $b` and `$b := $a` have the same effect.
+After `$b := $a`, both names refer to the same variable. A change made through one is visible through the other. +
+The direction matters when the variables already hold values: `$b := $a` makes `$b` refer to what `$a` holds, and `$a := $b` does the opposite.
 
 NOTE: For more info on variables, see https://docs.raku.org/language/variables
 
