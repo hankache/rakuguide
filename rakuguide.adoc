@@ -3126,6 +3126,49 @@ if 'z' ~~ m/ a+z / {
 }
 ----
 
+=== Anchors
+By default, a regex can match anywhere in a string. *Anchors* tie the match to a position in the string.
+
+* `+^+` matches the beginning of the string.
+
+* `+$+` matches the end of the string.
+
+[source,raku]
+----
+if 'raku guide' ~~ m/ ^ raku / {
+    say "Match";
+} else {
+    say "No Match";
+}
+if 'the raku guide' ~~ m/ ^ raku / {
+    say "Match";
+} else {
+    say "No Match";
+}
+if 'the raku guide' ~~ m/ guide $ / {
+    say "Match";
+} else {
+    say "No Match";
+}
+----
+
+=== Alternation
+The vertical bar `|` means _or_. It is used to match one of several alternatives.
+
+[source,raku]
+----
+if 'raku.org' ~~ m/ com | org | net / {
+    say "Match";
+} else {
+    say "No Match";
+}
+if 'raku.dev' ~~ m/ com | org | net / {
+    say "Match";
+} else {
+    say "No Match";
+}
+----
+
 === Match Results
 Whenever the process of matching a string against a regex is successful,
 the match result is stored in a special variable `$/`
@@ -3165,6 +3208,54 @@ The `:s` in the regex `m/:s Raku regexes/` forces whitespace to be considered. +
 Alternatively, we could have written the regex as `m/ Raku\sregexes /` and used `\s` which represents a whitespace. +
 If a regex contains more than a single whitespace, using `:s` is a better option than using `\s` for each and every whitespace.
 
+=== Captures
+Surrounding a part of a regex with parentheses *captures* the part of the string that it matches. +
+The captures are numbered starting from zero. They are stored in the variables `$0`, `$1`, `$2` and so on.
+
+[source,raku]
+.Script
+----
+if 'John is 23 years old' ~~ m/ (\w+) \s is \s (\d+) / {
+    say "Name: " ~ $0;
+    say "Age: " ~ $1;
+}
+----
+
+.Output
+----
+Name: John
+Age: 23
+----
+
+.Explanation
+`(\w+)` is the first capture. It matches `John` and stores it in `$0` +
+`(\d+)` is the second capture. It matches `23` and stores it in `$1`
+
+=== Substitution
+A regex can also be used to replace the part of a string that it matches. +
+This is done using the `.subst` method. It is given a regex and a replacement, and it returns a new string.
+
+[source,raku]
+.Script
+----
+my $text = 'I drink tea, tea is good';
+say $text.subst(/tea/, 'coffee');
+say $text.subst(/tea/, 'coffee', :g);
+say $text;
+----
+
+.Output
+----
+I drink coffee, tea is good
+I drink coffee, coffee is good
+I drink tea, tea is good
+----
+
+.Explanation
+`.subst` replaces the first match only. +
+Adding `:g` (short for _global_) replaces all the matches. +
+`.subst` does not change the original string, as shown by the last line.
+
 === Example
 Let's check if an email is valid or not. +
 For the sake of this example we will assume that a valid email address has this format: +
@@ -3178,7 +3269,7 @@ Do not use it as-is in production.
 .Script
 ----
 my $email = 'john.doe@route66.org';
-my $regex = / <:L>+\.<:L>+\@<:L+:N>+\.<:L>+ /;
+my $regex = / ^ <:L>+\.<:L>+\@<:L+:N>+\.(com|org|net) $ /;
 
 if $email ~~ $regex {
   say $/ ~ " is a valid email";
@@ -3191,12 +3282,21 @@ if $email ~~ $regex {
 `john.doe@route66.org is a valid email`
 
 .Explanation
-`<:L>` matches a single letter +
-`<:L>+` matches one or more letters +
-`\.` matches a single [dot] character +
-`\@` matches a single [at] character +
-`<:L+:N>` matches a letter or a single number +
-`<:L+:N>+` matches one or more letters or numbers +
+* `<:L>` matches a single letter
+
+* `<:L>+` matches one or more letters
+
+* `\.` matches a single [dot] character
+
+* `\@` matches a single [at] character
+
+* `<:L+:N>` matches a letter or a single number
+
+* `<:L+:N>+` matches one or more letters or numbers
+
+* `(com|org|net)` matches one of the three alternatives
+
+* `+^+` and `+$+` make sure that nothing comes before or after the email
 
 The regex can be decomposed as following:
 
@@ -3212,7 +3312,7 @@ The regex can be decomposed as following:
 
 * *[dot]* `\.`
 
-* *com/org/net* `<:L>+`
+* *com/org/net* `(com|org|net)`
 
 [source,raku]
 .Alternatively, a regex can be broken down into multiple named regexes
@@ -3222,8 +3322,9 @@ my regex many-letters { <:L>+ };
 my regex dot { \. };
 my regex at { \@ };
 my regex many-letters-numbers { <:L+:N>+ };
+my regex domain { com | org | net };
 
-if $email ~~ / <many-letters> <dot> <many-letters> <at> <many-letters-numbers> <dot> <many-letters> / {
+if $email ~~ / ^ <many-letters> <dot> <many-letters> <at> <many-letters-numbers> <dot> <domain> $ / {
   say $/ ~ " is a valid email";
 } else {
   say "This is not a valid email";
