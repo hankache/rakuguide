@@ -3499,6 +3499,102 @@ A named regex can be called using the following syntax: `<regex-name>`
 
 NOTE: For more info on regexes, see https://docs.raku.org/language/regexes
 
+== Grammars
+In the previous chapter, we broke down the email regex into multiple named regexes. +
+A *grammar* takes this idea further. It groups named regexes together in order to describe the format of a whole text.
+
+Grammars are used to *parse* text: to check that it follows the expected format, and to extract the parts we are interested in.
+
+=== Defining a grammar
+A grammar is defined using the keyword `grammar`. It contains named regexes that are defined using the keyword `token`. +
+The token named `TOP` is special. It describes the text as a whole, using the other tokens.
+
+Let's rewrite the email example as a grammar.
+
+[source,raku]
+----
+grammar Email {
+  token TOP        { <first-name> '.' <last-name> '@' <company> '.' <domain> }
+  token first-name { <:L>+ }
+  token last-name  { <:L>+ }
+  token company    { <:L+:N>+ }
+  token domain     { com | org | net }
+}
+----
+
+.Explanation
+`TOP` states that an email is made of a first name, a dot, a last name, an at sign, a company, a dot and a domain. +
+The other tokens define what each of these parts looks like. +
+The dot and the at sign are surrounded by quotes because they are not alphanumeric characters.
+
+=== Parsing
+A grammar is used by calling its `.parse()` method on a string.
+
+[source,raku]
+.`Script`
+----
+grammar Email {
+  token TOP        { <first-name> '.' <last-name> '@' <company> '.' <domain> }
+  token first-name { <:L>+ }
+  token last-name  { <:L>+ }
+  token company    { <:L+:N>+ }
+  token domain     { com | org | net }
+}
+
+my $email = 'john.doe@route66.org';
+
+if Email.parse($email) {
+  say "$email is a valid email";
+} else {
+  say "This is not a valid email";
+}
+----
+
+.`Output`
+----
+john.doe@route66.org is a valid email
+----
+
+`.parse()` succeeds only if the whole string matches `TOP`. This is why we did not need the anchors `+^+` and `+$+` that we used in the regex.
+
+Now replace the email with `john.doe@route66.xyz` and run the script again. +
+It will display `This is not a valid email` because `xyz` is not one of the three domains.
+
+=== Extracting data
+When it succeeds, `.parse()` returns a single match object, which we store in a scalar. +
+The part of the text that was matched by a token can be accessed using the name of that token, with the same angle brackets that are used with a hash.
+
+[source,raku]
+.`Script`
+----
+grammar Email {
+  token TOP        { <first-name> '.' <last-name> '@' <company> '.' <domain> }
+  token first-name { <:L>+ }
+  token last-name  { <:L>+ }
+  token company    { <:L+:N>+ }
+  token domain     { com | org | net }
+}
+
+my $match = Email.parse('john.doe@route66.org');
+
+say "First name: " ~ $match<first-name>;
+say "Last name: " ~ $match<last-name>;
+say "Company: " ~ $match<company>;
+say "Domain: " ~ $match<domain>;
+----
+
+.`Output`
+----
+First name: john
+Last name: doe
+Company: route66
+Domain: org
+----
+
+With a single definition, the grammar both validated the email and gave us each of its parts.
+
+NOTE: For more info on grammars, see https://docs.raku.org/language/grammars
+
 == Raku Modules
 Raku is a general purpose programming language. It can be used to tackle a multitude of tasks including:
 text manipulation, graphics, web, databases, network protocols etc.
