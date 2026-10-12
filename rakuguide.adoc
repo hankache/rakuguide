@@ -38,7 +38,7 @@ All feedback is welcomed:
 naoum@hankache.com
 
 If you liked this work, _Star_ the repository on
-link:https://github.com/hankache/rakuguide[Github].
+link:https://github.com/hankache/rakuguide[GitHub].
 
 .Translations
 * Bulgarian: https://raku.guide/bg
@@ -119,7 +119,7 @@ the value of the line.  You may then type another line, or type `exit`
 and hit [Enter] to leave the REPL.
 
 Alternatively, write your code in a file, save it and run it.
-It is recommended that Raku scripts have a  `.raku` file name extension.
+It is recommended that Raku scripts have a `.raku` file name extension.
 Run the file by typing `raku filename.raku` into the terminal window
 and hitting [Enter]. Unlike the REPL, this will not automatically print
 the result of each line: the code must contain a statement like `say`
@@ -148,7 +148,7 @@ Consider running the following command and you shall be all set:
 Since most of the time we will be writing and storing our Raku programs in files, we should have
 a decent text editor that recognizes Raku syntax.
 
-The community uses frequently the following editors:
+The community frequently uses the following editors:
 
 * https://code.visualstudio.com/[Visual Studio Code]: syntax highlighting and error checking enabled using https://marketplace.visualstudio.com/items?itemName=bscan.raku-navigator[raku-navigator]
 
@@ -160,10 +160,10 @@ The community uses frequently the following editors:
 
 * https://notepad-plus-plus.org/[Notepad++]: syntax highlighting available out of the box
 
-* https://kate-editor.org//[Kate]: syntax highlighting available out of the box
+* https://kate-editor.org/[Kate]: syntax highlighting available out of the box
 
 === Hello World!
-We shall begin with The `hello world` ritual.
+We shall begin with the `hello world` ritual.
 
 [source,raku]
 say 'hello world';
@@ -261,7 +261,7 @@ Identifiers are the names given to terms when you define them.
 
 You are free to name your identifiers as you like, but it is good practice to adopt one naming convention consistently.
 
-Using meaningful names will ease your (and other's) programming life.
+Using meaningful names will ease your (and others') programming life.
 
 * `var1 = var2 * var3` is syntactically correct but its purpose is not evident.
 * `monthly-salary = daily-rate * working-days` would be a better way to name your variables.
@@ -762,7 +762,7 @@ say $var.WHAT;
 It will fail and return this error message: `Type check failed in assignment to $var; expected Int but got Str`
 
 What happened is that we specified beforehand that the variable should be of type (Int).
-When we tried to assign an (Str) to it, it failed.
+When we tried to assign a (Str) to it, it failed.
 
 This style of programming is called static typing. Static in the sense that variable types are defined before assignment and cannot change.
 
@@ -814,8 +814,8 @@ You will most probably never use the first two but they are listed for informati
 
 === Introspection
 
-Introspection is the process of getting information about an object properties like its type. +
-In one of the previous example we used `.WHAT` to return the type of the variable.
+Introspection is the process of getting information about an object's properties, like its type. +
+In one of the previous examples we used `.WHAT` to return the type of the variable.
 
 [source,raku]
 ----
@@ -846,7 +846,7 @@ Several declarators are used in Raku. We've been using `my`, so far.
 [source,raku]
 my $var=1;
 
-The `my` declarator give the variable *lexical* scope.
+The `my` declarator gives the variable *lexical* scope.
 In other words, the variable will only be accessible in the same block it was declared.
 
 A block in Raku is delimited by `{ }`.
@@ -1133,9 +1133,7 @@ given $var {
 
 `loop` is another way of writing a `for` loop.
 
-Actually, `loop` is how `for` loops are  written in C-family programming languages.
-
-Raku belongs to the C-family languages.
+Actually, `loop` is how `for` loops are written in C-family programming languages.
 
 [source,raku]
 ----
@@ -1156,8 +1154,8 @@ In Raku, two of the most common _Input/Output_ interfaces are the _Terminal_ and
 
 [source,raku]
 ----
-say 'Hello Mam.';
-say 'Hello Sir.';
+say "Hello Ma'am.";
+say "Hello Sir.";
 ----
 will be written on 2 separate lines.
 
@@ -1390,7 +1388,7 @@ All the subroutines we've seen so far *do something* -- they display some text o
 
 Sometimes, though, we execute a subroutine for its *return* value so we can use it later in the flow of our program.
 
-If a function is allowed to run through it's block to the end, the last statement or expression will determine the return value.
+If a function is allowed to run through its block to the end, the last statement or expression will determine the return value.
 
 [source,raku]
 .Implicit return
@@ -2087,7 +2085,7 @@ class Employee is Human {
   has $.company;
   has $.salary;
   method introduce-yourself {
-    say 'Hi I am a employee, my name is ' ~ self.name ~ ' and I work at: ' ~ self.company;
+    say 'Hi I am an employee, my name is ' ~ self.name ~ ' and I work at: ' ~ self.company;
   }
 
 }
@@ -2099,7 +2097,7 @@ $john.introduce-yourself;
 $jane.introduce-yourself;
 ----
 
-Depending of which class the object is, the right method will be called.
+Depending on the class of the object, the right method will be called.
 
 ==== Submethods
 *Submethods* are a type of method that are not inherited by child classes. +
@@ -2320,7 +2318,7 @@ class Employee is Human {
   has Str $.company;
   has Int $.salary;
   method introduce-yourself {
-    say 'Hi I am a employee, my name is ' ~ self.name ~ ' and I work at: ' ~ self.company;
+    say 'Hi I am an employee, my name is ' ~ self.name ~ ' and I work at: ' ~ self.company;
   }
 }
 
@@ -2875,7 +2873,7 @@ The above 3 lines showcase different ways of building a character:
 
 . Using `\c` and the code point name
 
-.Now lets output a smiley
+.Now let's output a smiley
 [source,raku]
 ----
 say "☺";
@@ -2914,7 +2912,7 @@ LATIN SMALL LETTER A WITH ACUTE
 ----
 
 `NFC` returns the unique code point. +
-`NFD` decomposes the character and return the code point of each part. +
+`NFD` decomposes the character and returns the code point of each part. +
 `uniname` returns the code point name.
 
 .Unicode letters can be used as identifiers:
@@ -3025,7 +3023,7 @@ After running both examples (with and without `race`), compare the time it took 
 
 [TIP]
 ====
-`race` will not preserve the order of elements. If you wish to do, so use `hyper` instead.
+`race` will not preserve the order of elements. If you wish to do so, use `hyper` instead.
 
 [source,raku]
 .race
@@ -3187,7 +3185,7 @@ it with a Raku subroutine having the same name, using the `is native` trait.
 In some cases, we would want to change the name of the Raku subroutine. +
 To do so, we use the `is symbol` trait.
 
-Lets modify the above Raku script and rename the Raku subroutine `hello`
+Let's modify the above Raku script and rename the Raku subroutine `hello`
 instead of `hellofromc`
 
 [source,raku]
@@ -3233,8 +3231,8 @@ hello('Jane');
 
 === Returning values
 
-Lets repeat the process one more time and create a simple calculator that takes
-2 integers and add them. +
+Let's repeat the process one more time and create a simple calculator that takes
+2 integers and adds them. +
 Compile the C library and run the Raku script.
 
 [source,c]
@@ -3261,7 +3259,7 @@ Notice how both C and Raku functions accept two integers and return one
 
 === Types
 
-You might have asked yourself why did we use `int32` instead of `Int` in the latest Raku script. +
+You might have asked yourself why we used `int32` instead of `Int` in the latest Raku script. +
 Some Raku types like `Int`, `Rat` etc. can't be used as is to pass and receive values from a C function. +
 One must use in Raku the same types as the ones in C.
 
