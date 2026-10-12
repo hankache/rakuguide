@@ -2837,6 +2837,52 @@ try {
 }
 ----
 
+Within the `CATCH` block, the exception that was thrown is found in the topic variable `$_` +
+Calling `.message` on it returns the description of the error.
+
+[source,raku]
+----
+my Str $name;
+try {
+  $name = 123;
+  say "Hello " ~ $name;
+  CATCH {
+    default {
+      say "Something went wrong: " ~ .message;
+    }
+  }
+}
+say "How are you doing today?";
+----
+
+.`Output`
+----
+Something went wrong: Type check failed in assignment to $name; expected Str but got Int (123)
+How are you doing today?
+----
+
+`try` can also be used without a `CATCH` block. In that case, the exception is stored in the special variable `$!`
+
+[source,raku]
+----
+my Str $name;
+try {
+  $name = 123;
+}
+if $! {
+  say "Something went wrong: " ~ $!.message;
+}
+say "How are you doing today?";
+----
+
+.`Output`
+----
+Something went wrong: Type check failed in assignment to $name; expected Str but got Int (123)
+How are you doing today?
+----
+
+If nothing goes wrong inside the `try` block, `$!` stays empty and the `if` block is skipped.
+
 === Throwing Exceptions
 Raku also allows you to explicitly throw exceptions. +
 Two types of exceptions can be thrown:
