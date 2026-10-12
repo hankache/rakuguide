@@ -2235,6 +2235,37 @@ my $john = Human.new('John',23,'M','American');
 say $john;
 ----
 
+=== Default and Required Attributes
+We have seen that a subroutine fails if it is called without one of its arguments. +
+The default constructor behaves differently. An attribute that is not supplied to `.new()` is simply left empty.
+
+Like the parameters of a subroutine, an attribute can be given a default value. +
+This is done by assigning a value to the attribute within the class definition.
+
+If an attribute must always be supplied, we label it using the keywords `is required`
+
+[source,raku]
+----
+class Human {
+  has $.name is required;
+  has $.nationality = 'Unknown';
+}
+
+my $john = Human.new(name => 'John');
+say $john.nationality;
+
+my $nobody = Human.new;
+----
+
+.`Output`
+----
+Unknown
+The attribute '$!name' is required, but you did not provide a value for it.
+----
+
+The nationality of `$john` was not supplied, so the default value was used. +
+`$nobody` could not be created because a name is required.
+
 === Methods
 
 ==== Introduction
