@@ -621,6 +621,9 @@ A *sigil* (Sign in Latin) is a character that is used as a prefix to categorize 
 * `@` is used for arrays
 * `%` is used for hashes
 
+A variable has to be declared before it is used. +
+This is done using the keyword `my` followed by the name of the variable.
+
 NOTE: This guide offers a simplified model of variables suitable for learning
 the basics of Raku. For a deeper understanding of variables, see
 https://docs.raku.org/language/containers
@@ -1086,6 +1089,7 @@ To clear the value of a variable, assign `Nil` to it.
 === Scoping
 Before using a variable for the first time, it needs to be declared.
 
+==== Lexical scope
 Several declarators are used in Raku. We've been using `my`, so far.
 
 [source,raku]
@@ -1118,6 +1122,19 @@ Since a variable is only accessible in the block where it is defined, the same v
 }
 my Int $var = 123;
 say $var;
+----
+
+==== Other declarators
+Other declarators that you will come across are:
+
+* `our` gives the variable *package* scope. It can be accessed from outside the block it was declared in.
+
+* `constant` declares a value that cannot be changed.
+
+[source,raku]
+----
+constant $tau = pi * 2;
+$tau = 6;   # returns an error: Cannot assign to an immutable value
 ----
 
 === Assignment vs. binding
