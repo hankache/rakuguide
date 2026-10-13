@@ -1,0 +1,234 @@
+name: Check pull request
+
+# Builds the guides that a pull request changes, to catch errors before it is
+# merged. It publishes nothing. Each check is a job of its own, so that the
+# pull request shows which one failed, and each keeps what it built for 14
+# days as a preview that can be downloaded from the run.
+on:
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: check-pull-request-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  # Only the guides that the pull request changes are checked. A change to the
+  # PDF theme, the cover or a workflow can affect every language, so then all
+  # of them are checked.
+  guides:
+    name: Find the guides to check
+    runs-on: ubuntu-latest
+    outputs:
+      files: ${{ steps.find.outputs.files }}
+    steps:
+      - name: Check out the pull request
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: Find the guides to check
+        id: find
+        env:
+          BASE_REF: ${{ github.base_ref }}
+        run: |
+          changed=$(git diff --name-only "origin/$BASE_REF"...HEAD)
+          if echo "$changed" | grep -qE '^(pdf/|\.github/workflows/)'; then
+            files=$(ls *rakuguide.adoc)
+          else
+            files=$(echo "$changed" | grep -E '^([a-z]+\.)?rakuguide\.adoc$' || true)
+          fi
+          guides=""
+          for file in $files; do
+            if [ -f "$file" ]; then
+              guides="$guides $file"
+            fi
+          done
+          guides="${guides# }"
+          echo "files=$guides" >> "$GITHUB_OUTPUT"
+          echo "Guides to check: ${guides:-none}"
+
+  # In the three jobs below, --failure-level WARN turns any warning into a
+  # failed build, and all the guides are built before the job reports.
+  web-page:
+    name: Web page
+    needs: guides
+    if: needs.guides.outputs.files != ''
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the pull request
+        uses: actions/checkout@v5
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.4'
+
+      - name: Install asciidoctor and rouge
+        run: gem install asciidoctor rouge rouge-raku
+
+      - name: Check that the web page builds
+        env:
+          GUIDES: ${{ needs.guides.outputs.files }}
+        run: |
+          mkdir -p out
+          failed=""
+          for file in $GUIDES; do
+            lang="${file%rakuguide.adoc}"
+            lang="${lang%.}"
+            if asciidoctor -r rouge-raku --failure-level WARN \
+              -a docinfo=shared-head -a docinfodir="$PWD/.github" \
+              -o "out/rakuguide${lang:+-$lang}.html" "$file"; then
+              echo "${lang:-en} built."
+            else
+              failed="$failed ${lang:-en}"
+            fi
+          done
+          if [ -n "$failed" ]; then
+            echo "The web page does not build for:$failed" >&2
+            exit 1
+          fi
+
+      - name: Keep the web pages as a preview
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: web-page
+          path: out/*.html
+          retention-days: 14
+          if-no-files-found: ignore
+
+  pdf:
+    name: PDF
+    needs: guides
+    if: needs.guides.outputs.files != ''
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the pull request
+        uses: actions/checkout@v5
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.4'
+
+      - name: Install asciidoctor-pdf and rouge
+        run: gem install asciidoctor asciidoctor-pdf rouge rouge-raku
+
+      - name: Download fonts
+        run: |
+          mkdir -p pdf/fonts
+          fetch() {
+            url=$(curl -fsS "https://fonts.googleapis.com/css2?family=$1" | grep -o 'https://[^)]*\.ttf' | head -n 1)
+            if [ -z "$url" ]; then
+              echo "No TrueType file found for $1" >&2
+              exit 1
+            fi
+            curl -fsS -o "pdf/fonts/$2" "$url"
+            echo "$2 downloaded."
+          }
+          fetch "Noto+Sans" NotoSans-Regular.ttf
+          fetch "Noto+Sans+Arabic" NotoSansArabic-Regular.ttf
+          fetch "Noto+Sans+KR" NotoSansKR-Regular.ttf
+          fetch "Noto+Sans+SC" NotoSansSC-Regular.ttf
+          fetch "JetBrains+Mono:ital,wght@0,400" JetBrainsMono-Regular.ttf
+          fetch "JetBrains+Mono:ital,wght@0,700" JetBrainsMono-Bold.ttf
+          fetch "JetBrains+Mono:ital,wght@1,400" JetBrainsMono-Italic.ttf
+          fetch "JetBrains+Mono:ital,wght@1,700" JetBrainsMono-BoldItalic.ttf
+
+      # -v reports characters missing from the fonts.
+      - name: Check that the PDF builds and has every character
+        env:
+          GUIDES: ${{ needs.guides.outputs.files }}
+        run: |
+          mkdir -p out
+          failed=""
+          for file in $GUIDES; do
+            lang="${file%rakuguide.adoc}"
+            lang="${lang%.}"
+            theme="pdf/theme.yml"
+            scripts=""
+            case "$lang" in
+              ja) theme="pdf/theme-ja.yml"; scripts="-a scripts=cjk" ;;
+              zh) scripts="-a scripts=cjk" ;;
+            esac
+            pdf/make-cover.sh "${lang:-en}"
+            if asciidoctor-pdf -r rouge-raku -v --failure-level WARN \
+              -a pdf-theme="$theme" -a rouge-style=github $scripts \
+              -o "out/rakuguide${lang:+-$lang}.pdf" "$file"; then
+              echo "${lang:-en} built."
+            else
+              failed="$failed ${lang:-en}"
+            fi
+          done
+          if [ -n "$failed" ]; then
+            echo "The PDF does not build, or lacks characters, for:$failed" >&2
+            exit 1
+          fi
+
+      - name: Keep the PDFs as a preview
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: pdf
+          path: out/*.pdf
+          retention-days: 14
+          if-no-files-found: ignore
+
+  epub:
+    name: EPUB
+    needs: guides
+    if: needs.guides.outputs.files != ''
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the pull request
+        uses: actions/checkout@v5
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.4'
+
+      - name: Install asciidoctor-epub3 and rouge
+        run: gem install asciidoctor asciidoctor-epub3 rouge rouge-raku
+
+      - name: Install epubcheck
+        run: |
+          curl -fsSL -o "$RUNNER_TEMP/epubcheck.zip" \
+            https://github.com/w3c/epubcheck/releases/download/v5.4.0/epubcheck-5.4.0.zip
+          unzip -q "$RUNNER_TEMP/epubcheck.zip" -d "$RUNNER_TEMP"
+
+      - name: Check that the EPUB is valid
+        env:
+          GUIDES: ${{ needs.guides.outputs.files }}
+        run: |
+          mkdir -p out
+          failed=""
+          for file in $GUIDES; do
+            lang="${file%rakuguide.adoc}"
+            lang="${lang%.}"
+            name="rakuguide${lang:+-$lang}"
+            if asciidoctor-epub3 -r rouge-raku --failure-level WARN \
+              -a rouge-style=github -a 'listing-caption!' \
+              -o "out/$name.epub" "$file" \
+              && java -jar "$RUNNER_TEMP/epubcheck-5.4.0/epubcheck.jar" --quiet "out/$name.epub"; then
+              echo "${lang:-en} valid."
+            else
+              failed="$failed ${lang:-en}"
+            fi
+          done
+          if [ -n "$failed" ]; then
+            echo "The EPUB does not build, or is not valid, for:$failed" >&2
+            exit 1
+          fi
+
+      - name: Keep the EPUBs as a preview
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: epub
+          path: out/*.epub
+          retention-days: 14
+          if-no-files-found: ignore
