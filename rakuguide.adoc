@@ -59,7 +59,7 @@ link:https://github.com/hankache/rakuguide[GitHub].
 == Introduction
 === What is Raku
 Raku is a high-level, general-purpose, gradually typed language.
-Raku is multi-paradigmatic. It supports Procedural, Object Oriented, and Functional programming.
+Raku is multi-paradigmatic. It supports procedural, object oriented, and functional programming.
 
 .Raku motto:
 * TMTOWTDI (Pronounced Tim Toady): There is more than one way to do it.
@@ -233,7 +233,7 @@ block:
 *Expressions* are a special type of statement that returns a value:
 `1+2` will return `3`
 
-Expressions are made of *Terms* and *Operators*.
+Expressions are made of *terms* and *operators*.
 
 *Terms* are:
 
@@ -587,7 +587,7 @@ Adding `R` before any operator will have the effect of reversing its operands.
 
 [cols=".^m,.^m,.^m,.^m", options="header"]
 |===
-| Normal Operation | Result | Reversed Operator | Result
+| Normal operation | Result | Reversed operator | Result
 
 | 2 / 3 | 0.666667 | 2 R/ 3 | 1.5
 
@@ -602,7 +602,7 @@ They are formed by surrounding the operator with brackets `[]`
 
 [cols=".^m,.^m,.^m,.^m", options="header"]
 |===
-| Normal Operation | Result | Reduction Operator | Result
+| Normal operation | Result | Reduction operator | Result
 
 | 1 + 2 + 3 + 4 + 5 | 15 | [+] 1, 2, 3, 4, 5 | 15
 
@@ -613,7 +613,7 @@ They are formed by surrounding the operator with brackets `[]`
 NOTE: For the complete list of operators, including their precedence, go to https://docs.raku.org/language/operators
 
 == Variables
-Raku variables are classified into 3 categories: Scalars, Arrays and Hashes.
+Raku variables are classified into 3 categories: scalars, arrays and hashes.
 
 A *sigil* (Sign in Latin) is a character that is used as a prefix to categorize variables.
 
@@ -657,7 +657,7 @@ JOHN DOE
 eoD nhoJ
 ----
 
-NOTE: For the complete list of methods applicable to Strings, see https://docs.raku.org/type/Str
+NOTE: For the complete list of methods applicable to strings, see https://docs.raku.org/type/Str
 
 ==== Integer
 [source,raku]
@@ -671,7 +671,7 @@ say $age.is-prime;
 True
 ----
 
-NOTE: For the complete list of methods applicable to Integers, see https://docs.raku.org/type/Int
+NOTE: For the complete list of methods applicable to integers, see https://docs.raku.org/type/Int
 
 ==== Rational number
 [source,raku]
@@ -689,7 +689,7 @@ say $age.nude;
 (23 10)
 ----
 
-NOTE: For the complete list of methods applicable to Rational Numbers, see https://docs.raku.org/type/Rat
+NOTE: For the complete list of methods applicable to rational numbers, see https://docs.raku.org/type/Rat
 
 === Arrays
 Arrays are lists containing multiple values.
@@ -901,7 +901,7 @@ NOTE: For the complete Array reference, see https://docs.raku.org/type/Array
 === Hashes
 ==== Creating a hash
 [source,raku]
-.A Hash is a set of Key/Value pairs.
+.A hash is a set of key/value pairs.
 ----
 my %capitals = 'UK', 'London', 'Germany', 'Berlin';
 say %capitals;
@@ -989,7 +989,7 @@ say $var.WHAT;
 
 As you can see in the above example, the type of value in `$var` was once (Str) and then (Int).
 
-This style of programming is called dynamic typing. Dynamic in the sense that variables may contain values of Any type.
+This style of programming is called dynamic typing. Dynamic in the sense that variables may contain values of any type.
 
 Now try running the below example: +
 Notice `Int` before the variable name.
@@ -1353,7 +1353,7 @@ Ticket number 00042
 `%.2f` is replaced by a number rounded to 2 decimal places. +
 `%05d` is replaced by an integer, padded with zeros to a width of 5 digits.
 
-NOTE: For the complete list of methods applicable to Strings, see https://docs.raku.org/type/Str
+NOTE: For the complete list of methods applicable to strings, see https://docs.raku.org/type/Str
 
 == Loops and conditions
 Raku has many conditional and looping constructs.
@@ -1633,7 +1633,7 @@ for 1..10 -> $number {
 NOTE: For more info on loops and conditions, see https://docs.raku.org/language/control
 
 == I/O
-In Raku, two of the most common _Input/Output_ interfaces are the _Terminal_ and _Files_.
+In Raku, two of the most common _input/output_ interfaces are the _terminal_ and _files_.
 
 === Basic I/O using the terminal
 
@@ -1872,8 +1872,8 @@ If a subroutine is defined to accept an argument, and we call it without providi
 
 Raku provides us the ability to define subroutines with:
 
-* Optional Parameters
-* Default Parameters
+* Optional parameters
+* Default parameters
 
 ==== Optional parameters
 Optional parameters are defined by appending `?` to the parameter name.
@@ -2058,7 +2058,7 @@ say "1.2 squared is equal to " ~ squared(1.2);
 NOTE: For more info on subroutines and functions, see https://docs.raku.org/language/functions
 
 == Functional programming
-In this chapter we will take a look at some of the features that facilitate Functional Programming.
+In this chapter we will take a look at some of the features that facilitate functional programming.
 
 === Functions are first-class citizens
 Functions/subroutines are first-class citizens:
@@ -2341,9 +2341,9 @@ While the result is fairly simple, what is interesting about this example, is th
 
 A *closure* is a special kind of object that combines two things:
 
-* A Subroutine
+* A subroutine
 
-* The Environment in which that subroutine was created.
+* The environment in which that subroutine was created.
 
 The environment consists of any local variable that was in-scope at the time that the closure was created.
 In this case, `$generated` is a closure that incorporates both the `greeting` subroutine and the `John Doe` string that existed when the closure was created.
@@ -2372,10 +2372,10 @@ one that says `Good Morning` and one that says `Good Evening`.
 In `$morning` 's environment `$period` is `Morning`. In `$evening` 's environment `$period` is `Evening`.
 
 == Classes & objects
-In the previous chapter, we learned how Raku facilitates Functional Programming. +
-In this chapter we will take a look at Object Oriented programming in Raku.
+In the previous chapter, we learned how Raku facilitates functional programming. +
+In this chapter we will take a look at object oriented programming in Raku.
 
-_Object Oriented_ programming is one of the widely used paradigms nowadays. +
+_Object oriented_ programming is one of the widely used paradigms nowadays. +
 An *object* is a set of variables and subroutines bundled together. +
 The variables are called *attributes* and the subroutines are called *methods*. +
 Attributes define the *state* and methods define the *behavior* of an object.
@@ -2665,7 +2665,7 @@ When defining classes, soon enough we will realize that some attributes/methods 
 Should we duplicate code? +
 NO! We should use *inheritance*
 
-Let's consider we want to define two classes, a class for Human beings and a class for Employees. +
+Let's consider we want to define two classes, a class for human beings and a class for employees. +
 Human beings have 2 attributes: name and age. +
 Employees have 4 attributes: name, age, company and salary
 
@@ -3013,7 +3013,7 @@ It evaluates to _True_ if the object is created from the class it is being compa
 
 [NOTE]
 ====
-For more info on Object Oriented Programming in Raku, see:
+For more info on object oriented programming in Raku, see:
 
 * https://docs.raku.org/language/classtut
 * https://docs.raku.org/language/objects
@@ -3271,7 +3271,7 @@ We can also match against the inverse of that category (everything except it):
 
 | Vertical whitespace | \v | Any character except a vertical whitespace | \V
 
-| Tab | \t | Any character except a Tab | \T
+| Tab | \t | Any character except a tab | \T
 
 | New line | \n | Any character except a new line | \N
 
@@ -3480,8 +3480,8 @@ The matching string ends at position: 26
 ----
 
 .Explanation
-`$/` returns a _Match Object_ (the string that matches the regex) +
-The following methods can be called on the _Match Object_: +
+`$/` returns a _match object_ (the string that matches the regex) +
+The following methods can be called on the _match object_: +
 `.prematch` returns the string preceding the match. +
 `.postmatch` returns the string following the match. +
 `.from` returns the starting position of the match. +
@@ -3939,9 +3939,9 @@ This might not be a problem, unless what you're trying to do takes a lot of time
 Thankfully, Raku has features that will enable you to run things in parallel. +
 At this stage, it is important to note that parallelism can mean one of two things:
 
-* *Task Parallelism*: Two (or more) independent expressions running in parallel.
+* *Task parallelism*: Two (or more) independent expressions running in parallel.
 
-* *Data Parallelism*: A single expression iterating over a list of elements in parallel.
+* *Data parallelism*: A single expression iterating over a list of elements in parallel.
 
 Let's begin with the latter.
 
@@ -4150,11 +4150,11 @@ Time is up
 The first `whenever` displays a line every second. +
 The second `whenever` waits for the promise, and then stops the `react` block.
 
-NOTE: For more info on Concurrency and Asynchronous Programming, see https://docs.raku.org/language/concurrency
+NOTE: For more info on concurrency and asynchronous programming, see https://docs.raku.org/language/concurrency
 
 == Native calling interface
 
-Raku gives us the ability to use C libraries, using the Native Calling Interface.
+Raku gives us the ability to use C libraries, using the native calling interface.
 
 `NativeCall` is a standard module that ships with Raku and offers a set of functionality to ease the job
 of interfacing Raku and C.
@@ -4316,7 +4316,7 @@ Luckily Raku provides many types that map to their respective C counterpart.
 [cols="^.^,^.^",options="header"]
 |===
 
-| C Type | Raku Type
+| C type | Raku type
 
 | `char` .2+| `int8`
 
@@ -4364,7 +4364,7 @@ Luckily Raku provides many types that map to their respective C counterpart.
 
 |===
 
-NOTE: For more info on the Native Calling Interface, see https://docs.raku.org/language/nativecall
+NOTE: For more info on the native calling interface, see https://docs.raku.org/language/nativecall
 
 == The community
 
