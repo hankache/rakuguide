@@ -225,8 +225,8 @@ block:
 [source,raku]
 ----
 {
-    say "First statement in the block.";
-    say "Second statement in the block.";
+  say "First statement in the block.";
+  say "Second statement in the block.";
 }
 ----
 
@@ -315,7 +315,7 @@ Comments are divided into 3 types:
 +
 [source,raku]
 ----
-say #`(This is an embedded comment) "Hello World."
+say #`(This is an embedded comment) "Hello World.";
 ----
 
 * Multi line:
@@ -881,7 +881,7 @@ my @tbl[3;2];
 @tbl[1;1] = "y";
 @tbl[2;0] = 3;
 @tbl[2;1] = "z";
-say @tbl
+say @tbl;
 ----
 
 .`Output`
@@ -1090,7 +1090,7 @@ Several declarators are used in Raku. We've been using `my`, so far.
 
 [source,raku]
 ----
-my $var=1;
+my $var = 1;
 ----
 
 The `my` declarator gives the variable *lexical* scope.
@@ -1366,7 +1366,7 @@ The code runs only if a condition has been met; i.e., an expression evaluates to
 my $age = 19;
 
 if $age > 18 {
-  say 'Welcome'
+  say 'Welcome';
 }
 ----
 
@@ -1391,11 +1391,11 @@ If the condition is not met, we can specify alternate blocks for execution by us
 my $number-of-seats = 9;
 
 if $number-of-seats <= 5 {
-  say 'I am a sedan'
+  say 'I am a sedan';
 } elsif $number-of-seats <= 7 {
-  say 'I am 7 seater'
+  say 'I am 7 seater';
 } else {
-  say 'I am a van'
+  say 'I am a van';
 }
 ----
 
@@ -1409,7 +1409,7 @@ The following code:
 my $clean-shoes = False;
 
 if not $clean-shoes {
-  say 'Clean your shoes'
+  say 'Clean your shoes';
 }
 ----
 can be written as:
@@ -1419,7 +1419,7 @@ can be written as:
 my $clean-shoes = False;
 
 unless $clean-shoes {
-  say 'Clean your shoes'
+  say 'Clean your shoes';
 }
 ----
 
@@ -1435,10 +1435,10 @@ Negation in Raku is done using either `!` or `not`.
 
 [source,raku]
 ----
-my Int $var=1;
+my Int $var = 1;
 
 with $var {
-  say 'Hello'
+  say 'Hello';
 }
 ----
 
@@ -1448,7 +1448,7 @@ If you run the code without assigning a value to the variable, nothing should ha
 my Int $var;
 
 with $var {
-  say 'Hello'
+  say 'Hello';
 }
 ----
 
@@ -1467,7 +1467,7 @@ The `for` loop iterates over multiple values.
 my @array = 1,2,3;
 
 for @array -> $array-item {
-  say $array-item * 100
+  say $array-item * 100;
 }
 ----
 
@@ -1480,7 +1480,7 @@ If we do not create an iteration variable, each value is placed in a special var
 my @array = 1,2,3;
 
 for @array {
-  say $_ * 100
+  say $_ * 100;
 }
 ----
 
@@ -1490,7 +1490,7 @@ The values can also come from a range:
 [source,raku]
 ----
 for 1..5 -> $number {
-  say $number
+  say $number;
 }
 ----
 
@@ -1500,7 +1500,7 @@ In other words, `.say` is a shorter way of writing `$_.say`
 [source,raku]
 ----
 for 1..5 {
-  .say
+  .say;
 }
 ----
 
@@ -1512,7 +1512,7 @@ To iterate over a hash, we can ask for its keys and values and create two iterat
 my %capitals = UK => 'London', Germany => 'Berlin';
 
 for %capitals.kv -> $country, $city {
-  say "The capital of $country is $city"
+  say "The capital of $country is $city";
 }
 ----
 
@@ -1526,10 +1526,10 @@ but much more powerful.
 my $var = 42;
 
 given $var {
-    when 0..50 { say 'Less than or equal to 50'}
-    when Int { say "is an Int" }
-    when 42  { say 42 }
-    default  { say "huh?" }
+  when 0..50 { say 'Less than or equal to 50'}
+  when Int { say "is an Int" }
+  when 42  { say 42 }
+  default  { say "huh?" }
 }
 ----
 
@@ -1541,10 +1541,10 @@ Alternatively `proceed` will instruct Raku to continue matching even after a suc
 my $var = 42;
 
 given $var {
-    when 0..50 { say 'Less than or equal to 50';proceed}
-    when Int { say "is an Int";proceed}
-    when 42  { say 42 }
-    default  { say "huh?" }
+  when 0..50 { say 'Less than or equal to 50';proceed}
+  when Int { say "is an Int";proceed}
+  when 42  { say 42 }
+  default  { say "huh?" }
 }
 ----
 
@@ -1557,7 +1557,7 @@ Actually, `loop` is how `for` loops are written in C-family programming language
 [source,raku]
 ----
 loop (my $i = 0; $i < 5; $i++) {
-  say "The current number is $i"
+  say "The current number is $i";
 }
 ----
 
@@ -1843,8 +1843,8 @@ The below subroutine accepts a string argument.
 
 [source,raku]
 ----
-sub say-hello (Str $name) {
-    say "Hello " ~ $name ~ "!!!!"
+sub say-hello(Str $name) {
+  say "Hello " ~ $name ~ "!!!!";
 }
 say-hello "Paul";
 say-hello "Paula";
@@ -1857,10 +1857,10 @@ When the subroutine is called, the runtime environment will decide which version
 [source,raku]
 ----
 multi greet($name) {
-    say "Good morning $name";
+  say "Good morning $name";
 }
 multi greet($name, $title) {
-    say "Good morning $title $name";
+  say "Good morning $title $name";
 }
 
 greet "Johnnie";
@@ -1894,7 +1894,7 @@ This is done by assigning a value to the parameter within the subroutine definit
 
 [source,raku]
 ----
-sub say-hello($name="Matt") {
+sub say-hello($name = "Matt") {
   say "Hello " ~ $name;
 }
 say-hello;
@@ -1998,7 +1998,7 @@ If a function is allowed to run through its block to the end, the last statement
 
 [source,raku]
 ----
-sub squared ($x) {
+sub squared($x) {
   $x ** 2;
 }
 say "7 squared is equal to " ~ squared(7);
@@ -2009,7 +2009,7 @@ For the sake of clarity, it might be a good idea to _explicitly_ specify what we
 This can be done using the `return` keyword.
 [source,raku]
 ----
-sub squared ($x) {
+sub squared($x) {
   return $x ** 2;
 }
 say "7 squared is equal to " ~ squared(7);
@@ -2023,7 +2023,7 @@ To restrict the return value to a certain type, we use the arrow notation `-\->`
 [source,raku]
 .Indicating return type
 ----
-sub squared ($x --> Int) {
+sub squared($x --> Int) {
   return $x ** 2;
 }
 say "1.2 squared is equal to " ~ squared(1.2);
@@ -2048,7 +2048,7 @@ Below is the modified version of the previous example that uses `:D` to force th
 
 [source,raku]
 ----
-sub squared ($x --> Int:D) {
+sub squared($x --> Int:D) {
   return $x ** 2;
 }
 say "1.2 squared is equal to " ~ squared(1.2);
@@ -2077,7 +2077,7 @@ A great example is the `map` function. +
 ----
 my @array = <1 2 3 4 5>;
 sub squared($x) {
-  $x ** 2
+  $x ** 2;
 }
 say map(&squared,@array);
 ----
@@ -2138,7 +2138,7 @@ A pointy block may also be used to assign functions to variables:
 [source,raku]
 ----
 my $squared = -> $x {
-  $x ** 2
+  $x ** 2;
 }
 say $squared(9);
 ----
@@ -2236,7 +2236,7 @@ In the below example `1|2|3` is a junction.
 ----
 my $var = 2;
 if $var == 1|2|3 {
-  say "The variable is 1 or 2 or 3"
+  say "The variable is 1 or 2 or 3";
 }
 ----
 The use of junctions usually triggers *autothreading*;
@@ -2324,11 +2324,11 @@ All code objects in Raku are closures, which means they can reference lexical va
 [source,raku]
 ----
 sub generate-greeting {
-    my $name = "John Doe";
-    sub greeting {
-      say "Good Morning $name";
-    };
-    return &greeting;
+  my $name = "John Doe";
+  sub greeting {
+    say "Good Morning $name";
+  };
+  return &greeting;
 }
 my $generated = generate-greeting;
 $generated();
@@ -2353,7 +2353,7 @@ Let's take a look at a more interesting example.
 ----
 sub greeting-generator($period) {
   return sub ($name) {
-    return "Good $period $name"
+    return "Good $period $name";
   }
 }
 my $morning = greeting-generator("Morning");
@@ -2507,7 +2507,7 @@ class Human {
   has $.sex;
   has $.nationality;
   # new constructor that overrides the default one.
-  method new ($name,$age,$sex,$nationality) {
+  method new($name,$age,$sex,$nationality) {
     self.bless(:$name,:$age,:$sex,:$nationality);
   }
 }
@@ -2565,11 +2565,11 @@ class Human {
   has $.nationality;
   has $.eligible;
   method assess-eligibility {
-      if self.age < 21 {
-        $!eligible = 'No'
-      } else {
-        $!eligible = 'Yes'
-      }
+    if self.age < 21 {
+      $!eligible = 'No';
+    } else {
+      $!eligible = 'Yes';
+    }
   }
 
 }
@@ -3029,7 +3029,7 @@ Consider the below script that runs correctly:
 my Str $name;
 $name = "Joanna";
 say "Hello " ~ $name;
-say "How are you doing today?"
+say "How are you doing today?";
 ----
 
 .`Output`
@@ -3045,7 +3045,7 @@ Now consider this script that throws an exception:
 my Str $name;
 $name = 123;
 say "Hello " ~ $name;
-say "How are you doing today?"
+say "How are you doing today?";
 ----
 
 .`Output`
@@ -3206,7 +3206,7 @@ Think of it as a pattern.
 [source,raku]
 ----
 if 'enlightenment' ~~ m/ light / {
-    say "enlightenment contains the word light";
+  say "enlightenment contains the word light";
 }
 ----
 
@@ -3233,7 +3233,7 @@ All other characters have to be escaped using a backslash or surrounded by quote
 .Backslash
 ----
 if 'Temperature: 13' ~~ m/ \: / {
-    say "The string provided contains a colon :";
+  say "The string provided contains a colon :";
 }
 ----
 
@@ -3241,7 +3241,7 @@ if 'Temperature: 13' ~~ m/ \: / {
 .Single quotes
 ----
 if 'Age = 13' ~~ m/ '=' / {
-    say "The string provided contains an equal character = ";
+  say "The string provided contains an equal character = ";
 }
 ----
 
@@ -3249,7 +3249,7 @@ if 'Age = 13' ~~ m/ '=' / {
 .Double quotes
 ----
 if 'name@company.com' ~~ m/ "@" / {
-    say "This is a valid email address because it contains an @ character";
+  say "This is a valid email address because it contains an @ character";
 }
 ----
 
@@ -3282,12 +3282,12 @@ We can also match against the inverse of that category (everything except it):
 if "John123" ~~ / \d / {
   say "This is not a valid name, numbers are not allowed";
 } else {
-  say "This is a valid name"
+  say "This is a valid name";
 }
 if "John-Doe" ~~ / \s / {
   say "This string contains whitespace";
 } else {
-  say "This string doesn't contain whitespace"
+  say "This string doesn't contain whitespace";
 }
 ----
 
@@ -3303,17 +3303,17 @@ Unicode properties are enclosed in `<: >`
 if "Devanagari Numbers १२३" ~~ / <:N> / {
   say "Contains a number";
 } else {
-  say "Doesn't contain a number"
+  say "Doesn't contain a number";
 }
 if "Привет, Иван." ~~ / <:Lu> / {
   say "Contains an uppercase letter";
 } else {
-  say "Doesn't contain an upper case letter"
+  say "Doesn't contain an upper case letter";
 }
 if "John-Doe" ~~ / <:Pd> / {
   say "Contains a dash";
 } else {
-  say "Doesn't contain a dash"
+  say "Doesn't contain a dash";
 }
 ----
 
@@ -3325,15 +3325,15 @@ The dot `.` means any single character.
 [source,raku]
 ----
 if 'abc' ~~ m/ a.c / {
-    say "Match";
+  say "Match";
 }
 if 'a2c' ~~ m/ a.c / {
-    say "Match";
+  say "Match";
 }
 if 'ac' ~~ m/ a.c / {
-    say "Match";
+  say "Match";
 } else {
-    say "No Match";
+  say "No Match";
 }
 ----
 
@@ -3346,14 +3346,14 @@ The question mark `?` means zero or one time.
 [source,raku]
 ----
 if 'ac' ~~ m/ a?c / {
-    say "Match";
+  say "Match";
 } else {
-    say "No Match";
+  say "No Match";
 }
 if 'c' ~~ m/ a?c / {
-    say "Match";
+  say "Match";
 } else {
-    say "No Match";
+  say "No Match";
 }
 ----
 
@@ -3363,24 +3363,24 @@ The star `*` means zero or multiple times.
 [source,raku]
 ----
 if 'az' ~~ m/ a*z / {
-    say "Match";
+  say "Match";
 } else {
-    say "No Match";
+  say "No Match";
 }
 if 'aaz' ~~ m/ a*z / {
-    say "Match";
+  say "Match";
 } else {
-    say "No Match";
+  say "No Match";
 }
 if 'aaaaaaaaaaz' ~~ m/ a*z / {
-    say "Match";
+  say "Match";
 } else {
-    say "No Match";
+  say "No Match";
 }
 if 'z' ~~ m/ a*z / {
-    say "Match";
+  say "Match";
 } else {
-    say "No Match";
+  say "No Match";
 }
 ----
 
@@ -3390,24 +3390,24 @@ The `+` means at least one time.
 [source,raku]
 ----
 if 'az' ~~ m/ a+z / {
-    say "Match";
+  say "Match";
 } else {
-    say "No Match";
+  say "No Match";
 }
 if 'aaz' ~~ m/ a+z / {
-    say "Match";
+  say "Match";
 } else {
-    say "No Match";
+  say "No Match";
 }
 if 'aaaaaaaaaaz' ~~ m/ a+z / {
-    say "Match";
+  say "Match";
 } else {
-    say "No Match";
+  say "No Match";
 }
 if 'z' ~~ m/ a+z / {
-    say "Match";
+  say "Match";
 } else {
-    say "No Match";
+  say "No Match";
 }
 ----
 
@@ -3421,19 +3421,19 @@ By default, a regex can match anywhere in a string. *Anchors* tie the match to a
 [source,raku]
 ----
 if 'raku guide' ~~ m/ ^ raku / {
-    say "Match";
+  say "Match";
 } else {
-    say "No Match";
+  say "No Match";
 }
 if 'the raku guide' ~~ m/ ^ raku / {
-    say "Match";
+  say "Match";
 } else {
-    say "No Match";
+  say "No Match";
 }
 if 'the raku guide' ~~ m/ guide $ / {
-    say "Match";
+  say "Match";
 } else {
-    say "No Match";
+  say "No Match";
 }
 ----
 
@@ -3443,14 +3443,14 @@ The vertical bar `|` means _or_. It is used to match one of several alternatives
 [source,raku]
 ----
 if 'raku.org' ~~ m/ com | org | net / {
-    say "Match";
+  say "Match";
 } else {
-    say "No Match";
+  say "No Match";
 }
 if 'raku.dev' ~~ m/ com | org | net / {
-    say "Match";
+  say "Match";
 } else {
-    say "No Match";
+  say "No Match";
 }
 ----
 
@@ -3462,11 +3462,11 @@ the match result is stored in a special variable `$/`
 .`Script`
 ----
 if 'I am learning Raku regexes today' ~~ m/:s Raku regexes/ {
-    say "The match is: " ~ $/;
-    say "The string before the match is: " ~ $/.prematch;
-    say "The string after the match is: " ~ $/.postmatch;
-    say "The matching string starts at position: " ~ $/.from;
-    say "The matching string ends at position: " ~ $/.to;
+  say "The match is: " ~ $/;
+  say "The string before the match is: " ~ $/.prematch;
+  say "The string after the match is: " ~ $/.postmatch;
+  say "The matching string starts at position: " ~ $/.from;
+  say "The matching string ends at position: " ~ $/.to;
 }
 ----
 
@@ -3501,8 +3501,8 @@ The captures are numbered starting from zero. They are stored in the variables `
 .`Script`
 ----
 if 'John is 23 years old' ~~ m/ (\w+) \s is \s (\d+) / {
-    say "Name: " ~ $0;
-    say "Age: " ~ $1;
+  say "Name: " ~ $0;
+  say "Age: " ~ $1;
 }
 ----
 
