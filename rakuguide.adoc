@@ -604,9 +604,9 @@ They are formed by surrounding the operator with brackets `[]`
 |===
 | Normal Operation | Result | Reduction Operator | Result
 
-| 1 + 2 + 3 + 4 + 5 | 15 | [+] 1,2,3,4,5 | 15
+| 1 + 2 + 3 + 4 + 5 | 15 | [+] 1, 2, 3, 4, 5 | 15
 
-| 1 * 2 * 3 * 4 * 5 | 120 | [*] 1,2,3,4,5 | 120
+| 1 * 2 * 3 * 4 * 5 | 120 | [*] 1, 2, 3, 4, 5 | 120
 
 |===
 
@@ -696,7 +696,7 @@ Arrays are lists containing multiple values.
 
 [source,raku]
 ----
-my @animals = 'camel','llama','owl';
+my @animals = 'camel', 'llama', 'owl';
 say @animals;
 ----
 
@@ -707,7 +707,7 @@ TIP: The tilde `~` is used for string concatenation.
 [source,raku]
 .`Script`
 ----
-my @animals = 'camel','vicuña','llama';
+my @animals = 'camel', 'vicuña', 'llama';
 say "The zoo contains " ~ @animals.elems ~ " animals";
 say "The animals are: " ~ @animals;
 say "I will adopt an owl for the zoo";
@@ -717,7 +717,7 @@ say "The first animal we adopted was the " ~ @animals[0];
 @animals.pop;
 say "Unfortunately the owl got away and we're left with: " ~ @animals;
 say "We're closing the zoo and keeping one animal only";
-say "We're going to let go: " ~ @animals.splice(1,2) ~ " and keep the " ~ @animals;
+say "We're going to let go: " ~ @animals.splice(1, 2) ~ " and keep the " ~ @animals;
 ----
 
 .`Output`
@@ -737,16 +737,16 @@ We're going to let go: vicuña llama and keep the camel
 `.push()` adds one or more elements to the array. +
 We can access a specific element in the array by specifying its position `@animals[0]`. +
 `.pop` removes the last element from the array and returns it. +
-`.splice(a,b)` will remove `b` elements starting at position `a`.
+`.splice(a, b)` will remove `b` elements starting at position `a`.
 
 Below are a few more operations that can be performed on arrays:
 
 [source,raku]
 .`Script`
 ----
-my @animals = 'camel','vicuña','llama';
+my @animals = 'camel', 'vicuña', 'llama';
 say "The last animal is the " ~ @animals[*-1];
-say "The first two animals are: " ~ @animals[0,1];
+say "The first two animals are: " ~ @animals[0, 1];
 say "All the animals: " ~ @animals.join(', ');
 @animals.unshift("owl");
 say "An owl joined at the front: " ~ @animals;
@@ -765,7 +765,7 @@ The owl got away again: camel vicuña llama
 
 .Explanation
 `+@animals[*-1]+` returns the last element of the array. +
-`@animals[0,1]` returns several elements at once. This is called a *slice*. +
+`@animals[0, 1]` returns several elements at once. This is called a *slice*. +
 `.join(', ')` returns a single string made of all the elements, separated by a comma and a space. +
 `.unshift()` adds one or more elements to the beginning of the array. +
 `.shift` removes the first element from the array and returns it.
@@ -777,7 +777,7 @@ It is important to know which is which.
 [source,raku]
 .`Script`
 ----
-my @numbers = 7,2,4,9,11,3;
+my @numbers = 7, 2, 4, 9, 11, 3;
 
 @numbers.push(99);
 say @numbers;      #1
@@ -903,7 +903,7 @@ NOTE: For the complete Array reference, see https://docs.raku.org/type/Array
 [source,raku]
 .A Hash is a set of Key/Value pairs.
 ----
-my %capitals = 'UK','London','Germany','Berlin';
+my %capitals = 'UK', 'London', 'Germany', 'Berlin';
 say %capitals;
 ----
 
@@ -1015,11 +1015,11 @@ Arrays and hashes can also be statically typed:
 
 [source,raku]
 ----
-my Int @array = 1,2,3;
+my Int @array = 1, 2, 3;
 say @array;
 say @array.WHAT;
 
-my Str @multilingual = "Hello","Salut","Hallo","您好","안녕하세요","こんにちは";
+my Str @multilingual = "Hello", "Salut", "Hallo", "您好", "안녕하세요", "こんにちは";
 say @multilingual;
 say @multilingual.WHAT;
 
@@ -1241,7 +1241,7 @@ It is a shorter way of writing:
 
 [source,raku]
 ----
-my @animals = 'camel','llama','owl';
+my @animals = 'camel', 'llama', 'owl';
 say @animals;
 ----
 
@@ -1286,7 +1286,7 @@ Raku
 `.flip` returns the string reversed. +
 `.contains()` checks if the string contains another string. +
 `.starts-with()` and `.ends-with()` check how the string begins and how it ends. +
-`.substr(a,b)` returns `b` characters starting at position `a`. +
+`.substr(a, b)` returns `b` characters starting at position `a`. +
 `.index()` returns the position of another string inside the string. +
 `.trim` removes the whitespace at the beginning and at the end of the string.
 
@@ -1464,7 +1464,7 @@ The `for` loop iterates over multiple values.
 ==== Arrays
 [source,raku]
 ----
-my @array = 1,2,3;
+my @array = 1, 2, 3;
 
 for @array -> $array-item {
   say $array-item * 100;
@@ -1477,7 +1477,7 @@ If we do not create an iteration variable, each value is placed in a special var
 
 [source,raku]
 ----
-my @array = 1,2,3;
+my @array = 1, 2, 3;
 
 for @array {
   say $_ * 100;
@@ -1864,7 +1864,7 @@ multi greet($name, $title) {
 }
 
 greet "Johnnie";
-greet "Laura","Mrs.";
+greet "Laura", "Mrs.";
 ----
 
 === Default and optional parameters
@@ -2079,7 +2079,7 @@ my @array = <1 2 3 4 5>;
 sub squared($x) {
   $x ** 2;
 }
-say map(&squared,@array);
+say map(&squared, @array);
 ----
 
 .`Output`
@@ -2103,7 +2103,7 @@ Let's rewrite the `map` example and have it use an anonymous function
 [source,raku]
 ----
 my @array = <1 2 3 4 5>;
-say map(-> $x {$x ** 2},@array);
+say map(-> $x {$x ** 2}, @array);
 ----
 Notice that instead of declaring the squared subroutine and passing it as an argument to `map`, we defined
 it within the anonymous subroutine as `\-> $x {$x ** 2}`.
@@ -2277,7 +2277,7 @@ This list may return (if requested) any integer between 1 and infinity, in other
 ==== Deduced generator
 [source,raku]
 ----
-my $lazylist = (0,2 ... 10);
+my $lazylist = (0, 2 ... 10);
 say $lazylist;
 ----
 The initial elements are 0 and 2 and the endpoint is 10.
@@ -2507,12 +2507,12 @@ class Human {
   has $.sex;
   has $.nationality;
   # new constructor that overrides the default one.
-  method new($name,$age,$sex,$nationality) {
-    self.bless(:$name,:$age,:$sex,:$nationality);
+  method new($name, $age, $sex, $nationality) {
+    self.bless(:$name, :$age, :$sex, :$nationality);
   }
 }
 
-my $john = Human.new('John',23,'M','American');
+my $john = Human.new('John', 23, 'M', 'American');
 say $john;
 ----
 
@@ -2727,7 +2727,7 @@ class Employee is Human {
   has $.salary;
 }
 
-my $john = Human.new(name =>'John', age => 23,);
+my $john = Human.new(name =>'John', age => 23, );
 my $jane = Employee.new(name =>'Jane', age => 25, company => 'Acme', salary => 4000);
 
 $john.introduce-yourself;
@@ -2754,8 +2754,8 @@ class Employee is Human {
 
 }
 
-my $john = Human.new(name =>'John',age => 23,);
-my $jane = Employee.new(name =>'Jane',age => 25,company => 'Acme',salary => 4000);
+my $john = Human.new(name =>'John', age => 23, );
+my $jane = Employee.new(name =>'Jane', age => 25, company => 'Acme', salary => 4000);
 
 $john.introduce-yourself;
 $jane.introduce-yourself;
@@ -2790,11 +2790,11 @@ class line-chart {
 class combo-chart is bar-chart is line-chart {
 }
 
-my $actual-sales = bar-chart.new(bar-values => [10,9,11,8,7,10]);
-my $forecast-sales = line-chart.new(line-values => [9,8,10,7,6,9]);
+my $actual-sales = bar-chart.new(bar-values => [10, 9, 11, 8, 7, 10]);
+my $forecast-sales = line-chart.new(line-values => [9, 8, 10, 7, 6, 9]);
 
-my $actual-vs-forecast = combo-chart.new(bar-values => [10,9,11,8,7,10],
-                                         line-values => [9,8,10,7,6,9]);
+my $actual-vs-forecast = combo-chart.new(bar-values => [10, 9, 11, 8, 7, 10],
+                                         line-values => [9, 8, 10, 7, 6, 9]);
 say "Actual sales:";
 $actual-sales.plot;
 say "Forecast sales:";
@@ -2849,11 +2849,11 @@ class combo-chart is bar-chart is line-chart {
   }
 }
 
-my $actual-sales = bar-chart.new(bar-values => [10,9,11,8,7,10]);
-my $forecast-sales = line-chart.new(line-values => [9,8,10,7,6,9]);
+my $actual-sales = bar-chart.new(bar-values => [10, 9, 11, 8, 7, 10]);
+my $forecast-sales = line-chart.new(line-values => [9, 8, 10, 7, 6, 9]);
 
-my $actual-vs-forecast = combo-chart.new(bar-values => [10,9,11,8,7,10],
-                                         line-values => [9,8,10,7,6,9]);
+my $actual-vs-forecast = combo-chart.new(bar-values => [10, 9, 11, 8, 7, 10],
+                                         line-values => [9, 8, 10, 7, 6, 9]);
 say "Actual sales:";
 $actual-sales.plot;
 say "Forecast sales:";
@@ -2902,11 +2902,11 @@ class combo-chart does bar-chart does line-chart {
   }
 }
 
-my $actual-sales = bar-chart.new(bar-values => [10,9,11,8,7,10]);
-my $forecast-sales = line-chart.new(line-values => [9,8,10,7,6,9]);
+my $actual-sales = bar-chart.new(bar-values => [10, 9, 11, 8, 7, 10]);
+my $forecast-sales = line-chart.new(line-values => [9, 8, 10, 7, 6, 9]);
 
-my $actual-vs-forecast = combo-chart.new(bar-values => [10,9,11,8,7,10],
-                                         line-values => [9,8,10,7,6,9]);
+my $actual-vs-forecast = combo-chart.new(bar-values => [10, 9, 11, 8, 7, 10],
+                                         line-values => [9, 8, 10, 7, 6, 9]);
 say "Actual sales:";
 $actual-sales.plot;
 say "Forecast sales:";
@@ -2940,11 +2940,11 @@ role line-chart {
 class combo-chart does bar-chart does line-chart {
 }
 
-my $actual-sales = bar-chart.new(bar-values => [10,9,11,8,7,10]);
-my $forecast-sales = line-chart.new(line-values => [9,8,10,7,6,9]);
+my $actual-sales = bar-chart.new(bar-values => [10, 9, 11, 8, 7, 10]);
+my $forecast-sales = line-chart.new(line-values => [9, 8, 10, 7, 6, 9]);
 
-my $actual-vs-forecast = combo-chart.new(bar-values => [10,9,11,8,7,10],
-                                         line-values => [9,8,10,7,6,9]);
+my $actual-vs-forecast = combo-chart.new(bar-values => [10, 9, 11, 8, 7, 10],
+                                         line-values => [9, 8, 10, 7, 6, 9]);
 say "Actual sales:";
 $actual-sales.plot;
 say "Forecast sales:";
@@ -2986,8 +2986,8 @@ class Employee is Human {
   }
 }
 
-my $john = Human.new(name =>'John',age => 23,);
-my $jane = Employee.new(name =>'Jane',age => 25,company => 'Acme',salary => 4000);
+my $john = Human.new(name =>'John', age => 23, );
+my $jane = Employee.new(name =>'Jane', age => 25, company => 'Acme', salary => 4000);
 
 say $john.WHAT;
 say $jane.WHAT;
@@ -3890,7 +3890,7 @@ All methods/operators work as expected.
 
 [source,raku]
 ----
-say (٤,٥,٦,1,2,3).sort; # (1 2 3 4 5 6)
+say (٤, ٥, ٦, 1, 2, 3).sort; # (1 2 3 4 5 6)
 say 1 + ٩;              # 10
 ----
 
@@ -3922,8 +3922,8 @@ As an alternative to the `sort` method that sorts using code points, Raku provid
 method that implements the link:http://unicode.org/reports/tr10/[Unicode Collation Algorithm].
 [source,raku]
 ----
-say ('a','b','c','D','E','F').sort;    # (D E F a b c)
-say ('a','b','c','D','E','F').collate; # (a b c D E F)
+say ('a', 'b', 'c', 'D', 'E', 'F').sort;    # (D E F a b c)
+say ('a', 'b', 'c', 'D', 'E', 'F').collate; # (a b c D E F)
 ----
 
 NOTE: For more info on Unicode, see https://docs.raku.org/language/unicode
@@ -4297,9 +4297,9 @@ int add (int a, int b) {
 use NativeCall;
 
 constant LIBPATH = "$*CWD/ncitest";
-sub add(int32,int32 --> int32) is native(LIBPATH) { * }
+sub add(int32, int32 --> int32) is native(LIBPATH) { * }
 
-say add(2,3);
+say add(2, 3);
 ----
 
 Notice how both C and Raku functions accept two integers and return one
