@@ -161,13 +161,13 @@ Single lines may also be tried non-interactively on the command-line by
 typing `raku -e 'your code here'` and hitting [Enter].
 
 [TIP]
---
+====
 A line editor helps you get the most out of the REPL. It lets you use the up and down arrows for history, left and right to edit input, and TAB for completion.
 
 If these features are not enabled, consider running the following command and you shall be all set:
 
 `zef install Terminal::LineEditor`
---
+====
 
 === Editors
 Since most of the time we will be writing and storing our Raku programs in files, we should have
@@ -195,12 +195,16 @@ The community frequently uses the following editors:
 We shall begin with the `hello world` ritual.
 
 [source,raku]
+----
 say 'hello world';
+----
 
 that can also be written as:
 
 [source,raku]
+----
 'hello world'.say;
+----
 
 === Syntax overview
 Raku is *free form*: Most of the time you are free to use any amount of whitespace, although in certain
@@ -303,23 +307,27 @@ Comments are divided into 3 types:
 * Single line:
 +
 [source,raku]
+----
 # This is a single line comment
+----
 
 * Embedded:
 +
 [source,raku]
+----
 say #`(This is an embedded comment) "Hello World."
+----
 
 * Multi line:
 +
 [source,raku]
------------------------------
+----
 =begin comment
 This is a multi line comment.
 Comment 1
 Comment 2
 =end comment
------------------------------
+----
 
 ==== Quotes
 Strings need to be delimited by either double quotes or single quotes.
@@ -331,14 +339,14 @@ Always use double quotes:
 * if your string contains a variable that needs to be interpolated.
 
 [source,raku]
------------------------------------
+----
 say 'Hello World';   # Hello World
 say "Hello World";   # Hello World
 say "Don't";         # Don't
 my $name = 'John Doe';
 say 'Hello $name';   # Hello $name
 say "Hello $name";   # Hello John Doe
------------------------------------
+----
 
 == Operators
 
@@ -599,6 +607,7 @@ say $name.chars;
 say $name.flip;
 ----
 
+.`Output`
 ----
 JOHN DOE
 8
@@ -614,6 +623,7 @@ my $age = 17;
 say $age.is-prime;
 ----
 
+.`Output`
 ----
 True
 ----
@@ -629,6 +639,7 @@ say $age.denominator;
 say $age.nude;
 ----
 
+.`Output`
 ----
 23
 10
@@ -763,7 +774,9 @@ TIP: `.=` works with any method and on any variable. For example, `$name .= uc` 
 ==== Fixed-size arrays
 A basic array is declared as following:
 [source,raku]
+----
 my @array;
+----
 
 The basic array can have indefinite length and thus is called auto-extending. +
 The array will accept any number of values with no restriction.
@@ -773,7 +786,9 @@ These arrays cannot be accessed beyond their defined size.
 
 To declare an array of fixed size, specify its maximum number of elements in square brackets immediately after its name:
 [source,raku]
+----
 my @array[3];
+----
 
 This array will be able to hold a maximum of 3 values, indexed from 0 to 2.
 
@@ -795,6 +810,7 @@ my @array[3];
 @array[3] = "fourth value";
 ----
 
+.`Output`
 ----
 Index 3 for dimension 1 out of range (must be 0..2)
 ----
@@ -804,7 +820,9 @@ The arrays we saw until now are one-dimensional. +
 Fortunately, we can define multi-dimensional arrays in Raku.
 
 [source,raku]
+----
 my @tbl[3;2];
+----
 
 This array is two-dimensional.
 The first dimension can have a maximum of 3 values and the second dimension a maximum of 2 values.
@@ -823,6 +841,7 @@ my @tbl[3;2];
 say @tbl
 ----
 
+.`Output`
 ----
 [[1 x] [2 y] [3 z]]
 ----
@@ -1020,7 +1039,9 @@ Before using a variable for the first time, it needs to be declared.
 Several declarators are used in Raku. We've been using `my`, so far.
 
 [source,raku]
+----
 my $var=1;
+----
 
 The `my` declarator gives the variable *lexical* scope.
 In other words, the variable will only be accessible in the same block it was declared.
@@ -1728,13 +1749,13 @@ say "folder123".IO.f;
 
 WARNING: Windows users can use `/` or `\\` to define directories +
 `C:\\rakudo\\bin` +
-`C:/rakudo/bin` +
+`C:/rakudo/bin`
 
 NOTE: For more info on I/O, see https://docs.raku.org/type/IO
 
 == Subroutines
 === Definition
-*Subroutines* (also called *subs* or *functions*) are a means of packaging and reusing functionality. +
+*Subroutines* (also called *subs* or *functions*) are a means of packaging and reusing functionality.
 
 A subroutine definition begins with the keyword `sub`. After their definition, they can be called by their handle. +
 Check out the below example:
@@ -1987,7 +2008,7 @@ A great example is the `map` function. +
 `map` is a _higher order function_, it can accept another function as an argument.
 
 [source,raku]
-.Script
+.`Script`
 ----
 my @array = <1 2 3 4 5>;
 sub squared($x) {
@@ -1996,7 +2017,7 @@ sub squared($x) {
 say map(&squared,@array);
 ----
 
-.Output
+.`Output`
 ----
 (1 4 9 16 25)
 ----
@@ -2292,7 +2313,7 @@ An *object* is a set of variables and subroutines bundled together. +
 The variables are called *attributes* and the subroutines are called *methods*. +
 Attributes define the *state* and methods define the *behavior* of an object.
 
-A *class* is a template for creating *objects*. +
+A *class* is a template for creating *objects*.
 
 In order to understand the relationship consider the below example:
 
@@ -2495,7 +2516,7 @@ say $john.eligible;
 Once methods are defined within a class, they can be called on an object using the _dot notation_: +
 _object_ *.* _method_ or as in the above example: `$john.assess-eligibility`
 
-Within the definition of a method, if we need to reference the object itself to call another method we use the `self` keyword. +
+Within the definition of a method, if we need to reference the object itself to call another method we use the `self` keyword.
 
 Within the definition of a method, if we need to reference an attribute we use `!` even if it was defined with `.` +
 The rationale being that what the `.` twigil does is declare an attribute with `!` and automate the creation of an accessor.
@@ -2926,12 +2947,12 @@ Introspection is facilitated by:
 It evaluates to _True_ if the object is created from the class it is being compared against or any of its inheritances.
 
 [NOTE]
---
+====
 For more info on Object Oriented Programming in Raku, see:
 
 * https://docs.raku.org/language/classtut
 * https://docs.raku.org/language/objects
---
+====
 == Exception Handling
 
 === Catching Exceptions
@@ -3366,7 +3387,7 @@ Whenever the process of matching a string against a regex is successful,
 the match result is stored in a special variable `$/`
 
 [source,raku]
-.Script
+.`Script`
 ----
 if 'I am learning Raku regexes today' ~~ m/:s Raku regexes/ {
     say "The match is: " ~ $/;
@@ -3377,7 +3398,7 @@ if 'I am learning Raku regexes today' ~~ m/:s Raku regexes/ {
 }
 ----
 
-.Output
+.`Output`
 ----
 The match is: Raku regexes
 The string before the match is: I am learning
@@ -3392,7 +3413,7 @@ The following methods can be called on the _Match Object_: +
 `.prematch` returns the string preceding the match. +
 `.postmatch` returns the string following the match. +
 `.from` returns the starting position of the match. +
-`.to` returns the ending position of the match. +
+`.to` returns the ending position of the match.
 
 TIP: By default, whitespace in a regex definition is ignored. +
 If we want to match against a regex containing whitespace, we have to do so explicitly. +
@@ -3405,7 +3426,7 @@ Surrounding a part of a regex with parentheses *captures* the part of the string
 The captures are numbered starting from zero. They are stored in the variables `$0`, `$1`, `$2` and so on.
 
 [source,raku]
-.Script
+.`Script`
 ----
 if 'John is 23 years old' ~~ m/ (\w+) \s is \s (\d+) / {
     say "Name: " ~ $0;
@@ -3413,7 +3434,7 @@ if 'John is 23 years old' ~~ m/ (\w+) \s is \s (\d+) / {
 }
 ----
 
-.Output
+.`Output`
 ----
 Name: John
 Age: 23
@@ -3428,7 +3449,7 @@ A regex can also be used to replace the part of a string that it matches. +
 This is done using the `.subst` method. It is given a regex and a replacement, and it returns a new string.
 
 [source,raku]
-.Script
+.`Script`
 ----
 my $text = 'I drink tea, tea is good';
 say $text.subst(/tea/, 'coffee');
@@ -3436,7 +3457,7 @@ say $text.subst(/tea/, 'coffee', :g);
 say $text;
 ----
 
-.Output
+.`Output`
 ----
 I drink coffee, tea is good
 I drink coffee, coffee is good
@@ -3458,7 +3479,7 @@ Its sole purpose is to demonstrate regex functionality in Raku. +
 Do not use it as-is in production.
 
 [source,raku]
-.Script
+.`Script`
 ----
 my $email = 'john.doe@route66.org';
 my $regex = / ^ <:L>+\.<:L>+\@<:L+:N>+\.(com|org|net) $ /;
@@ -3470,8 +3491,10 @@ if $email ~~ $regex {
 }
 ----
 
-.Output
-`john.doe@route66.org is a valid email`
+.`Output`
+----
+john.doe@route66.org is a valid email
+----
 
 .Explanation
 * `<:L>` matches a single letter
@@ -4106,7 +4129,7 @@ sub hellofromc() is native(LIBPATH) { * }
 hellofromc();
 ----
 
-.Explanation:
+.Explanation
 First of all we declared that we will be using the `NativeCall` module. +
 Then we created a constant `LIBPATH` that holds the path to the C library. +
 Notice that `$*CWD` returns the current working directory. +
@@ -4140,7 +4163,7 @@ sub hello() is native(LIBPATH) is symbol('hellofromc') { * }
 hello();
 ----
 
-.Explanation:
+.Explanation
 In case the Raku subroutine has a different name than its C counterpart, we
 should use the `is symbol` trait with the name of the original C function.
 
