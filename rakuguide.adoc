@@ -350,7 +350,7 @@ say "Hello $name";   # Hello John Doe
 
 == Operators
 
-=== Common Operators
+=== Common operators
 The below tables list the most commonly used operators.
 
 ==== Arithmetic
@@ -533,7 +533,7 @@ The below tables list the most commonly used operators.
 
 |===
 
-=== Logical Operators
+=== Logical operators
 Logical operators combine conditions or choose between two values.
 
 [cols="^.^5m,^.^7m,.^20,.^20m,.^18m", options="header"]
@@ -580,7 +580,7 @@ my $name;
 say $name // 'Anonymous';       # Anonymous
 ----
 
-=== Reversed Operators
+=== Reversed operators
 
 Adding `R` before any operator will have the effect of reversing its operands.
 
@@ -594,7 +594,7 @@ Adding `R` before any operator will have the effect of reversing its operands.
 
 |===
 
-=== Reduction Operators
+=== Reduction operators
 
 Reduction operators work on lists of values.
 They are formed by surrounding the operator with brackets `[]`
@@ -1119,7 +1119,7 @@ my Int $var = 123;
 say $var;
 ----
 
-=== Assignment vs. Binding
+=== Assignment vs. binding
 ==== Assignment
 We've seen in the previous examples, how to *assign* values to variables. +
 *Assignment* is done using the `=` operator.
@@ -1634,7 +1634,7 @@ NOTE: For more info on loops and conditions, see https://docs.raku.org/language/
 == I/O
 In Raku, two of the most common _Input/Output_ interfaces are the _Terminal_ and _Files_.
 
-=== Basic I/O using the Terminal
+=== Basic I/O using the terminal
 
 ==== say
 `say` writes to the standard output. It appends a newline at the end. In other words, the following code:
@@ -1679,7 +1679,7 @@ my $name = prompt "Hi, what's your name? ";
 say "Dear $name welcome to Raku";
 ----
 
-=== Running Shell Commands
+=== Running shell commands
 Two subroutines can be used to run shell commands:
 
 * `run` Runs an external command without involving a shell
@@ -1864,7 +1864,7 @@ greet "Johnnie";
 greet "Laura","Mrs.";
 ----
 
-=== Default and Optional Parameters
+=== Default and optional parameters
 If a subroutine is defined to accept an argument, and we call it without providing it with the required argument, it will fail.
 
 Raku provides us the ability to define subroutines with:
@@ -1898,7 +1898,7 @@ say-hello;
 say-hello("Laura");
 ----
 
-=== Named Parameters
+=== Named parameters
 The parameters we have used so far are called *positional parameters*.
 The arguments are matched to them by position: the first argument goes to the first parameter, the second argument to the second parameter and so on.
 
@@ -1939,7 +1939,7 @@ greet(:$name, :$title);                  # shorthand
 ----
 ====
 
-=== Slurpy Parameters
+=== Slurpy parameters
 A subroutine can accept any number of arguments by using a *slurpy parameter*. +
 A slurpy parameter is an array preceded by an asterisk, like `+*@names+`. It collects all the remaining arguments.
 
@@ -2054,7 +2054,7 @@ say "1.2 squared is equal to " ~ squared(1.2);
 
 NOTE: For more info on subroutines and functions, see https://docs.raku.org/language/functions
 
-== Functional Programming
+== Functional programming
 In this chapter we will take a look at some of the features that facilitate Functional Programming.
 
 === Functions are first-class citizens
@@ -2166,7 +2166,7 @@ say @final-array;
 
 You can already see that chaining methods is _easier on the eye_.
 
-=== Feed Operator
+=== Feed operator
 The *feed operator*, called _pipe_ in some functional programming languages, further illustrates
 method chaining.
 
@@ -2239,7 +2239,7 @@ if $var == 1|2|3 {
 The use of junctions usually triggers *autothreading*;
 the operation is carried out for each junction element, and all the results are combined into a new junction and returned.
 
-=== Sequences and Lazy Lists
+=== Sequences and lazy lists
 A *lazy list* is a list that is lazily evaluated. +
 Lazy evaluation delays the evaluation of an expression until required, and avoids repeating evaluations by storing results in a lookup table.
 
@@ -2368,7 +2368,7 @@ one that says `Good Morning` and one that says `Good Evening`.
 `$morning` and `$evening` are both closures. They share the same subroutine body definition, but store different environments. +
 In `$morning` 's environment `$period` is `Morning`. In `$evening` 's environment `$period` is `Evening`.
 
-== Classes & Objects
+== Classes & objects
 In the previous chapter, we learned how Raku facilitates Functional Programming. +
 In this chapter we will take a look at Object Oriented programming in Raku.
 
@@ -2483,7 +2483,7 @@ Now replace `has $!age` with `has $.age` and run the script again. +
 
 Private attributes are set and used from within the class. We will see how in the section about methods.
 
-=== Named vs. Positional Parameters
+=== Named vs. positional parameters
 In Raku, all classes inherit a default `.new()` constructor. +
 It can be used to create objects by providing it with arguments. +
 The default constructor can only be provided with *named arguments*. +
@@ -2514,7 +2514,7 @@ my $john = Human.new('John',23,'M','American');
 say $john;
 ----
 
-=== Default and Required Attributes
+=== Default and required attributes
 We have seen that a subroutine fails if it is called without one of its arguments. +
 The default constructor behaves differently. An attribute that is not supplied to `.new()` is simply left empty.
 
@@ -2614,7 +2614,7 @@ method iampublic {
 }
 ----
 
-=== Class Attributes
+=== Class attributes
 
 *Class attributes* are attributes that belong to the class itself and not to its objects. +
 They can be initialized during definition. +
@@ -2637,7 +2637,7 @@ my $b = Human.new('b');
 say Human.counter;
 ----
 
-=== Access Type
+=== Access type
 Until now, all the examples that we've seen have used accessors to *get* information from the objects' attributes.
 
 What if we need to modify the value of an attribute? +
@@ -2766,7 +2766,7 @@ Depending on the class of the object, the right method will be called.
 They are only accessible from the class they were declared in. +
 They are defined using the `submethod` keyword.
 
-=== Multiple Inheritance
+=== Multiple inheritance
 Multiple inheritance is allowed in Raku. A class can inherit from multiple other classes.
 
 [source,raku]
@@ -3016,7 +3016,7 @@ For more info on Object Oriented Programming in Raku, see:
 * https://docs.raku.org/language/classtut
 * https://docs.raku.org/language/objects
 ====
-== Exception Handling
+== Exception handling
 *Exceptions* are a special behavior that happens at runtime when something goes wrong. +
 We say that exceptions are _thrown_.
 
@@ -3054,7 +3054,7 @@ Type check failed in assignment to $name; expected Str but got Int
 
 Notice that whenever an error occurs (in this case, assigning a number to a string variable) the program will stop and other lines of code will not be evaluated.
 
-=== Catching Exceptions
+=== Catching exceptions
 *Exception handling* is the process of _catching_ an exception that has been _thrown_ in order for the script to continue working.
 
 [source,raku]
@@ -3094,7 +3094,7 @@ try {
 }
 ----
 
-=== Exception Types
+=== Exception types
 The `CATCH` block can be defined the same way a `given` block is defined.
 This means we can _catch_ and handle differently many types of exceptions.
 
@@ -3121,7 +3121,7 @@ All exception types descend from the class `Exception`. The names of the built-i
 
 NOTE: For a complete list of exception types and their associated methods, go to https://docs.raku.org/types#Exception_classes
 
-=== Exception Messages
+=== Exception messages
 Within the `CATCH` block, the exception that was thrown is found in the topic variable `$_` +
 Calling `.message` on it returns the description of the error.
 
@@ -3168,7 +3168,7 @@ How are you doing today?
 
 If nothing goes wrong inside the `try` block, `$!` stays empty and the `if` block is skipped.
 
-=== Throwing Exceptions
+=== Throwing exceptions
 Raku also allows you to explicitly throw exceptions. +
 Two types of exceptions can be thrown:
 
@@ -3197,7 +3197,7 @@ Typed exceptions are objects, hence the use of the `.new()` constructor in the a
 NOTE: For more info on exceptions, see https://docs.raku.org/language/exceptions
 
 
-== Regular Expressions
+== Regular expressions
 A regular expression, or _regex_, is a sequence of characters that is used for pattern matching. +
 Think of it as a pattern.
 
@@ -3452,7 +3452,7 @@ if 'raku.dev' ~~ m/ com | org | net / {
 }
 ----
 
-=== Match Results
+=== Match results
 Whenever the process of matching a string against a regex is successful,
 the match result is stored in a special variable `$/`
 
@@ -3717,7 +3717,7 @@ With a single definition, the grammar both validated the email and gave us each 
 
 NOTE: For more info on grammars, see https://docs.raku.org/language/grammars
 
-== Raku Modules
+== Raku modules
 Raku is a general purpose programming language. It can be used to tackle a multitude of tasks including:
 text manipulation, graphics, web, databases, network protocols etc.
 
@@ -3733,7 +3733,7 @@ To install a specific module, type the below command in your terminal:
 
 NOTE: The Raku modules directory can be found on: https://raku.land/
 
-=== Using Modules
+=== Using modules
 JSON is a text format for storing and exchanging data. +
 It is used by many web services and applications, so sooner or later your program will have to read it or produce it. +
 A JSON document is made of key/value pairs and lists. They map naturally to the hashes and arrays of Raku.
@@ -3872,7 +3872,7 @@ my $var = 2 + ⅒;
 say $var;
 ----
 
-=== Unicode-aware Operations
+=== Unicode-aware operations
 
 ==== Numbers
 
@@ -3922,7 +3922,7 @@ say ('a','b','c','D','E','F').sort;    # (D E F a b c)
 say ('a','b','c','D','E','F').collate; # (a b c D E F)
 ----
 
-== Parallelism, Concurrency and Asynchrony
+== Parallelism, concurrency and asynchrony
 
 === Parallelism
 Under normal circumstances, all tasks in a program run sequentially. +
@@ -3937,7 +3937,7 @@ At this stage, it is important to note that parallelism can mean one of two thin
 
 Let's begin with the latter.
 
-==== Data Parallelism
+==== Data parallelism
 [source,raku]
 ----
 my @array = 0..50000;                       # Array population
@@ -3987,7 +3987,7 @@ If you run both examples, you should notice that one is sorted and the other is 
 
 ====
 
-==== Task Parallelism
+==== Task parallelism
 
 [source,raku]
 ----
@@ -4046,7 +4046,7 @@ Check the time it took each script to complete.
 WARNING: Parallelism always adds a threading overhead. If that overhead is not offset by gains in computational speed, the script will seem slower. +
 This is why, using `race`, `hyper`, `start` and `await` for fairly simple scripts can actually slow them down.
 
-=== Concurrency and Asynchrony
+=== Concurrency and asynchrony
 In the previous section, we used parallelism to make a computation faster. +
 *Concurrency* and *asynchrony* answer a different need. A program often has to wait: for a timer, for a file or for a reply from the network. +
 Instead of doing nothing while it waits, the program can carry on with something else and come back to the task once it is ready.
@@ -4144,7 +4144,7 @@ The second `whenever` waits for the promise, and then stops the `react` block.
 
 NOTE: For more info on Concurrency and Asynchronous Programming, see https://docs.raku.org/language/concurrency
 
-== Native Calling Interface
+== Native calling interface
 
 Raku gives us the ability to use C libraries, using the Native Calling Interface.
 
@@ -4243,7 +4243,7 @@ hello();
 In case the Raku subroutine has a different name than its C counterpart, we
 should use the `is symbol` trait with the name of the original C function.
 
-=== Passing Arguments
+=== Passing arguments
 
 Compile the following modified C library and run the Raku script found below again. +
 Notice how we modified both C and Raku code to accept a string (`char*` in C and `Str` in Raku)
@@ -4358,7 +4358,7 @@ Luckily Raku provides many types that map to their respective C counterpart.
 
 NOTE: For more info on the Native Calling Interface, see https://docs.raku.org/language/nativecall
 
-== The Community
+== The community
 
 * link:https://web.libera.chat/#raku[#raku] IRC channel. Much discussion happens on IRC. +
 This should be your go to place for any enquiry for which you want an immediate answer.
