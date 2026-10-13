@@ -351,7 +351,9 @@ say "Hello $name";   # Hello John Doe
 == Operators
 
 === Common Operators
-The below table lists the most commonly used operators.
+The below tables list the most commonly used operators.
+
+==== Arithmetic
 [cols="^.^5m,^.^5m,.^20,.^20m,.^20m", options="header"]
 |===
 
@@ -378,6 +380,14 @@ The below table lists the most commonly used operators.
 | gcd | Infix | Greatest common divisor | 6 gcd 9 | 3
 
 | lcm | Infix | Least common multiple | 6 lcm 9 | 18
+
+|===
+
+==== Comparison
+[cols="^.^5m,^.^5m,.^20,.^20m,.^20m", options="header"]
+|===
+
+| Operator | Type | Description | Example | Result
 
 | == | Infix | Numeric equal | 9 == 7  | False
 
@@ -419,16 +429,6 @@ The below table lists the most commonly used operators.
 
 <| 3.5 cmp 2.6 <| More
 
-| = | Infix | Assignment | my $var = 7  | Assigns the value of `7` to the variable `$var`
-
-.2+| ~ .2+| Infix .2+| String concatenation | 9 ~ 7 | 97
-
-<m| "Hi " ~ "there"  <| Hi there
-
-.2+| x .2+| Infix .2+| String replication | 13 x 3  | 131313
-
-<| "Hello " x 3  <| Hello Hello Hello
-
 .5+| ~~ .5+| Infix .5+| Smart match | 2 ~~ 2  | True
 
 <| 2 ~~ Int <| True
@@ -439,6 +439,32 @@ The below table lists the most commonly used operators.
 
 <| "enlightenment" ~~ /light/ <| ｢light｣
 
+|===
+
+==== Assignment and strings
+[cols="^.^5m,^.^5m,.^20,.^20m,.^20m", options="header"]
+|===
+
+| Operator | Type | Description | Example | Result
+
+| = | Infix | Assignment | my $var = 7  | Assigns the value of `7` to the variable `$var`
+
+.2+| ~ .2+| Infix .2+| String concatenation | 9 ~ 7 | 97
+
+<m| "Hi " ~ "there"  <| Hi there
+
+.2+| x .2+| Infix .2+| String replication | 13 x 3  | 131313
+
+<| "Hello " x 3  <| Hello Hello Hello
+
+|===
+
+==== Increment and decrement
+[cols="^.^5m,^.^5m,.^20,.^20m,.^20m", options="header"]
+|===
+
+| Operator | Type | Description | Example | Result
+
 .2+| ++ | Prefix | Increment | my $var = 2; ++$var;  | Increment the variable by 1 and return the result `3`
 
 | Postfix <d| Increment <m| my $var = 2; $var++;  <| Return the variable `2` and then increment it
@@ -446,6 +472,14 @@ The below table lists the most commonly used operators.
 .2+|\--| Prefix | Decrement | my $var = 2; --$var;  | Decrement the variable by 1 and return the result `1`
 
 | Postfix <d| Decrement <m| my $var = 2; $var--;  <| Return the variable `2` and then decrement it
+
+|===
+
+==== Conversion
+[cols="^.^5m,^.^5m,.^20,.^20m,.^20m", options="header"]
+|===
+
+| Operator | Type | Description | Example | Result
 
 .3+| + .3+| Prefix .3+| Coerce the operand to a numeric value | +"3"  | 3
 
@@ -472,6 +506,14 @@ The below table lists the most commonly used operators.
 <| my $var = 7; ?$var; <| True
 
 | ! | Prefix | Coerce the operand to a boolean value and return the negation | !4 | False
+
+|===
+
+==== Ranges and lists
+[cols="^.^5m,^.^5m,.^20,.^20m,.^20m", options="header"]
+|===
+
+| Operator | Type | Description | Example | Result
 
 | .. | Infix | Range Constructor |  0..5  | Creates a range of the interval [0, 5] footnote:intervals[Notations for intervals: https://en.wikipedia.org/wiki/Interval_(mathematics)#Notations_for_intervals]
 
@@ -598,8 +640,8 @@ say $age;
 
 A specific set of operations can be performed on a scalar, depending on the value it holds.
 
+==== String
 [source,raku]
-.String
 ----
 my $name = 'John Doe';
 say $name.uc;
@@ -616,8 +658,8 @@ eoD nhoJ
 
 NOTE: For the complete list of methods applicable to Strings, see https://docs.raku.org/type/Str
 
+==== Integer
 [source,raku]
-.Integer
 ----
 my $age = 17;
 say $age.is-prime;
@@ -630,8 +672,8 @@ True
 
 NOTE: For the complete list of methods applicable to Integers, see https://docs.raku.org/type/Int
 
+==== Rational number
 [source,raku]
-.Rational Number
 ----
 my $age = 2.3;
 say $age.numerator;
@@ -856,6 +898,7 @@ say @tbl
 NOTE: For the complete Array reference, see https://docs.raku.org/type/Array
 
 === Hashes
+==== Creating a hash
 [source,raku]
 .A Hash is a set of Key/Value pairs.
 ----
@@ -870,6 +913,7 @@ my %capitals = UK => 'London', Germany => 'Berlin';
 say %capitals;
 ----
 
+==== Common methods
 Some of the methods that can be called on hashes are:
 [source,raku]
 .`Script`
@@ -900,6 +944,7 @@ We can access a specific value in the hash by specifying its key `%hash<key>`
 WARNING: Raku does not keep the keys of a hash in a fixed order.
 The order of the countries in your output can be different from the one above, and it can change each time the script runs.
 
+==== Checking and removing a key
 We can also check if a key exists and remove a key from the hash:
 [source,raku]
 .`Script`
@@ -925,6 +970,7 @@ False
 NOTE: For the complete Hash reference, see https://docs.raku.org/type/Hash
 
 === Types
+==== Dynamic and static typing
 In the previous examples, we did not specify what type of values the variables should hold.
 
 TIP: `.WHAT` will return the type of value held in a variable.
@@ -963,7 +1009,9 @@ This style of programming is called static typing. Static in the sense that vari
 
 Raku is classified as *gradually typed*; it allows both *static* and *dynamic* typing.
 
-.Arrays and hashes can also be statically typed:
+==== Typed arrays and hashes
+Arrays and hashes can also be statically typed:
+
 [source,raku]
 ----
 my Int @array = 1,2,3;
@@ -983,7 +1031,8 @@ say %country-codes;
 say %country-codes.WHAT;
 ----
 
-.Below is a list of the most commonly used types:
+==== Common types
+Below is a list of the most commonly used types: +
 You will most probably never use the first two but they are listed for informational purpose.
 
 [cols="^.^1m,.^3,.^2m,.^1m", options="header"]
@@ -1071,6 +1120,7 @@ say $var;
 ----
 
 === Assignment vs. Binding
+==== Assignment
 We've seen in the previous examples, how to *assign* values to variables. +
 *Assignment* is done using the `=` operator.
 [source,raku]
@@ -1082,7 +1132,7 @@ say $var;
 We can change the value assigned to a variable:
 
 [source,raku]
-.Assignment
+.`Script`
 ----
 my Int $var = 123;
 say $var;
@@ -1096,11 +1146,12 @@ say $var;
 999
 ----
 
+==== Binding
 On the other hand, we cannot change the value *bound* to a variable. +
 *Binding* is done using the `:=` operator.
 
 [source,raku]
-.Binding
+.`Script`
 ----
 my Int $var := 123;
 say $var;
@@ -1114,8 +1165,11 @@ say $var;
 Cannot assign to an immutable value
 ----
 
+==== Binding variables
+Variables can also be bound to other variables:
+
 [source,raku]
-.Variables can also be bound to other variables:
+.`Script`
 ----
 my $a;
 my $b;
@@ -1406,6 +1460,7 @@ If the first `with` condition is not met, an alternate path can be specified usi
 
 The `for` loop iterates over multiple values.
 
+==== Arrays
 [source,raku]
 ----
 my @array = 1,2,3;
@@ -1428,6 +1483,7 @@ for @array {
 }
 ----
 
+==== Ranges
 The values can also come from a range:
 
 [source,raku]
@@ -1447,6 +1503,7 @@ for 1..5 {
 }
 ----
 
+==== Hashes
 To iterate over a hash, we can ask for its keys and values and create two iteration variables:
 
 [source,raku]
@@ -1708,6 +1765,7 @@ Score: Joanna 7
 `.lines` returns the lines of that file, and the `for` loop goes through them one by one.
 
 === Working with files and directories
+==== Listing a directory
 Raku can list the contents of a directory without resorting to shell commands (by using `ls`, for example).
 
 [source,raku]
@@ -1716,6 +1774,7 @@ say dir;                # List files and folders in the current directory
 say dir "/Documents";   # List files and folders in the specified directory
 ----
 
+==== Creating and deleting directories
 In addition, you can create and delete directories.
 
 [source,raku]
@@ -1727,6 +1786,7 @@ rmdir "newfolder";
 `mkdir` creates a new directory. +
 `rmdir` deletes an empty directory and returns an error if not empty.
 
+==== Checking a path
 You can also check if a path exists; if it is a file; or a directory:
 
 In the directory where you will be running the below script, create an empty folder `folder123` and an empty raku file `script123.raku`
@@ -1812,6 +1872,7 @@ Raku provides us the ability to define subroutines with:
 * Optional Parameters
 * Default Parameters
 
+==== Optional parameters
 Optional parameters are defined by appending `?` to the parameter name.
 
 [source,raku]
@@ -1824,6 +1885,7 @@ say-hello;
 say-hello("Laura");
 ----
 
+==== Default parameters
 If the user doesn't need to supply an argument, a default value can be defined. +
 This is done by assigning a value to the parameter within the subroutine definition.
 
@@ -1928,10 +1990,10 @@ All the subroutines we've seen so far *do something* -- they display some text o
 
 Sometimes, though, we execute a subroutine for its *return* value so we can use it later in the flow of our program.
 
+==== Implicit return
 If a function is allowed to run through its block to the end, the last statement or expression will determine the return value.
 
 [source,raku]
-.Implicit return
 ----
 sub squared ($x) {
   $x ** 2;
@@ -1939,10 +2001,10 @@ sub squared ($x) {
 say "7 squared is equal to " ~ squared(7);
 ----
 
+==== Explicit return
 For the sake of clarity, it might be a good idea to _explicitly_ specify what we want returned.
 This can be done using the `return` keyword.
 [source,raku]
-.Explicit return
 ----
 sub squared ($x) {
   return $x ** 2;
@@ -2033,6 +2095,7 @@ Notice that when passing a subroutine as an argument, we need to prepend `&` to 
 An *anonymous function* is also called a *lambda*. +
 An anonymous function is not bound to an identifier (it has no name).
 
+==== Pointy blocks
 Let's rewrite the `map` example and have it use an anonymous function
 [source,raku]
 ----
@@ -2044,6 +2107,7 @@ it within the anonymous subroutine as `\-> $x {$x ** 2}`.
 
 In Raku parlance, we call this notation a *pointy block*
 
+==== Shorter notations
 A pointy block that takes a single argument can be written in two shorter ways.
 
 A block written without `\->` and without a parameter receives its argument in the topic variable `$_`
@@ -2065,8 +2129,10 @@ say map(* ** 2, @array);
 
 The three notations give the same result: `(1 4 9 16 25)`
 
+==== Storing a function in a variable
+A pointy block may also be used to assign functions to variables:
+
 [source,raku]
-.A pointy block may also be used to assign functions to variables:
 ----
 my $squared = -> $x {
   $x ** 2
@@ -2104,8 +2170,8 @@ You can already see that chaining methods is _easier on the eye_.
 The *feed operator*, called _pipe_ in some functional programming languages, further illustrates
 method chaining.
 
+==== Forward feed
 [source,raku]
-.Forward Feed
 ----
 my @array = <7 8 9 0 1 2 4 3 5 6 7 8 9>;
 @array ==> unique()
@@ -2125,8 +2191,8 @@ Start with `@array` then return a list of unique elements
 Note that the flow of the method calls is top-down -- from first to final step.
 
 
+==== Backward feed
 [source,raku]
-.Backward Feed
 ----
 my @array = <7 8 9 0 1 2 4 3 5 6 7 8 9>;
 my @final-array-v2 <== reverse()
@@ -2188,8 +2254,8 @@ The benefits include:
 To build a lazy list we use the infix operator `+...+` called the *sequence operator*. What it builds is called a *sequence*. +
 A sequence has *initial element(s)*, a *generator* and an *endpoint*.
 
+==== Simple lazy list
 [source,raku]
-.Simple lazy list
 ----
 my $lazylist = (1 ... 10);
 say $lazylist;
@@ -2197,16 +2263,16 @@ say $lazylist;
 The initial element is 1 and the endpoint is 10. No generator was defined so the default generator is the successor (+1) +
 In other words this lazy list may return (if requested) the following elements (1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
 
+==== Infinite lazy list
 [source,raku]
-.Infinite lazy list
 ----
 my $lazylist = (1 ... Inf);
 say $lazylist;
 ----
 This list may return (if requested) any integer between 1 and infinity, in other words any integer number.
 
+==== Deduced generator
 [source,raku]
-.Lazy list built using a deduced generator
 ----
 my $lazylist = (0,2 ... 10);
 say $lazylist;
@@ -2215,8 +2281,8 @@ The initial elements are 0 and 2 and the endpoint is 10.
 No generator was defined, but using the initial elements, Raku will deduce that the generator is (+2) +
 This lazy list may return (if requested) the following elements (0, 2, 4, 6, 8, 10)
 
+==== Defined generator
 [source,raku]
-.Lazy list built using a defined generator
 ----
 my $lazylist = (0, { $_ + 3 } ... 12);
 say $lazylist;
@@ -2480,8 +2546,6 @@ The nationality of `$john` was not supplied, so the default value was used. +
 `$nobody` could not be created because a name is required.
 
 === Methods
-
-==== Introduction
 Methods are the _subroutines_ of an object. +
 Like subroutines, they are a means of packaging a set of functionality, they accept *arguments*, have a *signature* and can be defined as *multi*.
 
@@ -2593,7 +2657,6 @@ say $john.age;
 By default, all attributes are declared as _read only_ but you can explicitly do it using `is readonly`
 
 === Inheritance
-==== Introduction
 *Inheritance* is another concept of object oriented programming.
 
 When defining classes, soon enough we will realize that some attributes/methods are common to many classes. +
@@ -2954,8 +3017,6 @@ For more info on Object Oriented Programming in Raku, see:
 * https://docs.raku.org/language/objects
 ====
 == Exception Handling
-
-=== Catching Exceptions
 *Exceptions* are a special behavior that happens at runtime when something goes wrong. +
 We say that exceptions are _thrown_.
 
@@ -2993,6 +3054,7 @@ Type check failed in assignment to $name; expected Str but got Int
 
 Notice that whenever an error occurs (in this case, assigning a number to a string variable) the program will stop and other lines of code will not be evaluated.
 
+=== Catching Exceptions
 *Exception handling* is the process of _catching_ an exception that has been _thrown_ in order for the script to continue working.
 
 [source,raku]
@@ -3032,6 +3094,7 @@ try {
 }
 ----
 
+=== Exception Types
 The `CATCH` block can be defined the same way a `given` block is defined.
 This means we can _catch_ and handle differently many types of exceptions.
 
@@ -3050,6 +3113,15 @@ try {
 }
 ----
 
+All exception types descend from the class `Exception`. The names of the built-in ones start with `X::`, below are a few examples: +
+`X::AdHoc` is the simplest exception type +
+`X::IO` is related to IO errors +
+`X::OS` is related to OS errors +
+`X::Str::Numeric` related to trying to coerce a string to a number
+
+NOTE: For a complete list of exception types and their associated methods, go to https://docs.raku.org/types#Exception_classes
+
+=== Exception Messages
 Within the `CATCH` block, the exception that was thrown is found in the topic variable `$_` +
 Calling `.message` on it returns the description of the error.
 
@@ -3120,14 +3192,9 @@ X::AdHoc.new(payload => 'Error !').throw;
 
 Ad-hoc exceptions are thrown using the `die` subroutine, followed by the exception message.
 
-Typed exceptions are objects, hence the use of the `.new()` constructor in the above example. +
-All typed exceptions descend from the class `Exception`. The names of the built-in ones start with `X::`, below are a few examples: +
-`X::AdHoc` is the simplest exception type +
-`X::IO` is related to IO errors +
-`X::OS` is related to OS errors +
-`X::Str::Numeric` related to trying to coerce a string to a number
+Typed exceptions are objects, hence the use of the `.new()` constructor in the above example.
 
-NOTE: For a complete list of exception types and their associated methods, go to https://docs.raku.org/types#Exception_classes
+NOTE: For more info on exceptions, see https://docs.raku.org/language/exceptions
 
 
 == Regular Expressions
@@ -3271,6 +3338,7 @@ if 'ac' ~~ m/ a.c / {
 === Quantifiers
 Quantifiers come after a character and are used to specify how many times we are expecting it.
 
+==== Zero or one time
 The question mark `?` means zero or one time.
 
 [source,raku]
@@ -3287,6 +3355,7 @@ if 'c' ~~ m/ a?c / {
 }
 ----
 
+==== Zero or multiple times
 The star `*` means zero or multiple times.
 
 [source,raku]
@@ -3313,6 +3382,7 @@ if 'z' ~~ m/ a*z / {
 }
 ----
 
+==== At least one time
 The `+` means at least one time.
 
 [source,raku]
@@ -3727,6 +3797,7 @@ Characters are defined by a: +
 
 === Using Unicode
 
+==== Writing characters
 .Let's look at how we can output characters using Unicode
 [source,raku]
 ----
@@ -3750,6 +3821,7 @@ say "\x263a";
 say "\c[WHITE SMILING FACE]";
 ----
 
+==== Combining characters
 .Another example combining two code points
 [source,raku]
 ----
@@ -3784,6 +3856,7 @@ LATIN SMALL LETTER A WITH ACUTE
 `NFD` decomposes the character and returns the code point of each part. +
 `uniname` returns the code point name.
 
+==== Identifiers and math
 .Unicode letters can be used as identifiers:
 [source,raku]
 ----
@@ -4080,6 +4153,7 @@ of interfacing Raku and C.
 
 === Calling a function
 
+==== The C library
 Consider the below C code that defines a function called `hellofromc`.
 This function prints on the terminal `Hello from C`. It doesn't accept any argument nor return any value.
 
@@ -4093,6 +4167,7 @@ void hellofromc () {
 }
 ----
 
+==== Compiling the library
 Depending on your OS run the following commands to compile the above C code into a library.
 
 [source,bash]
@@ -4115,6 +4190,7 @@ gcc -shared -o ncitest.dll ncitest.o
 gcc -dynamiclib -o libncitest.dylib ncitest.c
 ----
 
+==== The Raku script
 Within the same directory where you compiled your C library, create a new Raku
 file that contains the below code and run it.
 
