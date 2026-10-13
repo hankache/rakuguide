@@ -2375,8 +2375,6 @@ In `$morning` 's environment `$period` is `Morning`. In `$evening` 's environmen
 In the previous chapter, we learned how Raku facilitates Functional Programming. +
 In this chapter we will take a look at Object Oriented programming in Raku.
 
-=== Introduction
-
 _Object Oriented_ programming is one of the widely used paradigms nowadays. +
 An *object* is a set of variables and subroutines bundled together. +
 The variables are called *attributes* and the subroutines are called *methods*. +
@@ -2398,6 +2396,7 @@ In order to understand the relationship consider the below example:
 
 In _object oriented_ parlance, we say that objects are *instances* of a class.
 
+=== Defining a class
 Consider the below script:
 [source,raku]
 ----
