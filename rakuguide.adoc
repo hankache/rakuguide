@@ -349,6 +349,7 @@ say "Hello $name";   # Hello John Doe
 ----
 
 == Operators
+Operators are the symbols and words that combine values into expressions, like `+` in `1 + 2`
 
 === Common operators
 The below tables list the most commonly used operators.
@@ -1814,6 +1815,8 @@ WARNING: Windows users can use `/` or `\\` to define directories +
 NOTE: For more info on I/O, see https://docs.raku.org/type/IO
 
 == Subroutines
+In this chapter we will take a look at how to define subroutines, how to pass values to them and how to get values back.
+
 === Definition
 *Subroutines* (also called *subs* or *functions*) are a means of packaging and reusing functionality.
 
@@ -3785,6 +3788,8 @@ Jane
 25
 ----
 
+NOTE: For more info on modules, see https://docs.raku.org/language/modules
+
 == Unicode
 
 Unicode is a standard for encoding and representing text for most writing systems in the world. +
@@ -3922,7 +3927,11 @@ say ('a','b','c','D','E','F').sort;    # (D E F a b c)
 say ('a','b','c','D','E','F').collate; # (a b c D E F)
 ----
 
+NOTE: For more info on Unicode, see https://docs.raku.org/language/unicode
+
 == Parallelism, concurrency and asynchrony
+Raku has built-in features that let a program do several things at the same time. +
+In this chapter we will take a look at how to run code in parallel, and how to deal with tasks that take time to complete.
 
 === Parallelism
 Under normal circumstances, all tasks in a program run sequentially. +
