@@ -115,7 +115,7 @@ Rakudo Star is een bundel waarin zich Rakudo, Zef, een collectie van Raku module
 
 * Homebrew op MacOS: `brew install rakudo-star`
 
-Merk op: Voor andere mogelijkheden, ga naar https://raku.org/install
+NOTE: Voor andere mogelijkheden, ga naar https://raku.org/install
 
 === Uitvoeren van Raku code
 
@@ -174,10 +174,27 @@ hetgeen ook geschreven kan worden als:
 Raku kent weinig beperkingen: over het algemeen kun je zoveel spaties (witruimte) gebruiken als je zelf wilt.  In een aantal gevallen is de witruimte *wel* van belang.
 
 Opdrachten bestaan over het algemeen uit een regel code die beëindigd wordt door een punt-komma:
-`say "Hallo" if True;`
+[source,raku]
+----
+say "Hallo" if True;
+say "Wereld" if False;
+----
+
+
+Punt-komma's zijn niet nodig na de laatste opdracht in een bestand of een blok programma-code, maar het is een goed gebruik om ze dan in dat geval toch toe te voegen.
+
+Een *Blok* kan bestaan uit nul of meer opdrachten.  Je maakt een blok door accolades om de opdrachten heen te plaatsen.
+
+[source,raku]
+----
+{
+  say "Eerste opdracht in het blok.";
+  say "Tweede opdracht in het blok.";
+}
+----
 
 *Expressies* zijn een speciaal soort opdracht die resulteren in een waarde:
-`1+2` geeft `3` terug
+`1+2` geeft `3` terug als waarde
 
 Expressies bestaan uit *Termen* en *Operatoren*.
 
@@ -253,23 +270,27 @@ Er zijn 3 manieren om commentaren in een programma te stoppen:
 * Enkele regel:
 +
 [source,raku]
+----
 # Dit is een regel met commentaar
+----
 
 * Als onderdeel van een regel (embedded):
 +
 [source,raku]
+----
 say #`(Dit is een ingebed commentaar) "Hallo wereld."
+----
 
 * Meer dan één regel
 +
 [source,raku]
------------------------------
+----
 =begin comment
 Dit is een commentaar over meer dan één regel
 Commentaar 1
 Commentaar 2
 =end comment
------------------------------
+----
 
 ==== Aanhalingstekens (Quotes)
 Een string wordt gedefinieerd door middel van enkele of dubbele aanhalingstekens.
@@ -281,19 +302,22 @@ Gebruik altijd dubbele aanhalingstekens:
 * als de string een variabele bevat die geïnterpoleerd moet worden.
 
 [source,raku]
----------------------------------------
+----
 say 'Hallo Wereld';   # Hallo Wereld
 say "Hallo Wereld";   # Hallo Wereld
 say "Doe 't niet";    # Doe 't niet
 my $naam = 'Jan Jansen';
 say 'Hallo $naam';   # Hallo $naam
 say "Hallo $naam";   # Hallo Jan Jansen
----------------------------------------
+----
 
 == Operatoren
+Operatoren zijn de symbolen en woorden die waarden combineren in expressies, bijvoorbeeld `+` in `1 + 2`
 
 === Algemene operatoren
 Onderstaande tabel toont de meest voorkomende operatoren.
+
+==== Rekenkundig
 [cols="^.^5m,^.^5m,.^20,.^20m,.^20m", options="header"]
 |===
 
@@ -339,6 +363,14 @@ Onderstaande tabel toont de meest voorkomende operatoren.
 
 <| 3 +<=> 2+ <| More
 
+|===
+
+==== Vergelijken
+[cols="^.^5m,^.^5m,.^20,.^20m,.^20m", options="header"]
+|===
+
+| Operator | Type | Beschrijving | Voorbeeld | Resultaat
+
 | eq | Infix | String gelijk | "Jan" eq "Jan"  | True
 
 | ne | Infix | String niet gelijk | "Jan" ne "Jolanda"  | True
@@ -361,16 +393,6 @@ Onderstaande tabel toont de meest voorkomende operatoren.
 
 <| 3.5 cmp 2.6 <| More
 
-| = | Infix | Toewijzing | my $var = 7  | Wijst de waarde `7` toe aan de variabele `$var`
-
-.2+| ~ .2+| Infix .2+| Strings aaneenschakelen | 9 ~ 7 | 97
-
-<m| "Hi " ~ "there"  <| Hi there
-
-.2+| x .2+| Infix .2+| String herhalen | 13 x 3  | 131313
-
-<| "Hello " x 3  <| Hello Hello Hello
-
 .5+| ~~ .5+| Infix .5+| Slim vergelijken | 2 ~~ 2  | True
 
 <| 2 ~~ Int <| True
@@ -379,7 +401,33 @@ Onderstaande tabel toont de meest voorkomende operatoren.
 
 <| "Raku" ~~ Str <| True
 
-<| "enlightenment" ~~ /light/ <| ｢light｣
+<| "verlichting" ~~ /licht/ <| ｢licht｣
+
+|===
+
+==== Toewijzing en strings
+[cols="^.^5m,^.^5m,.^20,.^20m,.^20m", options="header"]
+|===
+
+| Operator | Type | Beschrijving | Voorbeeld | Resultaat
+
+| = | Infix | Toewijzing | my $var = 7  | Wijst de waarde `7` toe aan de variabele `$var`
+
+.2+| ~ .2+| Infix .2+| Strings aaneenschakelen | 9 ~ 7 | 97
+
+<m| "Hallo " ~ "daar"  <| Hallo daar
+
+.2+| x .2+| Infix .2+| String herhalen | 13 x 3  | 131313
+
+<| "Hallo " x 3  <| Hallo Hallo Hallo
+
+|===
+
+==== Verhogen en verlagen
+[cols="^.^5m,^.^5m,.^20,.^20m,.^20m", options="header"]
+|===
+
+| Operator | Type | Beschrijving | Voorbeeld | Resultaat
 
 .2+| ++ | Prefix | Verhoging | my $var = 2; ++$var;  | Verhoog de variabele met `1` en geef de verhoogde waarde terug: `3`
 
@@ -389,19 +437,25 @@ Onderstaande tabel toont de meest voorkomende operatoren.
 
 | Postfix <d| Verlaging <m| my $var = 2; $var--;  <| Geef de waarde van de variabele terug (`2`) en verlaag die dan met `1`
 
-.3+| + .3+| Prefix .3+| Forceer naar de numerieke waarde | +"3"  | 3
+==== Conversie
+[cols="^.^5m,^.^5m,.^20,.^20m,.^20m", options="header"]
+|===
+
+| Operator | Type | Beschrijving | Voorbeeld | Resultaat
+
+.3+| + .3+| Prefix .3+| Converteer naar de numerieke waarde | +"3"  | 3
 
 <| +True <| 1
 
 <| +False <| 0
 
-.3+| - .3+| Prefix .3+| Forceer naar de negatieve numerieke waarde | -"3"  | -3
+.3+| - .3+| Prefix .3+| Converteer naar de negatieve numerieke waarde | -"3"  | -3
 
 <| -True <| -1
 
 <| -False <| 0
 
-.6+| ? .6+| Prefix .6+| Forceer naar de logische waarde | ?0 | False
+.6+| ? .6+| Prefix .6+| Converteer naar de logische waarde | ?0 | False
 
 <| ?9.8 <| True
 
@@ -413,25 +467,80 @@ Onderstaande tabel toont de meest voorkomende operatoren.
 
 <| my $var = 7; ?$var; <| True
 
-| ! | Prefix | Forceer naar het tegenovergestelde van de logische waarde | !4 | False
+| ! | Prefix | Converteer naar het tegenovergestelde van de logische waarde | !4 | False
 
-| .. | Infix | Lijst constructeur |  0..5  | Maak een lijst van 0 t/m 5
+|===
 
-| ..^ | Infix | Lijst constructeur |  0..^5  | Maak een lijst van 0 t/m 4
+==== Reeksen en lijsten
+[cols="^.^5m,^.^5m,.^20,.^20m,.^20m", options="header"]
+|===
 
-| ^.. | Infix | Lijst constructeur |  0^..5  | Maak een lijst van 1 t/m 5
+| Operator | Type | Beschrijving | Voorbeeld | Resultaat
 
-| \^..^ | Infix | Lijst constructeur |  0\^..^5  | maak een lijst van 1 t/m 4
+| .. | Infix | Reeks constructeur |  0..5  | Maak een reeks van 0 t/m 5
 
-| ^ | Prefix | Lijst constructeur |  ^5  | Zelfde als 0..^5, maakt een lijst van 0 t/m 4
+| ..^ | Infix | Reeks constructeur |  0..^5  | Maak een reeks van 0 t/m 4
 
-| ... | Infix | Luie lijst constructeur |  0...9999  | Maak waarden alleen aan als daar expliciet om gevraagd wordt
+| ^.. | Infix | Reeks constructeur |  0^..5  | Maak een reeks van 1 t/m 5
+
+| \^..^ | Infix | Reeks constructeur |  0\^..^5  | maak een reeks van 1 t/m 4
+
+| ^ | Prefix | Reeks constructeur |  ^5  | Zelfde als 0..^5, maakt een reeks van 0 t/m 4
+
+| ... | Infix | Luie reeks constructeur |  0...9999  | Maak waarden alleen aan als daar expliciet om gevraagd wordt
 
 .2+| {vbar} .2+| Prefix .2+| Pletten | {vbar}(0..5)  | (0 1 2 3 4 5)
 
 <| {vbar}(0\^..^5)  <| (1 2 3 4)
 
 |===
+
+=== Logische operatoren
+Logische operatoren combineren condities of kunnen kiezen tussen 2 waarden aan de hand van een conditie.
+
+[cols="^.^5m,^.^7m,.^20,.^20m,.^18m", options="header"]
+|===
+
+| Operator | Type | Beschrijving | Voorbeeld | Resultaat
+
+.2+| and .2+| Infix .2+| True indien beide waarden waar zijn | True and True | True
+
+<| True and False <| False
+
+.2+| or .2+| Infix .2+| True indien minstens één van de waarden waar is | True or False | True
+
+<| False or False <| False
+
+| && | Infix | Zelfde als `and` met hogere prioriteit | True && False | False
+
+| {vbar}{vbar} | Infix | Zelfde als `or` met hogere prioriteit | True {vbar}{vbar} False | True
+
+.2+| // .2+| Infix .2+| Gedefinieerd-of: linker waarde indien gedefinieerd, anders de rechter waarde | my $var; $var // 5; | 5
+
+<| my $var = 3; $var // 5; <| 3
+
+.2+| ?? !! .2+| Ternary .2+| Selecteer eerste waard indien conditie waar, anders de tweede waarde | 7 > 5 ?? "yes" !! "no" | yes
+
+<| 7 < 5 ?? "yes" !! "no" <| no
+
+|===
+
+Logische operatoren worden meestal gebruikt om meerdere vergelijkingen te combineren.
+
+[source,raku]
+----
+my $age = 30;
+say $age >= 18 && $age <= 65;   # True
+say $age < 18 || $age > 65;     # False
+----
+
+De gedefinieerd-of operator `//` is een gemakkelijke manier of verstek waarde aan te geven.
+
+[source,raku]
+----
+my $name;
+say $name // 'Anoniem';       # Anoniem
+----
 
 === Omkeringsoperatoren
 
@@ -449,7 +558,7 @@ Door een `R` te plaatsen direct voor een operator, zorg je ervoor dat de termen 
 
 === Herleidingsoperatoren
 
-Herleidingsoperatoren werken op lijsten.
+Herleidingsoperatoren werken op lijsten. +
 Je maakt een herleidingsoperator door vierkante haken om de operator te plaatsen `[]`
 
 [cols=".^m,.^m,.^m,.^m", options="header"]
