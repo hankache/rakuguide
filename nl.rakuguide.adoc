@@ -1,7 +1,7 @@
 = Raku Inleiding
 Naoum Hankache <naoum@hankache.com>; Elizabeth Mattijsen <rakuguide@liz.nl>
 :description: Een algemene inleiding van Raku
-:keywords: perl6, perl 6, inleiding, perl6intro, perl 6 inleiding, perl 6 tutorial, perl 6 intro, raku, raku inleiding, raku tutorial
+:keywords: inleiding, raku, raku programmeertaal, raku inleiding, raku tutorial
 :publisher: raku.guide
 :copyright: CC BY-SA 4.0
 :Revision: 1.0
@@ -39,7 +39,7 @@ Alle commentaar is welkom:
 == Inleiding
 === Wat is Raku
 Raku is een hogere programmeertaal voor algemeen gebruik met graduele typering.
-In Raku kan met diverse paradigma's geprogrammeerd worden.  Ondersteund worden
+Men kan in Raku kan met diverse paradigma's programmeren.  Ondersteund worden
 onder andere procedureel, object-georiënteerd en functioneel programmeren.
 
 .Raku motto:
@@ -50,78 +50,114 @@ onder andere procedureel, object-georiënteerd en functioneel programmeren.
 Een implementatie van Raku die al deze tests succesvol kan uitvoeren, mag zich een implementatie "Raku" noemen.
 * *Rakudo*: Is een compiler voor Raku.
 * *Zef*: Is een installatie-programma voor Raku modules.
-* *Rakudo Star*: Is een bundel software waarin zich Rakudo, zef, documentatie en een verzameling van Raku modules bevindt.
+* *Rakubrew*: Is een installatie-programma voor Raku en een versie-manager.
 
 === Installeren van Raku
-.Linux
-Voer de volgende commando's uit in een Terminal venster om Rakudo Star te installeren:
+Er zijn een aantal manieren om Raku te installeren.
+
+
+==== Rakubrew
+De aanbevolen manier om Raku te installeren is door middel van https://rakubrew.org[Rakubrew], een installatie-programma voor Rak en tevens versie-manager.
+
+Als eerste moet men Rakubrew installeren door een van de volgende commando's uit te voeren, afhankelijk van het operating system dat men gebruikt.
+
+[source,shell]
+.On Linux, in een terminalvenster:
+----
+curl https://rakubrew.org/install-on-perl.sh | sh
+----
+
+[source,shell]
+.On MacOS, in een terminalvenster:
+----
+curl https://rakubrew.org/install-on-macos.sh | sh
+----
+
+[source,powershell]
+.On Windows, in een PowerShell venster:
+----
+. {iwr -useb https://rakubrew.org/install-on-powershell.ps1 } | iex
+---
+
+Het programma eindigt met het tonen van een commando dat Rakubrew beschikbaar
+maakt zodra een terminalvenster wordt geopend. +
+Kopieer dat commando, voer het uit en sluit dan dat terminalvenster.  En open dan een nieuw terminal venster.
+
+Installeer dan de meest recente versie van Raku met:
+
 [source,shell]
 ----
-mkdir ~/rakudo && cd $_
-curl -LJO https://rakudo.org/latest/star/src
-tar -xzf rakudo-star-*.tar.gz
-mv rakudo-star-*/* .
-rm -fr rakudo-star-*
-
-./bin/rstar install
-
-echo "export PATH=$(pwd)/bin/:$(pwd)/share/perl6/site/bin:$(pwd)/share/perl6/vendor/bin:$(pwd)/share/perl6/core/bin:\$PATH" >> ~/.bashrc
-source ~/.bashrc
+rakubrew download
 ----
-Zie https://rakudo.org/star/source voor meer opties.
 
-.MacOS
-MacOS kent vier mogelijkheden:
+Om er zeker van te zijn dat de installatie is gelukt, voer dan dit commando uit:
+----
+raku --version
+----
 
-* Volg dezelfde stappen als voor Linux
-* Installeer met homebrew: `brew install rakudo-star`
-* Installeer met MacPorts: `sudo port install rakudo`
-* Download de meest recente installer (bestand met .dmg extensie) van https://rakudo.org/latest/star/macos
+==== Installeerbare Componenten
+De Rakudo compiler maakt ook installeerbare componenten beschikbaar voor
+Linux, MacOS en Windows. +
+Deze kunnen worden opgehaald worden van https://rakudo.org/downloads
 
 .Windows
-. Voor 64-bit systemen: Download de meest recente installer (bestand met .msi extensie) van https://rakudo.org/latest/star/win
-. Zorg ervoor dat `C:\rakudo\bin` in je PATH is na het installeren.
+Haal het installeer programma op (bestand met de .msi extensie) en pak het uit.  Het installeer programma voegt Raku en Zef to aan het PATH.
 
-.Docker
-. Gebruik het officiele Docker image `docker pull rakudo-star`
-. Voer daarna een container uit met het image `docker run -it rakudo-star`
+.Linux en MacOS
+Haal het archief-bestand op (met de .tar.gz extensie) en pak het uit.  De programma's bevinden zich in de `bin` en `share/perl6/site/bin` mappen van het archief.  Voeg deze mappen toe aan je PATH.
+
+==== Rakudo Star
+Rakudo Star is een bundel waarin zich Rakudo, Zef, een collectie van Raku modules en documentatie bevinden.  Het kan worden geïnstalleerd met een van de volgende manieren:
+
+* Docker: `docker pull rakudo-star`
+
+* Scoop op Windows: `scoop install rakudo-star`
+
+* Homebrew op MacOS: `brew install rakudo-star`
+
+Merk op: Voor andere mogelijkheden, ga naar https://raku.org/install
 
 === Uitvoeren van Raku code
 
 Je kunt eenvoudig Raku code uitvoeren in de REPL (Read-Eval-Print-Loop, oftewel een lees, evalueer, print, lus).
-Open daarvoor een terminalvenster, type `perl6` en druk op [Enter].  Er verschijnt dan een `>` prompt.
+Open daarvoor een terminalvenster, type `raku` en druk op [Enter].  Er verschijnt dan een `>` prompt.
 Vervolgens kun je een regel code intypen en weer op [Enter] drukken.  De REPL zal dan de uiteindelijke waarde van die code laten zien op het scherm.  Je kunt dan weer een regel code intypen, of `exit` intypen en op [Enter] drukken om de REPL te verlaten.
 
 Je kunt je code natuurlijk ook opslaan in een bestand, dat je daarna gaat uitvoeren.
 We raden aan om een Raku script de extensie `.raku` te geven, zodat het later te herkennen is als Raku bestand.
-Voer het bestand uit door `perl6 bestandsnaam.raku` in het terminal venster in te typen en op [Enter] te drukken.  Anders dan bij de REPL zal die niet automatisch het resultaat van elke regel laten zien: daarvoor moet je een opdracht als `say` in je programma plaatsen om iets te tonen.
+Voer het bestand uit door `raku bestandsnaam.raku` in het terminalvenster in te typen en op [Enter] te drukken.  Anders dan bij de REPL zal die niet automatisch het resultaat van elke regel laten zien: daarvoor moet je een opdracht als `say` in je programma plaatsen om iets te tonen.
 
 De REPL wordt meestal gebruikt om een specifiek stukje code uit te proberen, meestal niet meer dan één enkele regel.  Voor programma's die uit meer dan één regel bestaan, wordt het aangeraden om die regels in een bestand op te slaan en dan dat bestand uit te voeren.
 
-Je kunt ook een regel code non-interactief uitproberen op de commando-regel in een terminal venster, door `perl6 -e 'jouw regel code'` in te typen en dan op [Enter] te drukken.
+Je kunt ook een regel code non-interactief uitproberen op de commando-regel in een terminalvenster, door `raku -e 'jouw regel code'` in te typen en dan op [Enter] te drukken.
 
 [TIP]
 --
-In de bundel Rakudo Star zit ook een regel-editor die het uitproberen in de REPL nog gemakkelijker maakt.
+Een regel-editor helpt je om alles uit een REPL te krijgen.  Het maakt het mogelijk om de cursor-toetsen te gebruiken om vorige/volgende regels te herhalen, en de invoer aan te passen, waarbij TAB gebruikt kan worden voor woorden te completeren.
 
-Als je alleen maar Rakudo hebt geïnstalleerd, en niet Rakudo Star, dan heb je standaard niet alle handige regel-editor mogelijkheden (zoals pijltje naar onder/boven om eerder ingetypte regels te bekijken, pijltje links/rechts om je invoer te veranderen, en automatisch invullen met TAB).
-Voer het volgende commando uit om deze functionaliteit te installeren:
+Indien dit nog niet werkt, dan kun je dit command uitvoeren:
 
-* `zef install Linenoise` werkt op Windows, Linux en OS X
-
-* `zef install Readline` als je op Linux werkt en liever werkt met de _Readline_ bibliotheek
---
+`zef install Terminal::LineEditor`
+====
 
 === Bewerkingsprogramma's (Editors)
 Aangezien je het grootste deel van je tijd Raku programma's in bestanden aan het opslaan bent, is het handig om een goede editor te hebben die Raku syntax herkent.
 
-Ik gebruik https://atom.io/[Atom] en raadt het gebruik daarvan ook aan.  Het is een moderne tekst-editor die standaard uitgeleverd wordt met Raku syntax-markeerder.
-https://atom.io/packages/language-perl6fe[Perl6-fe] is een alternatieve Raku syntax-markeerder voor Atom, afgeleid van het origineel, maar met vele bug-fixes en toevoegingen.
+* https://code.visualstudio.com/[Visual Studio Code]: syntax-markering en fout-meldingen met  https://marketplace.visualstudio.com/items?itemName=bscan.raku-navigator[raku-navigator]
 
-Andere mensen in de gemeenschap gebruiken ook https://www.vim.org/[Vim], https://www.gnu.org/software/emacs/[Emacs] of http://padre.perlide.org/[Padre].
+* https://www.jetbrains.com/idea/[IntelliJ IDEA]: Raku ondersteuning mogelijk met https://github.com/ab5tract/raku-intellij-plugin[raku-intellij-plugin]
 
-Recente versies van Vim worden standaard uitgeleverd met een syntax-markeerder. Emacs en Padre hebben de installatie van extra bibliotheken nodig.
+* https://www.vim.org/[Vim]: betere syntax-markering met https://github.com/Raku/vim-raku[vim-raku]
 
+* https://www.gnu.org/software/emacs/[Emacs]: syntax-markering met https://github.com/Raku/raku-mode[raku-mode]
+
+* https://www.nano-editor.org/[Nano]: syntax-markering met https://github.com/hankache/raku.nanorc[raku.nanorc]
+
+* https://notepad-plus-plus.org/[Notepad++]: syntax-markering standaard meegeleverd
+
+* https://kate-editor.org/[Kate]: syntax-markering standaard meegleverd
+
+* https://www.geany.org/[Geany]: syntax-markering standaard meegleverd
 
 === Hello World!
 Laten we beginnen met het `hello world` ritueel.
