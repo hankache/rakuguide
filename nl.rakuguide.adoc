@@ -941,6 +941,7 @@ False
 NOTE: Zie https://docs.raku.org/type/Hash voor alle informatie over hashes.
 
 === Types
+==== Dynamische en statische typeringen
 In de voorafgaande voorbeelden hebben we niet het type van de waarde aangegeven die in een variabele opgeslagen kan worden.
 
 TIP: `.WHAT` geeft het type van de waarde in een variabele terug.
@@ -979,7 +980,9 @@ Deze stijl van programmeren wordt "statische typering" (static typing) genoemd. 
 
 Raku wordt aangeduid met "graduele typering": het laat namelijk zowel *statische* als *dynamische* typering toe.
 
+==== Getypeerde arrays en hashes
 .Arrays en hashes kunnen ook statisch getypeerd worden:
+
 [source,raku]
 ----
 my Int @array = 1,2,3;
@@ -999,7 +1002,8 @@ say %landennummers;
 say %landennummers.WHAT;
 ----
 
-.Hieronder vind je een lijst van meest voorkomende typen:
+==== Veel voorkomende types
+Hieronder vind je een lijst van meest voorkomende typen: +
 Je zult hoogstwaarschijnlijk de eerste twee nooit gebruiken, maar we laten ze hier zien om je te laten weten dat ze bestaan.
 
 [cols="^.^1m,.^3m,.^2m,.^1m, options="header"]
@@ -1052,16 +1056,19 @@ Om de waarde uit een variabele te verwijderen, kun je de waarde `Nil` toewijzen.
 === Bereik (scoping)
 Voordat men een variabele voor de eerste keer kan gebruiken, moet deze worden gedefinieerd.
 
+==== Statisch bereik
 Dit kan op diverse manieren in Raku, `my` is wat we tot nu toe in de bovenstaande voorbeelden hebben gebruikt.
 
 [source,raku]
+----
 my $var = 1;
+----
 
 Met `my` geeft men de variabele een *statisch* bereik (ook wel *lexicaal* bereik genoemd).
 In andere woorden, de variabele zal alleen maar toegankelijk zijn in het gebied (scope) waarin het was gedefinieerd.
 
 Zo'n gebied (scope) wordt in Raku begrensd door `{ }`.
-Een variabele zal toegankelijk zijn in het gehele Raku script als er geen gebiedsbegrenzing gevonden wordt.
+Een variabele is toegankelijk in het gehele Raku script als er geen gebiedsbegrenzing is.
 
 [source,raku]
 ----
@@ -1084,7 +1091,21 @@ my Int $var = 123;
 say $var;
 ----
 
+==== Andere bereiken
+Andere manieren om een bereik / toestand van een variabele aan te geven.
+
+* `our` geeft een variabele aan in het bereik van een *package*.  Het is zichtbaar buiten het bereik waarin het wordt gedefinieerd.
+
+* `constant` geeft een "variabele" aan die niet kan worden veranderd.
+
+[source,raku]
+----
+constant $tau = pi * 2;
+$tau = 6;   # geeft foutmelding: Cannot assign to an immutable value
+----
+
 === Toewijzing vs. verbinden
+==== Toewijzing
 We hebben in de vorige voorbeelden gezien hoe we waarden aan variabelen kunnen *toewijzen*. +
 *Toewijzing* wordt gedaan met de `=` operator.
 
@@ -1097,7 +1118,7 @@ say $var;
 We kunnen de waarde van een variabele veranderen:
 
 [source,raku]
-.Toewijzing
+.`Script`
 ----
 my Int $var = 123;
 say $var;
@@ -1111,11 +1132,12 @@ say $var;
 999
 ----
 
+==== Verbinden
 Daarentegen kunnen we de waarde van een variabele niet veranderen als deze is *verbonden* met een waarde. +
 *Verbinding* wordt gedaan met de `:=` operator.
 
 [source,raku]
-.Verbinden
+.`Script`
 ----
 my Int $var := 123;
 say $var;
@@ -1123,14 +1145,17 @@ $var = 999;
 say $var;
 ----
 
-.`Output`
+.`Uitvoer`
 ----
 123
 Cannot assign to an immutable value
 ----
 
+==== Verbinden met variabelen
+Variabelen kunnen ook verbonden worden met andere variabelen:
+
 [source,raku]
-.Variabelen kunnen ook verbonden worden met andere variabelen:
+.`Script`
 ----
 my $a;
 my $b;
@@ -1151,46 +1176,6 @@ Het verbinden van variabelen werkt twee kanten op, zoals je al gezien hebt. +
 `$a := $b` en `$b := $a` hebben hetzelfde effect.
 
 NOTE: Zie https://docs.raku.org/language/variables voor meer informatie over variabelen.
-
-== Functies en mutators
-
-Het is belangrijk om verschil te maken tussen functies en mutators. +
-Functies veranderen de toestand van een object waarop ze worden uitgevoerd *niet*. +
-Mutators veranderen de toestand van een object *wel*.
-
-[source,raku]
-.`Script`
-----
-my @nummers = [7,2,4,9,11,3];
-
-@nummers.push(99);
-say @nummers;      #1
-
-say @nummers.sort; #2
-say @nummers;      #3
-
-@nummers .= sort;
-say @nummers;      #4
-----
-
-.`Output`
-----
-[7 2 4 9 11 3 99] #1
-(2 3 4 7 9 11 99) #2
-[7 2 4 9 11 3 99] #3
-[2 3 4 7 9 11 99] #4
-----
-
-.Uitleg
-`.push` is een mutator, het verandert de toestand van het array (#1)
-
-`.sort` is een functie, het geeft het gesorteerde array terug als een lijst, maar verandert de toestand van het array zelf niet.
-
-* (#2) laat zien dat een gesorteerde lijst is teruggegeven.
-
-* (#3) laat zien dat het array zelf onveranderd is.
-
-Men kan een functie als een mutator laten optreden door `.=` in plaats van `.` te gebruiken (#4)
 
 == Lussen en condities
 Raku heeft een veelheid aan conditionele- en lusconstructies.
