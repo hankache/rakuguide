@@ -582,6 +582,11 @@ Een *sigil* is een karakter dat als prefix gebruikt wordt om aan te geven in wel
 * `@` geeft een array aan
 * `%` geeft een hash aan
 
+Een variabele moet worden gedefinieerd voordat het gebruikt kan worden. +
+Dit kan men doen door het woord `my` vóór de naam van de variabele te plaatsen.
+
+NOTE: Deze inleiding geeft een versimpeld beeld van variabelen, geschikt om de basis elementen van Raku te leren.  Om meer te begrijpen over variabele, zie https://docs.raku.org/language/containers
+
 === Scalars
 Een scalar kan één waarde bevatten.
 
@@ -598,8 +603,8 @@ say $leeftijd;
 
 Afhankelijk van het type waarde dat een scalar bevat, kun je daar bepaalde operaties op uitvoeren.
 
+==== String
 [source,raku]
-.String
 ----
 my $naam = 'Jan Jansen';
 say $naam.uc;
@@ -607,6 +612,7 @@ say $naam.chars;
 say $naam.flip;
 ----
 
+.`Uitvoer`
 ----
 JAN JANSEN
 10
@@ -615,21 +621,22 @@ nesnaJ naJ
 
 NOTE: Bekijk https://docs.raku.org/type/Str voor de complete lijst van methoden die men op een string kan uitvoeren.
 
+==== Integer
 [source,raku]
-.Integer
 ----
 my $leeftijd = 17;
 say $leeftijd.is-prime;
 ----
 
+.`Uitvoer`
 ----
 True
 ----
 
 NOTE: Bekijk https://docs.raku.org/type/Int voor de complete lijst van methoden die men op een geheel getal (integer) kan uitvoeren.
 
+==== Rationeel getal
 [source,raku]
-.Rational Number
 ----
 my $leeftijd = 2.3;
 say $leeftijd.numerator;
@@ -637,6 +644,7 @@ say $leeftijd.denominator;
 say $leeftijd.nude;
 ----
 
+.`Uitvoer`
 ----
 23
 10
@@ -650,7 +658,7 @@ Arrays bestaan uit een lijst van scalar variabelen.
 
 [source,raku]
 ----
-my @dieren = 'kameel','lama','uil';
+my @dieren = 'kameel', 'lama', 'uil';
 say @dieren;
 ----
 
@@ -693,10 +701,87 @@ We kunnen een specifiek element van een array bekijken door de positie aan te ge
 `.pop` verwijdert het laatste element van het array. +
 `.splice(a,b)` verwijdert `b` elementen vanaf positie `a`.
 
+Hieronder vind je nog een paar voorbeelden van operaties die op een array kunnen worden uitgevoerd:
+
+[source,raku]
+.`Script`
+----
+my @dieren = 'kameel', 'vicuña', 'lama';
+say "Het laatste dier is een " ~ @dieren[*-1];
+say "De eerste twee dieren zijn: " ~ @dieren[0, 1];
+say "Allo dieren: " ~ @dieren.join(', ');
+@dieren.unshift("uil");
+say "Een uil kwam er als eerste bij: " ~ @dieren;
+@dieren.shift;
+say "De uil is alweer gevlogen: " ~ @dieren;
+----
+
+.`Uitvoer`
+----
+Het laatste dier is een lama
+De eerste twee dieren zijn: kameel vicuña
+Alle dieren: kameel, vicuña, lama
+Een uil kwam er als eerste bij: uil kameel vicuña lama
+De uil is alweer gevlogen: kameel vicuña lama
+----
+
+.Uitleg
+`+@dieren[*-1]+` geeft het laatste element van een array. +
+`@dieren[0, 1]` geeft meerdere elementen in één keer. Dit heet een *plak* (slice). +
+`.join(', ')` geeft een enkele string gemaakt door alle elementen, gescheiden door een komma en een spatie, samen te voegen. +
+`.unshift()` voegt één of meer elementen toe aan het begin van een array. +
+`.shift` verwijdert het eerste element van een array en geeft dat terug.
+
+==== Veranderingen in een array zelf
+Sommige methoden veranderen de array waar ze op worden aangeroepen.  Anderd laten de array onveranderd en geven een waarde terug. +
+Het is belangrijk om te weten welke method wat doet.
+
+[source,raku]
+.`Script`
+----
+my @nummers = 7, 2, 4, 9, 11, 3;
+
+@nummers.push(99);
+say @nummers;      #1
+
+say @nummers.sort; #2
+say @nummers;      #3
+
+@nummers .= sort;
+say @nummers;      #4
+----
+
+.`Output`
+----
+[7 2 4 9 11 3 99] #1
+(2 3 4 7 9 11 99) #2
+[7 2 4 9 11 3 99] #3
+[2 3 4 7 9 11 99] #4
+----
+
+.Uitleg
+`.push` verandert een array. Een methode die dat doet, noemen we een  *mutator* (#1)
+
+`.sort` laat een array onveranderd. Geeft de waarden van de array gesorteerd terug:
+
+* (#2) laat de gesorteerde waarden zien die terug zijn gegeven.
+
+* (#3) laat zien dat de array niet is veranderd.
+
+Om het resultaat van een zo'n methode direct in het array terug te plaatsen gebruiken we `.=` in plaats van `.` (#4) +
+`@nummers .= sort` is een kortere manier om `@nummers = @nummers.sort` te schrijven
+
+NOTE: Het resultaat in #2 werd getoond met (ronde) haken in plaats van vierkante haken omdat `.sort` een lijst teruggeft in plaats van een array.
+Nadat die waarden weer in `@nummers` is geplaatst, is het weer een array geworden.
+
+TIP: `.=` werkt met alle methodes en op alle variabelen. Bijvoorbeeld, `$naam .= uc` vervangt de waarde van `$naam` met de versie in hoofdletters.
+
 ==== Arrays met beperkt aantal elementen
 Een gewoon array kun je als volgt specificeren:
 [source,raku]
+----
 my @array;
+----
 
 Een gewoon array is niet beperkt wat betreft aantal elementen, het past zichzelf aan (auto-extending). +
 Men kan in een gewoon array zoveel waarden opslaan als men wil.
@@ -706,7 +791,9 @@ Dit soort arrays verbieden toegang tot niet-bestaande elementen.
 
 Specificeer het aantal elementen in vierkante haken direct achter de naam van een array om een array met beperkt aantal elementen te specificeren:
 [source,raku]
+----
 my @array[3];
+----
 
 Dit array kan hoogstens 3 waarden bevatten, met als indexwaarden 0 t/m 2.
 
@@ -737,7 +824,9 @@ De arrays die we tot nu toe gezien hebben, hadden maar één dimensie. +
 We kunnen echter ook arrays met meer dan één dimensie in Raku specificeren.
 
 [source,raku]
+----
 my @tbl[3;2];
+----
 
 Dit array heeft 2 dimensies.
 De eerste dimensie kan maximaal 3 waarden hebben, en de tweede dimensie maximaal 2 waarden.
@@ -756,6 +845,7 @@ my @tbl[3;2];
 say @tbl
 ----
 
+.`Uitvoer`
 ----
 [[1 x] [2 y] [3 z]]
 ----
@@ -770,6 +860,7 @@ say @tbl
 NOTE: Zie https://docs.raku.org/type/Array voor volledige informatie over arrays.
 
 === Hashes
+==== Het maken van een hash
 [source,raku]
 .Een Hash is een verzameling van naam/waarde paren (key/value pairs)
 ----
@@ -820,6 +911,32 @@ De hoofdstad van Frankrijk is: Parijs
 `.keys` geeft een lijst met alle namen terug. +
 `.values` geeft een lijst met alle waarden terug. +
 De waarde behorende bij een gegeven naam kun je opvragen door die naam te specificeren `%hash<naam>`
+
+WARNING: Raku houdt geen bepaalde volgorde van de namen in een hash aan.
+The volgorde waarin de landen in de bovenstaande uitvoer kan anders zijn, en ook verschillen met elke keer dat je die code uitvoert.
+
+==== Controleren en verwijderen van een naam
+Men kan ook controleren of een naam bestaat in een hash, en de naam eruit verwijderen.
+[source,raku]
+.`Script`
+----
+my %hoofdsteden = VK => 'London', Duitsland => 'Berlijn';
+say %hoofdsteden<Duitsland>:exists;
+say %hoofdsteden<Frankrijk>:exists;
+%hoofdsteden<Duitsland>:delete;
+say %hoofdsteden;
+----
+
+.`Output`
+----
+True
+False
+{VK => London}
+----
+
+.Uitleg
+`%hash<key>:exists` geeft `True` indien de naam bestaat in de hash. +
+`%hash<key>:delete` verwijdert de naam uit de hash.
 
 NOTE: Zie https://docs.raku.org/type/Hash voor alle informatie over hashes.
 
