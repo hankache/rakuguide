@@ -922,7 +922,7 @@ Men kan ook controleren of een naam bestaat in een hash, en de naam eruit verwij
 [source,raku]
 .`Script`
 ----
-my %hoofdsteden = VK => 'London', Duitsland => 'Berlijn';
+my %hoofdsteden = VK => 'Londen', Duitsland => 'Berlijn';
 say %hoofdsteden<Duitsland>:exists;
 say %hoofdsteden<Frankrijk>:exists;
 %hoofdsteden<Duitsland>:delete;
@@ -933,7 +933,7 @@ say %hoofdsteden;
 ----
 True
 False
-{VK => London}
+{VK => Londen}
 ----
 
 .Uitleg
@@ -1449,6 +1449,7 @@ Je kunt `with` en `orwith` zien als een soort `if` en `elsif`.
 
 Met het `for` commando kun je over een aantal waarden repeteren.
 
+==== Arrays
 [source,raku]
 ----
 my @array = 1,2,3;
@@ -1459,6 +1460,49 @@ for @array -> $array-item {
 ----
 
 Merk op dat we een lusvariabele `$array-item` aanmaken om de operatie `*100` op elk element van het array uit te kunnen voeren.
+
+Indien er geen lusvariabele wordt gegeven, dan wordt elke waarde in de variabele `$_` geplaatst, ook wel bekend als "de verstek-variabele".
+
+[source,raku]
+----
+my @array = 1, 2, 3;
+
+for @array {
+  say $_ * 100;
+}
+----
+
+==== Reeksen
+De waarden kunnen ook van een reeks afkomen:
+
+[source,raku]
+----
+for 1..5 -> $nummer {
+    say $nummer;
+}
+----
+
+Men kan ook een methode aanroepen op de verstek-variable door alles voor de punt weg te laten. +
+Met andere woorden, `.say` is een kortere schrijfwijze voor `$_.say`
+
+[source,raku]
+----
+for 1..5 {
+    .say;
+}
+----
+
+==== Hashes
+Om alle waarden van een hash te bekijken, kan men met de `kv` methode vragen om de namen en de waarden in the hash, en daar twee lusvariabelen voor aanmaken:
+
+[source,raku]
+----
+my %hoofdsteden = VK => 'Londen', Duitsland => 'Berlijn';
+
+for %hoofdsteden.kv -> $land, $stad {
+  say "De hoofdstad van  $lang is $stad";
+}
+----
 
 === given
 
@@ -1497,14 +1541,81 @@ given $var {
 
 In feite is `loop` precies zoals `for` lussen geschreven worden in de familie C-programmeertalen.
 
-Raku hoort bij de familie C-programmeertalen.
-
 [source,raku]
 ----
 loop (my $i = 0; $i < 5; $i++) {
     say "Het huidige nummer is $i"
 }
 ----
+
+=== while en until
+
+De `while` lus herhaalt executie van een blok zolang de conditie waar is.
+
+[source,raku]
+----
+my $countdown = 3;
+
+while $countdown > 0 {
+  say $countdown;
+  $countdown--;
+}
+say 'Gestart!';
+----
+
+.`Uitvoer`
+----
+3
+2
+1
+Gestart!
+----
+
+`until` is tegenovergestelde versie van `while`. Het herhaalt het blok zolang de conditie *niet* waar is. +
+Dat is te vergelijken met `unless`.
+
+Bovenstaand voorbeeld kan ook worden geschrene als
+
+[source,raku]
+----
+my $countdown = 3;
+
+until $countdown == 0 {
+  say $countdown;
+  $countdown--;
+}
+say 'Gestart!';
+----
+
+WARNING: Je moet er wel voor zorgen dat de conditie wel op een gegeven ogenblik verandert, anders zal deze lus nooit tot een einde komen.
+
+=== next en last
+
+`next` en `last` geven ons meer controle over een lus.  Ze kunnen worden gebruikt in een `for`, `loop`, `while` en `until` lus.
+
+* `next` next negeert de rest van het blok en gaat verder met de volgende waarde
+* `last` springt uit de lus.
+
+[source,raku]
+----
+for 1..10 -> $nummer {
+    next unless $nummer %% 2;
+    last if $nummer > 8;
+    say $nummer;
+}
+----
+
+.`Uitvoer`
+----
+2
+4
+6
+8
+----
+
+.Explanation
+`next unless $number %% 2` negeert de getallen die niet door 2 deelbaar zijn +
+`last if $number > 8` stopt de lus zodra de waarde meer is dan 8, dus `10` zal nooit getoond worden.
 
 NOTE: Zie https://docs.raku.org/language/control voor meer informatie over conditionele- en lusconstructies.
 
