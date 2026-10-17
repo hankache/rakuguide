@@ -1632,7 +1632,7 @@ De twee meest voorkomende manieren van _Invoer/Uitvoer_ zijn _Terminal_ en _Best
 say 'Hallo mevrouw.';
 say 'Hallo meneer.';
 ----
-zullen op 2 aparte lijnen worden getoond.
+worden op 2 aparte lijnen getoond.
 
 ==== print
 Aan de andere kant doet `print` precies hetzelfde, maar het voegt _geen_ regeleinde toe.
@@ -1729,7 +1729,31 @@ spurt "nieuwescores.txt", $nieuw;
 
 Nadat je de bovenstaande code hebt uitgevoerd, bestaat er een bestand _nieuwescores.txt_ .  Dat zal dan de nieuwe scores bevatten.
 
+==== lines
+`lines` kan worden gebruikt om gegevens regel voor regel uit een bestand te lezen.
+
+Laten we hetzelfde bestand _datafile.txt_ lezen dat we ook met `slurp` hebben gebruikt.
+
+[source,raku]
+----
+for "datafile.txt".IO.lines -> $line {
+    say "Score: $line";
+}
+----
+
+.`Uitvoer`
+----
+Score: John 9
+Score: Johnnie 7
+Score: Jane 8
+Score: Joanna 7
+----
+
+`.IO` verandert de string met de naam van een bestand in een object dat een bestand representeert. +
+`.lines` geeft de inhoud van het bestand regel voor regel, en de `for` lus gaat die dan één voor één behandelen.
+
 === Werken met bestanden en directories
+==== Wat er in een directory zit
 Raku kan de inhoud van een directory ook direct tonen zonder dat er externe commando's voor hoeven te worden uitgevoerd, net zoals in een van de vorige voorbeelden.
 
 [source,raku]
@@ -1738,6 +1762,7 @@ say dir;              # Laat bestanden/directories uit de huidige directory zien
 say dir "/Documents"; # Laat bestanden/directories zien van de gegeven directory
 ----
 
+==== Directories aanmaken en verwijderen
 Tevens kun je ook nieuwe directories aanmaken en verwijderen.
 
 [source,raku]
@@ -1749,6 +1774,7 @@ rmdir "nieuwdir";
 `mkdir` maakt een nieuwe directory aan. +
 `rmdir` verwijdert een lege directory.  Geeft een foutmelding terug indien niet leeg.
 
+==== Bestandsinformatie
 Je kunt ook kijken of een specifieke naam bestaat, en of het een bestand of een directory is:
 
 Maak in de directory waar je dit script gaat uitvoeren een lege directory `dir123` en een leeg bestand genaamd `script123.raku`
