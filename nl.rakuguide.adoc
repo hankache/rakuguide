@@ -77,7 +77,7 @@ curl https://rakubrew.org/install-on-macos.sh | sh
 .On Windows, in een PowerShell venster:
 ----
 . {iwr -useb https://rakubrew.org/install-on-powershell.ps1 } | iex
----
+----
 
 Het programma eindigt met het tonen van een commando dat Rakubrew beschikbaar
 maakt zodra een terminalvenster wordt geopend. +
@@ -138,7 +138,7 @@ Een regel-editor helpt je om alles uit een REPL te krijgen.  Het maakt het mogel
 Indien dit nog niet werkt, dan kun je dit command uitvoeren:
 
 `zef install Terminal::LineEditor`
-====
+--
 
 === Bewerkingsprogramma's (Editors)
 Aangezien je het grootste deel van je tijd Raku programma's in bestanden aan het opslaan bent, is het handig om een goede editor te hebben die Raku syntax herkent.
@@ -436,6 +436,8 @@ Onderstaande tabel toont de meest voorkomende operatoren.
 .2+|\--| Prefix | Verlaging | my $var = 2; --$var;  | Verlaag de variabele met `1` en geef de verlaagde waarde terug: `1`
 
 | Postfix <d| Verlaging <m| my $var = 2; $var--;  <| Geef de waarde van de variabele terug (`2`) en verlaag die dan met `1`
+
+|===
 
 ==== Conversie
 [cols="^.^5m,^.^5m,.^20,.^20m,.^20m", options="header"]
