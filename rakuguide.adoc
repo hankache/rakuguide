@@ -1961,7 +1961,7 @@ greet(:$name, :$title);                  # shorthand
 
 === Slurpy parameters
 A subroutine can accept any number of arguments by using a *slurpy parameter*. +
-A slurpy parameter is an array preceded by an asterisk, like `+*@names+`. It collects all the remaining arguments.
+A slurpy parameter is an array preceded by an asterisk, like `+*@names+`. It collects all the remaining positional arguments.
 
 [source,raku]
 ----
