@@ -1179,6 +1179,169 @@ Het verbinden van variabelen werkt twee kanten op, zoals je al gezien hebt. +
 
 NOTE: Zie https://docs.raku.org/language/variables voor meer informatie over variabelen.
 
+== Strings
+We hebben strings al vele malen gebruikt in vorige voorbeelden. +
+In dit hoofdstuk gaan we wat dieper in op wat er allemaal met strings kan worden gedaan.
+
+=== Interpolatie
+Een string gedefineerd met dubbele aanhalingstekens vervangt de variabelen met hun waarde. +
+Dit wordt "interpolatie" genoemd.
+
+[source,raku]
+----
+my $naam = 'Jan';
+my $leeftijd = 23;
+say "$naam is $leeftijd jaar oud";
+----
+
+Interpolatie is niet beperkt tot variabelen.  Elk stuk programma code dat omgeven wordt door accolades zal worden uitgevoerd, en het resultaat daarvan wordt in de string geplaatst.
+
+[source,raku]
+.`Script`
+----
+my $naam = 'Jan';
+my $leeftijd = 23;
+say "$naam wordt volgend jaar {$leeftijd + 1}";
+say "De naam $naam heeft {$naam.chars} letters";
+say 'De naam $naam heeft {$naam.chars} letters";
+----
+
+.`Output`
+----
+Jan wordt volgend jaar 24.
+De naam Jan heeft 3 letters.
+'De naam $naam heeft {$naam.chars} letters";
+----
+
+De laatste string werd gemaakt met enkele aanhalingstekens, waarin niets wordt geïnterpoleerd.
+
+=== Word lists
+A list of words can be written without quotes and without commas, by enclosing it in angle brackets.
+
+[source,raku]
+----
+my @dieren = <kameel lama uil>;
+say @dieren;
+----
+
+Is een kortere manier van schrijven dan:
+
+[source,raku]
+----
+my @dieren = 'kameel', 'lama', 'uil';
+say @animals;
+----
+
+NOTE: De woorden worden gescheiden door spaties.  Deze notatie kan niet worden gebruikt voor waarden waarin zich een spatie bevindt.
+
+=== Veel gebruikte methoden
+Op een string kunnen vele methoden worden aangeroepen, zoals hieronder is te zien:
+
+[source,raku]
+.`Script`
+----
+my $tekst = 'Raku is lol';
+say $tekst.chars;
+say $tekst.uc;
+say $tekst.lc;
+say $tekst.flip;
+say $tekst.contains('lol');
+say $tekst.starts-with('Raku');
+say $tekst.ends-with('boring');
+say $tekst.substr(0, 4);
+say $tekst.index('is');
+say '   Raku   '.trim;
+----
+
+.`Uitvoer`
+----
+11
+RAKU IS LOL
+raku is lol
+lol si ukaR
+True
+True
+False
+Raku
+5
+Raku
+----
+
+.Uitleg
+`.chars` geeft het aantal karakters in de string. +
+`.uc` en `.lc` geeft de string in hoofdletters of kleine letters. +
+`.flip` geeft de string met de karakters achterstevoren. +
+`.contains()` geeft aan of een string in de string voorkomt. +
+`.starts-with()` en `.ends-with()` geeft aan of een string begint of eindigt met een andere string. +
+`.substr(a, b)` geefts `b` karakters beginnend op positie `a`. +
+`.index()` geeft de positie van een string in een andere string. +
+`.trim` geeft een string zonder de witruimte aan begin en einde van de string
+
+TIP: Geen van deze methoden verandert de originele string.  Gebruik `.=` om het resultaat in de variabele terug te plaatsen, zoals we al eerder deden met arrays.
+
+=== Splijten en samenvoegen
+Een string kan worden gespleten in een lijst, en een lijst kan worden samengevoegd tot een string.
+
+[source,raku]
+.`Script`
+----
+my $zin = "Pa's wijze lynx bezag";
+my @woorden = $zin.woorden;
+say @woorden;
+say @woorden.elems;
+say @woorden.join('-');
+
+my $record = 'Jan,23,Nederlander';
+my @velden = $record.split(',');
+say @velden;
+say @velden[0];
+
+say 'Raku'.comb;
+----
+
+.`Uitvoer`
+----
+[Pa's wijze lynx bezag]
+4
+Pa's-wijze-lynx-bezag
+[Jan 23 Nederlander]
+Jan
+(R a k u)
+----
+
+.Uitleg
+`.words` splijt een string in woorden. +
+`.join()` combineert de gegeven lijst in een string met de gegeven separator tussen de elementen. +
+`.split()` splijt een string op de gegeven separator. +
+`.comb` geeft een lijst met elke letter van de string apart..
+
+=== Formatteren
+`sprintf` bouwt een string naar aanleiding van het gegeven sjabloon. +
+Het sjabloon bevat formatteer aanduidingen die beginnen met `%`.  Elke aanduiding wordt vervangen door een van de waarden die worden meegegeven.
+
+[source,raku]
+.`Script`
+----
+say sprintf('%s is %d jaar oud', 'Jan', 23);
+say sprintf('De prijs is %.2f euro', 3.14159);
+say sprintf('Kaart nummer %05d', 42);
+----
+
+.`Output`
+----
+Jan is 23 jaar oud
+De prijs is 3.14 euro
+Kaart nummer  00042
+----
+
+.Explanation
+`%s` geeft een string aan. +
+`%d` geeft een geheel getal (integer) aan. +
+`%.2f` geeft een getal afgerond op 2 decimalen aan. +
+`%05d` geeft een geheel getal, uitgevuld tot 5 posities.
+
+NOTE: Voor de complete lijst van methoden die op strings kunnen worden uitgevoerd, zie https://docs.raku.org/type/Str
+
 == Lussen en condities
 Raku heeft een veelheid aan conditionele- en lusconstructies.
 
