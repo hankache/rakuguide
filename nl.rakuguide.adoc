@@ -2359,8 +2359,6 @@ In de omgeving van `$smorgens` heeft `$periode` de waarde `morgen`.  In de omgev
 In het vorige hoofdstuk hebben we geleerd hoe Raku het gemakkelijker maakt om Functioneel te Programmeren. +
 In dit hoofdstuk gaan we kijken naar het object georiënteerd programmeren in Raku.
 
-=== Inleiding
-
 _Object Georiënteerd_ Programmeren is een van de programmeerstijl paradigma's die tegenwoordig veel wordt gebruikt. +
 Een *object* is een verzameling van variabelen en subroutines die bij elkaar gevoegd zijn. +
 De variabelen noemen we *attributen* en de subroutines noemen we *methoden*. +
@@ -2368,7 +2366,7 @@ Attributen bepalen de *staat* van een object, methoden bepalen het *gedrag* van 
 
 Een *klasse* definieert de structuur van een verzameling *objecten*. +
 
-Bijkijk onderstaand voorbeeld om deze relatie beter te begrijpen:
+Bekijk onderstaand voorbeeld om deze relatie beter te begrijpen:
 
 |===
 
@@ -2382,6 +2380,7 @@ Bijkijk onderstaand voorbeeld om deze relatie beter te begrijpen:
 
 In het taalgebruik van _object georiënteerd_ programmeren zeggen we dat de objecten *instanties* zijn van een klasse.
 
+=== Definiëren van een klasse
 Bekijk het onderstaande script:
 [source,raku]
 ----
@@ -2464,10 +2463,10 @@ Pogingen om aan het attribuut te komen van buiten het object zal je een foutmeld
 
 Vervang nu `has $!leeftijd` with `has $.leeftijd` en bekijk dan het resultaat van `say $jan.leeftijd;`
 
-=== Argumenten op naam vs. argumenten op positie
+=== Genoemde en positionele argumenten
 Alle klassen hebben beschikking over een `.new()` constructeur door overerving. +
 Het kan worden gebruikt om objecten aan te maken door het argumenten te geven. +
-De default constructeur accepteert alleen *argumenten op naam*. +
+De default constructeur accepteert alleen *genoemde argumenten*. +
 Als je bovenstaande voorbeelden bekijkt, dan zul je zien dat alle argumenten die we aan `.new()` hebben gegeven, op naam zijn:
 
 * naam \=> 'Jan'
@@ -2475,7 +2474,7 @@ Als je bovenstaande voorbeelden bekijkt, dan zul je zien dat alle argumenten die
 * leeftijd \=> 23
 
 Wat als ik niet telkens de naam van elk attribuut wil meegeven als ik een nieuw object wil maken? +
-In dat geval moeten we een andere constructeur maken die *argumenten op positie* accepteert.
+In dat geval moeten we een andere constructeur maken die *positionele argumenten* accepteert.
 
 [source,raku]
 ----
@@ -2485,8 +2484,8 @@ class Mens {
     has $.geslacht;
     has $.nationaliteit;
     #nieuwe constructeur die de default constructeur vervangt voor deze klasse
-    method new ($naam,$leeftijd,$geslacht,$nationaliteit) {
-        self.bless(:$naam,:$leeftijd,:$geslacht,:$nationaliteit);
+    method new ($naam, $leeftijd, $geslacht, $nationaliteit) {
+        self.bless(:$naam, :$leeftijd, :$geslacht, :$nationaliteit);
     }
 }
 
@@ -2494,9 +2493,38 @@ my $jan = Human.new('Jan',23,'M','Nederlands');
 say $jan;
 ----
 
-=== Methoden
+=== Verplichte attributen en attributen met verstekwaarde
+We hebben eerder al gezien dat een subroutine niet aangeroepen kan worden zonder een van haar parameters.
+De standaard constructor gedraagt zich anders: een attribuut waarvoor geen genoemd argument is meegegeven in een aanroep aan `.new()` blijft simpelweg gezien leeg.
 
-==== Inleiding
+Net als met parameters aan een subroutine, is het mogelijk om een verstekwaarde  aan een attribuut toe te kennen. +
+Like the parameters of a subroutine, an attribute can be given a default value. +
+Dit gebeurt door een toewijzing aan te geven bij de definitie.
+Andersom, als er altijd een genoemd argument moet worden gegeven voor een attribuut, dan kan dat worden aangeven met de sleutelwoorden `is required`
+
+[source,raku]
+----
+class Mens {
+  has $.naam is required;
+  has $.nationaliteit = 'Onbekend';
+}
+
+my $jan = Menw.new(name => 'Jan');
+say $jan.nationality;
+
+my $niemand = Human.new;
+----
+
+.`Output`
+----
+Onbekend
+The attribute '$!naam' is required, but you did not provide a value for it.
+----
+
+The nationaliteit van `$jan` werd niet aangegeven, dus werd de verstekwaarde gebruikt. +
+`$niemand` kon niet worden gemaakt omdat het genoemde argument `naam` ontbrak.
+
+=== Methoden
 Methoden zijn de _subroutines_ van een object. +
 Zij zijn, net als subroutines, een manier om een aantal functies te bundelen, ze accepteren *argumenten*, hebben een *signatuur* en kunnen worden gedefinieerd als *multi*.
 
@@ -2510,7 +2538,6 @@ De buitenwereld kan alleen maar gebruik maken van de methoden van het object en 
 class Mens {
     has $.naam;
     has $.leeftijd;
-    has $.geslacht;
     has $.nationaliteit;
     has $.geschiktheid;
     method bepaal-geschiktheid
@@ -2522,7 +2549,7 @@ class Mens {
     }
 }
 
-my $jan = Mens.new(naam => 'Jan', leeftijd => 23, geslacht => 'M', nationaliteit => 'Nederlands');
+my $jan = Mens.new(naam => 'Jan', leeftijd => 23, nationaliteit => 'Nederlands');
 $jan.bepaal-geschiktheid;
 say $jan.geschiktheid;
 ----
@@ -2530,7 +2557,7 @@ say $jan.geschiktheid;
 Door een methode te definiëren in een klasse, kun je deze aanroepen op een object met de _punt notatie_: +
 _object_ *.* _methode_ of als in bovenstaand voorbeeld: `$jan.bepaal-geschiktheid`
 
-Binnen de definitie van een methode kunnen we het sleutelwoord `self` gebruiken om te refereren aan het object zelf om een andere methode aan te roepen. +
+Binnen de definitie van een methode kunnen we het sleutelwoord `self` gebruiken om te refereren aan het object zelf om andere methodes aan te roepen. +
 
 Binnen de definitie van een methode kunnen we direct een attribuut gebruiken door de `!` twigil te gebruiken, zelfs als het attribuut is gedefinieerd met de `.` twigil. +
 De reden daarachter is dat wat de `.` twigil doet is een attribuut met `!` te definiëren en automatisch te zorgen voor het aanmaken van een accessor.
@@ -2607,7 +2634,6 @@ say $jan.leeftijd;
 Als je bij de definitie niets aangeeft, wordt een attribuut als _alleen lezen_ gedefinieerd, maar je kunt ook expliciet `is readonly` aangeven.
 
 === Overerving
-==== Inleiding
 *Overerving* is een concept van het object georiënteerd programmeren.
 
 Wanneer men klassen aan het definiëren is, komt men er snel genoeg achter dat sommige attributen/methoden in vele klassen voorkomen. +
@@ -2667,7 +2693,7 @@ class Mens {
     has $.naam;
     has $.leeftijd;
     method stel-jezelf-voor {
-        say 'Hoi, ik ben een mens en mijn naam is ' ~ self.name;
+        say 'Hoi, ik ben een mens en mijn naam is ' ~ self.naam;
     }
 }
 
@@ -2690,7 +2716,7 @@ class Mens {
     has $.naam;
     has $.leeftijd;
     method stel-jezelf-voor {
-        say 'Hoi, ik ben een mens en mijn naam is ' ~ self.name;
+        say 'Hoi, ik ben een mens en mijn naam is ' ~ self.naam;
     }
 }
 
@@ -2698,7 +2724,7 @@ class Werknemer is Mens {
     has $.bedrijf;
     has $.salaris;
     method stel-jezelf-voor {
-        say 'Hoi, ik ben een werknemer, mijn naam is ' ~ self.name ~ ' en ik werk bij: ' ~ self.bedrijf;
+        say 'Hoi, ik ben een werknemer, mijn naam is ' ~ self.naam ~ ' en ik werk bij: ' ~ self.bedrijf;
     }
 }
 
@@ -2712,7 +2738,7 @@ $jessica.stel-jezelf-voor;
 Afhankelijk van de klasse van het object, zal de juiste methode worden aangeroepen.
 
 ==== Submethoden
-*Submethoden* zijn een soort methoden die niet worden geërfd door kinderklassen. +
+*Submethoden* zijn een soort methoden die *niet* worden geërfd door kinderklassen. +
 Ze zijn alleen toegankelijk in de klasse waarin ze worden gedefinieerd. +
 Ze worden gedefinieerd met het `submethod` sleutelwoord.
 
@@ -2823,7 +2849,7 @@ Verkocht vs Voorspeld:
 ----
 
 === Rollen
-*Rollen* zijn net als klassen in de zin van dat zij een verzameling van attributen en methoden zijn.
+Een *Rol* is net als een klasse verzameling van attributen en methoden.
 
 Rollen kunnen worden gedefinieerd met het sleutelwoord `role` en klassen die een rol willen "spelen" kunnen dat aangeven met het `does` sleutelwoord.
 
@@ -2926,7 +2952,7 @@ class Mens {
     has $.naam;
     has $.leeftijd;
     method stel-jezelf-voor {
-        say 'Hoi, ik ben een mens en mijn naam is ' ~ self.name;
+        say 'Hoi, ik ben een mens en mijn naam is ' ~ self.naam;
     }
 }
 
@@ -2934,7 +2960,7 @@ class Werknemer is Mens {
     has $.bedrijf;
     has $.salaris;
     method stel-jezelf-voor {
-        say 'Hoi, ik ben een werknemer, mijn naam is ' ~ self.name ~ ' en ik werk bij: ' ~ self.bedrijf;
+        say 'Hoi, ik ben een werknemer, mijn naam is ' ~ self.naam ~ ' en ik werk bij: ' ~ self.bedrijf;
     }
 }
 
