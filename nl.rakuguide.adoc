@@ -1,7 +1,7 @@
 = Raku Inleiding
 Naoum Hankache <naoum@hankache.com>; Elizabeth Mattijsen <rakuguide@liz.nl>
 :description: Een algemene inleiding van Raku
-:keywords: perl6, perl 6, inleiding, perl6intro, perl 6 inleiding, perl 6 tutorial, perl 6 intro, raku, raku inleiding, raku tutorial
+:keywords: inleiding, raku, raku programmeertaal, raku inleiding, raku tutorial
 :publisher: raku.guide
 :copyright: CC BY-SA 4.0
 :Revision: 1.0
@@ -39,7 +39,7 @@ Alle commentaar is welkom:
 == Inleiding
 === Wat is Raku
 Raku is een hogere programmeertaal voor algemeen gebruik met graduele typering.
-In Raku kan met diverse paradigma's geprogrammeerd worden.  Ondersteund worden
+Men kan in Raku kan met diverse paradigma's programmeren.  Ondersteund worden
 onder andere procedureel, object-georiënteerd en functioneel programmeren.
 
 .Raku motto:
@@ -50,78 +50,114 @@ onder andere procedureel, object-georiënteerd en functioneel programmeren.
 Een implementatie van Raku die al deze tests succesvol kan uitvoeren, mag zich een implementatie "Raku" noemen.
 * *Rakudo*: Is een compiler voor Raku.
 * *Zef*: Is een installatie-programma voor Raku modules.
-* *Rakudo Star*: Is een bundel software waarin zich Rakudo, zef, documentatie en een verzameling van Raku modules bevindt.
+* *Rakubrew*: Is een installatie-programma voor Raku en een versie-manager.
 
 === Installeren van Raku
-.Linux
-Voer de volgende commando's uit in een Terminal venster om Rakudo Star te installeren:
+Er zijn een aantal manieren om Raku te installeren.
+
+
+==== Rakubrew
+De aanbevolen manier om Raku te installeren is door middel van https://rakubrew.org[Rakubrew], een installatie-programma voor Rak en tevens versie-manager.
+
+Als eerste moet men Rakubrew installeren door een van de volgende commando's uit te voeren, afhankelijk van het operating system dat men gebruikt.
+
+[source,shell]
+.On Linux, in een terminalvenster:
+----
+curl https://rakubrew.org/install-on-perl.sh | sh
+----
+
+[source,shell]
+.On MacOS, in een terminalvenster:
+----
+curl https://rakubrew.org/install-on-macos.sh | sh
+----
+
+[source,powershell]
+.On Windows, in een PowerShell venster:
+----
+. {iwr -useb https://rakubrew.org/install-on-powershell.ps1 } | iex
+----
+
+Het programma eindigt met het tonen van een commando dat Rakubrew beschikbaar
+maakt zodra een terminalvenster wordt geopend. +
+Kopieer dat commando, voer het uit en sluit dan dat terminalvenster.  En open dan een nieuw terminal venster.
+
+Installeer dan de meest recente versie van Raku met:
+
 [source,shell]
 ----
-mkdir ~/rakudo && cd $_
-curl -LJO https://rakudo.org/latest/star/src
-tar -xzf rakudo-star-*.tar.gz
-mv rakudo-star-*/* .
-rm -fr rakudo-star-*
-
-./bin/rstar install
-
-echo "export PATH=$(pwd)/bin/:$(pwd)/share/perl6/site/bin:$(pwd)/share/perl6/vendor/bin:$(pwd)/share/perl6/core/bin:\$PATH" >> ~/.bashrc
-source ~/.bashrc
+rakubrew download
 ----
-Zie https://rakudo.org/star/source voor meer opties.
 
-.MacOS
-MacOS kent vier mogelijkheden:
+Om er zeker van te zijn dat de installatie is gelukt, voer dan dit commando uit:
+----
+raku --version
+----
 
-* Volg dezelfde stappen als voor Linux
-* Installeer met homebrew: `brew install rakudo-star`
-* Installeer met MacPorts: `sudo port install rakudo`
-* Download de meest recente installer (bestand met .dmg extensie) van https://rakudo.org/latest/star/macos
+==== Installeerbare Componenten
+De Rakudo compiler maakt ook installeerbare componenten beschikbaar voor
+Linux, MacOS en Windows. +
+Deze kunnen worden opgehaald worden van https://rakudo.org/downloads
 
 .Windows
-. Voor 64-bit systemen: Download de meest recente installer (bestand met .msi extensie) van https://rakudo.org/latest/star/win
-. Zorg ervoor dat `C:\rakudo\bin` in je PATH is na het installeren.
+Haal het installeer programma op (bestand met de .msi extensie) en pak het uit.  Het installeer programma voegt Raku en Zef to aan het PATH.
 
-.Docker
-. Gebruik het officiele Docker image `docker pull rakudo-star`
-. Voer daarna een container uit met het image `docker run -it rakudo-star`
+.Linux en MacOS
+Haal het archief-bestand op (met de .tar.gz extensie) en pak het uit.  De programma's bevinden zich in de `bin` en `share/perl6/site/bin` mappen van het archief.  Voeg deze mappen toe aan je PATH.
+
+==== Rakudo Star
+Rakudo Star is een bundel waarin zich Rakudo, Zef, een collectie van Raku modules en documentatie bevinden.  Het kan worden geïnstalleerd met een van de volgende manieren:
+
+* Docker: `docker pull rakudo-star`
+
+* Scoop op Windows: `scoop install rakudo-star`
+
+* Homebrew op MacOS: `brew install rakudo-star`
+
+NOTE: Voor andere mogelijkheden, ga naar https://raku.org/install
 
 === Uitvoeren van Raku code
 
 Je kunt eenvoudig Raku code uitvoeren in de REPL (Read-Eval-Print-Loop, oftewel een lees, evalueer, print, lus).
-Open daarvoor een terminalvenster, type `perl6` en druk op [Enter].  Er verschijnt dan een `>` prompt.
+Open daarvoor een terminalvenster, type `raku` en druk op [Enter].  Er verschijnt dan een `>` prompt.
 Vervolgens kun je een regel code intypen en weer op [Enter] drukken.  De REPL zal dan de uiteindelijke waarde van die code laten zien op het scherm.  Je kunt dan weer een regel code intypen, of `exit` intypen en op [Enter] drukken om de REPL te verlaten.
 
 Je kunt je code natuurlijk ook opslaan in een bestand, dat je daarna gaat uitvoeren.
 We raden aan om een Raku script de extensie `.raku` te geven, zodat het later te herkennen is als Raku bestand.
-Voer het bestand uit door `perl6 bestandsnaam.raku` in het terminal venster in te typen en op [Enter] te drukken.  Anders dan bij de REPL zal die niet automatisch het resultaat van elke regel laten zien: daarvoor moet je een opdracht als `say` in je programma plaatsen om iets te tonen.
+Voer het bestand uit door `raku bestandsnaam.raku` in het terminalvenster in te typen en op [Enter] te drukken.  Anders dan bij de REPL zal die niet automatisch het resultaat van elke regel laten zien: daarvoor moet je een opdracht als `say` in je programma plaatsen om iets te tonen.
 
 De REPL wordt meestal gebruikt om een specifiek stukje code uit te proberen, meestal niet meer dan één enkele regel.  Voor programma's die uit meer dan één regel bestaan, wordt het aangeraden om die regels in een bestand op te slaan en dan dat bestand uit te voeren.
 
-Je kunt ook een regel code non-interactief uitproberen op de commando-regel in een terminal venster, door `perl6 -e 'jouw regel code'` in te typen en dan op [Enter] te drukken.
+Je kunt ook een regel code non-interactief uitproberen op de commando-regel in een terminalvenster, door `raku -e 'jouw regel code'` in te typen en dan op [Enter] te drukken.
 
 [TIP]
 --
-In de bundel Rakudo Star zit ook een regel-editor die het uitproberen in de REPL nog gemakkelijker maakt.
+Een regel-editor helpt je om alles uit een REPL te krijgen.  Het maakt het mogelijk om de cursor-toetsen te gebruiken om vorige/volgende regels te herhalen, en de invoer aan te passen, waarbij TAB gebruikt kan worden voor woorden te completeren.
 
-Als je alleen maar Rakudo hebt geïnstalleerd, en niet Rakudo Star, dan heb je standaard niet alle handige regel-editor mogelijkheden (zoals pijltje naar onder/boven om eerder ingetypte regels te bekijken, pijltje links/rechts om je invoer te veranderen, en automatisch invullen met TAB).
-Voer het volgende commando uit om deze functionaliteit te installeren:
+Indien dit nog niet werkt, dan kun je dit command uitvoeren:
 
-* `zef install Linenoise` werkt op Windows, Linux en OS X
-
-* `zef install Readline` als je op Linux werkt en liever werkt met de _Readline_ bibliotheek
+`zef install Terminal::LineEditor`
 --
 
 === Bewerkingsprogramma's (Editors)
 Aangezien je het grootste deel van je tijd Raku programma's in bestanden aan het opslaan bent, is het handig om een goede editor te hebben die Raku syntax herkent.
 
-Ik gebruik https://atom.io/[Atom] en raadt het gebruik daarvan ook aan.  Het is een moderne tekst-editor die standaard uitgeleverd wordt met Raku syntax-markeerder.
-https://atom.io/packages/language-perl6fe[Perl6-fe] is een alternatieve Raku syntax-markeerder voor Atom, afgeleid van het origineel, maar met vele bug-fixes en toevoegingen.
+* https://code.visualstudio.com/[Visual Studio Code]: syntax-markering en fout-meldingen met  https://marketplace.visualstudio.com/items?itemName=bscan.raku-navigator[raku-navigator]
 
-Andere mensen in de gemeenschap gebruiken ook https://www.vim.org/[Vim], https://www.gnu.org/software/emacs/[Emacs] of http://padre.perlide.org/[Padre].
+* https://www.jetbrains.com/idea/[IntelliJ IDEA]: Raku ondersteuning mogelijk met https://github.com/ab5tract/raku-intellij-plugin[raku-intellij-plugin]
 
-Recente versies van Vim worden standaard uitgeleverd met een syntax-markeerder. Emacs en Padre hebben de installatie van extra bibliotheken nodig.
+* https://www.vim.org/[Vim]: betere syntax-markering met https://github.com/Raku/vim-raku[vim-raku]
 
+* https://www.gnu.org/software/emacs/[Emacs]: syntax-markering met https://github.com/Raku/raku-mode[raku-mode]
+
+* https://www.nano-editor.org/[Nano]: syntax-markering met https://github.com/hankache/raku.nanorc[raku.nanorc]
+
+* https://notepad-plus-plus.org/[Notepad++]: syntax-markering standaard meegeleverd
+
+* https://kate-editor.org/[Kate]: syntax-markering standaard meegleverd
+
+* https://www.geany.org/[Geany]: syntax-markering standaard meegleverd
 
 === Hello World!
 Laten we beginnen met het `hello world` ritueel.
@@ -138,10 +174,27 @@ hetgeen ook geschreven kan worden als:
 Raku kent weinig beperkingen: over het algemeen kun je zoveel spaties (witruimte) gebruiken als je zelf wilt.  In een aantal gevallen is de witruimte *wel* van belang.
 
 Opdrachten bestaan over het algemeen uit een regel code die beëindigd wordt door een punt-komma:
-`say "Hallo" if True;`
+[source,raku]
+----
+say "Hallo" if True;
+say "Wereld" if False;
+----
+
+
+Punt-komma's zijn niet nodig na de laatste opdracht in een bestand of een blok programma-code, maar het is een goed gebruik om ze dan in dat geval toch toe te voegen.
+
+Een *Blok* kan bestaan uit nul of meer opdrachten.  Je maakt een blok door accolades om de opdrachten heen te plaatsen.
+
+[source,raku]
+----
+{
+  say "Eerste opdracht in het blok.";
+  say "Tweede opdracht in het blok.";
+}
+----
 
 *Expressies* zijn een speciaal soort opdracht die resulteren in een waarde:
-`1+2` geeft `3` terug
+`1+2` geeft `3` terug als waarde
 
 Expressies bestaan uit *Termen* en *Operatoren*.
 
@@ -217,23 +270,27 @@ Er zijn 3 manieren om commentaren in een programma te stoppen:
 * Enkele regel:
 +
 [source,raku]
+----
 # Dit is een regel met commentaar
+----
 
 * Als onderdeel van een regel (embedded):
 +
 [source,raku]
+----
 say #`(Dit is een ingebed commentaar) "Hallo wereld."
+----
 
 * Meer dan één regel
 +
 [source,raku]
------------------------------
+----
 =begin comment
 Dit is een commentaar over meer dan één regel
 Commentaar 1
 Commentaar 2
 =end comment
------------------------------
+----
 
 ==== Aanhalingstekens (Quotes)
 Een string wordt gedefinieerd door middel van enkele of dubbele aanhalingstekens.
@@ -245,19 +302,22 @@ Gebruik altijd dubbele aanhalingstekens:
 * als de string een variabele bevat die geïnterpoleerd moet worden.
 
 [source,raku]
----------------------------------------
+----
 say 'Hallo Wereld';   # Hallo Wereld
 say "Hallo Wereld";   # Hallo Wereld
 say "Doe 't niet";    # Doe 't niet
 my $naam = 'Jan Jansen';
 say 'Hallo $naam';   # Hallo $naam
 say "Hallo $naam";   # Hallo Jan Jansen
----------------------------------------
+----
 
 == Operatoren
+Operatoren zijn de symbolen en woorden die waarden combineren in expressies, bijvoorbeeld `+` in `1 + 2`
 
 === Algemene operatoren
 Onderstaande tabel toont de meest voorkomende operatoren.
+
+==== Rekenkundig
 [cols="^.^5m,^.^5m,.^20,.^20m,.^20m", options="header"]
 |===
 
@@ -303,6 +363,14 @@ Onderstaande tabel toont de meest voorkomende operatoren.
 
 <| 3 +<=> 2+ <| More
 
+|===
+
+==== Vergelijken
+[cols="^.^5m,^.^5m,.^20,.^20m,.^20m", options="header"]
+|===
+
+| Operator | Type | Beschrijving | Voorbeeld | Resultaat
+
 | eq | Infix | String gelijk | "Jan" eq "Jan"  | True
 
 | ne | Infix | String niet gelijk | "Jan" ne "Jolanda"  | True
@@ -325,16 +393,6 @@ Onderstaande tabel toont de meest voorkomende operatoren.
 
 <| 3.5 cmp 2.6 <| More
 
-| = | Infix | Toewijzing | my $var = 7  | Wijst de waarde `7` toe aan de variabele `$var`
-
-.2+| ~ .2+| Infix .2+| Strings aaneenschakelen | 9 ~ 7 | 97
-
-<m| "Hi " ~ "there"  <| Hi there
-
-.2+| x .2+| Infix .2+| String herhalen | 13 x 3  | 131313
-
-<| "Hello " x 3  <| Hello Hello Hello
-
 .5+| ~~ .5+| Infix .5+| Slim vergelijken | 2 ~~ 2  | True
 
 <| 2 ~~ Int <| True
@@ -343,7 +401,33 @@ Onderstaande tabel toont de meest voorkomende operatoren.
 
 <| "Raku" ~~ Str <| True
 
-<| "enlightenment" ~~ /light/ <| ｢light｣
+<| "verlichting" ~~ /licht/ <| ｢licht｣
+
+|===
+
+==== Toewijzing en strings
+[cols="^.^5m,^.^5m,.^20,.^20m,.^20m", options="header"]
+|===
+
+| Operator | Type | Beschrijving | Voorbeeld | Resultaat
+
+| = | Infix | Toewijzing | my $var = 7  | Wijst de waarde `7` toe aan de variabele `$var`
+
+.2+| ~ .2+| Infix .2+| Strings aaneenschakelen | 9 ~ 7 | 97
+
+<m| "Hallo " ~ "daar"  <| Hallo daar
+
+.2+| x .2+| Infix .2+| String herhalen | 13 x 3  | 131313
+
+<| "Hallo " x 3  <| Hallo Hallo Hallo
+
+|===
+
+==== Verhogen en verlagen
+[cols="^.^5m,^.^5m,.^20,.^20m,.^20m", options="header"]
+|===
+
+| Operator | Type | Beschrijving | Voorbeeld | Resultaat
 
 .2+| ++ | Prefix | Verhoging | my $var = 2; ++$var;  | Verhoog de variabele met `1` en geef de verhoogde waarde terug: `3`
 
@@ -353,19 +437,27 @@ Onderstaande tabel toont de meest voorkomende operatoren.
 
 | Postfix <d| Verlaging <m| my $var = 2; $var--;  <| Geef de waarde van de variabele terug (`2`) en verlaag die dan met `1`
 
-.3+| + .3+| Prefix .3+| Forceer naar de numerieke waarde | +"3"  | 3
+|===
+
+==== Conversie
+[cols="^.^5m,^.^5m,.^20,.^20m,.^20m", options="header"]
+|===
+
+| Operator | Type | Beschrijving | Voorbeeld | Resultaat
+
+.3+| + .3+| Prefix .3+| Converteer naar de numerieke waarde | +"3"  | 3
 
 <| +True <| 1
 
 <| +False <| 0
 
-.3+| - .3+| Prefix .3+| Forceer naar de negatieve numerieke waarde | -"3"  | -3
+.3+| - .3+| Prefix .3+| Converteer naar de negatieve numerieke waarde | -"3"  | -3
 
 <| -True <| -1
 
 <| -False <| 0
 
-.6+| ? .6+| Prefix .6+| Forceer naar de logische waarde | ?0 | False
+.6+| ? .6+| Prefix .6+| Converteer naar de logische waarde | ?0 | False
 
 <| ?9.8 <| True
 
@@ -377,25 +469,80 @@ Onderstaande tabel toont de meest voorkomende operatoren.
 
 <| my $var = 7; ?$var; <| True
 
-| ! | Prefix | Forceer naar het tegenovergestelde van de logische waarde | !4 | False
+| ! | Prefix | Converteer naar het tegenovergestelde van de logische waarde | !4 | False
 
-| .. | Infix | Lijst constructeur |  0..5  | Maak een lijst van 0 t/m 5
+|===
 
-| ..^ | Infix | Lijst constructeur |  0..^5  | Maak een lijst van 0 t/m 4
+==== Reeksen en lijsten
+[cols="^.^5m,^.^5m,.^20,.^20m,.^20m", options="header"]
+|===
 
-| ^.. | Infix | Lijst constructeur |  0^..5  | Maak een lijst van 1 t/m 5
+| Operator | Type | Beschrijving | Voorbeeld | Resultaat
 
-| \^..^ | Infix | Lijst constructeur |  0\^..^5  | maak een lijst van 1 t/m 4
+| .. | Infix | Reeks constructeur |  0..5  | Maak een reeks van 0 t/m 5
 
-| ^ | Prefix | Lijst constructeur |  ^5  | Zelfde als 0..^5, maakt een lijst van 0 t/m 4
+| ..^ | Infix | Reeks constructeur |  0..^5  | Maak een reeks van 0 t/m 4
 
-| ... | Infix | Luie lijst constructeur |  0...9999  | Maak waarden alleen aan als daar expliciet om gevraagd wordt
+| ^.. | Infix | Reeks constructeur |  0^..5  | Maak een reeks van 1 t/m 5
+
+| \^..^ | Infix | Reeks constructeur |  0\^..^5  | maak een reeks van 1 t/m 4
+
+| ^ | Prefix | Reeks constructeur |  ^5  | Zelfde als 0..^5, maakt een reeks van 0 t/m 4
+
+| ... | Infix | Luie reeks constructeur |  0...9999  | Maak waarden alleen aan als daar expliciet om gevraagd wordt
 
 .2+| {vbar} .2+| Prefix .2+| Pletten | {vbar}(0..5)  | (0 1 2 3 4 5)
 
 <| {vbar}(0\^..^5)  <| (1 2 3 4)
 
 |===
+
+=== Logische operatoren
+Logische operatoren combineren condities of kunnen kiezen tussen 2 waarden aan de hand van een conditie.
+
+[cols="^.^5m,^.^7m,.^20,.^20m,.^18m", options="header"]
+|===
+
+| Operator | Type | Beschrijving | Voorbeeld | Resultaat
+
+.2+| and .2+| Infix .2+| True indien beide waarden waar zijn | True and True | True
+
+<| True and False <| False
+
+.2+| or .2+| Infix .2+| True indien minstens één van de waarden waar is | True or False | True
+
+<| False or False <| False
+
+| && | Infix | Zelfde als `and` met hogere prioriteit | True && False | False
+
+| {vbar}{vbar} | Infix | Zelfde als `or` met hogere prioriteit | True {vbar}{vbar} False | True
+
+.2+| // .2+| Infix .2+| Gedefinieerd-of: linker waarde indien gedefinieerd, anders de rechter waarde | my $var; $var // 5; | 5
+
+<| my $var = 3; $var // 5; <| 3
+
+.2+| ?? !! .2+| Ternary .2+| Selecteer eerste waard indien conditie waar, anders de tweede waarde | 7 > 5 ?? "yes" !! "no" | yes
+
+<| 7 < 5 ?? "yes" !! "no" <| no
+
+|===
+
+Logische operatoren worden meestal gebruikt om meerdere vergelijkingen te combineren.
+
+[source,raku]
+----
+my $age = 30;
+say $age >= 18 && $age <= 65;   # True
+say $age < 18 || $age > 65;     # False
+----
+
+De gedefinieerd-of operator `//` is een gemakkelijke manier of verstek waarde aan te geven.
+
+[source,raku]
+----
+my $name;
+say $name // 'Anoniem';       # Anoniem
+----
 
 === Omkeringsoperatoren
 
@@ -413,7 +560,7 @@ Door een `R` te plaatsen direct voor een operator, zorg je ervoor dat de termen 
 
 === Herleidingsoperatoren
 
-Herleidingsoperatoren werken op lijsten.
+Herleidingsoperatoren werken op lijsten. +
 Je maakt een herleidingsoperator door vierkante haken om de operator te plaatsen `[]`
 
 [cols=".^m,.^m,.^m,.^m", options="header"]
@@ -437,6 +584,11 @@ Een *sigil* is een karakter dat als prefix gebruikt wordt om aan te geven in wel
 * `@` geeft een array aan
 * `%` geeft een hash aan
 
+Een variabele moet worden gedefinieerd voordat het gebruikt kan worden. +
+Dit kan men doen door het woord `my` vóór de naam van de variabele te plaatsen.
+
+NOTE: Deze inleiding geeft een versimpeld beeld van variabelen, geschikt om de basis elementen van Raku te leren.  Om meer te begrijpen over variabele, zie https://docs.raku.org/language/containers
+
 === Scalars
 Een scalar kan één waarde bevatten.
 
@@ -453,8 +605,8 @@ say $leeftijd;
 
 Afhankelijk van het type waarde dat een scalar bevat, kun je daar bepaalde operaties op uitvoeren.
 
+==== String
 [source,raku]
-.String
 ----
 my $naam = 'Jan Jansen';
 say $naam.uc;
@@ -462,6 +614,7 @@ say $naam.chars;
 say $naam.flip;
 ----
 
+.`Uitvoer`
 ----
 JAN JANSEN
 10
@@ -470,21 +623,22 @@ nesnaJ naJ
 
 NOTE: Bekijk https://docs.raku.org/type/Str voor de complete lijst van methoden die men op een string kan uitvoeren.
 
+==== Integer
 [source,raku]
-.Integer
 ----
 my $leeftijd = 17;
 say $leeftijd.is-prime;
 ----
 
+.`Uitvoer`
 ----
 True
 ----
 
 NOTE: Bekijk https://docs.raku.org/type/Int voor de complete lijst van methoden die men op een geheel getal (integer) kan uitvoeren.
 
+==== Rationeel getal
 [source,raku]
-.Rational Number
 ----
 my $leeftijd = 2.3;
 say $leeftijd.numerator;
@@ -492,6 +646,7 @@ say $leeftijd.denominator;
 say $leeftijd.nude;
 ----
 
+.`Uitvoer`
 ----
 23
 10
@@ -505,7 +660,7 @@ Arrays bestaan uit een lijst van scalar variabelen.
 
 [source,raku]
 ----
-my @dieren = 'kameel','lama','uil';
+my @dieren = 'kameel', 'lama', 'uil';
 say @dieren;
 ----
 
@@ -548,10 +703,87 @@ We kunnen een specifiek element van een array bekijken door de positie aan te ge
 `.pop` verwijdert het laatste element van het array. +
 `.splice(a,b)` verwijdert `b` elementen vanaf positie `a`.
 
+Hieronder vind je nog een paar voorbeelden van operaties die op een array kunnen worden uitgevoerd:
+
+[source,raku]
+.`Script`
+----
+my @dieren = 'kameel', 'vicuña', 'lama';
+say "Het laatste dier is een " ~ @dieren[*-1];
+say "De eerste twee dieren zijn: " ~ @dieren[0, 1];
+say "Allo dieren: " ~ @dieren.join(', ');
+@dieren.unshift("uil");
+say "Een uil kwam er als eerste bij: " ~ @dieren;
+@dieren.shift;
+say "De uil is alweer gevlogen: " ~ @dieren;
+----
+
+.`Uitvoer`
+----
+Het laatste dier is een lama
+De eerste twee dieren zijn: kameel vicuña
+Alle dieren: kameel, vicuña, lama
+Een uil kwam er als eerste bij: uil kameel vicuña lama
+De uil is alweer gevlogen: kameel vicuña lama
+----
+
+.Uitleg
+`+@dieren[*-1]+` geeft het laatste element van een array. +
+`@dieren[0, 1]` geeft meerdere elementen in één keer. Dit heet een *plak* (slice). +
+`.join(', ')` geeft een enkele string gemaakt door alle elementen, gescheiden door een komma en een spatie, samen te voegen. +
+`.unshift()` voegt één of meer elementen toe aan het begin van een array. +
+`.shift` verwijdert het eerste element van een array en geeft dat terug.
+
+==== Veranderingen in een array zelf
+Sommige methoden veranderen de array waar ze op worden aangeroepen.  Anderd laten de array onveranderd en geven een waarde terug. +
+Het is belangrijk om te weten welke method wat doet.
+
+[source,raku]
+.`Script`
+----
+my @nummers = 7, 2, 4, 9, 11, 3;
+
+@nummers.push(99);
+say @nummers;      #1
+
+say @nummers.sort; #2
+say @nummers;      #3
+
+@nummers .= sort;
+say @nummers;      #4
+----
+
+.`Output`
+----
+[7 2 4 9 11 3 99] #1
+(2 3 4 7 9 11 99) #2
+[7 2 4 9 11 3 99] #3
+[2 3 4 7 9 11 99] #4
+----
+
+.Uitleg
+`.push` verandert een array. Een methode die dat doet, noemen we een  *mutator* (#1)
+
+`.sort` laat een array onveranderd. Geeft de waarden van de array gesorteerd terug:
+
+* (#2) laat de gesorteerde waarden zien die terug zijn gegeven.
+
+* (#3) laat zien dat de array niet is veranderd.
+
+Om het resultaat van een zo'n methode direct in het array terug te plaatsen gebruiken we `.=` in plaats van `.` (#4) +
+`@nummers .= sort` is een kortere manier om `@nummers = @nummers.sort` te schrijven
+
+NOTE: Het resultaat in #2 werd getoond met (ronde) haken in plaats van vierkante haken omdat `.sort` een lijst teruggeft in plaats van een array.
+Nadat die waarden weer in `@nummers` is geplaatst, is het weer een array geworden.
+
+TIP: `.=` werkt met alle methodes en op alle variabelen. Bijvoorbeeld, `$naam .= uc` vervangt de waarde van `$naam` met de versie in hoofdletters.
+
 ==== Arrays met beperkt aantal elementen
 Een gewoon array kun je als volgt specificeren:
 [source,raku]
+----
 my @array;
+----
 
 Een gewoon array is niet beperkt wat betreft aantal elementen, het past zichzelf aan (auto-extending). +
 Men kan in een gewoon array zoveel waarden opslaan als men wil.
@@ -561,7 +793,9 @@ Dit soort arrays verbieden toegang tot niet-bestaande elementen.
 
 Specificeer het aantal elementen in vierkante haken direct achter de naam van een array om een array met beperkt aantal elementen te specificeren:
 [source,raku]
+----
 my @array[3];
+----
 
 Dit array kan hoogstens 3 waarden bevatten, met als indexwaarden 0 t/m 2.
 
@@ -592,7 +826,9 @@ De arrays die we tot nu toe gezien hebben, hadden maar één dimensie. +
 We kunnen echter ook arrays met meer dan één dimensie in Raku specificeren.
 
 [source,raku]
+----
 my @tbl[3;2];
+----
 
 Dit array heeft 2 dimensies.
 De eerste dimensie kan maximaal 3 waarden hebben, en de tweede dimensie maximaal 2 waarden.
@@ -611,6 +847,7 @@ my @tbl[3;2];
 say @tbl
 ----
 
+.`Uitvoer`
 ----
 [[1 x] [2 y] [3 z]]
 ----
@@ -625,6 +862,7 @@ say @tbl
 NOTE: Zie https://docs.raku.org/type/Array voor volledige informatie over arrays.
 
 === Hashes
+==== Het maken van een hash
 [source,raku]
 .Een Hash is een verzameling van naam/waarde paren (key/value pairs)
 ----
@@ -676,9 +914,36 @@ De hoofdstad van Frankrijk is: Parijs
 `.values` geeft een lijst met alle waarden terug. +
 De waarde behorende bij een gegeven naam kun je opvragen door die naam te specificeren `%hash<naam>`
 
+WARNING: Raku houdt geen bepaalde volgorde van de namen in een hash aan.
+The volgorde waarin de landen in de bovenstaande uitvoer kan anders zijn, en ook verschillen met elke keer dat je die code uitvoert.
+
+==== Controleren en verwijderen van een naam
+Men kan ook controleren of een naam bestaat in een hash, en de naam eruit verwijderen.
+[source,raku]
+.`Script`
+----
+my %hoofdsteden = VK => 'Londen', Duitsland => 'Berlijn';
+say %hoofdsteden<Duitsland>:exists;
+say %hoofdsteden<Frankrijk>:exists;
+%hoofdsteden<Duitsland>:delete;
+say %hoofdsteden;
+----
+
+.`Output`
+----
+True
+False
+{VK => Londen}
+----
+
+.Uitleg
+`%hash<key>:exists` geeft `True` indien de naam bestaat in de hash. +
+`%hash<key>:delete` verwijdert de naam uit de hash.
+
 NOTE: Zie https://docs.raku.org/type/Hash voor alle informatie over hashes.
 
 === Types
+==== Dynamische en statische typeringen
 In de voorafgaande voorbeelden hebben we niet het type van de waarde aangegeven die in een variabele opgeslagen kan worden.
 
 TIP: `.WHAT` geeft het type van de waarde in een variabele terug.
@@ -717,7 +982,9 @@ Deze stijl van programmeren wordt "statische typering" (static typing) genoemd. 
 
 Raku wordt aangeduid met "graduele typering": het laat namelijk zowel *statische* als *dynamische* typering toe.
 
+==== Getypeerde arrays en hashes
 .Arrays en hashes kunnen ook statisch getypeerd worden:
+
 [source,raku]
 ----
 my Int @array = 1,2,3;
@@ -737,7 +1004,8 @@ say %landennummers;
 say %landennummers.WHAT;
 ----
 
-.Hieronder vind je een lijst van meest voorkomende typen:
+==== Veel voorkomende types
+Hieronder vind je een lijst van meest voorkomende typen: +
 Je zult hoogstwaarschijnlijk de eerste twee nooit gebruiken, maar we laten ze hier zien om je te laten weten dat ze bestaan.
 
 [cols="^.^1m,.^3m,.^2m,.^1m, options="header"]
@@ -790,16 +1058,19 @@ Om de waarde uit een variabele te verwijderen, kun je de waarde `Nil` toewijzen.
 === Bereik (scoping)
 Voordat men een variabele voor de eerste keer kan gebruiken, moet deze worden gedefinieerd.
 
+==== Statisch bereik
 Dit kan op diverse manieren in Raku, `my` is wat we tot nu toe in de bovenstaande voorbeelden hebben gebruikt.
 
 [source,raku]
+----
 my $var = 1;
+----
 
 Met `my` geeft men de variabele een *statisch* bereik (ook wel *lexicaal* bereik genoemd).
 In andere woorden, de variabele zal alleen maar toegankelijk zijn in het gebied (scope) waarin het was gedefinieerd.
 
 Zo'n gebied (scope) wordt in Raku begrensd door `{ }`.
-Een variabele zal toegankelijk zijn in het gehele Raku script als er geen gebiedsbegrenzing gevonden wordt.
+Een variabele is toegankelijk in het gehele Raku script als er geen gebiedsbegrenzing is.
 
 [source,raku]
 ----
@@ -822,7 +1093,21 @@ my Int $var = 123;
 say $var;
 ----
 
+==== Andere bereiken
+Andere manieren om een bereik / toestand van een variabele aan te geven.
+
+* `our` geeft een variabele aan in het bereik van een *package*.  Het is zichtbaar buiten het bereik waarin het wordt gedefinieerd.
+
+* `constant` geeft een "variabele" aan die niet kan worden veranderd.
+
+[source,raku]
+----
+constant $tau = pi * 2;
+$tau = 6;   # geeft foutmelding: Cannot assign to an immutable value
+----
+
 === Toewijzing vs. verbinden
+==== Toewijzing
 We hebben in de vorige voorbeelden gezien hoe we waarden aan variabelen kunnen *toewijzen*. +
 *Toewijzing* wordt gedaan met de `=` operator.
 
@@ -835,7 +1120,7 @@ say $var;
 We kunnen de waarde van een variabele veranderen:
 
 [source,raku]
-.Toewijzing
+.`Script`
 ----
 my Int $var = 123;
 say $var;
@@ -849,11 +1134,12 @@ say $var;
 999
 ----
 
+==== Verbinden
 Daarentegen kunnen we de waarde van een variabele niet veranderen als deze is *verbonden* met een waarde. +
 *Verbinding* wordt gedaan met de `:=` operator.
 
 [source,raku]
-.Verbinden
+.`Script`
 ----
 my Int $var := 123;
 say $var;
@@ -861,14 +1147,17 @@ $var = 999;
 say $var;
 ----
 
-.`Output`
+.`Uitvoer`
 ----
 123
 Cannot assign to an immutable value
 ----
 
+==== Verbinden met variabelen
+Variabelen kunnen ook verbonden worden met andere variabelen:
+
 [source,raku]
-.Variabelen kunnen ook verbonden worden met andere variabelen:
+.`Script`
 ----
 my $a;
 my $b;
@@ -890,45 +1179,168 @@ Het verbinden van variabelen werkt twee kanten op, zoals je al gezien hebt. +
 
 NOTE: Zie https://docs.raku.org/language/variables voor meer informatie over variabelen.
 
-== Functies en mutators
+== Strings
+We hebben strings al vele malen gebruikt in vorige voorbeelden. +
+In dit hoofdstuk gaan we wat dieper in op wat er allemaal met strings kan worden gedaan.
 
-Het is belangrijk om verschil te maken tussen functies en mutators. +
-Functies veranderen de toestand van een object waarop ze worden uitgevoerd *niet*. +
-Mutators veranderen de toestand van een object *wel*.
+=== Interpolatie
+Een string gedefineerd met dubbele aanhalingstekens vervangt de variabelen met hun waarde. +
+Dit wordt "interpolatie" genoemd.
+
+[source,raku]
+----
+my $naam = 'Jan';
+my $leeftijd = 23;
+say "$naam is $leeftijd jaar oud";
+----
+
+Interpolatie is niet beperkt tot variabelen.  Elk stuk programma code dat omgeven wordt door accolades zal worden uitgevoerd, en het resultaat daarvan wordt in de string geplaatst.
 
 [source,raku]
 .`Script`
 ----
-my @nummers = [7,2,4,9,11,3];
-
-@nummers.push(99);
-say @nummers;      #1
-
-say @nummers.sort; #2
-say @nummers;      #3
-
-@nummers .= sort;
-say @nummers;      #4
+my $naam = 'Jan';
+my $leeftijd = 23;
+say "$naam wordt volgend jaar {$leeftijd + 1}";
+say "De naam $naam heeft {$naam.chars} letters";
+say 'De naam $naam heeft {$naam.chars} letters";
 ----
 
 .`Output`
 ----
-[7 2 4 9 11 3 99] #1
-(2 3 4 7 9 11 99) #2
-[7 2 4 9 11 3 99] #3
-[2 3 4 7 9 11 99] #4
+Jan wordt volgend jaar 24.
+De naam Jan heeft 3 letters.
+'De naam $naam heeft {$naam.chars} letters";
+----
+
+De laatste string werd gemaakt met enkele aanhalingstekens, waarin niets wordt geïnterpoleerd.
+
+=== Word lists
+A list of words can be written without quotes and without commas, by enclosing it in angle brackets.
+
+[source,raku]
+----
+my @dieren = <kameel lama uil>;
+say @dieren;
+----
+
+Is een kortere manier van schrijven dan:
+
+[source,raku]
+----
+my @dieren = 'kameel', 'lama', 'uil';
+say @animals;
+----
+
+NOTE: De woorden worden gescheiden door spaties.  Deze notatie kan niet worden gebruikt voor waarden waarin zich een spatie bevindt.
+
+=== Veel gebruikte methoden
+Op een string kunnen vele methoden worden aangeroepen, zoals hieronder is te zien:
+
+[source,raku]
+.`Script`
+----
+my $tekst = 'Raku is lol';
+say $tekst.chars;
+say $tekst.uc;
+say $tekst.lc;
+say $tekst.flip;
+say $tekst.contains('lol');
+say $tekst.starts-with('Raku');
+say $tekst.ends-with('boring');
+say $tekst.substr(0, 4);
+say $tekst.index('is');
+say '   Raku   '.trim;
+----
+
+.`Uitvoer`
+----
+11
+RAKU IS LOL
+raku is lol
+lol si ukaR
+True
+True
+False
+Raku
+5
+Raku
 ----
 
 .Uitleg
-`.push` is een mutator, het verandert de toestand van het array (#1)
+`.chars` geeft het aantal karakters in de string. +
+`.uc` en `.lc` geeft de string in hoofdletters of kleine letters. +
+`.flip` geeft de string met de karakters achterstevoren. +
+`.contains()` geeft aan of een string in de string voorkomt. +
+`.starts-with()` en `.ends-with()` geeft aan of een string begint of eindigt met een andere string. +
+`.substr(a, b)` geefts `b` karakters beginnend op positie `a`. +
+`.index()` geeft de positie van een string in een andere string. +
+`.trim` geeft een string zonder de witruimte aan begin en einde van de string
 
-`.sort` is een functie, het geeft het gesorteerde array terug als een lijst, maar verandert de toestand van het array zelf niet.
+TIP: Geen van deze methoden verandert de originele string.  Gebruik `.=` om het resultaat in de variabele terug te plaatsen, zoals we al eerder deden met arrays.
 
-* (#2) laat zien dat een gesorteerde lijst is teruggegeven.
+=== Splijten en samenvoegen
+Een string kan worden gespleten in een lijst, en een lijst kan worden samengevoegd tot een string.
 
-* (#3) laat zien dat het array zelf onveranderd is.
+[source,raku]
+.`Script`
+----
+my $zin = "Pa's wijze lynx bezag";
+my @woorden = $zin.woorden;
+say @woorden;
+say @woorden.elems;
+say @woorden.join('-');
 
-Men kan een functie als een mutator laten optreden door `.=` in plaats van `.` te gebruiken (#4)
+my $record = 'Jan,23,Nederlander';
+my @velden = $record.split(',');
+say @velden;
+say @velden[0];
+
+say 'Raku'.comb;
+----
+
+.`Uitvoer`
+----
+[Pa's wijze lynx bezag]
+4
+Pa's-wijze-lynx-bezag
+[Jan 23 Nederlander]
+Jan
+(R a k u)
+----
+
+.Uitleg
+`.words` splijt een string in woorden. +
+`.join()` combineert de gegeven lijst in een string met de gegeven separator tussen de elementen. +
+`.split()` splijt een string op de gegeven separator. +
+`.comb` geeft een lijst met elke letter van de string apart..
+
+=== Formatteren
+`sprintf` bouwt een string naar aanleiding van het gegeven sjabloon. +
+Het sjabloon bevat formatteer aanduidingen die beginnen met `%`.  Elke aanduiding wordt vervangen door een van de waarden die worden meegegeven.
+
+[source,raku]
+.`Script`
+----
+say sprintf('%s is %d jaar oud', 'Jan', 23);
+say sprintf('De prijs is %.2f euro', 3.14159);
+say sprintf('Kaart nummer %05d', 42);
+----
+
+.`Output`
+----
+Jan is 23 jaar oud
+De prijs is 3.14 euro
+Kaart nummer  00042
+----
+
+.Explanation
+`%s` geeft een string aan. +
+`%d` geeft een geheel getal (integer) aan. +
+`%.2f` geeft een getal afgerond op 2 decimalen aan. +
+`%05d` geeft een geheel getal, uitgevuld tot 5 posities.
+
+NOTE: Voor de complete lijst van methoden die op strings kunnen worden uitgevoerd, zie https://docs.raku.org/type/Str
 
 == Lussen en condities
 Raku heeft een veelheid aan conditionele- en lusconstructies.
@@ -1037,6 +1449,7 @@ Je kunt `with` en `orwith` zien als een soort `if` en `elsif`.
 
 Met het `for` commando kun je over een aantal waarden repeteren.
 
+==== Arrays
 [source,raku]
 ----
 my @array = 1,2,3;
@@ -1047,6 +1460,49 @@ for @array -> $array-item {
 ----
 
 Merk op dat we een lusvariabele `$array-item` aanmaken om de operatie `*100` op elk element van het array uit te kunnen voeren.
+
+Indien er geen lusvariabele wordt gegeven, dan wordt elke waarde in de variabele `$_` geplaatst, ook wel bekend als "de verstek-variabele".
+
+[source,raku]
+----
+my @array = 1, 2, 3;
+
+for @array {
+  say $_ * 100;
+}
+----
+
+==== Reeksen
+De waarden kunnen ook van een reeks afkomen:
+
+[source,raku]
+----
+for 1..5 -> $nummer {
+    say $nummer;
+}
+----
+
+Men kan ook een methode aanroepen op de verstek-variable door alles voor de punt weg te laten. +
+Met andere woorden, `.say` is een kortere schrijfwijze voor `$_.say`
+
+[source,raku]
+----
+for 1..5 {
+    .say;
+}
+----
+
+==== Hashes
+Om alle waarden van een hash te bekijken, kan men met de `kv` methode vragen om de namen en de waarden in the hash, en daar twee lusvariabelen voor aanmaken:
+
+[source,raku]
+----
+my %hoofdsteden = VK => 'Londen', Duitsland => 'Berlijn';
+
+for %hoofdsteden.kv -> $land, $stad {
+  say "De hoofdstad van  $lang is $stad";
+}
+----
 
 === given
 
@@ -1085,14 +1541,81 @@ given $var {
 
 In feite is `loop` precies zoals `for` lussen geschreven worden in de familie C-programmeertalen.
 
-Raku hoort bij de familie C-programmeertalen.
-
 [source,raku]
 ----
 loop (my $i = 0; $i < 5; $i++) {
     say "Het huidige nummer is $i"
 }
 ----
+
+=== while en until
+
+De `while` lus herhaalt executie van een blok zolang de conditie waar is.
+
+[source,raku]
+----
+my $countdown = 3;
+
+while $countdown > 0 {
+  say $countdown;
+  $countdown--;
+}
+say 'Gestart!';
+----
+
+.`Uitvoer`
+----
+3
+2
+1
+Gestart!
+----
+
+`until` is tegenovergestelde versie van `while`. Het herhaalt het blok zolang de conditie *niet* waar is. +
+Dat is te vergelijken met `unless`.
+
+Bovenstaand voorbeeld kan ook worden geschrene als
+
+[source,raku]
+----
+my $countdown = 3;
+
+until $countdown == 0 {
+  say $countdown;
+  $countdown--;
+}
+say 'Gestart!';
+----
+
+WARNING: Je moet er wel voor zorgen dat de conditie wel op een gegeven ogenblik verandert, anders zal deze lus nooit tot een einde komen.
+
+=== next en last
+
+`next` en `last` geven ons meer controle over een lus.  Ze kunnen worden gebruikt in een `for`, `loop`, `while` en `until` lus.
+
+* `next` next negeert de rest van het blok en gaat verder met de volgende waarde
+* `last` springt uit de lus.
+
+[source,raku]
+----
+for 1..10 -> $nummer {
+    next unless $nummer %% 2;
+    last if $nummer > 8;
+    say $nummer;
+}
+----
+
+.`Uitvoer`
+----
+2
+4
+6
+8
+----
+
+.Explanation
+`next unless $number %% 2` negeert de getallen die niet door 2 deelbaar zijn +
+`last if $number > 8` stopt de lus zodra de waarde meer is dan 8, dus `10` zal nooit getoond worden.
 
 NOTE: Zie https://docs.raku.org/language/control voor meer informatie over conditionele- en lusconstructies.
 
@@ -1109,7 +1632,7 @@ De twee meest voorkomende manieren van _Invoer/Uitvoer_ zijn _Terminal_ en _Best
 say 'Hallo mevrouw.';
 say 'Hallo meneer.';
 ----
-zullen op 2 aparte lijnen worden getoond.
+worden op 2 aparte lijnen getoond.
 
 ==== print
 Aan de andere kant doet `print` precies hetzelfde, maar het voegt _geen_ regeleinde toe.
@@ -1206,7 +1729,31 @@ spurt "nieuwescores.txt", $nieuw;
 
 Nadat je de bovenstaande code hebt uitgevoerd, bestaat er een bestand _nieuwescores.txt_ .  Dat zal dan de nieuwe scores bevatten.
 
+==== lines
+`lines` kan worden gebruikt om gegevens regel voor regel uit een bestand te lezen.
+
+Laten we hetzelfde bestand _datafile.txt_ lezen dat we ook met `slurp` hebben gebruikt.
+
+[source,raku]
+----
+for "datafile.txt".IO.lines -> $line {
+    say "Score: $line";
+}
+----
+
+.`Uitvoer`
+----
+Score: John 9
+Score: Johnnie 7
+Score: Jane 8
+Score: Joanna 7
+----
+
+`.IO` verandert de string met de naam van een bestand in een object dat een bestand representeert. +
+`.lines` geeft de inhoud van het bestand regel voor regel, en de `for` lus gaat die dan één voor één behandelen.
+
 === Werken met bestanden en directories
+==== Wat er in een directory zit
 Raku kan de inhoud van een directory ook direct tonen zonder dat er externe commando's voor hoeven te worden uitgevoerd, net zoals in een van de vorige voorbeelden.
 
 [source,raku]
@@ -1215,6 +1762,7 @@ say dir;              # Laat bestanden/directories uit de huidige directory zien
 say dir "/Documents"; # Laat bestanden/directories zien van de gegeven directory
 ----
 
+==== Directories aanmaken en verwijderen
 Tevens kun je ook nieuwe directories aanmaken en verwijderen.
 
 [source,raku]
@@ -1226,6 +1774,7 @@ rmdir "nieuwdir";
 `mkdir` maakt een nieuwe directory aan. +
 `rmdir` verwijdert een lege directory.  Geeft een foutmelding terug indien niet leeg.
 
+==== Bestandsinformatie
 Je kunt ook kijken of een specifieke naam bestaat, en of het een bestand of een directory is:
 
 Maak in de directory waar je dit script gaat uitvoeren een lege directory `dir123` en een leeg bestand genaamd `script123.raku`
@@ -1253,6 +1802,8 @@ WARNING: Gebruikers van Windows kunnen zowel de `/` als de `\\` gebruiken om dir
 NOTE: Zie https://docs.raku.org/type/IO voor meer informatie over invoer en uitvoer.
 
 == Subroutines
+In dit hoofdstuk behandelen we hoe je subroutines definieert, hoe je waarden aan ze kunt sturen, en hoe je waarden terug kunt krijgen.
+
 === Definitie
 *Subroutines* (ook wel *subs* of *functies*) zijn een manier om een stuk functionaliteit in een pakketje te stoppen. +
 
@@ -1286,7 +1837,7 @@ zeg-hallo "Paul";
 zeg-hallo "Paula";
 ----
 
-=== Multiple dispatch
+=== Selectie bij aanroep
 Het is mogelijk om meer dan één subroutine met dezelfde naam, maar met een verschillende signatuur, te definiëren.
 
 Op het moment dat de subroutine wordt aangeroepen, zal de uitvoerder besluiten welke versie van de subroutine werkelijk zal worden aangeroepen, afhankelijk van het aantal en het type van de gegeven argumenten.
@@ -1295,14 +1846,14 @@ Dit soort subroutines wordt op dezelfde manier gedefinieerd als normale subrouti
 [source,raku]
 ----
 multi groet($naam) {
-    say "Good morning $naam";
+    say "Goede morgen $naam";
 }
 multi groet($naam, $titel) {
-    say "Good morning $titel $naam";
+    say "Goede morgen $titel $naam";
 }
 
 groet "Jan";
-groet "Laura","Mevr.";
+groet "Laura", "Mevr.";
 ----
 
 === Default en Optionele Parameters
@@ -1311,8 +1862,9 @@ Als een subroutine is gedefinieerd om een argument te accepteren en we roepen he
 Als alternatief biedt Raku de mogelijk om subroutines te definiëren met:
 
 * Optionele Parameters
-* Parameters met een default waarde
+* Parameters met een verstek (default) waarde
 
+==== Optionele parameters
 Je kunt een optionele parameter aangeven door een `?` achter de naam te plaatsen.
 
 [source,raku]
@@ -1330,21 +1882,109 @@ Dit wordt aangegeven door een waarde toe te wijzen aan de parameter in de defini
 
 [source,raku]
 ----
-sub zeg-hallo($naam="Mens") {
+sub zeg-hallo($naam = "Mens") {
     say "Hallo " ~ $naam;
 }
 zeg-hallo;
 zeg-hallo("Laura");
 ----
 
+=== Genoemde parameters
+De parameters die we tot nu toe hebben gezien, worden "positionele parameters" genoemd.
+Arguments worden toegekend aan parameters door hun positie: het eerst argument gaat naar de eerste parameter, het tweede argument naar de tweede parameter, en zo verder.
+
+Een parameter die toegewezen wordt aan de hand van een naam, heet een "genoemde parameter".
+
+[source,raku]
+----
+sub groet(:$naam, :$titel) {
+  say "Goede morgen $titel $naam";
+}
+
+groet(naam => "Laura", titel => "Mrs.");
+groet(titel => "Mr.", naam => "Pietje");
+----
+
+.`Output`
+----
+Goed morgen Mrs. Laura
+Goed morgen Mr. Pietje
+----
+
+Since the arguments are matched by name, they can be supplied in any order.
+Omdat de argument per naam toegekend worden aan de parameter, maakt het niet uit in welke volgorde ze worden gespecificeerd.
+
+[TIP]
+====
+Als de naam van een variabele overeenkomt met de naam van een genoemde parameter, dan kan de aanroep verkort worden: `:$naam` in plaats van `name \=> $naam`
+
+[source,raku]
+----
+sub groet(:$naam, :$titel) {
+  say "Goede morngen $titel $naam";
+}
+
+my $name = "Laura";
+my $title = "Mrs.";
+groet(naam => $naam, titel => $titel);   # regular
+groet(:$naam, :$titel);                  # shorthand
+----
+====
+
+=== Slurpende parameters
+Een subroutine kan ook een variabel aantal argumenten opvangen in een *slurpende parameter*. +
+Een slurpende parameter is een array specificatie na een asterisk, zoals `+*@namen+`.  Het verzamelt alle overige (positionele) argumenten.
+
+[source,raku]
+----
+sub groet-allen(*@namen) {
+  for @namen -> $naam {
+    say "Hallo $naam";
+  }
+}
+
+groet-allen("Paul");
+groet-allen("Paul", "Paula", "Laura");
+----
+
+.`Uitvoer`
+----
+Hallo Paul
+Hallo Paul
+Hallo Paula
+Hallo Laura
+----
+
+=== Beperkingen
+We hebben eerder al gezien dat een parameter beperkt kan worden tot een type, zoals `Str $naam`. +
+Het kan nog verder worden beperkt door het sleutelwoord `where` toe te voegen, gevolgd door een conditie.
+
+[source,raku]
+----
+sub register(Int $leeftijd where $leeftijd >= 18) {
+  say "Je bent registreerd";
+}
+
+register(21);
+register(15);
+----
+
+.`Output`
+----
+Je bent geregistreerd
+Constraint type check failed in binding to parameter '$leeftijd'; expected anonymous constraint to be met but got Int (15)
+----
+
+De eerste aanroep is succesvol.  De tweede niet omdat `15` weliswaar een `Int` is, maar die waarde voldoet niet aan de conditie.
+
 === Teruggeven van waarden
 Alle subroutines die we tot nu toe hebben gezien *doen iets* en laten dan het resultaat op het scherm zien.
 
 Ook al is dit heel normaal, soms willen we dat een subroutine een waarde *teruggeeft* dat we later in het programma kunnen gebruiken.
 
+==== Impliciete teruggave
 Onder normal omstandigheden is de waarde van de laatste regel van een subroutine de waarde die door de subroutine terug wordt gegeven.
 [source,raku]
-.Impliciet teruggeven
 ----
 sub kwadrateer ($x) {
     $x ** 2;
@@ -1352,16 +1992,17 @@ sub kwadrateer ($x) {
 say "7 gekwadrateerd is gelijk aan " ~ kwadrateer(7);
 ----
 
+==== Expliciete teruggave
 Voor de duidelijkheid is het wellicht een goed idee om _expliciet_ aan te geven wat we terug willen geven.
 Dit kunnen we doen met het `return` sleutelwoord.
 [source,raku]
-.Expliciete teruggave
 ----
 sub kwadrateer ($x) {
     return $x ** 2;
 }
 say "7 gekwadrateerd is gelijk aan " ~ kwadrateer(7);
 ----
+
 ==== Beperken van mogelijke teruggegeven waarden
 In een van de vorige voorbeelden hebben we gezien dat we parameters kunnen beperken tot een bepaald type.
 Hetzelfde kan worden gedaan met waarden die we teruggeven.
@@ -1369,14 +2010,14 @@ Hetzelfde kan worden gedaan met waarden die we teruggeven.
 Om de teruggeven waarde te beperken tot een bepaald type, kunnen we de pijlnotatie `-\->` in de signatuur gebruiken.
 
 [source,raku]
-.Beperken van mogelijke waarden
+.Aangeven van type van teruggave
 ----
 sub kwadrateer ($x --> Int) {
     return $x ** 2;
 }
 say "1.2 gekwadrateerd is gelijk aan " ~ kwadrateer(1.2);
 ----
-Als we niet een waarde voor teruggave van het juiste type aangeven, zal er een foutmelding worden geproduceerd.
+Als we de waarde voor teruggave niet van het juiste type is, zal er een foutmelding worden geproduceerd.
 
 ----
 Type check failed for return value; expected Int but got Rat (1.44)
@@ -1437,7 +2078,7 @@ say map(&kwadrateer,@array);
 .Uitleg
 We hebben een subroutine `kwadrateer` gedefinieerd die het argument tot de tweede macht verheft. +
 Vervolgens hebben we `map` aangeroepen met twee argumenten: een subroutine en een array. +
-Het resultaat is dat alle elementen van het array zijn gekwadrateerd.
+Het resultaat is een lijst waaroin alle elementen van het array zijn gekwadrateerd.
 
 Merk op dat als we een subroutine als argument willen doorgeven, we een `&` voor de naam moeten zetten.
 
@@ -1445,6 +2086,7 @@ Merk op dat als we een subroutine als argument willen doorgeven, we een `&` voor
 Een *anonieme functie* wordt ook wel een *lambda* genoemd. +
 Een anonieme functie is niet bekend onder een naam (want die heeft het niet).
 
+==== Puntig blok
 Laten we het `map` voorbeeld herschrijven met een anonieme functie
 [source,raku]
 ----
@@ -1454,10 +2096,34 @@ say map(-> $x { $x ** 2 },@array);
 Merk op dat in plaats van een subroutine te declareren en het door middel van de naam als argument aan `map` door te geven, we het direct in de aanroep definiëren. +
 De anonieme subroutine `\-> $x { $x ** 2 }` kan niet als zodanig worden aangeroepen want het heeft geen naam.
 
-In Raku noemen we deze notatie een *pointy block*.
+In Raku noemen we deze notatie een "puntig blok" (*pointy block*).
+
+==== Kortere specificatie
+Een puntig blok dat maar 1 argument accepteert, kan op twee manier korter worden geschreven.
+
+Een blok zonder `->` specificatie ontvangt één argument in de verstek-variabele `$_`
 
 [source,raku]
-.Een pointy block kan ook aan een variabele worden toegekend:
+----
+my @array = <1 2 3 4 5>;
+say map({ $_ ** 2 }, @array);
+----
+
+Men kan ook een asterisk gebruiken om het argument aan te geven: in dat geval zijn de accolades niet nodig. +
+`+* ** 2+` is een kortere specificatie van `{ $_ ** 2 }`
+
+[source,raku]
+----
+my @array = <1 2 3 4 5>;
+say map(* ** 2, @array);
+----
+
+Alledrie de notaties geven hetzelfde resultaat: `(1 4 9 16 25)`
+
+==== Opslaan in een variabele
+Een puntig blok kan ook aan een variabele worden toegekend:
+
+[source,raku]
 ----
 my $kwadrateer = -> $x {
     $x ** 2
@@ -1493,7 +2159,7 @@ say @resultaat;
 Je kunt zien dat het aankoppelen van methoden _veel beter leest_.
 
 === Aanvoer Operator
-De *aanvoer operator*, ook wel _pipe_ genoemd in sommige functioneel programmeertalen, geeft een nog beter visualisatie van het aankoppelen van methoden.
+De *aanvoer operator*, ook wel _pipe_ genoemd in sommige functionele programmeertalen, geeft een nog beter visualisatie van het aankoppelen van methoden.
 [source,raku]
 .Voorwaardse Aanvoer
 ----
@@ -1514,9 +2180,8 @@ Start met `array` en geef een lijst van unieke elementen
 ----
 Zoals je kunt zien is de volgorde van de aanroepen van de methoden van voor naar achter.
 
-
+==== Achterwaardse Aanvoer
 [source,raku]
-.Achterwaardse Aanvoer
 ----
 my @array = <7 8 9 0 1 2 4 3 5 6 7 8 9>;
 my @resultaat <== reverse()
@@ -1553,11 +2218,11 @@ Men moet dus voorzichtig zijn bij het aanroepen van methoden met neveneffecten, 
 === Juncties
 Een *junctie* is een logische superpositie van waarden.
 
-In onderstaand voorbeeld is `1|2|3` een junctie.
+In onderstaand voorbeeld is `1 | 2 | 3` een junctie.
 [source,raku]
 ----
 my $var = 2;
-if $var == 1|2|3 {
+if $var == 1 | 2 | 3 {
     say "De variabele is 1 of 2 of 3"
 }
 ----
@@ -1579,8 +2244,8 @@ De voordelen zijn:
 Om een luie lijst te maken gebruiken we de `...` infix operator. +
 Een luie lijst heeft een of meer *startelementen*, een *generator* en een *eindpunt*.
 
+==== Simpele luie lijst
 [source,raku]
-.Simpele luie lijst
 ----
 my $luielijst = (1 ... 10);
 say $luielijst;
@@ -1588,16 +2253,16 @@ say $luielijst;
 Het start element is 1 en het eindpunt is 10.  Er is geen generator aangegeven, dus de default generator wordt gebruikt (+1). +
 In andere woorden, deze luie lijst zal de volgende waarden teruggeven (als daarom wordt gevraagd): (1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
 
+==== Oneindige luie lijst
 [source,raku]
-.Oneindige luie lijst
 ----
 my $luielijst = (1 ... Inf);
 say $luielijst;
 ----
 Deze luie lijst kan een getal tussen 1 en oneindig geven, in andere woorden alle natuurlijke getallen.
 
+==== Luie lijst met een afgeleide generator
 [source,raku]
-.Luie lijst met een afgeleide generator
 ----
 my $luielijst = (0,2 ... 10);
 say $luielijst;
@@ -1606,8 +2271,8 @@ De startelementen zijn 0 en 2 en het eindpunt is 10.
 Er is geen generator aangegeven, maar door de aangegeven startelementen kan Raku deduceren dat de generator (+2) is +
 Deze luie lijst zal de volgende waarden teruggeven (als daarom wordt gevraagd): (0, 2, 4, 6, 8, 10)
 
+==== Luie lijst met een specifieke generator
 [source,raku]
-.Luie lijst met een specifieke generator
 ----
 my $luielijst = (0, { $_ + 3 } ... 12);
 say $luielijst;
@@ -1623,6 +2288,7 @@ De generator springt dan _over_ het eindpunt.
 
 In plaats van `0 ...^ * > 10` kun je ook `0 ... 10` schrijven +
 Je kunt dat lezen als: vanaf 0 tot de eerste waarde die groter is dan 10 (maar sluit die dan uit)
+
 [source,raku]
 .Deze generator zal nooit stoppen
 ----
@@ -1638,15 +2304,15 @@ say $luielijst;
 ----
 ====
 
-=== Closures
-Alle code objecten in Raku zijn zogenaamde `closures`, hetgeen betekent dat ze kunnen refereren aan lokale variabelen die zichtbaar zijn buiten het directe eigen bereik.
+=== Omsluitingen
+Alle code objecten in Raku zijn zogenaamde "omsluitingen" (`closures`), hetgeen betekent dat ze kunnen refereren aan lokale variabelen die zichtbaar zijn buiten het directe eigen bereik.
 
 [source,raku]
 ----
 sub maak-begroeting {
     my $naam = "Jan Jansen";
     sub begroeting {
-      say "Goede morgen $naam";
+        say "Goede morgen $naam";
     };
     return &begroeting;
 }
@@ -1657,9 +2323,9 @@ $groeter();
 Indien je het bovenstaande programmaatje uitvoert, dan zal het `Goede morgen Jan Jansen` op het scherm tonen. +
 Dit is een tamelijk simpel voorbeeld.  Het interessante aan dit voorbeeld is dat de `begroeting` (binnenste) subroutine teruggegeven were door de buitenste subroutine voordat het uitgevoerd werd.
 
-`$groeter` is nu een *closure* geworden.
+`$groeter` is nu een omsluiting (*closure*) geworden.
 
-Een *closure* is een speciaal soort object dat twee zaken combineert:
+Een omsluiting is een speciaal soort object dat twee zaken combineert:
 
 * Een subroutine
 
@@ -1693,8 +2359,6 @@ In de omgeving van `$smorgens` heeft `$periode` de waarde `morgen`.  In de omgev
 In het vorige hoofdstuk hebben we geleerd hoe Raku het gemakkelijker maakt om Functioneel te Programmeren. +
 In dit hoofdstuk gaan we kijken naar het object georiënteerd programmeren in Raku.
 
-=== Inleiding
-
 _Object Georiënteerd_ Programmeren is een van de programmeerstijl paradigma's die tegenwoordig veel wordt gebruikt. +
 Een *object* is een verzameling van variabelen en subroutines die bij elkaar gevoegd zijn. +
 De variabelen noemen we *attributen* en de subroutines noemen we *methoden*. +
@@ -1702,7 +2366,7 @@ Attributen bepalen de *staat* van een object, methoden bepalen het *gedrag* van 
 
 Een *klasse* definieert de structuur van een verzameling *objecten*. +
 
-Bijkijk onderstaand voorbeeld om deze relatie beter te begrijpen:
+Bekijk onderstaand voorbeeld om deze relatie beter te begrijpen:
 
 |===
 
@@ -1716,6 +2380,7 @@ Bijkijk onderstaand voorbeeld om deze relatie beter te begrijpen:
 
 In het taalgebruik van _object georiënteerd_ programmeren zeggen we dat de objecten *instanties* zijn van een klasse.
 
+=== Definiëren van een klasse
 Bekijk het onderstaande script:
 [source,raku]
 ----
@@ -1798,10 +2463,10 @@ Pogingen om aan het attribuut te komen van buiten het object zal je een foutmeld
 
 Vervang nu `has $!leeftijd` with `has $.leeftijd` en bekijk dan het resultaat van `say $jan.leeftijd;`
 
-=== Argumenten op naam vs. argumenten op positie
+=== Genoemde en positionele argumenten
 Alle klassen hebben beschikking over een `.new()` constructeur door overerving. +
 Het kan worden gebruikt om objecten aan te maken door het argumenten te geven. +
-De default constructeur accepteert alleen *argumenten op naam*. +
+De default constructeur accepteert alleen *genoemde argumenten*. +
 Als je bovenstaande voorbeelden bekijkt, dan zul je zien dat alle argumenten die we aan `.new()` hebben gegeven, op naam zijn:
 
 * naam \=> 'Jan'
@@ -1809,7 +2474,7 @@ Als je bovenstaande voorbeelden bekijkt, dan zul je zien dat alle argumenten die
 * leeftijd \=> 23
 
 Wat als ik niet telkens de naam van elk attribuut wil meegeven als ik een nieuw object wil maken? +
-In dat geval moeten we een andere constructeur maken die *argumenten op positie* accepteert.
+In dat geval moeten we een andere constructeur maken die *positionele argumenten* accepteert.
 
 [source,raku]
 ----
@@ -1819,8 +2484,8 @@ class Mens {
     has $.geslacht;
     has $.nationaliteit;
     #nieuwe constructeur die de default constructeur vervangt voor deze klasse
-    method new ($naam,$leeftijd,$geslacht,$nationaliteit) {
-        self.bless(:$naam,:$leeftijd,:$geslacht,:$nationaliteit);
+    method new ($naam, $leeftijd, $geslacht, $nationaliteit) {
+        self.bless(:$naam, :$leeftijd, :$geslacht, :$nationaliteit);
     }
 }
 
@@ -1828,9 +2493,38 @@ my $jan = Human.new('Jan',23,'M','Nederlands');
 say $jan;
 ----
 
-=== Methoden
+=== Verplichte attributen en attributen met verstekwaarde
+We hebben eerder al gezien dat een subroutine niet aangeroepen kan worden zonder een van haar parameters.
+De standaard constructor gedraagt zich anders: een attribuut waarvoor geen genoemd argument is meegegeven in een aanroep aan `.new()` blijft simpelweg gezien leeg.
 
-==== Inleiding
+Net als met parameters aan een subroutine, is het mogelijk om een verstekwaarde  aan een attribuut toe te kennen. +
+Like the parameters of a subroutine, an attribute can be given a default value. +
+Dit gebeurt door een toewijzing aan te geven bij de definitie.
+Andersom, als er altijd een genoemd argument moet worden gegeven voor een attribuut, dan kan dat worden aangeven met de sleutelwoorden `is required`
+
+[source,raku]
+----
+class Mens {
+  has $.naam is required;
+  has $.nationaliteit = 'Onbekend';
+}
+
+my $jan = Menw.new(name => 'Jan');
+say $jan.nationality;
+
+my $niemand = Human.new;
+----
+
+.`Output`
+----
+Onbekend
+The attribute '$!naam' is required, but you did not provide a value for it.
+----
+
+The nationaliteit van `$jan` werd niet aangegeven, dus werd de verstekwaarde gebruikt. +
+`$niemand` kon niet worden gemaakt omdat het genoemde argument `naam` ontbrak.
+
+=== Methoden
 Methoden zijn de _subroutines_ van een object. +
 Zij zijn, net als subroutines, een manier om een aantal functies te bundelen, ze accepteren *argumenten*, hebben een *signatuur* en kunnen worden gedefinieerd als *multi*.
 
@@ -1844,7 +2538,6 @@ De buitenwereld kan alleen maar gebruik maken van de methoden van het object en 
 class Mens {
     has $.naam;
     has $.leeftijd;
-    has $.geslacht;
     has $.nationaliteit;
     has $.geschiktheid;
     method bepaal-geschiktheid
@@ -1856,7 +2549,7 @@ class Mens {
     }
 }
 
-my $jan = Mens.new(naam => 'Jan', leeftijd => 23, geslacht => 'M', nationaliteit => 'Nederlands');
+my $jan = Mens.new(naam => 'Jan', leeftijd => 23, nationaliteit => 'Nederlands');
 $jan.bepaal-geschiktheid;
 say $jan.geschiktheid;
 ----
@@ -1864,7 +2557,7 @@ say $jan.geschiktheid;
 Door een methode te definiëren in een klasse, kun je deze aanroepen op een object met de _punt notatie_: +
 _object_ *.* _methode_ of als in bovenstaand voorbeeld: `$jan.bepaal-geschiktheid`
 
-Binnen de definitie van een methode kunnen we het sleutelwoord `self` gebruiken om te refereren aan het object zelf om een andere methode aan te roepen. +
+Binnen de definitie van een methode kunnen we het sleutelwoord `self` gebruiken om te refereren aan het object zelf om andere methodes aan te roepen. +
 
 Binnen de definitie van een methode kunnen we direct een attribuut gebruiken door de `!` twigil te gebruiken, zelfs als het attribuut is gedefinieerd met de `.` twigil. +
 De reden daarachter is dat wat de `.` twigil doet is een attribuut met `!` te definiëren en automatisch te zorgen voor het aanmaken van een accessor.
@@ -1941,7 +2634,6 @@ say $jan.leeftijd;
 Als je bij de definitie niets aangeeft, wordt een attribuut als _alleen lezen_ gedefinieerd, maar je kunt ook expliciet `is readonly` aangeven.
 
 === Overerving
-==== Inleiding
 *Overerving* is een concept van het object georiënteerd programmeren.
 
 Wanneer men klassen aan het definiëren is, komt men er snel genoeg achter dat sommige attributen/methoden in vele klassen voorkomen. +
@@ -2001,7 +2693,7 @@ class Mens {
     has $.naam;
     has $.leeftijd;
     method stel-jezelf-voor {
-        say 'Hoi, ik ben een mens en mijn naam is ' ~ self.name;
+        say 'Hoi, ik ben een mens en mijn naam is ' ~ self.naam;
     }
 }
 
@@ -2024,7 +2716,7 @@ class Mens {
     has $.naam;
     has $.leeftijd;
     method stel-jezelf-voor {
-        say 'Hoi, ik ben een mens en mijn naam is ' ~ self.name;
+        say 'Hoi, ik ben een mens en mijn naam is ' ~ self.naam;
     }
 }
 
@@ -2032,7 +2724,7 @@ class Werknemer is Mens {
     has $.bedrijf;
     has $.salaris;
     method stel-jezelf-voor {
-        say 'Hoi, ik ben een werknemer, mijn naam is ' ~ self.name ~ ' en ik werk bij: ' ~ self.bedrijf;
+        say 'Hoi, ik ben een werknemer, mijn naam is ' ~ self.naam ~ ' en ik werk bij: ' ~ self.bedrijf;
     }
 }
 
@@ -2046,7 +2738,7 @@ $jessica.stel-jezelf-voor;
 Afhankelijk van de klasse van het object, zal de juiste methode worden aangeroepen.
 
 ==== Submethoden
-*Submethoden* zijn een soort methoden die niet worden geërfd door kinderklassen. +
+*Submethoden* zijn een soort methoden die *niet* worden geërfd door kinderklassen. +
 Ze zijn alleen toegankelijk in de klasse waarin ze worden gedefinieerd. +
 Ze worden gedefinieerd met het `submethod` sleutelwoord.
 
@@ -2157,7 +2849,7 @@ Verkocht vs Voorspeld:
 ----
 
 === Rollen
-*Rollen* zijn net als klassen in de zin van dat zij een verzameling van attributen en methoden zijn.
+Een *Rol* is net als een klasse verzameling van attributen en methoden.
 
 Rollen kunnen worden gedefinieerd met het sleutelwoord `role` en klassen die een rol willen "spelen" kunnen dat aangeven met het `does` sleutelwoord.
 
@@ -2260,7 +2952,7 @@ class Mens {
     has $.naam;
     has $.leeftijd;
     method stel-jezelf-voor {
-        say 'Hoi, ik ben een mens en mijn naam is ' ~ self.name;
+        say 'Hoi, ik ben een mens en mijn naam is ' ~ self.naam;
     }
 }
 
@@ -2268,7 +2960,7 @@ class Werknemer is Mens {
     has $.bedrijf;
     has $.salaris;
     method stel-jezelf-voor {
-        say 'Hoi, ik ben een werknemer, mijn naam is ' ~ self.name ~ ' en ik werk bij: ' ~ self.bedrijf;
+        say 'Hoi, ik ben een werknemer, mijn naam is ' ~ self.naam ~ ' en ik werk bij: ' ~ self.bedrijf;
     }
 }
 
