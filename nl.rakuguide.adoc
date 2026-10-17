@@ -1802,6 +1802,8 @@ WARNING: Gebruikers van Windows kunnen zowel de `/` als de `\\` gebruiken om dir
 NOTE: Zie https://docs.raku.org/type/IO voor meer informatie over invoer en uitvoer.
 
 == Subroutines
+In dit hoofdstuk behandelen we hoe je subroutines definieert, hoe je waarden aan ze kunt sturen, en hoe je waarden terug kunt krijgen.
+
 === Definitie
 *Subroutines* (ook wel *subs* of *functies*) zijn een manier om een stuk functionaliteit in een pakketje te stoppen. +
 
@@ -1835,7 +1837,7 @@ zeg-hallo "Paul";
 zeg-hallo "Paula";
 ----
 
-=== Multiple dispatch
+=== Selectie bij aanroep
 Het is mogelijk om meer dan één subroutine met dezelfde naam, maar met een verschillende signatuur, te definiëren.
 
 Op het moment dat de subroutine wordt aangeroepen, zal de uitvoerder besluiten welke versie van de subroutine werkelijk zal worden aangeroepen, afhankelijk van het aantal en het type van de gegeven argumenten.
@@ -1844,14 +1846,14 @@ Dit soort subroutines wordt op dezelfde manier gedefinieerd als normale subrouti
 [source,raku]
 ----
 multi groet($naam) {
-    say "Good morning $naam";
+    say "Goede morgen $naam";
 }
 multi groet($naam, $titel) {
-    say "Good morning $titel $naam";
+    say "Goede morgen $titel $naam";
 }
 
 groet "Jan";
-groet "Laura","Mevr.";
+groet "Laura", "Mevr.";
 ----
 
 === Default en Optionele Parameters
@@ -1860,8 +1862,9 @@ Als een subroutine is gedefinieerd om een argument te accepteren en we roepen he
 Als alternatief biedt Raku de mogelijk om subroutines te definiëren met:
 
 * Optionele Parameters
-* Parameters met een default waarde
+* Parameters met een verstek (default) waarde
 
+==== Optionele parameters
 Je kunt een optionele parameter aangeven door een `?` achter de naam te plaatsen.
 
 [source,raku]
@@ -1879,21 +1882,109 @@ Dit wordt aangegeven door een waarde toe te wijzen aan de parameter in de defini
 
 [source,raku]
 ----
-sub zeg-hallo($naam="Mens") {
+sub zeg-hallo($naam = "Mens") {
     say "Hallo " ~ $naam;
 }
 zeg-hallo;
 zeg-hallo("Laura");
 ----
 
+=== Genoemde parameters
+De parameters die we tot nu toe hebben gezien, worden "positionele parameters" genoemd.
+Arguments worden toegekend aan parameters door hun positie: het eerst argument gaat naar de eerste parameter, het tweede argument naar de tweede parameter, en zo verder.
+
+Een parameter die toegewezen wordt aan de hand van een naam, heet een "genoemde parameter".
+
+[source,raku]
+----
+sub groet(:$naam, :$titel) {
+  say "Goede morgen $titel $naam";
+}
+
+groet(naam => "Laura", titel => "Mrs.");
+groet(titel => "Mr.", naam => "Pietje");
+----
+
+.`Output`
+----
+Goed morgen Mrs. Laura
+Goed morgen Mr. Pietje
+----
+
+Since the arguments are matched by name, they can be supplied in any order.
+Omdat de argument per naam toegekend worden aan de parameter, maakt het niet uit in welke volgorde ze worden gespecificeerd.
+
+[TIP]
+====
+Als de naam van een variabele overeenkomt met de naam van een genoemde parameter, dan kan de aanroep verkort worden: `:$naam` in plaats van `name \=> $naam`
+
+[source,raku]
+----
+sub groet(:$naam, :$titel) {
+  say "Goede morngen $titel $naam";
+}
+
+my $name = "Laura";
+my $title = "Mrs.";
+groet(naam => $naam, titel => $titel);   # regular
+groet(:$naam, :$titel);                  # shorthand
+----
+====
+
+=== Slurpende parameters
+Een subroutine kan ook een variabel aantal argumenten opvangen in een *slurpende parameter*. +
+Een slurpende parameter is een array specificatie na een asterisk, zoals `+*@namen+`.  Het verzamelt alle overige (positionele) argumenten.
+
+[source,raku]
+----
+sub groet-allen(*@namen) {
+  for @namen -> $naam {
+    say "Hallo $naam";
+  }
+}
+
+groet-allen("Paul");
+groet-allen("Paul", "Paula", "Laura");
+----
+
+.`Uitvoer`
+----
+Hallo Paul
+Hallo Paul
+Hallo Paula
+Hallo Laura
+----
+
+=== Beperkingen
+We hebben eerder al gezien dat een parameter beperkt kan worden tot een type, zoals `Str $naam`. +
+Het kan nog verder worden beperkt door het sleutelwoord `where` toe te voegen, gevolgd door een conditie.
+
+[source,raku]
+----
+sub register(Int $leeftijd where $leeftijd >= 18) {
+  say "Je bent registreerd";
+}
+
+register(21);
+register(15);
+----
+
+.`Output`
+----
+Je bent geregistreerd
+Constraint type check failed in binding to parameter '$leeftijd'; expected anonymous constraint to be met but got Int (15)
+----
+
+De eerste aanroep is succesvol.  De tweede niet omdat `15` weliswaar een `Int` is, maar die waarde voldoet niet aan de conditie.
+
 === Teruggeven van waarden
 Alle subroutines die we tot nu toe hebben gezien *doen iets* en laten dan het resultaat op het scherm zien.
 
 Ook al is dit heel normaal, soms willen we dat een subroutine een waarde *teruggeeft* dat we later in het programma kunnen gebruiken.
 
+==== Impliciete teruggave
 Onder normal omstandigheden is de waarde van de laatste regel van een subroutine de waarde die door de subroutine terug wordt gegeven.
 [source,raku]
-.Impliciet teruggeven
 ----
 sub kwadrateer ($x) {
     $x ** 2;
@@ -1901,16 +1992,17 @@ sub kwadrateer ($x) {
 say "7 gekwadrateerd is gelijk aan " ~ kwadrateer(7);
 ----
 
+==== Expliciete teruggave
 Voor de duidelijkheid is het wellicht een goed idee om _expliciet_ aan te geven wat we terug willen geven.
 Dit kunnen we doen met het `return` sleutelwoord.
 [source,raku]
-.Expliciete teruggave
 ----
 sub kwadrateer ($x) {
     return $x ** 2;
 }
 say "7 gekwadrateerd is gelijk aan " ~ kwadrateer(7);
 ----
+
 ==== Beperken van mogelijke teruggegeven waarden
 In een van de vorige voorbeelden hebben we gezien dat we parameters kunnen beperken tot een bepaald type.
 Hetzelfde kan worden gedaan met waarden die we teruggeven.
@@ -1918,14 +2010,14 @@ Hetzelfde kan worden gedaan met waarden die we teruggeven.
 Om de teruggeven waarde te beperken tot een bepaald type, kunnen we de pijlnotatie `-\->` in de signatuur gebruiken.
 
 [source,raku]
-.Beperken van mogelijke waarden
+.Aangeven van type van teruggave
 ----
 sub kwadrateer ($x --> Int) {
     return $x ** 2;
 }
 say "1.2 gekwadrateerd is gelijk aan " ~ kwadrateer(1.2);
 ----
-Als we niet een waarde voor teruggave van het juiste type aangeven, zal er een foutmelding worden geproduceerd.
+Als we de waarde voor teruggave niet van het juiste type is, zal er een foutmelding worden geproduceerd.
 
 ----
 Type check failed for return value; expected Int but got Rat (1.44)
