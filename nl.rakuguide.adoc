@@ -2078,7 +2078,7 @@ say map(&kwadrateer,@array);
 .Uitleg
 We hebben een subroutine `kwadrateer` gedefinieerd die het argument tot de tweede macht verheft. +
 Vervolgens hebben we `map` aangeroepen met twee argumenten: een subroutine en een array. +
-Het resultaat is dat alle elementen van het array zijn gekwadrateerd.
+Het resultaat is een lijst waaroin alle elementen van het array zijn gekwadrateerd.
 
 Merk op dat als we een subroutine als argument willen doorgeven, we een `&` voor de naam moeten zetten.
 
@@ -2086,6 +2086,7 @@ Merk op dat als we een subroutine als argument willen doorgeven, we een `&` voor
 Een *anonieme functie* wordt ook wel een *lambda* genoemd. +
 Een anonieme functie is niet bekend onder een naam (want die heeft het niet).
 
+==== Puntig blok
 Laten we het `map` voorbeeld herschrijven met een anonieme functie
 [source,raku]
 ----
@@ -2095,10 +2096,34 @@ say map(-> $x { $x ** 2 },@array);
 Merk op dat in plaats van een subroutine te declareren en het door middel van de naam als argument aan `map` door te geven, we het direct in de aanroep definiëren. +
 De anonieme subroutine `\-> $x { $x ** 2 }` kan niet als zodanig worden aangeroepen want het heeft geen naam.
 
-In Raku noemen we deze notatie een *pointy block*.
+In Raku noemen we deze notatie een "puntig blok" (*pointy block*).
+
+==== Kortere specificatie
+Een puntig blok dat maar 1 argument accepteert, kan op twee manier korter worden geschreven.
+
+Een blok zonder `->` specificatie ontvangt één argument in de verstek-variabele `$_`
 
 [source,raku]
-.Een pointy block kan ook aan een variabele worden toegekend:
+----
+my @array = <1 2 3 4 5>;
+say map({ $_ ** 2 }, @array);
+----
+
+Men kan ook een asterisk gebruiken om het argument aan te geven: in dat geval zijn de accolades niet nodig. +
+`+* ** 2+` is een kortere specificatie van `{ $_ ** 2 }`
+
+[source,raku]
+----
+my @array = <1 2 3 4 5>;
+say map(* ** 2, @array);
+----
+
+Alledrie de notaties geven hetzelfde resultaat: `(1 4 9 16 25)`
+
+==== Opslaan in een variabele
+Een puntig blok kan ook aan een variabele worden toegekend:
+
+[source,raku]
 ----
 my $kwadrateer = -> $x {
     $x ** 2
@@ -2134,7 +2159,7 @@ say @resultaat;
 Je kunt zien dat het aankoppelen van methoden _veel beter leest_.
 
 === Aanvoer Operator
-De *aanvoer operator*, ook wel _pipe_ genoemd in sommige functioneel programmeertalen, geeft een nog beter visualisatie van het aankoppelen van methoden.
+De *aanvoer operator*, ook wel _pipe_ genoemd in sommige functionele programmeertalen, geeft een nog beter visualisatie van het aankoppelen van methoden.
 [source,raku]
 .Voorwaardse Aanvoer
 ----
@@ -2155,9 +2180,8 @@ Start met `array` en geef een lijst van unieke elementen
 ----
 Zoals je kunt zien is de volgorde van de aanroepen van de methoden van voor naar achter.
 
-
+==== Achterwaardse Aanvoer
 [source,raku]
-.Achterwaardse Aanvoer
 ----
 my @array = <7 8 9 0 1 2 4 3 5 6 7 8 9>;
 my @resultaat <== reverse()
@@ -2194,11 +2218,11 @@ Men moet dus voorzichtig zijn bij het aanroepen van methoden met neveneffecten, 
 === Juncties
 Een *junctie* is een logische superpositie van waarden.
 
-In onderstaand voorbeeld is `1|2|3` een junctie.
+In onderstaand voorbeeld is `1 | 2 | 3` een junctie.
 [source,raku]
 ----
 my $var = 2;
-if $var == 1|2|3 {
+if $var == 1 | 2 | 3 {
     say "De variabele is 1 of 2 of 3"
 }
 ----
@@ -2220,8 +2244,8 @@ De voordelen zijn:
 Om een luie lijst te maken gebruiken we de `...` infix operator. +
 Een luie lijst heeft een of meer *startelementen*, een *generator* en een *eindpunt*.
 
+==== Simpele luie lijst
 [source,raku]
-.Simpele luie lijst
 ----
 my $luielijst = (1 ... 10);
 say $luielijst;
@@ -2229,16 +2253,16 @@ say $luielijst;
 Het start element is 1 en het eindpunt is 10.  Er is geen generator aangegeven, dus de default generator wordt gebruikt (+1). +
 In andere woorden, deze luie lijst zal de volgende waarden teruggeven (als daarom wordt gevraagd): (1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
 
+==== Oneindige luie lijst
 [source,raku]
-.Oneindige luie lijst
 ----
 my $luielijst = (1 ... Inf);
 say $luielijst;
 ----
 Deze luie lijst kan een getal tussen 1 en oneindig geven, in andere woorden alle natuurlijke getallen.
 
+==== Luie lijst met een afgeleide generator
 [source,raku]
-.Luie lijst met een afgeleide generator
 ----
 my $luielijst = (0,2 ... 10);
 say $luielijst;
@@ -2247,8 +2271,8 @@ De startelementen zijn 0 en 2 en het eindpunt is 10.
 Er is geen generator aangegeven, maar door de aangegeven startelementen kan Raku deduceren dat de generator (+2) is +
 Deze luie lijst zal de volgende waarden teruggeven (als daarom wordt gevraagd): (0, 2, 4, 6, 8, 10)
 
+==== Luie lijst met een specifieke generator
 [source,raku]
-.Luie lijst met een specifieke generator
 ----
 my $luielijst = (0, { $_ + 3 } ... 12);
 say $luielijst;
@@ -2264,6 +2288,7 @@ De generator springt dan _over_ het eindpunt.
 
 In plaats van `0 ...^ * > 10` kun je ook `0 ... 10` schrijven +
 Je kunt dat lezen als: vanaf 0 tot de eerste waarde die groter is dan 10 (maar sluit die dan uit)
+
 [source,raku]
 .Deze generator zal nooit stoppen
 ----
@@ -2279,15 +2304,15 @@ say $luielijst;
 ----
 ====
 
-=== Closures
-Alle code objecten in Raku zijn zogenaamde `closures`, hetgeen betekent dat ze kunnen refereren aan lokale variabelen die zichtbaar zijn buiten het directe eigen bereik.
+=== Omsluitingen
+Alle code objecten in Raku zijn zogenaamde "omsluitingen" (`closures`), hetgeen betekent dat ze kunnen refereren aan lokale variabelen die zichtbaar zijn buiten het directe eigen bereik.
 
 [source,raku]
 ----
 sub maak-begroeting {
     my $naam = "Jan Jansen";
     sub begroeting {
-      say "Goede morgen $naam";
+        say "Goede morgen $naam";
     };
     return &begroeting;
 }
@@ -2298,9 +2323,9 @@ $groeter();
 Indien je het bovenstaande programmaatje uitvoert, dan zal het `Goede morgen Jan Jansen` op het scherm tonen. +
 Dit is een tamelijk simpel voorbeeld.  Het interessante aan dit voorbeeld is dat de `begroeting` (binnenste) subroutine teruggegeven were door de buitenste subroutine voordat het uitgevoerd werd.
 
-`$groeter` is nu een *closure* geworden.
+`$groeter` is nu een omsluiting (*closure*) geworden.
 
-Een *closure* is een speciaal soort object dat twee zaken combineert:
+Een omsluiting is een speciaal soort object dat twee zaken combineert:
 
 * Een subroutine
 
