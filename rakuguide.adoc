@@ -3076,40 +3076,70 @@ Notice that whenever an error occurs (in this case, assigning a number to a stri
 === Catching exceptions
 *Exception handling* is the process of _catching_ an exception that has been _thrown_ in order for the script to continue working.
 
+There are two ways to handle an exception in code where you expect one might occur.
+
+==== try
+If you only need to stop an exception from ending your program, and you don't care what caused it, wrap the code in a `try` block.
+
 [source,raku]
 ----
 my Str $name;
 try {
   $name = 123;
   say "Hello " ~ $name;
-  CATCH {
-    default {
-      say "Can you tell us your name again, we couldn't find it in the register.";
-    }
-  }
 }
 say "How are you doing today?";
 ----
 
 .`Output`
 ----
-Can you tell us your name again, we couldn't find it in the register.
 How are you doing today?
 ----
 
-Exception handling is done by using a `try-catch` block.
+If the code inside a `try` block throws an exception, that exception will be caught
+and `Nil` will be returned instead of the last value in the block.
+
+The actual exception is stored in the special variable `$!`.  If nothing goes wrong
+inside the `try` block, `$!` stays empty and the `if` block is skipped:
 
 [source,raku]
 ----
+my Str $name;
 try {
-  # code goes in here
-  # if anything goes wrong, the script will enter the below CATCH block
-  # if nothing goes wrong, the CATCH block will be ignored
+  $name = 123;
+  say "Hello " ~ $name;
+}
+if $! {
+  say "Something went wrong: " ~ $!.message;
+}
+say "How are you doing today?";
+----
+
+.`Output`
+----
+Something went wrong: Type check failed in assignment to $name; expected Str but got Int (123)
+How are you doing today?
+----
+
+==== CATCH
+The other way to handle exceptions is with a `CATCH` block.
+Whenever an exception is thrown in the block that contains the `CATCH`, the code inside the `CATCH` runs.
+Each block can have only one `CATCH`.
+
+A `CATCH` block works wherever you place it inside its enclosing block.
+Still, it's best to put it near the top, so anyone reading the code can see right away that exceptions are being handled.
+
+[source,raku]
+----
+{
   CATCH {
     default {
       # the code in here will be evaluated only if an exception has been thrown
     }
   }
+  # code goes in here
+  # if anything goes wrong, the script will enter the above CATCH block
+  # if nothing goes wrong, the CATCH block will be ignored
 }
 ----
 
@@ -3119,16 +3149,16 @@ This means we can _catch_ and handle differently many types of exceptions.
 
 [source,raku]
 ----
-try {
-  # code goes in here
-  # if anything goes wrong, the script will enter the below CATCH block
-  # if nothing goes wrong, the CATCH block will be ignored
+{
   CATCH {
     when X::AdHoc   { #`(do something if exception of type X::AdHoc is thrown) }
     when X::IO      { #`(do something if exception of type X::IO is thrown) }
     when X::OS      { #`(do something if exception of type X::OS is thrown) }
     default         { #`(do something if exception is thrown and doesn't belong to the above types) }
   }
+  # code goes in here
+  # if anything goes wrong, the script will enter the above CATCH block
+  # if nothing goes wrong, the CATCH block will be ignored
 }
 ----
 
@@ -3147,34 +3177,14 @@ Calling `.message` on it returns the description of the error.
 [source,raku]
 ----
 my Str $name;
-try {
-  $name = 123;
-  say "Hello " ~ $name;
+{
   CATCH {
     default {
       say "Something went wrong: " ~ .message;
     }
   }
-}
-say "How are you doing today?";
-----
-
-.`Output`
-----
-Something went wrong: Type check failed in assignment to $name; expected Str but got Int (123)
-How are you doing today?
-----
-
-`try` can also be used without a `CATCH` block. In that case, the exception is stored in the special variable `$!`
-
-[source,raku]
-----
-my Str $name;
-try {
   $name = 123;
-}
-if $! {
-  say "Something went wrong: " ~ $!.message;
+  say "Hello " ~ $name;
 }
 say "How are you doing today?";
 ----
@@ -3184,8 +3194,6 @@ say "How are you doing today?";
 Something went wrong: Type check failed in assignment to $name; expected Str but got Int (123)
 How are you doing today?
 ----
-
-If nothing goes wrong inside the `try` block, `$!` stays empty and the `if` block is skipped.
 
 === Throwing exceptions
 Raku also allows you to explicitly throw exceptions. +
@@ -3214,7 +3222,6 @@ Ad-hoc exceptions are thrown using the `die` subroutine, followed by the excepti
 Typed exceptions are objects, hence the use of the `.new()` constructor in the above example.
 
 NOTE: For more info on exceptions, see https://docs.raku.org/language/exceptions
-
 
 == Regular expressions
 A regular expression, or _regex_, is a sequence of characters that is used for pattern matching. +
