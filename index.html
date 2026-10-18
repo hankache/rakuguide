@@ -3991,7 +3991,7 @@ Good morning Mr. Johnnie</pre>
 <h3 id="_slurpy_parameters">7.6. Slurpy parameters</h3>
 <div class="paragraph">
 <p>A subroutine can accept any number of arguments by using a <strong>slurpy parameter</strong>.<br>
-A slurpy parameter is an array preceded by an asterisk, like <code>*@names</code>. It collects all the remaining arguments.</p>
+A slurpy parameter is an array preceded by an asterisk, like <code>*@names</code>. It collects all the remaining positional arguments.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -5469,17 +5469,20 @@ How are you doing today?</pre>
 <div class="paragraph">
 <p><strong>Exception handling</strong> is the process of <em>catching</em> an exception that has been <em>thrown</em> in order for the script to continue working.</p>
 </div>
+<div class="paragraph">
+<p>There are two ways to handle an exception in code where you expect one might occur.</p>
+</div>
+<div class="sect3">
+<h4 id="_try">10.1.1. try</h4>
+<div class="paragraph">
+<p>If you only need to stop an exception from ending your program, and you don&#8217;t care what caused it, wrap the code in a <code>try</code> block.</p>
+</div>
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="raku"><span class="kd">my</span><span class="w"> </span><span class="kt">Str</span><span class="w"> </span><span class="nv">$name</span><span class="p">;</span><span class="w">
 </span><span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w">
   </span><span class="nv">$name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">123</span><span class="p">;</span><span class="w">
   </span><span class="nb">say</span><span class="w"> </span><span class="s2">"Hello "</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="nv">$name</span><span class="p">;</span><span class="w">
-  </span><span class="k">CATCH</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="k">default</span><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="nb">say</span><span class="w"> </span><span class="s2">"Can you tell us your name again, we couldn't find it in the register."</span><span class="p">;</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span><span class="nb">say</span><span class="w"> </span><span class="s2">"How are you doing today?"</span><span class="p">;</span></code></pre>
 </div>
@@ -5487,25 +5490,62 @@ How are you doing today?</pre>
 <div class="listingblock">
 <div class="title"><code>Output</code></div>
 <div class="content">
-<pre>Can you tell us your name again, we couldn't find it in the register.
-How are you doing today?</pre>
+<pre>How are you doing today?</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Exception handling is done by using a <code>try-catch</code> block.</p>
+<p>If the code inside a <code>try</code> block throws an exception, that exception will be caught
+and <code>Nil</code> will be returned instead of the last value in the block.</p>
+</div>
+<div class="paragraph">
+<p>The actual exception is stored in the special variable <code>$!</code>.  If nothing goes wrong
+inside the <code>try</code> block, <code>$!</code> stays empty and the <code>if</code> block is skipped:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="raku"><span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w">
-  </span><span class="c1"># code goes in here</span><span class="w">
-  </span><span class="c1"># if anything goes wrong, the script will enter the below CATCH block</span><span class="w">
-  </span><span class="c1"># if nothing goes wrong, the CATCH block will be ignored</span><span class="w">
+<pre class="rouge highlight"><code data-lang="raku"><span class="kd">my</span><span class="w"> </span><span class="kt">Str</span><span class="w"> </span><span class="nv">$name</span><span class="p">;</span><span class="w">
+</span><span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="nv">$name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">123</span><span class="p">;</span><span class="w">
+  </span><span class="nb">say</span><span class="w"> </span><span class="s2">"Hello "</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="nv">$name</span><span class="p">;</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="k">if</span><span class="w"> </span><span class="vg">$!</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="nb">say</span><span class="w"> </span><span class="s2">"Something went wrong: "</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="vg">$!</span><span class="o">.</span><span class="nb">message</span><span class="p">;</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="nb">say</span><span class="w"> </span><span class="s2">"How are you doing today?"</span><span class="p">;</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title"><code>Output</code></div>
+<div class="content">
+<pre>Something went wrong: Type check failed in assignment to $name; expected Str but got Int (123)
+How are you doing today?</pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_catch">10.1.2. CATCH</h4>
+<div class="paragraph">
+<p>The other way to handle exceptions is with a <code>CATCH</code> block.
+Whenever an exception is thrown in the block that contains the <code>CATCH</code>, the code inside the <code>CATCH</code> runs.
+Each block can have only one <code>CATCH</code>.</p>
+</div>
+<div class="paragraph">
+<p>A <code>CATCH</code> block works wherever you place it inside its enclosing block.
+Still, it&#8217;s best to put it near the top, so anyone reading the code can see right away that exceptions are being handled.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="raku"><span class="p">{</span><span class="w">
   </span><span class="k">CATCH</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="k">default</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="c1"># the code in here will be evaluated only if an exception has been thrown</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">}</span><span class="w">
+  </span><span class="c1"># code goes in here</span><span class="w">
+  </span><span class="c1"># if anything goes wrong, the script will enter the above CATCH block</span><span class="w">
+  </span><span class="c1"># if nothing goes wrong, the CATCH block will be ignored</span><span class="w">
 </span><span class="p">}</span></code></pre>
+</div>
 </div>
 </div>
 </div>
@@ -5517,16 +5557,16 @@ This means we can <em>catch</em> and handle differently many types of exceptions
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="raku"><span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w">
-  </span><span class="c1"># code goes in here</span><span class="w">
-  </span><span class="c1"># if anything goes wrong, the script will enter the below CATCH block</span><span class="w">
-  </span><span class="c1"># if nothing goes wrong, the CATCH block will be ignored</span><span class="w">
+<pre class="rouge highlight"><code data-lang="raku"><span class="p">{</span><span class="w">
   </span><span class="k">CATCH</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="k">when</span><span class="w"> </span><span class="kt">X::AdHoc</span><span class="w">   </span><span class="p">{</span><span class="w"> </span><span class="cm">#`(do something if exception of type X::AdHoc is thrown)</span><span class="w"> </span><span class="p">}</span><span class="w">
     </span><span class="k">when</span><span class="w"> </span><span class="kt">X::IO</span><span class="w">      </span><span class="p">{</span><span class="w"> </span><span class="cm">#`(do something if exception of type X::IO is thrown)</span><span class="w"> </span><span class="p">}</span><span class="w">
     </span><span class="k">when</span><span class="w"> </span><span class="kt">X::OS</span><span class="w">      </span><span class="p">{</span><span class="w"> </span><span class="cm">#`(do something if exception of type X::OS is thrown)</span><span class="w"> </span><span class="p">}</span><span class="w">
     </span><span class="k">default</span><span class="w">         </span><span class="p">{</span><span class="w"> </span><span class="cm">#`(do something if exception is thrown and doesn't belong to the above types)</span><span class="w"> </span><span class="p">}</span><span class="w">
   </span><span class="p">}</span><span class="w">
+  </span><span class="c1"># code goes in here</span><span class="w">
+  </span><span class="c1"># if anything goes wrong, the script will enter the above CATCH block</span><span class="w">
+  </span><span class="c1"># if nothing goes wrong, the CATCH block will be ignored</span><span class="w">
 </span><span class="p">}</span></code></pre>
 </div>
 </div>
@@ -5559,36 +5599,14 @@ Calling <code>.message</code> on it returns the description of the error.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="raku"><span class="kd">my</span><span class="w"> </span><span class="kt">Str</span><span class="w"> </span><span class="nv">$name</span><span class="p">;</span><span class="w">
-</span><span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w">
-  </span><span class="nv">$name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">123</span><span class="p">;</span><span class="w">
-  </span><span class="nb">say</span><span class="w"> </span><span class="s2">"Hello "</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="nv">$name</span><span class="p">;</span><span class="w">
+</span><span class="p">{</span><span class="w">
   </span><span class="k">CATCH</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="k">default</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="nb">say</span><span class="w"> </span><span class="s2">"Something went wrong: "</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="o">.</span><span class="nb">message</span><span class="p">;</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span><span class="nb">say</span><span class="w"> </span><span class="s2">"How are you doing today?"</span><span class="p">;</span></code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title"><code>Output</code></div>
-<div class="content">
-<pre>Something went wrong: Type check failed in assignment to $name; expected Str but got Int (123)
-How are you doing today?</pre>
-</div>
-</div>
-<div class="paragraph">
-<p><code>try</code> can also be used without a <code>CATCH</code> block. In that case, the exception is stored in the special variable <code>$!</code></p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="rouge highlight"><code data-lang="raku"><span class="kd">my</span><span class="w"> </span><span class="kt">Str</span><span class="w"> </span><span class="nv">$name</span><span class="p">;</span><span class="w">
-</span><span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w">
   </span><span class="nv">$name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">123</span><span class="p">;</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span><span class="k">if</span><span class="w"> </span><span class="vg">$!</span><span class="w"> </span><span class="p">{</span><span class="w">
-  </span><span class="nb">say</span><span class="w"> </span><span class="s2">"Something went wrong: "</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="vg">$!</span><span class="o">.</span><span class="nb">message</span><span class="p">;</span><span class="w">
+  </span><span class="nb">say</span><span class="w"> </span><span class="s2">"Hello "</span><span class="w"> </span><span class="o">~</span><span class="w"> </span><span class="nv">$name</span><span class="p">;</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span><span class="nb">say</span><span class="w"> </span><span class="s2">"How are you doing today?"</span><span class="p">;</span></code></pre>
 </div>
@@ -5599,9 +5617,6 @@ How are you doing today?</pre>
 <pre>Something went wrong: Type check failed in assignment to $name; expected Str but got Int (123)
 How are you doing today?</pre>
 </div>
-</div>
-<div class="paragraph">
-<p>If nothing goes wrong inside the <code>try</code> block, <code>$!</code> stays empty and the <code>if</code> block is skipped.</p>
 </div>
 </div>
 <div class="sect2">
@@ -7338,7 +7353,7 @@ This should be your go to place for any enquiry for which you want an immediate 
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2026-10-13 19:40:12 UTC
+Last updated 2026-10-18 21:34:43 UTC
 </div>
 </div>
 </body>
