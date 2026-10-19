@@ -3479,6 +3479,55 @@ De `:s` in de regex `m/:s Raku/` geeft aan dat witruimte niet moet worden genege
 We zouden de regex ook kunnen hebben schrijven als `m/ Raku \s compiler /` waarbij we `\s` als een teken voor witruimte hebben gebruikt, zoals we eerder hebben gezien. +
 Als een regex meer dan één witruimte bevat, dan is het gebruik van `:s` gemakkelijker in plaats van `\s` te specificeren voor elke witruimte.
 
+=== Uittreksels
+Indien men een gedeelte van een regex omgeeft met haken, dan *vangt* men dat gedeelte van de string in een uittreksel. +
+Uittreksels zijn genummerd vanaf nul.  Ze zijn beschikbaar in de variabelen `$0`, `$1`, `$2` enzovoort.
+
+[source,raku]
+.`Script`
+----
+if 'Jan is 23 jaar' ~~ m/ (\w+) \s is \s (\d+) / {
+    say "Naam: $0";
+    say "Leeftijd: $1";
+}
+----
+
+.`Output`
+----
+Name: Jan
+Leeftijd: 23
+----
+
+.Uitleg
+`(\w+)` is het eerste uittreksel. Het komt overeen met `Jan` en wordt in `$0` opgeslagen +
+`(\d+)` is het tweede uittreksel. Het komt overeen met `23` en wordt in `$1` opgeslagen
+
+=== Substitutie
+Een regex kan ook worden
+A regex can also be used to replace the part of a string that it matches. +
+This is done using the `.subst` method. It is given a regex and a replacement, and it returns a new string.
+
+[source,raku]
+.`Script`
+----
+my $tekst = 'Ik drink thee, thee is goed';
+say $tekst.subst(/thee/, 'koffie');
+say $tekst.subst(/thee/, 'koffie', :g);
+say $tekst;
+----
+
+.`Uitvoer`
+----
+Ik drink koffie, thee is goed
+Ik drink koffie, koffie is goed
+Ik drink thee, thee is goed
+----
+
+.Uitleg
+`.subst` vervangt alleen de eerste overeenkomst. +
+Door het toevoegen van `:g` (kort voor _globaal_) worden alle overeenkomsten vervangen. +
+`.subst` verandert de onderliggende string niet, zoals de laatste regel toont.
+
 === Voorbeeld
 Laten we eens kijken of een emailadres goed is of niet. +
 Voor dit voorbeeld zullen we aannemen dat een werkend emailadres wordt gevormd door: +
@@ -3492,7 +3541,7 @@ Gebruik deze regex niet in deze vorm in productie.
 .Script
 ----
 my $email = 'jan.met@raku.org';
-my $regex = / <:L>+ \. <:L>+ \@<:L+:N>+ \. <:L>+ /;
+my $regex = / ^ <:L>+ \. <:L>+ \@<:L+:N>+ \. (com|org|net) $ /;
 
 if $email ~~ $regex {
     say $/ ~ " lijkt een valide emailadres";
@@ -3505,12 +3554,21 @@ if $email ~~ $regex {
 `jan.met@raku.org lijkt een valide emailadres`
 
 .Uitleg
-`<:L>` accepteert een enkele letter +
-`<:L>+` accepteert één of meer letters +
-`\.` accepteert een enkele [punt] +
-`\@` accepteert een enkel @-karakter +
-`<:L+:N>` accepteert één of meer letters gevolgd door een cijfer +
-`<:L+:N>+` accepteert één of meer letters + cijfer één of meer keer +
+* `<:L>` accepteert een enkele letter
+
+* `<:L>+` accepteert één of meer letters
+
+* `\.` accepteert een enkele [punt]
+
+* `\@` accepteert een enkel @-karakter
+
+* `<:L+:N>` accepteert één of meer letters gevolgd door een cijfer
+
+* `<:L+:N>+` accepteert één of meer letters + cijfer één of meer keer
+
+* `(com|org|net)` komt overeen met één van de drie alternatieven
+
+* `+^+` en `+$+` zorgen ervoor dat niets voor of achter het email adres mogen staan
 
 De regex kan als volgt uit elkaar worden gehaald:
 
@@ -3526,7 +3584,7 @@ De regex kan als volgt uit elkaar worden gehaald:
 
 * *[punt]* `\.`
 
-* *top-niveau* `<:L>+`
+* *com/org/net* `(com|org|net)`
 
 [source,raku]
 .We kunnen een regex ook in aparte regexen op naam opdelen
@@ -3536,8 +3594,9 @@ my regex veel-letters { <:L>+ };
 my regex punt { \. };
 my regex bij { \@ };
 my regex veel-letters-cijfers { <:L+:N>+ };
+my regex domein { com | org | net }
 
-if $email ~~ / <veel-letters> <punt> <veel-letters> <bij> <veel-letters-nummers> <dot> <veel-letters> / {
+if $email ~~ / <veel-letters> <punt> <veel-letters> <bij> <veel-letters-nummers> <dot> <domein> / {
     say $/ ~ " lijkt een valide emailadres";
 } else {
     say "Dit emailadres kon niet gevalideerd worden";
