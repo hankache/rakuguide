@@ -2998,7 +2998,6 @@ Voor meer informatie over Object Georiënteerd Programmeren in Raku, bekijk dan:
 --
 == Exception Handling
 
-=== Opvangen van Exceptions
 *Exceptions* zijn de uitzonderingsgevallen die optreden bij het uitvoeren van een programma op het moment dat er iets fout gaat. +
 We zeggen dat exceptions worden _geworpen_ (thrown).
 
@@ -3036,7 +3035,13 @@ Type check failed in assignment to $naam; expected Str but got Int
 
 Je zou hebben moeten zien dat zodra er een fout optreedt (in dit geval het toewijzen van een getal aan een string variabele) het programma stopt en de regels code na de fout niet worden uitgevoerd, zelfs als deze wel juist zijn.
 
+=== Opvangen van Exceptions
 *Exception handling* is het proces van het _opvangen_ van de exceptions die worden _geworpen_ om ervoor te zorgen dat het script blijft werken.
+
+Er zijn twee manieren om een exception op te vangen op de plaatsen in je code waar je die verwacht.
+
+==== try
+Indien je alleen maar zeker wilt zijn dat een exception *niet* je programma beëindigt, en je bent niet geïnteresseerd in de reden, dan kun je die code omgeven in een `try` blok.
 
 [source,raku]
 ----
@@ -3044,53 +3049,117 @@ my Str $naam;
 try {
     $naam = 123;
     say "Hallo " ~ $naam;
-    CATCH {
-        default {
-            say "Kun je ons je naam nog eens vertellen?  We konden hem niet vinden.";
-        }
-    }
 }
 say "Hoe gaat het?"
 ----
 
 .`Output`
 ----
-Kun je ons je naam nog eens vertellen?  We konden hem niet vinden.
 Hoe gaat het?
 ----
 
-Exception handling wordt gedaan door middel van een `try-catch` block.
+Indien de code in een `try` blok een exception werpt, dan wordt die
+exception opgevangen, en de waarde `Nil` wordt dan teruggegeven in plaats
+van de laatste waarde in het blok.
+
+Het exception object wordt opgeslagen in the speciale variabele `$!`.
+Als er niets misging in het blok, dan krijgt deze de waarde `Nil` en
+het `if` blok wordt dan overgeslagen in onderstaand voorbeeld:
+
+[source,raku]
+----
+my Str $naam;
+try {
+    $naam = 123;
+    say "Hello " ~ $naam;
+}
+if $! {
+    say "Er is iets misgegaan: " ~ $!.message;
+}
+say "Hoe gaat het?";
+----
+
+.`Uitvoer`
+----
+Er is iets misgegaan: Type check failed in assignment to $name; expected Str but got Int (123)
+Hoe gaat het?
+----
+
+==== CATCH
+De andere manier om exceptions op te vangen, is met een `CATCH` blok.
+De code in een `CATCH` blok wordt uitgevoerd zodra er een exception wordt geworpen in een blok waarin zich een `CATCH` blok bevindt.
+Elk blok kan maar één `CATCH` blok hebben.
+
+Het `CATCH` blok kan op elke plaats in een blok geplaatst worden.  Meestal
+is het het beste om dat aan het begin van een blok te doen, zoday iemand die
+de code moet lezen direct kan zien dat exceptions een speciale behandeling
+krijgen in dat blok.
 
 [source,raku]
 ----
 try {
-    # voer hier de code in
-    # als er iets fout gaat, zal de code in het CATCH block uitgevoerd worden
-    # als alles goed gaat, wordt de code in het CATCH block genegeerd
     CATCH {
         default {
             # deze code zal alleen uitgevoerd worden als een exception is geworpen
         }
     }
+    # voer hier de code in
+    # als er iets fout gaat, zal de code in het CATCH block uitgevoerd worden
+    # als alles goed gaat, wordt de code in het CATCH block genegeerd
 }
 ----
 
+=== Types van exceptions
 Het `CATCH` block kan worden gedefinieerd op dezelfde manier als een `given` block.
 Dat betekent dat we verschillende soorten van exceptions kunnen _opvangen_ en afhandelen.
 
 [source,raku]
 ----
 try {
-    # voer hier de code in
-    # als er iets fout gaat, zal de code in het CATCH block uitgevoerd worden
-    # als alles goed gaat, wordt de code in het CATCH block genegeerd
     CATCH {
         when X::AdHoc { # doe iets als een exception van het type X::AdHoc is geworpen }
         when X::IO { # doe iets als een exception van het type X::IO is geworpen }
         when X::OS { # doe iets als een exception van het type X::OS is geworpen }
         default { # doe iets als een ander soort exception is geworpen }
     }
+    # voer hier de code in
+    # als er iets fout gaat, zal de code in het CATCH block uitgevoerd worden
+    # als alles goed gaat, wordt de code in het CATCH block genegeerd
 }
+----
+
+Alle getypeerde exceptions erven van de klasse `Exception`.  De namen van de altijd beschikbare exception klassen beginnen met `X::`, hieronder zie je een paar voorbeelden: +
+`X::AdHoc` is het simpelste exception type +
+`X::IO` is gerelateerd aan IO fouten +
+`X::OS` is gerelateerd aan OS fouten +
+`X::Str::Numeric` wordt geworpen bij een fout in het veranderen van een string naar een getal.
+
+NOTE: Zie https://docs.raku.org/type-exceptions.html voor een complete lijst van exception types en de daarbij behorende methoden.
+
+=== Uitleg van exceptions
+Binnen een `CATCH` blok wordt de exception geplaatst in de verstek-variabele
+`$_` +
+Een aanroep van de `.message` methode geeft dan een bescrijving van de fout die het werpen van de exception veroorzaakte.
+
+[source,raku]
+----
+my Str $naam;
+{
+    CATCH {
+        default {
+            say "Er ging iets fout: " ~ .message;
+        }
+    }
+    $naam = 123;
+    say "Hallo " ~ $naam;
+}
+say "Hoe gaat het?";
+----
+
+.`Uitvoer`
+----
+Er ging iets fout: Type check failed in assignment to $name; expected Str but got Int (123)
+Hoe gaat het?
 ----
 
 === Het Werpen Van Exceptions
@@ -3115,17 +3184,9 @@ my Int $age = 21;
 X::AdHoc.new(payload => 'Fout !').throw;
 ----
 
-Ad-hoc exceptions worden geworpen door de `die` subroutine gevolgd door het bericht van de exception.
+Ad-hoc exceptions worden geworpen door de `die` subroutine gevolgd door de uitleg van de exception.
 
 Getypeerde exceptions zijn objecten, daarom moeten we de `.new()` constructeur gebruiken in bovenstaand voorbeeld. +
-Alle getypeerde exceptions erven van de klasse `X` , hieronder zie je een paar voorbeelden: +
-`X::AdHoc` is het simpelste exception type +
-`X::IO` is gerelateerd aan IO fouten +
-`X::OS` is gerelateerd aan OS fouten +
-`X::Str::Numeric` wordt geworpen bij een fout in het veranderen van een string naar een getal.
-
-NOTE: Zie https://docs.raku.org/type-exceptions.html voor een complete lijst van exception types en de daarbij behorende methoden.
-
 
 == Reguliere Expressies
 Een reguliere expressie, of _regex_, is een reeks van karakters die worden gebruikt voor patroonherkenning. +
