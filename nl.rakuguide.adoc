@@ -3214,7 +3214,7 @@ Een reguliere expressie kan als volgt worden gedefinieerd:
 
 Tenzij het specifiek wordt aangeduid, is witruimte zonder betekenis, dus `m/licht/` en `m/ licht /` zijn hetzelfde.
 
-=== Vergelijken van Karakters
+=== Vergelijken van karakters
 Alphanumerieke karakters en het liggend streepje `_` mogen als zichzelf worden geschreven. +
 Alle andere karakters moeten speciaal worden behandeld door er een backslash `\\` voor te plaatsen of door ze te omgeven door aanhalingstekens.
 
@@ -3227,7 +3227,7 @@ if 'Temperatuur: 13' ~~ m/ \: / {
 ----
 
 [source,raku]
-.Enkele Aanhalingstekens
+.Enkele aanhalingstekens
 ----
 if 'Leeftijd = 13' ~~ m/ '=' / {
     say "De string bevat een is-gelijk teken =";
@@ -3235,14 +3235,14 @@ if 'Leeftijd = 13' ~~ m/ '=' / {
 ----
 
 [source,raku]
-.Dubbele Aanhalingstekens
+.Dubbele aanhalingstekens
 ----
 if 'naam@bedrijf.nl' ~~ m/ "@" / {
     say "Dit is een juist emailadres want het bevat een @ karakter";
 }
 ----
 
-=== Vergelijken van Categorieën van Karakters
+=== Vergelijken van categorieën van karakters
 Karakters kunnen worden geclassificeerd in categorieën en ook daarmee kunnen we vergelijken. +
 We kunnen ook vergelijken met de inverse van een categorie (alle karakters behalve degene in die categorie).
 
@@ -3287,12 +3287,12 @@ Unicode eigenschappen worden omgeven door `<: >`
 
 [source,raku]
 ----
-if "Jan123" ~~ / <:N> / {
+if "Devanagari cijfers १२३" ~~ / <:N> / {
     say "Bevat een cijfer";
 } else {
     say "Bevat geen enkel cijfer"
 }
-if "Jan-Met" ~~ / <:Lu> / {
+if "Привет, Иван." ~~ / <:Lu> / {
     say "Bevat een hoofdletter";
 } else {
     say "Bevat geen enkele hoofdletter"
@@ -3327,6 +3327,7 @@ if 'ac' ~~ m/ a.c / {
 === Factoren
 Factoren (quantifiers) komen na een karakter en worden gebruikt om aan te geven hoe vaak we dat karakter verwachten.
 
+==== Nul of één keer
 Het vraagteken `?` betekent nul of één keer.
 
 [source,raku]
@@ -3343,6 +3344,7 @@ if 'c' ~~ m/ a?c / {
 }
 ----
 
+==== Nul of meer keer
 De asterisk `*` betekent nul of meer keer.
 
 [source,raku]
@@ -3369,6 +3371,7 @@ if 'z' ~~ m/ a*z / {
 }
 ----
 
+==== Één of meer keer
 Het plusteken `+` betekent tenminste één keer.
 
 [source,raku]
@@ -3392,6 +3395,49 @@ if 'z' ~~ m/ a+z / {
     say "Komt overeen";
 } else {
     say "Komt niet overeen";
+}
+----
+
+=== Verankering
+Een regex kan overal in een string overeenkomen.  *Ankers* verbinden een overeenkomst aan een bepaalde positie in de string.
+
+* `+^+` verankert aan het begin van de string.
+
+* `+$+` verankert aan het einde van de string.
+
+[source,raku]
+----
+if 'raku gids' ~~ m/ ^ raku / {
+  say "Komt overeen";
+} else {
+  say "Komt niet overeen";
+}
+if 'de raku gids' ~~ m/ ^ raku / {
+  say "Komt overeen";
+} else {
+  say "Komt niet overeen";
+}
+if 'de raku gids' ~~ m/ gids $ / {
+  say "Komt overeen";
+} else {
+  say "Komt niet overeen";
+}
+----
+
+=== Alternatieven
+Het `|` symbool ("vertical bar") betekent _of_. Het kan worden gebruikt om twee of meer alternatieven aan te geven.
+
+[source,raku]
+----
+if 'raku.org' ~~ m/ com | org | net / {
+  say "Komt overeen";
+} else {
+  say "Komt niet overeen";
+}
+if 'raku.rocks' ~~ m/ com | org | net / {
+  say "Komt overeen";
+} else {
+  say "Komt niet overeen";
 }
 ----
 
