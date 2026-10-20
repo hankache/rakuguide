@@ -3471,7 +3471,7 @@ if 'raku.org' ~~ m/ com | org | net / {
 } else {
   say "No Match";
 }
-if 'raku.dev' ~~ m/ com | org | net / {
+if 'raku.rocks' ~~ m/ com | org | net / {
   say "Match";
 } else {
   say "No Match";
