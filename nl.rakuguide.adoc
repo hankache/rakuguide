@@ -3714,39 +3714,71 @@ Herbruikbaarheid is een erg belangrijke eigenschap waardoor programmeurs niet te
 
 Raku maakt het mogelijk om *modules* aan te maken en die te distribueren.  Elke module is een bundel van functionaliteit die kan worden gebruikt zodra deze is geïnstalleerd.
 
-_Zef_ is een programma om modules te beheren dat deel uitmaakt van Rakudo Star.
+_Zef_ is een programma om modules te beheren dat meestal ook wordt geïnstalleerd.
 
 Om een specifieke module te installeren moet men onderstaand commando in een terminalvenster intypen:
 
 `zef install "module name"`
 
-NOTE: Een overzicht van beschikbare Raku modules is te vinden op: https://modules.raku.org/
+NOTE: Een overzicht van beschikbare Raku modules is te vinden op: https://raku.land/
 
 === Gebruiken van Modules
-MD5 is een cryptografische functie die een unieke 128bit waarde (hash) produceert. +
-MD5 heeft een grote variëteit van applicaties waarvan het opslaan van wachtwoorden in een database er één is.
-Zodra een nieuwe gebruiker zich registreert, worden de inloggegevens niet als platte tekst opgeslagen, maar als een _hash_.
-Het idee daarachter is dat in het geval dat een database wordt gestolen, de dief dan niet zal kunnen weten wat de wachtwoorden zijn.
+JSON is a text format for storing and exchanging data. +
 
-Laat ons een script schrijven dat een MD5 hash van een wachtwoord maakt voordat het in een database wordt opgeslagen.
+JSON is een tekst standaard voor het opslaan en uitwisselen van data. +
+Het wordt gebruikt door vele webdiensten en applicaties, waardoor vroeger of later jouw programma in staat zal moeten zijn om JSON te lezen, of te produceren. +
+Een JSON document bestaat uit naam/waarde paren en lijsten.  Deze komen overeen met hashes en arrays in Raku.
 
-Gelukkig is er al een Raku module geimplementeerd voor het MD5 algoritme.  Laten we het eerst installeren: +
-`zef install Digest::MD5`
+Gelukkig hoef je niet zelf een JSON lezer te ontwikkelenl; er bestaat al een Raku module voor.
 
-Voer daarna onderstaand script uit:
+Laten we die installeren. +
+`zef install JSON::Fast`
+
+En voer dan onderstaand script uit:
 [source,raku]
 ----
-use Digest::MD5;
-my $wachtwoord = "wachtwoord123";
-my $gehashed = Digest::MD5.new.md5_hex($wachtwoord);
+use JSON::Fast;
 
-say $gehashed;
+my %gebruiker = naam => 'Jan', leeftijd => 23;
+my $json = to-json(%gebruiker);
+
+say $json;
 ----
-Om de `md5_hex()` functie, die de hashes aanmaakt, aan te kunnen roepen moeten we eerst de benodigde module laden. +
-Het `use` sleutelwoord laadt een module voor gebruik in het script.
 
-WARNING: In de praktijk is MD5 hashing alleen niet voldoende, omdat het vatbaar is voor zg. "dictionary attacks". +
-Het zou altijd gecombineerd moeten worden met een "salt", zie daarvoor link:https://en.wikipedia.org/wiki/Salt_(cryptography)[https://en.wikipedia.org/wiki/Salt_(cryptography)].
+.`Uitvoer`
+----
+{
+  "naam": "Jan",
+  "leeftrijd": 23
+}
+----
+
+Om de `to-json()` functie, die een hash verandert in JSON, uit te kunnen voeren moeten we de benodigde module laden. +
+Het `use` sleutelwoord laadt de module, en levert zo een `to-json` subroutine die kan worden uitgevoerd.
+
+NOTE: Raku does not keep the keys of a hash in a fixed order, so `age` might come before `name` when you run the script. The order can change each time the script runs.
+
+NOTE: Raku houdt de namen in een hash niet in een bepaalde orde, dus `leeftijd` kan ook vóór `naam` worden getoond.  En die volgorde kan ook verschillend zijn elke keer als dit script wordt uitgevoerd.
+
+Dezelfde module levert ook een `from-json()` subroutine die het omgekeerde doet.
+[source,raku]
+----
+use JSON::Fast;
+
+my $json = '{ "naam": "Jan", "leeftijd": 25 }';
+my %gebruiker = from-json($json);
+
+say %gebruiker<naam>;
+say %gebruiker<leeftijd>;
+----
+
+.`Output`
+----
+Jan
+25
+----
+
+NOTE: Voor meer informatie over  modules, zie https://docs.raku.org/language/modules
 
 == Unicode
 
