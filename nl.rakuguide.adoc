@@ -4353,8 +4353,10 @@ NOTE: Voor meer informatie over de Native Calling Interface, zie https://docs.ra
 
 * link:https://stackoverflow.com/questions/tagged/raku is een plaats waar vragen over Raku meer diepgaand beantwoord worden.
 
-* link:https://rakudoweekly.blog[Rakudo Weekly] een wekelijks overzicht van veranderingen in en rond Raku
+* link:https://rakuweekly.blog[Raku Weekly] een wekelijks overzicht van veranderingen in en rond Raku
 
-* link:http://pl6anet.org[pl6anet] is een blog aggregator. Hier kun je blog posts over Raku lezen
+* link:http://planet.raku.org[Planet Raku] is een blog aggregator. Hier kun je blog posts over Raku lezen
 
 * link:https://www.reddit.com/r/rakulang/[/r/rakulang] ook op Reddit kun je over Raku lezen
+
+* link:https://raku.foundation[Raku Foundation] de stichting voor de Raku Programming Language
