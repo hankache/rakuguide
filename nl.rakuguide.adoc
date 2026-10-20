@@ -188,8 +188,8 @@ Een *Blok* kan bestaan uit nul of meer opdrachten.  Je maakt een blok door accol
 [source,raku]
 ----
 {
-  say "Eerste opdracht in het blok.";
-  say "Tweede opdracht in het blok.";
+    say "Eerste opdracht in het blok.";
+    say "Tweede opdracht in het blok.";
 }
 ----
 
@@ -1468,7 +1468,7 @@ Indien er geen lusvariabele wordt gegeven, dan wordt elke waarde in de variabele
 my @array = 1, 2, 3;
 
 for @array {
-  say $_ * 100;
+    say $_ * 100;
 }
 ----
 
@@ -1500,7 +1500,7 @@ Om alle waarden van een hash te bekijken, kan men met de `kv` methode vragen om 
 my %hoofdsteden = VK => 'Londen', Duitsland => 'Berlijn';
 
 for %hoofdsteden.kv -> $land, $stad {
-  say "De hoofdstad van  $lang is $stad";
+    say "De hoofdstad van  $lang is $stad";
 }
 ----
 
@@ -1557,8 +1557,8 @@ De `while` lus herhaalt executie van een blok zolang de conditie waar is.
 my $countdown = 3;
 
 while $countdown > 0 {
-  say $countdown;
-  $countdown--;
+    say $countdown;
+    $countdown--;
 }
 say 'Gestart!';
 ----
@@ -1581,8 +1581,8 @@ Bovenstaand voorbeeld kan ook worden geschrene als
 my $countdown = 3;
 
 until $countdown == 0 {
-  say $countdown;
-  $countdown--;
+    say $countdown;
+    $countdown--;
 }
 say 'Gestart!';
 ----
@@ -1898,7 +1898,7 @@ Een parameter die toegewezen wordt aan de hand van een naam, heet een "genoemde 
 [source,raku]
 ----
 sub groet(:$naam, :$titel) {
-  say "Goede morgen $titel $naam";
+    say "Goede morgen $titel $naam";
 }
 
 groet(naam => "Laura", titel => "Mrs.");
@@ -1921,7 +1921,7 @@ Als de naam van een variabele overeenkomt met de naam van een genoemde parameter
 [source,raku]
 ----
 sub groet(:$naam, :$titel) {
-  say "Goede morngen $titel $naam";
+    say "Goede morgen $titel $naam";
 }
 
 my $name = "Laura";
@@ -1938,9 +1938,9 @@ Een slurpende parameter is een array specificatie na een asterisk, zoals `+*@nam
 [source,raku]
 ----
 sub groet-allen(*@namen) {
-  for @namen -> $naam {
-    say "Hallo $naam";
-  }
+    for @namen -> $naam {
+        say "Hallo $naam";
+    }
 }
 
 groet-allen("Paul");
@@ -1962,7 +1962,7 @@ Het kan nog verder worden beperkt door het sleutelwoord `where` toe te voegen, g
 [source,raku]
 ----
 sub register(Int $leeftijd where $leeftijd >= 18) {
-  say "Je bent registreerd";
+   say "Je bent registreerd";
 }
 
 register(21);
@@ -2338,9 +2338,9 @@ Laten we eens naar een interessanter voorbeeld kijken:
 [source,raku]
 ----
 sub groeter-generator($periode) {
-  return sub ($naam) {
-    return "Goede $periode $naam"
-  }
+    return sub ($naam) {
+        return "Goede $periode $naam"
+    }
 }
 my $smorgens = groeter-generator("morgen");
 my $savonds  = groeter-generator("avond");
@@ -2505,8 +2505,8 @@ Andersom, als er altijd een genoemd argument moet worden gegeven voor een attrib
 [source,raku]
 ----
 class Mens {
-  has $.naam is required;
-  has $.nationaliteit = 'Onbekend';
+    has $.naam is required;
+    has $.nationaliteit = 'Onbekend';
 }
 
 my $jan = Menw.new(name => 'Jan');
@@ -2586,8 +2586,8 @@ method !ikbenprivé {
 }
 
 method ikbenpubliek {
-  self!ikbenprivé;
-  #doe extra dingen
+    self!ikbenprivé;
+    #doe extra dingen
 }
 ----
 
@@ -3238,7 +3238,7 @@ if 'Leeftijd = 13' ~~ m/ '=' / {
 .Dubbele aanhalingstekens
 ----
 if 'naam@bedrijf.nl' ~~ m/ "@" / {
-    say "Dit is een juist emailadres want het bevat een @ karakter";
+    say "Dit is een juist email-adres want het bevat een @ karakter";
 }
 ----
 
@@ -3408,19 +3408,19 @@ Een regex kan overal in een string overeenkomen.  *Ankers* verbinden een overeen
 [source,raku]
 ----
 if 'raku gids' ~~ m/ ^ raku / {
-  say "Komt overeen";
+    say "Komt overeen";
 } else {
-  say "Komt niet overeen";
+    say "Komt niet overeen";
 }
 if 'de raku gids' ~~ m/ ^ raku / {
-  say "Komt overeen";
+    say "Komt overeen";
 } else {
-  say "Komt niet overeen";
+    say "Komt niet overeen";
 }
 if 'de raku gids' ~~ m/ gids $ / {
-  say "Komt overeen";
+    say "Komt overeen";
 } else {
-  say "Komt niet overeen";
+    say "Komt niet overeen";
 }
 ----
 
@@ -3430,14 +3430,14 @@ Het `|` symbool ("vertical bar") betekent _of_. Het kan worden gebruikt om twee 
 [source,raku]
 ----
 if 'raku.org' ~~ m/ com | org | net / {
-  say "Komt overeen";
+    say "Komt overeen";
 } else {
-  say "Komt niet overeen";
+    say "Komt niet overeen";
 }
 if 'raku.rocks' ~~ m/ com | org | net / {
-  say "Komt overeen";
+    say "Komt overeen";
 } else {
-  say "Komt niet overeen";
+    say "Komt niet overeen";
 }
 ----
 
@@ -3529,11 +3529,11 @@ Door het toevoegen van `:g` (kort voor _globaal_) worden alle overeenkomsten ver
 `.subst` verandert de onderliggende string niet, zoals de laatste regel toont.
 
 === Voorbeeld
-Laten we eens kijken of een emailadres goed is of niet. +
-Voor dit voorbeeld zullen we aannemen dat een werkend emailadres wordt gevormd door: +
+Laten we eens kijken of een email-adres goed is of niet. +
+Voor dit voorbeeld zullen we aannemen dat een werkend email-adres wordt gevormd door: +
 voornaam [punt] achternaam [bij] bedrijfsnaam [punt] top-niveau (e.g. nl)
 
-WARNING: De regex die in dit voorbeeld wordt gebruikt voor het valideren van een emailadres is niet erg accuraat. +
+WARNING: De regex die in dit voorbeeld wordt gebruikt voor het valideren van een email-adres is niet erg accuraat. +
 Het is alleen bedoeld om de functionaliteit van een regex in Raku te tonen. +
 Gebruik deze regex niet in deze vorm in productie.
 
@@ -3544,14 +3544,14 @@ my $email = 'jan.met@raku.org';
 my $regex = / ^ <:L>+ \. <:L>+ \@<:L+:N>+ \. (com|org|net) $ /;
 
 if $email ~~ $regex {
-    say $/ ~ " lijkt een valide emailadres";
+    say $/ ~ " lijkt een valide email-adres";
 } else {
-    say "Dit emailadres kon niet gevalideerd worden";
+    say "Dit email-adres kon niet gevalideerd worden";
 }
 ----
 
 .Uitvoer
-`jan.met@raku.org lijkt een valide emailadres`
+`jan.met@raku.org lijkt een valide email-adres`
 
 .Uitleg
 * `<:L>` accepteert een enkele letter
@@ -3568,7 +3568,7 @@ if $email ~~ $regex {
 
 * `(com|org|net)` komt overeen met één van de drie alternatieven
 
-* `+^+` en `+$+` zorgen ervoor dat niets voor of achter het email adres mogen staan
+* `+^+` en `+$+` zorgen ervoor dat niets voor of achter het email-adres mogen staan
 
 De regex kan als volgt uit elkaar worden gehaald:
 
@@ -3597,9 +3597,9 @@ my regex veel-letters-cijfers { <:L+:N>+ };
 my regex domein { com | org | net }
 
 if $email ~~ / <veel-letters> <punt> <veel-letters> <bij> <veel-letters-nummers> <dot> <domein> / {
-    say $/ ~ " lijkt een valide emailadres";
+    say $/ ~ " lijkt een valide email-adres";
 } else {
-    say "Dit emailadres kon niet gevalideerd worden";
+    say "Dit email-adres kon niet gevalideerd worden";
 }
 ----
 
@@ -3607,6 +3607,104 @@ Een regex op naam wordt als volgt gedefinieerd: `my regex regex-naam { regex def
 Een regex op naam kan als volgt worden aangeroepen: `<regex-naam>`
 
 NOTE: Zie https://docs.raku.org/language/regexes voor meer informatie over regexen.
+
+== Grammatica's
+In het vorige hoofdstuk hebben we een email regex onderverdeeld in meerdere regexen met een naam. +
+Een *grammatica* gaat verder op dit idee.  Het groupeert regexen met een naam om de vorm van een gehele tekst te beschrijven.
+
+Grammatica's worden gebruikt om een tekst te *ontleden*: om te controleren dat het voldoet aan een bepaalde vorm, en om die delen waarin we geïntereseerd zijn er uit te halen.
+
+=== Definiëren van een grammatica
+Een grammatica wordt gedefinieerd met het sleutelwoord `grammar`.  Regexen met een naam worden gedefinieerd met het sleutelwoord `token`. +
+Het token met de naam `TOP` is special: het beschrijft de vorm van de tekst als een geheel, gebruikmakend van de andere "tokens".
+
+Laten we het email voorbeeld herschrijven als een grammatica.
+
+[source,raku]
+----
+grammar Email {
+    token TOP        { <voornaam> '.' <achternaam> '@' <bedrijf> '.' <domein> }
+    token voornaam   { <:L>+ }
+    token achternaam { <:L>+ }
+    token bedrijf    { <:L+:N>+ }
+    token deomein    { com | org | net }
+}
+----
+
+.Uitleg
+`TOP` definieert dat een email-adres bestaat uit een voornaam, een punt, een achternaam, een apestaartje en een domein. +
+De andere tokens definiëren hoe elk deel er uit ziet. +
+De punt en het apenstaartje worden omgeven door aanhalingstekens omdat ze geen alfanumerieke karakters zijn.
+
+=== Parsing
+A grammar is used by calling its `.parse()` method on a string.
+Een grammatica wordt uitgevoerd door het aanroepen van de `.parse()` methode
+met de string als argument
+
+[source,raku]
+.`Script`
+----
+grammar Email {
+    token TOP        { <voornaam> '.' <achternaam> '@' <bedrijf> '.' <domein> }
+    token voornaam   { <:L>+ }
+    token achternaam { <:L>+ }
+    token bedrijf    { <:L+:N>+ }
+    token domein     { com | org | net }
+}
+
+my $email = 'jan.jansen@a2.org';
+
+if Email.parse($email) {
+    say "$email is een email-adres";
+} else {
+    say "$email is geen geldig email-adres";
+}
+----
+
+.`Output`
+----
+john.doe@route66.org is een email-adres
+----
+
+De aanroep `.parse()` is alleen succesvol indien de gehele string overeenkomt met `TOP`.  Daarom hebben de ankers `+^+` en `+$+`, die we wél gebruikten in de regex, hier niet nodig.
+
+Vervang nu the email-adres met `jan.jansen@a2.xyz` en voer heet script weer uit. +
+Het zal nu "jan.jansen@a2.zyx is geen geldig email-adres" tonen, omdat `xyz` niet een van de geldige domeinen is.
+
+=== Extracting data
+When it succeeds, `.parse()` returns a single match object, which we store in a scalar. +
+The part of the text that was matched by a token can be accessed using the name of that token, with the same angle brackets that are used with a hash.
+
+[source,raku]
+.`Script`
+----
+grammar Email {
+    token TOP        { <voornaam> '.' <achternaam> '@' <bedrijf> '.' <domein> }
+    token voornaam   { <:L>+ }
+    token achternaam { <:L>+ }
+    token bedrijf    { <:L+:N>+ }
+    token domein     { com | org | net }
+}
+
+my $match = Email.parse('jan.jansen@a2.org');
+
+say "Voornaam: " ~ $match<voornaam>;
+say "Achternaam:" ~ $match<achternaam>;
+say "Bedrijf: " ~ $match<bedrijf>;
+say "Domein: " ~ $match<domein>;
+----
+
+.`Uitvoer`
+----
+Voornaam: jan
+Achternaam: jansen
+Bedrijf: a2
+Domein: org
+----
+
+Met één enkele definitie is een grammatica in staat om zowel het email-adres te valideren, en de gewenste informatie er uit te halen.
+
+NOTE: Voor meer informatie over grammatica's, zie https://docs.raku.org/language/grammars
 
 == Raku Modules
 Raku is een algemeen toepasbare programmeertaal.  Het kan worden gebruikt om vele taken uit te voeren, zoals:
@@ -3925,7 +4023,7 @@ Deze functie drukt de string `Hallo van C` af op het scherm.  Het ontvangt geen 
 #include <stdio.h>
 
 void hallovanc () {
-  printf("Hallo van C\n");
+    printf("Hallo van C\n");
 }
 ----
 
@@ -4005,7 +4103,7 @@ Merk op dat we zowel de C-bibliotheek als het Raku programma zo hebben aangepast
 #include <stdio.h>
 
 void hallovanc (char* naam) {
-  printf("Hallo, %s! Dit is C!\n", naam);
+    printf("Hallo, %s! Dit is C!\n", naam);
 }
 ----
 
@@ -4029,7 +4127,7 @@ Compileer de C-bibliotheek en voer het Raku programma uit.
 .ncitest.c
 ----
 int telop (int a, int b) {
-  return (a + b);
+    return (a + b);
 }
 ----
 
