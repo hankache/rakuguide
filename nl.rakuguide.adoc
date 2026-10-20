@@ -753,7 +753,7 @@ say @nummers;      #3
 say @nummers;      #4
 ----
 
-.`Output`
+.`Uitvoer`
 ----
 [7 2 4 9 11 3 99] #1
 (2 3 4 7 9 11 99) #2
@@ -929,7 +929,7 @@ say %hoofdsteden<Frankrijk>:exists;
 say %hoofdsteden;
 ----
 
-.`Output`
+.`Uitvoer`
 ----
 True
 False
@@ -1206,7 +1206,7 @@ say "De naam $naam heeft {$naam.chars} letters";
 say 'De naam $naam heeft {$naam.chars} letters";
 ----
 
-.`Output`
+.`Uitvoer`
 ----
 Jan wordt volgend jaar 24.
 De naam Jan heeft 3 letters.
@@ -1327,7 +1327,7 @@ say sprintf('De prijs is %.2f euro', 3.14159);
 say sprintf('Kaart nummer %05d', 42);
 ----
 
-.`Output`
+.`Uitvoer`
 ----
 Jan is 23 jaar oud
 De prijs is 3.14 euro
@@ -1905,7 +1905,7 @@ groet(naam => "Laura", titel => "Mrs.");
 groet(titel => "Mr.", naam => "Pietje");
 ----
 
-.`Output`
+.`Uitvoer`
 ----
 Goed morgen Mrs. Laura
 Goed morgen Mr. Pietje
@@ -1969,7 +1969,7 @@ register(21);
 register(15);
 ----
 
-.`Output`
+.`Uitvoer`
 ----
 Je bent geregistreerd
 Constraint type check failed in binding to parameter '$leeftijd'; expected anonymous constraint to be met but got Int (15)
@@ -2515,7 +2515,7 @@ say $jan.nationality;
 my $niemand = Human.new;
 ----
 
-.`Output`
+.`Uitvoer`
 ----
 Onbekend
 The attribute '$!naam' is required, but you did not provide a value for it.
@@ -3053,7 +3053,7 @@ try {
 say "Hoe gaat het?"
 ----
 
-.`Output`
+.`Uitvoer`
 ----
 Hoe gaat het?
 ----
@@ -3492,7 +3492,7 @@ if 'Jan is 23 jaar' ~~ m/ (\w+) \s is \s (\d+) / {
 }
 ----
 
-.`Output`
+.`Uitvoer`
 ----
 Name: Jan
 Leeftijd: 23
@@ -3661,7 +3661,7 @@ if Email.parse($email) {
 }
 ----
 
-.`Output`
+.`Uitvoer`
 ----
 john.doe@route66.org is een email-adres
 ----
@@ -3772,7 +3772,7 @@ say %gebruiker<naam>;
 say %gebruiker<leeftijd>;
 ----
 
-.`Output`
+.`Uitvoer`
 ----
 Jan
 25
@@ -3791,6 +3791,7 @@ Karakters zijn gedefinieerd door een: +
 
 === Het gebruik van Unicode
 
+==== Specificeren van karakters
 .Laten we eens zien hoe we met Unicode karakters kunnen laten zien
 [source,raku]
 ----
@@ -3814,6 +3815,7 @@ say "\x263a";
 say "\c[WHITE SMILING FACE]";
 ----
 
+==== Combineren van karakters
 .Voorbeeld van het gebruik van twee codepoints
 [source,raku]
 ----
@@ -3837,7 +3839,7 @@ say "á".NFD;
 say "á".uniname;
 ----
 
-.`Output`
+.`Uitvoer`
 ----
 NFC:0x<00e1>
 NFD:0x<0061 0301>
@@ -3848,6 +3850,7 @@ LATIN SMALL LETTER A WITH ACUTE
 `NFD` haalt het karakter uit elkaar en geeft de codepoints van elk onderdeel. +
 `uniname` geeft de naam van de codepoint.
 
+==== Namen en berekeningen
 .Unicode letters kunnen ook gebruikt worden in namen:
 [source,raku]
 ----
@@ -3865,7 +3868,7 @@ say $var;
 
 === Operaties bekend met Unicode
 
-==== Numbers
+==== Nummers
 
 Arabische cijfers zijn de tien cijfers:  0, 1, 2, 3, 4, 5, 6, 7, 8, 9.
 Deze verzameling van cijfers wordt wereldwijd het meest gebruikt.
@@ -3910,6 +3913,8 @@ De `sort` methode sorteert op basis van "code points".  Raku geeft je ook een `c
 say ('a','b','c','D','E','F').sort;    # (D E F a b c)
 say ('a','b','c','D','E','F').collate; # (a b c D E F)
 ----
+
+NOTE: Voor meer informatie over Unicode, zie https://docs.raku.org/language/unicode
 
 == Parallelisme, Gelijktijdigheid en Asynchroniciteit
 
