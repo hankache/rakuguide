@@ -3917,12 +3917,17 @@ say ('a','b','c','D','E','F').collate; # (a b c D E F)
 NOTE: Voor meer informatie over Unicode, zie https://docs.raku.org/language/unicode
 
 == Parallelisme, Gelijktijdigheid en Asynchroniciteit
+Raku has built-in features that let a program do several things at the same time. +
+In this chapter we will take a look at how to run code in parallel, and how to deal with tasks that take time to complete.
+
+Raku heeft een aantal functies ingebouwd waarmee een programma een aantal dingen tegelijkertijd kan uitvoeren. +
+In dit hoofdstuk zullen we kijken hoe je code gelijktijdig kan laten uitvoeren, en hoe om te gaan met taken die langere tijd nodig hebben om tot een goed einde te komen.
 
 === Parallelisme
 Onder normale omstandigheden worden alle taken in een programma achter elkaar uitgevoerd. +
 Dit hoeft niet noodzakelijkerwijs een probleem te zijn tenzij wat je probeert te doen een hoop tijd vergt.
 
-Natuurlijk heeft Raku een aantal mogelijkheden die het mogelijk maken om delen van een programma parallel uit te laten voeren. +
+Gelukkig heeft Raku een aantal mogelijkheden die het mogelijk maken om delen van een programma parallel uit te laten voeren. +
 Op dit moment is het belangrijk om op te merken dat parallelisme twee dingen kan betekenen:
 
 * *Taak Parallelisme*: Twee (of meer) onafhankelijke expressies die parallel worden uitgevoerd..
@@ -4041,6 +4046,102 @@ WARNING: Parallelisme voegt altijd extra overhead toe.  Als die overhead relatie
 Dat is de reden waarom het gebruik van `race`, `hyper` en `start` in tamelijk simpele scripts een reden van vertraging kan zijn.
 
 === Gelijktijdigheid en Asynchroniciteit
+In the previous section, we used parallelism to make a computation faster. +
+*Gelijktijdigheid* en *Asynchroniciteit* zijn antwoorden op verschillende problemen.  Een programma moet vaak wachten: op een wekkertje, op een bestand, of op een antwoord van het netwerk. +
+In plaats van niets te doen tijdens het wachten kan een programma iets anders doen en pas later het resultaat behandelen zodra het beschikbaar is.
+
+==== Beloften
+We hebben al eerder beloften gezien met `start` en `await`. +
+Een *belofte* staat voor een resultaat dat nog niet beschikbaar is, maar wel op een gegeven moment beschikbaar zal zijn.
+
+[source,raku]
+.`Script`
+----
+my $koffie = start { sleep 2; "Koffie is gezet" };
+my $toast  = start { sleep 1; "Toast is klaar" };
+
+say "Ontbijt klaarzetten";
+say await $toast;
+say await $coffee;
+----
+
+.`Uitvoer`
+----
+Ontbijt klaarzetten
+Toast is klaar
+Koffie is gezet
+----
+
+.Uitleg
+`sleep` pauzeert voor het gegeven aantal seconden. We gebruiken het hier om een taak te simuleren die tijd vergt. +
+`start` meldt een taak aan en geeft direct een belofte terug.  Het wacht niet tot the taak voltooid is.
+Dat is waarom `Ontbijt klaarzetten` eerst wordt getoond. +
+`await` wacht tot de belofte gehouden wordt, en geeft dan de waarde terug. +
+Beide taken lopen gelijktijdig, zodat het script maar 2 seconden duurt, in plaats van 3.
+
+==== Aanvoeren
+A promise delivers a single result. A *supply* delivers many values, one after the other, over a period of time.
+Een belofte geeft een enkel resultaat terug.  Een aanvoer (*supply*) levert meerdere waarden, één voor één, gedurende een periode.
+
+`Supply.interval(1)` is een aanvoer die eklek seconde een nieuwe waarde levert: 0, 1, 2 enzovoort. +
+Om te reageren op elke waarde die wordt geleverd gebruiken we `react` en `whenever`.
+
+[source,raku]
+.`Script`
+----
+react {
+    whenever Supply.interval(1) -> $seconde {
+        say "Tik $seconde";
+        done if $seconde == 3;
+    }
+}
+say "Klaar";
+----
+
+.`Uitvoer`
+----
+Tik 0
+Tik 1
+Tik 2
+Tik 3
+Klaar
+----
+
+.Uitleg
+`whenever` voert het bijbehorende blok uit elke keer als een waarde wordt ontvangen. +
+`react` zorgt ervoor dat het script blijft wachten totdat `done` wordt aangeroepen. +
+`done if $seconde == 3` stopped het `react` blok na de vierde waarde. Zonder die conditie zou het script nooit eindigen.
+
+Een `react` blok kan meer dan één `whenever` bevatten.  Dit laat het toe dat een script meerdere dingen tegelijk kan doen.
+
+[source,raku]
+.`Script`
+----
+react {
+    whenever Supply.interval(1) -> $seconde {
+        say "Tick $seconde";
+    }
+    whenever Promise.in(3.5) {
+        say "De tijd is om";
+        done;
+    }
+}
+----
+
+.`Uitvoer`
+----
+Tik 0
+Tik 1
+Tik 2
+Tik 3
+De tijd is om
+----
+
+.Uitleg
+`Promise.in(3.5)` geeft een belofte die gehouden wordt na 3.5 seconden. +
+De eeste `whenever` laat elke second een tik zien. +
+De tweede `whenever` wacht tot de belofte gehouden worden, en beëindigt dan het `react` blok.
+
 NOTE: Zie https://docs.raku.org/language/concurrency voor meer informatie over asynchroon programmeren in Raku
 
 == Aanroepen van C-bibliotheken
