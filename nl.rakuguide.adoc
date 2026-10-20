@@ -4349,9 +4349,9 @@ NOTE: Voor meer informatie over de Native Calling Interface, zie https://docs.ra
 
 == De Community
 
-* link:https://web.libera.chat/#raku[#raku] IRC kanaal. Veel discussies vinden plaats op IRC. Mocht je vragen hebben die relatief snel een antwoord nodig hebben, dan kun je het beste naar  https://raku.org/community/irc gaan
+* link:https://web.libera.chat/#raku[#raku] IRC kanaal. Veel discussies vinden plaats op IRC. Dit zou voor jou het vaste aanspreekpunt moeten zijn voor elke vraag waarop je direct antwoord wilt.
 
-* link:https://stackoverflow.com/questions/tagged/raku is een plaats waar vragen over Raku meer diepgaand beantwoord worden.
+* link:https://stackoverflow.com/questions/tagged/raku[StackOverflow Raku-vragen] is een plaats waar vragen over Raku meer diepgaand beantwoord worden.
 
 * link:https://rakuweekly.blog[Raku Weekly] een wekelijks overzicht van veranderingen in en rond Raku
 
