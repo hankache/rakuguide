@@ -4152,6 +4152,7 @@ Raku geeft je de mogelijkheid om C-bibliotheken in je programma te gebruiken doo
 
 === Aanroepen van een functie
 
+==== The C bibliotheek
 Bekijk hier het C-programma dat een functie definieert met de naam `hallovanc`.
 Deze functie drukt de string `Hallo van C` af op het scherm.  Het ontvangt geen parameters, en het geeft ook geen enkele waarde terug.
 
@@ -4165,6 +4166,7 @@ void hallovanc () {
 }
 ----
 
+==== Compileren van de bibliotheek
 Afhankelijk van het Operating System dat je gebruikt, moet je de volgende commando's uitvoeren om een bibliotheek te maken van bovenstaand C programma.
 
 .Op Linux:
@@ -4184,6 +4186,7 @@ gcc -shared -o ncitest.dll ncitest.o
 gcc -dynamiclib -o libncitest.dylib ncitest.c
 ----
 
+==== Het Raku script
 Maak vervolgens een bestand aan met het volgende Raku programma, in dezelfde directory waar je de C-bibliotheek hebt gecompileerd.  En voer dat programma dan uit.
 
 [source,raku]
@@ -4202,6 +4205,7 @@ Ten eerste gaven we aan dat we de `NativeCall` module wilden gebruiken. +
 Vervolgens maakten we een constante `LIBPATH` aan waarin de locatie van de C-bibliotheek staat. +
 Merk op dat `$*CWD` de huidige directory aangeeft.
 Vervolgens maakten we een nieuwe Raku subroutine `hallovanc` die als een verpakking functioneert van de functie met dezelfde naam in de C-bibliotheek die aangegeven wordt door `LIBPATH`. +
+
 Dit alles wordt gedaan door het gebruik van de `is native` eigenschap. +
 Tot slot roepen we de Raku subroutine aan.
 
